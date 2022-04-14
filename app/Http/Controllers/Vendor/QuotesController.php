@@ -14,7 +14,7 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        return view('vendor.quote.index');
+        return view('vendor.quotes.index');
     }
 
     /**

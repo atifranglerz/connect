@@ -338,7 +338,7 @@ nav{
     margin: 0 auto;
     border-radius: 10px;
     padding: 10px 20px;
-
+    
 }
 .banner_btn_main_wraper>.divider{
     height: 1px;
@@ -391,7 +391,7 @@ nav{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
 }
 .banner_btn__sub_wraper>img{
     width: 48px;
@@ -485,7 +485,7 @@ nav{
     border-radius: 25px;
     position: relative;
     overflow: hidden;
-
+    
 }
 .img_wraper>img{
     width: 100%;
@@ -560,7 +560,7 @@ nav{
     left: 0;
     color: var(--white);
     border:2px solid var(--orange);
-    border-radius: 4px;
+    border-radius: 4px; 
 }
 .view_all_btn_wrapper>.view_all_btn:hover{
     color: var(--white);
@@ -596,7 +596,7 @@ nav{
 }
 .card-title.date{
     font-size: var(--fs-12);
-
+    
 }
 .car_img_wrapper{
     width: 100%;
@@ -649,7 +649,7 @@ nav{
  background-repeat: no-repeat;
  background-size: 100%;
  background-position: 100% 80%;
- height: 200px;
+ height: 200px; 
  z-index: -1;
  display: flex;
  align-items: center;
@@ -691,11 +691,11 @@ nav{
     font-family: var(--san);
     margin-bottom: 5px;
 }
-/*................................... 2nd pages  garage........................................ */
+/*................................... 2nd pages  garages........................................ */
 .looking_for.garages{
     padding: 40px 0 54px 0 !important;
 }
-/*......................................3rd page all garage...................................*/
+/*......................................3rd page all garages...................................*/
 .sec_main_para.allgarages{
     max-width: 510px;
 }
@@ -1290,7 +1290,7 @@ label.img_wraper_label>.file_icon_wraper{
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-
+    
 }
 label.img_wraper_label>input[type="file"] {
     display: none;
@@ -1679,7 +1679,7 @@ ul.sidebar_navcigation>li>a>img{
 }
 .form-switch .form-check-input{
   background-image: url(assets/images/orangesvg.svg);
-}
+} 
 .form-switch.toggler_switch{
   padding-left: 7.5em;
 }
@@ -2234,7 +2234,7 @@ padding-right: 35px;
 }
 .cahtting_messages::-webkit-scrollbar {
   display: none;
-}
+} 
 .send_btn{
     background-color: var(--orange);
     width: 66px;
@@ -2294,7 +2294,7 @@ padding-right: 35px;
     transform: rotate(45deg);
 }.signup_vendor>h4{
     color: var(--orange);
-    font-size: var(--fs-18);
+    font-size: var(--fs-18);  
 }
 .form-check .form-check-input.wrk_day_chek {
     float: right;
@@ -2333,7 +2333,7 @@ padding-right: 35px;
     justify-content: unset;
 }
 .carAd_img_wraper.doc_img.vendor_dashboar{
-
+    
 }
 .quote_detail_btn_wraper>h3.vendor_order_id{
     font-size: var(--fs-12);
@@ -2480,5 +2480,5 @@ input.messages_file[type=file]::-webkit-file-upload-button {
 }
 .messages_file_uploader_image{
     position: absolute;
-
+        
 }

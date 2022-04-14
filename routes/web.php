@@ -111,26 +111,42 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'as' => 'admin.'], fu
 });
 
 Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'], function () {
-    /* Admin Login Or Register Form */
+    /*Admin Login Or Register Form*/
     Route::get('login', 'AuthController@login');
     Route::get('register', 'AuthController@register');
+    Route::get('register_garage_view', 'GarageController@registerGarage')->name('register_garage_view');
     Route::post('login', 'AuthController@vendorLogin')->name('login');
     Route::post('register', 'AuthController@vendorRegister')->name('register');
+    //Route::post('create_ads/index','AdsController@store')->name('create_ads/index');
+
     /*Route::get('facebook', 'AuthController@facebookRedirect')->name('facebook');
     Route::get('facebook/callback', 'AuthController@loginWithFacebook');
     Route::get('google', 'AuthController@redirectToGoogle')->name('google');
     Route::get('google/callback', 'AuthController@handleGoogleCallback');*/
     Route::get('forget_password', 'AuthController@forgetPassword')->name('forget_password');
     Route::post('reset-password', 'AuthController@resetPassword')->name('reset_password');
-    Route::get('otp', 'AuthController@otp')->name('otp');
-    Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
+    Route::get('password_change', 'AuthController@password_change');
+    Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
-    /* Vendor Auth Routes */
+
+
+
+    /*Vendor Auth Routes*/
     Route::group(['middleware' => ['auth:vendor', 'role:vendor']], function () {
-        Route::get('/dashboard', function () {
-            return view('vendor.index');
-        })->name('dashboard');
-        /* Logout */
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
+        Route::get('orders', 'ordersController@index')->name('orders');
+        Route::get('create/order', 'ordersController@create');
+        Route::get('fullfillment', 'ordersController@fullfillment')->name('fullfillment');
+        Route::get('order/index','ordersController@active_order')->name('order/index');
+        Route::resource('ads', 'AdsController');
+        Route::get('bids', 'BidsController@index')->name('bids');
+        Route::get('bids_detail', 'Bids_detailController@index')->name('bids_detail');
+        Route::resource('quotes', 'QuotesController');
+        Route::resource('used_car', 'UsedCarController');
+        Route::resource('workshop', 'workshopController');
+        Route::resource('profile', 'ProfileController');
+        /*Logout*/
         Route::post('logout', 'AuthController@logout')->name('logout');
     });
 });

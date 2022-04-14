@@ -15,12 +15,9 @@ class ordersController extends Controller
     {
         return view('vendor.fullfillment');
     }
-    public function active_order ()
+  /*  public function active_order ()
     {
         return view('vendor.orderindex');
-    }
-    public function create ()
-    {
-        return view('vendor.create_ads');
-    }
+    }*/
+
 }

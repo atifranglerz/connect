@@ -29,6 +29,15 @@ class Controller extends BaseController
         }
     }
 
+    public function jsonMessage($variable, $successMessage, $errorMessage)
+    {
+        if ($variable) {
+            return response()->json(['message' => $successMessage, 'status' => 'success']);
+        } else {
+            return response()->json(['message' => $errorMessage, 'status' => 'error']);
+        }
+    }
+
     function sendSuccess($message, $data = '')
     {
         return Response::json(['status' => 200, 'message' => $message, 'successData' => $data], 200, []);

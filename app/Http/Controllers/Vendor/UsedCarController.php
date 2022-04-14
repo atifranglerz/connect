@@ -24,7 +24,7 @@ class UsedCarController extends Controller
      */
     public function create()
     {
-        return view('vendor.ads.create');
+        return view('vendor.used_car.create');
     }
 
     /**

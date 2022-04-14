@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ForgetPassword;
+use App\Mail\Login;
 use App\Models\Vendor;
 use App\Models\User;
 use Carbon\Carbon;
@@ -56,28 +58,45 @@ class AuthController extends Controller
 
     public function vendorLogin(Request $request)
     {
-        //return redirect()->route('vendor.dashboard');
-//        $request->validate([
-//            'email' => 'required',
-//            'password' => 'required',
-//        ]);
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        /*$users = Vendor::where('email', '=', $request->email)->first();
+        //dd($users);
+        if($users->action == 1)
+        {
+            return view('vendor.workshop.create');
+        }
+        else
+        {
+            $users->action = '0';
+            $users->save() ;
+            return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully", 'success'));
+
+        }*/
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $vendor_email = $request->email;
+            $data['name'] = 'usman';
+            $data['message'] = 'hello world';
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
             if ($vendor_role) {
-                return redirect()->route('vendor.dashboard');
-                    //->with($this->message("Vendor Login Successfully", 'success'));
+                Mail::to($vendor_email)->send(new Login($data));
+                /*Mail::send('emails.login', $data, function ($messages) use ($vendor_email) {
+                    $messages->to($vendor_email);
+                    $messages->subject("Login Email");
+                });*/
+                return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully", 'success'));
+            } else {
+                return redirect()->back()->with($this->data("you have not this Role!", 'error'));
             }
-            else {
-                return redirect()->back()->with($this->message("Login Error", 'error'));
-            }
+        } else {
+            return redirect()->back()->with($this->data("Vendor Email Or Password Invalid!", 'error'));
         }
-        else {
-            return redirect()->back()->with($this->message("Vendor Email Or Password Invalid!", 'error'));
-        }
-
     }
 
-    public function forgetPassword(){
+    public function forgetPassword()
+    {
         $page_title = 'Forget Password';
         return view('vendor.auth.forget_password', compact('page_title'));
     }
@@ -87,47 +106,68 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|exists:vendors,email',
         ]);
-        $page_title = 'Otp Confirm';
         $vendor = Vendor::where('email', $request->email)->first();
-        $otp = mt_rand(10000, 99999);
-        $email = $vendor->email;
-        $details['otp'] = $otp;
+        $data['email'] = $vendor->email;
+        $data['token'] = str_random(30);
+        $data['url'] =url('token_confirm/'. $data['token']);
         try {
-            Mail::to($request->email)->send(new ResetPassword($details));
-        } catch(\Swift_TransportException $e){
-            if($e->getMessage()) {
+            /*Mail::send('emails.forgetPassword', $data, function ($messages) use ($vendor) {
+                $messages->to();
+                $messages->subject("Forget Password");
+            });*/
+            Mail::to($data['email'])->send(new ForgetPassword($data));
+            DB::table('password_resets')->insert([
+                'email' => $vendor->email,
+                'token' => $data['token'],
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->back()->with($this->data("Forget Password Email Send Successfully.", 'success'));
+
+            // Mail::to($request->email)->send(new ResetPassword($details));
+        } catch (\Swift_TransportException $e) {
+            if ($e->getMessage()) {
                 dd($e->getMessage());
             }
+            return redirect()->back()->with($this->data("Forget Password Email Send Error.", 'error'));
         }
-        DB::table('password_resets')->insert([
-            'email' => $vendor->email,
-            'otp' => $otp,
-            'created_at' => Carbon::now()
-        ]);
-        return view('vendor.auth.otp', compact('page_title', 'email'));
     }
 
-    public function otpConfirm(Request $request)
+    public function tokenConfirm($token)
     {
-        $request->validate([
-            'email' => 'required|email|exists:vendors',
-            'otp' => 'required',
-        ]);
-        $page_title = 'Update Password';
-        $vendor = Vendor::where('email', $request->email)->first();
-        $email = $vendor->email;
-        $otp_confirm = DB::table('password_resets')
+        $token_confirm = DB::table('password_resets')
             ->where([
-                'email' => $request->email,
-                'otp' => $request->otp
+                'token' => $token,
             ])
             ->first();
-        if (!$otp_confirm) {
-            return redirect()->back()->with('OTP not same!');
+        if ($token_confirm) {
+            return view('vendor.auth.password_change');
+        } else {
+            return redirect()->route('vendor.forget_password')->with($this->data('Token Not Match. Please Try Again', 'error'));
         }
 
-        return view('vendor.auth.password_change', compact('page_title', 'email'));
     }
+
+    /* public function tokenConfirm(Request $request)
+     {
+         $request->validate([
+             'email' => 'required|email|exists:vendors',
+             'token' => 'required',
+         ]);
+         $page_title = 'Update Password';
+         $vendor = Vendor::where('email', $request->email)->first();
+         $email = $vendor->email;
+         $token_confirm = DB::table('password_resets')
+             ->where([
+                 'email' => $request->email,
+                 'token' => $request->token
+             ])
+             ->first();
+         if (!$token_confirm) {
+             return redirect()->back()->with('OTP not same!');
+         }
+
+         return view('vendor.auth.password_change', compact('page_title', 'email'));
+     }*/
 
     /**
      * Write code on Method
@@ -135,7 +175,8 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|object
      */
-    public function submitResetPassword(Request $request)
+    public
+    function submitResetPassword(Request $request)
     {
         $request->validate([
             'email' => 'required|email|exists:vendors',
@@ -149,20 +190,23 @@ class AuthController extends Controller
         return redirect()->route('vendor.login')->with('Your Password Update Successfully');
     }
 
-    public function logout(Request $request)
+    public
+    function logout(Request $request)
     {
         Auth::guard('vendor')->logout();
-        return redirect()->route('vendor.login')->with($this->message("Vendor Logout Successfully", "success"));
+        return redirect()->route('vendor.login')->with($this->data("Vendor Logout Successfully", "success"));
     }
 
-    public function profile()
+    public
+    function profile()
     {
         $vendor = Auth::guard('vendor')->user();
         $page_title = 'Vendor Profile';
         return view('vendor.profile', compact('vendor', 'page_title'));
     }
 
-    public function updateProfile(Request $request, $id)
+    public
+    function updateProfile(Request $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -175,13 +219,14 @@ class AuthController extends Controller
         $vendor->phone = $request->phone;
         $vendor->update();
         if ($vendor) {
-            return redirect()->back()->with($this->message("Profile Update Successfully", "success"));
+            return redirect()->back()->with($this->data("Profile Update Successfully", "success"));
         } else {
-            return redirect()->back()->with($this->message("Profile Update Error", "error"));
+            return redirect()->back()->with($this->data("Profile Update Error", "error"));
         }
     }
 
-    public function updatePassword(Request $request, $id)
+    public
+    function updatePassword(Request $request, $id)
     {
         $request->validate([
             'old_password' => 'required',
@@ -193,27 +238,29 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password)
             ])->save();
 
-            return redirect()->route('profile')->with($this->message("Update Password Successfully", 'success'));
+            return redirect()->route('profile')->with($this->data("Update Password Successfully", 'success'));
         } else {
-            return redirect()->back()->with($this->message("Update Password Error", 'error'));
+            return redirect()->back()->with($this->data("Update Password Error", 'error'));
         }
     }
 
-    public function facebookRedirect()
+    public
+    function facebookRedirect()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function loginWithFacebook()
+    public
+    function loginWithFacebook()
     {
         try {
             $vendor = Socialite::driver('facebook')->user();
             $isUser = Vendor::where('social_id', $vendor->id)->first();
 
-            if($isUser){
+            if ($isUser) {
                 Auth::login($isUser);
                 return redirect('/dashboard');
-            }else{
+            } else {
                 $createUser = Vendor::create([
                     'name' => $vendor->name,
                     'email' => $vendor->email,
@@ -230,7 +277,8 @@ class AuthController extends Controller
         }
     }
 
-    public function redirectToGoogle()
+    public
+    function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
@@ -240,19 +288,20 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function handleGoogleCallback()
+    public
+    function handleGoogleCallback()
     {
         try {
             $vendor = Socialite::driver('google')->user();
             $findvendor = Vendor::where('social_id', $vendor->id)->first();
-            if($findvendor){
+            if ($findvendor) {
                 Auth::login($findvendor);
                 return redirect('/');
-            }else{
+            } else {
                 $newUser = Vendor::create([
                     'name' => $vendor->name,
                     'email' => $vendor->email,
-                    'google_id'=> $vendor->id,
+                    'google_id' => $vendor->id,
                     'password' => encrypt('123456dummy')
                 ]);
                 Auth::login($newUser);

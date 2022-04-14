@@ -20,15 +20,15 @@ class CreateAdsTable extends Migration
             $table->string('model');
             $table->foreignId('company_id')->unsigned()->constrained('companies')->onDelete('cascade');
             $table->foreignId('model_year_id')->unsigned()->constrained('model_years')->onDelete('cascade');
-            $table->string('price');
-            $table->string('color');
-            $table->string('engine');
-            $table->string('phone');
-            $table->string('address');
-            $table->integer('mileage');
-            $table->text('description');
+            $table->integer('price')->nullable();
+            $table->string('color')->nullable();
+            $table->string('engine')->nullable();
+            $table->bigInteger('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->integer('mileage')->nullable();
+            $table->text('description')->nullable();
             $table->foreignId('vendor_id')->unsigned()->constrained('vendors')->onDelete('cascade');
-            $table->foreignId('user_id')->unsigned()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->unsigned()->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
