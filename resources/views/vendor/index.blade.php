@@ -1,5 +1,6 @@
 @extends('vendor.layout.app')
 @section('content')
+
     <section class="pb-5 login_content_wraper" style="background-image:url(assets/images/gradiantbg.jpg);">
         <div class="container-lg container-fluid" >
             <div class="row">

@@ -33,7 +33,7 @@
         </div>
         <div class="row g-3">
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair4.jpg') }}" class="card-img-top" alt="Car image">
@@ -52,7 +52,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair1.jpg')}}" class="card-img-top" alt="Car image">
@@ -71,7 +71,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair3.jpg') }}" class="card-img-top" alt="Car image">
@@ -90,7 +90,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair4.jpg')}}" class="card-img-top" alt="Car image">
@@ -109,7 +109,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair5.jpg')}}" class="card-img-top" alt="Car image">
@@ -128,7 +128,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair6.jpg')}}" class="card-img-top" alt="Car image">
@@ -147,7 +147,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair4.jpg')}}" class="card-img-top" alt="Car image">
@@ -166,7 +166,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair1.jpg')}}" class="card-img-top" alt="Car image">
@@ -185,7 +185,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/repair3.jpg')}}" class="card-img-top" alt="Car image">
@@ -204,10 +204,10 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
-                            <img src="assets/images/repair4.jpg" class="card-img-top" alt="Car image">
+                            <img src="{{asset('public/assets/images/repair4.jpg')}}" class="card-img-top" alt="Car image">
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -223,10 +223,10 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
-                            <img src="assets/images/repair5.jpg" class="card-img-top" alt="Car image">
+                            <img src="{{asset('public/assets/images/repair5.jpg')}}" class="card-img-top" alt="Car image">
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -242,10 +242,10 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="carAdDetail.php">
+                <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow" >
                         <div class="car_img_wrapper">
-                            <img src="assets/images/repair6.jpg" class="card-img-top" alt="Car image">
+                            <img src="{{asset('public/assets/images/repair6.jpg')}}" class="card-img-top" alt="Car image">
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">

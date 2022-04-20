@@ -12,10 +12,10 @@
                         <form class="pt-5" action="{{route('vendor.login')}}" method="post" >
                             @csrf
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control pass" id="inputPassword" placeholder="Password">
+                                <input type="password" class="form-control pass" name="password" id="inputPassword" placeholder="Password">
                                 <!-- <i class="bi bi-eye toggle_pass"></i> -->
                             </div>
 

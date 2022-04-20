@@ -36,13 +36,18 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/', 'HomepageController@index')->name('home');
     Route::get('register', 'HomepageController@register')->name('register');
     Route::get('used_cars', 'HomepageController@usedcars')->name('used_cars');
+    Route::get('car_detail', 'HomepageController@cardetail')->name('car_detail');
     Route::get('car_service', 'HomepageController@carService')->name('car_service');
+    Route::get('gerage_detail', 'HomepageController@gerage_detail')->name('gerage_detail');
     Route::get('vendorlist', 'HomepageController@allvendor')->name('vendorlist');
     Route::get('news', 'HomepageController@news')->name('news');
     Route::get('faq', 'HomepageController@faqnews')->name('faq');
-    Route::get('home', 'HomepageController@index')->name('home');
+    Route::get('news_detail', 'HomepageController@news_detail')->name('news_detail');
+    Route::get('home', 'HomepageController@index')->name('home_page');
+    Route::get('term_condition', 'HomepageController@term')->name('term');
+    Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
 });
-Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('/', function () {
         return view('admin.auth.login');
     })->name('admin.login');
@@ -70,13 +75,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'as' => 'admin.'], fu
         /* All User Route */
         Route::get('users/activate/{user}', 'UserController@activate')->name('user.activate');
         Route::get('users/deactivate/{user}', 'UserController@deactivate')->name('user.deactivate');
-        Route::get('get/user/permission/{role}', 'UserController@getRole');
+        //Route::get('get/user/permission/{role}', 'UserController@getRole');
         Route::post('users/updatePassword/{user}', 'UserController@updatePassword')->name('user.updatePassword');
         Route::resource('user', 'UserController')->except('create', 'store', 'show');
         /* All Vendor Route */
         Route::get('vendor/activate/{vendor}', 'VendorController@activate')->name('vendor.activate');
         Route::get('vendor/deactivate/{vendor}', 'VendorController@deactivate')->name('vendor.deactivate');
-        Route::get('get/vendor/permission/{role}', 'VendorController@getRole');
+        //Route::get('get/vendor/permission/{role}', 'VendorController@getRole');
         Route::post('vendor/updatePassword/{vendor}', 'VendorController@updatePassword')->name('vendor.updatePassword');
         Route::resource('vendor', 'VendorController')->except('create', 'store', 'show');
         /* All Category & SubCategory Route */
@@ -163,15 +168,15 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::get('google/callback', 'AuthController@handleGoogleCallback');*/
     Route::get('forget_password', 'AuthController@forgetPassword')->name('forget_password');
     Route::post('reset-password', 'AuthController@resetPassword')->name('reset_password');
-    Route::get('otp', 'AuthController@otp')->name('otp');
-    Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
+    Route::get('password_change', 'AuthController@password_change');
+    Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     /* User Auth Routes */
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile', 'ProfileController@updateProfile')->name('profile.post');
+        Route::post('/profile/{id}', 'ProfileController@updateProfile')->name('profile.post');
         Route::post('/profile_password', 'ProfileController@updatePassword')->name('profile.update_password');
         Route::resource('chat', 'ChatController');
         Route::resource('ads', 'AdsController');

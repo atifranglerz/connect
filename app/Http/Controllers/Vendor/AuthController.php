@@ -25,12 +25,12 @@ class AuthController extends Controller
 
     public function vendorRegister(Request $request)
     {
-//        $request->validate([
-//            'name' => ['required', 'string', 'max:255'],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
-//            'phone' => 'required|unique:vendors,phone',
-//            'password' => ['required', 'confirmed',],
-//        ]);
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
+            'phone' => 'required|unique:vendors,phone',
+            'password' => ['required', 'confirmed',],
+        ]);
         $role = Role::where('name', 'vendor')->first();
         $vendor = new  Vendor();
         $vendor->name = $request->name;
@@ -62,30 +62,14 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        /*$users = Vendor::where('email', '=', $request->email)->first();
-        //dd($users);
-        if($users->action == 1)
-        {
-            return view('vendor.workshop.create');
-        }
-        else
-        {
-            $users->action = '0';
-            $users->save() ;
-            return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully", 'success'));
 
-        }*/
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $vendor_email = $request->email;
             $data['name'] = 'usman';
             $data['message'] = 'hello world';
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
             if ($vendor_role) {
-                Mail::to($vendor_email)->send(new Login($data));
-                /*Mail::send('emails.login', $data, function ($messages) use ($vendor_email) {
-                    $messages->to($vendor_email);
-                    $messages->subject("Login Email");
-                });*/
+//                Mail::to($vendor_email)->send(new Login($data));
                 return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully", 'success'));
             } else {
                 return redirect()->back()->with($this->data("you have not this Role!", 'error'));
@@ -109,12 +93,8 @@ class AuthController extends Controller
         $vendor = Vendor::where('email', $request->email)->first();
         $data['email'] = $vendor->email;
         $data['token'] = str_random(30);
-        $data['url'] =url('token_confirm/'. $data['token']);
+        $data['url'] = route('vendor.token_confirm', $data['token']);
         try {
-            /*Mail::send('emails.forgetPassword', $data, function ($messages) use ($vendor) {
-                $messages->to();
-                $messages->subject("Forget Password");
-            });*/
             Mail::to($data['email'])->send(new ForgetPassword($data));
             DB::table('password_resets')->insert([
                 'email' => $vendor->email,
@@ -140,34 +120,11 @@ class AuthController extends Controller
             ])
             ->first();
         if ($token_confirm) {
-            return view('vendor.auth.password_change');
+            return view('vendor.auth.password_change', compact('token'));
         } else {
             return redirect()->route('vendor.forget_password')->with($this->data('Token Not Match. Please Try Again', 'error'));
         }
-
     }
-
-    /* public function tokenConfirm(Request $request)
-     {
-         $request->validate([
-             'email' => 'required|email|exists:vendors',
-             'token' => 'required',
-         ]);
-         $page_title = 'Update Password';
-         $vendor = Vendor::where('email', $request->email)->first();
-         $email = $vendor->email;
-         $token_confirm = DB::table('password_resets')
-             ->where([
-                 'email' => $request->email,
-                 'token' => $request->token
-             ])
-             ->first();
-         if (!$token_confirm) {
-             return redirect()->back()->with('OTP not same!');
-         }
-
-         return view('vendor.auth.password_change', compact('page_title', 'email'));
-     }*/
 
     /**
      * Write code on Method
@@ -175,38 +132,37 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|object
      */
-    public
-    function submitResetPassword(Request $request)
+    public function submitResetPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:vendors',
             'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required'
         ]);
-        $vendor = Vendor::where('email', $request->email)
+        $token = DB::table('password_resets')
+            ->where([
+                'token' => $request->confirm_token,
+            ])
+            ->first();
+        $vendor = Vendor::where('email', $token->email)
             ->update(['password' => Hash::make($request->password)]);
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-        return redirect()->route('vendor.login')->with('Your Password Update Successfully');
+        return $this->message($vendor, 'vendor.login', 'success', 'error');
     }
 
-    public
-    function logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::guard('vendor')->logout();
         return redirect()->route('vendor.login')->with($this->data("Vendor Logout Successfully", "success"));
     }
 
-    public
-    function profile()
+    public function profile()
     {
         $vendor = Auth::guard('vendor')->user();
         $page_title = 'Vendor Profile';
         return view('vendor.profile', compact('vendor', 'page_title'));
     }
 
-    public
-    function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -217,6 +173,9 @@ class AuthController extends Controller
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->phone = $request->phone;
+        $vendor->city = $request->city;
+        $vendor->country = $request->country;
+        $vendor->post_box = $request->post_box;
         $vendor->update();
         if ($vendor) {
             return redirect()->back()->with($this->data("Profile Update Successfully", "success"));

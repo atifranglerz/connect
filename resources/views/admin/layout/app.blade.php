@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('public/admin/assets/bundles/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/admin/assets/fonts/fontawesome5.15.4/css/all.css') }}">
+    <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/web/assets/favicon/favicon.ico') }}' />
 
 @yield('style')
     <!-- Template CSS -->

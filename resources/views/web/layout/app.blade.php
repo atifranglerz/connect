@@ -48,7 +48,7 @@
                 <div class="d-flex login_header_main">
                     <div class="login_sinup">
                         <a href="{{ route('register') }}"> <i class="fa fa-briefcase me-2 me-md-1"></i> Rigister Your Garage</a>
-                        <a href="{{ route('user.login') }}" class="login ms-lg-2">Login</a>
+                        <a href="{{ route('vendor.login') }}" class="login ms-lg-2">Login</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <div class="footer_link">
                     <h1>LINKS</h1>
                     <ul>
-                        <li><a href="signup.php">Rigister your business</a></li>
+                        <li><a href="{{ route('register') }}">Rigister your business</a></li>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
                     </ul>
@@ -74,7 +74,7 @@
                     <h1>LINKS</h1>
                     <ul>
                         <li><a href="#">Privicy Policy</a></li>
-                        <li><a href="news.php">News</a></li>
+                        <li><a href="{{route('news')}}">News</a></li>
                         <li><a href="{{route('faq')}}">FAQ </a></li>
                     </ul>
                 </div>

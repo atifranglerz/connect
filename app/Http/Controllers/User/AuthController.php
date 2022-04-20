@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ForgetPassword;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                return redirect()->route('user.dashboard')->with($this->data("Login Error", 'error'));
+                return redirect()->route('user.dashboard')->with($this->data("Login Successfully", 'success'));
             }
         }
         return redirect()->back()->with($this->data("User Email Or Password Invalid!", 'error'));
@@ -79,66 +80,56 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|exists:users,email',
         ]);
-        $page_title = 'Otp Confirm';
-        $user = User::where('email', $request->email)->first();
-        $otp = mt_rand(10000, 99999);
-        $email = $user->email;
-        $details['otp'] = $otp;
+        $vendor = User::where('email', $request->email)->first();
+        $data['email'] = $vendor->email;
+        $data['token'] = str_random(30);
+        $data['url'] = route('user.token_confirm', $data['token']);
         try {
-            Mail::to($request->email)->send(new ResetPassword($details));
-        } catch(\Swift_TransportException $e){
-            if($e->getMessage()) {
-                dd($e->getMessage());
+            Mail::to($data['email'])->send(new ForgetPassword($data));
+            DB::table('password_resets')->insert([
+                'email' => $vendor->email,
+                'token' => $data['token'],
+                'created_at' => Carbon::now()
+            ]);
+            return redirect()->back()->with($this->data("Forget Password Email Send Successfully.", 'success'));
+            // Mail::to($request->email)->send(new ResetPassword($details));
+        } catch (\Swift_TransportException $e) {
+            if ($e->getMessage()) {
+                return redirect()->back()->with($this->data("Forget Password Email Send Error.", 'error'));
             }
         }
-        DB::table('password_resets')->insert([
-            'email' => $user->email,
-            'otp' => $otp,
-            'created_at' => Carbon::now()
-        ]);
-        return view('user.auth.otp', compact('page_title', 'email'));
     }
 
-    public function otpConfirm(Request $request)
+    public function tokenConfirm($token)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users',
-            'otp' => 'required',
-        ]);
-        $page_title = 'Update Password';
-        $user = User::where('email', $request->email)->first();
-        $email = $user->email;
-        $otp_confirm = DB::table('password_resets')
+        $token_confirm = DB::table('password_resets')
             ->where([
-                'email' => $request->email,
-                'otp' => $request->otp
+                'token' => $token,
             ])
             ->first();
-        if (!$otp_confirm) {
-            return redirect()->back()->with('OTP not same!');
+        if ($token_confirm) {
+            return view('user.auth.password_change', compact('token'));
+        } else {
+            return $this->message($token_confirm, 'user.forget_password', 'Token Match Successfully,', 'Token Dose Match Error,');
         }
 
-        return view('user.auth.password_change', compact('page_title', 'email'));
     }
 
-    /**
-     * Write code on Method
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|object
-     */
     public function submitResetPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
             'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required'
         ]);
-        $user = User::where('email', $request->email)
+        $token = DB::table('password_resets')
+            ->where([
+                'token' => $request->confirm_token,
+            ])
+            ->first();
+        $vendor = User::where('email', $token->email)
             ->update(['password' => Hash::make($request->password)]);
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-        return redirect()->route('user.login')->with('Your Password Update Successfully');
+        return $this->message($vendor, 'user.login', 'Password Update Successfully', 'Password Update Error');
     }
 
     public function logout(Request $request)

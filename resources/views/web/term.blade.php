@@ -1,1 +1,1 @@
-<?php
+{!! $term->description !!}

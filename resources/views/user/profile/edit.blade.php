@@ -10,46 +10,32 @@
                             <p class="sec_main_para text-center mb-0">Edit your profile details</p>
                         </div>
 
-                        <form class="pt-5" action="{{ route('user.profile.post') }}">
+                        <form class="pt-5" action="{{ route('user.profile.post', \Illuminate\Support\Facades\Auth::id()) }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <div class="image-uploader-edit"></div>
-                                <!-- <label class="img_wraper_label">
-                                  <div class="file_icon_wraper">
-                                    <img src="assets/images/fileuploadicon.svg">
-                                  </div>
-                                  <p class="mb-0">Upload Your Picture To Update</p>
-                                  <input type="file" size="60" >
-                                </label> -->
                             </div>
-
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="email" class="form-control" id="inputName" placeholder="Full Name">
+                                <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" placeholder="Mobile Number">
+                                <input type="number" class="form-control" id="inputNumber" name="phone" placeholder="Mobile Number" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                <input type="email" disabled class="form-control" id="inputEmail" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" placeholder="Country">
+                                <input type="text" class="form-control" id="inputNumber" name="city" placeholder="City" value="{{ \Illuminate\Support\Facades\Auth::user()->city }}">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" placeholder="City">
+                                <input type="text" class="form-control" id="inputNumber" name="country" placeholder="Country" value="{{ \Illuminate\Support\Facades\Auth::user()->country }}">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                <input type="number" class="form-control" id="inputNumber" name="post_box" placeholder="P/O Box" value="{{ \Illuminate\Support\Facades\Auth::user()->post_box }}">
                             </div>
-                            <!-- <div class="col-12 mb-3 signup_input_wraper">
-                              <input type="password" class="form-control" id="inputNumber" placeholder="Password">
-                            </div>
-                 -->            <!-- <div class="col-12 mb-3 signup_input_wraper">
-              <input type="password" class="form-control" id="inputNumber" placeholder="Confirm Password">
-            </div>
- -->            <div class="col-12 mb-3 signup_input_wraper">
+                            <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                    <button class="btn btn-secondary block get_appointment" type="button">UPDATE
-                                    </button>
+                                    <button class="btn btn-secondary block get_appointment" type="submit">UPDATE</button>
                                 </div>
                             </div>
                         </form>

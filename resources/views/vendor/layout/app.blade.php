@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Bootstrap CSS -->
     <link href="{{ asset('public/vendor/assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -93,24 +94,74 @@
 <script src="{{ asset('public/vendor/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('public/vendor/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 @yield('script')
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        width: '27rem',
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+        @if (Session()->has('message'))
+    var type = "{{ Session::get('alert') }}";
+    switch (type) {
+        case'info':
+            Toast.fire({
+                icon: 'info',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case 'success':
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case 'warning':
+            Toast.fire({
+                icon: 'warning',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case'error':
+            Toast.fire({
+                icon: 'error',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+    }
+    @endif
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+</script>
 <script type="text/javascript">
 
     /*scrolling banner*/
     $(document).ready(function(){
         $('.input-images').imageUploader();
-        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Car image</p><input type="file" name="file" size="60" ></label>  ');
+        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Car image</p><input type="file" name="car_images[]" size="60" ></label>  ');
         $('.input-images-2').imageUploader();
         $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><a href="#" class="skip">Skip</a><input type="file" name="file" size="60" ></label>   ');
         $('.input-images-3').imageUploader();
-        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Add Registration Copy Image</p><input type="file" name="file" size="60" ></label>');
+        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Add Registration Copy Image</p><input type="file" name="files[]" size="60" ></label>');
         $('.input-images-4').imageUploader();
         $(".input-images-4>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload workshop image</p><input type="file" name="file" size="60" ></label>');
         $('.input-images-5').imageUploader({
             maxFiles:1,
         });
-        $(".input-images-5>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your Picture </p><input type="file" size="60" ></label>');
+        $(".input-images-5>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your Picture </p><input type="file" name="pimage" size="60" ></label>');
         $('.input-images-6').imageUploader();
-        $(".input-images-6>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your ID</p><input type="file" size="60" ></label>');
+        $(".input-images-6>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your ID</p><input type="file" name="pid" size="60" ></label>');
         $('.input-images-7').imageUploader();
         $(".input-images-7>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your Trade License and ID </p><input type="file" size="60" ></label> ');
         $('.Upload_final_report').imageUploader({
@@ -305,7 +356,7 @@
             });
         });
 
-    })(jQuery);
+    })(jQuery);0
     function sidebarScrollHeight() {
         var dashboardSidebar= $("#dashboardSidebar").innerHeight();
         var topHeaght =$(".main_profile_img_name").innerHeight();

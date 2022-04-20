@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Controller;
+use App\Models\PrivacyPolicy;
+use App\Models\TermCondition;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -45,5 +48,17 @@ class HomepageController extends Controller
     {
         $page_title = 'forget password';
         return view('web.forgetpassword', compact('page_title'));
+    }
+    public function term()
+    {
+        $page_title = 'Terms And Conditions';
+        $term = TermCondition::firstorFail();
+        return view('web.term', compact('page_title', 'term'));
+    }
+    public function privacyPolicy()
+    {
+        $page_title = 'Privacy Policy';
+        $privacyPolicy = PrivacyPolicy::firstorFail();
+        return view('web.privacyPolicy', compact('page_title', 'privacyPolicy'));
     }
 }

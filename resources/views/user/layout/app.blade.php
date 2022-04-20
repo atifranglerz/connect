@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('public/user/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
     <title>Customer panel |{{ $page_title ?? "" }}</title>
+    <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/user/assets/favicon/favicon.ico') }}' />
     <style>
         /* width */
         .login_sinup > .accoutntData > .notification_tooltip > ul.notification_list::-webkit-scrollbar, .form_sending_wraper > textarea::-webkit-scrollbar, ul.sidebar_navcigation::-webkit-scrollbar {
@@ -125,6 +126,56 @@
 <script src="{{ asset('public/user/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 @yield('script')
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        width: '27rem',
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+        @if (Session()->has('message'))
+    var type = "{{ Session::get('alert') }}";
+    switch (type) {
+        case'info':
+            Toast.fire({
+                icon: 'info',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case 'success':
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case 'warning':
+            Toast.fire({
+                icon: 'warning',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case'error':
+            Toast.fire({
+                icon: 'error',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+    }
+    @endif
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+</script>
 <script type="text/javascript">
     /*scrolling banner*/
     $(document).ready(function(){
@@ -140,7 +191,7 @@
         $('.input-images-3').imageUploader();
         $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Add Registration Copy Image</p><input type="file" size="60" ></label>   ');
         $('.image-uploader-edit').imageUploader();
-        $(".image-uploader-edit>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture To Update</p><input type="file" size="60" ></label>');
+        $(".image-uploader-edit>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture To Update</p><input type="file" name="profile" size="60" ></label>');
         $(document).on('click', '#menuToggle', function () {
             $("#dashboardSidebarRightContent").toggleClass("toggled");
             $("#dashboardSidebar").toggleClass("sidebar-toggle");

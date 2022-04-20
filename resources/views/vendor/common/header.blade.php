@@ -8,7 +8,7 @@
 
                 <span class=" fa-solid fa-bars"></span>
             </a>
-            <a class="navbar-brand" href="{{route('vendor.profile')}}">
+            <a class="navbar-brand" href="#">
                 <div class="logo_wraper">
                     <img src="{{ asset('public/vendor/assets/images/logo.jpg') }}">
                 </div>
@@ -27,7 +27,7 @@
                       <a class="nav-link active " aria-current="page" href="index.php">Home</a>
                     </li>-->
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('vendor.ads') }}">My Listing</a>
+                        <a class="nav-link " href="{{ route('vendor.ads.index') }}">My Listing</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('vendor.bids') }}">My Bids</a>

@@ -1,1 +1,1 @@
-<?php
+{!! $privacyPolicy->description !!}

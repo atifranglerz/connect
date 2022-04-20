@@ -28,19 +28,23 @@ class profileController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => 'required',
         ]);
         $user = User::findorFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->update();
-        if ($user) {
-            return redirect()->back()->with($this->data("Profile Update Successfully", "success"));
-        } else {
-            return redirect()->back()->with($this->data("Profile Update Error", "error"));
+        if ($request->has('profile')) {
+            $image = $request->file('profile');
+            $image_name = hexdec(uniqid()) . '.' . strtolower($image->getClientOriginalExtension());
+            $image->move('public/image/profile/', $image_name);
+            $image = 'public/image/profile/' . $image_name;
+            $user->image = $image;
         }
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->city = $request->city;
+        $user->country = $request->country;
+        $user->post_box = $request->post_box;
+        $user->save();
+        return $this->message($user, 'user.profile.index', 'Profile Update Successfully', 'Profile Update Error');
     }
 
     public function updatePassword(Request $request, $id)

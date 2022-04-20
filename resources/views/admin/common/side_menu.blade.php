@@ -1,8 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('admin.dashboard') }}"> <img alt="image" src="{{ asset('public/admin/assets/img/logo.png')}}" class="header-logo"/> <span
-                    class="logo-name">Connect</span>
+
+            <a href="{{ route('admin.dashboard') }}"> <img alt="image" src="{{ asset('public/assets/images/logo.jpg')}}" class="header-logo"/>
+{{--                <span--}}
+{{--                    class="logo-name">Connect</span>--}}
             </a>
         </div>
         <ul class="sidebar-menu">
