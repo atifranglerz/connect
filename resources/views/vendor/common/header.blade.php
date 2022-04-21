@@ -38,7 +38,7 @@
                 </ul>
                 <div class="login_sinup">
                     <div class="accoutntData">
-                        <a href="inbox.php" ><i class="fa-solid fa-message"></i></a>
+                        <a href="#" ><i class="fa-solid fa-message"></i></a>
                     </div>
                     <div class="accoutntData">
                         <a href="#" class="notify-btn" ><i class="fa-solid fa-bell"></i></a>
@@ -68,11 +68,12 @@
                         <a href="#" id="Logout_Profile"><i class="fa-solid fa-user"></i></a>
                         <div class="notification_tooltip  " id="TopProfile">
                             <ul class="notification_list shadow">
-                                <li><a href="profile.php">Profile</a>
+                                <li><a href="{{route('vendor.profile.index')}}">Profile</a>
                                 </li>
-                                <li><a href="#">Logout</a>
-                                </li>
-
+                                <li><a href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Signout</a></li>
+                                <form id="frm-logout" action="{{ route('vendor.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </ul>
                         </div>
 

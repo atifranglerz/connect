@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ads;
 use Illuminate\Http\Request;
 use App\Models\vendor;
 
@@ -72,10 +73,29 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //dd('yh');
-        $change =  Vendor::findOrFail($id);
-        
+    {;
+        //dd($request);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'country' => 'required',
+            'city' =>'required',
+            'postbox' =>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'password'=>'required',
+             'conform_password'=>'required',
+        ]);
+        $vendorVendor =  Vendor::findOrFail($id);
+        $vendorVendor->name = $request->name ;
+        $vendorVendor->email = $request->email ;
+        $vendorVendor->country = $request->country ;
+        $vendorVendor->post_box = $request->postbox ;
+        $vendorVendor->phone = $request->phone ;
+        $vendorVendor->address = $request->address ;
+        $vendorVendor->password = bcrypt($request->password) ;
+        $vendorVendor->update();
+        return $this->message($vendorVendor, 'vendor.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 
     /**

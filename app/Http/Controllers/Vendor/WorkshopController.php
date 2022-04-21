@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Garage;
+use App\Models\GarageCategory;
+use App\Models\GarageTiming;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WorkshopController extends Controller
 {
@@ -14,7 +19,10 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        //
+        $page_title = 'WorkShop';
+        $category = Category::get();
+        return view('vendor.workshop.create', compact('page_title', 'category'));
+
     }
 
     /**
@@ -32,18 +40,76 @@ class WorkshopController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'garage_name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'post_box' => 'required',
+            'category' => 'required',
+            'trading_no' => 'required',
+            'vat' => 'required',
+        ]);
+        $garage = Garage::where('vendor_id', Auth::id())->first();
+        if (empty($garage)) {
+            $garage = new Garage();
+            $garage->vendor_id = Auth::id();
+            $garage->trading_no = $request->trading_no;
+            $garage->vat = $request->vat;
+            $garage->phone = $request->phone;
+            $garage->garage_name = $request->garage_name;
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $image = hexdec(uniqid()) . '.' . strtolower($file->getClientOriginalExtension());
+                $file->move('public/image/garage/', $image);
+                $garage->image = 'public/image/garage/' . $image;
+                /*if ($request->has('old_image')) {
+                    $old_image = $request->image;
+                    unlink($old_image);
+                }*/
+
+            }
+            $garage->country = $request->country;
+            $garage->city = $request->city;
+            $garage->address = $request->address;
+            $garage->post_box = $request->post_box;
+            $garage->save();
+            if ($garage) {
+                $categories = $request->category;
+                foreach ($categories as $cat) {
+                    GarageCategory::create([
+                        'garage_id' => $garage->id,
+                        'category_id' => $cat,
+                    ]);
+                }
+                $length = count($request->day);
+                for ($i = 0; $i < $length; $i++) {
+                    GarageTiming::create([
+                        'garage_id' => $garage->id,
+                        'day' => $request->day[$i],
+                        'from' => $request->from[$i],
+                        'to' => $request->to[$i],
+                        'closed' => isset($request->closed[$i]) ? 1 : 0,
+                    ]);
+                }
+            }
+            return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
+        } else {
+            return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'warning'));
+        }
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,31 +120,84 @@ class WorkshopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $page_title = 'Edit Workshop';
-        return view('vendor.workshop.edit', compact('page_title'));
+        $garage = Garage::where('vendor_id', Auth::id())->first();
+        return view('vendor.workshop.edit', compact('page_title', 'garage'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'garage_name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'post_box' => 'required',
+            'category' => 'required',
+            'trading_no' => 'required',
+            'vat' => 'required',
+        ]);
+        $garage = Garage::findOrFail($id);
+        $garage->vendor_id = Auth::id();
+        $garage->trading_no = $request->trading_no;
+        $garage->vat = $request->vat;
+        $garage->phone = $request->phone;
+        $garage->garage_name = $request->garage_name;
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $image = hexdec(uniqid()) . '.' . strtolower($file->getClientOriginalExtension());
+            $file->move('public/image/garage/', $image);
+            $garage->image = 'public/image/garage/' . $image;
+            /*if ($request->has('old_image')) {
+                $old_image = $request->image;
+                unlink($old_image);
+            }*/
+
+        }
+        $garage->country = $request->country;
+        $garage->city = $request->city;
+        $garage->address = $request->address;
+        $garage->post_box = $request->post_box;
+        $garage->save();
+        if ($garage) {
+            $categories = $request->category;
+            foreach ($categories as $cat) {
+                GarageCategory::where('garage_id', $id)->update([
+                    'garage_id' => $garage->id,
+                    'category_id' => $cat,
+                ]);
+            }
+            $length = count($request->day);
+            for ($i = 0; $i < $length; $i++) {
+                GarageTiming::where('garage_id', $id)->update([
+                    'garage_id' => $garage->id,
+                    'day' => $request->day[$i],
+                    'from' => $request->from[$i],
+                    'to' => $request->to[$i],
+                    'closed' => isset($request->closed[$i]) ? 1 : 0,
+                ]);
+            }
+        }
+        return $this->message($garage, 'vendor.dashboard', 'workshop Update Successfully', 'workshop not Update Error');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Web'], function () {
 
     Route::get('/', 'HomepageController@index')->name('home');
     Route::get('register', 'HomepageController@register')->name('register');
+    Route::get('loginpage', 'HomepageController@loginchoice')->name('loginpage');
     Route::get('used_cars', 'HomepageController@usedcars')->name('used_cars');
     Route::get('car_detail', 'HomepageController@cardetail')->name('car_detail');
     Route::get('car_service', 'HomepageController@carService')->name('car_service');
@@ -43,9 +44,13 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('news', 'HomepageController@news')->name('news');
     Route::get('faq', 'HomepageController@faqnews')->name('faq');
     Route::get('news_detail', 'HomepageController@news_detail')->name('news_detail');
-    Route::get('home', 'HomepageController@index')->name('home_page');
+    Route::get('home', 'HomepageController@index')->name('home');
     Route::get('term_condition', 'HomepageController@term')->name('term');
+    Route::get('about', 'HomepageController@about')->name('about');
     Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
+
+
+
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('/', function () {
@@ -133,9 +138,6 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
     Route::get('password_change', 'AuthController@password_change');
     Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
-
-
-
     /*Vendor Auth Routes*/
     Route::group(['middleware' => ['auth:vendor', 'role:vendor']], function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
@@ -157,7 +159,6 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
 });
 
 Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], function () {
-    /* Admin Login Or Register Form */
     Route::get('login', 'AuthController@login');
     Route::get('register', 'AuthController@register');
     Route::post('login', 'AuthController@userLogin')->name('login');
@@ -168,16 +169,17 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::get('google/callback', 'AuthController@handleGoogleCallback');*/
     Route::get('forget_password', 'AuthController@forgetPassword')->name('forget_password');
     Route::post('reset-password', 'AuthController@resetPassword')->name('reset_password');
-    Route::get('password_change', 'AuthController@password_change');
-    Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
+    Route::get('otp', 'AuthController@otp')->name('otp');
+    Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
-    /* User Auth Routes */
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        Route::get('/profile', 'ProfileController@index')->name('profile.index');
-        Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile/{id}', 'ProfileController@updateProfile')->name('profile.post');
-        Route::post('/profile_password', 'ProfileController@updatePassword')->name('profile.update_password');
+        Route::get('/profile', 'profilecontroller@index')->name('profile.index');
+        Route::get('/profile/edit', 'profilecontroller@edit')->name('profile.edit');
+        Route::post('/profile', 'profilecontroller@updateprofile')->name('profile.post');
+        Route::post('/profile_password', 'profilecontroller@updatepassword')->name('profile.update_password');
+        /* Logout */
+        Route::post('logout', 'AuthController@logout')->name('logout');
         Route::resource('chat', 'ChatController');
         Route::resource('ads', 'AdsController');
         Route::resource('quote', 'QuoteController');
@@ -185,8 +187,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
 
-        /* Logout */
-        Route::post('logout', 'AuthController@logout')->name('logout');
+
     });
 });
 

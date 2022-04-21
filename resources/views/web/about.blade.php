@@ -5,8 +5,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">Term and condition</h1>
-
+                        <h1 class="sec_main_heading text-center">About US</h1>
                     </div>
                 </div>
             </div>
@@ -18,7 +17,8 @@
                                 <h2 class="accordion-header" id="headingOne"></h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        {!! $term->description !!}
+                                        {!! $about->description !!}
+
                                     </div>
                                 </div>
                             </div>

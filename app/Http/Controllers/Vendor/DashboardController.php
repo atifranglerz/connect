@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
         $page_title = 'Vendor Dashboard';
         /*$dateFrom = Carbon::now()->subDays(30);
         $dateTo = Carbon::now();

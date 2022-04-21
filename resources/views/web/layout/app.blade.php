@@ -23,7 +23,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white ">
         <div class="container-lg container-fluid">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="{{route('home')}}">
                 <div class="logo_wraper">
                     <img src="{{ asset('public/assets/images/logo.jpg')}}">
                 </div>
@@ -48,7 +48,7 @@
                 <div class="d-flex login_header_main">
                     <div class="login_sinup">
                         <a href="{{ route('register') }}"> <i class="fa fa-briefcase me-2 me-md-1"></i> Rigister Your Garage</a>
-                        <a href="{{ route('vendor.login') }}" class="login ms-lg-2">Login</a>
+                        <a href="{{ route('loginpage') }}" class="login ms-lg-2">Login</a>
                     </div>
                 </div>
             </div>
@@ -64,8 +64,8 @@
                     <h1>LINKS</h1>
                     <ul>
                         <li><a href="{{ route('register') }}">Rigister your business</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="{{route('about')}}">About Us</a></li>
+                        <li><a href="{{route('term')}}">Terms & Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="footer_link">
                     <h1>LINKS</h1>
                     <ul>
-                        <li><a href="#">Privicy Policy</a></li>
+                        <li><a href="{{route('privacy_policy')}}">Privicy Policy</a></li>
                         <li><a href="{{route('news')}}">News</a></li>
                         <li><a href="{{route('faq')}}">FAQ </a></li>
                     </ul>
@@ -134,6 +134,56 @@
 <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
 <!-- <script src="jquery.min.js"></script> -->
 <script src="{{asset('assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        width: '27rem',
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+        @if (Session()->has('message'))
+    var type = "{{ Session::get('alert') }}";
+    switch (type) {
+        case'info':
+            Toast.fire({
+                icon: 'info',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case 'success':
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case 'warning':
+            Toast.fire({
+                icon: 'warning',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+        case'error':
+            Toast.fire({
+                icon: 'error',
+                title: '{{ Session::get("message") }}'
+            })
+            break;
+    }
+    @endif
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+</script>
 
 <script type="text/javascript">
     /*scrolling banner*/

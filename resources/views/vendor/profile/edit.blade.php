@@ -9,13 +9,12 @@
                             <h1 class="sec_main_heading text-center mb-0">EDIT</h1>
                             <p class="sec_main_para text-center mb-0">Edit your profile details</p>
                         </div>
-                        <form  id="update-profile" class="pt-5">
+                        <form  action="{{ route('vendor.profile.update', $profile->id) }}" method="post" enctype="multipart/form-data" class="pt-5">
                             @csrf
-                            @method('Put')
+                            @method('put')
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="input-images-5">
-
-                                </div>
+{{--                                <div class="input-images-5">--}}
+{{--                                </div>--}}
                                 <!-- <label class="img_wraper_label">
                                   <div class="file_icon_wraper">
                                     <img src="assets/images/fileuploadicon.svg">
@@ -26,9 +25,8 @@
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="input-images-6">
-
-                                </div>
+{{--                                <div class="input-images-6">--}}
+{{--                                </div>--}}
                                 <!-- <label class="img_wraper_label">
                                   <div class="file_icon_wraper">
                                     <img src="assets/images/fileuploadicon.svg">
@@ -43,6 +41,9 @@
 
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <input type="text" name="name" value="{{$profile->name}}" class="form-control" id="inputName" placeholder="Owner Name">
+                                @error('name')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
 {{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
 {{--                                <input type="text"  name="garage_name"class="form-control" id="inputgarageName" placeholder="Garage Legal Name">--}}
@@ -57,18 +58,33 @@
 {{--                            </div>--}}
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email"  name="email" value="{{$profile->email}}"class="form-control" id="inputEmail" placeholder="Email">
+                                @error('email')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="country" value="{{$profile->country}}" class="form-control" id="inpuCountry" placeholder="Country">
+                                @error('country')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="city" value="{{$profile->city}}" class="form-control" id="inputNumber" placeholder="City">
+                                @error('city')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="postbox" value="{{$profile->post_box}}" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                <input type="number" name="postbox" value="{{$profile->post_box}}" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                @error('postbox')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="number" value="{{$profile->phone}}" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                <input type="number" name="phone" value="{{$profile->phone}}" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                @error('phone')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
 {{--                            <div class="col-12 mb-3  signup_input_wraper">--}}
 {{--                                <div class="input-images-7"></div>--}}
@@ -114,6 +130,9 @@
 {{--                            </div>--}}
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" value="{{$profile->address}}" name="address" class="form-control"  placeholder="Address">
+                                @error('address')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
 {{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
 {{--                                <h4 class="mb-0">Add Number For Appointment</h4>--}}
@@ -121,14 +140,21 @@
 {{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
 {{--                                <input type="text" name="garage_number" class="form-control"  placeholder="Telephone No.">--}}
 {{--                            </div>--}}
+
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h4 class="mb-0">Password</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="password"  name="password" class="form-control" id="inputNumber" placeholder="Password">
+                                @error('password')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="password" name="conform_password" class="form-control" id="inputNumber" placeholder="Confirm Password">
+                                @error('conform_password')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">
@@ -143,48 +169,48 @@
         </div>
     </section>
 @endsection
-@section('script')
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function () {
-            //alert("abc");
-            $('#update-profile').on('submit', function (e) {
-                e.preventDefault();
-                let formData = new FormData(this);
-                var id = {{ \Illuminate\Support\Facades\Auth::id() }}
-                $.ajax({
-                    type: "post",
-                    url: "{{ url('vendor/profile') }}" + '/' + id,
+{{--@section('script')--}}
+{{--    <script>--}}
+{{--        $.ajaxSetup({--}}
+{{--            headers: {--}}
+{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--            }--}}
+{{--        });--}}
+{{--        $(document).ready(function () {--}}
+{{--            //alert("abc");--}}
+{{--            $('#update-profile').on('submit', function (e) {--}}
+{{--                e.preventDefault();--}}
+{{--                let formData = new FormData(this);--}}
+{{--                var id = {{ \Illuminate\Support\Facades\Auth::id() }}--}}
+{{--                $.ajax({--}}
+{{--                    type: "post",--}}
+{{--                    url: "{{ url('vendor/profile') }}" + '/' + id,--}}
 
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: (response) => {
-                        console.log(response.message);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 1000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: response.status,
-                            title: response.message,
-                        });
-                        window.setTimeout(function(){location.reload()},1000)
-                    }
+{{--                    data: formData,--}}
+{{--                    contentType: false,--}}
+{{--                    processData: false,--}}
+{{--                    success: (response) => {--}}
+{{--                        console.log(response.message);--}}
+{{--                        const Toast = Swal.mixin({--}}
+{{--                            toast: true,--}}
+{{--                            position: 'top-end',--}}
+{{--                            showConfirmButton: false,--}}
+{{--                            timer: 1000,--}}
+{{--                            timerProgressBar: true,--}}
+{{--                            didOpen: (toast) => {--}}
+{{--                                toast.addEventListener('mouseenter', Swal.stopTimer)--}}
+{{--                                toast.addEventListener('mouseleave', Swal.resumeTimer)--}}
+{{--                            }--}}
+{{--                        })--}}
+{{--                        Toast.fire({--}}
+{{--                            icon: response.status,--}}
+{{--                            title: response.message,--}}
+{{--                        });--}}
+{{--                        window.setTimeout(function(){location.reload()},1000)--}}
+{{--                    }--}}
 
-                });
-            });
-        });
-    </script>
-@endsection
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endsection--}}

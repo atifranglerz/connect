@@ -19,7 +19,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::all();
+        $ads = Ads::with('company', 'modelYear')->get();
         return view('vendor.ads.index', compact('ads'));
     }
 
@@ -44,9 +44,6 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        /*$i1 = $request->image->getClientOriginalName();
-        $i2 = $request->file->getClientOriginalName();
-        dd($i1, $i2);*/
         $request->validate([
             'model' => 'required',
             'company_id' => 'required',
@@ -62,6 +59,7 @@ class AdsController extends Controller
         if ($request->file('car_images')) {
             $images = [];
             foreach ($request->file('car_images') as $data) {
+                //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/ads/', $image);
                 $images[] = 'public/image/ads/' . $image;
@@ -98,7 +96,7 @@ class AdsController extends Controller
         $ads->description = $request->description;
         $ads->vendor_id = Auth::id();
         $ads->save();
-        $this->jsonMessage($ads, 'Ad is  added successfully!', 'Ads is noy successfully!');
+        return $this->message($ads, 'vendor.ads.index', 'Ads Create Successfully', 'Ads Create Error');
     }
 
     /**
@@ -121,8 +119,9 @@ class AdsController extends Controller
     public function edit($id)
     {
         $ads = Ads::findOrFail($id);
-        //dd($ads);
-        return view('vendor.ads.edit', compact('ads'));
+        $company = Company::all();
+        $year = ModelYear::all();
+        return view('vendor.ads.edit', compact('ads' , 'company', 'year'));
     }
 
     /**
@@ -134,7 +133,18 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->name, $id);
+        $request->validate([
+            'model' => 'required',
+            'company_id' => 'required',
+            'model_year_id' => 'required',
+            'price' =>'required',
+            'color' =>'required',
+            'engine'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'mileage'=>'required',
+        ]);
+        //dd($request, $id);
 //        //dd($request->images);
 //        if ($request->file('images')) {
 //            foreach ($request->file('images') as $data) {
@@ -156,21 +166,23 @@ class AdsController extends Controller
 ////        $imageName = $image1->getClientOriginalName();
 ////        $image2 = $request->file('file');
 ////        $imageName2 = $image2->getClientOriginalName();
-//        $ads = Ads::findOrFail($id);
-//        $ads->car_image = $doucmentsOfcars;
-//        $ads->registration_image = "23";
-//        $ads->model = $request->model ;
-//        $ads->company = $request->company ;
-//        $ads->year = $request->type_of_service ;
-//        $ads->price = $request->price ;
-//        $ads->color = $request->color ;
-//        $ads->engine = $request->engine ;
-//        $ads->phone = $request->phone ;
-//        $ads->address = $request->address;
-//        $ads->milage = $request->milage;
-//        $ads->description = $request->description ;
-//        $ads->vendor_id = "1";
-//        if($ads->save())
+        $ads = Ads::findOrFail($id);
+        //$ads->car_image = $doucmentsOfcars;
+        //$ads->registration_image = "23";
+        $ads->model = $request->model;
+        $ads->company_id =  $request->company_id ;
+        $ads->model_year_id = $request->model_year_id;
+        $ads->price = $request->price;
+        $ads->color = $request->color;
+        $ads->engine = $request->engine;
+        $ads->phone = $request->phone;
+        $ads->address = $request->address;
+        $ads->mileage = $request->mileage;
+        $ads->description = $request->description;
+        $ads->vendor_id = Auth::id();
+        $ads->update();
+        return $this->message($ads, 'vendor.ads.index', 'ad Update Successfully', '  Ad is not update Error');
+        //        $ads->save())
 //        {
 //            return view('vendor.ads');
 //        }

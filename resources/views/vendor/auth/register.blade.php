@@ -46,104 +46,63 @@
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control" name="name" id="inputName"
-                                       placeholder="Owner Name">
-                            </div>
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" class="form-control" name="gerageName" id="inputgarageName"--}}
-{{--                                       placeholder="Garage Legal Name">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <select class="form-select" name="service" aria-label="Type of Service">--}}
-{{--                                    <option selected>Business Category</option>--}}
-{{--                                    <option value="1">2019</option>--}}
-{{--                                    <option value="2">2020</option>--}}
-{{--                                    <option value="3">2021</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" name="email" class="form-control" id="inputEmail"
-                                       placeholder="Email">
+                                <input type="text" class="form-control" name="name" id="inputName" placeholder="Owner Name">
+                                @error('name')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="country" class="form-control" id="inpuCountry"
-                                       placeholder="Country">
+                                <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                                @error('name')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <input type="text" name="country" class="form-control" id="inpuCountry" placeholder="Country">
+                                @error('country')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="city" class="form-control" id="inputNumber" placeholder="City">
+                                @error('city')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="post_box" class="form-control" id="inputNumber"
-                                       placeholder="P/O Box">
+                                <input type="text" name="post_box" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                @error('post_box')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="phone" class="form-control" id="inputNumber"
-                                       placeholder="Telephone No.">
+                                <input type="text" name="phone" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                @error('phone')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <div class="input-images-10"></div>
-                                <!-- <label class="img_wraper_label">
-                                  <div class="file_icon_wraper">
-                                    <img src="assets/images/fileuploadicon.svg">
-                                  </div>
-                                  <p class="mb-0">Upload Your Trade License and ID </p>
-                                  <input type="file" size="60" >
-                                </label>  -->
                             </div>
-{{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h4 class="mb-0">Legal Info</h4>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" class="form-control" name="License_number"--}}
-{{--                                       placeholder="Trading License No.">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" class="form-control" name="detail" placeholder="VAT Details">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h4 class="mb-0">Billing Info</h4>--}}
-{{--                            </div>--}}
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <div class="row">
-{{--                                    <div class="col-6  ">--}}
-{{--                                        <select class="form-select" name="service_Area" aria-label="Type of Service">--}}
-{{--                                            <option selected>Area</option>--}}
-{{--                                            <option value="1">2019</option>--}}
-{{--                                            <option value="2">2020</option>--}}
-{{--                                            <option value="3">2021</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-6 ">--}}
-{{--                                        <select class="form-select" name="service_city" aria-label="Type of Service">--}}
-{{--                                            <option selected>City</option>--}}
-{{--                                            <option value="1">2019</option>--}}
-{{--                                            <option value="2">2020</option>--}}
-{{--                                            <option value="3">2021</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-
-                                </div>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" class="form-control" name="address" placeholder="Address">
                             </div>
-{{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h4 class="mb-0">Add Number For Appointment</h4>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" class="form-control" name="phone_number"--}}
-{{--                                       placeholder="Telephone No.">--}}
-{{--                            </div>--}}
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h4 class="mb-0">Password</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control" name="password" id="inputNumber"
-                                       placeholder="Password">
+                                <input type="password" class="form-control" name="password" id="inputNumber" placeholder="Password">
+                                @error('password')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control" id="inputNumber"
-                                       placeholder="Confirm Password">
+                                <input type="password" class="form-control" name="password_confirmation" id="inputNumber" placeholder="Confirm Password">
+                                @error('password_confirmation')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">

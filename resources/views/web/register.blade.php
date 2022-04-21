@@ -34,7 +34,6 @@
                             <div class="card-body text-center">
                                 <p class="card-text text-center sing_up_card_txt">Get list of vendors providing their services, based on best pricing select quote and get your work done.
                                 </p>
-                                customer sign up option
                                 <a href="{{route('user.register')}}" class="btn btn-secondary Signup_btn">CUSTOMER</a>
                             </div>
                         </div>
@@ -42,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h4 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{ route('user.login')}}"> Login</a>
+                        <h4 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{ route('loginpage')}}"> Login</a>
                         </h4>
                     </div>
                 </div>

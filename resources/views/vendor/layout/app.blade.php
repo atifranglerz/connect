@@ -155,7 +155,7 @@
         $('.input-images-3').imageUploader();
         $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Add Registration Copy Image</p><input type="file" name="files[]" size="60" ></label>');
         $('.input-images-4').imageUploader();
-        $(".input-images-4>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload workshop image</p><input type="file" name="file" size="60" ></label>');
+        $(".input-images-4>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/vendor/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload workshop image</p><input type="file" name="image" name="file" size="60" ></label>');
         $('.input-images-5').imageUploader({
             maxFiles:1,
         });

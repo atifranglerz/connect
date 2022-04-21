@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\PrivacyPolicy;
 use App\Models\TermCondition;
 use Illuminate\Http\Request;
@@ -60,5 +61,16 @@ class HomepageController extends Controller
         $page_title = 'Privacy Policy';
         $privacyPolicy = PrivacyPolicy::firstorFail();
         return view('web.privacyPolicy', compact('page_title', 'privacyPolicy'));
+    }
+    public function loginchoice ()
+    {
+        $page_title = 'login choice';
+        return view('web.loginpage', compact('page_title'));
+    }
+    public function about()
+    {
+        $page_title = 'about';
+        $about = About::firstorFail();
+        return view('web.about', compact('page_title','about'));
     }
 }

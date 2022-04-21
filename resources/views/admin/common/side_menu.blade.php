@@ -21,13 +21,13 @@
                     <li class=""><a class="nav-link " href="{{ route('admin.childcategory.index') }}">Child Categories</a></li>--}}
                 </ul>
             </li>
-            <li class="dropdown @if (request()->routeIs('admin.brand.index', 'admin.brand.create', 'admin.brand.edit', 'admin.brand.show')) active @endif">
+            {{--<li class="dropdown @if (request()->routeIs('admin.brand.index', 'admin.brand.create', 'admin.brand.edit', 'admin.brand.show')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
                     <i data-feather="award"></i><span>Brands</span></a>
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link " href="{{ route('admin.brand.index') }}">Brands</a></li>
                 </ul>
-            </li>
+            </li>--}}
             <li class="dropdown @if (request()->routeIs('admin.model_year.index', 'admin.model_year.create', 'admin
             .model_year.edit', 'admin.model_year.show', 'admin.company.index', 'admin.company.create', 'admin.company.edit', 'admin.company.show')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">

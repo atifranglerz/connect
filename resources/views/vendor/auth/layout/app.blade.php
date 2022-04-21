@@ -104,7 +104,7 @@
         $('.input-images-5').imageUploader({
             maxFiles: 1,
         });
-        $(".input-images-5>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your Picture </p><input type="file" size="60" ></label>');
+        $(".input-images-5>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your Picture </p><input type="file"   size="60" ></label>');
         $('.input-images-6').imageUploader();
         $(".input-images-6>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your ID</p><input type="file" size="60" ></label>');
         $('.input-images-7').imageUploader();

@@ -16,8 +16,11 @@
                         <div class="row">
                             <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
                             </div>
-                            <form  id="edit" enctype="multipart/form-data">
-                                @csrf
+{{--                            <form  action="vendor.ads" method="post" enctype="multipart/form-data">--}}
+{{--                                    @csrf--}}
+                                <form action="{{ route('vendor.ads.update', $ads->id) }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('put')
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-6 col-md-6 mb-3">
                                             <div class="input-images">
@@ -29,6 +32,9 @@
                                               <p class="mb-0">Upload Car image</p>
                                               <input type="file" size="60" >
                                             </label> -->
+                                            @error('car_images')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 mb-3">
                                             <div class="input-images-3">
@@ -40,17 +46,21 @@
                                               <p class="mb-0">Upload Car image</p>
                                               <input type="file" size="60" >
                                             </label> -->
+                                            @error('files')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" name="model" class="form-control" placeholder="Model" value="{{$ads->model}}" aria-label="Model">
+                                            @error('model')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
-{{--                                        <div class="col-lg-6 col-md-6">--}}
-{{--                                            <input type="text" name="make" class="form-control" placeholder="Make" value="{{$ads->company->company}}" aria-label="Make">--}}
-{{--                                        </div>--}}
+
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <select class="form-select" name="company_id" aria-label="Type of Service">
-                                                <option value="{{$ads->company->company}}" selected>company</option>
+                                                <option value="{{$ads->company_id}}" selected>{{$ads->company->company}}</option>
                                                 @foreach($company as $data)
                                                     <option value="{{$data->id }}">{{$data->company }}</option>
                                                 @endforeach
@@ -60,31 +70,53 @@
                                             @enderror
                                             <span class="text-danger" id="companyError"></span>
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <select class="form-select" name="typeOfService" aria-label="Type of Service">
-                                                <option selected>Year</option>
-                                                <option value="1">2019</option>
-                                                <option value="2">2020</option>
-                                                <option value="3">2021</option>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <select class="form-select" name="model_year_id" aria-label="Type of Service">
+                                                <option value="{{$ads->model_year_id}}" selected>{{$ads->modelYear->model_yesr}}</option>
+                                                @foreach($year as $data)
+                                                    <option value="{{$data->id }}">{{$data->model_year }}</option>
+                                                @endforeach
                                             </select>
+                                            @error('model_year_id')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                            <span class="text-danger" id="model_year_Error"></span>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text"  name="price" value="{{$ads->price}}" class="form-control" placeholder="Price" aria-label="Price">
+                                            @error('price')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text"  name="color" value="{{$ads->color}}"  class="form-control" placeholder="Color" aria-label="Color">
+                                            @error('color')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" name="engine" value="{{$ads->engine}}" class="form-control" placeholder="Engine" aria-label="Engine">
+                                            @error('engine')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" name="phone"  value="{{$ads->phone}}" class="form-control" placeholder="Phone No" aria-label="Price">
+                                            @error('phone')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" name="address" value="{{$ads->address}}" class="form-control" placeholder="Address" aria-label="Price">
+                                            @error('address')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" name="milage" class="form-control" value="{{$ads->mileage}}"  placeholder="Car Milage" aria-label="Price">
+                                            <input type="text" name="mileage" class="form-control" value="{{$ads->mileage}}"  placeholder="Car Milage" aria-label="Price">
+                                            @error('mileage')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-floating">
@@ -93,7 +125,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
-                                                <button class="btn btn-secondary block get_appointment" type=submit">NEXT
+                                                <button class="btn btn-secondary block get_appointment" type="submit" >NEXT
                                                 </button>
                                             </div>
                                         </div>
@@ -112,34 +144,54 @@
         </div>
     </section>
 @endsection
-@section('script')
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function () {
-            //alert("abc");
-            $('#edit').on('submit', function (e) {
-                e.preventDefault();
-                var id = {{$ads->id}};
-                let formData = new FormData(this);
-                $.ajax({
-                    type: 'Put',
-                    url: "{{ url('vendor/ads') }}" + '/' + id,
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: (response) => {
-                        if (response) {
-                            this.reset();
-                            alert('Image has been uploaded successfully');
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-@endsection
+{{--@section('script')--}}
+{{--    <script>--}}
+{{--        $.ajaxSetup({--}}
+{{--            headers: {--}}
+{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--            }--}}
+{{--        });--}}
+{{--        $(document).ready(function () {--}}
+{{--            //alert("abc");--}}
+{{--            $('#edit').on('submit', function (e) {--}}
+{{--                e.preventDefault();--}}
+{{--                var id = {{$ads->id}};--}}
+{{--                let formData = new FormData(this);--}}
+{{--                $.ajax({--}}
+{{--                    type: 'Put',--}}
+{{--                    url: "{{ url('vendor/ads') }}" + '/' + id,--}}
+{{--                    data: formData,--}}
+{{--                    contentType: false,--}}
+{{--                    processData: false,--}}
+{{--                    success: (response) => {--}}
+{{--                        if (response) {--}}
+{{--                            this.reset();--}}
+{{--                            alert('Image has been uploaded successfully');--}}
+{{--                        }--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--<script type="text/javascript">--}}
+{{--    $.ajaxSetup({--}}
+{{--        headers: {--}}
+{{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--        }--}}
+{{--    });--}}
+{{--    $(".btn-submit").click(function(e){--}}
+{{--        e.preventDefault();--}}
+{{--        var fd = new FormData (this) ;--}}
+{{--        var id = 5 ;--}}
+{{--        $.ajax({--}}
+{{--            type:'PUT',--}}
+{{--            url:"{{ route('ads.update' , 4 ) }}" ,--}}
+{{--            data: fd ,--}}
+{{--            success:function(data){--}}
+{{--                alert(data);--}}
+{{--            }--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
+{{--@endsection--}}
 
