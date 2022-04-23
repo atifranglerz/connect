@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Vendor;
+namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserBid;
 use Illuminate\Http\Request;
 
 class QuotesController extends Controller
@@ -14,7 +15,9 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        return view('vendor.quotes.index');
+        $page_title = 'quote/index ';
+        $data = UserBid::all();
+        return view('vendor.quotes.index', compact('page_title' ,'data'));
     }
 
     /**
@@ -82,6 +85,4 @@ class QuotesController extends Controller
     {
         //
     }
-
-
 }

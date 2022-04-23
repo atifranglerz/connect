@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
-                                @error('name')
+                                @error('email')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -70,13 +70,13 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="post_box" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                <input type="number" name="post_box" class="form-control" id="inputNumber" placeholder="P/O Box">
                                 @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="phone" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                <input type="number" name="phone" class="form-control" id="inputNumber" placeholder="Telephone No.">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -88,6 +88,9 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" class="form-control" name="address" placeholder="Address">
+                                @error('address')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h4 class="mb-0">Password</h4>

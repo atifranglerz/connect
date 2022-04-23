@@ -16,7 +16,7 @@ class CreateUserBidCategoriesTable extends Migration
         Schema::create('user_bid_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_bid_id')->unsigned()->constrained('user_bids')->onDelete('cascade');
-            $table->foreignId('subcategory_id')->unsigned()->constrained('sub_categories')->onDelete('cascade');
+            $table->foreignId('category_id')->unsigned()->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

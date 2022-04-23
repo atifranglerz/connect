@@ -18,50 +18,103 @@
                     <div class="row">
                         <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
                         </div>
-                        <form method="post" action="">
+                        <form enctype="multipart/form-data" method="post" action="{{ route('user.ads.store') }}">
+                            @csrf
                             <div class="row g-lg-3 g-2">
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <div class="input-images"></div>
+                                    @error('car_images')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                     <div class="input-images-3"></div>
+                                    @error('doucment')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="modelname" placeholder="Model" aria-label="Model">
+                                    <input type="text" name="model" class="form-control" placeholder="Model" aria-label="Model">
+                                    @error('model')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="make" placeholder="Make" aria-label="Make">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <select class="form-select"  name="typeOfService" aria-label="Type of Service">
-                                        <option  value="0" selected>Year</option>
-                                        <option value="1">2019</option>
-                                        <option value="2">2020</option>
-                                        <option value="3">2021</option>
+                                    <select class="form-select" name="company_id" aria-label="Type of Service">
+                                        <option value="" selected>company</option>
+                                        @foreach($company as $data)
+                                            <option value="{{$data->id }}">{{$data->company }}</option>
+                                        @endforeach
                                     </select>
+                                    @error('company_id')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="companyError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="price" placeholder="Price" aria-label="Price">
+                                    <select class="form-select" name="model_year_id" aria-label="Type of Service">
+                                        <option value="" selected>Year</option>
+                                        @foreach($year as $data)
+                                            <option value="{{$data->id }}">{{$data->model_year }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('model_year_id')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="model_year_Error"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control"  name="color" placeholder="Color" aria-label="Color">
+                                    <input type="number" name="price" class="form-control" placeholder="Price" aria-label="Price">
+                                    @error('price')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="priceError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="engine" placeholder="Engine" aria-label="Engine">
+                                    <input type="text" name="color" class="form-control" placeholder="Color" aria-label="Color">
+                                    @error('color')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="colorError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control"  name="price" placeholder="Price" aria-label="Price">
+                                    <input type="text" name="engine" class="form-control" placeholder="Engine" aria-label="Engine">
+                                    @error('engine')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="engineError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="address" placeholder="Address" aria-label="Price">
+                                    <input type="number" name="phone" class="form-control" placeholder="Phone No" aria-label="Price">
+                                    @error('phone')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="phoneError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="car_milage" placeholder="Car Milage" aria-label="Price">
+                                    <input type="text" name="address" class="form-control" placeholder="Address" aria-label="Price">
+                                    @error('address')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="AddressError"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input type="number" name="mileage" class="form-control" placeholder="Car Milage" aria-label="Price">
+                                    @error('mileage')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                    <span class="text-danger" id="millageError"></span>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Add Repairing Details" name="description" id="floatingTextarea2" style="height: 100px"></textarea>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="description" placeholder="Add Repairing Details" id="floatingTextarea2" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2">Add information in details</label>
+                                        </div>
+                                        @error('description')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">

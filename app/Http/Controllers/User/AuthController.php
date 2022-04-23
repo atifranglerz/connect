@@ -25,9 +25,13 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
+            'country'=>['required','alpha'] ,
+            'city'=> ['required','alpha'] ,
+            'post_box'=>'required',
+            'address'=>'required',
             'phone' => 'required',
-            'password' => ['required', 'confirmed',],
+            'password' => 'required|confirmed',
         ]);
         $role = Role::where('name', 'user')->first();
         $user = new  User();
@@ -42,7 +46,7 @@ class AuthController extends Controller
         $user->save();
         if ($user) {
             $user->assignRole($role);
-            return redirect()->route('user.dashboard')->with($this->data("User Register Successfully", 'success'));
+            return redirect()->route('user.login')->with($this->data("User Register Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("User Register Error", 'error'));
         }

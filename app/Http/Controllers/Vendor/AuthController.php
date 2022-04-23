@@ -30,10 +30,11 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
-            'country'=>'required' ,
-            'city'=>'required' ,
+            'country'=>['required','alpha'] ,
+            'city'=> ['required','alpha'] ,
             'post_box'=>'required',
-            'phone' => 'required',
+            'address'=>'required',
+            'phone' => ['required'],
             'password' => 'required|confirmed',
         ]);
         $role = Role::where('name', 'vendor')->first();

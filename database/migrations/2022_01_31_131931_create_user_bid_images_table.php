@@ -17,6 +17,7 @@ class CreateUserBidImagesTable extends Migration
             $table->id();
             $table->foreignId('user_bid_id')->unsigned()->constrained('user_bids')->onDelete('cascade');
             $table->text('car_image');
+            $table->enum('type', ['image', 'file']);
             $table->timestamps();
         });
     }

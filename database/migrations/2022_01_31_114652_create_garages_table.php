@@ -13,7 +13,7 @@ class CreateGaragesTable extends Migration
      */
     public function up()
     {
-        Schema::create('garage', function (Blueprint $table) {
+        Schema::create('garages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vendor_id')->unsigned()->constrained('vendors')->onDelete('cascade');
             $table->string('trading_no')->nullable();

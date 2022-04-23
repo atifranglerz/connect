@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_code');
             $table->foreignId('user_bid_id')->unsigned()->constrained('user_bids')->onDelete('cascade');
             $table->foreignId('vendor_bid_id')->unsigned()->constrained('vendor_bids')->onDelete('cascade');
-            $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garage')->onDelete('cascade');
+            $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garages')->onDelete('cascade');
             $table->integer('transaction_id')->nullable();
             $table->string('payment_type')->nullable();
             //$table->integer('tax_id')->nullable();

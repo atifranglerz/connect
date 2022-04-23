@@ -30,7 +30,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-       $company = Company::all();
+        $company = Company::all();
         $year = ModelYear::all();
         $page_title = 'Ad index';
         return view('vendor.ads.create', compact('company','year','page_title'));
@@ -144,31 +144,36 @@ class AdsController extends Controller
             'address'=>'required',
             'mileage'=>'required',
         ]);
-        //dd($request, $id);
-//        //dd($request->images);
-//        if ($request->file('images')) {
-//            foreach ($request->file('images') as $data) {
-//                $doucmentsOfcars = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-//                $data->move('public/image/ads/', $doucmentsOfcars);
-//                $image = 'public/image/ads/' . $doucmentsOfcars;
-//            }
-//            /*if ($request->has('old_image')) {
-//                $old_image = $request->image;
-//                unlink($old_image);
-//            }*/
-//        }
-//        //$request->file;
-////        $imagePath = $req->file('file');
-////        $imageName = $imagePath->getClientOriginalName();
-////        echo($imageName);
-//        // get names
-////        $image1 = $request->file('images');
-////        $imageName = $image1->getClientOriginalName();
-////        $image2 = $request->file('file');
-////        $imageName2 = $image2->getClientOriginalName();
         $ads = Ads::findOrFail($id);
-        //$ads->car_image = $doucmentsOfcars;
-        //$ads->registration_image = "23";
+        if ($request->file('car_images')) {
+            $images = [];
+            foreach ($request->file('car_images') as $data) {
+                //dd($data);
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/ads/', $image);
+                $images[] = 'public/image/ads/' . $image;
+            }
+            /*if ($request->has('old_image')) {
+                $old_image = $request->image;
+                unlink($old_image);
+            }*/
+            $ads->images = implode(",", $images);
+        }
+        if ($request->file('files')) {
+            $files = [];
+            foreach ($request->file('files') as $data) {
+                $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/ads/', $doucments);
+                $files[] = 'public/image/ads/' . $doucments;
+            }
+
+            /*if ($request->has('old_image')) {
+                $old_image = $request->image;
+                unlink($old_image);
+            }*/
+            $ads->document_file = implode(",", $files);
+        }
+
         $ads->model = $request->model;
         $ads->company_id =  $request->company_id ;
         $ads->model_year_id = $request->model_year_id;
@@ -182,14 +187,7 @@ class AdsController extends Controller
         $ads->vendor_id = Auth::id();
         $ads->update();
         return $this->message($ads, 'vendor.ads.index', 'ad Update Successfully', '  Ad is not update Error');
-        //        $ads->save())
-//        {
-//            return view('vendor.ads');
-//        }
-//        else
-//        {
-//            return  "not save ";
-//        }
+
     }
 
     /**
@@ -200,6 +198,8 @@ class AdsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ad = Ads::findOrFail($id);
+        $ad->delete();
+        return $this->message($ad , 'vendor.ads.index', 'ad deleted Successfully', '  Ad is not delete Error');
     }
 }

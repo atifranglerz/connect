@@ -12,83 +12,37 @@
         </div>
 
         <div class="row g-2">
-            <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
-                <div class="all_quote_card ">
-                    <div class="car_inner_imagg ">
-                        <img src="assets/images/repair3.jpg">
-                    </div>
-                    <div class="  w-100  quote_detail_wraper align-items-md-center">
-                        <div class="quote_info Leavereview">
-                            <h3 class="d-flex align-items-center active_quote">Car Repair</h3>
-                            <p class="mb-0">2021</p>
-                            <p >3000 CC</p>
+            @foreach($ads as $data )
+                <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
+                    <div class="all_quote_card ">
+                        <div class="car_inner_imagg ">
+                            <?php
+                            $img = explode(",", $data->images);
+                            ?>
+                            <img src="{{ asset($img[0]) }}">
                         </div>
-                        <div class="quote_detail_btn_wraper">
-                            <h3 class=" text-sm-center">AED 20 000</h3>
-                            <div class="d-flex align-items-center chat_view__detail">
-
-                                <a href="#" class="btn-secondary edit_del_btns me-2">DELETE</a>
-                                <a href="#" class="btn btn-primary edit_del_btns">EDIT</a>
+                        <div class="  w-100  quote_detail_wraper align-items-md-center">
+                            <div class="quote_info Leavereview">
+                                <h3 class="d-flex align-items-center active_quote">{{$data->model}}</h3>
+                                <p class="mb-0">{{$data->company->company}}</p>
+                                <p class="mb-0">{{$data->modelYear->model_year}}</p>
+                                <p >{{$data->milage}} CC</p>
                             </div>
-
-
+                            <div class="quote_detail_btn_wraper">
+                                <h3 class=" text-sm-center">AED {{$data->price}}</h3>
+                                <div class="d-flex  align-items-center chat_view__detail">
+                                    <form method="post" action="{{route('user.ads.destroy', $data->id )}}" >
+                                        @method('delete')
+                                        @csrf
+                                        <button  type="submit" class="btn-secondary edit_del_btns me-2">DELETE</button>
+                                    </form>
+                                    <a href="{{ route('user.ads.edit' ,  $data->id) }}" class="btn btn-primary edit_del_btns">EDIT</a>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
-                <div class="all_quote_card ">
-                    <div class="car_inner_imagg ">
-                        <img src="assets/images/repair3.jpg">
-                    </div>
-                    <div class="  w-100  quote_detail_wraper align-items-md-center">
-                        <div class="quote_info Leavereview">
-                            <h3 class="d-flex align-items-center active_quote">Car Repair</h3>
-                            <p class="mb-0">2021</p>
-                            <p >3000 CC</p>
-                        </div>
-                        <div class="quote_detail_btn_wraper">
-                            <h3 class=" text-sm-center">AED 20 000</h3>
-                            <div class="d-flex align-items-center chat_view__detail">
-
-                                <a href="#" class="btn-secondary edit_del_btns me-2">DELETE</a>
-                                <a href="editAd.php" class="btn btn-primary edit_del_btns">EDIT</a>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
-                <div class="all_quote_card ">
-                    <div class="car_inner_imagg ">
-                        <img src="assets/images/repair3.jpg">
-                    </div>
-                    <div class="  w-100  quote_detail_wraper align-items-md-center">
-                        <div class="quote_info Leavereview">
-                            <h3 class="d-flex align-items-center active_quote">Car Repair</h3>
-                            <p class="mb-0">2021</p>
-                            <p >3000 CC</p>
-                        </div>
-                        <div class="quote_detail_btn_wraper">
-                            <h3 class=" text-sm-center">AED 20 000</h3>
-                            <div class="d-flex align-items-center chat_view__detail">
-
-                                <a href="#" class="btn-secondary edit_del_btns me-2">DELETE</a>
-                                <a href="editAd.php" class="btn btn-primary edit_del_btns">EDIT</a>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
+            @endforeach
         </div>
     </div>
 </section>

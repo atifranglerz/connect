@@ -18,7 +18,6 @@
                         <div class="row">
                             <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
                             </div>
-                            {{--<form id="upload" enctype="multipart/form-data">--}}
                                 <form enctype="multipart/form-data" method="post" action="{{ route('vendor.ads.store') }}">
                                 @csrf
                                 <div class="row g-lg-3 g-2">

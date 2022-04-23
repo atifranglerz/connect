@@ -15,7 +15,7 @@ class CreateGarageCategoriesTable extends Migration
     {
         Schema::create('garage_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garage')->onDelete('cascade');
+            $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garages')->onDelete('cascade');
             $table->foreignId('category_id')->unsigned()->nullable()->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });

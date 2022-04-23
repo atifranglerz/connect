@@ -16,8 +16,6 @@
                         <div class="row">
                             <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
                             </div>
-{{--                            <form  action="vendor.ads" method="post" enctype="multipart/form-data">--}}
-{{--                                    @csrf--}}
                                 <form action="{{ route('vendor.ads.update', $ads->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
@@ -72,7 +70,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <select class="form-select" name="model_year_id" aria-label="Type of Service">
-                                                <option value="{{$ads->model_year_id}}" selected>{{$ads->modelYear->model_yesr}}</option>
+                                                <option value="{{$ads->model_year_id}}" selected>{{$ads->modelYear->model_year}}</option>
                                                 @foreach($year as $data)
                                                     <option value="{{$data->id }}">{{$data->model_year }}</option>
                                                 @endforeach
@@ -120,7 +118,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-floating">
-                      <textarea class="form-control" name="description" value="{{$ads->description}}" valyuplaceholder="Add Repairing Details" id="floatingTextarea2" style="height: 100px"></textarea>
+                      <input class="form-control" name="description" value="{{$ads->description}}" valyuplaceholder="Add Repairing Details" id="floatingTextarea2" style="height: 100px"></input>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12">

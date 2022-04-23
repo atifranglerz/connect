@@ -24,7 +24,7 @@
                         <a class="nav-link " href="{{ route('user.ads.index') }}">My Listing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.quote.index') }}">Request A Quote</a>
+                        <a class="nav-link " href="{{ route('user.quotecreate') }}">Request A Quote</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('user.order.index') }}">Orders</a>

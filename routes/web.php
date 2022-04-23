@@ -182,7 +182,12 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('logout', 'AuthController@logout')->name('logout');
         Route::resource('chat', 'ChatController');
         Route::resource('ads', 'AdsController');
-        Route::resource('quote', 'QuoteController');
+        Route::get('quoteindex', 'QuoteController@index')->name('quoteindex');
+        Route::get('quotecreate', 'QuoteController@create')->name('quotecreate');
+        Route::post('quotestore', 'QuoteController@store')->name('quotestore');
+        Route::get('response', 'QuoteController@reply')->name('response');
+        Route::get('vendorReply', 'QuoteController@vendorResponse')->name('vendorReply');
+
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');

@@ -15,11 +15,11 @@ class CreateGarageTimingsTable extends Migration
     {
         Schema::create('garage_timings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garage')->onDelete('cascade');
+            $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garages')->onDelete('cascade');
             $table->string('day');
             $table->string('from');
             $table->string('to');
-            $table->enum('closed', [0, 1])->default(1);
+            $table->string('closed')->nullable();
             $table->timestamps();
         });
     }
