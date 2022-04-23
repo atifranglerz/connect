@@ -7,7 +7,7 @@
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper pt-5">
                         <h1 class="sec_main_heading text-center">SIGN IN</h1>
-                        <p class="sec_main_para text-center">Choose your role to signup</p>
+                        <p class="sec_main_para text-center">Choose your role to sign in</p>
                     </div>
                 </div>
             </div>
@@ -37,12 +37,6 @@
                                     <a href="{{route('user.login')}}" class="btn btn-secondary Signup_btn">Customer</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <h4 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{ route('user.login')}}"> Login</a>
-                            </h4>
                         </div>
                     </div>
                 </div>
