@@ -7,7 +7,7 @@
           <div class="main_content_wraper">
             <h1 class="sec_main_heading text-center mb-0">WELCOME BACK!</h1>
             <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
-          </div>
+          </div>ddd
           <form class="pt-5">
             <div class="col-12 mb-3 signup_input_wraper">
               <input type="email" class="form-control" id="inputEmail" placeholder="Email">
