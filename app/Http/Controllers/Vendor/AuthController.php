@@ -26,7 +26,6 @@ class AuthController extends Controller
 
     public function vendorRegister(Request $request)
     {
-        //dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
@@ -48,8 +47,11 @@ class AuthController extends Controller
         $vendor->address = $request->address;
         $vendor->password = bcrypt($request->password);
         $vendor->save();
+        $vendor_email = $request->email;
+        $data['name'] = $request->name ;
         if ($vendor) {
             $vendor->assignRole($role);
+            Mail::to($vendor_email)->send(new Login($data));
             return redirect()->route('vendor.login')->with($this->data("Vendor Register Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("Vendor Register Error", 'error'));
@@ -70,16 +72,8 @@ class AuthController extends Controller
         ]);
 
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            $vendor_email = $request->email;
-            $data['name'] = 'usman';
-            $data['message'] = 'hello world';
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
             if ($vendor_role) {
-//                Mail::to($vendor_email)->send(new Login($data));
-//                Mail::send('emails.login', $data, function ($messages) use ($vendor_email) {
-//                    $messages->to($vendor_email);
-//                    $messages->subject("Login Email");
-//                });
                 $garage = Garage::where('vendor_id', Auth::guard('vendor')->id())->first();
                 if (empty($garage)) {
                     return redirect()->route('vendor.workshop.index')->with($this->data("create Workshop first ", 'success'));

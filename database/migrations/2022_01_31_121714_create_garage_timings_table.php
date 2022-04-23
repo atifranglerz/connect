@@ -17,8 +17,8 @@ class CreateGarageTimingsTable extends Migration
             $table->id();
             $table->foreignId('garage_id')->unsigned()->nullable()->constrained('garages')->onDelete('cascade');
             $table->string('day');
-            $table->string('from');
-            $table->string('to');
+            $table->string('from')->nullable();
+            $table->string('to')->nullable();
             $table->string('closed')->nullable();
             $table->timestamps();
         });

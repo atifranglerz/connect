@@ -172,6 +172,7 @@
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input name="to[]" type="text" class="form-control" placeholder="To :06:00Pm " id="">
+
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">

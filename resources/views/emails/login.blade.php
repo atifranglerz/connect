@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 {{ $data['name'] }}
-Successfull login.
+Successfull Registration
 
 Thanks,<br>
 {{ config('app.name') }}

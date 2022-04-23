@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ForgetPassword;
+use App\Mail\Login;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,8 +45,11 @@ class AuthController extends Controller
         $user->city = $request->city;
         $user->post_box = $request->post_box;
         $user->save();
+        $user_email = $request->email;
+        $data['name'] = $request->name ;
         if ($user) {
             $user->assignRole($role);
+            Mail::to($user_email)->send(new Login($data));
             return redirect()->route('user.login')->with($this->data("User Register Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("User Register Error", 'error'));
