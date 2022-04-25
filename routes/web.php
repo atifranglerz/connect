@@ -171,6 +171,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::get('forget_password', 'AuthController@forgetPassword')->name('forget_password');
     Route::post('reset-password', 'AuthController@resetPassword')->name('reset_password');
     Route::get('otp', 'AuthController@otp')->name('otp');
+    Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
     Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {

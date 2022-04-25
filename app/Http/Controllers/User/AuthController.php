@@ -91,7 +91,7 @@ class AuthController extends Controller
         $vendor = User::where('email', $request->email)->first();
         $data['email'] = $vendor->email;
         $data['token'] = str_random(30);
-        $data['url'] = route('user.token_confirm', $data['token']);
+        $data['url'] = url('user/token_confirm', $data['token']);
         try {
             Mail::to($data['email'])->send(new ForgetPassword($data));
             DB::table('password_resets')->insert([

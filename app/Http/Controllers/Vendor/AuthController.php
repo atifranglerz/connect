@@ -102,7 +102,8 @@ class AuthController extends Controller
         $vendor = Vendor::where('email', $request->email)->first();
         $data['email'] = $vendor->email;
         $data['token'] = str_random(30);
-        $data['url'] =url('token_confirm/'. $data['token']);
+        $data['url'] =url('vendor/token_confirm/'. $data['token']);
+
         try {
             /*Mail::send('emails.forgetPassword', $data, function ($messages) use ($vendor) {
                 $messages->to();
@@ -163,23 +164,20 @@ class AuthController extends Controller
         return $this->message($vendor, 'vendor.login', 'success', 'error');
     }
 
-    public
-    function logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::guard('vendor')->logout();
         return redirect()->route('vendor.login')->with($this->data("Vendor Logout Successfully", "success"));
     }
 
-    public
-    function profile()
+    public function profile()
     {
         $vendor = Auth::guard('vendor')->user();
         $page_title = 'Vendor Profile';
         return view('vendor.profile', compact('vendor', 'page_title'));
     }
 
-    public
-    function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -198,8 +196,7 @@ class AuthController extends Controller
         }
     }
 
-    public
-    function updatePassword(Request $request, $id)
+    public function updatePassword(Request $request, $id)
     {
         $request->validate([
             'old_password' => 'required',
@@ -217,14 +214,12 @@ class AuthController extends Controller
         }
     }
 
-    public
-    function facebookRedirect()
+    public function facebookRedirect()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-    public
-    function loginWithFacebook()
+    public function loginWithFacebook()
     {
         try {
             $vendor = Socialite::driver('facebook')->user();
@@ -250,8 +245,7 @@ class AuthController extends Controller
         }
     }
 
-    public
-    function redirectToGoogle()
+    public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
@@ -261,8 +255,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public
-    function handleGoogleCallback()
+    public function handleGoogleCallback()
     {
         try {
             $vendor = Socialite::driver('google')->user();

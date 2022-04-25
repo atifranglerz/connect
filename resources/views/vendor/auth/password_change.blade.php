@@ -25,9 +25,6 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-
-
                         <div class="col-12 mb-3 signup_input_wraper">
                             <div class="d-grid gap-2 mt-4 mb-4">
                                 <button class="btn btn-secondary block get_appointment" type="submit">SUBMIT</button>
