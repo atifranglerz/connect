@@ -17,34 +17,37 @@ class profileController extends Controller
         return view('user.profile.index', compact('user', 'page_title'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $user = Auth::guard('web')->user();
+        //$user = Auth::guard('web')->user();
         $page_title = 'User Profile Edit';
-        return view('user.profile.edit', compact('user', 'page_title'));
+        $profile = user::findOrFail($id);
+        return view('user.profile.edit', compact('profile', 'page_title'));
     }
 
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => 'required',
+            'name' => 'required',
+            'phone'=>'required',
+            'city' =>'required',
+            'country' => 'required',
+            'post_box' =>'required',
         ]);
-        $user = User::findorFail($id);
-        if ($request->has('profile')) {
-            $image = $request->file('profile');
-            $image_name = hexdec(uniqid()) . '.' . strtolower($image->getClientOriginalExtension());
-            $image->move('public/image/profile/', $image_name);
-            $image = 'public/image/profile/' . $image_name;
-            $user->image = $image;
+        $user =  user::findOrFail($id);
+        if ($request->file('image')) {
+            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
+            $request->file('image')->move('public/image/ads/', $doucments);
+            $file = 'public/image/ads/' . $doucments;
+            $user->image = $file ;
         }
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->city = $request->city;
-        $user->country = $request->country;
-        $user->post_box = $request->post_box;
-        $user->save();
-        return $this->message($user, 'user.profile.index', 'Profile Update Successfully', 'Profile Update Error');
+        $user->name = $request->name ;
+        $user->phone = $request->phone ;
+        $user->city = $request->city ;
+        $user->country = $request->country ;
+        $user->post_box = $request->post_box ;
+        $user->update();
+        return $this->message($user, 'user.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 
     public function updatePassword(Request $request, $id)

@@ -10,28 +10,53 @@
                             <p class="sec_main_para text-center mb-0">Edit your profile details</p>
                         </div>
 
-                        <form class="pt-5" action="{{ route('user.profile.post', \Illuminate\Support\Facades\Auth::id()) }}" method="post" enctype="multipart/form-data">
+                        <form class="pt-5" action="{{ route('user.profile.post', $profile->id )}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="image-uploader-edit"></div>
+{{--                                <div class="image-uploader-edit"></div>--}}
+                                <label class="img_wraper_label">
+                                    <div class="file_icon_wraper">
+                                        <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
+                                    </div>
+                                    <p class="mb-0">Edit Your Picture </p>
+                                    <input type="file" name="image" value="{{$profile->image}}" size="60" >
+                                </label>
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}">
+                                <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" value="{{$profile->name }}">
+                                @error('name')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" id="inputNumber" name="phone" placeholder="Mobile Number" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}">
+                                <input type="number" class="form-control" id="inputNumber" name="phone" placeholder="Mobile Number" value="{{ $profile->phone }}">
+                                @error('phone')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" disabled class="form-control" id="inputEmail" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
+                                <input type="email" disabled class="form-control" name="email" id="inputEmail" value="{{ $profile->email }}">
+                                @error('email')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" name="city" placeholder="City" value="{{ \Illuminate\Support\Facades\Auth::user()->city }}">
+                                <input type="text" class="form-control" id="inputNumber" name="city" placeholder="City" value="{{ $profile->city }}">
+                                @error('city')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" name="country" placeholder="Country" value="{{ \Illuminate\Support\Facades\Auth::user()->country }}">
+                                <input type="text" class="form-control" id="inputNumber" name="country" placeholder="Country" value="{{ $profile->country }}">
+                                @error('country')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" id="inputNumber" name="post_box" placeholder="P/O Box" value="{{ \Illuminate\Support\Facades\Auth::user()->post_box }}">
+                                <input type="number" class="form-control" id="inputNumber" name="post_box" placeholder="P/O Box" value="{{ $profile->post_box }}">
+                                @error('post_box')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">

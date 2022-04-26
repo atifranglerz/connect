@@ -152,7 +152,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('bids_detail', 'Bids_detailController@index')->name('bids_detail');
         Route::resource('quotes', 'QuotesController');
         Route::resource('used_car', 'UsedCarController');
-        Route::resource('workshop', 'workshopController');
+        Route::resource('workshop', 'WorkshopController');
         Route::resource('profile', 'ProfileController');
         /*Logout*/
         Route::post('logout', 'AuthController@logout')->name('logout');
@@ -176,10 +176,10 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        Route::get('/profile', 'profilecontroller@index')->name('profile.index');
-        Route::get('/profile/edit', 'profilecontroller@edit')->name('profile.edit');
-        Route::post('/profile', 'profilecontroller@updateprofile')->name('profile.post');
-        Route::post('/profile_password', 'profilecontroller@updatepassword')->name('profile.update_password');
+        Route::get('/profile', 'ProfileController@index')->name('profile.index');
+        Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
+        Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
+        Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
         /* Logout */
         Route::post('logout', 'AuthController@logout')->name('logout');
         Route::resource('chat', 'ChatController');

@@ -25,6 +25,7 @@ class AuthController extends Controller
     public function userRegister(Request $request)
     {
         $request->validate([
+            'image' => 'required' ,
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
             'country'=>['required','alpha'] ,
@@ -36,6 +37,12 @@ class AuthController extends Controller
         ]);
         $role = Role::where('name', 'user')->first();
         $user = new  User();
+        if ($request->file('image')) {
+            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
+            $request->file('image')->move('public/image/ads/', $doucments);
+            $file = 'public/image/ads/' . $doucments;
+            $user->image = $file ;
+        }
         $user->name = $request->name;
         $user->city = $request->city;
         $user->email = $request->email;

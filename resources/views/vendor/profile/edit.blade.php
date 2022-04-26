@@ -15,13 +15,13 @@
                             <div class="col-12 mb-3  signup_input_wraper">
 {{--                                <div class="input-images-5">--}}
 {{--                                </div>--}}
-                                <!-- <label class="img_wraper_label">
+                                <label class="img_wraper_label">
                                   <div class="file_icon_wraper">
-                                    <img src="assets/images/fileuploadicon.svg">
+                                    <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
                                   </div>
                                   <p class="mb-0">Upload Your Picture </p>
-                                  <input type="file" size="60" >
-                                </label> -->
+                                  <input type="file" name="image" value="{{$profile->image}}" size="60" >
+                                </label>
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
@@ -145,13 +145,13 @@
                                 <h4 class="mb-0">Password</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password"  name="password" class="form-control" id="inputNumber" placeholder="Password">
+                                <input type="password"  name="password"  class="form-control" id="inputNumber" placeholder="Password">
                                 @error('password')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" name="conform_password" class="form-control" id="inputNumber" placeholder="Confirm Password">
+                                <input type="password" name="conform_password"  class="form-control" id="inputNumber" placeholder="Confirm Password">
                                 @error('conform_password')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

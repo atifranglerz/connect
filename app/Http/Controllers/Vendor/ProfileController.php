@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ads;
 use Illuminate\Http\Request;
 use App\Models\vendor;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -17,7 +18,8 @@ class ProfileController extends Controller
     public function index()
     {
         $page_title = 'Profile';
-        return view('vendor.profile.index', compact('page_title'));
+        $data =  Vendor::findOrFail(Auth::id());
+        return view('vendor.profile.index', compact('page_title' , 'data'));
     }
 
     /**
@@ -74,7 +76,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {;
-        //dd($request);
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -86,16 +87,22 @@ class ProfileController extends Controller
             'password'=>'required',
              'conform_password'=>'required',
         ]);
-        $vendorVendor =  Vendor::findOrFail($id);
-        $vendorVendor->name = $request->name ;
-        $vendorVendor->email = $request->email ;
-        $vendorVendor->country = $request->country ;
-        $vendorVendor->post_box = $request->postbox ;
-        $vendorVendor->phone = $request->phone ;
-        $vendorVendor->address = $request->address ;
-        $vendorVendor->password = bcrypt($request->password) ;
-        $vendorVendor->update();
-        return $this->message($vendorVendor, 'vendor.profile.index', 'profile Update Successfully', '  profile is not update Error');
+        $vendor =  Vendor::findOrFail($id);
+        if ($request->file('image')) {
+            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
+            $request->file('image')->move('public/image/ads/', $doucments);
+            $file = 'public/image/ads/' . $doucments;
+            $vendor->image = $file ;
+        }
+        $vendor->name = $request->name ;
+        $vendor->email = $request->email ;
+        $vendor->country = $request->country ;
+        $vendor->post_box = $request->postbox ;
+        $vendor->phone = $request->phone ;
+        $vendor->address = $request->address ;
+        $vendor->password = bcrypt($request->password) ;
+        $vendor->update();
+        return $this->message($vendor, 'vendor.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 
     /**

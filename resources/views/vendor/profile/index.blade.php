@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-10 col-md-12 mx-auto ">
                     <div class="edit_profile_link_wraper mb-lg-4 mb-3">
-                        <a href="{{route('vendor.profile.edit',1)}}"><img src="{{ asset('public/vendor/assets/images/editicon.svg') }}">Edit</a>
+                        <a href="{{route('vendor.profile.edit', Auth::id())}}"><img src="{{ asset('public/vendor/assets/images/editicon.svg') }}">Edit</a>
                     </div>
                 </div>
                 <div class="col-lg-8 mx-auto">
@@ -24,7 +24,7 @@
                                 <div class="user_icon">
                                     <img src="{{ asset('public/vendor/assets/images/user.svg') }}">
                                 </div>
-                                <p class="mb-0">John Mathew</p>
+                                <p class="mb-0">{{$data->name}}</p>
 
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                 <div class="user_icon">
                                     <img src="{{ asset('public/vendor/assets/images/location.svg') }}">
                                 </div>
-                                <p class="mb-0">12B-sharjah, UAE</p>
+                                <p class="mb-0">{{$data->address}}</p>
 
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 <div class="user_icon">
                                     <img src="{{ asset('public/vendor/assets/images/mailicon.svg') }}">
                                 </div>
-                                <p class="mb-0">abc@email.com</p>
+                                <p class="mb-0">{{$data->email}}</p>
 
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 <div class="user_icon">
                                     <img src="{{ asset('public/vendor/assets/images/callicon.svg') }}">
                                 </div>
-                                <p class="mb-0">+971234567890</p>
+                                <p class="mb-0">+{{$data->phone}}</p>
 
                             </div>
                         </div>

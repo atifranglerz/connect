@@ -15,7 +15,7 @@
                 <div class="col-lg-10 col-md-12 mx-auto ">
                     <div class="edit_profile_link_wraper mb-lg-4 mb-3">
 
-                        <a href="{{ route('user.profile.edit') }}"><img src="{{ asset('public/user/assets/images/editicon.svg') }}">Edit</a>
+                        <a href="{{ route('user.profile.edit',Auth::id()) }}"><img src="{{ asset('public/user/assets/images/editicon.svg') }}">Edit</a>
                     </div>
                 </div>
                 <div class="col-lg-8 mx-auto">

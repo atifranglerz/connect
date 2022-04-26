@@ -1,3 +1,9 @@
+{{--@foreach($garages as $data)--}}
+{{--@foreach($data->garageCategory as $category)--}}
+{{--    {{ $category->category->name }}--}}
+{{--@endforeach--}}
+{{--    <br/>--}}
+{{--@endforeach--}}
 @extends('admin.layout.app')
 @section('content')
     <!-- Main Content -->
@@ -33,7 +39,6 @@
                                                 <td>{{ $data->garage_name }}</td>
                                                 <td>
                                                     @foreach($data->garageCategory as $category)
-
                                                         {{ $category->category->name }},
                                                     @endforeach
                                                 </td>

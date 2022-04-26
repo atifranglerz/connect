@@ -18,17 +18,20 @@
                             <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
                         </div>
 
-                        <form action="{{route('vendor.register')}}" method="post" class="pt-5">
+                        <form action="{{route('vendor.register')}}"  enctype="multipart/form-data" method="post" class="pt-5">
                             @csrf
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <div class="input-images-8"></div>
-                                <!-- <label class="img_wraper_label">
-                                  <div cl ass="file_icon_wraper">
-                                    <img src="assets/images/fileuploadicon.svg">
+                                 <label class="img_wraper_label">
+                                  <div class="file_icon_wraper">
+                                    <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
                                   </div>
                                   <p class="mb-0">Upload Your Picture </p>
-                                  <input type="file" size="60" >
-                                </label> -->
+                                  <input type="file" name="image" size="60" >
+                                     @error('image')
+                                     <div class="text-danger p-2">{{ $message }}</div>
+                                     @enderror
+                                </label>
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">

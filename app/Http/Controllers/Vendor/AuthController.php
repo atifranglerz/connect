@@ -27,6 +27,7 @@ class AuthController extends Controller
     public function vendorRegister(Request $request)
     {
         $request->validate([
+            'image' =>'required' ,
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
             'country'=>['required','alpha'] ,
@@ -38,6 +39,12 @@ class AuthController extends Controller
         ]);
         $role = Role::where('name', 'vendor')->first();
         $vendor = new  Vendor();
+        if ($request->file('image')) {
+            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
+            $request->file('image')->move('public/image/ads/', $doucments);
+            $file = 'public/image/ads/' . $doucments;
+            $vendor->image = $file ;
+        }
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->country = $request->country;
