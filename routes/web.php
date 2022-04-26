@@ -147,10 +147,10 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('create/order', 'ordersController@create');
         Route::get('fullfillment', 'ordersController@fullfillment')->name('fullfillment');
         Route::get('order/index','ordersController@active_order')->name('order/index');
+        Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
+        Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
+        Route::post('bidresponse', 'QuotesController@bidresponse')->name('bidresponse');
         Route::resource('ads', 'AdsController');
-        Route::get('bids', 'BidsController@index')->name('bids');
-        Route::get('bids_detail', 'Bids_detailController@index')->name('bids_detail');
-        Route::resource('quotes', 'QuotesController');
         Route::resource('used_car', 'UsedCarController');
         Route::resource('workshop', 'WorkshopController');
         Route::resource('profile', 'ProfileController');

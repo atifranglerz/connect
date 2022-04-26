@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">ALL QUOTES</h1>
+                        <h1 class="sec_main_heading text-center mb-0">ACTIVE QUOTES</h1>
                         <p class="sec_main_para text-center">Select your preferred garage</p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                     <h3 class=" text-sm-center">AED {{$value->price}}</h3>
                                     <div class="d-flex align-items-center chat_view__detail">
                                         <a href="#" class="chat_icon"><!-- <img src="assets/images/meassageiconblk.svg"> --><i class="fa-solid fa-message"></i></a>
-                                        <a href="#" class="btn-secondary">VIEW DETAILS</a>
+                                        <a href="{{ route('vendor.quotedetail',$value->id ) }}" class="btn-secondary">VIEW DETAILS</a>
                                     </div>
 
 

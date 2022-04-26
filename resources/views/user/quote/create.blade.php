@@ -49,7 +49,7 @@
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage">
-                                            @error('medel')
+                                            @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>

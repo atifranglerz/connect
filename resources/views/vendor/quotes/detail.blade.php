@@ -1,6 +1,6 @@
 @extends('vendor.layout.app')
 @section('content')
-<section class="pb-5 login_content_wraper" style="background-image:url(public/assets/images/gradiantbg.jpg);">
+<section class="pb-5 login_content_wraper" style="background-image:url(assets/images/gradiantbg.jpg);">
     <div class="container-lg container-fluid" >
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -11,20 +11,20 @@
             </div>
         </div>
         <div class="row g-2">
-            <div class="col-lg-12 col-md-12 col-12  mx-auto">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12  mx-auto">
                 <div class="all_quote_card replies_allquot ">
                     <div class=" w-100  quote_detail_wraper replies ">
-                        <div class="active_bid_dtl_card_left">
+                        <div class="active_bid_dtl_card_left quot_response ">
                             <div class="quote_info">
                                 <h3 class="d-flex align-items-center active_quote nowrape ">Cultus Repairs</h3>
-                                <p class="mb-0">M . Usman</p>
+                                <p class="mb-0">{{$data->user->name}}</p>
 
-                                <p class="mb-0" >0987654321778</p>
-                                <p class="milage" >Mileage  <span>37000km</span></p>
+                                <p class="mb-0" >{{$data->phone}}</p>
+                                <p class="milage" >Mileage  <span>{{$data->mileage}}</span></p>
                             </div>
 
-                            <div class="d-flex chat_view__detail qoute_replies vendor_order days ">
-                                <h3 class="active_bidDay">7 Days</h3>
+                            <div class="d-flex chat_view__detail qoute_replies vendor_order days quote_rspns ">
+                                <!-- <h3 class="active_bidDay">7 Days</h3> -->
                                 <a href="#" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>
                                     <!-- <img src="assets/images/meassageiconblk.svg"> -->
@@ -33,8 +33,8 @@
 
                         </div>
                         <div class=" active_bid_dtl_card_right">
-                            <h3 class= "offer_quote_heading">Suzuki Alto</h3>
-                            <h3 class="offer_quote_heading second_heading">My Quote <span>AED 1200</span></h3>
+                            <h3 class= "offer_quote_heading">{{$data->model}}</h3>
+                            <h3 class="offer_quote_heading second_heading">Timeline: <span>  7 Days</span></h3>
                         </div>
                     </div>
                 </div>
@@ -162,6 +162,41 @@
                     <div class="vendor__rply__dttl">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
                     </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="all_quote_card  vendor_rply_dtlL _text">
+                    <form action="{{ route('vendor.bidresponse') }}" method="post">
+                        @csrf
+                        <div class="row ">
+                            <div class="col-lg-7 mx-auto">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                        <input type="hidden" name="bid_id" value="{{$data->id}}">
+                                        <input type="hidden" name="vendor_id" value="{{Auth::id()}}">
+                                        <input type="number" name="price" class="form-control" placeholder="AED">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                        <input type="text"  name="timeLimit" class="form-control" placeholder="TimeFrame">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 mb-3">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="description" placeholder="Add information in details" id="floatingTextarea2" style="height: 106px"></textarea>
+                                            <label for="floatingTextarea2">Add Repairing Details</label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="d-grid gap-2 mt-3 mb-4">
+                                                <button class="btn btn-secondary block get_appointment" type="submit">SUBMIT QUOTE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
             </div>

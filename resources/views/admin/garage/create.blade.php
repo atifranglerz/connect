@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="category_id" class="form-label">Category</label>
-                                            <select id="category_id" class="form-control selectric" multiple="" name="category_id" required>
+                                            <select id="category_id" class="form-control selectric" multiple="" name="category_id[]" required>
 {{--                                                <option>Type of Service</option>--}}
                                                 @foreach($category as $data)
                                                     <option value="{{$data->id}}">{{ $data->name }}</option>

@@ -17,7 +17,7 @@
                 <a href="{{ route('vendor.chat.index') }}"><img src="{{ asset('public/vendor/assets/images/dashinboxicon.svg') }}"><span>Inbox</span></a>
             </li>
             <li>
-                <a href="{{ route('vendor.quotes.index') }}"><img src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>Active Quotes</span></a>
+                <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>Active Quotes</span></a>
             </li>
             <li>
 {{--                {{ route('vendor.orderindex') }}--}}

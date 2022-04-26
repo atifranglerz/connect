@@ -15,7 +15,7 @@
                 <div class="col-lg-10 col-md-11 col-sm-11  mx-auto">
                     <div class="quote_card_heading  mb-lg-4 mb-2 mt-lg-5 mt-3">
                         <h3>All Quotes</h3>
-                        <a href="{{ route('vendor.quotes.index') }}">View All</a>
+                        <a href="{{ route('vendor.dashboard') }}">View All</a>
                     </div>
                     <div class="all_quote_card">
                         <div class="quote_info">

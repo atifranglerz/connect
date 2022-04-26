@@ -56,10 +56,13 @@ class GarageController extends Controller
         $data = $request->only(['vendor_id', 'garage_name', 'trading_no', 'vat', 'phone', 'address', 'country', 'city', 'post_box', 'image', 'description']);
         $data['image'] = $image ?? '';
         $garage = Garage::create($data);
-        GarageCategory::create([
-            'garage_id' => $request->garage_id,
-            'category_id' => $request->category_id,
-        ]);
+        //dd($request->category_id);
+        foreach ($request->category_id as $category) {
+            GarageCategory::create([
+                'garage_id' => $garage->id ,
+                'category_id' => $category
+            ]);
+        }
         return $this->message($garage, 'admin.garage.index', 'Garage Create Successfully', 'Garage Create Error');
     }
 
@@ -139,9 +142,10 @@ class GarageController extends Controller
      */
     public function destroy(Garage $garage)
     {
-        if ($garage->image !== null) {
-            unlink($garage->image);
-        }
+//        dd($garage);
+//        if ($garage->image !== null) {
+//            unlink($garage->image);
+//        }
         $garage->delete();
         return $this->message($garage, 'admin.garage.index', 'Garage Delete Successfully', 'Garage Delete Error');
     }
