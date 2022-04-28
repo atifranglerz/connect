@@ -17,40 +17,57 @@
                             <h1 class="sec_main_heading text-center mb-0">WELCOME!</h1>
                             <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
                         </div>
-
                         <form action="{{route('vendor.register')}}"  enctype="multipart/form-data" method="post" class="pt-5">
                             @csrf
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="input-images-8"></div>
-                                 <label class="img_wraper_label">
-                                  <div class="file_icon_wraper">
-                                    <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
-                                  </div>
-                                  <p class="mb-0">Upload Your Picture </p>
-                                  <input type="file" name="image" size="60" >
-                                     @error('image')
-                                     <div class="text-danger p-2">{{ $message }}</div>
-                                     @enderror
-                                </label>
+                                 <div class="input-images-8"></div>
+{{--                                <label class="img_wraper_label">--}}
+{{--                                    <div class="file_icon_wraper">--}}
+{{--                                        <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">--}}
+{{--                                    </div>--}}
+{{--                                    <p class="mb-0">Upload Your Picture </p>--}}
+{{--                                    <input type="file" size="60" >--}}
+{{--                                </label>--}}
+                                @error('profile_image')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="input-images-9"></div>
-                                <!-- <label class="img_wraper_label">
-                                  <div class="file_icon_wraper">
-                                    <img src="assets/images/fileuploadicon.svg">
-                                  </div>
-                                  <p class="mb-0">Upload Your ID</p>
-                                  <input type="file" size="60" >
-                                </label> -->
+                                                            <div class="input-images-9"></div>
+{{--                                <label class="img_wraper_label">--}}
+{{--                                    <div class="file_icon_wraper">--}}
+{{--                                        <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">--}}
+{{--                                    </div>--}}
+{{--                                    <p class="mb-0">Upload Your ID</p>--}}
+{{--                                    <input type="file" size="60" >--}}
+{{--                                </label>--}}
+                                @error('id_card')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h4 class="mb-0">Business Info</h4>
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control" name="name" id="inputName" placeholder="Owner Name">
+                                <input type="text" class="form-control"  name="name" id="inputName" placeholder="Owner Name">
                                 @error('name')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <input type="text" name="garage_name" class="form-control" id="inputgarageName" placeholder="Garage Legal Name">
+                                @error('garage_name')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <select class="form-select" name="garages_catagary" aria-label="Type of Service">
+                                    <option selected>Business Category</option>
+                                    <option value="1">2019</option>
+                                </select>
+                                @error('garage_catagary')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -67,31 +84,88 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="city" class="form-control" id="inputNumber" placeholder="City">
+                                <input type="text"  name="city" class="form-control" id="inputNumber" placeholder="City">
                                 @error('city')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" name="post_box" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                <input type="text" name="post_box" class="form-control" id="inputNumber" placeholder="P/O Box">
                                 @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" name="phone" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                <input type="text" name="phone" class="form-control" id="inputNumber" placeholder="Telephone No.">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="input-images-10"></div>
+                                                            <div class="input-images-10"></div>
+{{--                                <label class="img_wraper_label">--}}
+{{--                                    <div class="file_icon_wraper">--}}
+{{--                                        <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">--}}
+{{--                                    </div>--}}
+{{--                                    <p class="mb-0">Upload Your Trade License and ID </p>--}}
+{{--                                    <input type="file" name="license_id" size="60" >--}}
+{{--                                </label>--}}
+                                @error('image_license')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h4 class="mb-0">Legal Info</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
+                                <input type="text" name="trading_license" class="form-control"  placeholder="Trading License No.">
+                                @error('trading_license')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" name="address" placeholder="Address">
-                                @error('address')
+                                <input type="text" name="vat" class="form-control"  placeholder="VAT Details">
+                                @error('vat')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h4 class="mb-0">Billing Info</h4>
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <div class="row">
+                                    <div class="col-6  ">
+                                        <select class="form-select" name="billing_area" aria-label="Type of Service">
+                                            <option selected>Area</option>
+                                            <option value="1">2019</option>
+                                        </select>
+                                        @error('billing_area')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 ">
+                                        <select class="form-select" name="billing_city" aria-label="Type of Service">
+                                            <option selected>City</option>
+                                            <option value="1">2019</option>
+                                        </select>
+                                        @error('billing_city')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <input type="text" name="billing_address" class="form-control"  placeholder="Address">
+                            </div>
+                            @error('billing_address')
+                            <div class="text-danger p-2">{{ $message }}</div>
+                            @enderror
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h4 class="mb-0">Add Number For Appointment</h4>
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <input type="text" name="appointment_number" class="form-control"  placeholder="Telephone No.">
+                                @error('appointment_number')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -99,25 +173,20 @@
                                 <h4 class="mb-0">Password</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control" name="password" id="inputNumber" placeholder="Password">
+                                <input type="password" name="password" class="form-control" id="inputNumber" placeholder="Password">
                                 @error('password')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control" name="password_confirmation" id="inputNumber" placeholder="Confirm Password">
-                                @error('password_confirmation')
-                                <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
+                                <input type="password" name="conform_password" class="form-control" id="inputNumber" placeholder="Confirm Password">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                    <button class="btn btn-secondary block get_appointment" type="submit">REGISTER YOUR
-                                        BUSINESS
+                                    <button class="btn btn-secondary block get_appointment" type="submit">REGISTER YOUR BUSINESS
                                     </button>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -130,4 +199,5 @@
             </div>
         </div>
     </section>
+
 @endsection

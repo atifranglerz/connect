@@ -26,33 +26,62 @@ class AuthController extends Controller
 
     public function vendorRegister(Request $request)
     {
+        //dd($request);
         $request->validate([
-            'image' =>'required' ,
+            'profile_image' =>'required' ,
+            "id_card" =>'required',
             'name' => ['required', 'string', 'max:255'],
+            'garage_name'=>'required',
+            'garages_catagary'=>'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
             'country'=>['required','alpha'] ,
             'city'=> ['required','alpha'] ,
             'post_box'=>'required',
-            'address'=>'required',
             'phone' => ['required'],
-            'password' => 'required|confirmed',
+            'image_license'=>'required',
+            'trading_license'=>'required',
+            'vat'=>'required',
+            'billing_area'=>'required',
+            'billing_city'=>'required',
+            'billing_address'=>'required',
+            'appointment_number'=>'required',
         ]);
         $role = Role::where('name', 'vendor')->first();
         $vendor = new  Vendor();
-        if ($request->file('image')) {
-            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/ads/', $doucments);
-            $file = 'public/image/ads/' . $doucments;
-            $vendor->image = $file ;
+        if ($request->file('profile_image')) {
+            $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('profile_image')->getClientOriginalExtension());
+            $request->file('profile_image')->move('public/image/ads/', $doucments1);
+            $file1 = 'public/image/ads/' . $doucments1;
+            $vendor->image = $file1 ;
         }
+        if ($request->file('id_card')) {
+            $doucments2 = hexdec(uniqid()) . '.' . strtolower($request->file('id_card')->getClientOriginalExtension());
+            $request->file('id_card')->move('public/image/ads/', $doucments2);
+            $file2 = 'public/image/ads/' . $doucments2;
+            $vendor->id_card = $file2 ;
+        }
+        if ($request->file('image_license')) {
+            $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
+            $request->file('image_license')->move('public/image/ads/', $doucments3);
+            $file3 = 'public/image/ads/' . $doucments3;
+            $vendor->trade_license = $file3 ;
+        }
+
         $vendor->name = $request->name;
         $vendor->email = $request->email;
+        $vendor->phone = $request->phone;
+        $vendor->password = bcrypt($request->password);
         $vendor->country = $request->country;
         $vendor->city = $request->city;
         $vendor->post_box = $request->post_box;
-        $vendor->phone = $request->phone;
-        $vendor->address = $request->address;
-        $vendor->password = bcrypt($request->password);
+        $vendor->appointment_number = $request->appointment_number;
+        $vendor->garage_name = $request->garage_name ;
+        $vendor->trading_license = $request->trading_license ;
+        $vendor->vat = $request->vat ;
+        $vendor->billing_area = $request->billing_area ;
+        $vendor->billing_city = $request->billing_city ;
+        $vendor->billing_address = $request->billing_address ;
+        $vendor->garages_catagary = $request->garages_catagary ;
         $vendor->save();
         $vendor_email = $request->email;
         $data['name'] = $request->name ;

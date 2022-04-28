@@ -22,7 +22,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row ">
                 <div class="col-lg-8 col-md-11  mx-auto">
                     <div class="bid_form_wraper">
@@ -49,7 +48,7 @@
                                     <div class="form-step form-step-active " id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="garage_name" class="form-control" placeholder="Workshop Name">
+                                                <input type="text" name="garage_name"   value="{{$data->garage_name}}" class="form-control" placeholder="Workshop Name">
                                                 @error('garage_name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -64,25 +63,25 @@
                                                 <input type="email" name="email" class="form-control" disabled value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text"  name="phone" class="form-control" placeholder="Phone Number" >
+                                                <input type="text"  name="phone"  value="{{$data->phone}}" class="form-control" placeholder="Phone Number" >
                                                 @error('phone')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="country" class="form-control" placeholder="Country" >
+                                                <input type="text"  name="country"  value="{{$data->country}}" class="form-control" placeholder="Country" >
                                                 @error('country')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="city" class="form-control" placeholder="City" >
+                                                <input type="text" name="city"  value="{{$data->city}}" class="form-control" placeholder="City" >
                                                 @error('city')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="number" name="post_box" class="form-control" placeholder="P/O Box" >
+                                                <input type="number" name="post_box"  value="{{$data->post_box}}" class="form-control" placeholder="P/O Box" >
                                                 @error('post_box')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -90,8 +89,8 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
                                                 <select class="form-select" name="category[]" multiple aria-label="Type of Service">
-                                                    @foreach($category as $data)
-                                                        <option value="{{$data->id }}">{{$data->name }}</option>
+                                                    @foreach($category as $data1)
+                                                        <option value="{{$data1->id }}">{{$data1->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category')
@@ -99,13 +98,13 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="trading_no" class="form-control" placeholder="Trading License No" >
+                                                <input type="text" name="trading_no"   value="{{$data->trading_license}}" class="form-control" placeholder="Trading License No" >
                                                 @error('trading_no')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="vat" class="form-control" placeholder="VAT DETAIL" >
+                                                <input type="text" name="vat"   value="{{$data->vat}}" class="form-control" placeholder="VAT DETAIL" >
                                                 @error('vat')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror

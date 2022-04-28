@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendor;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Garage;
+use App\Models\Vendor ;
 use App\Models\GarageCategory;
 use App\Models\GarageTiming;
 use Illuminate\Http\Request;
@@ -19,9 +20,10 @@ class WorkshopController extends Controller
      */
     public function index()
     {
+        $data = Vendor::find(Auth::id());
         $page_title = 'WorkShop';
         $category = Category::get();
-        return view('vendor.workshop.create', compact('page_title', 'category'));
+        return view('vendor.workshop.create', compact('page_title' ,'data','category'));
 
     }
 

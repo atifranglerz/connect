@@ -39,6 +39,7 @@
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
 <script src="{{ asset('public/vendor/assets/OwlCarousel/dist/owl.carousel.min.js')}}"></script>
 <script src="{{ asset('public/vendor/assets/image-uploader/dist/image-uploader.min.js')}}"></script>
+
 @yield('script')
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -116,6 +117,17 @@
         });
         $(".Upload_final_report>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Final Report</p><input type="file" size="60" ></label>');
 
+
+        $('.input-images-8').imageUploader({
+            maxFiles:1,
+
+
+        });
+        $(".input-images-8>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{asset('public/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture </p><input name="profile_image" type="file" size="60" ></label> ');
+        $('.input-images-9').imageUploader();
+        $(".input-images-9>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{asset('public/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your ID</p><input name="id_card" type="file" size="60" ></label> ');
+        $('.input-images-10').imageUploader();
+        $(".input-images-10>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{asset('public/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Trade License and ID </p><input name="image_license" type="file" size="60" ></label>');
 
         $(document).on('click', '#menuToggle', function () {
             $("#dashboardSidebarRightContent").toggleClass("toggled");
@@ -320,5 +332,6 @@
 
     });
 </script>
+
 </body>
 </html>
