@@ -9,8 +9,10 @@ use App\Models\UserBid;
 use App\Models\Category ;
 use App\Models\UserBidCategory;
 use App\Models\UserBidImage;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\vendorBid ;
 
 class QuoteController extends Controller
 {
@@ -107,14 +109,16 @@ class QuoteController extends Controller
         return $this->message($quote, 'user.quoteindex', 'Bid created  Successfully', 'Bid is not  Create Error');
     }
 
-    public function reply ()
+    public function reply ($id)
     {
+        $data = vendorBid::with('vendordetail')->where('user_bid_id' ,'=' , $id)->get();
         $page_title = 'Qoute Response ';
-        return view('user.quote.response', compact('page_title' ));
+        return view('user.quote.response', compact('page_title' ,'data' ));
     }
-    public function vendorResponse ()
+    public function vendorResponse ($id)
     {
+        $data = vendorBid::with('vendordetail')->where('garage_id' ,'=' , $id)->get();
         $page_title = 'vendor response ';
-        return view('user.quote.vendor_reply', compact('page_title' ));
+        return view('user.quote.vendor_reply', compact('page_title','data' ));
     }
 }

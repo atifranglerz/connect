@@ -11,6 +11,7 @@
             </div>
         </div>
         <div class="row g-2">
+            @foreach($data as $value)
             <div class="col-lg-6 col-md-6 col-sm-6 col-10  mx-auto">
                 <div class="all_quote_card replies_allquot h-100 ">
                     <div class="car_inner_imagg replies_qout">
@@ -56,19 +57,20 @@
                 <div class="all_quote_card  replies_allquot h-100">
                     <div class=" w-100  quote_detail_wraper replies second">
                         <div class="quote_info">
-                            <h3 class="d-flex align-items-center active_quote nowrape">Garage Owner Quote</h3>
+                            <h3 class="d-flex align-items-center active_quote nowrape">{{$value->vendordetail->name}}</h3>
                             <div class="quote_detail_btn_wraper">
-                                <h3 class="quotereplies">AED 1200</h3>
+                                <h3 class="quotereplies">AED {{$value->price}} </h3>
                             </div>
                         </div>
                         <div class="quote_detail_btn_wraper">
                             <div class="d-flex align-items-center chat_view__detail allreplies ">
-                                <a href="{{route('user.vendorReply')}}" class="btn-secondary">VIEW DETAILS</a>
+                                <a href="{{route('user.vendorReply',$value->id)}}" class="btn-secondary">VIEW DETAILS</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+              @endforeach
         </div>
     </div>
 </section>

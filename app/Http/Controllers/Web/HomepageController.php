@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Category;
 use App\Models\PrivacyPolicy;
 use App\Models\TermCondition;
 use Illuminate\Http\Request;
@@ -13,8 +14,9 @@ class HomepageController extends Controller
 {
     public function index()
     {
-
-        return view('web/index') ;
+        $page_title = "home" ;
+        $data = category::all();
+        return view('web/index' , compact('page_title','data')) ;
     }
     public function carService()
     {
@@ -29,6 +31,7 @@ class HomepageController extends Controller
     public function usedcars()
     {
         $page_title = 'used cars';
+
         return view('web.used_cars', compact('page_title'));
     }
     public function allvendor()

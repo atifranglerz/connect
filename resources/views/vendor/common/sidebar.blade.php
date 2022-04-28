@@ -4,7 +4,7 @@
             <img src="{{ asset('public/vendor/assets/images/repair3.jpg') }}">
         </div>
         <div class="name_of_person mx-auto text-center">
-            <h3>Hi, Ali</h3>
+            <h3>Hi, vendor</h3>
         </div>
     </div>
 
@@ -20,7 +20,6 @@
                 <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>Active Quotes</span></a>
             </li>
             <li>
-{{--                {{ route('vendor.orderindex') }}--}}
                 <a href="{{route('vendor.ads.index')}}"><img src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>Active Orders</span></a>
             </li>
             <li>

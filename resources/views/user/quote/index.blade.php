@@ -31,7 +31,7 @@
                                 <h3 class=" text-sm-center">AED {{$value->price}}</h3>
                                 <div class="d-flex align-items-center chat_view__detail">
                                     <a href="#" class="chat_icon"><!-- <img src="assets/images/meassageiconblk.svg"> --><i class="fa-solid fa-message"></i></a>
-                                    <a href="{{route('user.response')}}" class="btn-secondary">VIEW DETAILS</a>
+                                    <a href="{{route('user.response',$value->id)}}" class="btn-secondary">VIEW DETAILS</a>
                                 </div>
 
 

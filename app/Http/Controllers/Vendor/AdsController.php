@@ -45,6 +45,8 @@ class AdsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'car_images'=>'required',
+            'files'=> 'required',
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',

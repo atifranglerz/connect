@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
                                 <ul class="nav nav-tabs " id="myTab" role="tablist">
-                                    <li class="nav-item nav_item_li vendor_creatworkoshop" role="presentation">
+                                    <li class="nav-item nav_item_li vendor_creatworkoshop " role="presentation">
                                         <button class="nav-link active tab_btns" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"></button>
                                     </li>
                                     <li class="nav-item nav_item_li vendor_creatworkoshop" role="presentation">
@@ -43,7 +43,7 @@
                                     <p class=" request_quote_heading">CAR INFORMATION</p>
                                 </div>
                             </div>
-                            <form enctype="multipart/form-data" method="post" action="{{ route('vendor.workshop.store') }}">
+                        <form enctype="multipart/form-data" method="post" action="{{ route('vendor.workshop.store') }}">
                                 @csrf
                                 <div class="tab-content" id="myTabContent">
                                     <div class="form-step form-step-active " id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -296,8 +296,8 @@
 @section('script')
     <script>
         const nextBtns = document.querySelectorAll(".btn-secondary");
-        // const progress = document.getElementById("progress");
         const formSteps = document.querySelectorAll(".form-step");
+
 
         let formStepsNum = 0;
 

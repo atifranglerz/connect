@@ -12,4 +12,8 @@ class VendorBid extends Model
     protected $fillable = [
         'garage_id', 'user_bid_id', 'price', 'status',
     ];
+    public function vendordetail()
+    {
+        return $this->belongsTo(vendor::class, 'garage_id', 'id');
+    }
 }

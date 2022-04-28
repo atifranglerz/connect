@@ -119,7 +119,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        unlink($category->image);
+        //unlink($category->image);
         $category->delete();
         return $this->message($category, 'admin.category.index', 'Category Delete Successfully', 'Category Delete Error');
     }

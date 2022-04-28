@@ -94,7 +94,7 @@
     /*scrolling banner*/
     $(document).ready(function () {
         $('.input-images').imageUploader();
-        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Car image</p><input type="file" size="60" ></label>  ');
+        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Car image</p><input  name="car_images" type="file" size="60" ></label>  ');
         $('.input-images-2').imageUploader();
         $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><a href="#" class="skip">Skip</a><input type="file" size="60" ></label>   ');
         $('.input-images-3').imageUploader();

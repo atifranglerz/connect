@@ -8,6 +8,7 @@ use App\Models\UserBid;
 use App\Models\User ;
 use App\Models\ModelYear ;
 use App\Models\Company ;
+use App\Models\vendorBid ;
 
 class QuotesController extends Controller
 {
@@ -25,6 +26,13 @@ class QuotesController extends Controller
     }
     public function bidresponse (Request $request)
     {
-        dd($request);
+        $data =  new vendorBid ();
+        $data->garage_id =  $request->vendor_id ;
+        $data->user_bid_id =  $request->bid_id ;
+        $data->price = $request->price ;
+        $data->time = $request->time ;
+        $data->description = $request->description ;
+        $data->save();
+        return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
     }
 }

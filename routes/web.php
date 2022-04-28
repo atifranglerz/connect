@@ -51,7 +51,6 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
 
 
-
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('/', function () {
@@ -176,6 +175,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('payment_page', 'paymentController@index')->name('payment_page');
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
@@ -187,8 +187,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('quoteindex', 'QuoteController@index')->name('quoteindex');
         Route::get('quotecreate', 'QuoteController@create')->name('quotecreate');
         Route::post('quotestore', 'QuoteController@store')->name('quotestore');
-        Route::get('response', 'QuoteController@reply')->name('response');
-        Route::get('vendorReply', 'QuoteController@vendorResponse')->name('vendorReply');
+        Route::get('response/{id}', 'QuoteController@reply')->name('response');
+        Route::get('vendorReply/{id}', 'QuoteController@vendorResponse')->name('vendorReply');
 
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');

@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-lg-6  col-md-6 col-sm-6">
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a href="paymentinfo.php" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
+                            <a href="{{route('user.payment_page')}}" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
                             </a>
                         </div>
                     </div>
@@ -29,8 +29,8 @@
                     <div class=" w-100  quote_detail_wraper">
                         <div class="quote_info">
                             <h3 class="d-flex align-items-center active_quote rply_dtl">Car Repair</h3>
-                            <p class="mb-0 rply__dtl">Sharjah, Ajman</p>
-                            <p class="rply__dtl" >+971234567890</p>
+                            <p class="mb-0 rply__dtl">{{$data[0]->vendordetail->name}}</p>
+                            <p class="rply__dtl" >{{$data[0]->vendordetail->phone}}</p>
                             <div class="card_icons respons_qoute d-flex align-items-center">
                                 <div class="icon_wrpaer vendor_qoute_dtl">
                                     <img src="{{ asset('public/user/assets/images/iconrp.svg')}}">
@@ -50,9 +50,9 @@
                             </div>
                         </div>
                         <div class="quote_detail_btn_wraper">
-                            <h3 class=" text-sm-center vendor_replies_dtl">AED 1200</h3>
+                            <h3 class=" text-sm-center vendor_replies_dtl">AED {{$data[0]->price}}</h3>
                             <div class="quote_info">
-                                <p class="quote_rev vndr_rply__dtl">Time Frame Offered<span> 5 Days </span></p>
+                                <p class="quote_rev vndr_rply__dtl">Time Frame Offered<span> {{$data[0]->time}} </span></p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
                     </div>
                     <div class="vendor__rply__dttl">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,</p>
+                        <p>{{$data[0]->description}}</p>
                     </div>
                 </div>
             </div>

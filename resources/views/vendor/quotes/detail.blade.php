@@ -175,12 +175,12 @@
                             <div class="col-lg-7 mx-auto">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                        <input type="hidden" name="bid_id" value="{{$data->id}}">
-                                        <input type="hidden" name="vendor_id" value="{{Auth::id()}}">
+                                        <input type="hidden" name="bid_id" value="{{$data->user_id}}">
+                                        <input type="hidden" name="vendor_id" value="{{$data->id}}">
                                         <input type="number" name="price" class="form-control" placeholder="AED">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                        <input type="text"  name="timeLimit" class="form-control" placeholder="TimeFrame">
+                                        <input type="text"  name="time" class="form-control" placeholder="TimeFrame">
                                     </div>
                                     <div class="col-lg-12 col-md-12 mb-3">
                                         <div class="form-floating">
