@@ -20,6 +20,11 @@
     <title>Repair my Car</title>
 </head>
 <body>
+<!--paste this code under the head tag-->
+<div id="pgLoader">
+    <span id="pgLoaderGif"></span>
+</div>
+<!--paste this code under the head tag-->
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white ">
         <div class="container-lg container-fluid">
@@ -127,8 +132,10 @@
 </div>
 
 <script src="{{ asset('public/assets/js/bootstrap.bundle.min.js') }}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
+<script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <!-- <script src="/path/to/jquery.min.js"></script> -->
 <!-- <script src="assets/slick-master/slick/slick.js"></script> -->
 <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
@@ -214,6 +221,9 @@
         });
 
         $(document).ready(function () {
+            /*Animate loader off screen*/
+            $("#pgLoader").fadeOut("slow");
+            
             $(".carousel_se_02_carousel").owlCarousel({
                 items: 3,
                 nav: false,

@@ -1,3 +1,8 @@
+<!--paste this code under the head tag-->
+<div id="pgLoader">
+    <span id="pgLoaderGif"></span>
+</div>
+<!--paste this code under the head tag-->
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-custom-orange shadow">
         <div class="container-lg container-fluid">
