@@ -14,9 +14,9 @@ class QuotesController extends Controller
 {
     public function index()
     {
-        $page_title = 'index ';
-        $data = UserBid::all();
-        return view('vendor.quotes.index', compact('page_title' ,'data'));
+        $data['page_title'] = 'index ';
+        $data['user_all_bid'] = UserBid::all();
+        return view('vendor.quotes.index', $data);
     }
     public function quotedetail ($id)
     {

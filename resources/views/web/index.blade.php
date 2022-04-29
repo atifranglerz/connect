@@ -32,19 +32,14 @@
                     </div>
                 </div>
                 <div class="banner_search_box_wraper">
-                    <form class="d-flex banner_form">
-                        <select class="form-select me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example">
-                            <option selected>Select category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                    <form action="{{route('search_service')}}" class="d-flex banner_form">
+                        <select class="form-select me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="serchfltr">
+                            <option selected disabled value="">Select category</option>
+                            @foreach($services as $value)
+                            <option value="{{$value->id}}">{{$value->name}}</option>
+                            @endforeach
                         </select>
-                        <select class="form-select me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" aria-label="Default select example">
-                            <option selected>Select Service</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input class="typeahead form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Select Service" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50">
                         <button class="btn  search_btn" type="submit">SEARCH</button>
                     </form>
                 </div>

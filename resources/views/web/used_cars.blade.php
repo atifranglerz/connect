@@ -36,7 +36,7 @@
             @if(count($ads) > 0)
                 @foreach($ads as $value)
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
+                <a href="{{route('car_detail',$value->id)}}">
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ $value->images }}" class="card-img-top" alt="Car image">

@@ -10,15 +10,15 @@
                     </div>
                 </div>
             </div>
-            @foreach( $data as $value)
+            @foreach( $user_bid as $value)
             <div class="row g-2">
                 <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
                     <div class="all_quote_card ">
                         <div class="car_inner_imagg ">
                             <?php
-                            $img = explode(",", $value->car_image);
+                            $img = \App\Models\UserBidImage::where('type','image')->first();
                             ?>
-                            <img src="{{ asset($img[0]) }}">
+                            <img src="{{ asset($img->car_image) }}">
 {{--                            <img src="{{ asset('public/user/assets/images/repair3.jpg')}}">--}}
                         </div>
                         <div class=" w-100  quote_detail_wraper">

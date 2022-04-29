@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            @foreach( $data as $value)
+            @foreach( $user_all_bid as $value)
                 <div class="row g-2">
                     <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
                         <div class="all_quote_card ">

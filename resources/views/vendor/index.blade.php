@@ -46,7 +46,7 @@
                 </div>
                 <div class="all_quote_card ">
                     <div class="car_inner_imagg ">
-                        <img src="assets/images/repair3.jpg">
+                        <img src="public/assets/images/repair3.jpg">
                     </div>
                     <div class=" w-100  quote_detail_wraper">
                         <div class="quote_info">

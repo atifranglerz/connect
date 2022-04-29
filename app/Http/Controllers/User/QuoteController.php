@@ -18,9 +18,9 @@ class QuoteController extends Controller
 {
     public function index()
     {
-        $page_title = 'quote/index ';
-        $data = UserBid::where('user_id', Auth::id())->get();
-        return view('user.quote.index', compact('page_title' ,'data'));
+        $data['page_title'] = 'quote/index ';
+        $data['user_bid'] = UserBid::where('user_id', Auth::id())->get();
+        return view('user.quote.index', $data);
     }
 
     public function create()

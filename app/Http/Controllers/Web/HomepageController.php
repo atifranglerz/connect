@@ -85,6 +85,26 @@ class HomepageController extends Controller
         return view('web.car_detail', $data);
     }
 
+    public function searchService(Request $request)
+    {
+        $search = $request->query('keywords');
+        $category = $request->query('category');
+        $garage_category = GarageCategory::where('category_id',$category)->pluck('garage_id');
+
+        if ($garage_category){
+            $data['garages'] = Garage::where(function ($q) use ($search){
+                $q->where('garage_name','Like','%'.$search.'%');
+            })->whereIn('id',$garage_category)->distinct()->get();
+            return view('web.vendorlistbyservice', $data);
+        }else{
+            $data['garages'] = Garage::where(function ($q) use ($search){
+                $q->where('garage_name','Like','%'.$search.'%');
+            })->get();
+
+            return view('web.vendorlistbyservice', $data);
+        }
+    }
+
     public function news()
     {
         $data['page_title'] = 'latest news';

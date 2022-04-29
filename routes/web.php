@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('service-detail/{id}', 'HomepageController@serviceDetail')->name('service-detail');
     Route::get('gerage-detail/{id}', 'HomepageController@vendorDetails')->name('gerage_detail');
     Route::get('vendorlist', 'HomepageController@allvendor')->name('vendorlist');
+    Route::get('search_service', 'HomepageController@searchService')->name('search_service');
     Route::get('news', 'HomepageController@news')->name('news');
     Route::get('faq', 'HomepageController@faqnews')->name('faq');
     Route::get('news_detail/{id}', 'HomepageController@newsDetail')->name('news_detail');
