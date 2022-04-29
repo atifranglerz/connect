@@ -19,6 +19,7 @@
                                             <th class="text-center">#</th>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Image</th>
                                             <th>Role</th>
                                             <th>Phone</th>
                                             <th>Status</th>
@@ -31,6 +32,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td><img alt="image" @if($user->image) src="{{ asset('/'.$user->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></td>
                                                 <td>@foreach($user->roles as $role){{ $role->name }}@endforeach</td>
                                                 <td>{{ $user->phone }}</td>
                                                 <td>@if($user->action == 1)

@@ -14,9 +14,9 @@
             </li>
             <li class="dropdown @if (request()->routeIs('admin.category.index', 'admin.category.create', 'admin.category.edit', 'admin.category.show', 'admin.subcategory.index', 'admin.subcategory.create', 'admin.subcategory.edit', 'admin.subcategory.show', 'admin.childcategory.index', 'admin.childcategory.create', 'admin.childcategory.edit', 'admin.childcategory.show')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
-                    <i data-feather="tag"></i><span>Categories</span></a>
+                    <i data-feather="tag"></i><span>Service</span></a>
                 <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link " href="{{ route('admin.category.index') }}">Main Categories</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.category.index') }}">Main Services</a></li>
                     {{--<li class=""><a class="nav-link " href="{{ route('admin.subcategory.index') }}">Sub Categories</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.childcategory.index') }}">Child Categories</a></li>--}}
                 </ul>
@@ -31,7 +31,7 @@
             <li class="dropdown @if (request()->routeIs('admin.model_year.index', 'admin.model_year.create', 'admin
             .model_year.edit', 'admin.model_year.show', 'admin.company.index', 'admin.company.create', 'admin.company.edit', 'admin.company.show')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
-                    <i data-feather="award"></i><span>Extra Option</span></a>
+                    <i data-feather="award"></i><span>Cars</span></a>
                 <ul class="dropdown-menu">
                    {{-- <li class=""><a class="nav-link " href="{{ route('admin.model.index') }}">Models</a></li>--}}
                     <li class=""><a class="nav-link " href="{{ route('admin.company.index') }}">Car Company Name</a></li>

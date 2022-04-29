@@ -8,13 +8,13 @@
                     <div class="col-12 col-md-4 col-lg-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Add Category</h4>
+                                <h4>Add Service</h4>
                             </div>
                             <form action="{{ route('admin.category.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Category Name</label>
+                                        <label>Service Name</label>
                                         <input type="text" class="form-control" name="name" required>
                                         @error('name')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary mr-1" type="submit">Add Category</button>
+                                    <button class="btn btn-primary mr-1" type="submit">Add Service</button>
                                 </div>
                             </form>
                         </div>
@@ -37,7 +37,7 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Categories</h4>
+                                <h4>All Services</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -45,7 +45,7 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th>Category</th>
+                                            <th>Service</th>
                                             <th>Image</th>
                                             <th>Action</th>
                                         </tr>

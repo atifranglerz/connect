@@ -39,8 +39,8 @@ class AuthController extends Controller
         $user = new  User();
         if ($request->file('image')) {
             $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/ads/', $doucments);
-            $file = 'public/image/ads/' . $doucments;
+            $request->file('image')->move('public/image/user/', $doucments);
+            $file = 'public/image/user/' . $doucments;
             $user->image = $file ;
         }
         $user->name = $request->name;

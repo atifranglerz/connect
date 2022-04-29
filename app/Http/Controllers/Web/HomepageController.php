@@ -5,24 +5,65 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Ads;
 use App\Models\Category;
+use App\Models\Garage;
+use App\Models\GarageCategory;
+use App\Models\News;
 use App\Models\PrivacyPolicy;
 use App\Models\TermCondition;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
     public function index()
     {
-        $page_title = "home" ;
-        $data = category::all();
-        return view('web/index' , compact('page_title','data')) ;
+        $data['page_title']  = "home" ;
+        $data['services'] = Category::limit(8)->latest()->get();
+        $data['news'] = News::limit(8)->latest()->get();
+        $data['ads'] = Ads::limit(8)->latest()->get();
+        $data['garage'] = Garage::limit(8)->latest()->get();
+
+        return view('web/index' ,$data) ;
     }
     public function carService()
     {
-        $page_title = 'carservice Page';
-        return view('web.car_service', compact('page_title'));
+        $data['page_title']  = "carservice Page" ;
+        $data['services'] = Category::all();
+        return view('web.car_service', $data);
     }
+
+    public function vendorsByService($id)
+    {
+        $data['page_title']  = 'vendors by service';
+        $garage_category = GarageCategory::where('category_id',$id)->distinct()->pluck('garage_id');
+        $data['garages'] = Garage::whereIn('id',$garage_category)->get();
+
+        return view('web.vendorlistbyservice', $data);
+    }
+
+    public function allvendor()
+    {
+        $data['page_title']  = 'vendors list';
+        $data['garages'] = Garage::all();
+        return view('web.vendorlist', $data);
+    }
+
+    public function vendorDetails($id)
+    {
+        $data['page_title']  = 'vendor detail';
+        $data['garage'] = Garage::find($id);
+        return view('web.gerage_detail', $data);
+    }
+
+    public function serviceDetail($id)
+    {
+        $data['page_title']  = "Service Detail Page" ;
+        $data['services'] = Category::find($id);
+        return view('web.car_service', $data);
+    }
+
     public function register()
     {
         $page_title = 'Register Page';
@@ -34,15 +75,12 @@ class HomepageController extends Controller
 
         return view('web.used_cars', compact('page_title'));
     }
-    public function allvendor()
-    {
-        $page_title = 'used cars';
-        return view('web.vendorlist', compact('page_title'));
-    }
+
     public function news()
     {
-        $page_title = 'latest news';
-        return view('web.news', compact('page_title'));
+        $data['page_title'] = 'latest news';
+        $data['news'] = News::all();
+        return view('web.news', $data);
     }
     public function faqnews()
     {

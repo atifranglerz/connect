@@ -19,7 +19,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::with('company', 'modelYear')->get();
+        $ads = Ads::where('vendor_id',auth()->id())->with('company', 'modelYear')->get();
         return view('vendor.ads.index', compact('ads'));
     }
 

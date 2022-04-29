@@ -1,7 +1,7 @@
 <div id="dashboardSidebar">
     <div class="main_profile_img_name">
         <div class="customer_dashboard_img_wraper">
-            <img src="{{ asset('public/user/assets/images/repair3.jpg') }}">
+            <img src="{{ asset('/'.Illuminate\Support\Facades\Auth::user()->image) }}">
         </div>
         <div class="name_of_person mx-auto text-center">
             <h3>Hi, {{ \Illuminate\Support\Facades\Auth::user()->name }}</h3>

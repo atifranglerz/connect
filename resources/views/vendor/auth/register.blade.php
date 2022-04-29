@@ -64,8 +64,10 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select" name="garages_catagary" aria-label="Type of Service">
-                                    <option selected>Business Category</option>
-                                    <option value="1">2019</option>
+                                    <option selected disabled value="">Business Category</option>
+                                    @foreach($categories as $value)
+                                        <option value="{{$value->name}}">{{$value->name}}</option>
+                                    @endforeach
                                 </select>
                                 @error('garage_catagary')
                                 <div class="text-danger p-2">{{ $message }}</div>
@@ -78,7 +80,12 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="country" class="form-control" id="inpuCountry" placeholder="Country">
+                                <select class="form-select" name="country" aria-label="Country">
+                                    <option selected disabled value="">Select Country</option>
+                                    @foreach($countries as $value)
+                                    <option value="{{$value->asciiname}}">{{$value->asciiname}}</option>
+                                    @endforeach
+                                </select>
                                 @error('country')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -135,19 +142,21 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="row">
                                     <div class="col-6  ">
-                                        <select class="form-select" name="billing_area" aria-label="Type of Service">
-                                            <option selected>Area</option>
-                                            <option value="1">2019</option>
-                                        </select>
+{{--                                        <select class="form-select" name="billing_area" aria-label="Type of Service">--}}
+{{--                                            <option selected>Area</option>--}}
+{{--                                            <option value="1">2019</option>--}}
+{{--                                        </select>--}}
+                                        <input type="text" name="billing_area" class="form-control" placeholder="Billing Area">
                                         @error('billing_area')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-6 ">
-                                        <select class="form-select" name="billing_city" aria-label="Type of Service">
-                                            <option selected>City</option>
-                                            <option value="1">2019</option>
-                                        </select>
+                                        <input type="text"  name="billing_city" class="form-control" placeholder="Billing City">
+{{--                                        <select class="form-select" name="billing_city" aria-label="Type of Service">--}}
+{{--                                            <option selected>City</option>--}}
+{{--                                            <option value="1">2019</option>--}}
+{{--                                        </select>--}}
                                         @error('billing_city')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror

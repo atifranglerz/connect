@@ -103,7 +103,7 @@ class CategoryController extends Controller
             $image->move('public/image/category/', $image_name);
             $image = 'public/image/category/' . $image_name;
             $old_image = $request->old_image;
-            unlink($old_image);
+//            unlink($old_image);
             $category->image = $image;
         }
         $category->save();

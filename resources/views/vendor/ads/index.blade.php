@@ -12,6 +12,7 @@
             </div>
 
             <div class="row g-2">
+                @if(count($ads) > 0)
                 @foreach($ads as $data )
                     <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
                         <div class="all_quote_card ">
@@ -43,6 +44,9 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                Oops... No Ads Found related to this vendor !
+                @endif
             </div>
         </div>
     </section>

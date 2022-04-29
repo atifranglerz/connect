@@ -13,125 +13,21 @@
 
 
             <div class="row g-3">
+                @foreach($news as $value)
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <a href="{{route('news_detail')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news1.jpg')}}" class="card-img-top" alt="Car image">
+                                <img src="{{$value->image}}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
+                                <p class="card-title date ">{{$value->created_at}}Jan 1, 2022</p>
+                                <p class="sec_main_para car_text ">{{$value->title}}</p>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news2.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news3.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body  px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news1.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news2.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news3.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body  px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news1.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news2.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{asset('public/assets/images/news3.jpg')}}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body  px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
+                @endforeach
             </div>
 
 

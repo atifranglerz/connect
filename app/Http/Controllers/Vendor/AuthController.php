@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use App\Mail\ForgetPassword;
 use App\Mail\Login;
+use App\Models\Category;
+use App\Models\Country;
 use App\Models\Garage;
 use App\Models\Vendor;
 use App\Models\User;
@@ -20,13 +22,15 @@ class AuthController extends Controller
 {
     public function register()
     {
-        $page_title = 'Vendor Register';
-        return view('vendor.auth.register', compact('page_title'));
+        $data['page_title'] = 'Vendor Register';
+        $data['categories'] = Category::all();
+        $data['countries'] = Country::all();
+        return view('vendor.auth.register', $data);
     }
 
     public function vendorRegister(Request $request)
     {
-        //dd($request);
+//        dd($request->all());
         $request->validate([
             'profile_image' =>'required' ,
             "id_card" =>'required',
@@ -64,7 +68,7 @@ class AuthController extends Controller
             $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
             $request->file('image_license')->move('public/image/ads/', $doucments3);
             $file3 = 'public/image/ads/' . $doucments3;
-            $vendor->trade_license = $file3 ;
+            $vendor->trading_license = $file3 ;
         }
 
         $vendor->name = $request->name;
@@ -76,12 +80,11 @@ class AuthController extends Controller
         $vendor->post_box = $request->post_box;
         $vendor->appointment_number = $request->appointment_number;
         $vendor->garage_name = $request->garage_name ;
-        $vendor->trading_license = $request->trading_license ;
         $vendor->vat = $request->vat ;
         $vendor->billing_area = $request->billing_area ;
         $vendor->billing_city = $request->billing_city ;
         $vendor->billing_address = $request->billing_address ;
-        $vendor->garages_catagary = $request->garages_catagary ;
+        $vendor->garages_catagory = $request->garages_catagary ;
         $vendor->save();
         $vendor_email = $request->email;
         $data['name'] = $request->name ;

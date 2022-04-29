@@ -1,5 +1,6 @@
 @extends('web.layout.app')
 @section('content')
+
 <section class="banner_section">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -41,13 +42,13 @@
     <div class="container-lg container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">SUZUKI REPAIRS</h4>
+                <h4 class="store_addres">{{ucfirst($garage->garage_name)}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">SHARJAH, UAE</h4>
+                <h4 class="store_addres">{{ucfirst($garage->city)}}, {{ucfirst($garage->country)}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">+92 345 123 4567</h4>
+                <h4 class="store_addres">{{$garage->phone}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
                 <h4 class="store_addres"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 5.0</h4>
@@ -98,10 +99,8 @@
             <div class="col-lg-8 col-md-6 col-sm-6">
                 <div class="over_view_part">
                     <h3 class=" text-center mb-5">OVERVIEW</h3>
-                    <p>We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.
-                    </p>
+                    <p>{!! $garage->description !!}</p>
                     <br>
-                    <p> We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote.</p>
 
                 </div>
             </div>
@@ -233,4 +232,6 @@
         </div>
     </div>
 </section>
+
+
 @endsection

@@ -87,9 +87,9 @@
                 </div>
             </div>
             <div class="row g-3">
-                @foreach($data as $value)
+                @foreach($services as $value)
                 <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-4">
-                    <a href="#">
+                    <a href="">
                         <div class="img_wraper">
                             <img src="{{ $value->image }}">
                             <h4 class="img_text">{{$value->name}}</h4>
@@ -121,39 +121,27 @@
                 </div>
             </div>
             <div class="row g-3">
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <a href="{{route('used_cars')}}">
-                        <div class="img_wraper">
-                            <img src="{{ asset('public/assets/images/car1.jpg ') }}">
-                            <h4 class="img_text">porche tycan</h4>
+                @foreach($ads as $value)
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <a href="http://localhost/connect/car_detail">
+                        <div class="card card_vendors shadow">
+                            <div class="car_img_wrapper">
+                                <img src="{{ $value->images }}" class="card-img-top" alt="Car image">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h5 class="card-title ">{{ $value->model }}</h5>
+                                    <h5 class="card-title ">{{ modelYear($value->model_year_id)}}</h5>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h5 class="card-title price mb-0 ">Price : {{ $value->price }}</h5>
+                                    <h5 class="card-title location mb-0 ">{{ $value->address }}</h5>
+                                </div>
+                            </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <a href="{{route('used_cars')}}">
-                        <div class="img_wraper">
-                            <img src="{{ asset('public/assets/images/car2.jpg ' )}} ">
-                            <h4 class="img_text">hundai</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <a href="{{route('used_cars')}}">
-                        <div class="img_wraper">
-                            <img src="{{ asset('public/assets/images/car3.jpg ')}}">
-                            <h4 class="img_text">SUV</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <a href="{{route('used_cars')}}">
-                        <div class="img_wraper">
-                            <img src="{{ asset('public/assets/images/car5.jpg ') }}">
-                            <h4 class="img_text">corolla GLI</h4>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
             <div class="row">
                 <div class="col-lg-5 mx-auto">
@@ -199,182 +187,37 @@
                 </div>
             </div>
             <div class="row g-3">
+                @foreach($garage as $value)
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
+                    <a href="{{route('gerage_detail',$value->id)}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair2.jpg') }}" class="card-img-top" alt="Car image">
+                                <img @if($value->image) src="{{$value->image}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Suzuki repairs</h5>
+                            <div class="card-body p-sm-2">
+                                <h5 class="card-title text-center allgarages_card_title">{{$value->garage_name}} <span>5.0</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
+                                        <img src="http://localhost/connect/public/assets/images/iconrp.svg">
                                     </div>
                                     <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
+                                        <img src="http://localhost/connect/public/assets/images/iconrp2.svg">
                                     </div>
                                     <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
+                                        <img src="http://localhost/connect/public/assets/images/iconrp3.svg">
                                     </div>
                                     <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
+                                        <img src="http://localhost/connect/public/assets/images/iconrp4.svg">
                                     </div>
                                     <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
+                                        <img src="http://localhost/connect/public/assets/images/iconrp5.svg">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair1.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">mehran repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair3.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">cultus repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair4.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">civic repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair5.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">city repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair6.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">grande repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
+                @endforeach
             </div>
             <div class="row">
                 <div class="col-lg-5 mx-auto">
@@ -398,45 +241,22 @@
             </div>
 
             <div class="row g-3">
+                @foreach($news as $value)
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <a href="{{route('news_detail')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper latest_news">
-                                <img src="{{ asset('public/assets/images/news1.jpg') }}" class="card-img-top" alt="Car image">
+                                <img src="{{ $value->image }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
+                                <p class="card-title date ">{{$value->created_at}}Jan 1, 2022</p>
+                                <p class="sec_main_para car_text ">{{$value->title}}</p>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{ asset('public/assets/images/news2.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper latest_news">
-                                <img src="{{ asset('public/assets/images/news3.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body  px-lg-4 px-sm-2">
-                                <p class="card-title date ">Jan 1, 2022</p>
-                                <p class="sec_main_para car_text ">Sample text Sample Text Sample Text Sample Text</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
+
             </div>
             <div class="row">
                 <div class="col-lg-5 mx-auto">
