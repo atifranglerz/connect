@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('public/vendor/assets/OwlCarousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/vendor/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css"
-          href="{{asset('public/vendor/assets/image-uploader/dist/image-uploader.min.css')}}'">
+          href="{{asset('public/vendor/assets/image-uploader/dist/image-uploader.min.css')}}">
     <title>Customer pannel</title>
     @yield('style')
     <style>
