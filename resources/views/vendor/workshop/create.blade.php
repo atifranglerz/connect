@@ -12,7 +12,7 @@
         }
     </style>
 
-    <section class="pb-5 login_content_wraper" style="background-image:url(public/assets/images/gradiantbg.jpg);">
+    <section class="pb-5 login_content_wraper" style="background-image:url({{asset('public/assets/images/gradiantbg.jpg')}});">
         <div class="container" >
             <div class="row">
                 <div class="col-lg-10 mx-auto">
