@@ -46,7 +46,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('vendorlist', 'HomepageController@allvendor')->name('vendorlist');
     Route::get('news', 'HomepageController@news')->name('news');
     Route::get('faq', 'HomepageController@faqnews')->name('faq');
-    Route::get('news_detail', 'HomepageController@news_detail')->name('news_detail');
+    Route::get('news_detail/{id}', 'HomepageController@newsDetail')->name('news_detail');
     Route::get('home', 'HomepageController@index')->name('home');
     Route::get('term_condition', 'HomepageController@term')->name('term');
     Route::get('about', 'HomepageController@about')->name('about');

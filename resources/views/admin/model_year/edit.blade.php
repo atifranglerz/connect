@@ -10,13 +10,13 @@
                             <div class="card-header">
                                 <h4>Edit Model Year Data</h4>
                             </div>
-                            <form action="{{ route('admin.model_year.update', $model->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.model_year.update', $modelYear->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Model Year</label>
-                                        <input type="number" class="form-control" name="year" value="{{ $model_year->year }}">
+                                        <input type="number" class="form-control" name="year" value="{{ $modelYear->model_year }}">
                                         @error('model_year')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror

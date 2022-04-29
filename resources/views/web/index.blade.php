@@ -243,7 +243,7 @@
             <div class="row g-3">
                 @foreach($news as $value)
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="{{route('news_detail')}}">
+                    <a href="{{route('news_detail',$value->id)}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper latest_news">
                                 <img src="{{ $value->image }}" class="card-img-top" alt="Car image">

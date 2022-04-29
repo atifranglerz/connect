@@ -21,9 +21,9 @@ class HomepageController extends Controller
     {
         $data['page_title']  = "home" ;
         $data['services'] = Category::limit(8)->latest()->get();
-        $data['news'] = News::limit(8)->latest()->get();
-        $data['ads'] = Ads::limit(8)->latest()->get();
-        $data['garage'] = Garage::limit(8)->latest()->get();
+        $data['news'] = News::limit(6)->latest()->get();
+        $data['ads'] = Ads::limit(6)->latest()->get();
+        $data['garage'] = Garage::limit(6)->latest()->get();
 
         return view('web/index' ,$data) ;
     }
@@ -91,6 +91,14 @@ class HomepageController extends Controller
         $data['news'] = News::all();
         return view('web.news', $data);
     }
+
+    public function newsDetail($id)
+    {
+        $data['page_title'] = 'latest news';
+        $data['news'] = News::find($id);
+        return view('web.news_detail', $data);
+    }
+
     public function faqnews()
     {
         $page_title = 'faq';
