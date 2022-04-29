@@ -71,9 +71,18 @@ class HomepageController extends Controller
     }
     public function usedcars()
     {
-        $page_title = 'used cars';
+        $data['page_title']  = 'used cars';
+        $data['ads'] = Ads::all();
 
-        return view('web.used_cars', compact('page_title'));
+        return view('web.used_cars', $data);
+    }
+
+    public function carDetail($id)
+    {
+        $data['page_title']  = 'used car';
+        $data['ad'] = Ads::find($id);
+
+        return view('web.car_detail', $data);
     }
 
     public function news()

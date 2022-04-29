@@ -27,239 +27,37 @@
 
 
                         </div>
+                    </div>
                 </form>
 
             </div>
         </div>
         <div class="row g-3">
+            @if(count($ads) > 0)
+                @foreach($ads as $value)
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <a href="{{route('car_detail')}}">
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair4.jpg') }}" class="card-img-top" alt="Car image">
+                            <img src="{{ $value->images }}" class="card-img-top" alt="Car image">
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">civic repairs</h5>
-                                <h5 class="card-title ">2013</h5>
+                                <h5 class="card-title ">{{ $value->model }}</h5>
+                                <h5 class="card-title ">{{ modelYear($value->model_year_id)}}</h5>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0 ">Lahore</h5>
+                                <h5 class="card-title price mb-0 ">Price : {{ $value->price }}</h5>
+                                <h5 class="card-title location mb-0 ">{{ $value->address }}</h5>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair1.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">mehran repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair3.jpg') }}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">cultus repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0 ">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair4.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">civic repairs </h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price  mb-0">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair5.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">city repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair6.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">grande repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow">
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair4.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">civic repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair1.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">mehran repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0 ">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{ asset('public/assets/images/repair3.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title  ">cultus repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{asset('public/assets/images/repair4.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">civic repairs </h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{asset('public/assets/images/repair5.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">city repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="{{route('car_detail')}}">
-                    <div class="card card_vendors shadow" >
-                        <div class="car_img_wrapper">
-                            <img src="{{asset('public/assets/images/repair6.jpg')}}" class="card-img-top" alt="Car image">
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">grande repairs</h5>
-                                <h5 class="card-title ">2013</h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0">Price : 4,399,000</h5>
-                                <h5 class="card-title location mb-0">Lahore</h5>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                @endforeach
+            @else
+                Oops... Sorry no used cars found !
+            @endif
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">

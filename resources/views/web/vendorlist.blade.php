@@ -37,7 +37,7 @@
                 @if(count($garages) > 0)
                     @foreach($garages as $value)
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <a href="store-detail.php">
+                    <a href="{{route('gerage_detail',$value->id)}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper all_garages">
                                 <img @if($value->image && $value->image != null) src="{{asset($value->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">

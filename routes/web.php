@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('register', 'HomepageController@register')->name('register');
     Route::get('loginpage', 'HomepageController@loginchoice')->name('loginpage');
     Route::get('used_cars', 'HomepageController@usedcars')->name('used_cars');
-    Route::get('car_detail', 'HomepageController@cardetail')->name('car_detail');
+    Route::get('car-detail/{id}', 'HomepageController@carDetail')->name('car_detail');
     Route::get('car_service', 'HomepageController@carService')->name('car_service');
     Route::get('vendors-by-service/{id}', 'HomepageController@vendorsByService')->name('vendors-by-service');
     Route::get('service-detail/{id}', 'HomepageController@serviceDetail')->name('service-detail');

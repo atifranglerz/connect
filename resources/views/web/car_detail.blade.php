@@ -56,16 +56,16 @@
     <div class="container-lg container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">TOYOTA COROLLA</h4>
+                <h4 class="store_addres">{{getCompany($ad->company_id)}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">LAHORE</h4>
+                <h4 class="store_addres">{{getCountryByVendor($ad->vendor_id)}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">+92 345 123 4567</h4>
+                <h4 class="store_addres">{{getCityByVendor($ad->vendor_id)}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">Price : 4,399,000</h4>
+                <h4 class="store_addres">Price : {{$ad->price}}</h4>
             </div>
         </div>
     </div>

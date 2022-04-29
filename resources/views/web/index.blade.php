@@ -89,7 +89,7 @@
             <div class="row g-3">
                 @foreach($services as $value)
                 <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-4">
-                    <a href="">
+                    <a href="{{route('vendors-by-service',$value->id)}}">
                         <div class="img_wraper">
                             <img src="{{ $value->image }}">
                             <h4 class="img_text">{{$value->name}}</h4>
@@ -123,7 +123,7 @@
             <div class="row g-3">
                 @foreach($ads as $value)
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="http://localhost/connect/car_detail">
+                    <a href="{{route('car_detail',$value->id)}}">
                         <div class="card card_vendors shadow">
                             <div class="car_img_wrapper">
                                 <img src="{{ $value->images }}" class="card-img-top" alt="Car image">
