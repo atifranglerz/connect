@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Garage;
 use App\Models\UserWishlist;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\True_;
@@ -16,9 +17,11 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlist = UserWishlist::all();
+        $garage = UserWishlist::where('user_id',auth()->id())->pluck('garage_id');
+        $wishlists = Garage::whereIn('id',$garage)->get();
+
         $page_title = "Preferred Garage";
-        return view('user.wishlist.index', compact('page_title', 'wishlist'));
+        return view('user.wishlist.index', compact('page_title', 'wishlists'));
     }
 
     /**
@@ -84,6 +87,9 @@ class WishlistController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $wishlist = UserWishlist::findOrFail($id);
+        $wishlist->delete();
+
+        return redirect()->back();
     }
 }

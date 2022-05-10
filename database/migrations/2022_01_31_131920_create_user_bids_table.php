@@ -20,6 +20,7 @@ class CreateUserBidsTable extends Migration
             $table->foreignId('model_year_id')->unsigned()->constrained('model_years')->onDelete('cascade');
             $table->string('model');
             $table->string('mileage');
+            $table->unsignedInteger('reference_no')->unique()->from(123456)->to(9999999);
             $table->text('description1')->nullable();
             $table->text('description2')->nullable();
             $table->string('car_owner_name');

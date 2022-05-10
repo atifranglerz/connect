@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('image')->nullable();
+            $table->text('icon')->nullable();
             $table->enum('priority', [1, 2, 3, 4, 5, 6, 7, 8, 9]);
             $table->timestamps();
         });

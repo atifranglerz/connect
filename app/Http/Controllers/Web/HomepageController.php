@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Ads;
 use App\Models\Category;
+use App\Models\ContactVendor;
 use App\Models\Garage;
 use App\Models\GarageCategory;
 use App\Models\News;
+use App\Models\PrefferedGarage;
 use App\Models\PrivacyPolicy;
 use App\Models\TermCondition;
 use App\Models\Vendor;
@@ -54,7 +56,45 @@ class HomepageController extends Controller
     {
         $data['page_title']  = 'vendor detail';
         $data['garage'] = Garage::find($id);
+        $data['services'] = Category::all();
         return view('web.gerage_detail', $data);
+    }
+
+    public function contactVendor(Request $request)
+    {
+        $request->validate([
+            'car_model' => 'required',
+            'car_make' =>'required',
+            'category' =>'required',
+            'customer_name'=>'required',
+            'email'=>'required',
+            'contact_no'=>'required',
+            'detail'=>'required',
+        ]);
+        $contact_vendors = new ContactVendor();
+        $contact_vendors->car_model = $request->car_model;
+        $contact_vendors->car_make = $request->car_make;
+        $contact_vendors->category = $request->category;
+        $contact_vendors->customer_name = $request->customer_name;
+        $contact_vendors->email = $request->email;
+        $contact_vendors->contact_no = $request->contact_no;
+        $contact_vendors->detail = $request->detail;
+        $contact_vendors->save();
+        return redirect()->back()->with('alert-success', 'Contacted Vendor successfully');;
+    }
+
+    public function addToPrefferedGarage(Request $request)
+    {
+        $preferredgarageexist = \App\Models\UserWishlist::where('user_id',$request->user_id)->where('garage_id',$request->garage_id)->first();
+        if($preferredgarageexist) {
+            return redirect()->back()->with('alert-error', 'Already Exist');
+        }else{
+            $preferred_garage = new \App\Models\UserWishlist();
+            $preferred_garage->user_id = $request->user_id;
+            $preferred_garage->garage_id = $request->garage_id;
+            $preferred_garage->save();
+            return redirect()->back()->with('alert-garage-success', 'Added To Preffered Successfully');
+        }
     }
 
     public function serviceDetail($id)

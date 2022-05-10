@@ -43,6 +43,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('vendors-by-service/{id}', 'HomepageController@vendorsByService')->name('vendors-by-service');
     Route::get('service-detail/{id}', 'HomepageController@serviceDetail')->name('service-detail');
     Route::get('gerage-detail/{id}', 'HomepageController@vendorDetails')->name('gerage_detail');
+    Route::post('contact-vendor', 'HomepageController@contactVendor')->name('contact-vendor');
+    Route::post('add-to-preffered-garage', 'HomepageController@addToPrefferedGarage')->name('add-to-preffered-garage');
     Route::get('vendorlist', 'HomepageController@allvendor')->name('vendorlist');
     Route::get('search_service', 'HomepageController@searchService')->name('search_service');
     Route::get('news', 'HomepageController@news')->name('news');

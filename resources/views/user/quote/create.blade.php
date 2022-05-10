@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <select class="form-select" name="category[]" multiple aria-label="Type of Service">
-                                                <option value="" selected>Category</option>
+                                                <option value="" selected disabled>Category</option>
                                                 @foreach($catagary as $data)
                                                     <option value="{{$data->id }}">{{$data->name}}</option>
                                                 @endforeach

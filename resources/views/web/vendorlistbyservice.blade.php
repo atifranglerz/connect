@@ -50,21 +50,14 @@
                             <div class="card-body p-sm-2">
                                 <h5 class="card-title text-center allgarages_card_title">{{$value->garage_name}} <span>5.0</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
+                                    <?php $category = \App\Models\GarageCategory::where('garage_id',$value->id)->pluck('category_id');
+                                    $category_name = \App\Models\Category::whereIn('id',$category)->get();
+                                    ?>
+                                   @foreach($category_name as $catname)
                                     <div class="icon_wrpaer">
-                                        <img src="{{asset('public/assets/images/iconrp.svg')}}">
+                                        <img src="{{asset($catname->icon)}}">
                                     </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{asset('public/assets/images/iconrp2.svg')}}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{asset('public/assets/images/iconrp3.svg')}}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{asset('public/assets/images/iconrp4.svg')}}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{asset('public/assets/images/iconrp5.svg')}}">
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

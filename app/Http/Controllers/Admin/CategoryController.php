@@ -41,7 +41,8 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'mimes:jpg,jpeg,png',
+            'image' => 'mimes:jpg,jpeg,png,PNG',
+            'icon' => 'mimes:jpg,jpeg,png,svg',
         ]);
         $category = new Category();
         $category->name = $request->name;
@@ -52,6 +53,13 @@ class CategoryController extends Controller
             $image->move('public/image/category/', $image_name);
             $image = 'public/image/category/' . $image_name;
             $category->image = $image;
+        }
+        if ($request->has('icon')) {
+            $icon = $request->file('icon');
+            $icon_name = hexdec(uniqid()) . '.' . strtolower($icon->getClientOriginalExtension());
+            $icon->move('public/image/category/', $icon_name);
+            $icon = 'public/image/category/' . $icon_name;
+            $category->icon = $icon;
         }
         $category->save();
         return $this->message($category, 'admin.category.index', 'Category Create Successfully', 'Category Create Error');
@@ -93,6 +101,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'image' => 'mimes:jpg,jpeg,png',
+            'icon' => 'mimes:jpg,jpeg,png,svg',
         ]);
         $category = Category::findOrFail($id);
         $category->name = $request->name;
@@ -105,6 +114,15 @@ class CategoryController extends Controller
             $old_image = $request->old_image;
 //            unlink($old_image);
             $category->image = $image;
+        }
+        if ($request->has('icon')) {
+            $icon = $request->file('icon');
+            $icon_name = hexdec(uniqid()) . '.' . strtolower($icon->getClientOriginalExtension());
+            $icon->move('public/image/category/', $icon_name);
+            $icon = 'public/image/category/' . $icon_name;
+            $old_icon = $request->old_icon;
+//            unlink($old_image);
+            $category->icon = $icon;
         }
         $category->save();
         return $this->message($category, 'admin.category.index', 'Category Update Successfully', 'Category Update Error');

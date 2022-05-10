@@ -11,128 +11,55 @@
                 </div>
             </div>
             <div class="row g-2">
+                @foreach($wishlists as $wishlist)
                 <div class="col-lg-11 col-md-12  mx-auto">
                     <div class="all_quote_card ">
                         <div class="car_inner_imagg">
-                            <img src="{{ asset('public/user/assets/images/repair3.jpg') }}">
+                            <img @if($wishlist->image && $wishlist->image != null) src="{{asset($wishlist->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif>
                         </div>
                         <div class=" w-100  quote_detail_wraper align-items-sm-center">
                             <div class="quote_info Leavereview mb-sm-3">
-                                <h3 class="d-flex align-items-center active_quote">Car Repair
+                                <h3 class="d-flex align-items-center active_quote">{{ucfirst($wishlist->garage_name)}}
                                 </h3>
-                                <p class="mb-0">Red Suzuki For Repair</p>
-                                <p >0987654321778</p>
+                                <p class="mb-0">{{$wishlist->city}}, {{$wishlist->country}}</p>
+                                <p >{{$wishlist->phone}}</p>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
+                                    <?php $category = \App\Models\GarageCategory::where('garage_id',$wishlist->id)->pluck('category_id');
+                                    $category_name = \App\Models\Category::whereIn('id',$category)->get();
+                                    ?>
+                                   @foreach($category_name as $catname)
                                     <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp.svg') }}">
+                                        <img src="{{asset($catname->icon)}}">
                                     </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp5.svg') }}">
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="quote_detail_btn_wraper">
+
+
+
                                 <div class="d-flex align-items-center chat_view__detail">
                                     <a href="#" class="chat_icon">
                                         <i class="fa-solid fa-message"></i>
                                         <!-- <img src="public/user/assets/images/meassageiconblk.svg")  -->
                                     </a>
-                                    <a href="#" class="btn-secondary">VIEW DETAILS</a>
+                                  <?php  $userwishlist = \App\Models\UserWishlist::where('user_id',auth()->id())->where('garage_id',$wishlist->id)->first();?>
+                                    <form action="{{ route('user.wishlist.destroy', $userwishlist->id) }}" method="POST" style="display: inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="chat_icon" type="submit" style="margin-right: 8px;">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                    <a href="{{route('gerage_detail',$wishlist->id)}}" class="btn-secondary">VIEW DETAILS</a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-11 col-md-12  mx-auto">
-                    <div class="all_quote_card ">
-                        <div class="car_inner_imagg ">
-                            <img src="{{ asset('public/user/assets/images/repair3.jpg') }}">
-                        </div>
-                        <div class=" w-100  quote_detail_wraper align-items-sm-center">
-                            <div class="quote_info Leavereview mb-sm-3">
-                                <h3 class="d-flex align-items-center active_quote">Car Repair
-                                </h3>
-                                <p class="mb-0">Red Suzuki For Repair</p>
-                                <p >0987654321778</p>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="quote_detail_btn_wraper">
-                                <div class="d-flex align-items-center chat_view__detail">
-                                    <a href="#" class="chat_icon">
-                                        <i class="fa-solid fa-message"></i>
-                                        <!-- <img src="public/user/assets/images/meassageiconblk.svg")  -->
-                                    </a>
-                                    <a href="#" class="btn-secondary">VIEW DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-11 col-md-12  mx-auto">
-                    <div class="all_quote_card ">
-                        <div class="car_inner_imagg ">
-                            <img src="{{ asset('public/user/assets/images/repair3.jpg') }}">
-                        </div>
-                        <div class=" w-100  quote_detail_wraper align-items-sm-center">
-                            <div class="quote_info Leavereview mb-sm-3">
-                                <h3 class="d-flex align-items-center active_quote">Car Repair
-                                </h3>
-                                <p class="mb-0">Red Suzuki For Repair</p>
-                                <p >0987654321778</p>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/user/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="quote_detail_btn_wraper">
-                                <div class="d-flex align-items-center chat_view__detail">
-                                    <a href="#" class="chat_icon">
-                                        <i class="fa-solid fa-message"></i>
-                                    </a>
-                                    <a href="#" class="btn-secondary">VIEW DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>

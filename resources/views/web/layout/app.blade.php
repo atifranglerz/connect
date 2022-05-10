@@ -43,7 +43,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link px-lg-2 px-3 px-md-2" href="#">Request A Quote</a>
+                        <a class="nav-link px-lg-2 px-3 px-md-2" href="@if(auth()->check()){{url('user/quotecreate')}}@else{{url('user/login')}}@endif">Request A Quote</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-2 px-3 px-md-2" href="{{route('used_cars')}}">Used Cars For Sale</a>
@@ -223,7 +223,7 @@
         $(document).ready(function () {
             /*Animate loader off screen*/
             $("#pgLoader").fadeOut("slow");
-            
+
             $(".carousel_se_02_carousel").owlCarousel({
                 items: 3,
                 nav: false,

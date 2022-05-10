@@ -19,7 +19,7 @@ class CreateVendorBidsTable extends Migration
             $table->foreignId('user_bid_id')->unsigned()->constrained('user_bids')->onDelete('cascade');
             $table->integer('price');
             $table->string('time');
-            $table->text("description");
+            $table->text('description');
             $table->enum('status',['none', 'accept', 'cancel'])->nullable();
             $table->timestamps();
         });

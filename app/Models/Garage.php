@@ -27,4 +27,5 @@ class Garage extends Model
     }
 
 
+
 }

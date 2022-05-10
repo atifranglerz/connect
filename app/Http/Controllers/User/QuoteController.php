@@ -53,6 +53,7 @@ class QuoteController extends Controller
         $quote->model_year_id = $request->model_year_id;
         $quote->price = $request->price;
         $quote->mileage = $request->mileage;
+        $quote->reference_no = mt_rand(123456,9999999);
         $quote->description1 = $request->description1;
         $quote->description2 = $request->description2;
         $quote->car_owner_name = $request->name;
@@ -117,7 +118,7 @@ class QuoteController extends Controller
     }
     public function vendorResponse ($id)
     {
-        $data = vendorBid::with('vendordetail')->where('garage_id' ,'=' , $id)->get();
+        $data = vendorBid::with('vendordetail')->where('id' ,'=' , $id)->first();
         $page_title = 'vendor response ';
         return view('user.quote.vendor_reply', compact('page_title','data' ));
     }

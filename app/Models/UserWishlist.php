@@ -9,4 +9,5 @@ class UserWishlist extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
 }

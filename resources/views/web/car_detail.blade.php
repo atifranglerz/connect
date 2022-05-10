@@ -1,53 +1,73 @@
 @extends('web.layout.app')
 @section('content')
+    <?php $images = explode(',',$ad->images);
+          $docs = explode(',',$ad->document_file);
+    ?>
 <section class="caradDetailBabnner py-5">
     <div class="container">
         <div class="owl-carousel carousel_se_02_carousel owl-theme">
+            @if(count($images) == 0)
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
+                </div>
+            @elseif(count($images) == 1)
+            @foreach($images as $image)
             <div class="item">
                 <div class="carAd_img_wraper">
-                    <img src="assets/images/car3.jpg">
+                    <img src="{{ asset($image) }}">
                 </div>
             </div>
             <div class="item">
                 <div class="carAd_img_wraper">
-                    <img src="assets/images/car2.jpg">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
             </div>
             <div class="item">
                 <div class="carAd_img_wraper">
-                    <img src="assets/images/car8.jpg">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
             </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/car3.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/car2.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/car8.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/car6.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/car3.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/car3.jpg">
-                </div>
-            </div>
+            @endforeach
+            @elseif(count($images) == 2)
+                @foreach($images as $image)
+                    <div class="item">
+                        <div class="carAd_img_wraper">
+                            <img src="{{ asset($image) }}">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="carAd_img_wraper">
+                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                @foreach($images as $image)
+                    <div class="item">
+                        <div class="carAd_img_wraper">
+                            <img src="{{ asset($image) }}">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="carAd_img_wraper">
+                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+
         </div>
     </div>
 </section>
@@ -80,52 +100,62 @@
             </div>
         </div>
         <div class="owl-carousel carousel_se_02_carousel owl-theme">
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="assets/images/doc1.jpg">
+            @if($docs && count($docs) == 0)
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc2.jpg">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc3.jpg">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc2.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc1.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="assets/images/doc3.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc2.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc1.jpg">
-                </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img">
-                    <img src="assets/images/doc3.jpg">
-                </div>
-            </div>
+            @elseif($docs && count($docs) == 1)
+                @foreach($docs as $doc)
+                    <div class="item">
+                        <div class="carAd_img_wraper doc_img">
+                            <img src="{{ asset($doc) }}">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="carAd_img_wraper doc_img">
+                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="carAd_img_wraper doc_img">
+                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                        </div>
+                    </div>
+                @endforeach
+            @elseif($docs && count($docs) ==2)
+                @foreach($docs as $doc)
+                    <div class="item">
+                        <div class="carAd_img_wraper doc_img">
+                            <img src="{{ asset($doc) }}">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="carAd_img_wraper doc_img">
+                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                @foreach($docs as $doc)
+                    <div class="item">
+                        <div class="carAd_img_wraper doc_img">
+                            <img src="{{ asset($doc) }}">
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
 
     </div>
@@ -143,10 +173,8 @@
             <div class="col-lg-8 col-md-6 col-sm-6">
                 <div class="over_view_part">
                     <h3 class=" text-center mb-5">OVERVIEW</h3>
-                    <p>We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.
-                    </p>
+                    <p>{{$ad->description}}</p>
                     <br>
-                    <p> We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote.</p>
 
                 </div>
             </div>
@@ -155,24 +183,24 @@
                     <h3 class=" text-center mb-5">DETAILS</h3>
                     <div class="timing_container">
                         <p class="time_for_opning mb-0">Engine</p>
-                        <p class="time_for_opning mb-1">1500 CC</p>
+                        <p class="time_for_opning mb-1">{{$ad->engine}}</p>
                     </div>
                     <div class="timing_container">
                         <p class="time_for_opning mb-1">Color</p>
-                        <p class="time_for_opning mb-1">Black</p>
+                        <p class="time_for_opning mb-1">{{$ad->color}}</p>
                     </div>
                     <div class="timing_container">
                         <p class="time_for_opning mb-1">Registered On</p>
-                        <p class="time_for_opning mb-1">Nov, 2021</p>
+                        <p class="time_for_opning mb-1">{{$ad->modelYear->model_year}}</p>
                     </div>
                     <div class="timing_container">
                         <p class="time_for_opning mb-1">Total Mileage</p>
-                        <p class="time_for_opning mb-1">13000 Km</p>
+                        <p class="time_for_opning mb-1">{{$ad->mileage}} Km</p>
                     </div>
                 </div>
                 <div class="d-grid gap-2 mt-3">
                     <button class="btn btn-primary get_appointment" type="button">CONTACT VIA MESSAGE
-                        <img src="assets/images/messageicon.svg">
+                        <img src="{{ asset('public/assets/images/messageicon.svg') }}">
                     </button>
                 </div>
             </div>

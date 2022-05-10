@@ -23,36 +23,35 @@
         <div class="row g-2">
             <div class="col-lg-11 col-md-12 col-sm-12 col-11  mx-auto">
                 <div class="all_quote_card  vendor_rply_dtlL">
+                    <?php
+                    $userbid = \App\Models\UserBid::where('id',$data->user_bid_id)->first();
+                    $img = \App\Models\UserBidImage::where('user_bid_id',$userbid->id)->where('type','image')->oldest()->first();
+                    $company = \App\Models\Company::where('id',$userbid->company_id)->first();?>
                     <div class="car_inner_imagg vendor_rply_dtl ">
-                        <img src="{{ asset('public/user/assets/images/repair2.jpg')}}">
+                        <img src="{{ asset($img->car_image) }}">
                     </div>
                     <div class=" w-100  quote_detail_wraper">
                         <div class="quote_info">
-                            <h3 class="d-flex align-items-center active_quote rply_dtl">Car Repair</h3>
-                            <p class="mb-0 rply__dtl">{{$data[0]->vendordetail->name}}</p>
-                            <p class="rply__dtl" >{{$data[0]->vendordetail->phone}}</p>
+                            <h3 class="d-flex align-items-center active_quote rply_dtl">{{$company->company}}  {{$userbid->model}}</h3>
+                            <p class="mb-0 rply__dtl">{{$data->vendordetail->name}}</p>
+                            <p class="rply__dtl" >{{$data->vendordetail->phone}}</p>
                             <div class="card_icons respons_qoute d-flex align-items-center">
-                                <div class="icon_wrpaer vendor_qoute_dtl">
-                                    <img src="{{ asset('public/user/assets/images/iconrp.svg')}}">
-                                </div>
-                                <div class="icon_wrpaer vendor_qoute_dtl">
-                                    <img src="{{ asset('public/user/assets/images/iconrp2.svg')}}">
-                                </div>
-                                <div class="icon_wrpaer vendor_qoute_dtl">
-                                    <img src="{{ asset('public/user/assets/images/iconrp3.svg')}}">
-                                </div>
-                                <div class="icon_wrpaer vendor_qoute_dtl">
-                                    <img src="{{ asset('public/user/assets/images/iconrp4.svg')}}">
-                                </div>
-                                <div class="icon_wrpaer vendor_qoute_dtl">
-                                    <img src="{{ asset('public/user/assets/images/iconrp5.svg')}}">
-                                </div>
+                                <?php $category = \App\Models\GarageCategory::where('garage_id',$data->garage_id)->pluck('category_id');
+                                $category_name = \App\Models\Category::whereIn('id',$category)->get();
+                                ?>
+                                @foreach($category_name as $catname)
+                                    <div class="icon_wrpaer vendor_qoute_dtl">
+                                        <img src="{{asset($catname->icon)}}">
+                                    </div>
+                                @endforeach
+
+
                             </div>
                         </div>
                         <div class="quote_detail_btn_wraper">
-                            <h3 class=" text-sm-center vendor_replies_dtl">AED {{$data[0]->price}}</h3>
+                            <h3 class=" text-sm-center vendor_replies_dtl">AED {{$data->price}}</h3>
                             <div class="quote_info">
-                                <p class="quote_rev vndr_rply__dtl">Time Frame Offered<span> {{$data[0]->time}} </span></p>
+                                <p class="quote_rev vndr_rply__dtl">Time Frame Offered<span> {{$data->time}}  Days</span></p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +66,7 @@
                         <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
                     </div>
                     <div class="vendor__rply__dttl">
-                        <p>{{$data[0]->description}}</p>
+                        <p>{{$data->description}}</p>
                     </div>
                 </div>
             </div>

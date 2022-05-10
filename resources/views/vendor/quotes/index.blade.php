@@ -20,12 +20,17 @@
 {{--                                $img = explode(",",$value->car_image);--}}
 {{--                                ?>--}}
 {{--                                <img src="{{ asset($img[0]) }}">--}}
-                                                            <img src="{{ asset('public/user/assets/images/repair3.jpg')}}">
+{{--                                                            <img src="{{ asset('public/user/assets/images/repair3.jpg')}}">--}}
+                                <?php
+                                $img = \App\Models\UserBidImage::where('user_bid_id',$value->id)->where('type','image')->oldest()->first();
+                                $company = \App\Models\Company::where('id',$value->company_id)->first();
+                                ?>
+                                <img src="{{ asset($img->car_image) }}">
                             </div>
                             <div class=" w-100  quote_detail_wraper">
                                 <div class="quote_info">
-                                    <h3 class="d-flex align-items-center active_quote"><a href="#">{{$value->model}}</a> <span class="order_id">#12345678</span></h3>
-                                    <p class="mb-0">Red Suzuki For Repair</p>
+                                    <h3 class="d-flex align-items-center active_quote"><a href="#">{{$company->company}}  ({{$value->model}})</a> <span class="order_id">#{{$value->reference_no}}</span></h3>
+                                    <p class="mb-0">{{$value->description1}}</p>
                                     <p >{{$value->phone}}</p>
                                 </div>
                                 <div class="quote_detail_btn_wraper">

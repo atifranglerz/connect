@@ -27,6 +27,16 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="validatedCustomIcon" accept="image/*" name="icon">
+                                        <label class="custom-file-label" for="validatedCustomIcon">Choose Icon...</label>
+                                        @error('icon')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="card-footer text-right">
                                     <button class="btn btn-primary mr-1" type="submit">Add Service</button>
@@ -47,6 +57,7 @@
                                             <th class="text-center">#</th>
                                             <th>Service</th>
                                             <th>Image</th>
+                                            <th>Icon</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -58,6 +69,13 @@
                                                     <td>
                                                         @if(isset($category->image))
                                                             <img src="{{ asset($category->image) }}" alt="" width="100px" height="50px">
+                                                        @else
+                                                            Null
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if(isset($category->icon))
+                                                            <img src="{{ asset($category->icon) }}" alt="" width="36px" height="36px" style="background-color: var(--orange);">
                                                         @else
                                                             Null
                                                         @endif
