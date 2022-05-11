@@ -135,8 +135,9 @@
                     @endforeach
                 </div>
                 <div class="d-grid gap-2 mt-3">
-                    <button class="btn btn-primary get_appointment byCall heart" type="button">GET BOOKING
-                        {{$garage->phone}}
+                    <button class="btn btn-primary get_appointment byCall heart" type="button">
+                        <span class="d-inline-block">GET BOOKING</span>
+                        <span class="d-none">{{$garage->phone}}</span>
                         <img src="{{asset('public/assets/images/appoinmenticon.svg')}}">
                     </button>
                 </div>
