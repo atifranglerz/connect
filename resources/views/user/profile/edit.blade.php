@@ -1,6 +1,6 @@
 @extends('user.layout.app')
 @section('content')
-    <section class="pb-5 login_content_wraper" style="background-image:url({{ url('public/user/assets/images/gradiantbg.jpg') }});">
+    <section class="pb-5 login_content_wraper">
         <div class="container-lg container-fluid" >
             <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-9 col-sm-9 mx-auto">
