@@ -1,7 +1,7 @@
 @extends('vendor.layout.app')
 @section('content')
     <?php  $company = \App\Models\Company::where('id',$data->company_id)->first();?>
-<section class="pb-5 login_content_wraper" style="background-image:url(assets/images/gradiantbg.jpg);">
+<section class="pb-5 login_content_wraper">
     <div class="container-lg container-fluid" >
         <div class="row">
             <div class="col-lg-10 mx-auto">

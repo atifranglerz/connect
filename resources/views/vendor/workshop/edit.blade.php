@@ -1,6 +1,6 @@
 @extends('vendor.layout.app')
 @section('content')
-    <section class="pb-5 login_content_wraper" style="background-image:url(assets/images/gradiantbg.jpg);">
+    <section class="pb-5 login_content_wraper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
