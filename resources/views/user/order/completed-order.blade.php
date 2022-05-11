@@ -107,6 +107,8 @@
                     </div>
                 </div>
             </div>
+            <?php $review_prev = \App\Models\UserReview::where('user_id',auth()->id())->where('garage_id',$order->garage_id)->first();?>
+
             @if($order->status == 'pending')
                 <div class="row">
                     <div class="col-xl-5 col-lg-6  col-md-10 col-sm-12 mx-auto">
@@ -126,89 +128,328 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="over_view_part carad_data vendor_detail Leave_review">
-                            <h3 class=" text-center mb-2 mt-5">REVIEW WORKSHOP</h3>
+                @if($review_prev)
+                        <div class="row  mt-5">
+                            <div class="col-lg-12">
+
+                                <div class="all_quote_card  vendor_rply_dtlL _text">
+                                    <div class="over_view_part carad_data vendor_detail">
+                                        <h3 class=" text-center mb-4">YOUR REVIEW</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center rating-stars">
+                                        <div class="rating-group">
+                                            @if($review_prev->rating == '0')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="1 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '0.5')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '1')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '1.5')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '2')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '2.5')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '3')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '3.5')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                                <label aria-label="4.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+
+                                            @elseif($review_prev->rating == '4')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="4.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '4.5')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            @elseif($review_prev->rating == '5')
+                                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                    <div class="review_text d-flex justify-content-center align-items-center">
+                                        <p>{{$review_prev->review}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                @else
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="over_view_part carad_data vendor_detail Leave_review">
+                                <h3 class=" text-center mb-2 mt-5">REVIEW WORKSHOP</h3>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-                <div class="row  mt-5">
-                    <div class="col-lg-12">
+                    <div class="row  mt-5">
+                        <div class="col-lg-12">
 
-                        <div class="all_quote_card  vendor_rply_dtlL _text">
-                            <div class="row">
-                                <div class="col-lg-8 mx-auto">
-                                    <form>
-                                        <div class="row mt-1 g-3">
-                                            <div class="col-lg-12 col-md-8 mx-auto">
-                                                <div class="d-flex align-items-center rating-stars">
-                                                    <div class="rating-group">
-                                                        <input class="rating__input rating__input--none" name="rating2" id="rating2-0" value="0" type="radio" checked>
-                                                        <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
-                                                        <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
-                                                        <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-10" value="1.0" type="radio">
-                                                        <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
-                                                        <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-20" value="2.0" type="radio">
-                                                        <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
-                                                        <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-30" value="3.0" type="radio">
-                                                        <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
-                                                        <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-40" value="4.0" type="radio">
-                                                        <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
-                                                        <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                                        <input class="rating__input" name="rating2" id="rating2-50" value="5.0" type="radio">
+                            <div class="all_quote_card  vendor_rply_dtlL _text">
+                                <div class="row">
+                                    <div class="col-lg-8 mx-auto">
+                                        <form method="post" action="{{route('user.user_review.store')}}">
+                                            @csrf
+                                            <input type="hidden" name="garage_id" value="{{$order->garage_id}}">
+                                            <div class="row mt-1 g-3">
+                                                <div class="col-lg-12 col-md-8 mx-auto">
+                                                    <div class="d-flex align-items-center rating-stars">
+                                                        <div class="rating-group">
+                                                            <input class="rating__input rating__input--none" name="rating" id="rating2-0" value="0" type="radio" checked>
+                                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-05" value="0.5" type="radio">
+                                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-10" value="1.0" type="radio">
+                                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-15" value="1.5" type="radio">
+                                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-20" value="2.0" type="radio">
+                                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-25" value="2.5" type="radio">
+                                                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-30" value="3.0" type="radio">
+                                                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-35" value="3.5" type="radio">
+                                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-40" value="4.0" type="radio">
+                                                            <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-45" value="4.5" type="radio">
+                                                            <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                                            <input class="rating__input" name="rating" id="rating2-50" value="5.0" type="radio">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control" name="review" placeholder="Add Repairing Details" id="floatingTextarea2" style="height: 177px">                      </textarea>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-floating">
-                                                    <textarea class="form-control" placeholder="Add Repairing Details" id="floatingTextarea2" style="height: 177px">                      </textarea>
+                                                <div class="col-lg-12 col-md-8 mx-auto">
+                                                    <div class="d-grid gap-2 ">
+                                                        <button class="btn text-center btn-secondary get_quot block get_appointment" type="submit">LEAVE REVIEW
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 col-md-8 mx-auto">
-                                                <div class="d-grid gap-2 ">
-                                                    <button class="btn text-center btn-secondary get_quot block get_appointment" type="button">LEAVE REVIEW
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @else
-                <div class="row  mt-5">
-                    <div class="col-lg-12">
+                @if($review_prev)
+                    <div class="row  mt-5">
+                        <div class="col-lg-12">
 
-                        <div class="all_quote_card  vendor_rply_dtlL _text">
-                            <div class="over_view_part carad_data vendor_detail">
-                                <h3 class=" text-center mb-4">YOUR REVIEW</h3>
-                            </div>
-                            <div class="star_rating d-flex justify-content-center align-items-center">
-                                <a href="#"><i class="bi bi-star-fill"></i></a>
-                                <a href="#"><i class="bi bi-star-fill"></i></a>
-                                <a href="#"><i class="bi bi-star-fill"></i></a>
-                                <a href="#"><i class="bi bi-star-fill"></i></a>
-                                <a href="#"><i class="bi bi-star"></i></a>
+                            <div class="all_quote_card  vendor_rply_dtlL _text">
+                                <div class="over_view_part carad_data vendor_detail">
+                                    <h3 class=" text-center mb-4">YOUR REVIEW</h3>
+                                </div>
+                                <div class="d-flex align-items-center rating-stars">
+                                    <div class="rating-group">
+                                        @if($review_prev->rating == '0')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="1 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '0.5')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '1')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '1.5')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '2')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '2.5')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '3')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '3.5')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                            <label aria-label="4.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
 
-                            </div>
-                            <div class="review_text d-flex justify-content-center align-items-center">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute ir</p>
+                                        @elseif($review_prev->rating == '4')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="4.5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '4.5')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="5 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star" style="color: gray;"></i></label>
+                                        @elseif($review_prev->rating == '5')
+                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                            <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                            <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="review_text d-flex justify-content-center align-items-center">
+                                    <p>{{$review_prev->review}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endif
         </div>
     </section>

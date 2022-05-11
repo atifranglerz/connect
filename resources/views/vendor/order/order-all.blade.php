@@ -17,7 +17,6 @@
                 $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
                 $img = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->where('type','image')->oldest()->first();
                 $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
-
                 ?>
             <div class="col-lg-10 col-md-12 col-sm-12 col-10  mx-auto">
                 <div class="all_quote_card ">

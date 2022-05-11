@@ -98,6 +98,7 @@
                 </div>
                 <div class="d-grid gap-2 mt-3">
                     <button class="btn btn-primary get_appointment byCall heart" type="button">GET BOOKING
+                        {{$garage->phone}}
                         <img src="{{asset('public/assets/images/appoinmenticon.svg')}}">
                     </button>
                 </div>
@@ -156,24 +157,26 @@
                 <div class="over_view_part timing_hours">
                     <h3 class=" text-center mb-5">REVIEWS</h3>
                     <div class="owl-carousel carousel_se_01_carousel owl-theme">
+                        @if(count($user_review) >0)
+                        @foreach($user_review as $review)
+                        <div class="item">
+                            <p class="text-center reviews">"{{$review->review}}"</p>
+                            <p class="testimonail_person_name text-center mb-1 reviews">{{getUserNameById($review->user_id)}}</p>
+                            <p class="testimonail_person_rating text-center reviews"><span>{{$review->rating}}</span></p>
+                        </div>
+                        @endforeach
+                        @else
                         <div class="item">
                             <p class="text-center reviews">"Suzuki repairs are best in town. They did everything best at affordable rates and speedily. Thumbs up!"</p>
                             <p class="testimonail_person_name text-center mb-1 reviews">Hassan Ali</p>
                             <p class="testimonail_person_rating text-center reviews"><span>5.0</span></p>
                         </div>
-                        <div class="item">
-                            <p class="text-center reviews">"Suzuki repairs are best in town. They did everything best at affordable rates and speedily. Thumbs up!"</p>
-                            <p class="testimonail_person_name text-center mb-1 reviews">Hassan Ali</p>
-                            <p class="testimonail_person_rating text-center reviews"><span>5.0</span></p>
-                        </div>
-                        <div class="item">
-                            <p class="text-center reviews">"Suzuki repairs are best in town. They did everything best at affordable rates and speedily. Thumbs up!"</p>
-                            <p class="testimonail_person_name text-center mb-1 reviews">Hassan Ali</p>
-                            <p class="testimonail_person_rating text-center reviews"><span>5.0</span></p>
-                        </div>
+                       @endif
+
                     </div>
                 </div>
                 <div class="d-grid gap-2 mt-3">
+
                     @if(auth()->check())
                         @if(session()->has('alert-garage-success'))
                             <div class="alert alert-success">
@@ -189,13 +192,13 @@
                         @csrf
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                    <button class="w-100 btn btn-primary get_appointment heart" type="submit">ADD TO PREFFERED GARAGE
-                        <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}">
+                    <button class="w-100 btn btn-primary get_appointment heart" type="submit">
+                       @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/heart-icon.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @endif
                     </button>
                     </form>
                     @else
                         <button class="w-100 btn btn-primary get_appointment heart" type="button">ADD TO PREFFERED GARAGE
-                            <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}">
+                            @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/heart-icon.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @endif
                         </button>
                     @endif
                 </div>

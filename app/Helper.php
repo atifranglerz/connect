@@ -61,4 +61,11 @@ function getCompanyByUserBid($vendor_id)
     return ucfirst($vendor->city);
 }
 
+function getUserNameById($user_id)
+{
+    $user = \App\Models\User::where('id',$user_id)->first();
+
+    return ucfirst($user->name);
+}
+
 

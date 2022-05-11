@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Garage;
+use App\Models\Order;
+use App\Models\UserReview;
 use App\Models\Vendor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,6 +16,17 @@ class DashboardController extends Controller
     {
 
         $page_title = 'Vendor Dashboard';
+        $vendor_garage = Garage::where('vendor_id',auth()->id())->first();
+        $completedOrders = Order::where('status','complete')->count();
+        $totalReviews = UserReview::where('garage_id',$vendor_garage->id)->count();
+        $rating= UserReview::where('garage_id',$vendor_garage->id)->sum('rating');
+        if($totalReviews ==0 && $rating ==0)
+        {
+            $overAllRatings = 0;
+        }else{
+            $overAllRatings = $rating/$totalReviews;
+        }
+        $order = Order::where('garage_id',$vendor_garage->id)->latest()->first();
         /*$dateFrom = Carbon::now()->subDays(30);
         $dateTo = Carbon::now();
         //monthlyRevenue = PaymentTransactions::whereNotNull('created_at')->whereBetween('created_at', [$dateFrom, $dateTo])->sum('amount');
@@ -53,6 +67,6 @@ class DashboardController extends Controller
         // Vendor  //
 
         //return view('vendor.index', compact('page_title', 'monthlyRevenue', 'previousMonthlyRevenue', 'monthlyVendor', 'previousMonthlyVendor', 'monthlyOrder', 'previousMonthlyOrder'));
-    return view('vendor.index', compact('page_title'));
+    return view('vendor.index', compact('page_title','completedOrders','totalReviews','overAllRatings','order'));
     }
 }
