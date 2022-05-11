@@ -1361,3 +1361,10 @@ footer{
 .image-uploader .upload-text{
     align-items: flex-start !important;
 }
+.block-head-txt {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}

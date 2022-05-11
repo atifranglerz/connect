@@ -190,7 +190,8 @@
                                 <img @if($value->image) src="{{$value->image}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body p-sm-2">
-                                <h5 class="card-title text-center allgarages_card_title">{{$value->garage_name}} <span>5.0</span></h5>
+                                <h5 class="block-head-txt text-center">{{$value->garage_name}}</h5>
+                                <h5 class="card-title text-center allgarages_card_title"><span>5.0</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="http://localhost/connect/public/assets/images/iconrp.svg">
