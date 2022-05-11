@@ -182,6 +182,7 @@
                 </div>
             </div>
             <div class="row g-3">
+                @if(count($garage) > 0)
                 @foreach($garage as $value)
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <a href="{{route('gerage_detail',$value->id)}}">
@@ -189,31 +190,38 @@
                             <div class="car_img_wrapper">
                                 <img @if($value->image) src="{{$value->image}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
                             </div>
+                            <?php
+                            $overAllRatings = 0.0;
+                            $totalReviews = \App\Models\UserReview::where('garage_id',$value->id)->count();
+                            $rating= \App\Models\UserReview::where('garage_id',$value->id)->sum('rating');
+                            if($rating ==0)
+                            {
+                                $overAllRatings = 0.0;
+                            }else{
+                                $overAllRatings = $rating/$totalReviews;
+                            }
+                            ?>
                             <div class="card-body p-sm-2">
                                 <h5 class="block-head-txt text-center">{{$value->garage_name}}</h5>
-                                <h5 class="card-title text-center allgarages_card_title"><span>5.0</span></h5>
+                                <h5 class="card-title text-center allgarages_card_title"><span>{{$overAllRatings}}</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="http://localhost/connect/public/assets/images/iconrp.svg">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="http://localhost/connect/public/assets/images/iconrp2.svg">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="http://localhost/connect/public/assets/images/iconrp3.svg">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="http://localhost/connect/public/assets/images/iconrp4.svg">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="http://localhost/connect/public/assets/images/iconrp5.svg">
-                                    </div>
+                                    <?php $category = \App\Models\GarageCategory::where('garage_id',$value->id)->pluck('category_id');
+                                    $category_name = \App\Models\Category::whereIn('id',$category)->get();
+                                    ?>
+                                    @foreach($category_name as $catname)
+                                        <div class="icon_wrpaer">
+                                            <img src="{{asset($catname->icon)}}">
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 @endforeach
+                @else
+                    Oops... Sorry no garrages found  !
+                @endif
             </div>
             <div class="row">
                 <div class="col-lg-5 mx-auto">
