@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-lg-6  col-md-6 col-sm-6">
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a href="{{route('user.payment_page')}}" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
+                            <a href="{{route('user.payment_page',$data->id)}}" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
                             </a>
                         </div>
                     </div>
@@ -25,14 +25,15 @@
                 <div class="all_quote_card  vendor_rply_dtlL">
                     <?php
                     $userbid = \App\Models\UserBid::where('id',$data->user_bid_id)->first();
-                    $img = \App\Models\UserBidImage::where('user_bid_id',$userbid->id)->where('type','image')->oldest()->first();
-                    $company = \App\Models\Company::where('id',$userbid->company_id)->first();?>
+                    $company = \App\Models\Company::where('id',$userbid->company_id)->first();
+                    $garage = \App\Models\Garage::where('id',$data->garage_id)->first();
+                    ?>
                     <div class="car_inner_imagg vendor_rply_dtl ">
-                        <img src="{{ asset($img->car_image) }}">
+                        <img @if($garage->image && $garage->image != null) src="{{asset($garage->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif>
                     </div>
                     <div class=" w-100  quote_detail_wraper">
                         <div class="quote_info">
-                            <h3 class="d-flex align-items-center active_quote rply_dtl">{{$company->company}}  {{$userbid->model}}</h3>
+                            <h3 class="d-flex align-items-center active_quote rply_dtl">{{$garage->garage_name}}</h3>
                             <p class="mb-0 rply__dtl">{{$data->vendordetail->name}}</p>
                             <p class="rply__dtl" >{{$data->vendordetail->phone}}</p>
                             <div class="card_icons respons_qoute d-flex align-items-center">
@@ -83,22 +84,24 @@
                             <div class="row mt-1 g-3">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Model</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Model : {{$userbid->model}}</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Make</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Make : {{$company->company}}</button>
+                                    </div>
+                                </div>
+                                <?php $userbidcateg = \App\Models\UserBidCategory::where('user_bid_id',$data->user_bid_id)->pluck('category_id');
+                                $userbidcategories = \App\Models\Category::whereIn('id',$userbidcateg)->get(); ?>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="d-grid gap-2 ">
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Type of Service : @foreach($userbidcategories as $userbidcategory)  {{$userbidcategory->name}}, @endforeach</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Type of Service</button>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Customer Name</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Customer Name : {{auth()->user()->name}}</button>
                                     </div>
                                 </div>
                             </div>

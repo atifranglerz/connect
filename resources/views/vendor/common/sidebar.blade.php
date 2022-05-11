@@ -17,16 +17,16 @@
                 <a href="{{ route('vendor.chat.index') }}"><img src="{{ asset('public/vendor/assets/images/dashinboxicon.svg') }}"><span>Inbox</span></a>
             </li>
             <li>
-                <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>Active Quotes</span></a>
+                <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>All Quotes</span></a>
             </li>
             <li>
-                <a href="{{route('vendor.ads.index')}}"><img src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>Active Orders</span></a>
+                <a href="{{route('vendor.all-active-order')}}"><img src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>Active Orders</span></a>
             </li>
             <li>
                 <a href="{{route('vendor.workshop.edit',  Auth::id()  )}}"><img src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>Edit Workshop</span></a>
             </li>
             <li>
-                <a href="{{route('vendor.ads.create')}}"><img src="{{ asset('public/vendor/assets/images/dashsellcaricon.svg') }}"><span>Sell Your Car</span></a>
+                <a href="{{route('vendor.ads.create')}}"><img src="{{ asset('public/vendor/assets/images/dashsellcaricon.svg') }}"><span>Sell Or Replace Your Car</span></a>
             </li>
 
         </ul>

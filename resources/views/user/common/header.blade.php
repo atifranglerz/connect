@@ -26,7 +26,7 @@
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.ads.index') }}">My Listing</a>
+                        <a class="nav-link " href="{{ route('user.ads.index') }}">My Ads Listing</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('user.quotecreate') }}">Request A Quote</a>
@@ -59,7 +59,6 @@
                                 </li>
                                 <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
@@ -81,8 +80,6 @@
                         </div>
 
                     </div>
-
-
 
                 </div>
 

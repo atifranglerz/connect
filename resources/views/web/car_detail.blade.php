@@ -79,10 +79,10 @@
                 <h4 class="store_addres">{{getCompany($ad->company_id)}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">{{getCountryByVendor($ad->vendor_id)}}</h4>
+                <h4 class="store_addres">@if($ad->vendor_id !=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">{{getCityByVendor($ad->vendor_id)}}</h4>
+                <h4 class="store_addres">@if($ad->vendor_id !=null){{getCityByVendor($ad->vendor_id)}}@else{{getCityByVendor($ad->user_id)}}@endif</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
                 <h4 class="store_addres">Price : {{$ad->price}}</h4>

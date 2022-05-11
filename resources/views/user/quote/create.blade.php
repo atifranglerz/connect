@@ -96,8 +96,8 @@
                                         @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="number" class="form-control" name="price" placeholder="Price" aria-label="Price">
-                                            @error('price')
+                                            <input type="number" class="form-control" name="day" placeholder="Days e.g (7)" aria-label="Day">
+                                            @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>

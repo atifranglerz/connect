@@ -27,13 +27,38 @@ function getCompany($company_id)
 function getCountryByVendor($vendor_id)
 {
     $vendor = \App\Models\Vendor::where('id',$vendor_id)->first();
-
-    return ucfirst($vendor->country);
+    if($vendor){
+        return ucfirst($vendor->country);
+    }else{
+        $user = \App\Models\User::where('id',$vendor_id)->first();
+        return ucfirst($user->country);
+    }
 }
 
 function getCityByVendor($vendor_id)
 {
     $vendor = \App\Models\Vendor::where('id',$vendor_id)->first();
+    if($vendor){
+        return ucfirst($vendor->city);
+    }else{
+        $user = \App\Models\User::where('id',$vendor_id)->first();
+        return ucfirst($user->city);
+    }
+
+}
+
+function getModelByUserBid($user_bid_id)
+{
+    $user_bid = \App\Models\UserBid::where('id',$user_bid_id)->first();
+
+    return ucfirst($user_bid->model);
+}
+
+function getCompanyByUserBid($vendor_id)
+{
+    $vendor = \App\Models\Vendor::where('id',$vendor_id)->first();
 
     return ucfirst($vendor->city);
 }
+
+

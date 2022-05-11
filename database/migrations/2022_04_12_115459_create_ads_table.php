@@ -27,7 +27,7 @@ class CreateAdsTable extends Migration
             $table->string('address')->nullable();
             $table->integer('mileage')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('vendor_id')->unsigned()->constrained('vendors')->onDelete('cascade');
+            $table->foreignId('vendor_id')->unsigned()->nullable()->constrained('vendors')->onDelete('cascade');
             $table->foreignId('user_id')->unsigned()->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

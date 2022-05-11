@@ -149,7 +149,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
         Route::get('orders', 'ordersController@index')->name('orders');
         Route::get('create/order', 'ordersController@create');
-        Route::get('fullfillment', 'ordersController@fullfillment')->name('fullfillment');
+        Route::get('fullfillment/{id}', 'ordersController@fullfillment')->name('fullfillment');
+        Route::get('order/all-active','ordersController@order_all')->name('all-active-order');
         Route::get('order/index','ordersController@active_order')->name('order/index');
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
@@ -180,7 +181,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        Route::get('payment_page', 'paymentController@index')->name('payment_page');
+        Route::get('payment_page/{id}', 'paymentController@index')->name('payment_page');
+        Route::post('payment-info', 'paymentController@payment_info')->name('payment-info');
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');

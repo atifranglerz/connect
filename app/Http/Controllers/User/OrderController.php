@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\UserBid;
+use App\Models\VendorBid;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,7 +18,10 @@ class OrderController extends Controller
     public function index()
     {
         $page_title = "Active Order";
-        return view('user.order.index', compact('page_title'));
+        $userbidid = UserBid::where('user_id',auth()->id())->pluck('id');
+        $orders = Order::whereIn('user_bid_id',$userbidid)->get();
+
+        return view('user.order.index', compact('page_title','orders'));
     }
 
     /**
@@ -47,7 +53,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $page_title = "Completed Order";
+        $order = Order::findOrFail($id);
+        return view('user.order.completed-order', compact('page_title','order'));
     }
 
     /**

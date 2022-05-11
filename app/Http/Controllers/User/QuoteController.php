@@ -51,7 +51,7 @@ class QuoteController extends Controller
         $quote->model = $request->model;
         $quote->company_id =  $request->company_id ;
         $quote->model_year_id = $request->model_year_id;
-        $quote->price = $request->price;
+        $quote->day = $request->day;
         $quote->mileage = $request->mileage;
         $quote->reference_no = mt_rand(123456,9999999);
         $quote->description1 = $request->description1;

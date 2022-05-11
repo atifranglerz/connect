@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="d-flex chat_view__detail qoute_replies vendor_order days ">
-                                <h3 class="active_bidDay">7 Days</h3>
+                                <h3 class="active_bidDay">{{$data->day}} Days</h3>
                                 <a href="#" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>
                                     <!-- <img src="assets/images/meassageiconblk.svg"> -->
@@ -35,7 +35,7 @@
                         </div>
                         <div class=" active_bid_dtl_card_right">
                             <h3 class="offer_quote_heading">{{$data->model}}</h3>
-                            <h3 class="offer_quote_heading second_heading">My Quote <span>AED 1200</span></h3>
+{{--                            <h3 class="offer_quote_heading second_heading">My Quote <span>AED 1200</span></h3>--}}
                         </div>
                     </div>
                 </div>

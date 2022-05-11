@@ -32,7 +32,7 @@
                       <a class="nav-link active " aria-current="page" href="index.php">Home</a>
                     </li>-->
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('vendor.ads.index') }}">My Listing</a>
+                        <a class="nav-link " href="{{ route('vendor.ads.index') }}">My Ads Listing</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('vendor.quoteindex')}}">My Bids</a>

@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">ACTIVE QUOTES</h1>
-                        <p class="sec_main_para text-center">Select your preferred garage</p>
+                        <h1 class="sec_main_heading text-center mb-0">ALL QUOTES</h1>
+{{--                        <p class="sec_main_para text-center">Select your preferred garage</p>--}}
                     </div>
                 </div>
             </div>

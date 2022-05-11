@@ -18,7 +18,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::with('company', 'modelYear')->get();
+        $ads = Ads::where('user_id',auth()->id())->with('company', 'modelYear')->get();
         return view('user.ads.index', compact('ads'));
     }
 
@@ -95,7 +95,7 @@ class AdsController extends Controller
         $ads->mileage = $request->mileage;
         $ads->description = $request->description;
         $ads->user_id = Auth::id();
-        $ads->vendor_id = Auth::id();                          // please correect this
+        // please correect this
         $ads->save();
         return $this->message($ads, 'user.ads.index', 'Ads Create Successfully', 'Ads Create Error');
     }
