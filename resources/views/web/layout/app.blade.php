@@ -51,10 +51,21 @@
 
                 </ul>
                 <div class="d-flex login_header_main">
+                    @if(auth()->check())
+                        <a href="{{ route('user.profile.index') }}" class="me-4 me-md-3">Profile</a>
+                        <a href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i class="fas fa-sign-out-alt"></i>
+                                Logout
+                        </a>
+                        <form id="frm-logout" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                    @else
                     <div class="login_sinup">
                         <a href="{{ route('register') }}"> <i class="fa fa-briefcase me-2 me-md-1"></i> Rigister Your Garage</a>
                         <a href="{{ route('loginpage') }}" class="login ms-lg-2">Login</a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
