@@ -54,7 +54,45 @@
                 <h4 class="store_addres">{{$garage->phone}}</h4>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 5.0</h4>
+                <h4 class="store_addres">
+                    @if(round($overAllRatings) == '0')
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    @elseif(round($overAllRatings) == '1')
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    @elseif(round($overAllRatings) == '2')
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    @elseif(round($overAllRatings) == '3')
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    @elseif(round($overAllRatings) == '4')
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star"></i>
+                    @elseif(round($overAllRatings) == '5')
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                        <i class="fa-solid fa-star" style="color:black;"></i>
+                    @endif
+                    ({{round($overAllRatings)}})</h4>
             </div>
         </div>
     </div>

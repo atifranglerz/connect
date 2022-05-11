@@ -14,6 +14,7 @@ use App\Models\News;
 use App\Models\PrefferedGarage;
 use App\Models\PrivacyPolicy;
 use App\Models\TermCondition;
+use App\Models\UserReview;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
@@ -59,6 +60,14 @@ class HomepageController extends Controller
         $data['services'] = Category::all();
         $data['user_wishlist'] = \App\Models\UserWishlist::where('user_id',auth()->id())->where('garage_id',$data['garage']->id)->first();
         $data['user_review'] = \App\Models\UserReview::where('garage_id',$data['garage']->id)->get();
+        $totalReviews = UserReview::where('garage_id',$data['garage']->id)->count();
+        $rating= UserReview::where('garage_id',$data['garage']->id)->sum('rating');
+        if($totalReviews ==0 && $rating ==0)
+        {
+            $data['overAllRatings'] = 0;
+        }else{
+            $data['overAllRatings'] = $rating/$totalReviews;
+        }
         return view('web.gerage_detail', $data);
     }
 
