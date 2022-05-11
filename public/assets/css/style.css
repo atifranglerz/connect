@@ -81,41 +81,6 @@ body{
 	box-sizing: border-box;
     font-family: var(--mont);
 }
-
-/*page loader gif*/
-#pgLoader {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-color: #FFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#pgLoaderGif {
-    border: 13px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 13px solid var(--orange);
-    width: 90px;
-    height: 90px;
-    animation: spin 1s linear infinite;
-    -webkit-animation: spin 1s linear infinite;
-    -moz-animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 /*............................. header style starts  ......................*/
 nav{
     min-height: 95px;
@@ -246,7 +211,7 @@ color: var(--black);
     margin: 0 auto;
     border-radius: 10px;
     padding: 10px 20px;
-
+    
 }
 .banner_btn_main_wraper>.divider{
     height: 1px;
@@ -299,7 +264,7 @@ color: var(--black);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
 }
 .banner_btn__sub_wraper>img{
     width: 48px;
@@ -393,7 +358,7 @@ color: var(--black);
     border-radius: 25px;
     position: relative;
     overflow: hidden;
-
+    
 }
 .img_wraper>img{
     width: 100%;
@@ -468,7 +433,7 @@ color: var(--black);
     left: 0;
     color: var(--white);
     border:2px solid var(--orange);
-    border-radius: 4px;
+    border-radius: 4px; 
 }
 .view_all_btn_wrapper>.view_all_btn:hover{
     color: var(--white);
@@ -510,7 +475,7 @@ color: var(--black);
 }
 .card-title.date{
     font-size: var(--fs-12);
-
+    
 }
 .car_img_wrapper{
     width: 100%;
@@ -562,7 +527,7 @@ color: var(--black);
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 100% 80%;
-    height: 200px;
+    height: 200px; 
     z-index: 0;
     display: flex;
     align-items: center;
@@ -630,11 +595,11 @@ color: var(--black);
     font-family: var(--san);
     margin-bottom: 5px;
 }
-/*................................... 2nd pages  garage........................................ */
+/*................................... 2nd pages  garages........................................ */
 .looking_for.garages{
     padding: 40px 0 54px 0 !important;
 }
-/*......................................3rd page all garage...................................*/
+/*......................................3rd page all garages...................................*/
 .sec_main_para.allgarages{
     max-width: 510px;
 }
@@ -875,6 +840,59 @@ color: var(--black);
     background-color: var(--orange) !important;
     text-align: left;
     border: 1px solid var(--orange);
+    position: relative;
+    z-index: 0;
+}
+.get_appointment.byCall{
+    position: relative;
+    z-index: 0;
+}
+.get_appointment.byCall:before{
+    background-color: var(--black);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    display: flex;
+   align-items: center;
+   
+}
+.get_appointment.byCall:hover:before{
+    content: "0879654328976";
+   width: 100%;
+    left: unset;
+    right: 0;
+    color: var(--white);
+    border: 2px solid var(--orange);
+    border-radius: 4px;
+     padding: 8px 10px;
+}
+.btn-primary:before{
+    background-color: var(--black);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+
+}
+.btn-primary:hover:before{
+   width: 100%;
+    right: unset;
+    left: 0;
+    color: var(--white);
+    border: 2px solid var(--orange);
+    border-radius: 4px;
+
 }
 .btn-primary:hover {
     border-color: var(--dark-border);
@@ -895,6 +913,7 @@ color: var(--black);
     transform: translateY(-50%);
     width: 28px;
     height: 28px;
+    z-index: 10;
 }
 .testimonail_person_name{
     color: var(--orange);
@@ -998,7 +1017,7 @@ width: 17px;
     background-color: var(--white);
     border-radius: 20px;
     z-index: -1;
-
+    
 }
 .slick-dots li button {
     width: 17px;
@@ -1025,7 +1044,7 @@ width: 17px;
     color: var(--orange);
 }
 .slick-dotted.slick-slider {
-     margin-bottom: unset !important;
+     margin-bottom: unset !important; 
 }
 .slick-dots {
     bottom: 25px !important;
@@ -1224,7 +1243,7 @@ label.img_wraper_label>.file_icon_wraper{
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-
+    
      }
 label.img_wraper_label>input[type="file"] {
     display: none;
@@ -1247,7 +1266,7 @@ label.img_wraper_label>input[type="file"] {
 }
 .signup_vendor>h4{
     color: var(--orange);
-    font-size: var(--fs-18);
+    font-size: var(--fs-18);  
 }
 .login_content_wraper{
     min-height: 100vh;
@@ -1303,7 +1322,7 @@ footer{
 }
 .footer_link>h1.footer_contact_heading {
     margin-top: 20px;
-
+    
 }
 
 /*..............................image uploader css........................................>*/

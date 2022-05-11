@@ -1834,6 +1834,12 @@ ul.sidebar_navcigation>li>a>img{
 .quote_info>p{
     font-size: var(--fs-13);
     color: var(--darkgray);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    text-align: justify;
+    padding-right: 24px;
 }
 .quote_info>p.quote_rev{
     font-weight: bold;
@@ -2440,4 +2446,9 @@ input.messages_file[type=file]::-webkit-file-upload-button {
 }
 .login_content_wraper {
     background-image: url(../images/gradiantbg.jpg)!important;
+}
+@media (max-width: 575px) {
+    .quote_info>p {
+        padding-right: 0;
+    }
 }

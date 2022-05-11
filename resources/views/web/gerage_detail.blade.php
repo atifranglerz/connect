@@ -144,7 +144,7 @@
                             <!-- <label for="floatingTextarea2">Comments</label> -->
                         </div>
                         <div class="d-grid gap-2 mt-3">
-                            <button class="btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST
+                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST
                             </button>
                         </div>
 
@@ -185,22 +185,22 @@
                                 {{ session()->get('alert-error') }}
                             </div>
                         @endif
-                    <form class="row g-3" method="post" action="{{ route('add-to-preffered-garage') }}">
+                    <form class="g-3" method="post" action="{{ route('add-to-preffered-garage') }}">
                         @csrf
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                    <button class="btn btn-primary get_appointment heart" type="submit">ADD TO PREFFERED GARAGE
+                    <button class="w-100 btn btn-primary get_appointment heart" type="submit">ADD TO PREFFERED GARAGE
                         <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}">
                     </button>
                     </form>
                     @else
-                        <button class="btn btn-primary get_appointment heart" type="button">ADD TO PREFFERED GARAGE
+                        <button class="w-100 btn btn-primary get_appointment heart" type="button">ADD TO PREFFERED GARAGE
                             <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}">
                         </button>
                     @endif
                 </div>
                 <div class="d-grid gap-2 mt-3">
-                    <button class="btn btn-primary get_appointment heart" type="button">CONTACT VIA MESSAGE
+                    <button class="w-100 btn btn-primary get_appointment heart" type="button">CONTACT VIA MESSAGE
                         <img src="{{asset('public/vendor/assets/images/messageicon.svg')}}">
                     </button>
                 </div>

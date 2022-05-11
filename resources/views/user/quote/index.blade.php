@@ -10,8 +10,9 @@
                     </div>
                 </div>
             </div>
-            @foreach( $user_bid as $value)
+
             <div class="row g-2">
+                @foreach( $user_bid as $value)
                 <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
                     <div class="all_quote_card ">
                         <div class="car_inner_imagg ">
@@ -41,8 +42,8 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </section>
 @endsection
