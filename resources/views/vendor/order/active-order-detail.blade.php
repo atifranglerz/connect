@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row g-2">
-                <div class="col-lg-5 col-md-12 col-sm-12 col-11  mx-auto">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-11  mx-auto">
                     <div class="all_quote_card replies_allquot ">
                         <!-- <div class="car_inner_imagg ">
                           <img src="assets/images/repair3.jpg">
@@ -20,6 +20,7 @@
                         $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
                         $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
 
+                        $userbidimage = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->get();
                         ?>
                         <div class=" w-100  quote_detail_wraper replies ">
                             <div class="quote_info">
@@ -45,18 +46,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-11  mx-auto">
-                    <div class="all_quote_card replies_allquot h-100 ">
-                        <div class=" w-100  quote_detail_wraper replies ">
-                            <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape  ">Suzuki Alto</h3>
-                                <p class="mb-0">2017</p>
-                                <p class="mb-0">Suzuki</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-11  mx-auto">
+{{--                <div class="col-lg-3 col-md-6 col-sm-6 col-11  mx-auto">--}}
+{{--                    <div class="all_quote_card replies_allquot h-100 ">--}}
+{{--                        <div class=" w-100  quote_detail_wraper replies ">--}}
+{{--                            <div class="quote_info">--}}
+{{--                                <h3 class="d-flex align-items-center active_quote nowrape  ">Suzuki Alto</h3>--}}
+{{--                                <p class="mb-0">2017</p>--}}
+{{--                                <p class="mb-0">Suzuki</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <div class="col-lg-6 col-md-6 col-sm-6 col-11  mx-auto">
                     <div class="all_quote_card  replies_allquot h-100">
                         <div class=" w-100  quote_detail_wraper replies payviainsu">
                             <div class="quote_detail_btn_wraper">
@@ -70,7 +71,7 @@
                             <div class="quote_info">
                                 <h3 class="d-flex align-items-center active_quote nowrape"> Budget</h3>
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class="quotereplies">AED 1200</h3>
+                                    <h3 class="quotereplies">AED {{$order->total}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -84,100 +85,67 @@
                         <h3 class="active_order_req">Requirments</h3>
 
                         <div class="vendor__rply__dttl">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
+                            <p>{{$userbidid->description1}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="all_quote_card  vendor_rply_dtlL _text">
                 <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5 owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="transform: translate3d(-1488px, 0px, 0px); transition: all 0s ease 0s; width: 5656px;">
+                            @foreach($userbidimage as $image)
+                                <?php $pathinfo = pathinfo($image->car_image);
+                                $supported_ext = array('docx', 'xlsx', 'pdf');
+                                $src_file_name = $image->car_image;
+                                $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
-
-
-
-
-
-
-
-
-                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1488px, 0px, 0px); transition: all 0s ease 0s; width: 5656px;"><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
+                            <div class="owl-item cloned" style="width: 297.667px;">
+                                <div class="item">
                                     <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
+                                        @if($ext=="docx")
+                                            <a class="text-decoration-none text-reset" href="{{url($image->car_image)}}">
+                                            <img src="{{ asset('public/assets/images/wordicon.png') }}" style="height: 100%;">
+                                            </a>
+                                        @elseif($ext=="doc")
+                                            <a class="text-decoration-none text-reset" href="{{url($image->car_image)}}">
+                                            <img src="{{ asset('public/assets/images/wordicon.png') }}" style="height: 100%;">
+                                            </a>
+                                        @elseif($ext=="xlsx")
+                                            <a class="text-decoration-none text-reset" href="{{url($image->car_image)}}">
+                                            <img src="{{ asset('public/assets/images/excelicon.png') }}" style="height: 100%;">
+                                                <a class="text-decoration-none text-reset" href="{{url($image->car_image)}}">
+                                        @elseif($ext=="pdf")
+                                             <a class="text-decoration-none text-reset" href="{{url($image->car_image)}}">
+                                            <img src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 100%;">
+                                              </a>
+                                        @else
+                                            <img src="{{asset($image->car_image)}}">
+                                        @endif
                                     </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc3.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc1.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc3.jpg">
-                                    </div>
-                                </div></div><div class="owl-item active" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc1.jpg">
-                                    </div>
-                                </div></div><div class="owl-item active" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
-                                    </div>
-                                </div></div><div class="owl-item active" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc3.jpg">
-                                    </div>
-                                </div></div><div class="owl-item" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc1.jpg">
-                                    </div>
-                                </div></div><div class="owl-item" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
-                                    </div>
-                                </div></div><div class="owl-item" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc3.jpg">
-                                    </div>
-                                </div></div><div class="owl-item" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc1.jpg">
-                                    </div>
-                                </div></div><div class="owl-item" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
-                                    </div>
-                                </div></div><div class="owl-item" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc3.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc1.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc3.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc1.jpg">
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 297.667px;"><div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="assets/images/doc2.jpg">
-                                    </div>
-                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
-
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="owl-nav disabled">
+                        <button type="button" role="presentation" class="owl-prev">
+                            <span aria-label="Previous">‹</span>
+                        </button>
+                        <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
+                    </div>
+                    <div class="owl-dots">
+                        <button role="button" class="owl-dot active">
+                            <span></span>
+                        </button>
+                        <button role="button" class="owl-dot">
+                            <span></span>
+                        </button>
+                        <button role="button" class="owl-dot">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="row  mt-5">
                 <div class="col-lg-12">
@@ -187,7 +155,7 @@
                             <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
                         </div>
                         <div class="vendor__rply__dttl">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,</p>
+                            <p>{{$userbidid->description2}}</p>
                         </div>
                     </div>
                 </div>
