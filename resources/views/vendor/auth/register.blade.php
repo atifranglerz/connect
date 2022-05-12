@@ -63,7 +63,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <select class="form-select" name="garages_catagary" aria-label="Type of Service" multiple="multiple">
+                                <select class="form-select form-control offer-garage-services" name="garages_catagary" aria-label="Type of Service" multiple="multiple">
                                     @foreach($categories as $value)
                                         <option value="{{$value->name}}">{{$value->name}}</option>
                                     @endforeach

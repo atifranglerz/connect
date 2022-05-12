@@ -54,8 +54,8 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                                <select class="form-select" name="company_id" aria-label="Type of Service" required>
-                                                    <option value="" selected>company</option>
+                                                <select class="form-select form-control company-name-field" name="company_id" aria-label="Type of Service" required>
+                                                    <option value=""></option>    
                                                     @foreach($company as $data)
                                                         <option value="{{$data->id }}">{{$data->company }}</option>
                                                     @endforeach
@@ -65,8 +65,8 @@
                                                 @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <select class="form-select" name="model_year_id" aria-label="Type of Service" required>
-                                                <option value="" selected>Year</option>
+                                            <select class="form-select form-control model-year-field" name="model_year_id" aria-label="Type of Service" required>
+                                                <option value=""></option>
                                                 @foreach($year as $data)
                                                     <option value="{{$data->id }}">{{$data->model_year }}</option>
                                                 @endforeach

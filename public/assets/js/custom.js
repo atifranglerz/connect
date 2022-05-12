@@ -19,11 +19,18 @@ $(function() {
 
 $(function() {
     /*global Select2*/
-    $('select').select2();
+    /*single select*/
     $('select[name="country"]').select2({
         placeholder: 'Select Your Country',
     });
-    $('select[name="garage_catagary"]').select2({
+    $('.company-name-field').select2({
+        placeholder: 'Select Company',
+    });
+    $('.model-year-field').select2({
+        placeholder: 'Select Year',
+    });
+    /*Multiple select*/
+    $('.offer-garage-services').select2({
         placeholder: 'Select The Services You Offering',
     });
     $('.garage-services').select2({
