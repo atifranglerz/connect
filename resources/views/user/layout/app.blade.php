@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('public/user/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- custome css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/style.css') }} ">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/style.css') }} ">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/newstyle.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('public/user/assets/OwlCarousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/user/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
     <title>Customer panel |{{ $page_title ?? "" }}</title>
     <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/user/assets/favicon/favicon.ico') }}' />
     <style>
@@ -189,11 +191,13 @@
         @yield('content')
     </div>
 </div>
-<script src="{{ asset('public/user/assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ asset('public/user/assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
 <script src="{{ asset('public/user/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
+<script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
+<script src="{{ asset('public/assets/js/custom.js') }}"></script>
 @yield('script')
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
