@@ -232,12 +232,12 @@
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
                     <button class="w-100 btn btn-primary get_appointment heart" type="submit">
-                       @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @endif
+                       @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticon.svg')}}"> @endif
                     </button>
                     </form>
                     @else
                         <button class="w-100 btn btn-primary get_appointment heart" type="button">ADD TO PREFFERED GARAGE
-                            @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @endif
+                            @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticon.svg')}}"> @endif
                         </button>
                     @endif
                 </div>

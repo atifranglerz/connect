@@ -98,7 +98,8 @@ class HomepageController extends Controller
     {
         $preferredgarageexist = \App\Models\UserWishlist::where('user_id',$request->user_id)->where('garage_id',$request->garage_id)->first();
         if($preferredgarageexist) {
-            return redirect()->back()->with('alert-error', 'Already Exist');
+            $preferredgarageexist->delete();
+            return redirect()->back()->with('alert-garage-success', 'Removed from Preffered Successfully');
         }else{
             $preferred_garage = new \App\Models\UserWishlist();
             $preferred_garage->user_id = $request->user_id;

@@ -9,7 +9,7 @@
             <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button"  id="menuToggle">
                 <span class=" fa-solid fa-bars"></span>
             </a>
-            <a class="navbar-brand" href="{{ route('user.dashboard') }}">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <div class="logo_wraper">
                     <img src="{{ asset('public/user/assets/images/logo.jpg') }}">
                 </div>

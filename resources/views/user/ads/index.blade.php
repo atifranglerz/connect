@@ -25,9 +25,9 @@
                         <div class="  w-100  quote_detail_wraper align-items-md-center">
                             <div class="quote_info Leavereview">
                                 <h3 class="d-flex align-items-center active_quote">{{$data->model}}</h3>
-                                <p class="mb-0">{{$data->company->company}}</p>
-                                <p class="mb-0">{{$data->modelYear->model_year}}</p>
-                                <p >{{$data->mileage}} CC</p>
+                                <p class="mb-0">Maker : {{$data->company->company}}</p>
+                                <p class="mb-0">Model Year : {{$data->modelYear->model_year}}</p>
+                                <p >Engine : {{$data->mileage}} CC</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
                                 <h3 class=" text-sm-center">AED {{$data->price}}</h3>

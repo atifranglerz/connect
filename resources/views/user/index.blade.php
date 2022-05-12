@@ -28,7 +28,7 @@
                                 <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
-                                <a href="{{route('user.vendorReply',$vendor_bid->id)}}" class="btn-secondary">VIEW DETAILS</a>
+                                <a href="{{route('user.response',$user_bid->id)}}" class="btn-secondary">VIEW DETAILS</a>
 
                             </div>
 
