@@ -23,10 +23,12 @@ $(function() {
     $('select[name="country"]').select2({
         placeholder: 'Select Your Country',
     });
-    $('select[name="garages_catagary"]').select2({
+    $('select[name="garage_catagary"]').select2({
         placeholder: 'Select The Services You Offering',
     });
-    
+    $('.garage-services').select2({
+        placeholder: 'Select Services You Looking For',
+    });
     /*global Select2*/
 
     $("#datepicker2").datepicker();
