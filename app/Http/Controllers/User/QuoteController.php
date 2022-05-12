@@ -41,11 +41,12 @@ class QuoteController extends Controller
             'company_id' => 'required',
             'model_year_id' => 'required',
             'mileage' =>'required' ,
-            'price'=>'required',
-            'name' => 'required',
-            'phone' => 'required' ,
+            'day'=>'required',
+            'maker_name' => 'required',
+            'phone' => 'required',
             'address'=> 'required' ,
         ]);
+
         $quote = new UserBid();
         $quote->user_id = Auth::id() ;
         $quote->model = $request->model;
@@ -56,7 +57,7 @@ class QuoteController extends Controller
         $quote->reference_no = mt_rand(123456,9999999);
         $quote->description1 = $request->description1;
         $quote->description2 = $request->description2;
-        $quote->car_owner_name = $request->name;
+        $quote->car_owner_name = $request->maker_name;
         $quote->phone = $request->phone;
         $quote->address = $request->address;
         $quote->save();

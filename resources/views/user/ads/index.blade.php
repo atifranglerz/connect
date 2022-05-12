@@ -12,6 +12,7 @@
         </div>
 
         <div class="row g-2">
+            @if(count($ads) >0)
             @foreach($ads as $data )
                 <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
                     <div class="all_quote_card ">
@@ -43,6 +44,18 @@
                     </div>
                 </div>
             @endforeach
+            @else
+                <div class="col-lg-11 col-md-12 col-sm-12 col-11 mx-auto">
+                    <div class="all_quote_card ">
+                        <div class="  w-100  quote_detail_wraper align-items-md-center">
+                            <div class="quote_info Leavereview">
+                                <p class="mb-0">No Ads has been added !</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </section>

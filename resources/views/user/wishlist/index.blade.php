@@ -11,6 +11,7 @@
                 </div>
             </div>
             <div class="row g-2">
+                @if(count($wishlists) >0)
                 @foreach($wishlists as $wishlist)
                 <div class="col-lg-11 col-md-12  mx-auto">
                     <div class="all_quote_card ">
@@ -59,6 +60,18 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                    <div class="col-lg-11 col-md-12  mx-auto">
+                        <div class="all_quote_card ">
+
+                            <div class=" w-100  quote_detail_wraper align-items-sm-center">
+                                <div class="quote_info Leavereview mb-sm-3">
+                                    <p class="mb-0">No preferred garage has been added !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
             </div>
         </div>

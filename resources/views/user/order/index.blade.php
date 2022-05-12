@@ -11,6 +11,7 @@
                 </div>
             </div>
             <div class="row g-2">
+                @if(count($orders) >0)
                 @foreach($orders as $order)
                     <?php
                     $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
@@ -65,6 +66,18 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                    <div class="col-lg-11 col-md-12  mx-auto">
+                        <div class="all_quote_card ">
+
+                            <div class=" w-100  quote_detail_wraper">
+                                <div class="quote_info">
+                                    <p class="mb-0">No Orders has been added !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

@@ -11,6 +11,7 @@
             </div>
         </div>
         <div class="row g-2">
+            @if(count($data) >0)
             @foreach($data as $value)
                 <?php
                 $userbid = \App\Models\UserBid::where('id',$value->user_bid_id)->first();
@@ -68,6 +69,18 @@
                 </div>
             </div>
               @endforeach
+            @else
+                <div class="col-lg-6 col-md-6 col-sm-6 col-10  mx-auto">
+                    <div class="all_quote_card replies_allquot h-100 ">
+
+                        <div class=" w-100  quote_detail_wraper replies ">
+
+                                <p class="mb-0">No response has been added by users on your quote !</p>
+
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </section>

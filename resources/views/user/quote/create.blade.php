@@ -48,13 +48,13 @@
                                 <div class="form-step form-step-active " id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage">
+                                            <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" required>
                                             @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                                <select class="form-select" name="company_id" aria-label="Type of Service">
+                                                <select class="form-select" name="company_id" aria-label="Type of Service" required>
                                                     <option value="" selected>company</option>
                                                     @foreach($company as $data)
                                                         <option value="{{$data->id }}">{{$data->company }}</option>
@@ -65,7 +65,7 @@
                                                 @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <select class="form-select" name="model_year_id" aria-label="Type of Service">
+                                            <select class="form-select" name="model_year_id" aria-label="Type of Service" required>
                                                 <option value="" selected>Year</option>
                                                 @foreach($year as $data)
                                                     <option value="{{$data->id }}">{{$data->model_year }}</option>
@@ -90,13 +90,13 @@
                                           <input type="text" class="form-control" placeholder="Timeline For Work" aria-label="Timeline For Work">
                                         </div>
                    -->                   <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" name="mileage" placeholder="Car Milage" aria-label="Car Milage">
+                                        <input type="text" class="form-control" name="mileage" placeholder="Car Milage" aria-label="Car Milage" required>
                                         @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="number" class="form-control" name="day" placeholder="Days e.g (7)" aria-label="Day">
+                                            <input type="number" class="form-control" name="day" placeholder="Days e.g (7)" aria-label="Day" required>
                                             @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -157,13 +157,13 @@
                                         </div>
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control"  name="name" placeholder="Name" aria-label="Make">
+                                                <input type="text" class="form-control"  name="maker_name" placeholder="Name" aria-label="Make" required>
                                                 @error('name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No">
+                                                <input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No" required>
                                                 @error('phone')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -173,19 +173,19 @@
                                                 <input type="email" name="email" class="form-control" disabled value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control" name="address" placeholder="Address" aria-label="Car Milage">
+                                                <input type="text" class="form-control" name="address" placeholder="Address" aria-label="Car Milage" required>
                                                 @error('address')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
-                                                    <button class="btn btn-secondary block get_appointment" type="submit">GET QUOTES FROM ALL GARAGES</button>
+                                                    <button class="btn btn-secondary block get_appointment" name="action" value="all_garage" type="submit">GET QUOTES FROM ALL GARAGES</button>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="d-grid gap-2 mt-lg-3 mb-4">
-                                                    <button class="btn text-center btn-primary get_quot block get_appointment" type="button">GET QUOTES FROM PREFFERED GARAGES</button>
+                                                    <button class="btn text-center btn-primary get_quot block get_appointment" name="action" value="preferred_garage" type="submit">GET QUOTES FROM PREFFERED GARAGES</button>
                                                 </div>
                                             </div>
                                         </div>

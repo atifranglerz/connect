@@ -16,33 +16,45 @@
                         <h3>All Quotes</h3>
                         <a href="{{route('user.quoteindex')}}">View All</a>
                     </div>
-                    <?php
-                    $img = \App\Models\UserBidImage::where('user_bid_id',$user_bid->id)->where('type','image')->oldest()->first();
-                    $company = \App\Models\Company::where('id',$user_bid->company_id)->first();
-                    ?>
-                    <div class="all_quote_card">
-                        <div class="quote_info">
-                            <h3>{{$company->company}}  {{$user_bid->model}}</h3>
-                            <p >{{$user_bid->description1}}</p>
-                            <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
-                        </div>
-                        <div class="quote_detail_btn_wraper">
-                            <a href="{{route('user.vendorReply',$vendor_bid->id)}}" class="btn-secondary">VIEW DETAILS</a>
+                    @if($user_bid)
+                        <?php
+                        $img = \App\Models\UserBidImage::where('user_bid_id',$user_bid->id)->where('type','image')->oldest()->first();
+                        $company = \App\Models\Company::where('id',$user_bid->company_id)->first();
+                        ?>
+                        <div class="all_quote_card">
+                            <div class="quote_info">
+                                <h3>{{$company->company}}  {{$user_bid->model}}</h3>
+                                <p >{{$user_bid->description1}}</p>
+                                <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
+                            </div>
+                            <div class="quote_detail_btn_wraper">
+                                <a href="{{route('user.vendorReply',$vendor_bid->id)}}" class="btn-secondary">VIEW DETAILS</a>
+
+                            </div>
 
                         </div>
-
-                    </div>
+                    @else
+                        <div class="all_quote_card">
+                            <div class="quote_info">
+                                <p >No Quote has been added !</p>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-lg-10 col-md-11 col-sm-11   mx-auto">
                     <div class="quote_card_heading mb-lg-4 mb-2 mt-lg-5 mt-3">
                         <h3>All Orders</h3>
                         <a href="{{route('user.order.index')}}">View All</a>
                     </div>
+                    @if($order)
                     <?php
                     $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
+                    if($userbidid){
                     $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
+                    }
 
                     ?>
+
                     <div class="all_quote_card">
                         <div class="quote_info">
                             <h3>{{$company->company}}  ({{$userbidid->model}})</h3>
@@ -55,6 +67,15 @@
                         </div>
 
                     </div>
+                    @else
+                        <div class="all_quote_card">
+                            <div class="quote_info">
+
+                                <p >No Orders has been added !</p>
+
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
             </div>
