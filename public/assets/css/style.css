@@ -1368,6 +1368,10 @@ footer{
 }
 
 /*global css*/
+input.form-control[type=number]::-webkit-inner-spin-button,
+input.form-control[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
+}
 body .form-control {
     border: 2px solid #ced4da;
 }
