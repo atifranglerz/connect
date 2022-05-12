@@ -89,7 +89,7 @@
                                           <input type="text" class="form-control" placeholder="Timeline For Work" aria-label="Timeline For Work">
                                         </div>
                    -->                   <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" name="mileage" placeholder="Car Milage" aria-label="Car Milage" required>
+                                        <input type="number" class="form-control" name="mileage" placeholder="Car Milage e.g 40 Km" aria-label="Car Milage" required>
                                         @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
