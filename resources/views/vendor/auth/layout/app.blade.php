@@ -25,7 +25,6 @@
         .bg-white {
             background-color: var(--orange) !important;
         }
-
         .login_sinup > .accoutntData > .notification_tooltip > ul.notification_list::-webkit-scrollbar {
             display: none;
         }
