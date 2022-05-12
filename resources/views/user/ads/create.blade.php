@@ -79,7 +79,7 @@
                                     <span class="text-danger" id="colorError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" name="engine" class="form-control" placeholder="Engine" aria-label="Engine">
+                                    <input type="number" name="engine" class="form-control" placeholder="Engine e.g 1400 cc" aria-label="Engine">
                                     @error('engine')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
@@ -100,7 +100,7 @@
                                     <span class="text-danger" id="AddressError"></span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="number" name="mileage" class="form-control" placeholder="Car Milage" aria-label="Price">
+                                    <input type="number" name="mileage" class="form-control" placeholder="Car Milage e.g 1000 km" aria-label="Price">
                                     @error('mileage')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror

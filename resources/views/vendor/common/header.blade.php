@@ -13,7 +13,7 @@
 
                 <span class=" fa-solid fa-bars"></span>
             </a>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <div class="logo_wraper">
                     <img src="{{ asset('public/vendor/assets/images/logo.jpg') }}">
                 </div>

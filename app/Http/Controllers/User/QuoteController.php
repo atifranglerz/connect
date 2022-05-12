@@ -34,7 +34,6 @@ class QuoteController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'car_images'=>'required',
             'model' => 'required' ,
