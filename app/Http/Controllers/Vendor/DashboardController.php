@@ -27,6 +27,7 @@ class DashboardController extends Controller
             $overAllRatings = $rating/$totalReviews;
         }
         $order = Order::where('garage_id',$vendor_garage->id)->latest()->first();
+
         /*$dateFrom = Carbon::now()->subDays(30);
         $dateTo = Carbon::now();
         //monthlyRevenue = PaymentTransactions::whereNotNull('created_at')->whereBetween('created_at', [$dateFrom, $dateTo])->sum('amount');

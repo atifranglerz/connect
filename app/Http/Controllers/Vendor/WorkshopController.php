@@ -4,6 +4,7 @@ namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\Garage;
 use App\Models\Vendor ;
 use App\Models\GarageCategory;
@@ -20,10 +21,11 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        $data = Vendor::find(Auth::id());
+        $authvendor = Vendor::find(Auth::id());
         $page_title = 'WorkShop';
-        $category = Category::get();
-        return view('vendor.workshop.create', compact('page_title' ,'data','category'));
+        $categories = Category::get();
+        $countries = Country::all();
+        return view('vendor.workshop.create', compact('page_title' ,'authvendor','categories','countries'));
 
     }
 
@@ -83,6 +85,7 @@ class WorkshopController extends Controller
             $garage->post_box = $request->post_box;
             $garage->save();
             if ($garage) {
+
                 $categories = $request->category;
                 foreach ($categories as $cat) {
                     GarageCategory::create([

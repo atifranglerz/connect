@@ -44,33 +44,45 @@
                     <h3>Active Orders</h3>
                     <a href="{{route('vendor.orders')}}">View All</a>
                 </div>
-                <?php
-                $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
-                $img = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->where('type','image')->oldest()->first();
-                $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
-                ?>
-                <div class="all_quote_card ">
-                    <div class="car_inner_imagg ">
-                        <img src="{{ asset($img->car_image) }}">
-                    </div>
-                    <div class=" w-100  quote_detail_wraper">
-                        <div class="quote_info">
-                            <h3 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})</h3>
-                            <p class="mb-0">{{$userbidid->description1}}</p>
-                            <p >{{$userbidid->phone}}</p>
-                        </div>
-                        <div class="quote_detail_btn_wraper">
-                            <h3 class=" text-sm-center">AED {{$order->total}}</h3>
-                            <div class="d-flex align-items-center chat_view__detail">
-                                <a href="#" class="chat_icon">
-                                    <i class="fa-solid fa-message"></i>
-                                    <!-- <img src="assets/images/meassageiconblk.svg"> -->
-                                </a>
-                                <a href="{{route('vendor.fullfillment',$order->id)}}" class="btn-secondary">VIEW DETAILS</a>
+{{--                <?php--}}
+{{--                $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->firstOrFail();?>--}}
+
+{{--                @if(isset($userbidid))--}}
+{{--                <?php--}}
+{{--                $img = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->where('type','image')->oldest()->first();--}}
+{{--                $company = \App\Models\Company::where('id',$userbidid->company_id)->first();--}}
+{{--                ?>--}}
+{{--                <div class="all_quote_card ">--}}
+{{--                    <div class="car_inner_imagg ">--}}
+{{--                        <img src="{{ asset($img->car_image) }}">--}}
+{{--                    </div>--}}
+{{--                    <div class=" w-100  quote_detail_wraper">--}}
+{{--                        <div class="quote_info">--}}
+{{--                            <h3 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})</h3>--}}
+{{--                            <p class="mb-0">{{$userbidid->description1}}</p>--}}
+{{--                            <p >{{$userbidid->phone}}</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="quote_detail_btn_wraper">--}}
+{{--                            <h3 class=" text-sm-center">AED {{$order->total}}</h3>--}}
+{{--                            <div class="d-flex align-items-center chat_view__detail">--}}
+{{--                                <a href="#" class="chat_icon">--}}
+{{--                                    <i class="fa-solid fa-message"></i>--}}
+{{--                                    <!-- <img src="assets/images/meassageiconblk.svg"> -->--}}
+{{--                                </a>--}}
+{{--                                <a href="{{route('vendor.fullfillment',$order->id)}}" class="btn-secondary">VIEW DETAILS</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                @else--}}
+                    <div class="all_quote_card ">
+                        <div class=" w-100  quote_detail_wraper">
+                            <div class="quote_info">
+                                <p class="mb-0">No Data found !</p>
                             </div>
                         </div>
                     </div>
-                </div>
+{{--                @endif--}}
             </div>
         </div>
 </section>

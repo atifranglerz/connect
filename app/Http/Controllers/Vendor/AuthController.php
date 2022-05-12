@@ -23,14 +23,12 @@ class AuthController extends Controller
     public function register()
     {
         $data['page_title'] = 'Vendor Register';
-        $data['categories'] = Category::all();
         $data['countries'] = Country::all();
         return view('vendor.auth.register', $data);
     }
 
     public function vendorRegister(Request $request)
     {
-//        dd($request->all());
         $request->validate([
             'profile_image' =>'required' ,
             "id_card" =>'required',
@@ -51,6 +49,7 @@ class AuthController extends Controller
             'appointment_number'=>'required',
         ]);
         $role = Role::where('name', 'vendor')->first();
+
         $vendor = new  Vendor();
         if ($request->file('profile_image')) {
             $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('profile_image')->getClientOriginalExtension());
@@ -84,7 +83,7 @@ class AuthController extends Controller
         $vendor->billing_area = $request->billing_area ;
         $vendor->billing_city = $request->billing_city ;
         $vendor->billing_address = $request->billing_address ;
-        $vendor->garages_catagory = $request->garages_catagary ;
+        $vendor->garages_catagory =  implode(', ', $request->garages_catagary);
         $vendor->save();
         $vendor_email = $request->email;
         $data['name'] = $request->name ;
