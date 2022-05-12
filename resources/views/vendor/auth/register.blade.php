@@ -63,8 +63,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <select class="form-select" name="garages_catagary" aria-label="Type of Service">
-                                    <option selected disabled value="">Business Category</option>
+                                <select class="form-select" name="garages_catagary" aria-label="Type of Service" multiple="multiple">
                                     @foreach($categories as $value)
                                         <option value="{{$value->name}}">{{$value->name}}</option>
                                     @endforeach
@@ -80,7 +79,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <select class="form-select" name="country" aria-label="Country">
+                                <select class="form-select form-control" name="country" aria-label="Country">
                                     <option selected disabled value="">Select Country</option>
                                     @foreach($countries as $value)
                                     <option value="{{$value->asciiname}}">{{$value->asciiname}}</option>

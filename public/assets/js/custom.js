@@ -18,6 +18,17 @@ $(function() {
 });
 
 $(function() {
+    /*global Select2*/
+    $('select').select2();
+    $('select[name="country"]').select2({
+        placeholder: 'Select Your Country',
+    });
+    $('select[name="garages_catagary"]').select2({
+        placeholder: 'Select The Services You Offering',
+    });
+    
+    /*global Select2*/
+
     $("#datepicker2").datepicker();
 });
 

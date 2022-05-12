@@ -312,7 +312,7 @@ color: var(--black);
 .form-select:focus{
     border-color: var(--orange);
     outline: 0;
-    box-shadow: 0 0 0 0.25rem var(--orang-mask);
+    box-shadow: 0 0 0 0 var(--orang-mask);
 }
 .search_btn{
     width: 115px;
@@ -322,7 +322,7 @@ color: var(--black);
     font-weight: var(--fw-500);
 }
 .btn-check:focus+.btn, .btn:focus{
-    box-shadow: 0 0 0 0.25rem var(--orang-mask);
+    box-shadow: 0 0 0 0 var(--orang-mask);
 }
 /*............................looking for section style.........................*/
 .looking_for{
@@ -713,7 +713,7 @@ color: var(--black);
 .form-control:focus{
     border-color: var(--orange);
     outline: 0;
-    box-shadow: 0 0 0 0.25rem var(--orang-mask);
+    box-shadow: 0 0 0 0 var(--orang-mask);
 }
 /*pagination*/
 .pagination{
@@ -1101,7 +1101,7 @@ width: 17px;
     z-index: 3;
     border-color: var(--orange);
     outline: 0;
-    box-shadow: 0 0 0 0.25rem var(--orang-mask);
+    box-shadow: 0 0 0 0 var(--orang-mask);
 }
 .accordion-button:not(.collapsed) {
     background-color: var(--paginationbg);
@@ -1366,3 +1366,35 @@ footer{
     overflow: hidden !important;
     text-overflow: ellipsis;
 }
+
+/*global css*/
+body .form-control {
+    border: 2px solid #ced4da;
+}
+body .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: calc(1.3em + .75rem + 5px);
+}
+body .select2-container--default .select2-selection--single .select2-selection__arrow {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+}
+body .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    display: none;
+}
+body span.select2-selection__arrow:after {
+    content: "\f107";
+    font-family: Font Awesome\ 5 Free;
+    font-size: 16px;
+    font-weight: 700;
+}
+body span.select2-selection.select2-selection--single {
+    border: 2px solid #ced4da;
+    height: calc(1.5em + 0.75rem + 5px);
+}
+/*global css*/

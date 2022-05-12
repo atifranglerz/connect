@@ -116,7 +116,7 @@
         }
 
         .form-check-input:focus {
-            box-shadow: 0 0 0 0.25rem var(--orang-mask);
+            box-shadow: 0 0 0 0 var(--orang-mask);
         }
 
         .form-switch .form-check-input:checked {

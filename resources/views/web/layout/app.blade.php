@@ -15,6 +15,7 @@
       <link rel="stylesheet"  asset('public/href="assets}}') /slick-master/slick/slick-theme.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
 
     <title>Repair my Car</title>
@@ -145,7 +146,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ asset('public/assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
-<script src="{{asset('assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
+<script src="{{asset('public/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
+<script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

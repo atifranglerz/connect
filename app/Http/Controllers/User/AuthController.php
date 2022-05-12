@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ForgetPassword;
 use App\Mail\Login;
 use App\Models\User;
+use App\Models\Country;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,8 @@ class AuthController extends Controller
     public function register()
     {
         $page_title = 'User Register';
-        return view('user.auth.register', compact('page_title'));
+        $data['countries'] = Country::all();
+        return view('user.auth.register', $data, compact('page_title'));
     }
 
     public function userRegister(Request $request)
