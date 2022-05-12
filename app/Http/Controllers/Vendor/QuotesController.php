@@ -27,7 +27,7 @@ class QuotesController extends Controller
     public function bidresponse (Request $request)
     {
 
-        $data =  new vendorBid ();
+        $data =  new \App\Models\VendorBid();
         $data->user_bid_id =  $request->bid_id ;
         $data->garage_id =  $request->garage_id ;
         $data->price = $request->price ;

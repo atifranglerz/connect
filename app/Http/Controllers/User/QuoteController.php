@@ -12,7 +12,7 @@ use App\Models\UserBidImage;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\vendorBid ;
+use App\Models\VendorBid ;
 
 class QuoteController extends Controller
 {

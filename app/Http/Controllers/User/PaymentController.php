@@ -12,7 +12,7 @@ class PaymentController extends Controller
     public function index ($id)
     {
         $page_title = "payment";
-        $vendorbid = vendorBid::with('vendordetail')->where('id' ,'=' , $id)->first();
+        $vendorbid = VendorBid::with('vendordetail')->where('id' ,'=' , $id)->first();
         return view('user.payment.payment',compact('page_title','vendorbid'));
     }
     public function store ()

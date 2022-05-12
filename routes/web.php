@@ -181,8 +181,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        Route::get('payment_page/{id}', 'paymentController@index')->name('payment_page');
-        Route::post('payment-info', 'paymentController@payment_info')->name('payment-info');
+        Route::get('payment_page/{id}', 'PaymentController@index')->name('payment_page');
+        Route::post('payment-info', 'PaymentController@payment_info')->name('payment-info');
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
