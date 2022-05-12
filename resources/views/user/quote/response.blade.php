@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="row g-2">
-            @if(count($data) >0)
+            @if(count($data) > 0)
             @foreach($data as $value)
                 <?php
                 $userbid = \App\Models\UserBid::where('id',$value->user_bid_id)->first();

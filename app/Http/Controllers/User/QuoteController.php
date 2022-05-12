@@ -108,18 +108,22 @@ class QuoteController extends Controller
                 $user->save();
             }
         }
-        return $this->message($quote, 'user.quoteindex', 'Bid created  Successfully', 'Bid is not  Create Error');
+        if($request->action == 'all_garage'){
+        return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
+        }else{
+            return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Preffered Garages', 'Quotation has not been sent to all the Preffered Garages');
+        }
     }
 
     public function reply ($id)
     {
-        $data = vendorBid::with('vendordetail')->where('user_bid_id' ,'=' , $id)->get();
+        $data = \App\Models\VendorBid::with('vendordetail')->where('user_bid_id' ,'=' , $id)->get();
         $page_title = 'Qoute Response ';
         return view('user.quote.response', compact('page_title' ,'data' ));
     }
     public function vendorResponse ($id)
     {
-        $data = vendorBid::with('vendordetail')->where('id' ,'=' , $id)->first();
+        $data = \App\Models\VendorBid::with('vendordetail')->where('id' ,'=' , $id)->first();
         $page_title = 'vendor response ';
         return view('user.quote.vendor_reply', compact('page_title','data' ));
     }
