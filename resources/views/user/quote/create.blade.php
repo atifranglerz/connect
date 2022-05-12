@@ -1,13 +1,5 @@
 @extends('user.layout.app')
 @section('content')
-    <style type="text/css">
-        .form-step {
-            display: none;
-        }
-        .form-step-active {
-            display: block;
-        }
-    </style>
 <section class="pb-5 login_content_wraper" style="background-image:url(public/assets/images/gradiantbg.jpg);">
     <div class="container" >
         <div class="row">
@@ -23,29 +15,29 @@
             <div class="col-lg-8 col-md-11  mx-auto">
                 <div class="bid_form_wraper">
                     <div class="row">
-{{--                        <div class="col-lg-8 mx-auto px-5 px-lg-1 ">--}}
-{{--                            <ul class="nav nav-tabs " id="myTab" role="tablist">--}}
-{{--                                <li class="nav-item nav_item_li" role="presentation">--}}
-{{--                                    <button class="nav-link active tab_btns" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"></button>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item nav_item_li" role="presentation">--}}
-{{--                                    <button class="nav-link tab_btns" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"></button>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item nav_item_li" role="presentation">--}}
-{{--                                    <button class="nav-link tab_btns" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item nav_item_li" role="presentation">--}}
-{{--                                    <button class="nav-link tab_btns " id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourthtab" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                            <div class="col-lg-9 mx-auto">--}}
-{{--                                <p class=" request_quote_heading">CAR INFORMATION</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                        <form enctype="multipart/form-data" method="post" action="{{ route('user.quotestore') }}">
+                        <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
+                            <ul class="nav nav-tabs " id="myTab" role="tablist">
+                                <li class="nav-item nav_item_li" role="presentation">
+                                    <button class="nav-link active tab_btns" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"></button>
+                                </li>
+                                <li class="nav-item nav_item_li" role="presentation">
+                                    <button class="nav-link tab_btns" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"></button>
+                                </li>
+                                <li class="nav-item nav_item_li" role="presentation">
+                                    <button class="nav-link tab_btns" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
+                                </li>
+                                <li class="nav-item nav_item_li" role="presentation">
+                                    <button class="nav-link tab_btns " id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourthtab" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
+                                </li>
+                            </ul>
+                            <div class="col-lg-9 mx-auto">
+                                <p class=" request_quote_heading">CAR INFORMATION</p>
+                            </div>
+                        </div>
+                        <form enctype="multipart/form-data" method="post" action="{{ route('user.quotestore') }}"  class="needs-validation" novalidate>
                             @csrf
                             <div class="tab-content" id="myTabContent">
-                                <div class="form-step form-step-active " id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="form-step form-step-active tab-pane fade show active px-lg-3" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" required>
@@ -107,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-step " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="form-step tab-pane fade px-lg-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
                                             <div class="input-images">
@@ -129,7 +121,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-step " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <div class="form-step tab-pane fade px-lg-3" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
                                             <div class="input-images-2" accept="pdf/*" data-type='Pdf'>
@@ -148,13 +140,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-step" id="fourthtab" role="tabpanel" aria-labelledby="fourth-tab">
+                                <div class="form-step tab-pane fade px-lg-3" id="fourthtab" role="tabpanel" aria-labelledby="fourth-tab">
                                     <div class="row g-lg-3 g-2">
-                                        <div class="col-lg-12 mb-3">
+                                        <div class="row g-2 col-lg-12 mb-3">
                                             <div class="input-images-3"></div>
 {{--                                            input field name doucment--}}
                                         </div>
-                                        <div class="row g-lg-3 g-2">
+                                        <div class="row g-2">
                                             <div class="col-lg-6 col-md-6">
                                                 <input type="text" class="form-control"  name="maker_name" placeholder="Name" aria-label="Make" required>
                                                 @error('name')

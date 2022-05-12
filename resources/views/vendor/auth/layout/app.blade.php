@@ -118,12 +118,8 @@
             maxFiles: 1,
         });
         $(".Upload_final_report>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Final Report</p><input type="file" size="60" ></label>');
-
-
         $('.input-images-8').imageUploader({
             maxFiles:1,
-
-
         });
         $(".input-images-8>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{asset('public/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture </p><input name="profile_image" type="file" size="60" ></label> ');
         $('.input-images-9').imageUploader();

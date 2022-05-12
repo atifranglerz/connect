@@ -15,6 +15,7 @@
       <link rel="stylesheet"  asset('public/href="assets}}') /slick-master/slick/slick-theme.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
 
@@ -147,6 +148,7 @@
 <script src="{{ asset('public/assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
 <script src="{{asset('public/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <!-- Sweet Alert -->
@@ -201,6 +203,16 @@
 </script>
 
 <script type="text/javascript">
+    (function ($) {
+        "use strict";
+        $(function () {
+            $('.input-images-signup').imageUploader({
+                maxFiles:1,
+            });
+            $(".input-images-signup>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{asset('public/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture </p><input type="file" size="60" ></label> ');
+        });        
+    });
+
     /*scrolling banner*/
     (function ($) {
         "use strict";

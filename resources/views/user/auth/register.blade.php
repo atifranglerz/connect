@@ -15,10 +15,6 @@
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <div class="input-images-signup"></div>
                                  <label class="img_wraper_label">
-                                  <div class="file_icon_wraper">
-                                    <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
-                                  </div>
-                                  <p class="mb-0">Upload Your Picture To Update</p>
                                   <input type="file"  name="image" size="60" >
                                      @error('image')
                                      <div class="text-danger p-2">{{ $message }}</div>
