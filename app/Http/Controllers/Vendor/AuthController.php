@@ -24,6 +24,7 @@ class AuthController extends Controller
     {
         $data['page_title'] = 'Vendor Register';
         $data['countries'] = Country::all();
+        $data['categories'] = Category::all();
         return view('vendor.auth.register', $data);
     }
 

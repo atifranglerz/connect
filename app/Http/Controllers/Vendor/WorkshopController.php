@@ -37,7 +37,8 @@ class WorkshopController extends Controller
     public function create()
     {
         $page_title = 'WorkShop';
-        return view('vendor.workshop.create', compact('page_title'));
+        $categories = Category::get();
+        return view('vendor.workshop.create',$data, compact('page_title','categories'));
 
     }
 
