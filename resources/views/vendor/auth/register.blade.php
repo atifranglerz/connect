@@ -7,8 +7,7 @@
     </style>
 @endsection
 @section('content')
-    <section class="pb-5 login_content_wraper"
-             style="background-image:url( {{ asset('public/vendor/assets/images/gradiantbg.jpg')}} );">
+    <section class="pb-5 login_content_wraper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-10 mx-auto">
@@ -21,13 +20,6 @@
                             @csrf
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <div class="input-images-8"></div>
-                                <label class="img_wraper_label">
-                                    <div class="file_icon_wraper">
-                                        <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
-                                    </div>
-                                    <p class="mb-0">Upload Your Picture </p>
-                                    <input type="file" name="profile_image" size="60" >
-                                </label>
                                 @error('profile_image')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -35,13 +27,6 @@
 
                             <div class="col-12 mb-3  signup_input_wraper">
                                 <div class="input-images-9"></div>
-                                <label class="img_wraper_label">
-                                    <div class="file_icon_wraper">
-                                        <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
-                                    </div>
-                                    <p class="mb-0">Upload Your ID</p>
-                                    <input type="file" name="id_card" size="60" >
-                                </label>
                                 @error('id_card')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

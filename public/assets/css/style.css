@@ -1404,3 +1404,12 @@ body span.select2-selection.select2-selection--single {
     height: calc(1.5em + 0.75rem + 5px)
 }
 /*global css*/
+
+.login_content_wraper {
+    background-image: url(../images/gradiantbg.jpg)!important;
+}
+@media (max-width: 575px) {
+    .quote_info>p {
+        padding-right: 0;
+    }
+}

@@ -205,13 +205,13 @@
 <script type="text/javascript">
     (function ($) {
         "use strict";
-        $(function () {
+        $(document).ready(function() {
             $('.input-images-signup').imageUploader({
                 maxFiles:1,
             });
             $(".input-images-signup>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{asset('public/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture </p><input type="file" size="60" ></label> ');
         });        
-    });
+    })(jQuery);
 
     /*scrolling banner*/
     (function ($) {

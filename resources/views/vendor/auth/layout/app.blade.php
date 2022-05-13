@@ -40,6 +40,7 @@
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
 <script src="{{asset('public/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
+<script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 
 @yield('script')
