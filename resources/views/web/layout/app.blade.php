@@ -64,7 +64,7 @@
 
                     @else
                     <div class="login_sinup">
-                        <a href="{{ route('register') }}"> <i class="fa fa-briefcase me-2 me-md-1"></i> Rigister Your Garage</a>
+                        <a href="{{route('vendor.register')}}"> <i class="fa fa-briefcase me-2 me-md-1"></i> Register Your Garage</a>
                         <a href="{{ route('loginpage') }}" class="login ms-lg-2">Login</a>
                     </div>
                     @endif

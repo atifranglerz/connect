@@ -26,6 +26,7 @@ class AuthController extends Controller
 
     public function userRegister(Request $request)
     {
+        
         $request->validate([
             'image' => 'required' ,
             'name' => ['required', 'string', 'max:255'],

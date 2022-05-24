@@ -67,4 +67,8 @@ class profileController extends Controller
             return redirect()->back()->with($this->data("Update Password Error", 'error'));
         }
     }
+
+
+
+   
 }

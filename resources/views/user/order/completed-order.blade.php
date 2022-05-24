@@ -121,7 +121,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="d-grid gap-2 mt-lg-3 ">
-                                    <a href="completePayment.php" class="btn btn-secondary block get_appointment" type="button">MARK AS COMPLETE
+                                    <a href="{{url('user/pending-order-update')}}" class="btn btn-secondary block get_appointment" type="button">VIEW INVOICE
                                     </a>
                                 </div>
                             </div>

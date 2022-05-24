@@ -16,6 +16,11 @@ class Garage extends Model
         return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
     }
 
+    public function UserWishlist()
+    {
+        return $this->belongsTo(UserWishlist::class, 'vendor_id', 'id');
+    }
+
     public function garageCategory()
     {
         return $this->hasMany(GarageCategory::class, 'garage_id', 'id');

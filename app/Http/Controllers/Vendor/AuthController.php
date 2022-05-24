@@ -70,7 +70,7 @@ class AuthController extends Controller
             $file3 = 'public/image/ads/' . $doucments3;
             $vendor->trading_license = $file3 ;
         }
-
+        
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->phone = $request->phone;
@@ -85,6 +85,9 @@ class AuthController extends Controller
         $vendor->billing_city = $request->billing_city ;
         $vendor->billing_address = $request->billing_address ;
         $vendor->garages_catagory =  implode(', ', $request->garages_catagary);
+
+        
+
         $vendor->save();
         $vendor_email = $request->email;
         $data['name'] = $request->name ;

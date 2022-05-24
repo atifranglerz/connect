@@ -91,4 +91,9 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function pendingOrderUpdate(){
+
+        return view('user.order.pending-order-update');
+    }
 }

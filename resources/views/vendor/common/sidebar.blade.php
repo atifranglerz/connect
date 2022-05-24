@@ -26,7 +26,7 @@
                 <a href="{{route('vendor.workshop.edit',  Auth::id()  )}}"><img src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>Edit Workshop</span></a>
             </li>
             <li>
-                <a href="{{route('vendor.ads.create')}}"><img src="{{ asset('public/vendor/assets/images/dashsellcaricon.svg') }}"><span>Sell Or Replace Your Car</span></a>
+                <a href="{{route('vendor.ads.create')}}"><img src="{{ asset('public/vendor/assets/images/dashsellcaricon.svg') }}"><span>Sell Your Car</span></a>
             </li>
 
         </ul>

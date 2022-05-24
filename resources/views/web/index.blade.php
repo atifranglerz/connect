@@ -39,7 +39,13 @@
                             <option value="{{$value->id}}">{{$value->name}}</option>
                             @endforeach
                         </select>
-                        <input class="typeahead form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50">
+                        <!-- <input class="typeahead form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50"> -->
+                        <select class="form-select me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="serchfltr">
+                            <option selected disabled value="">Select Garage</option>
+                            @foreach($garage as $value)
+                            <option value="{{$value->id}}">{{$value->garage_name}}</option>
+                            @endforeach
+                        </select>
                         <button class="btn  search_btn" type="submit">SEARCH</button>
                     </form>
                 </div>

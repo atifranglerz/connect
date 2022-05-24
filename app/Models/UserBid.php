@@ -23,5 +23,11 @@ class UserBid extends Model
     {
         return $this->belongsTo(ModelYear::class, 'model_year_id', 'id');
     }
+
+    public function vendorQuote()
+    {
+        return $this->belongsTo(VendorQuote::class);
+        // note: we can also inlcude Mobile model like: 'App\Mobile'
+    }
 }
 

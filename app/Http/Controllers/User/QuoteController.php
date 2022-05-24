@@ -13,7 +13,10 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\VendorBid ;
-
+use App\Models\VendorQuote ;
+use App\Models\Garage ;
+use App\Models\UserWishlist;
+use App\Jobs\SendNotification;
 class QuoteController extends Controller
 {
     public function index()
@@ -60,6 +63,7 @@ class QuoteController extends Controller
         $quote->phone = $request->phone;
         $quote->address = $request->address;
         $quote->save();
+
         // this is car image save
         $imagefiles = new UserBidImage();
         if ($request->file('car_images')) {
@@ -85,7 +89,7 @@ class QuoteController extends Controller
             $registrationfiles->type = 'file' ;
             $registrationfiles->save() ;
         }
-        // this is registration oucment
+        // this is registration doucment
         $accidentailfile = new UserBidImage();
         if ($request->file('doucment')) {
             $files = [];
@@ -104,8 +108,46 @@ class QuoteController extends Controller
                 $user = new UserBidCategory() ;
                 $user->user_bid_id = $quote->id ;
                 $user->category_id = $data ;
+
+
                 $user->save();
+
+            if($request->action == 'all_garage'){
+
+                $vendor_quote=new VendorQuote;
+                $vendor_quote->user_id=Auth()->user()->id;
+                $vendor_quote->user_bit_id=$quote->id;
+                $vendor_quote->save();
+                $SendNotification =new  SendNotification();
+                dispatch($SendNotification);
+            }else{
+
+                $id=Auth()->user()->id;
+                $data=UserWishlist::where('user_id',$id)->with('garage')->get();
+
+
+
+
+                foreach($data as $list_item){
+
+                    $object=new VendorQuote;
+
+
+                    $object->user_id=Auth()->user()->id;
+
+                    $object->user_bit_id=$quote->id;
+
+                    $object->vendor_id=$list_item->garage->vendor_id;
+
+
+                    $object->save();
+
+                }
             }
+
+
+            }
+
         }
         if($request->action == 'all_garage'){
         return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -201,8 +202,10 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
-
-
+  
+        // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
+        Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
+        
     });
 });
 
