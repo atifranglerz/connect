@@ -452,9 +452,6 @@ nav{
     box-shadow: 0 0 0 0 var(--orang-mask);
 }
 /*............................looking for section style.........................*/
-.looking_for{
-    padding: 30px 0;
-}
 .main_content_wraper{
     padding-bottom: 30px;
 }
@@ -476,11 +473,9 @@ nav{
     max-width: 485px;
     /*text-align: center;*/
     margin: auto;
-    line-height: var(--line-height-27);
-
 }
 .img_wraper{
-    height: 275px;
+    height: 225px;
     width: 100%;
     border-radius: 25px;
     position: relative;
@@ -537,7 +532,8 @@ nav{
     font-family:var(--mont);
     text-transform: uppercase;
     border-radius: 5px;
-    padding: 22px 25px;
+    padding: 12px 24px;
+    display: inline-block;
     font-weight: var(--fw-600);
     letter-spacing: 1px;
     position: relative;
@@ -579,10 +575,6 @@ nav{
     line-height: var(--line-height-25);
     text-align: justify;
 }
-.main_content_wraper.about_connect_wraper{
-    /*padding-bottom: 30px;*/
-    padding: 110px 0;
-}
 /*........................................... Top rated vendors ..........................*/
 .card{
     border-radius: 18px;
@@ -619,8 +611,8 @@ nav{
     border-top-right-radius: 18px;
 }
 .card_icons>.icon_wrpaer{
-   width: 22px;
-   height: 22px;
+   width: 18px;
+   height: 18px;
    /*font-size: 12px;*/
    background-color: var(--orange);
    display: flex;
@@ -640,41 +632,6 @@ nav{
    overflow: hidden;
    text-overflow: ellipsis;
 
-}
-.footer_before_sec{
- /*background-size: cover;*/
- /*color: white;*/
- /*padding: 20px;*/
- position: relative;
- background-repeat: no-repeat;
- background-size: 100%;
- background-position: 100% 80%;
- height: 200px; 
- z-index: -1;
- display: flex;
- align-items: center;
- justify-content: center;
-}
-.footer_before_sec:before{
-   content: "";
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   background-color: var(--black);
-   opacity: 0.3;
-   z-index: -1;
-    /* background-image: linear-gradient(to right, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
-    /*background-image:linear-gradient(to right, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));*/
-
-}
-.rigister_heading>h2{
-    color: var(--white);
-    font-family: var(--mont);
-    font-size: var(--fs-28);
-    max-width: 420px;
-    width: 100%;
 }
 .rigister_btn>a{
     color: var(--white);

@@ -32,7 +32,7 @@
         <div class="container-lg container-fluid">
             <a class="navbar-brand" href="{{route('home')}}">
                 <div class="logo_wraper">
-                    <img src="{{ asset('public/assets/images/logo.jpg')}}">
+                    <img src="{{ asset('public/assets/images/repair-my-car-logos/repairmycarlogo.png')}}">
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

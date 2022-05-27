@@ -36,7 +36,7 @@
             <div class="row g-3">
                 @if(count($garages) > 0)
                     @foreach($garages as $value)
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('gerage_detail',$value->id)}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper all_garages">

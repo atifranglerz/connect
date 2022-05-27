@@ -1,6 +1,6 @@
 @extends('web.layout.app')
 @section('content')
-    <section class="banner_section mt-4">
+    <section class="banner_section">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-caption " style="z-index: 1;">
                 <h1>SEARCH AND FIND THE BEST GARAGES FOR YOU</h1>
@@ -54,25 +54,17 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active " aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" ></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
             <div class="carousel-inner">
-
-
                 <div class="carousel-item active">
-                    <img src="{{ asset('public/assets/images/mainbannerimg.png') }}" class="d-block w-100" alt="banner image">
+                    <img src="{{ asset('public/assets/images/cleaning-1837331.jpg') }}" class="d-block w-100" alt="banner image">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('public/assets/images/repair2.jpg') }} " class="d-block w-100" alt="banner image">
+                    <img src="{{ asset('public/assets/images/car-engine-1548434_1920.jpg') }} " class="d-block w-100" alt="banner image">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('public/assets/images/mainbannerimg.png ') }}" class="d-block w-100" alt="banner image">
-
                 </div>
-                <div class="carousel-item ">
-                    <img src="{{ asset('public/assets/images/repair2.jpg ') }}" class="d-block w-100" alt="banner image">
-                </div>
-
             </div>
         </div>
     </section>
@@ -123,7 +115,7 @@
             </div>
             <div class="row g-3">
                 @foreach($ads as $value)
-                <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <a href="{{route('car_detail',$value->id)}}">
                         <div class="card card_vendors shadow">
                             <div class="car_img_wrapper">
@@ -190,7 +182,7 @@
             <div class="row g-3">
                 @if(count($garage) > 0)
                 @foreach($garage as $value)
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('gerage_detail',$value->id)}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -252,7 +244,7 @@
 
             <div class="row g-3">
                 @foreach($news as $value)
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('news_detail',$value->id)}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper latest_news">
@@ -289,7 +281,7 @@
                 </div>
             </div>
             <div class="row g-3">
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -319,7 +311,7 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -348,7 +340,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -377,7 +369,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -406,7 +398,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -435,7 +427,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
@@ -475,7 +467,7 @@
             </div>
         </div>
     </section>
-    <section class="looking_for footer_before_sec" style="background-image: url({{ asset('public/assets/images/repair2.jpg ')}}); ">
+    <section class="looking_for footer_before_sec" style="background-image: url({{ asset('public/assets/images/cleaning-1837331.jpg ')}}); ">
         <div class="container-lg container-fluid">
             <div class="row justify-content-center align-items-center" >
                 <div class="col-lg-6 col-md-8 col-sm-8">

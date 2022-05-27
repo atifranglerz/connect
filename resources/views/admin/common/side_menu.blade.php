@@ -2,7 +2,7 @@
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
 
-            <a href="{{ route('admin.dashboard') }}"> <img alt="image" src="{{ asset('public/assets/images/logo.jpg')}}" class="header-logo"/>
+            <a href="{{ route('admin.dashboard') }}"> <img alt="image" src="{{ asset('public/assets/images/repairmycarlogo.png')}}" class="header-logo"/>
 {{--                <span--}}
 {{--                    class="logo-name">Connect</span>--}}
             </a>

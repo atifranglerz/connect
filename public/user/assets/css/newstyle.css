@@ -214,7 +214,6 @@ $black : #000;
     }
     .sec_main_para{
         font-size: var(--fs-14);
-        line-height: var(--line-height-23);
     }
     .sec_main_heading {
         font-size: var(--fs-16);
@@ -222,10 +221,6 @@ $black : #000;
     }
     .card-title {
         font-size: var(--fs-20);
-    }
-    .card_icons>.icon_wrpaer {
-        width: 20px;
-        height: 20px;
     }
     .rigister_heading>h2 {
         font-size: var(--fs-20);
@@ -618,7 +613,7 @@ label.img_wraper_label>a.skip {
         margin-bottom: 15px;
     }
     .payment_divider:after {
-        height: 275px;
+        height: 225px;
 
     }
     .profile_name_box>.user_icon {

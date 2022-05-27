@@ -102,7 +102,6 @@
 }
 .sec_main_para{
     font-size: var(--fs-14);
-    line-height: var(--line-height-23);
 }
 .sec_main_heading {
     font-size: var(--fs-16);
@@ -112,10 +111,6 @@
 }
 .card-title {
     font-size: var(--fs-16);
-}
-.card_icons>.icon_wrpaer {
-    width: 20px;
-    height: 20px;
 }
 .rigister_heading>h2 {
     font-size: var(--fs-18);
@@ -128,9 +123,6 @@
 }
 .view_all_btn_wrapper {
     margin: 40px 0 0px 0;
-}
-.main_content_wraper.about_connect_wraper {
-    padding: 10px 0;
 }
 .about_connect.bg_img {
     background-size: 592%;
@@ -653,10 +645,6 @@ label.img_wraper_label>.file_icon_wraper {
         width: 16px;
         height: 16px;
         font-size: 9px;
-    }
-    .main_content_wraper.about_connect_wraper {
-        padding: 40px 0;
-
     }
     .banner_btn__sub_wraper>a {
         width: 100px;

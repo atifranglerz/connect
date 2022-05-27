@@ -35,7 +35,7 @@
         <div class="row g-3">
             @if(count($ads) > 0)
                 @foreach($ads as $value)
-            <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <a href="{{route('car_detail',$value->id)}}">
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">

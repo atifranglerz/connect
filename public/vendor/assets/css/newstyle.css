@@ -128,7 +128,6 @@ input.messages_file[type=file] {
     }
     .sec_main_para{
         font-size: var(--fs-14);
-        line-height: var(--line-height-23);
     }
     .sec_main_heading {
         font-size: var(--fs-16);
@@ -136,10 +135,6 @@ input.messages_file[type=file] {
     }
     .card-title {
         font-size: var(--fs-20);
-    }
-    .card_icons>.icon_wrpaer {
-        width: 20px;
-        height: 20px;
     }
     .rigister_heading>h2 {
         font-size: var(--fs-20);

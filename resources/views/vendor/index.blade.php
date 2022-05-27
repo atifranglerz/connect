@@ -19,19 +19,19 @@
                     <!-- <a href="#">View All</a> -->
                 </div>
                 <div class="row g-3">
-                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100 ">
                             <h3>{{$completedOrders}}</h3>
                             <h3 class="orang_dashboard_heading text-center">Completed Orders</h3>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
                             <h3>{{$totalReviews}}</h3>
                             <h3 class="orang_dashboard_heading text-center">Total Reviews</h3>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
                             <h3>{{round($overAllRatings,2)}}</h3>
                             <h3 class="orang_dashboard_heading text-center">Overall Rating</h3>

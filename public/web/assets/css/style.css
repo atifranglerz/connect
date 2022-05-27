@@ -173,8 +173,6 @@ color: var(--black);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 25px;
-
 }
 .preferd_vendors_star{
     position: absolute;
@@ -207,11 +205,9 @@ color: var(--black);
     max-width: 625px;
     width: 100%;
     height: 138px;
-    background-color:rgb(0 0 0 / 33%);
     margin: 0 auto;
     border-radius: 10px;
     padding: 10px 20px;
-    
 }
 .banner_btn_main_wraper>.divider{
     height: 1px;
@@ -325,9 +321,6 @@ color: var(--black);
     box-shadow: 0 0 0 0 var(--orang-mask);
 }
 /*............................looking for section style.........................*/
-.looking_for{
-    padding: 30px 0;
-}
 .main_content_wraper{
     padding-bottom: 30px;
 }
@@ -349,11 +342,9 @@ color: var(--black);
     max-width: 485px;
     /*text-align: center;*/
     margin: auto;
-    line-height: var(--line-height-27);
-
 }
 .img_wraper{
-    height: 275px;
+    height: 225px;
     width: 100%;
     border-radius: 25px;
     position: relative;
@@ -400,8 +391,7 @@ color: var(--black);
     background-color: var(--orang-mask);
 }
 .view_all_btn_wrapper{
-    margin: 60px 0;
-
+    margin: 40px 0;
 }
 .view_all_btn_wrapper>.view_all_btn{
     font-size: var(--fs-16);
@@ -410,7 +400,8 @@ color: var(--black);
    font-family:var(--mont);
     text-transform: uppercase;
     border-radius: 5px;
-    padding: 22px 25px;
+    padding: 12px 24px;
+    display: inline-block;
     font-weight: var(--fw-600);
     letter-spacing: 1px;
     position: relative;
@@ -458,17 +449,13 @@ color: var(--black);
     line-height: var(--line-height-25);
     text-align: justify;
 }
-.main_content_wraper.about_connect_wraper{
-        /*padding-bottom: 30px;*/
-    padding: 110px 0;
-}
 /*........................................... Top rated vendors ..........................*/
 .card{
     border-radius: 18px;
 }
 .card-title{
    font-family:var(--mont);
-    font-size: var(--fs-20);
+    font-size: 18px;
     color: var(--darkgray);
     text-transform: capitalize;
 
@@ -499,8 +486,8 @@ color: var(--black);
     border-top-right-radius: 18px;
 }
 .card_icons>.icon_wrpaer{
-       width: 22px;
-    height: 22px;
+       width: 18px;
+    height: 18px;
     /*font-size: 12px;*/
     background-color: var(--orange);
     display: flex;
@@ -520,38 +507,6 @@ color: var(--black);
     overflow: hidden;
     text-overflow: ellipsis;
 
-}
-.footer_before_sec{
-    position: relative;
-    background-color: #000;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: 100% 80%;
-    height: 200px; 
-    z-index: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.footer_before_sec:before{
-   content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.5;
-    background-color: var(--black);
-    opacity: 0.5;
-}
-.rigister_heading>h2{
-    color: var(--white);
-    font-family: var(--mont);
-    font-size: var(--fs-28);
-    max-width: 420px;
-    width: 100%;
 }
 .rigister_btn>a{
     color: var(--white);
