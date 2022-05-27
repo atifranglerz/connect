@@ -7,6 +7,7 @@
     </style>
 @endsection
 @section('content')
+
     <section class="pb-5 login_content_wraper">
         <div class="container">
             <div class="row">
@@ -36,13 +37,13 @@
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control"  name="name" id="inputName" placeholder="Owner Name">
+                                <input type="text" class="form-control"  name="name" value="{{ old('name') }}" id="inputName" placeholder="Owner Name">
                                 @error('name')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="garage_name" class="form-control" id="inputgarageName" placeholder="Garage Legal Name">
+                                <input type="text" name="garage_name" class="form-control" value="{{old('garage_name')}}" id="inputgarageName" placeholder="Garage Legal Name">
                                 @error('garage_name')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -58,7 +59,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control" id="inputEmail" placeholder="Email">
                                 @error('email')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -67,7 +68,7 @@
                                 <select class="form-select form-control" name="country" aria-label="Country">
                                     <option selected disabled value="">Select Country</option>
                                     @foreach($countries as $value)
-                                        <option value="{{$value->asciiname}}">{{$value->asciiname}}</option>
+                                        <option value="{{$value->asciiname}}" @if(old('country')==$value->asciiname) selected @endif>{{$value->asciiname}}</option>
                                     @endforeach
                                 </select>
                                 @error('country')
@@ -75,19 +76,19 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text"  name="city" class="form-control" id="inputNumber" placeholder="City">
+                                <input type="text"  name="city" class="form-control" value="{{ old('city') }}" id="inputNumber" placeholder="City">
                                 @error('city')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" name="post_box" class="form-control" id="inputNumber" placeholder="P/O Box">
+                                <input type="number" name="post_box" value="{{ old('post_box') }}" class="form-control" id="inputNumber" placeholder="P/O Box">
                                 @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="phone" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="inputNumber" placeholder="Telephone No.">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -102,13 +103,13 @@
                                 <h4 class="mb-0">Legal Info</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="trading_license" class="form-control"  placeholder="Trading License No.">
+                                <input type="text" name="trading_license" value="{{ old('trading_license') }}" class="form-control"  placeholder="Trading License No.">
                                 @error('trading_license')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="vat" class="form-control"  placeholder="VAT Details">
+                                <input type="text" name="vat" value="{{ old('vat') }}" class="form-control"  placeholder="VAT Details">
                                 @error('vat')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -123,13 +124,13 @@
                                         {{--                                            <option selected>Area</option>--}}
                                         {{--                                            <option value="1">2019</option>--}}
                                         {{--                                        </select>--}}
-                                        <input type="text" name="billing_area" class="form-control" placeholder="Billing Area">
+                                        <input type="text" name="billing_area" value="{{ old('billing_area') }}"  class="form-control" placeholder="Billing Area">
                                         @error('billing_area')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-6 ">
-                                        <input type="text"  name="billing_city" class="form-control" placeholder="Billing City">
+                                        <input type="text"  name="billing_city" value="{{ old('billing_city') }}"  class="form-control" placeholder="Billing City">
                                         {{--                                        <select class="form-select" name="billing_city" aria-label="Type of Service">--}}
                                         {{--                                            <option selected>City</option>--}}
                                         {{--                                            <option value="1">2019</option>--}}
@@ -141,7 +142,7 @@
                                 </div>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="billing_address" class="form-control"  placeholder="Address">
+                                <input type="text" name="billing_address" value="{{ old('billing_address') }}" class="form-control"  placeholder="Address">
                             </div>
                             @error('billing_address')
                             <div class="text-danger p-2">{{ $message }}</div>
@@ -150,7 +151,7 @@
                                 <h4 class="mb-0">Add Number For Appointment</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="appointment_number" class="form-control"  placeholder="Telephone No.">
+                                <input type="text" name="appointment_number" value="{{ old('appointment_number') }}" class="form-control"  placeholder="Telephone No.">
                                 @error('appointment_number')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -159,13 +160,13 @@
                                 <h4 class="mb-0">Password</h4>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" name="password" class="form-control" id="inputNumber" placeholder="Password">
+                                <input type="password" name="password" value="{{ old('password') }}" class="form-control" id="inputNumber" placeholder="Password">
                                 @error('password')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" name="conform_password" class="form-control" id="inputNumber" placeholder="Confirm Password">
+                                <input type="password" name="conform_password" value="{{old('conform_password')}}" class="form-control" id="inputNumber" placeholder="Confirm Password">
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">

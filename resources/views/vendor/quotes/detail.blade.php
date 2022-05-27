@@ -281,17 +281,22 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <input type="hidden" name="bid_id" value="{{$data->id}}">
+                                        @error('bid_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <input type="hidden" name="vendor_id" value="{{auth()->id()}}">
+                                        @error('vendor_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <?php $garage = \App\Models\Garage::where('vendor_id',auth()->id())->first();?>
                                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
                                         <input type="number" name="price" class="form-control" placeholder="AED">
+                                        @error('price')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <input type="text"  name="time" class="form-control" placeholder="TimeFrame">
+                                        @error('time')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12 mb-3">
                                         <div class="form-floating">
                                             <textarea class="form-control" name="description" placeholder="Add information in details" id="floatingTextarea2" style="height: 106px"></textarea>
+                                            @error('description')<span class="text-danger">{{$message}}</span>@enderror
                                             <label for="floatingTextarea2">Add Repairing Details</label>
                                         </div>
                                         <div class="col-lg-12 col-md-12">

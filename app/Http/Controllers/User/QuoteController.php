@@ -121,25 +121,13 @@ class QuoteController extends Controller
                 $SendNotification =new  SendNotification();
                 dispatch($SendNotification);
             }else{
-
                 $id=Auth()->user()->id;
                 $data=UserWishlist::where('user_id',$id)->with('garage')->get();
-
-
-
-
                 foreach($data as $list_item){
-
                     $object=new VendorQuote;
-
-
                     $object->user_id=Auth()->user()->id;
-
                     $object->user_bit_id=$quote->id;
-
                     $object->vendor_id=$list_item->garage->vendor_id;
-
-
                     $object->save();
 
                 }

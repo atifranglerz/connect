@@ -21,6 +21,7 @@ class WorkshopController extends Controller
      */
     public function index()
     {
+
         $authvendor = Vendor::find(Auth::id());
         $page_title = 'WorkShop';
         $categories = Category::get();
@@ -36,6 +37,7 @@ class WorkshopController extends Controller
      */
     public function create()
     {
+
         $page_title = 'WorkShop';
         $categories = Category::get();
         return view('vendor.workshop.create',$data, compact('page_title','categories'));
@@ -50,6 +52,7 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'garage_name' => 'required',
             'address' => 'required',
@@ -131,9 +134,11 @@ class WorkshopController extends Controller
      */
     public function edit($id)
     {
+
         $page_title = 'Edit Workshop';
-        $garage = Garage::where('vendor_id', Auth::id())->first();
-        return view('vendor.workshop.edit', compact('page_title', 'garage'));
+        $garage = Garage::where('vendor_id', Auth::id())->with('vendor')->first();
+        $categories=Category::all();
+        return view('vendor.workshop.edit', compact('page_title', 'garage','categories'));
     }
 
     /**

@@ -22,6 +22,7 @@ class AuthController extends Controller
 {
     public function register()
     {
+
         $data['page_title'] = 'Vendor Register';
         $data['countries'] = Country::all();
         $data['categories'] = Category::all();
@@ -30,15 +31,16 @@ class AuthController extends Controller
 
     public function vendorRegister(Request $request)
     {
+
         $request->validate([
             'profile_image' =>'required' ,
             "id_card" =>'required',
             'name' => ['required', 'string', 'max:255'],
             'garage_name'=>'required',
             'garages_catagary'=>'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
-            'country'=>['required','alpha'] ,
-            'city'=> ['required','alpha'] ,
+            'email' => ['required','string', 'email', 'max:255', 'unique:vendors'],
+            'country'=>['required','string'],
+            'city'=> ['required','string'],
             'post_box'=>'required',
             'phone' => ['required'],
             'image_license'=>'required',
@@ -49,6 +51,7 @@ class AuthController extends Controller
             'billing_address'=>'required',
             'appointment_number'=>'required',
         ]);
+
         $role = Role::where('name', 'vendor')->first();
 
         $vendor = new  Vendor();
@@ -68,9 +71,10 @@ class AuthController extends Controller
             $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
             $request->file('image_license')->move('public/image/ads/', $doucments3);
             $file3 = 'public/image/ads/' . $doucments3;
-            $vendor->trading_license = $file3 ;
+            $vendor->image_license= $file3 ;
+
         }
-        
+
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->phone = $request->phone;
@@ -80,14 +84,12 @@ class AuthController extends Controller
         $vendor->post_box = $request->post_box;
         $vendor->appointment_number = $request->appointment_number;
         $vendor->garage_name = $request->garage_name ;
-        $vendor->vat = $request->vat ;
+        $vendor->vat = $request->vat;
         $vendor->billing_area = $request->billing_area ;
         $vendor->billing_city = $request->billing_city ;
         $vendor->billing_address = $request->billing_address ;
-        $vendor->garages_catagory =  implode(', ', $request->garages_catagary);
-
-        
-
+        $vendor->garages_catagory=implode(', ',$request->garages_catagary);
+        $vendor->trading_license=$request->trading_license;
         $vendor->save();
         $vendor_email = $request->email;
         $data['name'] = $request->name ;

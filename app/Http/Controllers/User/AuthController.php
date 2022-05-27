@@ -26,12 +26,12 @@ class AuthController extends Controller
 
     public function userRegister(Request $request)
     {
-        
+
         $request->validate([
-            'image' => 'required' ,
+            'images' => 'required' ,
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
-            'country'=>['required','alpha'] ,
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'country'=>['required'] ,
             'city'=> ['required','alpha'] ,
             'post_box'=>'required',
             'address'=>'required',
@@ -40,11 +40,19 @@ class AuthController extends Controller
         ]);
         $role = Role::where('name', 'user')->first();
         $user = new  User();
-        if ($request->file('image')) {
-            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/user/', $doucments);
-            $file = 'public/image/user/' . $doucments;
-            $user->image = $file ;
+        if ($request->file('images')) {
+//            $file =$request->file('images');
+//            $extension = $file->getClientOriginalExtension(); // getting image extension
+//            $filename = time().'.' . $extension;
+//            $request->file('images')->move('public/image/user/', $filename);
+//            $file = 'public/image/user/' . $filename;
+//            $user->image = $file ;
+            foreach($request->file('images') as $image)
+            {
+                $name=time().'.' . $image->getClientOriginalExtension();
+                $name=$image->move('public/image/user/', $name);
+                $user['image']=$name;
+            }
         }
         $user->name = $request->name;
         $user->city = $request->city;

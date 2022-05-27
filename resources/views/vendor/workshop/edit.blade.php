@@ -92,11 +92,20 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
+
+
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
-                                                <select class="form-select" name="category[]" multiple aria-label="Type of Service">
-                                                    @foreach($garage->garageCategory as $data)
-                                                        <option value="{{$data->category->id }}">{{$data->category->name}}</option>
+                                                <select class="form-select form-control offer-garage-services" name="category[]" multiple aria-label="Type of Service">
+                                                    @php
+
+                                                        $selectedcategory=explode(',',$garage->vendor->garages_catagory);
+                                                        $categoryCounter=count($selectedcategory);
+                                                    @endphp
+                                                    @for($i=0;$i<$categoryCounter;$i++)
+                                                    @foreach($categories as $data)
+                                                        <option value="{{$data->name}}" @if($data->name==$selectedcategory[$i]) selected @endif>{{$data->name}}</option>
                                                     @endforeach
+                                                    @endfor
                                                 </select>
                                                 @error('category')
                                                 <div class="text-danger p-2">{{ $message }}</div>

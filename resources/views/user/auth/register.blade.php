@@ -22,28 +22,29 @@
                                 </label>
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control"  name="name" id="inputName" placeholder="Full Name">
+                                <input type="text" class="form-control"  name="name" value="{{ old('name') }}" id="inputName" placeholder="Full Name">
                                 @error('name')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" name="phone" id="inputNumber" placeholder="Mobile Number">
+                                <input type="number" class="form-control" name="phone" value="{{ old('phone') }}" id="inputNumber" placeholder="Mobile Number">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="inputEmail" placeholder="Email">
                                 @error('email')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select form-control" name="country" aria-label="Country">
                                     <option selected disabled value="">Select Country</option>
                                     @foreach($countries as $value)
-                                    <option value="{{$value->asciiname}}">{{$value->asciiname}}</option>
+                                    <option value="{{$value->asciiname}}" @if(old('country')==$value->asciiname) selected @endif>{{$value->asciiname}}</option>
                                     @endforeach
                                 </select>
                                 @error('country')
@@ -51,19 +52,19 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" name="city" id="inputNumber" placeholder="City">
+                                <input type="text" class="form-control" name="city" value="{{ old('city') }}" id="inputNumber" placeholder="City">
                                 @error('city')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" name="address" id="inputNumber" placeholder="Address">
+                                <input type="text" class="form-control" name="address" value="{{ old('address') }}" id="inputNumber" placeholder="Address">
                                 @error('address')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control"  name="post_box" id="inputNumber" placeholder="P/O Box">
+                                <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}"  id="inputNumber" placeholder="P/O Box">
                                 @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

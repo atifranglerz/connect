@@ -22,6 +22,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
+
         $data['page_title']  = "home" ;
         $data['services'] = Category::limit(8)->latest()->get();
         $data['news'] = News::limit(6)->latest()->get();
@@ -33,7 +34,8 @@ class HomepageController extends Controller
     public function carService()
     {
         $data['page_title']  = "carservice Page" ;
-        $data['services'] = Category::all();
+        $data['services'] = Category::latest()->get();
+
         return view('web.car_service', $data);
     }
 
@@ -42,6 +44,7 @@ class HomepageController extends Controller
         $data['page_title']  = 'vendors by service';
         $garage_category = GarageCategory::where('category_id',$id)->distinct()->pluck('garage_id');
         $data['garages'] = Garage::whereIn('id',$garage_category)->get();
+
 
         return view('web.vendorlistbyservice', $data);
     }

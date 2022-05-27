@@ -35,6 +35,7 @@ class CreateVendorsTable extends Migration
             $table->string('garage_name');
             $table->string('garages_catagory');
             $table->string('trading_license');
+            $table->string('image_license')->nullable();
             $table->string('vat');
             $table->string('billing_area');
             $table->string('billing_city');
