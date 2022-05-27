@@ -71,8 +71,11 @@
                                             endif;
                                             else:
                                             $percent_from_user = $monthlyAdmin - $previousMonthlyAdmin;
-                                            $user = $percent_from_user / $previousMonthlyAdmin * 100;?>
-                                            <p class="mb-0"><span class="col-orange">{{$user}}%</span> Decrease</p><?php
+                                            if($percent_from_user>0){
+                                            $user = $percent_from_user / $previousMonthlyAdmin * 100;
+                                            }
+                                            ?>
+                                            <p class="mb-0"><span class="col-orange">@if(isset($user))?{{$user}}%:'' @endif</span>  Decrease</p><?php
                                             endif;
                                             ?>
                                         </div>
