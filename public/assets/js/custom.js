@@ -23,7 +23,7 @@ $(function() {
     $('select[name="country"]').select2({
         placeholder: 'Select Your Country',
     });
-    $('.company-name-field').select2(
+    $('.company-name-field').select2({
         placeholder: 'Select Company',
     });
     $('.model-year-field').select2({
