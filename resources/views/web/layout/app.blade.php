@@ -81,7 +81,7 @@
                 <div class="footer_link">
                     <h1>LINKS</h1>
                     <ul>
-                        <li><a href="{{ route('register') }}">Rigister your business</a></li>
+                        <li><a href="{{ route('register') }}">Register your business</a></li>
                         <li><a href="{{route('about')}}">About Us</a></li>
                         <li><a href="{{route('term')}}">Terms & Conditions</a></li>
                     </ul>

@@ -123,11 +123,10 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h5 class="card-title ">{{ $value->model }}</h5>
-                                    <h5 class="card-title ">{{ modelYear($value->model_year_id)}}</h5>
+                                    <h5 class="card-title block-head-txt">{{ $value->model }}</h5>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h5 class="card-title price mb-0 ">Price : {{ $value->price }}</h5>
+                                    <h5 class="card-title price mb-0 ">Price : AED {{ $value->price }}</h5>
                                     <h5 class="card-title location mb-0 ">{{ $value->address }}</h5>
                                 </div>
                             </div>
@@ -251,7 +250,7 @@
                                 <img src="{{ $value->image }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body px-lg-4 px-sm-2">
-                                <p class="card-title date ">{{$value->created_at}}Jan 1, 2022</p>
+                                <p class="card-title date ">{{$value->created_at}} Jan 1, 2022</p>
                                 <p class="sec_main_para car_text ">{{$value->title}}</p>
                             </div>
                         </div>
@@ -285,10 +284,10 @@
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair2.jpg') }}" class="card-img-top" alt="Car image">
+                                <img src="{{ asset('public/assets/images/lambo-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">Suzuki repairs</h5>
+                                <h5 class="card-title text-center block-head-txt">BEST LAMBORGHINI SERVICE</h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -315,10 +314,10 @@
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair1.jpg') }}" class="card-img-top" alt="Car image">
+                                <img src="{{ asset('public/assets/images/rolls-royce-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">mehran repairs</h5>
+                                <h5 class="card-title text-center  block-head-txt">BEST ROLLS ROYCE SERVICE</h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -344,10 +343,10 @@
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair3.jpg') }}" class="card-img-top" alt="Car image">
+                                <img src="{{ asset('public/assets/images/mclaren-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">cultus repairs</h5>
+                                <h5 class="card-title text-center  block-head-txt">MCLAREN SERVICE CENTER</h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -373,68 +372,10 @@
                     <a href="{{route('vendorlist')}}">
                         <div class="card card_vendors shadow" >
                             <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair4.jpg') }}" class="card-img-top" alt="Car image">
+                                <img src="{{ asset('public/assets/images/porche.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">civic repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair5.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">city repairs</h5>
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-                                    </div>
-                                    <div class="icon_wrpaer">
-                                        <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-4">
-                    <a href="{{route('vendorlist')}}">
-                        <div class="card card_vendors shadow" >
-                            <div class="car_img_wrapper">
-                                <img src="{{ asset('public/assets/images/repair6.jpg') }}" class="card-img-top" alt="Car image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">grande repairs</h5>
+                                <h5 class="card-title text-center  block-head-txt">Porsche Car Repair</h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -467,7 +408,7 @@
             </div>
         </div>
     </section>
-    <section class="looking_for footer_before_sec" style="background-image: url({{ asset('public/assets/images/cleaning-1837331.jpg ')}}); ">
+    <section class="mb-0 looking_for footer_before_sec" style="background-image: url({{ asset('public/assets/images/cleaning-1837331.jpg ')}}); ">
         <div class="container-lg container-fluid">
             <div class="row justify-content-center align-items-center" >
                 <div class="col-lg-6 col-md-8 col-sm-8">
