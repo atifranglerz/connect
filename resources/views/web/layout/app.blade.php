@@ -153,6 +153,7 @@
 <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
+@yield('script')
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
