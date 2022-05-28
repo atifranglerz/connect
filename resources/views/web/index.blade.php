@@ -33,14 +33,14 @@
                 </div>
                 <div class="banner_search_box_wraper">
                     <form action="{{route('search_service')}}" class="d-flex banner_form">
-                        <select class="form-select me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="serchfltr">
+                        <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="selCatFilter">
                             <option selected disabled value="">Select category</option>
                             @foreach($services as $value)
                             <option value="{{$value->id}}">{{$value->name}}</option>
                             @endforeach
                         </select>
-                        <!-- <input class="typeahead form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50"> -->
-                        <select class="form-select me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="serchfltr">
+                        <!-- <input class="typeahead form-control form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50"> -->
+                        <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="selGarFilter">
                             <option selected disabled value="">Select Garage</option>
                             @foreach($garage as $value)
                             <option value="{{$value->id}}">{{$value->garage_name}}</option>
@@ -57,13 +57,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
+                    <img src="{{ asset('public/assets/images/mainbannerimg.png ') }}" class="d-block w-100" alt="banner image">
+                </div>
+                <div class="carousel-item">
                     <img src="{{ asset('public/assets/images/cleaning-1837331.jpg') }}" class="d-block w-100" alt="banner image">
                 </div>
-                <div class="carousel-item ">
+                <div class="carousel-item">
                     <img src="{{ asset('public/assets/images/car-engine-1548434_1920.jpg') }} " class="d-block w-100" alt="banner image">
-                </div>
-                <div class="carousel-item ">
-                    <img src="{{ asset('public/assets/images/mainbannerimg.png ') }}" class="d-block w-100" alt="banner image">
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12  ">
                     <div class="main_content_wraper about_connect_wraper">
-                        <h1 class="sec_main_heading about_connect_heading mb-4">about connect</h1>
+                        <h1 class="sec_main_heading about_connect_heading mb-4">Repair My Car</h1>
                         <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
                         <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
 
