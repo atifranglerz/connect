@@ -182,16 +182,20 @@ nav{
 }
 #TopProfile.notification_tooltip>ul.notification_list>li>a{
     font-size: var(--fs-14);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
 }
 #TopProfile.notification_tooltip>ul.notification_list>li>a:hover{
     color: var(--black);
 }
 #TopProfile>.notification_list{
-        width: 138px;
-    height: 72px;
+    width: 138px;
+    height: 100%;
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list{
-    padding: 12px;
+    padding: 4px 8px;
     list-style-type: none;
     width: 280px;
     height: 155px;
@@ -231,20 +235,9 @@ nav{
 
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a>i{
-    color: var(--white);
-    background-color: var(--black);
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
+    color: var(--orange);
     font-size: var(--fs-17);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    order: 2;
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a:hover{
     color: var(--black);
@@ -1628,6 +1621,9 @@ ul.sidebar_navcigation{
 ul.sidebar_navcigation>li{
     border-bottom: 2px solid var(--white);
     padding: 10px 0 5px 0;
+}
+ul.sidebar_navcigation>li:last-child {
+    border-bottom: none;
 }
 ul.sidebar_navcigation>li>a{
     color: var(--orange);

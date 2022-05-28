@@ -25,7 +25,7 @@ class HomepageController extends Controller
 
         $data['page_title']  = "home" ;
         $data['services'] = Category::limit(8)->latest()->get();
-        $data['news'] = News::limit(8)->latest()->get();
+        $data['news'] = News::limit(4)->latest()->get();
         $data['ads'] = Ads::limit(8)->latest()->get();
         $data['garage'] = Garage::limit(8)->latest()->get();
 

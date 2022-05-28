@@ -413,7 +413,7 @@
             <div class="row justify-content-center align-items-center" >
                 <div class="col-lg-6 col-md-8 col-sm-8">
                     <div class="rigister_heading">
-                        <h2>REGISTER YOUR WORKSHOP OR STORE NOW</h2>
+                        <h2>REGISTER YOUR GARAGE/WORKSHOP</h2>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-1 col-sm-1"></div>
