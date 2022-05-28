@@ -156,6 +156,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
         Route::post('bidresponse', 'QuotesController@bidresponse')->name('bidresponse');
+        Route::get('my-bids', 'BidController@getBids')->name('my-bids');
+        Route::get('bid-details/{id}', 'BidController@bidDetails')->name('bid-details');
         Route::resource('ads', 'AdsController');
         Route::resource('used_car', 'UsedCarController');
         Route::resource('workshop', 'WorkshopController');
@@ -202,10 +204,10 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
-  
+
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
-        
+
     });
 });
 

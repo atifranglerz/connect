@@ -67,9 +67,9 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select form-control" name="country" aria-label="Country">
                                     <option selected disabled value="">Select Country</option>
-                                    @foreach($countries as $value)
-                                        <option value="{{$value->asciiname}}" @if(old('country')==$value->asciiname) selected @endif>{{$value->asciiname}}</option>
-                                    @endforeach
+
+                                        <option value="United Arab Emirates" @if(old('country')=='United Arab Emirates') selected @endif>United Arab Emirates</option>
+
                                 </select>
                                 @error('country')
                                 <div class="text-danger p-2">{{ $message }}</div>

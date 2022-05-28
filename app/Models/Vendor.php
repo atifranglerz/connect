@@ -53,8 +53,11 @@ class Vendor extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     protected $with =[
         'roles',
     ];
+    public function garage()
+    {
+        return $this->HasOne(Garage::class, 'vendor_id', 'id');
+    }
 }
