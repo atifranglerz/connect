@@ -1,4 +1,4 @@
-@extends('vendor.auth.layout.app')
+@extends('web.layout.app')
 @section('content')
     <section class="section">
         <div class="container mt-5">

@@ -288,13 +288,6 @@
 .preferd_vendors_star>img{
     width: 60px;
 }
-label.img_wraper_label>.file_icon_wraper {
-
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
-    
-}
 label.img_wraper_label>p {
     font-size: var(--fs-14);
     
@@ -575,11 +568,7 @@ p{
     width: 252px;
     height: 180px;
 }
-label.img_wraper_label>.file_icon_wraper {
-    background-color: var(--black);
-    width: 50px;
-    height: 50px;
-}
+
 
 
 
@@ -593,11 +582,6 @@ label.img_wraper_label>.file_icon_wraper {
 .image-uploader .uploaded .uploaded-image {
     width: calc(32% - 0.4rem) !important;
     padding-bottom: calc(32% - 0.4rem)!important;
-}
-label.img_wraper_label>.file_icon_wraper {
-    background-color: var(--black);
-    width: 47px;
-    height: 47px;
 }
     .login_link_heading {
     font-size: var(--fs-20);

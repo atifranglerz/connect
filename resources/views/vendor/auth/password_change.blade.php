@@ -1,4 +1,4 @@
-@extends('vendor.auth.layout.app')
+@extends('web.layout.app')
 @section('content')
 <section class="pb-5 login_content_wraper" style="background-image:url(public/assets/images/gradiantbg.jpg);min-height: 100vh">
     <div class="container" >

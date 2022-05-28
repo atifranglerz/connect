@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/inter.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/style.css') }} ">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/newstyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/vendor/assets/css/style.css')}} ">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/vendor/assets/css/newstyle.css')}}">
     <!-- <link rel="stylesheet" asset('public/href="assets}}') /slick-master/slick/slick.css">
       <link rel="stylesheet"  asset('public/href="assets}}') /slick-master/slick/slick-theme.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
@@ -81,9 +83,9 @@
                 <div class="footer_link">
                     <h1>LINKS</h1>
                     <ul>
-                        <li><a href="{{ route('register') }}">Register your business</a></li>
-                        <li><a href="{{route('about')}}">About Us</a></li>
-                        <li><a href="{{route('term')}}">Terms & Conditions</a></li>
+                        <li><a href="{{ route('register') }}"><span class="fa fa-briefcase me-2 me-md-1" style="margin-right: 8px"></span>Register your business</a></li>
+                        <li><a href="{{route('about')}}"><span class="fa fa-info-circle me-2 me-md-1" style="margin-right: 8px"></span>About Us</a></li>
+                        <li><a href="{{route('term')}}"><span class="fa fa-pencil-square" style="margin-right: 8px"></span>Terms & Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -91,9 +93,9 @@
                 <div class="footer_link">
                     <h1>LINKS</h1>
                     <ul>
-                        <li><a href="{{route('privacy_policy')}}">Privicy Policy</a></li>
-                        <li><a href="{{route('news')}}">News</a></li>
-                        <li><a href="{{route('faq')}}">FAQ </a></li>
+                        <li><a href="{{route('privacy_policy')}}"><span class="fa fa-lock" style="margin-right: 8px"></span>Privicy Policy</a></li>
+                        <li><a href="{{route('news')}}"><span class="fa fa-newspaper" style="margin-right: 8px" aria-hidden="true"></span>News</a></li>
+                        <li><a href="{{route('faq')}}"><span class="fa fa-question-circle" style="margin-right: 8px" aria-hidden="true"></span>FAQ </a></li>
                     </ul>
                 </div>
             </div>

@@ -358,7 +358,7 @@ nav{
 .sec_main_heading{
     text-transform: uppercase;
     color: var(--orange);
-    font-size: var(--fs-28);
+    font-size: var(--fs-24);
 }
 .sec_main_heading.about_connect_heading{
     text-transform: capitalize;
@@ -1208,13 +1208,13 @@ p.card-text.sing_up_card_txt{
     box-shadow: 0 0 0 0.25rem #00000080 !important;
 }
 .login_link_heading{
-        font-size: var(--fs-22);
+    font-size: var(--fs-20);
     color: var(--darkgray);
     font-weight: var(--fw-700);
 }
 .login_link_heading>a{
     color: var(--orange);
-    font-size: var(--fs-24);
+    font-size: var(--fs-20);
 }
 .sing_up_header{
     position: sticky;
@@ -1260,8 +1260,8 @@ label.img_wraper_label>p{
 }
 label.img_wraper_label>.file_icon_wraper{
     background-color: var(--gray);
-    width: 64px;
-    height: 64px;
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1327,7 +1327,6 @@ footer{
 }
 .footer_link>ul>li>a:hover{
     color: var(--black);
-    padding-left: 10px;
     transition: all 0.3s ease-in-out;
 }
 .social_icons{
@@ -1381,7 +1380,7 @@ footer{
     display: none !important;
 }
 .image-uploader{
-    min-height:4rem !important;
+    min-height:3rem !important;
     border-radius:10px !important;
 }
 .image-uploader .upload-text{

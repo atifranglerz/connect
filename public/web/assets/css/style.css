@@ -1117,16 +1117,6 @@ label.img_wraper_label>p{
     font-size: var(--fs-16);
     padding-left: 15px;
 }
-label.img_wraper_label>.file_icon_wraper{
-    background-color: var(--black);
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    
-     }
 label.img_wraper_label>input[type="file"] {
     display: none;
 }

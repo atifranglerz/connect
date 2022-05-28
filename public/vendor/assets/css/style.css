@@ -1,71 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-/*@font-face { font-family: 'Exo black'; src: url('fonts/Exo/Exo-Black.ttf');}
-*/
-
-:root {
-    --san:'Open Sans', sans-serif;
-    --mont:'Montserrat', sans-serif;;
-    --roboto:'Roboto', sans-serif;;
-    --fs-12: 12px;
-    --fs-13: 13px;
-    --fs-14: 14px;
-    --fs-15: 15px;
-    --fs-16: 16px;
-    --fs-17: 17px;
-    --fs-18: 18px;
-    --fs-19: 19px;
-    --fs-20: 20px;
-    --fs-21: 21px;
-    --fs-22: 22px;
-    --fs-23: 23px;
-    --fs-24: 24px;
-    --fs-25: 25px;
-    --fs-27: 27px;
-    --fs-28: 28px;
-    --fs-29: 29px;
-    --fs-30: 30px;
-    --fs-31: 31px;
-    --fs-32: 32px;
-    --fs-34: 34px;
-    --fs-40: 40px;
-    --fs-43: 43px;
-    --fs-47: 47px;
-    --fs-57: 57px;
-    --fs-60: 60px;
-    --fs-75: 75px;
-    --fw-100: 100;
-    --fw-200: 200;
-    --fw-300: 300;
-    --fw-400: 400;
-    --fw-500: 500;
-    --fw-600: 600;
-    --fw-700: 700;
-    --line-height-18: 18px;
-    --line-height-23: 23px;
-    --line-height-25: 25px;
-    --line-height-26: 26px;
-    --line-height-27: 27px;
-    --line-height-29: 29px;
-    --line-height-30: 30px;
-    --line-height-35: 35px;
-    --line-height-40: 40px;
-    --white: #ffffff;
-    --black: #000;
-    --gray: #a9a9a9;
-    --darkgray:#243447;
-    --exra-darkgary: #243447;
-    --lightgray:#f6f6f6;
-    --orange:#D5A338;
-    --black-mask:rgba(62,69,81,.3);
-    --orang-mask:#a5761285;
-    --shaodw-search: 0px 3px 6px #00000029;
-    --paginationbg:#FBFBFB;
-    --dark-border: #939393;
-    --light-border: #E9E9E9;
-    --light-gray-tranparent: #a9a9a98c;
-    --light-white:  #FBFBFB;
-}
-
 a{
 	text-decoration: none;
     color: var(--black)
@@ -176,10 +108,6 @@ nav{
 }
 #TopProfile.notification_tooltip>ul.notification_list>li>a{
     font-size: var(--fs-14);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 0;
 }
 #TopProfile.notification_tooltip>ul.notification_list>li>a:hover{
     color: var(--black);
@@ -187,12 +115,13 @@ nav{
 #TopProfile>.notification_list{
     width: 138px;
     height: 100%;
+    padding: 0 8px;
 }
 /*.login_sinup>.accoutntData>.notification_tooltip{
     display: none;
 }*/
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list{
-    padding: 4px 8px;
+    padding: 12px;
     list-style-type: none;
     width: 280px;
     height: 155px;
@@ -246,6 +175,24 @@ nav{
     align-items: center;
     justify-content: center;
 }
+.login_sinup>.accoutntData>#Logout_Profile+.notification_tooltip>ul.notification_list>li>a>i {
+    color: var(--orange);
+    font-size: var(--fs-17);
+    order: 2;
+    position: unset;
+    background-color: unset;
+    width: unset;
+    height: unset;
+    border-radius: unset;
+    transform: translate(0);
+    display: unset;
+}
+#Logout_Profile+#TopProfile.notification_tooltip>ul.notification_list>li>a {
+    font-size: var(--fs-14);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a:hover{
     color: var(--black);
@@ -1242,16 +1189,6 @@ label.img_wraper_label>p{
     color: var(--orange);
     font-size: var(--fs-16);
     padding-left: 15px;
-}
-label.img_wraper_label>.file_icon_wraper{
-    background-color: var(--black);
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    
 }
 label.img_wraper_label>input[type="file"] {
     display: none;

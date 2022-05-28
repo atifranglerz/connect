@@ -581,8 +581,8 @@ p{
 }
 label.img_wraper_label>.file_icon_wraper {
     background-color: var(--black);
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
 }
 
 
@@ -600,8 +600,8 @@ label.img_wraper_label>.file_icon_wraper {
 }
 label.img_wraper_label>.file_icon_wraper {
     background-color: var(--black);
-    width: 47px;
-    height: 47px;
+    width: 46px;
+    height: 46px;
 }
     .login_link_heading {
     font-size: var(--fs-20);

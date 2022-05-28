@@ -1,4 +1,4 @@
-@extends('vendor.auth.layout.app')
+@extends('web.layout.app')
 @section('style')
     <style type="text/css">
         .login_sinup {
