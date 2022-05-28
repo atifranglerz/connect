@@ -30,7 +30,10 @@ class Garage extends Model
     {
         return $this->hasMany(GarageTiming::class, 'garage_id', 'id');
     }
-
+    public function garageBids()
+    {
+        return $this->hasMany(VendorBid::class, 'garage_id', 'id');
+    }
 
 
 }

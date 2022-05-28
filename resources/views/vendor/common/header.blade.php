@@ -35,7 +35,7 @@
                         <a class="nav-link " href="{{ route('vendor.ads.index') }}">My Ads Listing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('vendor.quoteindex')}}">My Bids</a>
+                        <a class="nav-link " href="{{url('vendor/my-bids')}}">My Bids</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('vendor.orders') }}">Orders</a>

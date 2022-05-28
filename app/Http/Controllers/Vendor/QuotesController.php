@@ -20,6 +20,8 @@ class QuotesController extends Controller
         $data['page_title'] = 'index ';
         $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->get();
         $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->get();
+
+
         return view('vendor.quotes.index', $data);
     }
     public function quotedetail ($id)
@@ -38,12 +40,15 @@ class QuotesController extends Controller
             'time'=>'required',
             'description'=>'required',
         ]);
+
         $data =  new \App\Models\VendorBid();
         $data->user_bid_id =  $request->bid_id ;
         $data->garage_id =  $request->garage_id ;
         $data->price = $request->price ;
         $data->time = $request->time ;
         $data->description = $request->description ;
+
+
         $data->save();
         return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
     }
