@@ -10,7 +10,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row ">
             <div class="col-lg-8 col-md-11  mx-auto">
                 <div class="bid_form_wraper">
@@ -47,7 +46,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                                 <select class="form-select form-control company-name-field" name="company_id" aria-label="Type of Service" required>
-                                                    <option value=""></option>    
+                                                    <option value=""></option>
                                                     @foreach($company as $data)
                                                         <option value="{{$data->id }}">{{$data->company }}</option>
                                                     @endforeach

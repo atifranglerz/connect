@@ -67,20 +67,26 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select form-control" name="country" aria-label="Country">
                                     <option selected disabled value="">Select Country</option>
-
                                         <option value="United Arab Emirates" @if(old('country')=='United Arab Emirates') selected @endif>United Arab Emirates</option>
-
                                 </select>
                                 @error('country')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text"  name="city" class="form-control" value="{{ old('city') }}" id="inputNumber" placeholder="City">
+                                <select class="form-select form-control" name="city" aria-label="City">
+                                    <option selected disabled value="">Select City</option>
+                                    <option value="Dubai" @if(old('city')=='Dubai') selected @endif>Dubai</option>
+                                    <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>Abu Dhabi</option>
+                                    <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>Sharjah</option>
+                                    <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
+                                    <option value="Ajman" @if(old('city')=='Ajman') selected @endif>Ajman</option>
+                                </select>
                                 @error('city')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="number" name="post_box" value="{{ old('post_box') }}" class="form-control" id="inputNumber" placeholder="P/O Box">
                                 @error('post_box')
@@ -143,10 +149,11 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="billing_address" value="{{ old('billing_address') }}" class="form-control"  placeholder="Address">
+                                @error('billing_address')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('billing_address')
-                            <div class="text-danger p-2">{{ $message }}</div>
-                            @enderror
+
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h4 class="mb-0">Add Number For Appointment</h4>
                             </div>

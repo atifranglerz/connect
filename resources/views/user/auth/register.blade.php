@@ -43,16 +43,21 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select form-control" name="country" aria-label="Country">
                                     <option selected disabled value="">Select Country</option>
-                                    @foreach($countries as $value)
-                                    <option value="{{$value->asciiname}}" @if(old('country')==$value->asciiname) selected @endif>{{$value->asciiname}}</option>
-                                    @endforeach
+                                    <option value="United Arab Emirates" @if(old('country')=='United Arab Emirates') selected @endif>United Arab Emirates</option>
                                 </select>
                                 @error('country')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" name="city" value="{{ old('city') }}" id="inputNumber" placeholder="City">
+                                <select class="form-select form-control" name="city" aria-label="City">
+                                    <option selected disabled value="">Select City</option>
+                                    <option value="Dubai" @if(old('city')=='Dubai') selected @endif>Dubai</option>
+                                    <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>Abu Dhabi</option>
+                                    <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>Sharjah</option>
+                                    <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
+                                    <option value="Ajman" @if(old('city')=='Ajman') selected @endif>Ajman</option>
+                                </select>
                                 @error('city')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

@@ -23,6 +23,9 @@ $(function() {
     $('select[name="country"]').select2({
         placeholder: 'Select Your Country',
     });
+    $('select[name="city"]').select2({
+        placeholder: 'Select Your City',
+    });
     $('.company-name-field').select2({
         placeholder: 'Select Company',
     });
