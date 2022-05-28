@@ -93,9 +93,10 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
+
                                                 <select class="form-select form-control offer-garage-services" name="category[]" multiple aria-label="Type of Service">
                                                     @foreach($categories as $data1)
-                                                        <option value="{{$data1->name }}"  @if(in_array($data1->name, explode(",", $authvendor->garages_catagory))) selected @endif>{{$data1->name }}</option>
+                                                        <option value="{{$data1->id}}"  @if(in_array($data1->name, explode(",", $authvendor->garages_catagory))) selected @endif>{{$data1->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category')
@@ -157,6 +158,9 @@
                                                 <div class="form-floating">
                                                     <textarea class="form-control"  name="description" placeholder="Add information in details" id="floatingTextarea2" style="height: 106px"></textarea>
                                                     <label for="floatingTextarea2">Add overview in detail</label>
+                                                    @error('description')
+                                                    <div class="text-danger p-2">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
