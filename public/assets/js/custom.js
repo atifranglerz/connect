@@ -3,6 +3,72 @@ var content = "";
 $(".select__input > input").on("click", function() { $(this).toggleClass("active"), content = $(this).next(), $(content).hasClass("active") ? ($(content).removeClass("active"), $(content).css("maxHeight", "0px")) : ($(content).css("maxHeight", $(content)[0].scrollHeight + "px"), $(content).addClass("active")) }), $(window).scroll(function() { $(window).scrollTop() >= 150 ? $(".navbar").addClass("active") : $(".navbar").removeClass("active") }), $(".top_cat_carousel").owlCarousel({ loop: !0, margin: 10, autoplay: !0, nav: !0, autoplayTimeout: 3e3, autoplayHoverPause: !0, responsive: { 0: { items: 1, stagePadding: 60 }, 500: { items: 2, stagePadding: 40 }, 768: { items: 3, stagePadding: 40 }, 991: { items: 4 }, 1100: { items: 5 } } }), $(".cities_wrapper>.owl-carousel").owlCarousel({ loop: !0, margin: 15, nav: !1, autoplay: !0, autoplayTimeout: 5e3, autoplayHoverPause: !0, responsive: { 0: { items: 2, margin: 15 }, 500: { items: 3, margin: 10 }, 750: { items: 2, margin: 20 }, 800: { items: 3, margin: 20 }, 1000: { items: 3 }, 1100: { items: 4 }, 1300: { items: 5 } } }), $(".featured_carousel").owlCarousel({ margin: 20, nav: !0, autoplay: !0, autoplayTimeout: 3e3, autoplayHoverPause: !0, responsive: { 0: { items: 1 }, 500: { items: 1, stagePadding: 60 }, 768: { items: 2 }, 1000: { items: 3 } } }), $(".services_carousel").owlCarousel({ margin: 15, nav: !0, autoplay: !1, autoplayTimeout: 3e3, autoplayHoverPause: !0, items: 1 }), $(".event_shop_carousel").owlCarousel({ loop: !0, margin: 10, autoplay: !0, nav: !0, autoplayTimeout: 3e3, autoplayHoverPause: !0, responsive: { 0: { items: 1, stagePadding: 60 }, 500: { items: 2, stagePadding: 30 }, 700: { items: 4 }, 1000: { items: 5 } } }), $(".navbar-toggler").click(function() { $(".navbar").toggleClass("active") }), $(".artist__profile").owlCarousel({ margin: 20, nav: !0, autoplay: !0, autoplayTimeout: 3e3, autoplayHoverPause: !0, responsive: { 0: { items: 1 }, 500: { items: 1 }, 768: { items: 1 }, 1000: { items: 1 } } }), $(".artist_carousel").owlCarousel({ margin: 20, nav: !0, autoplay: !0, autoplayTimeout: 3e3, autoplayHoverPause: !0, responsive: { 0: { items: 1 }, 500: { items: 1, stagePadding: 60 }, 768: { items: 2 }, 1000: { items: 3 }, 1200: { items: 4 } } });
 
 $(function() {
+    $(document).on('click', '.add-btn', function(e) {
+        e.preventDefault();
+        let mainParent = $(this).closest('.content-block-row').clone();
+        $(this).closest('.conten-row-block-main-container').append(mainParent);
+        mainParent.find('input').val('');
+    });
+    $(document).on('click', '.remove-btn', function(e) {
+        e.preventDefault();
+        let mainParent = $(this).closest('.content-block-row').remove();
+    });
+    /*Amount Total, Vat, Net Total Calculations*/
+    $(document).on('click', '.plus', function(e) {
+        e.preventDefault();
+        let $quanInput = $(this).closest('.input-group').find('input.qty');
+        let val = parseInt($quanInput.val());
+        $quanInput.val( val+1 ).change();
+
+        let $rateInput = $(this).closest('.content-block-row').find('input.rate');
+        let val1 = parseInt($rateInput.val());
+
+        let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
+        $amountInput.val((val+1)*val1).change();
+
+        amountTotal();
+    });
+    $(document).on('click', '.minus', function(e) {
+        e.preventDefault();
+        let $quanInput = $(this).closest('.input-group').find('input.qty');
+        var val = parseInt($quanInput.val());
+        if (val > 0) {
+            $quanInput.val( val-1 ).change();
+
+            let $rateInput = $(this).closest('.content-block-row').find('input.rate');
+            let val1 = parseInt($rateInput.val());
+    
+            let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
+            $amountInput.val((val-1)*val1).change();
+
+            amountTotal();
+        } 
+    });
+    function amountTotal() {
+        var sum_value = 0;
+        $('.item-amount').each(function(){
+          sum_value += +$(this).val();
+          $('#amountTotal').val(sum_value);
+        });
+
+        var amountTotal = parseInt($('#amountTotal').val());
+
+        //The percent that we want to get.
+        var percentToGet = 5;
+
+        //Calculate the percent.
+        var percentCal = (percentToGet / 100) * amountTotal;
+
+        var percentRoundOff = parseInt(Math.ceil(percentCal));
+        //Alert it out for demonstration purposes.
+        // alert(percentToGet + "% of " + amountTotal + " is " + percent);
+
+        $('#vatPercent').val(percentRoundOff);
+        let netTotal = amountTotal + percentRoundOff
+        $('#netTotal').val(netTotal);
+    }
+    /*Amount Total, Vat, Net Total Calculations*/
+
     $(".get_appointment").hover(function() {
         $(this).children('span').toggleClass('d-inline-block d-none');
     });

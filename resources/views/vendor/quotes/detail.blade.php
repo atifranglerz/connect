@@ -277,20 +277,118 @@
                     <form action="{{ route('vendor.bidresponse') }}" method="post">
                         @csrf
                         <div class="row ">
-                            <div class="col-lg-7 mx-auto">
+                            <div class="col-lg-9 mx-auto">
+                                <h6 class="heading-color">Service Details</h6>
+                                <div class="conten-row-block-main-container services-details">
+                                    <div class="mb-3 row content-block-row">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Particular" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="input-group">
+                                                <div class="p-0 input-group-text">
+                                                    <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
+                                                </div>
+                                                <input type='text' name='quantity' value='0' class='form-control qty' />
+                                                <div class="p-0 input-group-text">
+                                                    <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value=''  class="form-control rate" placeholder="Rate" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value='' class="form-control item-amount" placeholder="Amount" />
+                                        </div>
+                                        <div class="col-sm-2 d-flex flex-wrap">
+                                            <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
+                                            <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class="heading-color">Spares Details</h6>
+                                <div class="conten-row-block-main-container spares-details">
+                                    <div class="mb-3 row content-block-row">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Particular" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="input-group">
+                                                <div class="p-0 input-group-text">
+                                                    <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
+                                                </div>
+                                                <input type='text' name='quantity' value='0' class='form-control qty' />
+                                                <div class="p-0 input-group-text">
+                                                    <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value=''  class="form-control rate" placeholder="Rate" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value='' class="form-control item-amount" placeholder="Amount" />
+                                        </div>
+                                        <div class="col-sm-2 d-flex flex-wrap">
+                                            <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
+                                            <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class="heading-color">Others</h6>
+                                <div class="conten-row-block-main-container extras-details">
+                                    <div class="mb-3 row content-block-row">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Particular" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="input-group">
+                                                <div class="p-0 input-group-text">
+                                                    <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
+                                                </div>
+                                                <input type='text' name='quantity' value='0' class='form-control qty' />
+                                                <div class="p-0 input-group-text">
+                                                    <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" class="form-control" placeholder="Rate" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" class="form-control" placeholder="Amount" />
+                                        </div>
+                                        <div class="col-sm-2 d-flex flex-wrap">
+                                            <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
+                                            <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                        <h6 class="heading-color">Estimate Total</h6>
+                                        <input type="number" name="price" class="form-control" id="amountTotal" placeholder="AED Price">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                        <h6 class="heading-color">Vat 5%</h6>
                                         <input type="hidden" name="bid_id" value="{{$data->id}}">
                                         @error('bid_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <input type="hidden" name="vendor_id" value="{{auth()->id()}}">
                                         @error('vendor_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <?php $garage = \App\Models\Garage::where('vendor_id',auth()->id())->first();?>
                                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                                        <input type="number" name="price" class="form-control" placeholder="AED">
+                                        <input type="number" name="price" class="form-control" id="vatPercent" placeholder="AED Price">
                                         @error('price')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                        <input type="text"  name="time" class="form-control" placeholder="TimeFrame">
+                                        <h6 class="heading-color">Net Total</h6>
+                                        <input type="text"  name="time" class="form-control" id="netTotal" placeholder="AED Price">
+                                        @error('time')<span class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                        <h6 class="heading-color">Time Frame</h6>
+                                        <input type="text"  name="time" class="form-control" placeholder="Time Frame">
                                         @error('time')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12 mb-3">

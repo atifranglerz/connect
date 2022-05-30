@@ -34,7 +34,7 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->sending_limit }}</td>
                                                 <td>{{ $item->package_type }}</td>
-                                                <td>PKR {{ $item->price }}</td>
+                                                <td>AED {{ $item->price }}</td>
                                                 <td>
                                                     <a href="{{ route('package.edit', ['package' => $item->id]) }}" class="btn btn-primary"><i data-feather="edit"></i></a>
 {{--                                                    @if ($package->action == 0)--}}

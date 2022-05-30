@@ -406,24 +406,8 @@ nav{
 .main_content_wraper{
     padding-bottom: 30px;
 }
-.sec_main_heading{
-   font-family:var(--mont);
-   text-transform: uppercase;
-   color: var(--orange);
-   font-size: var(--fs-28);
-   font-weight: var(--fw-700);
-}
 .sec_main_heading.about_connect_heading{
     text-transform: capitalize;
-}
-.sec_main_para{
-    font-size: var(--fs-16);
-    color: var(--gray);
-    font-family:var(--mont);
-    text-transform: capitalize;
-    max-width: 485px;
-    /*text-align: center;*/
-    margin: auto;
 }
 .img_wraper{
     height: 225px;
@@ -471,10 +455,6 @@ nav{
 }
 .img_wraper:hover:after{
     background-color: var(--orang-mask);
-}
-.view_all_btn_wrapper{
-    margin: 60px 0;
-
 }
 .view_all_btn_wrapper>.view_all_btn{
     font-size: var(--fs-16);
@@ -531,8 +511,6 @@ nav{
     border-radius: 18px;
 }
 .card-title{
-   font-family:var(--mont);
-   font-size: var(--fs-24);
    color: var(--darkgray);
    text-transform: capitalize;
 
@@ -543,21 +521,15 @@ nav{
 }
 .car_img_wrapper{
     width: 100%;
-    height: 230px;
     overflow: hidden;
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
 
 
 }
-.car_img_wrapper.latest_news{
- width: 100%;
- height: 282px;
-}
 .car_img_wrapper>img{
     width: 100%;
     height: 100%;
-    object-fit: fill;
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
 }
@@ -572,17 +544,6 @@ nav{
    border-radius: 5px;
    color: var(--white);
    margin: 0 4px;
-}
-.sec_main_para.car_text{
-   display: block;
-   display: -webkit-box;
-   max-width: 100%;
-   height: 50px;
-   -webkit-line-clamp: 2;
-   -webkit-box-orient: vertical;
-   overflow: hidden;
-   text-overflow: ellipsis;
-
 }
 .rigister_btn>a{
     color: var(--white);
@@ -1024,47 +985,6 @@ nav{
     font-weight: var(--fw-600);
     font-size: var(--fs-16);
 }
-/*.........................................faq page style.................................*/
-.accordion-item{
-    margin-bottom: 30px;
-    border: unset;
-}
-
-.accordion-button{
-    font-size: var(--fs-28);
-    color: var(--orange) !important;
-    background-color: var(--paginationbg);
-    border: 1px solid var(--gray);
-    font-weight: var(--fw-700);
-    border-radius: 10px !important;
-}
-.accordion-button:focus {
-    z-index: 3;
-    border-color: var(--orange);
-    outline: 0;
-    box-shadow: 0 0 0 0 var(--orang-mask);
-}
-.accordion-button:not(.collapsed) {
-    background-color: var(--paginationbg);
-}
-.accordion-body>p{
-    font-size: var(--fs-16);
-    color: var(--darkgray);
-}
-.accordion-button::after{
-    content: "\f078";
-    font-family: "Font Awesome 5 Free";
-    background-image: unset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--exra-darkgary);
-    transform: rotate(-90deg);
-}
-.accordion-button:not(.collapsed)::after {
-    background-image: unset;
-    transform: rotate(0deg);
-}
 /*......................................sing up page.....................*/
 .sing_up_img_wraper{
     height: 135px;
@@ -1079,7 +999,6 @@ nav{
 }
 p.card-text.sing_up_card_txt{
     font-size: var(--fs-15) !important;
-    font-family: var(--mont) !important;
     color: var(--darkgray)!important;
 }
 .btn-secondary{
@@ -1092,7 +1011,6 @@ p.card-text.sing_up_card_txt{
     justify-content: center;
     margin: 0 auto;
     border-radius: 10px;
-    font-size: var(--fs-12);
     z-index: 0;
     position: relative;
 }
@@ -1124,16 +1042,7 @@ p.card-text.sing_up_card_txt{
 }
 .btn-secondary:focus {
     border-color: var(--black)!important;
-    box-shadow: 0 0 0 0.25rem #00000080 !important;
-}
-.login_link_heading{
-    font-size: var(--fs-24);
-    color: var(--darkgray);
-    font-weight: var(--fw-700);
-}
-.login_link_heading>a{
-    color: var(--orange);
-    font-size: var(--fs-24);
+    box-shadow: unset !important;
 }
 .sing_up_header{
     position: sticky;
@@ -1168,7 +1077,7 @@ p.card-text.sing_up_card_txt{
 }
 input.form-control,select.form-select{
     border-radius: 7px;
-    height: 45px;
+    height: 35px;
 }
 label.img_wraper_label{
     cursor: pointer;
@@ -1413,31 +1322,7 @@ left: 55%;
 footer{
     background-color: var(--orange);
 }
-.footer_link>h1{
-    font-size: var(--fs-27);
-    font-family: var(--san);
-    font-weight: bold;
-}
 
-.footer_link>ul{
-    margin: 0 !important;
-    padding:0 !important;
-    text-decoration: none;
-    list-style-type: none;
-
-
-}
-.footer_link>ul>li>a{
-    color: var(--white);
-    font-size: var(--fs-20);
-    font-family:var(--mont);
-    font-weight: normal;
-    line-height: var(--line-height-40);
-    letter-spacing: 2px;
-}
-.footer_link>ul>li>a:hover{
-    color: var(--black);
-}
 .social_icons{
     display: flex;
     align-items: center;
@@ -2353,7 +2238,7 @@ p.milage>span{
     display: none !important;
 }
 .image-uploader{
-    min-height:4rem !important;
+    min-height:3rem !important;
     border-radius:10px !important;
 }
 .image-uploader .upload-text{

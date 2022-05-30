@@ -9,7 +9,7 @@
         <section class="section">
             <div class="row mb-3">
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="card h-100">
+                    <div class="card">
                         <div class="card-statistic-4">
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="card h-100">
+                    <div class="card">
                         <div class="card-statistic-4">
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 {{--                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="card h-100">
+                                    <div class="card">
                                         <div class="card-statistic-4">
                                             <div class="align-items-center justify-content-between">
                                                 <div class="row ">
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>--}}
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="card h-100">
+                    <div class="card">
                         <div class="card-statistic-4">
                             <div class="align-items-center justify-content-between">
                                 <div class="row ">
@@ -127,23 +127,23 @@
                                             if ($previousMonthlyRevenue > 0) {
                                             $percent_from = $monthlyRevenue - $previousMonthlyRevenue;
                                             $percentRevenue = $percent_from / $previousMonthlyRevenue * 100; ?>
-                                            <h2 class="mb-3 font-18">PKR {{$percent_from}}</h2>
+                                            <h2 class="mb-3 font-18">AED {{$percent_from}}</h2>
                                             <p class="mb-0"><span class="col-green">{{$percentRevenue}}%</span> Increase</p><?php
                                             } else {
                                             $percentRevenue = 100; //increase percent?>
-                                            <h2 class="mb-3 font-18">PKR {{$percent_from}}</h2>
+                                            <h2 class="mb-3 font-18">AED {{$percent_from}}</h2>
                                             <p class="mb-0"><span class="col-green">{{$percentRevenue}}%</span> Increase</p><?php
                                             }
                                             } else {
                                             $percent_from = $previousMonthlyRevenue - $monthlyRevenue;
                                             $percentRevenue = $percent_from / $previousMonthlyRevenue * 100; //decrease percent?>
-                                            <h2 class="mb-3 font-18">PKR {{$percent_from}}</h2>
+                                            <h2 class="mb-3 font-18">AED {{$percent_from}}</h2>
                                             <p class="mb-0"><span class="col-green">{{$percentRevenue}}%</span> Decrease</p><?php
                                             }
                                             } else {
                                             $percent_from = 0;
                                             $percentRevenue = 0;?>
-                                            <h2 class="mb-3 font-18">PKR {{$percent_from}}</h2>
+                                            <h2 class="mb-3 font-18">AED {{$percent_from}}</h2>
                                             <p class="mb-0"><span class="col-green">{{$percentRevenue}}%</span> Increase</p><?php
                                             }
                                             ?>

@@ -230,7 +230,7 @@
         </div>
     </section>
     <!-- done -->
-    <section class="about_connect looking_for">
+    <section class="py-5 about_connect looking_for">
         <div class="container-lg container-fluid">
             <div class="row">
                 <div class="col-lg-8 mx-auto">

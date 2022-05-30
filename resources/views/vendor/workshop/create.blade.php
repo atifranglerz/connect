@@ -1,8 +1,6 @@
 @extends('web.layout.app')
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{asset('public/vendor/assets/css/style.css')}} ">
-<link rel="stylesheet" type="text/css" href="{{asset('public/vendor/assets/css/newstyle.css')}}">
     <style type="text/css">
         .login_sinup{
             display: none;

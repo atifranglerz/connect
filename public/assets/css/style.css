@@ -65,8 +65,13 @@
     --shaodw-search: 0px 3px 6px #00000029;
     --paginationbg:#FBFBFB;
     --dark-border: #939393;
+    --light-border: #E9E9E9;
+    --light-gray-tranparent: #a9a9a98c;
+    --light-white: #FBFBFB;
 }
-
+.heading-color {
+    color: var(--orange);
+}
 a{
 	text-decoration: none;
     color: var(--black)
@@ -92,7 +97,7 @@ body .h1, body .h2, body .h3, body .h4, body .h5, body .h6, body h1, body h2, bo
 /* body{
     font-family: var(--mont);
 } */
-body .btn, body a {
+body .btn:not(.fa), body a:not(.fa) {
     font-family: Inter,sans-serif!important;
 }
 /*............................. header style starts  ......................*/
@@ -1115,6 +1120,7 @@ width: 17px;
 }
 
 .accordion-button{
+    font-family: Inter,sans-serif!important;
     font-size: var(--fs-20);
     color: var(--orange) !important;
     background-color: var(--paginationbg);
@@ -1163,7 +1169,6 @@ width: 17px;
 }
 p.card-text.sing_up_card_txt{
     font-size: var(--fs-15) !important;
-    font-family: var(--mont) !important;
     color: var(--darkgray)!important;
 }
 .btn-secondary{
@@ -1205,7 +1210,7 @@ p.card-text.sing_up_card_txt{
  }
  .btn-secondary:focus {
     border-color: var(--black)!important;
-    box-shadow: 0 0 0 0.25rem #00000080 !important;
+    box-shadow: unset !important;
 }
 .login_link_heading{
     font-size: var(--fs-20);
@@ -1397,7 +1402,15 @@ footer{
     margin-bottom: 6px;
     text-transform: capitalize;
 }
-
+.services-details .content-block-row:nth-child(1) .remove-btn,
+.spares-details .content-block-row:nth-child(1) .remove-btn,
+.extras-details .content-block-row:nth-child(1) .remove-btn {
+    display: none;
+}
+button.add-btn, button.remove-btn {
+    height: 35px;
+    padding: 10px;
+}
 /*global css*/
 input.form-control[type=number]::-webkit-inner-spin-button,
 input.form-control[type=number]::-webkit-outer-spin-button { 

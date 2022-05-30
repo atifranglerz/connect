@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/inter.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/style.css') }} ">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/newstyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/vendor/assets/css/style.css')}} ">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/vendor/assets/css/newstyle.css')}}">
     <!-- <link rel="stylesheet" asset('public/href="assets}}') /slick-master/slick/slick.css">
       <link rel="stylesheet"  asset('public/href="assets}}') /slick-master/slick/slick-theme.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->

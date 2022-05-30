@@ -7,7 +7,7 @@
                     <div class="cuatomer_signup_form_wraper">
                         <div class="main_content_wraper">
                             <h1 class="sec_main_heading text-center mb-0">WELCOME BACK!</h1>
-                            <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
+                            <p class="sec_main_para text-center mb-0">Fill This To Login</p>
                         </div>
                         <form action="{{ route('user.login')}}" method="post" class="pt-5">
                             @csrf

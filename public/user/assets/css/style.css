@@ -409,13 +409,6 @@ nav{
 .main_content_wraper{
     padding-bottom: 30px;
 }
-.sec_main_heading{
-   font-family:var(--mont);
-   text-transform: uppercase;
-   color: var(--orange);
-   font-size: var(--fs-24);
-   font-weight: var(--fw-700);
-}
 .sec_main_heading.about_connect_heading{
     text-transform: capitalize;
 }
@@ -1155,7 +1148,6 @@ nav{
 }
 p.card-text.sing_up_card_txt{
     font-size: var(--fs-15) !important;
-    font-family: var(--mont) !important;
     color: var(--darkgray)!important;
 }
 .btn-secondary{
@@ -1198,16 +1190,7 @@ p.card-text.sing_up_card_txt{
 }
 .btn-secondary:focus {
     border-color: var(--black)!important;
-    box-shadow: 0 0 0 0.25rem #00000080 !important;
-}
-.login_link_heading{
-    font-size: var(--fs-24);
-    color: var(--darkgray);
-    font-weight: var(--fw-700);
-}
-.login_link_heading>a{
-    color: var(--orange);
-    font-size: var(--fs-24);
+    box-shadow: unset !important;
 }
 .sing_up_header{
     position: sticky;
@@ -1242,7 +1225,7 @@ p.card-text.sing_up_card_txt{
 }
 input.form-control,select.form-select{
     border-radius: 7px;
-    height: 45px;
+    height: 35px;
 }
 label.img_wraper_label{
     cursor: pointer;
@@ -1739,6 +1722,7 @@ ul.sidebar_navcigation>li>a>img{
     -webkit-line-clamp: 3;
     text-align: justify;
     padding-right: 24px;
+    margin-bottom: 0;
 }
 .quote_info>p.quote_rev{
     font-weight: bold;
@@ -2311,7 +2295,7 @@ padding-right: 35px;
     display: none !important;
 }
 .image-uploader{
-    min-height:4rem !important;
+    min-height:3rem !important;
     border-radius:10px !important;
 }
 .image-uploader .upload-text{
