@@ -746,7 +746,7 @@ nav{
 /*.................................................store details page........................*/
 .store_brances{
     background-color: var(--orange);
-    min-height: 72px;
+    min-height: 55px;
 }
 .store_addres{
     color: var(--white);
@@ -788,11 +788,8 @@ nav{
 .over_view_part.timing_hours{
     padding: 30px 35px;
 }
-.over_view_part>h3{
+.over_view_part>.heading {
     color: var(--orange);
-    font-size: var(--fs-18);
-    font-family: var(--mont);
-    font-weight: var(--fw-600);
     position: relative;
 }
 .over_view_part>h3.dudgeIncrease{
@@ -817,12 +814,12 @@ nav{
 .increased_bdg_info>h3.black_info{
     color: var(--black);
 }
-.over_view_part>h3:before{
+.over_view_part>.heading:before{
     position: absolute;
     left: 50%;
     bottom: -18px;
     content: "";
-    max-width: 300px;
+    max-width: 245px;
     height: 1px;
     background-color: var(--gray);
     transform: translateX(-50%);
@@ -843,9 +840,9 @@ nav{
     background-color: var(--orange) !important;
     text-align: left;
     border: 1px solid var(--orange);
-    height: 45px;
+    height: 40px;
     font-size: var(--fs-14);
-    border-radius: 10px;
+    border-radius: 7px;
     position: relative;
     z-index: 0;
 }
@@ -889,6 +886,7 @@ nav{
 }
 .btn.get_appointment{
     position: relative;
+    font-size: var(--fs-12);
 }
 .btn.get_appointment>img{
     position: absolute;
@@ -962,8 +960,9 @@ nav{
 }
 /*.........................................Car add detail page........................*/
 .carAd_img_wraper{
-    width: 357px;
-    height: 250px;
+    width: 300px;
+    height: 255px;
+    margin: auto;
     border-radius: 10px;
     border: 1px solid var(--darkgray);
     padding: 8px;
@@ -984,7 +983,7 @@ nav{
     height: 8px;
 }
 .carAd_img_wraper.doc_img{
-    border: 8px solid var(--darkgray);
+    border: 1px solid var(--darkgray);
     padding: 0;
     box-shadow: inset 0 0 35px var(--darkgray);
 }
@@ -1137,41 +1136,6 @@ nav{
 p.card-text.sing_up_card_txt{
     font-size: var(--fs-15) !important;
     color: var(--darkgray)!important;
-}
-.btn-secondary{
-    background-color: var(--black) !important;
-    color: var(--white)!important;
-    width: 122px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    border-radius: 10px;
-    font-size: var(--fs-12);
-    z-index: 0;
-    position: relative;
-
-}
-.btn-secondary:before{
-    background-color: var(--orange);
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 0%;
-    height: 100%;
-    transition: all 0.3s ease-in-out;
-    z-index: -1;
-}
-.btn-secondary:hover:before{
-        width: 100%;
-    right: unset;
-    left: 0;
-    color: var(--white);
-    border: 2px solid var(--black);
-    border-radius: 10px;
 }
 .btn-secondary:not([disabled]):not(.disabled):active{
     background-color: var(--black) !important;
@@ -1784,9 +1748,9 @@ ul.sidebar_navcigation>li>a>img{
     padding-left: 10px;
 }
 .chat_view__detail.allreplies>.btn-secondary{
-    width: 120px;
+    width: 135px;
 }
-.quote_info>h3.nowrape{
+.quote_info>.nowrape{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1870,7 +1834,7 @@ ul.sidebar_navcigation>li>a>img{
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--gray);
-    height: 306px;
+    height: 255px;
     width: 2px;
     content: "";
 }

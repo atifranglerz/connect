@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h1 class="sec_main_heading text-center mb-0">RESPONSE TO YOUR QUOTES</h1>
+                    <h4 class="sec_main_heading text-center mb-0">RESPONSE TO YOUR QUOTES</h4>
                     <p class="sec_main_para text-center">See what garage owners have to say about your quote</p>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     </div>
                     <div class=" w-100  quote_detail_wraper replies ">
                         <div class="quote_info">
-                            <h3 class="d-flex align-items-center active_quote nowrape ">{{$company->company}}  {{$userbid->model}}</h3>
+                            <h5 class="d-flex align-items-center active_quote nowrape heading-color">{{$company->company}}  {{$userbid->model}}</h3>
                             <p class="mb-0">{{$userbid->description1}}</p>
                             <p >{{$userbid->phone}}</p>
                         </div>
@@ -55,9 +55,9 @@
                 <div class="all_quote_card  replies_allquot h-100">
                     <div class=" w-100  quote_detail_wraper replies second">
                         <div class="quote_info">
-                            <h3 class="d-flex align-items-center active_quote nowrape">{{$value->vendordetail->vendor->name}}</h3>
+                            <h5 class="d-flex align-items-center active_quote nowrape heading-color">{{$value->vendordetail->vendor->name}}</h5>
                             <div class="quote_detail_btn_wraper">
-                                <h3 class="quotereplies">AED {{$value->price}} </h3>
+                                <h5 class="quotereplies">AED {{$value->price}} </h5>
                             </div>
                         </div>
                         <div class="quote_detail_btn_wraper">

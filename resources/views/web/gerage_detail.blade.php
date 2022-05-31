@@ -45,16 +45,16 @@
     <div class="container-lg container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">{{ucfirst($garage->garage_name)}}</h4>
+                <h5 class="store_addres">{{ucfirst($garage->garage_name)}}</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">{{ucfirst($garage->city)}}, {{ucfirst($garage->country)}}</h4>
+                <h5 class="store_addres">{{ucfirst($garage->city)}}, {{ucfirst($garage->country)}}</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">{{$garage->phone}}</h4>
+                <h5 class="store_addres">{{$garage->phone}}</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                <h4 class="store_addres">
+                <h5 class="store_addres">
                     @if(round($overAllRatings) == '0')
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -92,7 +92,7 @@
                         <i class="fa-solid fa-star" style="color:black;"></i>
                         <i class="fa-solid fa-star" style="color:black;"></i>
                     @endif
-                    ({{round($overAllRatings)}})</h4>
+                    ({{round($overAllRatings)}})</h5>
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@
         <div class="row g-4">
             <div class="col-lg-8 col-md-6 col-sm-6">
                 <div class="over_view_part">
-                    <h3 class=" text-center mb-5">OVERVIEW</h3>
+                    <h5 class=" text-center mb-5 heading-color">OVERVIEW</h5>
                     <p>{!! $garage->description !!}</p>
                     <br>
 

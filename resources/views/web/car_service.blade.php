@@ -6,7 +6,7 @@
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
 {{--                    <h1 class="sec_main_heading text-center">GARAGES</h1>--}}
-                    <h1 class="sec_main_heading text-center">ALL SERVICES</h1>
+                    <h4 class="sec_main_heading text-center">ALL SERVICES</h4>
                     <p class="sec_main_para text-center">Choose any service from the list below and find best available service providers</p>
 
                 </div>
@@ -18,7 +18,7 @@
                 <a href="{{route('vendors-by-service',$value->id)}}">
                     <div class="img_wraper">
                         <img src="{{ $value->image }}">
-                        <h4 class="img_text">{{$value->name}}</h4>
+                        <h6 class="img_text">{{$value->name}}</h6>
                     </div>
                 </a>
             </div>

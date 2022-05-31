@@ -110,7 +110,7 @@
             <div class="row g-4">
                 <div class="col-lg-8 col-md-6 col-sm-6">
                     <div class="over_view_part">
-                        <h3 class=" text-center mb-5">OVERVIEW</h3>
+                        <h5 class=" text-center mb-5 heading-color">OVERVIEW</h5>
                         <p>We service domestics and imports of every Suzuki model. If your vehicle is having problems,
                             please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics
                             and have built their business on high-quality customer service.

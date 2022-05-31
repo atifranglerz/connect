@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-10  mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h1 class="sec_main_heading text-center mb-0">SELF PAYMENTS</h1>
+                    <h4 class="sec_main_heading text-center mb-0">SELF PAYMENTS</h4>
                     <p class="sec_main_para text-center">Choose and add your payment details below</p>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     <div class="row g-2">
                         <div class="col-lg-5 col-md-5 col-sm-5">
                             <div class=" billing_info">
-                                <h3>Billing Info</h3>
+                                <h5 class="heading-color">Billing Info</h5>
                             </div>
 
                             <div class="inpu_wraper mb-3">
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5">
                             <div class=" billing_info">
-                                <h3>Payment Info</h3>
+                                <h5 class="heading-color">Payment Info</h5>
                             </div>
 
                             <div class="inpu_wraper mb-3">

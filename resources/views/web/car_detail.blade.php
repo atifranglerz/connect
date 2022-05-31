@@ -76,16 +76,16 @@
     <div class="container-lg container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">{{getCompany($ad->company_id)}}</h4>
+                <h5 class="store_addres">{{getCompany($ad->company_id)}}</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">@if($ad->vendor_id !=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h4>
+                <h5 class="store_addres">@if($ad->vendor_id !=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">@if($ad->vendor_id !=null){{getCityByVendor($ad->vendor_id)}}@else{{getCityByVendor($ad->user_id)}}@endif</h4>
+                <h5 class="store_addres">@if($ad->vendor_id !=null){{getCityByVendor($ad->vendor_id)}}@else{{getCityByVendor($ad->user_id)}}@endif</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h4 class="store_addres">Price : {{$ad->price}}</h4>
+                <h5 class="store_addres">Price : {{$ad->price}}</h5>
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="over_view_part carad_data">
-                    <h3 class=" text-center mb-5">LEGAL DOCS</h3>
+                    <h4 class="text-center mt-3 mb-0 heading-color">LEGAL DOCS</h4>
                 </div>
             </div>
         </div>
@@ -165,14 +165,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="over_view_part carad_data">
-                    <h3 class=" text-center mb-5">CAR INFORMATION</h3>
+                    <h4 class="text-center mt-3 mb-0 heading-color">CAR INFORMATION</h4>
                 </div>
             </div>
         </div>
         <div class="row g-4 mb-4">
             <div class="col-lg-8 col-md-6 col-sm-6">
                 <div class="over_view_part">
-                    <h3 class=" text-center mb-5">OVERVIEW</h3>
+                    <h5 class=" text-center mb-5 heading-color">OVERVIEW</h5>
                     <p>{{$ad->description}}</p>
                     <br>
 
@@ -180,7 +180,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="over_view_part timing_hours">
-                    <h3 class=" text-center mb-5">DETAILS</h3>
+                    <h5 class=" text-center mb-5 heading-color">DETAILS</h5>
                     <div class="timing_container">
                         <p class="time_for_opning mb-0">Engine</p>
                         <p class="time_for_opning mb-1">{{$ad->engine}}</p>

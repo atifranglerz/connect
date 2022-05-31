@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-10  mx-auto">
         <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-          <h1 class="sec_main_heading text-center mb-0">PAYMENT VIA INSURANCE COMPANY</h1>
+          <h4 class="sec_main_heading text-center mb-0">PAYMENT VIA INSURANCE COMPANY</h4>
           <p class="sec_main_para text-center">Now you can pay for your order via insurance company</p>
         </div>
       </div>
@@ -14,13 +14,13 @@
       <div class="col-lg-12">
         <div class="all_quote_card  vendor_rply_dtlL _text">
           <div class=" billing_info via_insurance">
-            <h3>Select From Your Quotes</h3>
+            <h4 class="heading-color">Select From Your Quotes</h4>
           </div>
           <div class="row g-3">
             <div class="col-lg-12">
               <div class="all_quote_card pay_via_insurance">
                 <div class="quote_info">
-                  <h3 class="select_quote">Car Repair</h3>
+                  <h5 class="select_quote heading-color">Car Repair</h5>
                   <p >Red Suzuki For Repair</p>
                   <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
                 </div>
@@ -32,7 +32,7 @@
             <div class="col-lg-12">
               <div class="all_quote_card pay_via_insurance">
                 <div class="quote_info">
-                  <h3 class="select_quote">Car Repair</h3>
+                  <h5 class="select_quote heading-color">Car Repair</h5>
                   <p >Red Suzuki For Repair</p>
                   <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
                 </div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class=" billing_info via_insurance mt-5">
-            <h3>Select 3 Quotes You Want</h3>
+            <h4 class="heading-color">Select 3 Quotes You Want</h4>
           </div>
           <div class="row g-3">
             <div class="col-lg-12 col-md-12 col-12 ">
@@ -53,7 +53,7 @@
                 </div>
                 <div class=" w-100  quote_detail_wraper">
                   <div class="quote_info insurancePayment_">
-                    <h3 class="d-flex align-items-center active_quote select_quote">Car Repair</h3>
+                    <h5 class="d-flex align-items-center active_quote select_quote heading-color">Car Repair</h5>
                     <p class="mb-0">Sharjah, Ajman</p>
                     <p >+971234567890</p>
                     <div class="card_icons respons_qoute d-flex align-items-center">
@@ -75,7 +75,7 @@
                     </div>
                   </div>
                   <div class="quote_detail_btn_wraper">
-                    <h3 class=" text-sm-center insurance_pyment">AED 1200</h3>
+                    <h5 class=" text-sm-center insurance_pyment">AED 1200</h5>
                     <div class="quote_info">
                       <div class="quote_detail_btn_wraper">
                         <a href="#" class="btn-secondary pay_via_insurance_btn crossed">SELECTED <i class="bi bi-plus"></i></a>
@@ -92,7 +92,7 @@
                 </div>
                 <div class=" w-100  quote_detail_wraper">
                   <div class="quote_info insurancePayment_">
-                    <h3 class="d-flex align-items-center active_quote select_quote">Car Repair</h3>
+                    <h5 class="d-flex align-items-center active_quote select_quote heading-color">Car Repair</h5>
                     <p class="mb-0">Sharjah, Ajman</p>
                     <p >+971234567890</p>
                     <div class="card_icons respons_qoute d-flex align-items-center">
@@ -114,7 +114,7 @@
                     </div>
                   </div>
                   <div class="quote_detail_btn_wraper">
-                    <h3 class=" text-sm-center insurance_pyment">AED 1200</h3>
+                    <h5 class=" text-sm-center insurance_pyment">AED 1200</h5>
                     <div class="quote_info">
                       <div class="quote_detail_btn_wraper">
                         <a href="#" class="btn-secondary pay_via_insurance_btn crossed">SELECTED <i class="bi bi-plus"></i></a>
@@ -131,7 +131,7 @@
                 </div>
                 <div class=" w-100  quote_detail_wraper">
                   <div class="quote_info insurancePayment_">
-                    <h3 class="d-flex align-items-center active_quote select_quote">Car Repair</h3>
+                    <h5 class="d-flex align-items-center active_quote select_quote heading-color">Car Repair</h5>
                     <p class="mb-0">Sharjah, Ajman</p>
                     <p >+971234567890</p>
                     <div class="card_icons respons_qoute d-flex align-items-center">
@@ -153,7 +153,7 @@
                     </div>
                   </div>
                   <div class="quote_detail_btn_wraper">
-                    <h3 class=" text-sm-center insurance_pyment">AED 1200</h3>
+                    <h5 class=" text-sm-center insurance_pyment">AED 1200</h5>
                     <div class="quote_info">
                       <div class="quote_detail_btn_wraper">
                         <a href="#" class="btn-secondary pay_via_insurance_btn crossed">SELECTED <i class="bi bi-plus"></i></a>
@@ -167,7 +167,7 @@
           </div>
           <div class="row">
            <div class=" billing_info via_insurance mt-5">
-            <h3>Select Insurance Company</h3>
+            <h5 class="heading-color">Select Insurance Company</h5>
           </div>
           <form>
             <div class="row g-3">
@@ -184,7 +184,7 @@
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class=" billing_info via_insurance mt-1">
-                  <h3 class="mb-0">Personal Details</h3>
+                  <h5 class="mb-0 heading-color">Personal Details</h5>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6">

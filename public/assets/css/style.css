@@ -864,19 +864,16 @@ section.looking_for {
 .over_view_part.timing_hours{
     padding: 30px 35px;
 }
-.over_view_part>h3{
+.over_view_part>.heading {
     color: var(--orange);
-    font-size: var(--fs-18);
-    font-family: var(--mont);
-    font-weight: var(--fw-600);
     position: relative;
 }
-.over_view_part>h3:before{
+.over_view_part>.heading:before{
     position: absolute;
     left: 50%;
     bottom: -18px;
     content: "";
-    max-width: 300px;
+    max-width: 245px;
     height: 1px;
     background-color: var(--gray);
     transform: translateX(-50%);
@@ -1034,8 +1031,9 @@ position:absolute;
 }
 /*.........................................Car add detail page........................*/
 .carAd_img_wraper{
-    width: 357px;
-    height: 250px;
+    width: 300px;
+    height: 255px;
+    margin: auto;
     border-radius: 10px;
     border: 1px solid var(--darkgray);
     padding: 8px;
@@ -1056,7 +1054,7 @@ width: 17px;
     height: 8px;
 }
 .carAd_img_wraper.doc_img{
-    border: 8px solid var(--darkgray);
+    border: 1px solid var(--darkgray);
     padding: 0;
      box-shadow: inset 0 0 35px var(--darkgray);
 }

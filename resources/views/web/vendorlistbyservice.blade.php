@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">ALL GARAGES</h1>
+                        <h4 class="sec_main_heading text-center">ALL GARAGES</h4>
                         <p class="sec_main_para allgarages text-center">Search popular service providers based on their service quality</p>
                     </div>
                 </div>

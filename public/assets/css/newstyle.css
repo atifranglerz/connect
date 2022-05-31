@@ -681,7 +681,7 @@ label.img_wraper_label>.file_icon_wraper {
         margin: 0 auto;
     }
     .store_brances {
-        min-height: 100px;
+        min-height: 55px;
     }
     .login_content_wraper{
         min-height: 100vh;
