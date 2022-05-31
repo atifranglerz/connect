@@ -25,7 +25,7 @@
                             <div class="quote_info">
                                 <h5 class="heading-color">{{$company->company}}  {{$user_bid->model}}</h5>
                                 <p >{{$user_bid->description1}}</p>
-                                <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
+                                <p class="quote_rev"><span>{{$vendor_bid}} </span> Quotes Recieved</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
                                 <a href="{{route('user.response',$user_bid->id)}}" class="btn-secondary">VIEW DETAILS</a>

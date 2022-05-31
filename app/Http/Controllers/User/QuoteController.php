@@ -149,9 +149,6 @@ class QuoteController extends Controller
     {
 
         $data = \App\Models\VendorBid::with('vendordetail')->where('user_bid_id' ,'=' , $id)->get();
-
-
-
         $page_title = 'Qoute Response ';
         return view('user.quote.response', compact('page_title' ,'data' ));
     }

@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $page_title = 'User Dashboard';
         $user_bid = UserBid::where('user_id', Auth::id())->latest()->first();
         if($user_bid){
-           $vendor_bid = VendorBid::where('user_bid_id', $user_bid->id)->first();
+           $vendor_bid = VendorBid::where('user_bid_id', $user_bid->id)->count();
         }else{
             $vendor_bid='';
         }
