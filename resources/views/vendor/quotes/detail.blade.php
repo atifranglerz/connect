@@ -296,7 +296,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value='' name="services_quantity[]"  class="form-control item-rate" placeholder="Rate" />
+                                            <input type="number" min="1" value='' name="services_rate[]"  class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="number" min="1" value='' name="services_amount[]" class="form-control item-amount" placeholder="Amount" />
@@ -369,6 +369,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Estimate Total</h6>
                                         <input type="number" name="price" class="form-control" id="amountTotal" placeholder="AED Price">
+                                        @error('price')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Vat 5%</h6>
@@ -378,13 +379,13 @@
                                         @error('vendor_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <?php $garage = \App\Models\Garage::where('vendor_id',auth()->id())->first();?>
                                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                                        <input type="number" name="price" class="form-control" id="vatPercent" placeholder="AED Price">
-                                        @error('price')<span class="text-danger">{{$message}}</span>@enderror
+                                        <input type="number" name="vat" class="form-control" id="vatPercent" placeholder="AED Price">
+                                        @error('vat')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Net Total</h6>
-                                        <input type="text"  name="time" class="form-control" id="netTotal" placeholder="AED Price">
-                                        @error('time')<span class="text-danger">{{$message}}</span>@enderror
+                                        <input type="text"  name="net_total" class="form-control" id="netTotal" placeholder="AED Price">
+                                        @error('net_total')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Time Frame</h6>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class VendorBidsParts extends Migration
+class AddCoulmnsInVendorBid extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class VendorBidsParts extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('vendor_bids', function (Blueprint $table) {
+            $table->bigInteger('vat')->nullable();
+            $table->bigInteger('net_total')->nullable();
+        });
     }
 
     /**
@@ -23,6 +26,10 @@ class VendorBidsParts extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('vendor_bids', function (Blueprint $table) {
+            //
+
+
+        });
     }
 }
