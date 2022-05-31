@@ -20,7 +20,7 @@ $(function() {
         let val = parseInt($quanInput.val());
         $quanInput.val( val+1 ).change();
 
-        let $rateInput = $(this).closest('.content-block-row').find('input.rate');
+        let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
         let val1 = parseInt($rateInput.val());
 
         let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
@@ -35,7 +35,7 @@ $(function() {
         if (val > 0) {
             $quanInput.val( val-1 ).change();
 
-            let $rateInput = $(this).closest('.content-block-row').find('input.rate');
+            let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
             let val1 = parseInt($rateInput.val());
     
             let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');

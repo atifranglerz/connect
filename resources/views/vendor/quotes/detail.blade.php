@@ -296,7 +296,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value=''  class="form-control rate" placeholder="Rate" />
+                                            <input type="number" min="1" value=''  class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="number" min="1" value='' class="form-control item-amount" placeholder="Amount" />
@@ -325,7 +325,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value=''  class="form-control rate" placeholder="Rate" />
+                                            <input type="number" min="1" value=''  class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="number" min="1" value='' class="form-control item-amount" placeholder="Amount" />
@@ -354,10 +354,10 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" class="form-control" placeholder="Rate" />
+                                            <input type="number" min="1" class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" class="form-control" placeholder="Amount" />
+                                            <input type="number" min="1" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
