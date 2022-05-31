@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">DASHBOARD</h1>
+                        <h4 class="sec_main_heading text-center mb-0">DASHBOARD</h4>
                         <p class="sec_main_para text-center">View your profile</p>
                     </div>
                 </div>
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-10 col-md-11 col-sm-11  mx-auto">
                     <div class="quote_card_heading  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                        <h3>All Quotes</h3>
+                        <h5>All Quotes</h5>
                         <a href="{{route('user.quoteindex')}}">View All</a>
                     </div>
                     @if($user_bid)
@@ -23,7 +23,7 @@
                         ?>
                         <div class="all_quote_card">
                             <div class="quote_info">
-                                <h3>{{$company->company}}  {{$user_bid->model}}</h3>
+                                <h5 class="heading-color">{{$company->company}}  {{$user_bid->model}}</h5>
                                 <p >{{$user_bid->description1}}</p>
                                 <p class="quote_rev"><span>5 </span> Quotes Recieved</p>
                             </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-lg-10 col-md-11 col-sm-11   mx-auto">
                     <div class="quote_card_heading mb-lg-4 mb-2 mt-lg-5 mt-3">
-                        <h3>All Orders</h3>
+                        <h5>All Orders</h5>
                         <a href="{{route('user.order.index')}}">View All</a>
                     </div>
                     @if($order)
@@ -57,7 +57,7 @@
 
                     <div class="all_quote_card">
                         <div class="quote_info">
-                            <h3>{{$company->company}}  ({{$userbidid->model}})</h3>
+                            <h5 class="heading-color">{{$company->company}}  ({{$userbidid->model}})</h5>
                             <p >{{$userbidid->description1}}</p>
                             <p class="quote_rev">Order ID:<span> #{{$order->order_code}} </span></p>
                         </div>

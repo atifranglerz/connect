@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-3">CREATE WORKSHOP</h1>
+                        <h4 class="sec_main_heading text-center mb-3">CREATE WORKSHOP</h4>
                         <p class="sec_main_para text-center">Set Up How Your Workshop Looks Like</p>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                                                         <input type="text" class="form-control search_garages creat_wrk" placeholder="Search For Your Next Car" aria-label="Recipient's username" aria-describedby="button-addon2">
                                                         <button class="btn search crt_wrik" type="button" id="button-addon2">Search</button>
                                                         <div class="srearch_icon_wraper crt_wrk_shp">
-                                                            <img src="assets/images/location-icon.svg">
+                                                            <img src="{{asset('public/assets/images/location-icon.svg')}}">
                                                         </div>
                                                     </div>
 

@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h1 class="sec_main_heading text-center mb-0">DASHBOARD</h1>
+                    <h4 class="sec_main_heading text-center mb-0">DASHBOARD</h4>
                     <p class="sec_main_para text-center">See what's happening on your profile</p>
                 </div>
             </div>
@@ -15,33 +15,33 @@
         <div class="row">
             <div class="col-lg-11 col-md-11  mx-auto">
                 <div class="quote_card_heading _top_dash  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                    <h3>Previous Stats</h3>
+                    <h5>Previous Stats</h5>
                     <!-- <a href="#">View All</a> -->
                 </div>
                 <div class="row g-3">
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100 ">
-                            <h3>{{$completedOrders}}</h3>
-                            <h3 class="orang_dashboard_heading text-center">Completed Orders</h3>
+                            <h5>{{$completedOrders}}</h5>
+                            <h5 class="heading-color text-center">Completed Orders</h5>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
-                            <h3>{{$totalReviews}}</h3>
-                            <h3 class="orang_dashboard_heading text-center">Total Reviews</h3>
+                            <h5>{{$totalReviews}}</h5>
+                            <h5 class="heading-color text-center">Total Reviews</h5>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
-                            <h3>{{round($overAllRatings,2)}}</h3>
-                            <h3 class="orang_dashboard_heading text-center">Overall Rating</h3>
+                            <h5>{{round($overAllRatings,2)}}</h3>
+                            <h5 class="heading-color text-center">Overall Rating</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-11 col-md-12  mx-auto">
                 <div class="quote_card_heading  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                    <h3>Active Orders</h3>
+                    <h5>Active Orders</h5>
                     <a href="{{route('vendor.orders')}}">View All</a>
                 </div>
 {{--                <?php--}}

@@ -4,7 +4,7 @@
     <div class="chat_overlay d-none"></div>
     <div class="side_inbox">
         <div class="side_inbox_search_sec text-center">
-            <h3 class="inbox_nmae">Inbox</h3>
+            <h5 class="inbox_nmae">Inbox</h5>
             <form >
                 <div class="searchInput">
                     <input class="form-control me-2" id="search_input"  placeholder="Search">

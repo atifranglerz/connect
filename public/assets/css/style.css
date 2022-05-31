@@ -762,6 +762,9 @@ section.looking_for {
     height: 20px;
     z-index: 4;
 }
+.swal2-popup.swal2-toast .swal2-title {
+    font-size: 1em!important;
+}
 .form-control:focus{
     border-color: var(--orange);
     outline: 0;
