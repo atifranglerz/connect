@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h1 class="sec_main_heading text-center">FAQ</h1>
+                    <h4 class="sec_main_heading text-center">FAQ</h4>
                     <p class="sec_main_para text-center">Most Answered Questions</p>
                 </div>
             </div>

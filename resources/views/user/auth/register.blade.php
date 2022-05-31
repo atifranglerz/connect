@@ -6,7 +6,7 @@
                 <div class="col-lg-6 col-md-8 col-sm-8 mx-auto">
                     <div class="cuatomer_signup_form_wraper mt-5 mt-lg-5 ">
                         <div class="main_content_wraper">
-                            <h1 class="sec_main_heading text-center mb-0">WELCOME!</h1>
+                            <h4 class="sec_main_heading text-center mb-0">WELCOME!</h4>
                             <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
                         </div>
 
@@ -98,8 +98,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h4 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{route('user.login')}}"> Login</a>
-                    </h4>
+                    <h5 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{route('user.login')}}"> Login</a>
+                    </h5>
                 </div>
             </div>
         </div>

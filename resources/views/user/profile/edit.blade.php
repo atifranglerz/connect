@@ -69,8 +69,8 @@
             </div>
             <!-- <div class="row">
               <div class="col-lg-8 mx-auto">
-                <h4 class="my-4 text-center login_link_heading">Already have an account ?<a href="#"> Login</a>
-                </h4>
+                <h5 class="my-4 text-center login_link_heading">Already have an account ?<a href="#"> Login</a>
+                </h5>
               </div>
             </div>
          -->  </div>

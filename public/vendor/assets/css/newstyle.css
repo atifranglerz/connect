@@ -389,9 +389,6 @@ label.img_wraper_label.skip{
         top: 1.5%;
     right: 120px;
 }
-.signup_vendor>h4{
-    font-size: var(--fs-15);  
-}
 .col-form-label.activeDaylabel{
     font-size: var(--fs-14);
 }
@@ -650,9 +647,6 @@ label.img_wraper_label.skip{
 .btn-secondary {
     width: 97px;
     height: 38px;
-}
-.signup_vendor>h4 {
-    font-size: var(--fs-16);
 }
 .edit_profile_link_wraper>a {
     font-size: var(--fs-16);

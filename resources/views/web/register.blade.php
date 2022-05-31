@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper pt-5">
-                    <h1 class="sec_main_heading text-center">SIGN UP</h1>
+                    <h4 class="sec_main_heading text-center">SIGN UP</h4>
                     <p class="sec_main_para text-center">Choose your role to signup</p>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h4 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{ route('loginpage')}}"> Login</a>
-                        </h4>
+                        <h5 class="my-4 text-center login_link_heading">Already have an account ?<a href="{{ route('loginpage')}}"> Login</a>
+                        </h5>
                     </div>
                 </div>
             </div>

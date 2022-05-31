@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="d-flex  customer_heading_main">
                     <div class="costumer_heading">
-                        <h3 class="mb-0">Garage Dashboard</h3>
+                        <h6 class="mb-0">Garage Dashboard</h6>
                     </div>
                 </div>
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">

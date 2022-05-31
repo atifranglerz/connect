@@ -14,7 +14,7 @@
                 <div class="col-lg-5 col-md-8 col-sm-10 mx-auto">
                     <div class="cuatomer_signup_form_wraper mt-5 mt-lg-5 ">
                         <div class="main_content_wraper">
-                            <h1 class="sec_main_heading text-center mb-0">WELCOME!</h1>
+                            <h4 class="sec_main_heading text-center mb-0">WELCOME!</h4>
                             <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
                         </div>
                         <form action="{{route('vendor.register')}}"  enctype="multipart/form-data" method="post" class="pt-5">
@@ -33,7 +33,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Business Info</h4>
+                                <h5 class="mb-0 heading">Business Info</h5>
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
@@ -106,7 +106,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Legal Info</h4>
+                                <h5 class="mb-0 heading">Legal Info</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="trading_license" value="{{ old('trading_license') }}" class="form-control"  placeholder="Trading License No.">
@@ -121,7 +121,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Billing Info</h4>
+                                <h5 class="mb-0 heading">Billing Info</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="row">
@@ -155,7 +155,7 @@
                             </div>
 
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Add Number For Appointment</h4>
+                                <h5 class="mb-0 heading">Add Number For Appointment</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="appointment_number" value="{{ old('appointment_number') }}" class="form-control"  placeholder="Telephone No.">
@@ -164,7 +164,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Password</h4>
+                                <h5 class="mb-0 heading">Password</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="password" name="password" value="{{ old('password') }}" class="form-control" id="inputNumber" placeholder="Password">
@@ -186,9 +186,9 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h4 class="my-4 text-center login_link_heading">Already have an account ?<a
+                    <h5 class="my-4 text-center login_link_heading">Already have an account ?<a
                             href="{{route('vendor.login')}}"> Login</a>
-                    </h4>
+                    </h5>
                 </div>
             </div>
         </div>

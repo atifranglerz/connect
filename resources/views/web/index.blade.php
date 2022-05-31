@@ -3,7 +3,7 @@
     <section class="banner_section">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-caption " style="z-index: 1;">
-                <h1>SEARCH AND FIND THE BEST GARAGES FOR YOU</h1>
+                <h2 class="heading">SEARCH AND FIND THE BEST GARAGES FOR YOU</h2>
                 <div class="banner_dot_img">
                     <img src="{{ asset('public/assets/images/divider.svg') }}">
                 </div>
@@ -73,9 +73,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">looking for</h1>
+                        <h4 class="sec_main_heading text-center">looking for</h4>
                         <p class="sec_main_para text-center">get expert car service providers to get your car repaired</p>
-
                     </div>
                 </div>
             </div>
@@ -85,7 +84,7 @@
                     <a href="{{route('vendors-by-service',$value->id)}}">
                         <div class="img_wraper">
                             <img src="{{ $value->image }}">
-                            <h4 class="img_text">{{$value->name}}</h4>
+                            <h6 class="img_text">{{$value->name}}</h6>
                         </div>
                     </a>
                 </div>
@@ -107,7 +106,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">used cars for sale</h1>
+                        <h4 class="sec_main_heading text-center">used cars for sale</h4>
                         <p class="sec_main_para text-center">find used cars for sale around you</p>
 
                     </div>
@@ -151,7 +150,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12  ">
                     <div class="main_content_wraper about_connect_wraper">
-                        <h1 class="sec_main_heading about_connect_heading mb-4">Repair My Car</h1>
+                        <h4 class="sec_main_heading about_connect_heading mb-4">Repair My Car</h4>
                         <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
                         <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
 
@@ -173,7 +172,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">top rated vendors</h1>
+                        <h4 class="sec_main_heading text-center">top rated vendors</h4>
                         <p class="sec_main_para text-center">find some popular service providers based on their quality</p>
                     </div>
                 </div>
@@ -235,7 +234,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">latest news</h1>
+                        <h4 class="sec_main_heading text-center">latest news</h4>
                         <p class="sec_main_para text-center">keep yourself updated !</p>
                     </div>
                 </div>
@@ -274,7 +273,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h1 class="sec_main_heading text-center">near you</h1>
+                        <h4 class="sec_main_heading text-center">near you</h4>
                         <p class="sec_main_para text-center">Find some popular service providers based on their quality</p>
                     </div>
                 </div>
@@ -287,7 +286,7 @@
                                 <img src="{{ asset('public/assets/images/lambo-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center block-head-txt">BEST LAMBORGHINI SERVICE</h5>
+                                <h6 class="card-title text-center block-head-txt">Bestt Lamborghini Service</h6>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -317,7 +316,7 @@
                                 <img src="{{ asset('public/assets/images/rolls-royce-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center  block-head-txt">BEST ROLLS ROYCE SERVICE</h5>
+                                <h6 class="card-title text-center  block-head-txt">Best Rolls Royce Service</h6>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -346,7 +345,7 @@
                                 <img src="{{ asset('public/assets/images/mclaren-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center  block-head-txt">MCLAREN SERVICE CENTER</h5>
+                                <h6 class="card-title text-center  block-head-txt">Mclaren Service Center</h6>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -375,7 +374,7 @@
                                 <img src="{{ asset('public/assets/images/porche.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center  block-head-txt">Porsche Car Repair</h5>
+                                <h6 class="card-title text-center  block-head-txt">Porsche Car Repair</h6>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">
@@ -413,7 +412,7 @@
             <div class="row justify-content-center align-items-center" >
                 <div class="col-lg-6 col-md-8 col-sm-8">
                     <div class="rigister_heading">
-                        <h2>REGISTER YOUR GARAGE/WORKSHOP</h2>
+                        <h4 class="heading">REGISTER YOUR GARAGE/WORKSHOP</h4>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-1 col-sm-1"></div>

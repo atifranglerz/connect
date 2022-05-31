@@ -9,7 +9,7 @@
     .carousel-caption {
         top: -12px;
     }
-    .carousel-caption>h1 {
+    .carousel-caption > .heading {
         font-size: 12px;
         width: 220px;
     }
@@ -303,9 +303,6 @@ label.img_wraper_label>p {
     font-size: var(--fs-14);
     
 }
-.signup_vendor>h4 {
-    font-size: var(--fs-14);
-}
 .over_view_part>h3 {
     font-size: var(--fs-16);
 }
@@ -444,7 +441,7 @@ p{
     .divider{
         display: none;
     }
-    .carousel-caption>h1 {
+    .carousel-caption > .heading {
         font-size: var(--fs-16);
         width: 340px;
     }

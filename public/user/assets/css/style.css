@@ -12,6 +12,28 @@ body{
 	box-sizing: border-box;
     font-family: var(--mont);
 }
+
+h1 {
+    font-size: 40px!important;
+}
+h2 {
+    font-size: 32px!important;
+}
+h3 {
+    font-size: 28px!important;
+}
+h4 {
+    font-size: 24px!important;
+}
+h5 {
+    font-size: 20px!important;
+}
+h6 {
+    font-size: 16px!important;
+}
+.table>:not(caption)>*>* {
+    background-color: #484343!important;
+}
 /*............................. header style starts  ......................*/
 header{
     position: sticky;
@@ -62,8 +84,7 @@ nav{
 .sidebqar_toggler>i{
     font-size: 39px;
 }
-.costumer_heading>h3{
-    font-size: var(--fs-18);
+.costumer_heading>h6{
     color: var(--white);
     background-color: var(--orange);
     padding: 5px 5px;
@@ -274,7 +295,7 @@ nav{
 .carousel-caption{
     top: 77px;
 }
-.carousel-caption>h1{
+.carousel-caption > .heading{
     font-size: 32px;
     width: 498px;
     margin: 0 auto;
@@ -2330,7 +2351,37 @@ input.messages_file[type=file]::-webkit-file-upload-button {
 .login_content_wraper {
     background-image: url(../images/gradiantbg.jpg)!important;
 }
+
+@media (max-width: 991px) {
+    h1 {
+        font-size: 32px!important;
+    }
+    h2 {
+        font-size: 28px!important;
+    }
+    h3 {
+        font-size: 24px!important;
+    }
+    h4 {
+        font-size: 22px!important;
+    }
+    h5 {
+        font-size: 18px!important;
+    }
+}
 @media (max-width: 575px) {
+    h1 {
+        font-size: 20px!important;
+    }
+    h2 {
+        font-size: 18px!important;
+    }
+    h3 {
+        font-size: 16px!important;
+    }
+    h4, h5, h6 {
+        font-size: 14px!important;
+    }
     .quote_info>p {
         padding-right: 0;
     }

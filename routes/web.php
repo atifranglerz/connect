@@ -198,6 +198,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('quotecreate', 'QuoteController@create')->name('quotecreate');
         Route::post('quotestore', 'QuoteController@store')->name('quotestore');
         Route::get('response/{id}', 'QuoteController@reply')->name('response');
+        Route::get('print-order-details', 'QuoteController@printOrderDetails')->name('response');
         Route::get('vendorReply/{id}', 'QuoteController@vendorResponse')->name('vendorReply');
 
         Route::resource('user_review', 'UserReviewController');

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper pt-5">
-                        <h1 class="sec_main_heading text-center">SIGN IN</h1>
+                        <h4 class="sec_main_heading text-center">SIGN IN</h4>
                         <p class="sec_main_para text-center">Choose your role to sign in</p>
                     </div>
                 </div>

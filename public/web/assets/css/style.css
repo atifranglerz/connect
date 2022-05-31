@@ -191,7 +191,7 @@ color: var(--black);
 .carousel-caption{
     top: 77px;
 }
-.carousel-caption>h1{
+.carousel-caption > .heading{
     font-size: 32px;
     width: 498px;
     margin: 0 auto;
@@ -1134,10 +1134,6 @@ label.img_wraper_label>input[type="file"] {
 .signup_input_wraper.forgetpaww>a{
     color: var(--orange);
     text-align: right;
-}
-.signup_vendor>h4{
-    color: var(--orange);
-    font-size: var(--fs-18);  
 }
 .login_content_wraper{
     min-height: 100vh;

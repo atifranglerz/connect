@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5">
                 <div class="footer_link">
-                    <h1>LINKS</h1>
+                    <h5 class="text-white main-heading">LINKS</h5>
                     <ul>
                         <li><a href="{{ route('register') }}"><span class="fa fa-briefcase me-2 me-md-1" style="margin-right: 8px"></span>Register your business</a></li>
                         <li><a href="{{route('about')}}"><span class="fa fa-info-circle me-2 me-md-1" style="margin-right: 8px"></span>About Us</a></li>
@@ -91,7 +91,7 @@
             </div>
             <div class="col-lg-4 col-md-3 col-sm-3">
                 <div class="footer_link">
-                    <h1>LINKS</h1>
+                    <h5 class="text-white main-heading">LINKS</h5>
                     <ul>
                         <li><a href="{{route('privacy_policy')}}"><span class="fa fa-lock" style="margin-right: 8px"></span>Privicy Policy</a></li>
                         <li><a href="{{route('news')}}"><span class="fa fa-newspaper" style="margin-right: 8px" aria-hidden="true"></span>News</a></li>
@@ -101,7 +101,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4">
                 <div class="footer_link">
-                    <h1>CONNECT</h1>
+                    <h5 class="text-white main-heading">CONNECT</h5>
                     <div class="social_icons mb-3">
                         <a href="#">
                             <img src="{{ asset('public/assets/images/facbook.svg')}}">
@@ -116,7 +116,7 @@
                             <img src="{{ asset('public/assets/images/youtube.svg')}}">
                         </a>
                     </div>
-                    <h1 class="footer_contact_heading">CONTACT US</h1>
+                    <h5 class="text-white footer_contact_heading">CONTACT US</h5>
                     <p class="footer_address">+92 345 123 4678  </p>
                     <p class="footer_address">abc@email.com </p>
                     <p class="footer_address">1- Industrial Area, City</p>

@@ -161,4 +161,7 @@ class QuoteController extends Controller
         $page_title = 'vendor response ';
         return view('user.quote.vendor_reply', compact('page_title','data' ));
     }
+    public function printOrderDetails () {
+        return view('user.quote.print_order_details');
+    }
 }
