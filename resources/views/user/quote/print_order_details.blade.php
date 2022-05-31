@@ -5,28 +5,28 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5 white-background-box">
-                    <h3 class="sec_main_heading text-center">MOTORMEC GARAGE</h1>
-                    <p class="sec_main_para text-center">22nd. st. Al Qouz Ind 3, Behind Al Quoz Mall. P.O. Box 391409</p>
-                    <p class="sec_main_para text-center"><b>Tel : </b><span>04 3881192</span>, <b>Fax : </b><span>3881433</span></p>
-                    <p class="sec_main_para text-center"><b>email : </b><span>motormecdubai@gmail.com</span></p>
+                    <h3 class="sec_main_heading text-center">{{$data->vendordetail->garage_name}} GARAGE</h1>
+                    <p class="sec_main_para text-center">{{$data->vendordetail->address}} P.O. Box {{$data->vendordetail->post_box}}</p>
+                    <p class="sec_main_para text-center"><b>Tel : </b><span>{{$data->vendordetail->phone}}</span>, <b>Fax : </b><span>3881433</span></p>
+                    <p class="sec_main_para text-center"><b>email : </b><span>{{$data->vendordetail->vendor->email}}</span></p>
                     <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h1>
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-striped table-dark mb-0">
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <td colspan="2">Mr. ABDUL QADAR</td>
+                                    <td colspan="2">{{$data->vendordetail->vendor->name}}</td>
                                     <th>Est. No.</th>
-                                    <td>12390</td>
+                                    <td>{{$data->id}}</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th>Phone</th>
-                                    <td>0558123939</td>
+                                    <td>{{$data->vendordetail->vendor->phone}}</td>
                                     <th>Fax :</th>
                                     <th>Est. Date</th>
-                                    <td>04-May-2021</td>
+                                    <td>{{ \Carbon\Carbon::parse($data->created)->format('d-M-Y')}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -37,23 +37,24 @@
                             <thead>
                                 <tr>
                                     <th>Registration No.</th>
-                                    <td>15271 - M</td>
+                                    <td>{{$data->userBid->registration_no}}</td>
                                     <th>Milage Kms.</th>
-                                    <td>296988</td>
+                                    <td>{{$data->userBid->mileage}}</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th>Make</th>
-                                    <td>AUDI Q7</td>
+                                    <td>{{$data->userBid->company->company}}</td>
                                     <th>Color</th>
-                                    <td>WHITE</td> 
+                                    <td>{{$data->userBid->color}}</td>
                                 </tr>
                                 <tr>
                                     <th>Chasis No.</th>
-                                    <td>WA1AGDFE4ED000457</td>
+                                    <td>{{$data->userBid->Chasis_no}}</td>
                                     <th>Year</th>
-                                    <td>2013</td> 
+
+                                    <td>{{$data->userBid->modelYear->model_year}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -71,19 +72,36 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @php
+                                $total=0;
+                             $grand_total=0;
+                            @endphp
+                            @forelse($data->part as $service)
+                                @if($service->type=='services')
+                                    @php
+                                        $total+=$service->service_rate*$service->service_quantity;
+
+                                    @endphp
                                 <tr>
-                                    <td>1</td>
-                                    <td>POWER STEERING OIL COOLER ( USED)</td>
-                                    <td>1</td>
-                                    <td><span>750</span>.00</td>
-                                    <td><span>750</span>.00</td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$service->service_name}}</td>
+                                    <td>{{$service->service_quantity}}</td>
+                                    <td><span>{{$service->service_rate}}</span>.00</td>
+                                    <td><span>{{$service->service_rate*$service->service_quantity}}</span>.00</td>
+
                                 </tr>
+                                @endif
+                            @empty
+                            @endforelse
+                            @php
+                                $grand_total+=$total;
+                            @endphp
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <th>Spares : </th>
-                                    <td><span>750</span>.00</td>
+                                    <th>Services : </th>
+                                    <td><span>{{$total}}</span>.00</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -101,19 +119,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>POWER STEERING OIL COOLER ( USED)</td>
-                                    <td>1</td>
-                                    <td><span>750</span>.00</td>
-                                    <td><span>750</span>.00</td>
-                                </tr>
+                            @php
+                                $total=0;
+                            @endphp
+                            @forelse($data->part as $service)
+                                @if($service->type=='spares')
+                                    @php
+                                        $total+=$service->service_rate*$service->service_quantity;
+
+                                    @endphp
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$service->service_name}}</td>
+                                        <td>{{$service->service_quantity}}</td>
+                                        <td><span>{{$service->service_rate}}</span>.00</td>
+                                        <td><span>{{$service->service_rate*$service->service_quantity}}</span>.00</td>
+
+                                    </tr>
+                                @endif
+                            @empty
+                            @endforelse
+                            @php
+                                $grand_total+=$total;
+                            @endphp
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <th>Spares : </th>
-                                    <td><span>750</span>.00</td>
+                                    <td><span>{{$total}}</span>.00</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -131,19 +165,36 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @php
+                                $total=0;
+                                $grand_toal=0;
+                            @endphp
+                            @forelse($data->part as $service)
+                                @if($service->type=='others')
+                                    @php
+                                        $total+=$service->service_rate*$service->service_quantity;
+
+                                    @endphp
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$service->service_name}}</td>
+                                        <td>{{$service->service_quantity}}</td>
+                                        <td><span>{{$service->service_rate}}</span>.00</td>
+                                        <td><span>{{$service->service_rate*$service->service_quantity}}</span>.00</td>
+
+                                    </tr>
+                                @endif
+                            @empty
+                            @endforelse
+                            @php
+                                $grand_total+=$total;
+                            @endphp
                                 <tr>
-                                    <td>1</td>
-                                    <td>POWER STEERING OIL COOLER ( USED)</td>
-                                    <td>1</td>
-                                    <td><span>750</span>.00</td>
-                                    <td><span>750</span>.00</td>
-                                </tr>
-                                <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <th>Spares : </th>
-                                    <td><span>750</span>.00</td>
+                                    <th>Others : </th>
+                                    <td><span>{{$total}}</span>.00</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -153,21 +204,21 @@
                             <div class="row">
                                 <b class="col-6">Estimate Total</b>
                                 <div class="col-6 text-xl-right">
-                                    <span><span>6,815</span>.00</span>
+                                    <span><span>{{$grand_total}}</span>.00</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <b class="col-6">VAT 5%</b>
                                 <div class="col-6 text-xl-right">
-                                    <span>3401</span>
+                                    <span>{{$data->vat}}</span>
                                 </div>
                             </div>
                             <div class="row">
-                                <b class="col-6">Net Total</b> 
+                                <b class="col-6">Net Total</b>
                                 <div class="col-6 text-xl-right">
-                                    <span>7,155.75</span>
+                                    <span>{{$grand_total+ $data->vat}}</span>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -216,6 +267,6 @@
 @endsection
 @section('script')
     <script>
-        
+
     </script>
 @endsection

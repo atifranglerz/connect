@@ -26,16 +26,16 @@
                             </div>
 
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_name" placeholder="Name" required>
+                                <input type="text" class="form-control" name="customer_name" placeholder="Name" >
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_address" placeholder="Address" required>
+                                <input type="text" class="form-control" name="customer_address" placeholder="Address" >
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_postal_code" placeholder="Postal Code" required>
+                                <input type="text" class="form-control" name="customer_postal_code" placeholder="Postal Code" >
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_city" placeholder="City" required>
+                                <input type="text" class="form-control" name="customer_city" placeholder="City" >
                             </div>
 
                         </div>
@@ -50,16 +50,16 @@
                             </div>
 
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="card_number" placeholder="Card Number" aria-label="Make" required>
+                                <input type="text" class="form-control" name="card_number" placeholder="Card Number" aria-label="Make" >
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="cardholder_name" placeholder="Cardholder Name" aria-label="Make" required>
+                                <input type="text" class="form-control" name="cardholder_name" placeholder="Cardholder Name" aria-label="Make" >
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="expiry_date" placeholder="Expiry Date" aria-label="Make" required>
+                                <input type="text" class="form-control" name="expiry_date" placeholder="Expiry Date" aria-label="Make" >
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="cvv" placeholder="CVV" aria-label="Make" required>
+                                <input type="text" class="form-control" name="cvv" placeholder="CVV" aria-label="Make" >
                             </div>
 
                         </div>
@@ -77,7 +77,7 @@
 
                                 </div>
                                 <div class="col-lg-5 col-sm-5">
-                                    <a href="insurancePayment.php" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center" type="button">PAY VIA INSURANCE COMPANY</a>
+                                    <a href="{{url('user/print-order-details',$vendorbid->id)}}" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center" type="button">PAY VIA INSURANCE COMPANY</a>
                                 </div>
                             </div>
                         </div>
