@@ -2,11 +2,11 @@
 @section('content')
     <?php  $company = \App\Models\Company::where('id',$data->company_id)->first();?>
 <section class="pb-5 login_content_wraper">
-    <div class="container-lg container-fluid" >
+    <div class="px-md-4 container-lg container-fluid">
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h1 class="sec_main_heading text-center mb-0"> MY OFFERED QUOTE</h1>
+                    <h4 class="sec_main_heading text-center mb-0"> MY OFFERED QUOTE</h4>
                     <p class="sec_main_para text-center">See How You Responded To This Request</p>
                 </div>
             </div>
@@ -17,15 +17,15 @@
                     <div class=" w-100  quote_detail_wraper replies ">
                         <div class="active_bid_dtl_card_left">
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape ">{{$company->company}}</h3>
+                                <h5 class="heading-color d-flex align-items-center active_quote nowrape">{{$company->company}}</h5>
                                 <p class="mb-0">{{$data->car_owner_name}}</p>
 
                                 <p class="mb-0">{{$data->phone}}</p>
                                 <p class="milage">Mileage  <span>{{$data->mileage}}km</span></p>
                             </div>
 
-                            <div class="d-flex chat_view__detail qoute_replies vendor_order days ">
-                                <h3 class="active_bidDay">{{$data->day}} Days</h3>
+                            <div class="d-flex chat_view__detail qoute_replies vendor_order days">
+                                <h5 class="heading-color active_bidDay">{{$data->day}} Days</h5>
                                 <a href="#" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>
                                     <!-- <img src="assets/images/meassageiconblk.svg"> -->
@@ -34,7 +34,7 @@
 
                         </div>
                         <div class=" active_bid_dtl_card_right">
-                            <h3 class="offer_quote_heading">{{$data->model}}</h3>
+                            <h5 class="offer_quote_heading">{{$data->model}}</h5>
 {{--                            <h3 class="offer_quote_heading second_heading">My Quote <span>AED 1200</span></h3>--}}
                         </div>
                     </div>
@@ -44,7 +44,7 @@
         <div class="row  mt-5">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                    <h3 class="active_order_req">Requirments</h3>
+                    <h5 class="active_order_req">Requirments</h5>
 
                     <div class="vendor__rply__dttl">
                         <p>{{$data->description1}}</p>
@@ -262,7 +262,7 @@
                     </div>
 
 
-                    <h3 class="active_order_req">Police /Accident /Inspection Report</h3>
+                    <h5 class="active_order_req">Police /Accident /Inspection Report</h5>
 
                     <div class="vendor__rply__dttl">
                         <p>{{$data->description2}}</p>
@@ -289,7 +289,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='text' name='service_quantity[]' value='0' class='form-control qty' />
+                                                <input type='number' name='service_quantity[]' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -318,7 +318,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='text' name='spares_quantity[]' value='0' class='form-control qty' />
+                                                <input type='number' name='spares_quantity[]' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -347,7 +347,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='text' name='others_quantity[]' value='0' class='form-control qty' />
+                                                <input type='number' name='others_quantity[]' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>

@@ -24,13 +24,13 @@
                             </div>
                             <div class="  w-100  quote_detail_wraper align-items-md-center">
                                 <div class="quote_info Leavereview">
-                                    <h3 class="d-flex align-items-center active_quote">{{$data->model}}</h3>
+                                    <h5 class="d-flex align-items-center active_quote heading-color">{{$data->model}}</h5>
                                     <p class="mb-0">{{$data->company->company}}</p>
                                     <p class="mb-0">{{$data->modelYear->model_year}}</p>
                                     <p >{{$data->milage}} CC</p>
                                 </div>
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class=" text-sm-center">AED {{$data->price}}</h3>
+                                    <h5 class=" text-sm-center">AED {{$data->price}}</h5>
                                     <div class="d-flex  align-items-center chat_view__detail">
                                         <form method="post" action="{{route('vendor.ads.destroy', $data->id )}}" >
                                             @method('delete')

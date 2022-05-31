@@ -8,6 +8,7 @@ $(function() {
         let mainParent = $(this).closest('.content-block-row').clone();
         $(this).closest('.conten-row-block-main-container').append(mainParent);
         mainParent.find('input').val('');
+        mainParent.find('.qty').val('0');
     });
     $(document).on('click', '.remove-btn', function(e) {
         e.preventDefault();
@@ -44,6 +45,16 @@ $(function() {
             amountTotal();
         } 
     });
+    $(document).on('keyup', '.qty, .item-rate', function() {
+        let $quanInput = $(this).closest('.content-block-row').find('input.qty');
+        let val = parseInt($quanInput.val());
+        let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
+        let val1 = parseInt($rateInput.val());
+
+        let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
+        $amountInput.val(val*val1).change();
+        amountTotal();
+    });
     function amountTotal() {
         var sum_value = 0;
         $('.item-amount').each(function(){
@@ -66,7 +77,7 @@ $(function() {
         $('#vatPercent').val(percentRoundOff);
         let netTotal = amountTotal + percentRoundOff
         $('#netTotal').val(netTotal);
-    }
+    } 
     /*Amount Total, Vat, Net Total Calculations*/
 
     $(".get_appointment").hover(function() {

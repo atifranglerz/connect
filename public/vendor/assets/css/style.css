@@ -168,8 +168,8 @@ nav{
     border-bottom: 1px solid var(--gray);
     position: relative;
 }
-.login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li:last-child {
-    border-bottom: unset;
+.login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li:nth-child(2) {
+    border-bottom: 0;
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a{
     font-size: var(--fs-12);
@@ -1320,10 +1320,9 @@ footer{
     transition: left 0.6s ease-in-out;
 }*/
 .customer_dashboard_img_wraper{
-    width: 145px;
-    height: 145px;
+    width: 135px;
+    height: 135px;
     margin: 20px  auto 17px auto;
-
 }
 .customer_dashboard_img_wraper>img{
     width: 100%;
@@ -1331,9 +1330,8 @@ footer{
     object-fit: cover;
     border-radius: 10px;
 }
-.name_of_person>h3{
+.name_of_person>.heading{
     color: var(--white);
-    font-size: var(--fs-22);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -1387,7 +1385,6 @@ ul.sidebar_navcigation>li>a>img{
 }
 .soignou_plus_language_wraper>button{
     width: 140px;
-    height: 35px;
     background-color: var(--white);
     border-radius: 25px;
     color: var(--exra-darkgary);
@@ -1502,9 +1499,6 @@ ul.sidebar_navcigation>li>a>img{
     justify-content: space-between;
 
 }
-.all_quote_card.replies_allquot{
-    padding: 24px 10px;
-}
 .quote_card_heading>h3{
     font-size: var(--fs-24);
     font-weight: bold;
@@ -1593,7 +1587,8 @@ ul.sidebar_navcigation>li>a>img{
     height: 30px;
 }
 .chat_view__detail>.btn-secondary{
-    width: 202px;
+    width: 155px;
+    font-size: 15px;
 }
 .quote_detail_wraper.replies{
     align-items: flex-start;

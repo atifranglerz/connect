@@ -206,7 +206,7 @@ nav{
     justify-content: space-between;
     padding: 4px 0;
 }
-.login_sinup>.accoutntData>#Logout_Profile+.notification_tooltip>ul.notification_list>li>a>i {
+.login_sinup>.accoutntData>#Logout_Profile+.notification_tooltip>ul.notification_list>li>a>.fa {
     color: var(--orange);
     font-size: var(--fs-17);
     order: 2;
@@ -1501,10 +1501,9 @@ footer{
     transition: left 0.6s ease-in-out;
 }*/
 .customer_dashboard_img_wraper{
-    width: 145px;
-    height: 145px;
+    width: 135px;
+    height: 135px;
     margin: 20px  auto 17px auto;
-
 }
 .customer_dashboard_img_wraper>img{
     width: 100%;
@@ -1512,9 +1511,8 @@ footer{
     object-fit: cover;
     border-radius: 10px;
 }
-.name_of_person>h3{
+.name_of_person>.heading{
     color: var(--white);
-    font-size: var(--fs-22);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -1568,7 +1566,6 @@ ul.sidebar_navcigation>li>a>img{
 }
 .soignou_plus_language_wraper>button{
     width: 140px;
-    height: 35px;
     background-color: var(--white);
     border-radius: 25px;
     color: var(--exra-darkgary);

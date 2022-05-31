@@ -4,7 +4,7 @@
             <img src="{{ asset('/'.Illuminate\Support\Facades\Auth::user()->image) }}">
         </div>
         <div class="name_of_person mx-auto text-center">
-            <h3>Hi, {{ \Illuminate\Support\Facades\Auth::user()->name }}</h3>
+            <h5 class="heading">Hi, {{ \Illuminate\Support\Facades\Auth::user()->name }}</h5>
         </div>
     </div>
     <div class="sidebar_navigation">

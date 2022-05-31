@@ -100,7 +100,6 @@ input.messages_file[type=file] {
 }
 .soignou_plus_language_wraper>button {
     width: 115px;
-    height: 35px;
 }
     nav {
         min-height: 60px;
@@ -307,7 +306,7 @@ label.img_wraper_label.skip{
     flex-direction: column;
 }
 .chat_view__detail>.btn-secondary {
-    width: 125px;
+    width: 135px;
 }
 .quote_detail_btn_wraper>h3 {
     font-size: var(--fs-16);
@@ -748,7 +747,7 @@ p.reviews {
     font-size: var(--fs-16);
 }
 .chat_view__detail>.btn-secondary {
-    width: 120px;
+    width: 135px;
     height: 38px;
 }
 
@@ -840,8 +839,9 @@ p.reviews {
         font-size: var(--fs-18);
     }
     .chat_view__detail>.btn-secondary {
-        width: 108px;
+        width: 135px;
         height: 38px;
+        font-size: 14px;
     }
     .quote_detail_wraper {
         padding-left: 10px;

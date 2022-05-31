@@ -175,7 +175,6 @@ $black : #000;
     }
     .soignou_plus_language_wraper>button {
         width: 115px;
-        height: 35px;
     }
     .edit_profile_link_wraper>a {
         font-size: var(--fs-16);

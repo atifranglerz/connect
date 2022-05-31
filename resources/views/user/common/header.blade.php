@@ -68,7 +68,7 @@
                             <ul class="notification_list shadow">
                                 <li><a href="{{ route('user.profile.index') }}">Profile</a>
                                 </li>
-                                <li><a href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i class="fas fa-sign-out-alt"></i>
+                                <li><a href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><span class="fas fa-sign-out-alt"></span>
                                         Logout
                                     </a>
                                     <form id="frm-logout" action="{{ route('user.logout') }}" method="POST" style="display: none;">

@@ -10,9 +10,8 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row g-2">
             @foreach( $user_all_bid as $value)
-                <div class="row g-2">
                     <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
                         <div class="all_quote_card ">
                             <div class="car_inner_imagg ">
@@ -29,12 +28,12 @@
                             </div>
                             <div class=" w-100  quote_detail_wraper">
                                 <div class="quote_info">
-                                    <h3 class="d-flex align-items-center active_quote"><a href="#">{{$company->company}}  ({{$value->userbid->model}})</a> <span class="order_id">#{{$value->userbid->reference_no}}</span></h3>
+                                    <h5 class="d-flex align-items-center active_quote heading-color"><a href="#">{{$company->company}}  ({{$value->userbid->model}})</a> <span class="order_id">#{{$value->userbid->reference_no}}</span></h5>
                                     <p class="mb-0">{{$value->userbid->description1}}</p>
                                     <p >{{$value->userbid->phone}}</p>
                                 </div>
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class=" text-sm-center">AED {{$value->userbid->price}}</h3>
+                                    <h5 class="text-sm-center">AED {{$value->userbid->price}}</h5>
                                     <div class="d-flex align-items-center chat_view__detail">
                                         <a href="#" class="chat_icon"><!-- <img src="assets/images/meassageiconblk.svg"> --><i class="fa-solid fa-message"></i></a>
                                         <a href="{{ route('vendor.quotedetail',$value->userbid->id ) }}" class="btn-secondary">VIEW DETAILS</a>
@@ -46,9 +45,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                
             @endforeach
-
+            </div>
 
 
             @foreach( $user_all_bids as $values)
