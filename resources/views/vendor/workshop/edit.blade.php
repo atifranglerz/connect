@@ -103,7 +103,7 @@
                                                     @endphp
                                                     @for($i=0;$i<$categoryCounter;$i++)
                                                     @foreach($categories as $data)
-                                                        <option value="{{$data->name}}" @if($data->name==$selectedcategory[$i]) selected @endif>{{$data->name}}</option>
+                                                        <option value="{{$data->id}}" @if($data->id==$selectedcategory[$i]) selected @endif>{{$data->name}}</option>
                                                     @endforeach
                                                     @endfor
                                                 </select>

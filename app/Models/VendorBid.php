@@ -14,7 +14,7 @@ class VendorBid extends Model
     ];
     public function vendordetail()
     {
-        return $this->belongsTo(Vendor::class, 'garage_id', 'id');
+        return $this->belongsTo(Garage::class, 'garage_id', 'id');
     }
     public function userBid()
     {

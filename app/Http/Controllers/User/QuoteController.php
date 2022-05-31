@@ -46,7 +46,10 @@ class QuoteController extends Controller
             'day'=>'required',
             'maker_name' => 'required',
             'phone' => 'required',
-            'address'=> 'required' ,
+            'address'=> 'required',
+            'registration_no'=> 'required',
+            'Chasis_no'=> 'required',
+            'color'=> 'required',
         ]);
 
         $quote = new UserBid();
@@ -62,6 +65,9 @@ class QuoteController extends Controller
         $quote->car_owner_name = $request->maker_name;
         $quote->phone = $request->phone;
         $quote->address = $request->address;
+        $quote->registration_no = $request->registration_no;
+        $quote->Chasis_no = $request->Chasis_no;
+        $quote->color = $request->color;
         $quote->save();
 
         // this is car image save
@@ -108,12 +114,8 @@ class QuoteController extends Controller
                 $user = new UserBidCategory() ;
                 $user->user_bid_id = $quote->id ;
                 $user->category_id = $data ;
-
-
                 $user->save();
-
             if($request->action == 'all_garage'){
-
                 $vendor_quote=new VendorQuote;
                 $vendor_quote->user_id=Auth()->user()->id;
                 $vendor_quote->user_bit_id=$quote->id;
@@ -133,7 +135,6 @@ class QuoteController extends Controller
                 }
             }
 
-
             }
 
         }
@@ -146,7 +147,11 @@ class QuoteController extends Controller
 
     public function reply ($id)
     {
+
         $data = \App\Models\VendorBid::with('vendordetail')->where('user_bid_id' ,'=' , $id)->get();
+
+
+
         $page_title = 'Qoute Response ';
         return view('user.quote.response', compact('page_title' ,'data' ));
     }

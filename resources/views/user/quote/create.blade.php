@@ -39,13 +39,13 @@
                                 <div class="form-step form-step-active tab-pane fade show active px-lg-3" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" required>
+                                            <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" >
                                             @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                                <select class="form-select form-control company-name-field" name="company_id" aria-label="Type of Service" required>
+                                                <select class="form-select form-control company-name-field" name="company_id" aria-label="Type of Service" >
                                                     <option value=""></option>
                                                     @foreach($company as $data)
                                                         <option value="{{$data->id }}">{{$data->company }}</option>
@@ -54,6 +54,24 @@
                                                 @error('company_id')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <input type="text" class="form-control" name="registration_no" placeholder="Registration No." aria-label="Car Milage" >
+                                            @error('registration_no')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <input type="text" class="form-control" name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage" >
+                                            @error('Chasis_no')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <input type="text" class="form-control" name="color" placeholder="Color" aria-label="Car Milage" >
+                                            @error('color')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <select class="form-select form-control model-year-field" name="model_year_id" aria-label="Type of Service" required>
@@ -80,11 +98,12 @@
                                           <input type="text" class="form-control" placeholder="Timeline For Work" aria-label="Timeline For Work">
                                         </div>
                    -->                   <div class="col-lg-6 col-md-6">
-                                        <input type="number" class="form-control" name="mileage" placeholder="Car Milage e.g 40 Km" aria-label="Car Milage" required>
+                                        <input type="number" class="form-control" name="mileage" placeholder="Milage e.g 40 Km" aria-label="Car Milage" required>
                                         @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                         </div>
+
                                         <div class="col-lg-6 col-md-6">
                                             <input type="number" class="form-control" name="day" placeholder="Days e.g (7)" aria-label="Day" required>
                                             @error('day')

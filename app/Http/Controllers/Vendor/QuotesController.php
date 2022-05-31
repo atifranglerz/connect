@@ -33,6 +33,7 @@ class QuotesController extends Controller
     }
     public function bidresponse (Request $request)
     {
+        dd('hello');
         $request->validate([
             'bid_id'=>'required',
             'garage_id'=>'required',

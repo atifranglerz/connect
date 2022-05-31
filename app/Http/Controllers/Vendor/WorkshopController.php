@@ -201,9 +201,11 @@ class WorkshopController extends Controller
         if ($garage) {
             $categories = $request->category;
             foreach ($categories as $cat) {
+
+//                $data=GarageCategory::where('garage_id',$id)->get();
                 GarageCategory::where('garage_id', $id)->update([
                     'garage_id' => $garage->id,
-                    'category_id' => $cat,
+                    'category_id' =>intval($cat),
                 ]);
             }
             $length = count($request->day);

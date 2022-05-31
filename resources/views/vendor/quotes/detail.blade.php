@@ -282,24 +282,24 @@
                                 <div class="conten-row-block-main-container services-details">
                                     <div class="mb-3 row content-block-row">
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Particular" />
+                                            <input type="text" name="service_name[]" class="form-control" placeholder="Particular" />
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='text' name='quantity' value='0' class='form-control qty' />
+                                                <input type='text' name='service_quantity[]' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value=''  class="form-control item-rate" placeholder="Rate" />
+                                            <input type="number" min="1" value='' name="services_quantity[]"  class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value='' class="form-control item-amount" placeholder="Amount" />
+                                            <input type="number" min="1" value='' name="services_amount[]" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
@@ -311,24 +311,24 @@
                                 <div class="conten-row-block-main-container spares-details">
                                     <div class="mb-3 row content-block-row">
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Particular" />
+                                            <input type="text" name="spares_name[]" class="form-control" placeholder="Particular" />
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='text' name='quantity' value='0' class='form-control qty' />
+                                                <input type='text' name='spares_quantity[]' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value=''  class="form-control item-rate" placeholder="Rate" />
+                                            <input type="number" min="1" value='' name="spares_rate[]"  class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value='' class="form-control item-amount" placeholder="Amount" />
+                                            <input type="number" min="1" value='' name="spares_amount[]" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
@@ -340,24 +340,24 @@
                                 <div class="conten-row-block-main-container extras-details">
                                     <div class="mb-3 row content-block-row">
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Particular" />
+                                            <input type="text" name="others_name[]" class="form-control" placeholder="Particular" />
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='text' name='quantity' value='0' class='form-control qty' />
+                                                <input type='text' name='others_quantity[]' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" class="form-control item-rate" placeholder="Rate" />
+                                            <input type="number" min="1" name="others_rate[]" class="form-control item-rate" placeholder="Rate" />
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" class="form-control item-amount" placeholder="Amount" />
+                                            <input type="number" min="1" name="others_amount[]" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
