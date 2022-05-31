@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h1 class="sec_main_heading text-center">CAR FOR SALE</h1>
+                    <h4 class="sec_main_heading text-center">CAR FOR SALE</h4>
                     <p class="sec_main_para allgarages text-center">Search For Used Cars</p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
 
                     <div class="input-group mb-3 search_garages_wraper">
                         <input type="text" class="form-control search_garages" placeholder="Search For Your Next Car" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn search" type="button" id="button-addon2">Button</button>
+                        <button class="btn search" type="button" id="button-addon2">Search</button>
                         <div class="srearch_icon_wraper">
                             <img src="{{ asset('public/assets/images/searchicon.svg') }}">
                         </div>
@@ -43,8 +43,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title ">{{ $value->model }}</h5>
-                                <h5 class="card-title ">{{ modelYear($value->model_year_id)}}</h5>
+                                <h6 class="card-title">{{ $value->model }}</h6>
+                                <!-- <h5 class="card-title">{{ modelYear($value->model_year_id)}}</h5> -->
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title price mb-0 ">Price : {{ $value->price }}</h5>

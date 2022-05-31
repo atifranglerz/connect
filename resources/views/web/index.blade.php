@@ -122,7 +122,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h5 class="card-title block-head-txt">{{ $value->model }}</h5>
+                                    <h6 class="card-title block-head-txt">{{ $value->model }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h5 class="card-title price mb-0 ">Price : AED {{ $value->price }}</h5>
@@ -198,7 +198,7 @@
                             }
                             ?>
                             <div class="card-body p-sm-2">
-                                <h5 class="block-head-txt text-center">{{$value->garage_name}}</h5>
+                                <h6 class="block-head-txt text-center">{{$value->garage_name}}</h6>
                                 <h5 class="card-title text-center allgarages_card_title"><span>{{$overAllRatings}}</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id',$value->id)->pluck('category_id');
@@ -286,7 +286,7 @@
                                 <img src="{{ asset('public/assets/images/lambo-banner.jpg') }}" class="card-img-top" alt="Car image">
                             </div>
                             <div class="card-body">
-                                <h6 class="card-title text-center block-head-txt">Bestt Lamborghini Service</h6>
+                                <h6 class="card-title text-center block-head-txt">Best Lamborghini Service</h6>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{ asset('public/assets/images/iconrp.svg') }}">

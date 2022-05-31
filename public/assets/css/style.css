@@ -721,7 +721,7 @@ section.looking_for {
     font-size: 37px;
 }
 .form-control.search_garages{
-   height: 62px;
+   height: 52px;
     font-family: var(--mont);
     background-color: var(--lightgray);
     box-shadow: var(--shaodw-search);
@@ -741,11 +741,11 @@ section.looking_for {
 }
 .srearch_icon_wraper{
     position: absolute;
-    top: 50%;
+    top: 45%;
     transform: translateY(-50%);
     left: 14px;
-    width: 27px;
-    height: 27px;
+    width: 20px;
+    height: 20px;
     z-index: 4;
 }
 .srearch_icon_wraper>img,.slide_icon_wraper>a>img{
@@ -755,14 +755,12 @@ section.looking_for {
 }
 .slide_icon_wraper{
     position: absolute;
-    top: 50%;
+    top: 43%;
     transform: translateY(-50%);
     right: 105px;
-    width: 27px;
-    height: 27px;
+    width: 20px;
+    height: 20px;
     z-index: 4;
-
-
 }
 .form-control:focus{
     border-color: var(--orange);
