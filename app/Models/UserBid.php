@@ -19,7 +19,7 @@ class UserBid extends Model
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
-    public function model()
+    public function modelYear()
     {
         return $this->belongsTo(ModelYear::class, 'model_year_id', 'id');
     }

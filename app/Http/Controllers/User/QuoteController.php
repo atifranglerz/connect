@@ -158,7 +158,8 @@ class QuoteController extends Controller
         $page_title = 'vendor response ';
         return view('user.quote.vendor_reply', compact('page_title','data' ));
     }
-    public function printOrderDetails () {
-        return view('user.quote.print_order_details');
+    public function printOrderDetails ($id) {
+        $data=VendorBid::where('id',$id)->with('part','vendordetail')->first();
+        return view('user.quote.print_order_details',compact('data'));
     }
 }
