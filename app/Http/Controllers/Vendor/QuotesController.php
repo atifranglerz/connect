@@ -34,65 +34,68 @@ class QuotesController extends Controller
     }
     public function bidresponse (Request $request)
     {
+      if(VendorBid::where('garage_id',auth()->user()->garage->id)->where('user_bid_id',$request->bid_id)->doesntExist()) {
+          $request->validate([
+              'bid_id' => 'required',
+              'garage_id' => 'required',
+              'price' => 'required',
+              'time' => 'required',
+              'description' => 'required',
+              'service_name' => 'required',
+              'service_quantity' => 'required',
+              'services_rate' => 'required',
+              'spares_name' => 'required',
+              'spares_quantity' => 'required',
+              'spares_rate' => 'required',
+              'others_name' => 'required',
+              'others_quantity' => 'required',
+              'others_rate' => 'required',
+              'vat' => 'required',
+              'net_total' => 'required',
+          ]);
+          $data = new \App\Models\VendorBid();
+          $data->user_bid_id = $request->bid_id;
+          $data->garage_id = $request->garage_id;
+          $data->price = $request->price;
+          $data->time = $request->time;
+          $data->description = $request->description;
+          $data->save();
+          for ($i = 0; $i < count($request->service_name); $i++) {
+              $services = [
+                  'vendor_bid_id' => $data->id,
+                  'service_name' => $request->service_name[$i],
+                  'service_quantity' => $request->service_quantity[$i],
+                  'service_rate' => $request->services_rate[$i],
+                  'type' => 'services',
+              ];
+              Parts::create($services);
+          }
+          for ($i = 0; $i < count($request->spares_name); $i++) {
+              $spares = [
+                  'vendor_bid_id' => $data->id,
+                  'service_name' => $request->spares_name[$i],
+                  'service_quantity' => $request->spares_quantity[$i],
+                  'service_rate' => $request->spares_rate[$i],
+                  'type' => 'spares',
+              ];
+              Parts::create($spares);
+          }
+          for ($i = 0; $i < count($request->others_name); $i++) {
+              $other = [
+                  'vendor_bid_id' => $data->id,
+                  'service_name' => $request->others_name[$i],
+                  'service_quantity' => $request->others_quantity[$i],
+                  'service_rate' => $request->others_rate[$i],
+                  'type' => 'others',
+              ];
+              Parts::create($other);
+          }
+          return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
+      }else{
+          return redirect()->back()->with(['message' =>'You are already bided on this quote', 'alert' => 'error']);
 
-        $request->validate([
-            'bid_id'=>'required',
-            'garage_id'=>'required',
-            'price'=>'required',
-            'time'=>'required',
-            'description'=>'required',
-            'service_name'=>'required',
-            'service_quantity'=>'required',
-            'services_rate'=>'required',
-            'spares_name'=>'required',
-            'spares_quantity'=>'required',
-            'spares_rate'=>'required',
-            'others_name'=>'required',
-            'others_quantity'=>'required',
-            'others_rate'=>'required',
-            'vat'=>'required',
-            'net_total'=>'required',
-        ]);
-        $data =  new \App\Models\VendorBid();
-        $data->user_bid_id =  $request->bid_id ;
-        $data->garage_id =  $request->garage_id ;
-        $data->price = $request->price ;
-        $data->time = $request->time ;
-        $data->description = $request->description ;
-        $data->save();
-        for($i=0;$i<count($request->service_name);$i++){
-            $services=[
-                'vendor_bid_id'=>$data->id,
-                'service_name'=>$request->service_name[$i],
-                'service_quantity'=>$request->service_quantity[$i],
-                'service_rate'=>$request->services_rate[$i],
-                'type'=>'services',
-            ];
-            Parts::create($services);
-        }
 
-        for($i=0;$i<count($request->spares_name);$i++) {
-            $spares= [
-                'vendor_bid_id' => $data->id,
-                'service_name' => $request->spares_name[$i],
-                'service_quantity' => $request->spares_quantity[$i],
-                'service_rate' => $request->spares_rate[$i],
-                'type' => 'spares',
-            ];
-            Parts::create($spares);
-        }
+      }
 
-        for($i=0;$i<count($request->others_name);$i++) {
-            $other = [
-                'vendor_bid_id' => $data->id,
-                'service_name' => $request->others_name[$i],
-                'service_quantity' => $request->others_quantity[$i],
-                'service_rate' => $request->others_rate[$i],
-                'type' => 'others',
-            ];
-            Parts::create($other);
-        }
-
-        return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
     }
 }
