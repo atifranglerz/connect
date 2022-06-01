@@ -96,16 +96,16 @@
 
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
                                                 <select class="form-select form-control offer-garage-services" name="category[]" multiple aria-label="Type of Service">
-                                                    @php
+{{--                                                    @php--}}
 
-                                                        $selectedcategory=explode(',',$garage->vendor->garages_catagory);
-                                                        $categoryCounter=count($selectedcategory);
-                                                    @endphp
-                                                    @for($i=0;$i<$categoryCounter;$i++)
+{{--                                                        $selectedcategory=explode(',',$garage->vendor->garages_catagory);--}}
+{{--                                                        $categoryCounter=count($selectedcategory);--}}
+{{--                                                    @endphp--}}
+                                                    @foreach($garage->garageCategory as $selectedCaategory)
                                                     @foreach($categories as $data)
-                                                        <option value="{{$data->id}}" @if($data->id==$selectedcategory[$i]) selected @endif>{{$data->name}}</option>
+                                                        <option value="{{$data->id}}" @if($data->id==$selectedCaategory->category_id) selected @endif>{{$data->name}}</option>
                                                     @endforeach
-                                                    @endfor
+                                                    @endforeach
                                                 </select>
                                                 @error('category')
                                                 <div class="text-danger p-2">{{ $message }}</div>

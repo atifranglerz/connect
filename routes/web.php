@@ -200,7 +200,6 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('response/{id}', 'QuoteController@reply')->name('response');
         Route::get('print-order-details/{id}', 'QuoteController@printOrderDetails')->name('print-order-details');
         Route::get('vendorReply/{id}', 'QuoteController@vendorResponse')->name('vendorReply');
-
         Route::resource('user_review', 'UserReviewController');
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
