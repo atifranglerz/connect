@@ -389,7 +389,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Time Frame</h6>
-                                        <input type="text"  name="time" class="form-control" placeholder="Time Frame">
+                                        <input type="text"  name="time" class="form-control" placeholder="Estimated Time">
                                         @error('time')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12 mb-3">
