@@ -418,7 +418,7 @@
                 <div class="col-lg-2 col-md-1 col-sm-1"></div>
                 <div class="col-lg-4 col-md-3 col-sm-3">
                     <div class="rigister_btn d-flex justify-content-center align-items-center">
-                        <a href="{{route('register')}}">REGISTER</a>
+                        <a href="{{route('vendor.register')}}">REGISTER</a>
                     </div>
                 </div>
             </div>

@@ -418,7 +418,7 @@ nav{
 }
 .search_btn{
     width: 115px;
-    height: 47px;
+    height: 38px;
     color: var(--white);
     background-color: var(--orange);
     font-weight: var(--fw-500);
