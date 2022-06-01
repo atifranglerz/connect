@@ -36,7 +36,7 @@
                         <form enctype="multipart/form-data" method="post" action="{{ route('user.quotestore') }}"  class="needs-validation" novalidate>
                             @csrf
                             <div class="tab-content" id="myTabContent">
-                                <div class="form-step form-step-active tab-pane fade show active px-lg-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" >
@@ -112,12 +112,12 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
-                                                <button class="btn btn-secondary block get_appointment" type="button">NEXT</button>
+                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-step tab-pane fade px-lg-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="tab-pane fade form-step px-lg-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
                                             <div class="input-images">
@@ -134,12 +134,12 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
-                                                <button class="btn btn-secondary block get_appointment" type="button">NEXT</button>
+                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-step tab-pane fade px-lg-3" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <div class="tab-pane fade form-step px-lg-3" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
                                             <div class="input-images-2" accept="pdf/*" data-type='Pdf'>
@@ -153,12 +153,12 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
-                                                <button class="btn btn-secondary block get_appointment" type="button">NEXT</button>
+                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-step tab-pane fade px-lg-3" id="fourthtab" role="tabpanel" aria-labelledby="fourth-tab">
+                                <div class="tab-pane fade form-step px-lg-3" id="fourthtab" role="tabpanel" aria-labelledby="fourth-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="row g-2 col-lg-12 mb-3">
                                             <div class="input-images-3"></div>
