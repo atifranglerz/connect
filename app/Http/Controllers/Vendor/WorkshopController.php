@@ -109,13 +109,19 @@ class WorkshopController extends Controller
 
                 $length =count($request->day);
 
+
                 for ($i = 0; $i < $length; $i++) {
+                    if(isset($request->closed[$i])){
+                        $closed=1;
+                    }else{
+                        $closed=0;
+                    }
                     GarageTiming::create([
                         'garage_id' => $garage->id,
                         'day' => $request->day[$i],
                         'from' => $request->from[$i],
                         'to' => $request->to[$i],
-                        'closed' => isset($request->closed[$i]) ? 1 : 0,
+                        'closed' =>$closed,
                     ]);
                 }
             }
@@ -163,7 +169,7 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+dd($request->closed);
         $request->validate([
             'garage_name' => 'required',
             'address' => 'required',
@@ -214,13 +220,17 @@ class WorkshopController extends Controller
 
             $length = count($request->day);
             for ($i = 0; $i < $length; $i++) {
-
+                if(isset($request->closed[$i])){
+                    $closed=1;
+                }else{
+                    $closed=0;
+                }
                 GarageTiming::create([
                     'garage_id' => $garage->id,
                     'day' => $request->day[$i],
                     'from' => $request->from[$i],
                     'to' => $request->to[$i],
-                    'closed' => isset($request->closed[$i]) ? 1 : 0,
+                    'closed' =>$closed,
                 ]);
             }
         }

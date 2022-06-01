@@ -49,7 +49,7 @@
 
                             <div class="card-body p-sm-2">
                                 <h6 class="block-head-txt text-center">{{$value->garage_name}}</h6>
-                                <h5 class="card-title text-center allgarages_card_title"><span>{{$overAllRatings}}</span></h5>
+                                <h5 class="card-title text-center allgarages_card_title"><span>@if(isset($overAllRatings))?{{$overAllRatings}}:'' @endif</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id',$value->id)->pluck('category_id');
                                     $category_name = \App\Models\Category::whereIn('id',$category)->get();

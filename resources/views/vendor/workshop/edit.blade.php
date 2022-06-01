@@ -155,6 +155,7 @@
                                                   <p class="mb-0">Upload workshop image</p>
                                                   <input type="file" size="60" >
                                                 </label> -->
+
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
@@ -174,9 +175,10 @@
                                     </div>
                                     <div class="tab-pane fade form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         @foreach($garage->garageTiming as $value)
+
                                             <div class="row mb-3 align-items-center justify-content-center">
                                                 <label for="inputEmail3"
-                                                       class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>
+                                                       class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{$value->day}}</label>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                     <input type="hidden" name="day[]" value="{{$value->day}}">
                                                     <input type="text" name="from[]" value="{{$value->from}}" class="form-control" placeholder="From :10:00Am " id="">
@@ -188,7 +190,7 @@
                                                     <div
                                                         class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
                                                         <label class="form-check-label" for="autoSizingCheck">Closed:</label>
-                                                        <input class="form-check-input wrk_day_chek" name="checkbox[]" type="checkbox" {{ ($value->closed == "1" ? ' checked' : '') }} id="autoSizingCheck">
+                                                        <input class="form-check-input wrk_day_chek" name="checkbox[]" type="checkbox" {{ ($value->closed == "1" ? 'checked' : '') }} id="autoSizingCheck">
                                                     </div>
                                                 </div>
                                             </div>
@@ -337,7 +339,7 @@
 
         $(function() {
             let preloaded = [
-                {id: 1, src: 'https://picsum.photos/500/500?random=1'},
+                {id: 1, src: '{{asset($garage->image)}}'},
             ];
             $('.workshop-image').imageUploader({
                 preloaded: preloaded,

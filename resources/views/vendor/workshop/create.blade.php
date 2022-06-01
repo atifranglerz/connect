@@ -60,20 +60,33 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <select class="form-select form-control" name="country" aria-label="Country">
                                                     <option selected disabled value="">Select Country</option>
-                                                    @foreach($countries as $value)
-                                                        <option value="{{$value->asciiname}}" @if($authvendor->country == $value->asciiname) selected @endif>{{$value->asciiname}}</option>
-                                                    @endforeach
+
+                                                        <option value="United Arab Emirates" @if($authvendor->country =='United Arab Emirates') selected @endif>United Arab Emirates</option>
+
                                                 </select>
                                                 @error('country')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="city"  value="{{$authvendor->city}}" class="form-control" placeholder="City" >
+                                                <select class="form-select form-control" name="city" aria-label="City">
+                                                    <option selected disabled value="">Select City</option>
+                                                    <option value="Dubai" @if($authvendor->city=='Dubai') selected @endif>Dubai</option>
+                                                    <option value="Abu Dhabi" @if($authvendor->city=='Abu Dhabi') selected @endif>Abu Dhabi</option>
+                                                    <option value="Sharjah" @if($authvendor->city=='Sharjah') selected @endif>Sharjah</option>
+                                                    <option value="Ras Al Khaimah" @if($authvendor->city=='Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
+                                                    <option value="Ajman" @if($authvendor->city=='Ajman') selected @endif>Ajman</option>
+                                                </select>
                                                 @error('city')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
+{{--                                            <div class="col-lg-6 col-md-6 col-sm-6">--}}
+{{--                                                <input type="text" name="city"  value="{{$authvendor->city}}" class="form-control" placeholder="City" >--}}
+{{--                                                @error('city')--}}
+{{--                                                <div class="text-danger p-2">{{ $message }}</div>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <input type="number" name="post_box"  value="{{$authvendor->post_box}}" class="form-control" placeholder="P/O Box" >
                                                 @error('post_box')
@@ -164,7 +177,7 @@
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="monday">
+                                                <input type="hidden" name="day[]" value="Monday">
                                                 <input  name="from[]" type="text" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
@@ -181,7 +194,7 @@
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Tuesday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="tuesday">
+                                                <input type="hidden" name="day[]" value="Tuesday">
                                                 <input  type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
@@ -197,7 +210,7 @@
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Wednesday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="wednesday">
+                                                <input type="hidden" name="day[]" value="Wednesday">
                                                 <input type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
@@ -211,9 +224,9 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Thusday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Thursday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="thusday">
+                                                <input type="hidden" name="day[]" value="Thursday">
                                                 <input type="text"  name="from[]" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
@@ -229,7 +242,7 @@
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Friday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="friday">
+                                                <input type="hidden" name="day[]" value="Friday">
                                                 <input type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
@@ -245,7 +258,7 @@
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Saturday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="saturday">
+                                                <input type="hidden" name="day[]" value="Saturday ">
                                                 <input type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
@@ -261,7 +274,7 @@
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Sunday</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="hidden" name="day[]" value="sunday">
+                                                <input type="hidden" name="day[]" value="Sunday">
                                                 <input type="text"  name="from[]" class="form-control" placeholder="From :10:00Am " id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
