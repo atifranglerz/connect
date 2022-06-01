@@ -10,15 +10,6 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .form-step {
-                    display: none;
-                }
-
-                .form-step-active {
-                    display: block;
-                }
-            </style>
             <div class="row ">
                 <div class="col-lg-8 col-md-11  mx-auto">
                     <div class="bid_form_wraper">
@@ -49,7 +40,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="form-step form-step-active " id="home" role="tabpanel"
+                                    <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel"
                                          aria-labelledby="home-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-6 col-md-6">
@@ -125,14 +116,14 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment" type="button">NEXT</button>
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="over_view_part timing_hours mape_wraper mt-4">
-                                                    <h5 class="heading-color text-center mb-5">Google Maps</h5>
+                                                    <h5 class="heading-color text-center mb-4">Google Maps</h5>
                                                     <div
                                                         class="input-group mb-3 mx-lg-5 mx-md-3 mx-1 search_garages_wraper vendor_crt_wrkshop">
                                                         <input type="text" class="form-control search_garages creat_wrk" placeholder="Search For Your Next Car" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -152,7 +143,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="form-step" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="tab-pane fade form-step" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="input-images-4">
@@ -174,14 +165,14 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment"
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn"
                                                             type="button">NEXT
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div class="tab-pane fade form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         @foreach($garage->garageTiming as $value)
                                             <div class="row mb-3 align-items-center justify-content-center">
                                                 <label for="inputEmail3"
@@ -204,7 +195,7 @@
                                         @endforeach
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                 <button class="btn btn-secondary block get_appointment" type="submit">NEXT</button>
+                                                 <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">NEXT</button>
                                             </div>
                                          </div>
                                         {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
@@ -304,7 +295,7 @@
                                         {{--                                        </div>--}}
                                         {{--                                        <div class="col-lg-12">--}}
                                         {{--                                            <div class="d-grid gap-2 mt-3 mb-4">--}}
-                                        {{--                                                <button class="btn btn-secondary block get_appointment" type="submit">NEXT</button>--}}
+                                        {{--                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">NEXT</button>--}}
                                         {{--                                            </div>--}}
                                         {{--                                        </div>--}}
                                         {{--                                    </div>--}}

@@ -1,18 +1,6 @@
 @extends('web.layout.app')
 
 @section('content')
-    <style type="text/css">
-        .login_sinup{
-            display: none;
-        }
-         .form-step {
-             display: none;
-         }
-        .form-step-active {
-            display: block;
-        }
-    </style>
-
     <section class="pb-5 login_content_wraper" style="background-image:url({{asset('public/assets/images/gradiantbg.jpg')}});">
         <div class="container" >
             <div class="row">
@@ -46,7 +34,7 @@
                         <form enctype="multipart/form-data" method="post" action="{{ route('vendor.workshop.store') }}">
                                 @csrf
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="form-step form-step-active " id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <input type="text" name="garage_name"   value="{{$authvendor->garage_name}}" class="form-control" placeholder="Workshop Name">
@@ -118,7 +106,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment" type="button">NEXT</button>
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-step " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="tab-pane fade form-step" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="input-images-4">
@@ -166,12 +154,12 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment" type="button">NEXT</button>
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div class="tab-pane fade form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>
@@ -289,7 +277,7 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
-                                                <button class="btn btn-secondary block get_appointment" type="submit">NEXT</button>
+                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">NEXT</button>
                                             </div>
                                         </div>
                                     </div>

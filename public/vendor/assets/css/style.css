@@ -966,9 +966,6 @@ p.card-text.sing_up_card_txt{
     font-size: var(--fs-15) !important;
     color: var(--darkgray)!important;
 }
-.btn.search.crt_wrik{
-    position: relative;
-}
 .btn-secondary:before{
     background-color: var(--orange);
     content: "";
