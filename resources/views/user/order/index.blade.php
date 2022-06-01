@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">ALL ORDERS</h1>
+                        <h4 class="sec_main_heading text-center mb-0">ALL ORDERS</h4>
                         <p class="sec_main_para text-center">See Your Previously Completed Orders and Details</p>
                     </div>
                 </div>
@@ -26,8 +26,8 @@
                         </div>
                         <div class=" w-100  quote_detail_wraper">
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})
-                                </h3>
+                                <h5 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})
+                                </h5>
                                 <p class="mb-0">{{$userbidid->description1}}</p>
                                 <p >{{$userbidid->phone}}</p>
 {{--                                <div class="card_icons d-flex justify-content-center align-items-center">--}}
@@ -51,9 +51,9 @@
                             </div>
                             <div class="quote_detail_btn_wraper">
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h3>
+                                    <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h5>
                                 </div>
-                                <h3 class=" text-sm-center">AED {{$userbidid->price}}</h3>
+                                <h5 class=" text-sm-center">AED {{$userbidid->price}}</h5>
                                 <div class="d-flex align-items-center chat_view__detail">
                                     <a href="#" class="chat_icon">
                                         <i class="fa-solid fa-message"></i>

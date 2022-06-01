@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h1 class="sec_main_heading text-center mb-0">ALL ORDERS</h1>
+                    <h4 class="sec_main_heading text-center mb-0">ALL ORDERS</h4>
                     <p class="sec_main_para text-center">See your order history here</p>
                 </div>
             </div>
@@ -27,12 +27,12 @@
                         </div>
                         <div class=" w-100  quote_detail_wraper">
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})  <span class="order_id">{{$order->status}}</span></h3>
+                                <h5 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})  <span class="order_id">{{$order->status}}</span></h5>
                                 <p class="mb-0">{{$userbidid->description1}}</p>
                                 <p >{{$userbidid->phone}}</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
-                                <h3 class=" text-sm-center">AED {{$order->total}}</h3>
+                                <h5 class=" text-sm-center">AED {{$order->total}}</h5>
                                 <div class="d-flex align-items-center chat_view__detail">
                                     <a href="#" class="chat_icon">
                                         <i class="fa-solid fa-message"></i>
