@@ -287,7 +287,9 @@
         $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><a href="#" class="skip">Skip</a><input type="file" size="60" ></label>   ');
         $('.input-images-3').imageUploader();
         $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Add Registration Copy Image</p><input type="file" size="60" ></label>');
-        $('.input-images-4').imageUploader();
+        $('.input-images-4').imageUploader({
+            maxFiles:1,
+        });
         $(".input-images-4>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload workshop image</p><input type="file" size="60" ></label>');
         $('.input-images-5').imageUploader({
             maxFiles: 1,

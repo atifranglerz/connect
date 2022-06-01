@@ -146,7 +146,7 @@
                                     <div class="tab-pane fade form-step" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-12 mb-3">
-                                                <div class="input-images-4">
+                                                <div class="workshop-image">
                                                 </div>
                                                 <!-- <label class="img_wraper_label">
                                                   <div class="file_icon_wraper">
@@ -334,5 +334,15 @@
 
             formSteps[formStepsNum].classList.add("form-step-active");
         }
+
+        $(function() {
+            let preloaded = [
+                {id: 1, src: 'https://picsum.photos/500/500?random=1'},
+            ];
+            $('.workshop-image').imageUploader({
+                preloaded: preloaded,
+                maxFiles:1,
+            });
+        });
     </script>
 @endsection
