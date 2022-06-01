@@ -1507,7 +1507,7 @@ ul.sidebar_navcigation>li>a>img{
     font-weight: bold;
     font-size: var(--fs-18);
 }
-.quote_info>h3{
+.quote_info>.active_quote{
     font-size: var(--fs-24);
     font-weight: bold;
     color: var(--orange);
@@ -1728,7 +1728,7 @@ ul.sidebar_navcigation>li>a>img{
     font-size: 18px;
     font-weight: bold;
 }
-.quote_info>h3.select_quote{
+.quote_info>.active_quote {
     font-size: var(--fs-17);
 }
 .completed_order_id>p{

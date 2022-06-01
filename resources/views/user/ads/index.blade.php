@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h1 class="sec_main_heading text-center mb-0">MY ADS</h1>
+                    <h4 class="sec_main_heading text-center mb-0">MY ADS</h4>
                     <p class="sec_main_para text-center">Edit Or Delete Your Previous Ads</p>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="  w-100  quote_detail_wraper align-items-md-center">
                             <div class="quote_info Leavereview">
-                                <h3 class="d-flex align-items-center active_quote">{{$data->model}}</h3>
+                                <h5 class="d-flex align-items-center active_quote">{{$data->model}}</h5>
                                 <p class="mb-0">Maker : {{$data->company->company}}</p>
                                 <p class="mb-0">Model Year : {{$data->modelYear->model_year}}</p>
                                 <p >Engine : {{$data->mileage}} CC</p>

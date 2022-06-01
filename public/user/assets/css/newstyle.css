@@ -155,7 +155,7 @@ $black : #000;
 .quote_info>p{
     text-align: center;
 }
-    .quote_info>h3.select_quote {
+    .quote_info>.active_quote {
         font-size: var(--fs-16);
         text-align: center;
     }
@@ -375,7 +375,7 @@ $black : #000;
     font-size: var(--fs-12);
     height: 35px;
 }
-.quote_info>h3 {
+.quote_info>.active_quote {
     font-size: var(--fs-18);
 }
 label.img_wraper_label>p {
@@ -596,7 +596,7 @@ label.img_wraper_label>a.skip {
     .billing_info.via_insurance>h3 {
     font-size: var(--fs-16);
 }
-.quote_info>h3.select_quote {
+.quote_info>.active_quote {
     font-size: var(--fs-16);
 }
     .form-control, .form-select{
@@ -627,7 +627,7 @@ label.img_wraper_label>a.skip {
     .quote_card_heading>a {
         font-size: var(--fs-16);
     }
-    .quote_info>h3 {
+    .quote_info>.active_quote {
         font-size: var(--fs-16);
     }
     .quote_detail_btn_wraper>a {
@@ -726,7 +726,7 @@ label.img_wraper_label>a.skip {
     .billing_info.via_insurance>h3 {
     font-size: var(--fs-20);
 }
-.quote_info>h3.select_quote {
+.quote_info>.active_quote {
     font-size: var(--fs-16);
 }
     .quote_detail_wraper.replies {
@@ -797,7 +797,7 @@ label.img_wraper_label>a.skip {
     .quote_card_heading>a {
         font-size: var(--fs-18);
     }
-    .quote_info>h3 {
+    .quote_info>.active_quote {
         font-size: var(--fs-18);
     }
     .quote_detail_btn_wraper>h3 {
@@ -917,7 +917,7 @@ label.img_wraper_label>a.skip {
     .conform_order_H3 {
         font-size: var(--fs-20);
     }
-    .quote_detail_btn_wraper>h3,.quote_info>h3 {
+    .quote_detail_btn_wraper>h3,.quote_info>.active_quote {
         font-size: var(--fs-22);
     }
     .completed_order_id>p {

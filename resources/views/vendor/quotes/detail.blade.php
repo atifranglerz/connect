@@ -384,7 +384,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Net Total</h6>
-                                        <input type="text"  name="net_total" class="form-control" id="netTotal" placeholder="AED Price">
+                                        <input type="number"  name="net_total" class="form-control" id="netTotal" placeholder="AED Price">
                                         @error('net_total')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">

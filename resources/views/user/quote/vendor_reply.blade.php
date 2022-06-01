@@ -66,8 +66,91 @@
                     <div class="over_view_part carad_data vendor_detail">
                         <h5 class=" text-center mb-5 heading heading-color">REPAIR DETAILS</h5>
                     </div>
-                    <div class="vendor__rply__dttl">
+                    <div class="col-md-9 mx-auto vendor__rply__dttl">
+                        <h6 class="heading-color">Service Details</h6>
+                        <div class="conten-row-block-main-container services-details">
+                            <div class="mb-3 row content-block-row">
+                                <div class="col-sm-4">
+                                    <label for="particular" class="heading-color">Particular</label>
+                                    <input type="text" class="form-control" placeholder="Particular" readonly>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="quantity" class="heading-color">Quantity</label>
+                                    <input type="number" value="0" class="form-control" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="rate" class="heading-color">Rate</label>
+                                    <input type="number" min="1" value="" class="form-control" placeholder="Rate" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="amount" class="heading-color">amount</label>
+                                    <input type="number" min="1" value="" class="form-control" placeholder="Amount" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="heading-color">Spares Details</h6>
+                        <div class="conten-row-block-main-container services-details">
+                            <div class="mb-3 row content-block-row">
+                                <div class="col-sm-4">
+                                    <label for="particular" class="heading-color">Particular</label>
+                                    <input type="text" class="form-control" placeholder="Particular" readonly>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="quantity" class="heading-color">Quantity</label>
+                                    <input type="number" value="0" class="form-control" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="rate" class="heading-color">Rate</label>
+                                    <input type="number" min="1" value="" class="form-control" placeholder="Rate" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="amount" class="heading-color">amount</label>
+                                    <input type="number" min="1" value="" class="form-control" placeholder="Amount" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="heading-color">Others</h6>
+                        <div class="conten-row-block-main-container services-details">
+                            <div class="mb-3 row content-block-row">
+                                <div class="col-sm-4">
+                                    <label for="particular" class="heading-color">Particular</label>
+                                    <input type="text" class="form-control" placeholder="Particular" readonly>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="quantity" class="heading-color">Quantity</label>
+                                    <input type="number" value="0" class="form-control" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="rate" class="heading-color">Rate</label>
+                                    <input type="number" min="1" value="" class="form-control" placeholder="Rate" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="amount" class="heading-color">amount</label>
+                                    <input type="number" min="1" value="" class="form-control" placeholder="Amount" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                <h6 class="heading-color">Estimate Total</h6>
+                                <input type="number" class="form-control" placeholder="AED Price" readonly>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                <h6 class="heading-color">Vat 5%</h6>
+                                <input type="number" class="form-control" placeholder="AED Price" readonly>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                <h6 class="heading-color">Net Total</h6>
+                                <input type="number" class="form-control" placeholder="AED Price" readonly>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                <h6 class="heading-color">Time Frame</h6>
+                                <input type="text" name="time" class="form-control" placeholder="Time Frame" readonly>
+                            </div>
+                        </div>
+                        <h6 class="heading-color">Repairing Details</h6>
                         <p>{{$data->description}}</p>
+                        <a class="btn-secondary get_appointment" href="#">Preview</a>
                     </div>
                 </div>
             </div>

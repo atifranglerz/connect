@@ -288,7 +288,7 @@ input.messages_file[type=file] {
     width: 110px;
     font-size: var(--fs-12);
 }
-.quote_info>h3 {
+.quote_info>.active_quote {
     font-size: var(--fs-16);
 }
 label.img_wraper_label>p {
@@ -591,7 +591,7 @@ label.img_wraper_label.skip{
 .quote_detail_btn_wraper>h3.insurance_pyment {
     margin-bottom: 5px;
 }
-.quote_info>h3.select_quote {
+.quote_info>.active_quote {
     font-size: var(--fs-16);
 }
     .form-check.form-check-inline.custom_radio>label {
@@ -737,7 +737,7 @@ p.reviews {
 .quote_card_heading>a {
     font-size: var(--fs-14);
 }
-.quote_info>h3 {
+.quote_info>.active_quote {
     font-size: var(--fs-16);
 }
 .all_quote_card {
@@ -832,7 +832,7 @@ p.reviews {
     .quote_card_heading>a {
         font-size: var(--fs-18);
     }
-    .quote_info>h3 {
+    .quote_info>.active_quote {
         font-size: var(--fs-18);
     }
     .quote_detail_btn_wraper>h3 {
@@ -984,7 +984,7 @@ p.reviews {
     .conform_order_H3 {
         font-size: var(--fs-20);
     }
-    .quote_detail_btn_wraper>h3,.quote_info>h3 {
+    .quote_detail_btn_wraper>h3,.quote_info>.active_quote {
         font-size: var(--fs-22);
     }
     .completed_order_id>p {

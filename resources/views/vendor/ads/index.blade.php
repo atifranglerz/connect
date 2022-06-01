@@ -1,11 +1,11 @@
 @extends('vendor.layout.app')
 @section('content')
     <section class="pb-5 login_content_wraper">
-        <div class="container-lg container-fluid" >
+        <div class="px-4 container-lg container-fluid" >
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">MY ADS</h1>
+                        <h4 class="sec_main_heading text-center mb-0">MY ADS</h4>
                         <p class="sec_main_para text-center">Edit Or Delete Your Previous Ads</p>
                     </div>
                 </div>
@@ -45,7 +45,9 @@
                     </div>
                 @endforeach
                 @else
-                Oops... No Ads Found related to this vendor !
+                <div class="all_quote_card">
+                    <p class="mb-0">Oops... No Ads Found related to this vendor !</p>
+                </div>
                 @endif
             </div>
         </div>
