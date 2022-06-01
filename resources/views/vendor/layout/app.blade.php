@@ -35,18 +35,17 @@
         }.form-check-input:focus {
              box-shadow: 0 0 0 0 var(--orang-mask);
          }
+         .form-switch .form-check-input{
+            background-image: url( {{ url('public/user/assets/images/orangesvg.svg') }});
+        }
         .form-switch .form-check-input:checked{
-            background-image:({{url("/public/vendor/assets/images/gradiantbg.jpg")}})";
-                /*url(public/vendor/assets/images/toggler.svg);*/
+            background-image: url( {{ url('public/user/assets/images/toggler.svg') }});
         }
         .form-switch .form-check-input:focus {
-            background-image: url(public/vendor/assets/images/toggler.svg);
+            background-image: url( {{ url('public/user/assets/images/toggler.svg') }});
         }
         .form-check-input:focus {
             border-color: var(--orange);
-        }
-        .form-switch .form-check-input{
-            background-image: url(public/vendor/assets/images/orangesvg.svg);
         }
         .form-switch.toggler_switch{
             padding-left: 7.5em;
