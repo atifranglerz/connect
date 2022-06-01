@@ -1432,7 +1432,7 @@ ul.sidebar_navcigation>li>a>img{
 .profile_name_box{
     background-color: var(--black);
     color: var(--bs-light);
-    height: 55px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1441,12 +1441,11 @@ ul.sidebar_navcigation>li>a>img{
 }
 .profile_name_box>.user_icon{
     position: absolute;
-    left: 10px;
-    top: 50%;
+    left: 12px;
+    top: 40%;
     transform: translateY(-50%);
-    width: 31px;
-    height: 31px;
-
+    width: 16px;
+    height: 16px;
 }
 .profile_name_box>.user_icon>img{
     width: 100%;

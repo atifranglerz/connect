@@ -179,10 +179,6 @@ $black : #000;
     .edit_profile_link_wraper>a {
         font-size: var(--fs-16);
     }
-    .profile_name_box>.user_icon {
-        width: 25px;
-        height: 25px;
-    }
     .profile_name_box>p{
         font-size: var(--fs-14);
         padding: unset;
@@ -609,10 +605,6 @@ label.img_wraper_label>a.skip {
     .payment_divider:after {
         height: 225px;
 
-    }
-    .profile_name_box>.user_icon {
-        width: 28px;
-        height: 28px;
     }
     .profile_name_box>p {
         padding: 0 0 0 10px;

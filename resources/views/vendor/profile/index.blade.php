@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper mt-5">
-                        <h1 class="sec_main_heading text-center mb-0">PROFILE</h1>
+                        <h4 class="sec_main_heading text-center mb-0">PROFILE</h4>
                         <p class="sec_main_para text-center">Your profile</p>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                         <a href="{{route('vendor.profile.edit', Auth::id())}}"><img src="{{ asset('public/vendor/assets/images/editicon.svg') }}">Edit</a>
                     </div>
                 </div>
-                <div class="col-lg-8 mx-auto">
+                <div class="col-lg-7 mx-auto">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="profile_name_box text-lg-center mb-4">
@@ -25,7 +25,6 @@
                                     <img src="{{ asset('public/vendor/assets/images/user.svg') }}">
                                 </div>
                                 <p class="mb-0">{{$data->name}}</p>
-
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -34,7 +33,6 @@
                                     <img src="{{ asset('public/vendor/assets/images/location.svg') }}">
                                 </div>
                                 <p class="mb-0">{{$data->address}}</p>
-
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -43,7 +41,6 @@
                                     <img src="{{ asset('public/vendor/assets/images/mailicon.svg') }}">
                                 </div>
                                 <p class="mb-0">{{$data->email}}</p>
-
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -52,7 +49,6 @@
                                     <img src="{{ asset('public/vendor/assets/images/callicon.svg') }}">
                                 </div>
                                 <p class="mb-0">+{{$data->phone}}</p>
-
                             </div>
                         </div>
                     </div>

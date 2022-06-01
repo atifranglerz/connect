@@ -6,7 +6,7 @@
                 <div class="col-xl-5 col-lg-6 col-md-9 col-sm-9 mx-auto">
                     <div class="cuatomer_signup_form_wraper mt-5">
                         <div class="main_content_wraper">
-                            <h1 class="sec_main_heading text-center mb-0">EDIT</h1>
+                            <h4 class="sec_main_heading text-center mb-0">EDIT</h4>
                             <p class="sec_main_para text-center mb-0">Edit your profile details</p>
                         </div>
 

@@ -629,10 +629,6 @@ label.img_wraper_label.skip{
 .vendor__rply__dttl>p {
     font-size: var(--fs-15);
 }
-    .profile_name_box>.user_icon {
-    width: 22px;
-    height: 22px;
-}
 .chat_view__detail>.chat_icon {
     width: 24px;
     height: 24px;

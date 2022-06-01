@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper mt-5">
-                        <h1 class="sec_main_heading text-center mb-0">PROFILE</h1>
+                        <h4 class="sec_main_heading text-center mb-0">PROFILE</h4>
                         <p class="sec_main_para text-center">Your profile</p>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <a href="{{ route('user.profile.edit',Auth::id()) }}"><img src="{{ asset('public/user/assets/images/editicon.svg') }}">Edit</a>
                     </div>
                 </div>
-                <div class="col-lg-8 mx-auto">
+                <div class="col-lg-7 mx-auto">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="profile_name_box text-lg-center mb-4">

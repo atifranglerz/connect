@@ -6,7 +6,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-9 mx-auto">
                     <div class="cuatomer_signup_form_wraper mt-5">
                         <div class="main_content_wraper">
-                            <h1 class="sec_main_heading text-center mb-0">EDIT</h1>
+                            <h4 class="sec_main_heading text-center mb-0">EDIT</h4>
                             <p class="sec_main_para text-center mb-0">Edit your profile details</p>
                         </div>
                         <form  action="{{ route('vendor.profile.update', $profile->id) }}" method="post" enctype="multipart/form-data" class="pt-5">
@@ -36,7 +36,7 @@
                                 </label>  -->
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Business Info</h4>
+                                <h5 class="mb-0 heading-color">Business Info</h5>
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
@@ -97,7 +97,7 @@
 {{--                                </label> -->--}}
 {{--                            </div>--}}
 {{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h4 class="mb-0">Legal Info</h4>--}}
+{{--                                <h5 class="mb-0 heading-color">Legal Info</h5>--}}
 {{--                            </div>--}}
 {{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
 {{--                                <input type="text" name="edit_profile" class="form-control"  placeholder="Trading License No.">--}}
@@ -106,7 +106,7 @@
 {{--                                <input type="text" name="detail" class="form-control"  placeholder="VAT Details">--}}
 {{--                            </div>--}}
 {{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h4 class="mb-0">Billing Info</h4>--}}
+{{--                                <h5 class="mb-0 heading-color">Billing Info</h5>--}}
 {{--                            </div>--}}
 {{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
 {{--                                <div class="row">--}}
@@ -135,14 +135,14 @@
                                 @enderror
                             </div>
 {{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h4 class="mb-0">Add Number For Appointment</h4>--}}
+{{--                                <h5 class="mb-0 heading-color">Add Number For Appointment</h5>--}}
 {{--                            </div>--}}
 {{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
 {{--                                <input type="text" name="garage_number" class="form-control"  placeholder="Telephone No.">--}}
 {{--                            </div>--}}
 
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h4 class="mb-0">Password</h4>
+                                <h5 class="mb-0 heading-color">Password</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="password"  name="password"  class="form-control" value="{{$profile->password}}" id="inputNumber" placeholder="Password">
