@@ -131,9 +131,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 555;
+    box-shadow: 0 2px 10px #00000020;
 }
 nav{
-    box-shadow: 0 2px 10px #00000020;
     min-height: 95px;
     height: 100%;
 }
