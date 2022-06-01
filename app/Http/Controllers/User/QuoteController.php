@@ -162,4 +162,5 @@ class QuoteController extends Controller
         $data=VendorBid::where('id',$id)->with('part','vendordetail')->first();
         return view('user.quote.print_order_details',compact('data'));
     }
+
 }

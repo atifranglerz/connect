@@ -77,7 +77,7 @@
 
                                 </div>
                                 <div class="col-lg-5 col-sm-5">
-                                    <a href="{{url('user/print-order-details',$vendorbid->id)}}" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center" type="button">PAY VIA INSURANCE COMPANY</a>
+                                    <a href="" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center" type="button">PAY VIA INSURANCE COMPANY</a>
                                 </div>
                             </div>
                         </div>

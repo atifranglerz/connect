@@ -70,87 +70,171 @@
                         <h6 class="heading-color">Service Details</h6>
                         <div class="conten-row-block-main-container services-details">
                             <div class="mb-3 row content-block-row">
+                                @php
+                                    $count=0;
+                                @endphp
+                                @forelse($data->part as $service)
+                                    @if($service->type=='services')
                                 <div class="col-sm-4">
+
+                                    @if($count==0)
                                     <label for="particular" class="heading-color">Particular</label>
-                                    <input type="text" class="form-control" placeholder="Particular" readonly>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                    @else
+                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="Particular" readonly>
+                                    @endif
+
                                 </div>
                                 <div class="col-sm-2">
+                                    @if($count==0)
                                     <label for="quantity" class="heading-color">Quantity</label>
-                                    <input type="number" value="0" class="form-control" readonly>
+                                        <input type="number" value="{{$service->service_quantity}}"  class="form-control" readonly>
+                                    @else
+                                        <input type="number" value="{{$service->service_quantity}}"  class="form-control mt-2" readonly>
+                                    @endif
+
                                 </div>
                                 <div class="col-sm-3">
+                                    @if($count==0)
                                     <label for="rate" class="heading-color">Rate</label>
-                                    <input type="number" min="1" value="" class="form-control" placeholder="Rate" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    @else
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="Rate" readonly>
+                                    @endif
+
                                 </div>
                                 <div class="col-sm-3">
+                                    @if($count++==0)
                                     <label for="amount" class="heading-color">amount</label>
-                                    <input type="number" min="1" value="" class="form-control" placeholder="Amount" readonly>
+                                        <input type="number" min="1"  value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
+                                    @else
+                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control mt-2" placeholder="Amount" readonly>
+                                    @endif
+
                                 </div>
+                                    @endif
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                         <h6 class="heading-color">Spares Details</h6>
                         <div class="conten-row-block-main-container services-details">
                             <div class="mb-3 row content-block-row">
+                                @php
+                                    $count=0;
+                                @endphp
+                                @forelse($data->part as $service)
+                                    @if($service->type=='spares')
                                 <div class="col-sm-4">
+                                    @if($count==0)
                                     <label for="particular" class="heading-color">Particular</label>
-                                    <input type="text" class="form-control" placeholder="Particular" readonly>
+                                    <input type="text" class="form-control" value="{{$service->service_name}}" placeholder="Particular" readonly>
+                                    @else
+                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                    @endif
                                 </div>
                                 <div class="col-sm-2">
+                                    @if($count==0)
                                     <label for="quantity" class="heading-color">Quantity</label>
-                                    <input type="number" value="0" class="form-control" readonly>
+                                    <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
+                                    @else
+                                        <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
+                                    @endif
                                 </div>
                                 <div class="col-sm-3">
+                                    @if($count==0)
                                     <label for="rate" class="heading-color">Rate</label>
-                                    <input type="number" min="1" value="" class="form-control" placeholder="Rate" readonly>
+                                    <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    @else
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                        @endif
                                 </div>
                                 <div class="col-sm-3">
+                                    @if($count++==0)
                                     <label for="amount" class="heading-color">amount</label>
-                                    <input type="number" min="1" value="" class="form-control" placeholder="Amount" readonly>
+                                    <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}"  class="form-control" placeholder="Amount" readonly>
+                                    @else
+                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
+                                    @endif
                                 </div>
+                                    @endif
+
+                                        @empty
+
+                                        @endforelse
                             </div>
                         </div>
                         <h6 class="heading-color">Others</h6>
                         <div class="conten-row-block-main-container services-details">
                             <div class="mb-3 row content-block-row">
+                                @php
+                                $total=0;
+                                $count=0;
+                                @endphp
+                                @forelse($data->part as $service)
+                                    @php
+                                        $total+=$service->service_rate*$service->service_quantity;
+                                    @endphp
+                                    @if($service->type=='others')
+
                                 <div class="col-sm-4">
+                                    @if($count==0)
                                     <label for="particular" class="heading-color">Particular</label>
-                                    <input type="text" class="form-control" placeholder="Particular" readonly>
+                                    <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                    @else
+                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                    @endif
                                 </div>
                                 <div class="col-sm-2">
+                                    @if($count==0)
                                     <label for="quantity" class="heading-color">Quantity</label>
-                                    <input type="number" value="0" class="form-control" readonly>
+                                    <input type="number" value="{{$service->service_quantity}}"  class="form-control" readonly>
+                                    @else
+                                        <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
+                                    @endif
                                 </div>
                                 <div class="col-sm-3">
+                                    @if($count==0)
                                     <label for="rate" class="heading-color">Rate</label>
-                                    <input type="number" min="1" value="" class="form-control" placeholder="Rate" readonly>
+                                    <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    @else
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    @endif
                                 </div>
                                 <div class="col-sm-3">
+                                    @if($count++==0)
                                     <label for="amount" class="heading-color">amount</label>
-                                    <input type="number" min="1" value="" class="form-control" placeholder="Amount" readonly>
+                                    <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
+                                    @else
+                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
+                                        @endif
                                 </div>
+                                    @endif
+                                        @empty
+                                        @endforelse
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <h6 class="heading-color">Estimate Total</h6>
-                                <input type="number" class="form-control" placeholder="AED Price" readonly>
+                                <input type="number" value="{{$total}}" class="form-control" placeholder="AED Price" readonly>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <h6 class="heading-color">Vat 5%</h6>
-                                <input type="number" class="form-control" placeholder="AED Price" readonly>
+                                <input type="number" value="{{$data->vat}}" class="form-control" placeholder="AED Price" readonly>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <h6 class="heading-color">Net Total</h6>
-                                <input type="number" class="form-control" placeholder="AED Price" readonly>
+                                <input type="number" value="{{$data->vat+$total}}" class="form-control" placeholder="AED Price" readonly>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                 <h6 class="heading-color">Time Frame</h6>
-                                <input type="text" name="time" class="form-control" placeholder="Time Frame" readonly>
+                                <input type="text" value="{{$data->time}}" name="time" class="form-control" placeholder="Time Frame" readonly>
                             </div>
                         </div>
                         <h6 class="heading-color">Repairing Details</h6>
                         <p>{{$data->description}}</p>
-                        <a class="btn-secondary get_appointment" href="#">Preview</a>
+                        <a class="btn-secondary get_appointment" href="{{url('user/print-order-details',$data->id)}}">Preview</a>
                     </div>
                 </div>
             </div>

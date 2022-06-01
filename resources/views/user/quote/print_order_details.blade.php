@@ -258,6 +258,7 @@
                             responsible if the vehcile is collected / picked / impounded by Dubai local authorities for which
                             it will be the customers responibility to get the vehicle released at thier own costs.
                         </b>
+                        <a class="btn-secondary get_appointment mt-3" href="#" id="pdf">Download Pdf</a>
                     </div>
                 </div>
             </div>
@@ -267,6 +268,20 @@
 @endsection
 @section('script')
     <script>
+        $(document).ready(function(){
+            $(document).on('click','#pdf', function(event){
+              $('header').hide();
+                $('#dashboardSidebar').hide()
+                $('.right_main').css('margin-left', 0)
+                $('#pdf').hide();
+                window.print();
+                $('header').show();
+                $('#dashboardSidebar').show()
+                $('.right_main').css('margin-left', '255px')
+                $('#pdf').show();
 
+            });
+
+        });
     </script>
 @endsection
