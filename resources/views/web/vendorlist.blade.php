@@ -48,7 +48,8 @@
                             </div>
 
                             <div class="card-body p-sm-2">
-                                <h5 class="card-title text-center allgarages_card_title">{{$value->garage_name}} <span>5.0</span></h5>
+                                <h6 class="block-head-txt text-center">{{$value->garage_name}}</h6>
+                                <h5 class="card-title text-center allgarages_card_title"><span>{{$overAllRatings}}</span></h5>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <div class="icon_wrpaer">
                                         <img src="{{asset('public/assets/images/iconrp.svg')}}">
