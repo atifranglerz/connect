@@ -148,9 +148,8 @@ class WorkshopController extends Controller
     {
 
         $page_title = 'Edit Workshop';
-        $garage = Garage::where('vendor_id', Auth::id())->with('vendor')->first();
+        $garage = Garage::where('vendor_id',Auth::id())->with('vendor','garageCategory')->first();
         $categories=Category::all();
-
         return view('vendor.workshop.edit', compact('page_title', 'garage','categories'));
 
     }
