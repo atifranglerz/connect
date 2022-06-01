@@ -75,31 +75,31 @@
                     <div class="stor_add_show_wraper_innr">
                         <img src="{{ asset('public/assets/images/slidecaricon.svg')}}">
                     </div>
-                    <h3 class="mb-0 ms-2 ">ROAD ASSIST</h3>
+                    <h6 class="mb-0 ms-2 ">ROAD ASSIST</h6>
                 </div>
                 <div class="stor_add_show_wraper">
                     <div class="stor_add_show_wraper_innr">
                         <img src="{{ asset('public/assets/images/slidecaricon.svg')}}">
                     </div>
-                    <h3 class="mb-0 ms-2 ">RTA REGISTRATION</h3>
+                    <h6 class="mb-0 ms-2 ">RTA REGISTRATION</h6>
                 </div>
                 <div class="stor_add_show_wraper">
                     <div class="stor_add_show_wraper_innr">
                         <img src="{{ asset('public/assets/images/iconrp3.svg')}}">
                     </div>
-                    <h3 class="mb-0 ms-2 ">OIL CHANGE</h3>
+                    <h6 class="mb-0 ms-2 ">OIL CHANGE</h6>
                 </div>
                 <div class="stor_add_show_wraper">
                     <div class="stor_add_show_wraper_innr">
                         <img src="{{ asset('public/assets/images/iconrp4.svg')}}">
                     </div>
-                    <h3 class="mb-0 ms-2 ">SPARE PARTS</h3>
+                    <h6 class="mb-0 ms-2 ">SPARE PARTS</h6>
                 </div>
                 <div class="stor_add_show_wraper">
                     <div class="stor_add_show_wraper_innr">
                         <img src="{{ asset('public/assets/images/tickicon.svg')}}">
                     </div>
-                    <h3 class="mb-0 ms-2 ">INSURANCE REGISTRATION</h3>
+                    <h6 class="mb-0 ms-2 ">INSURANCE REGISTRATION</h6>
                 </div>
             </div>
 
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="over_view_part timing_hours">
-                        <h3 class=" text-center mb-5">OPENING HOURS</h3>
+                        <h5 class=" text-center mb-5 heading-color">OPENING HOURS</h5>
                         <div class="timing_container">
                             <p class="time_for_opning mb-0">Monday</p>
                             <p class="time_for_opning mb-1">8:30am - 5:30pm</p>
@@ -164,7 +164,7 @@
             <div class="row g-4 mt-3">
                 <div class="col-lg-8 col-sm-6 col-md-6">
                     <div class="over_view_part">
-                        <h3 class=" text-center mb-5">CONTACT VENDOR</h3>
+                        <h5 class=" text-center mb-5 heading-color">CONTACT VENDOR</h5>
                         <form action="" method="post" class="row g-3">
                             <div class="col-md-12 col-lg-6">
                                 <input type="text" class="form-control" name="carmodel" id="inputCarModel"
@@ -211,7 +211,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6 col-md-6 ">
                     <div class="over_view_part timing_hours">
-                        <h3 class=" text-center mb-5">REVIEWS</h3>
+                        <h5 class="text-center mb-5 heading-color">REVIEWS</h5>
                         <div class="owl-carousel carousel_se_01_carousel owl-theme">
                             <div class="item">
                                 <p class="text-center reviews">"Suzuki repairs are best in town. They did everything
@@ -249,7 +249,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="over_view_part timing_hours mape_wraper mt-4">
-                        <h3 class=" text-center mb-5">REVIEWS</h3>
+                        <h5 class="text-center mb-5 heading-color">REVIEWS</h5>
                         <div class="responsive-map">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889"

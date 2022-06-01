@@ -105,7 +105,7 @@
                 <div class="stor_add_show_wraper_innr">
                     <img src="{{asset($catname->icon)}}">
                 </div>
-                <h3 class="mb-0 ms-2 ">{{$catname->name}}</h3>
+                <h6 class="mb-0 ms-2 ">{{$catname->name}}</h6>
             </div>
             @endforeach
         </div>
@@ -125,7 +125,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="over_view_part timing_hours">
-                    <h3 class=" text-center mb-5">OPENING HOURS</h3>
+                    <h5 class=" text-center mb-5 heading-color">OPENING HOURS</h5>
                     <?php $g_timing = \App\Models\GarageTiming::where('garage_id',$garage->id)->get(); ?>
                     @foreach($g_timing as $timing)
                     <div class="timing_container">
@@ -147,7 +147,7 @@
         <div class="row g-4 mt-3">
             <div class="col-lg-8 col-md-6 col-sm-6">
                 <div class="over_view_part">
-                    <h3 class=" text-center mb-5">CONTACT VENDOR</h3>
+                    <h5 class=" text-center mb-5 heading-color">CONTACT VENDOR</h5>
                     @if(session()->has('alert-success'))
                         <div class="alert alert-success">
                             {{ session()->get('alert-success') }}
@@ -194,7 +194,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 ">
                 <div class="over_view_part timing_hours">
-                    <h3 class=" text-center mb-5">REVIEWS</h3>
+                <h5 class="text-center mb-5 heading-color">REVIEWS</h5>
                     <div class="owl-carousel carousel_se_01_carousel owl-theme">
                         @if(count($user_review) >0)
                         @foreach($user_review as $review)
@@ -252,7 +252,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="over_view_part timing_hours mape_wraper mt-4">
-                    <h3 class=" text-center mb-5">LOCATION</h3>
+                    <h5 class="text-center mb-5 heading-color">LOCATION</h5>
                     <div class="responsive-map">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889" height="550" frameborder="0" style="border:0" allowfullscreen>
                         </iframe>
