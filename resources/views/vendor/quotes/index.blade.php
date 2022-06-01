@@ -68,7 +68,7 @@
                             </div>
                             <div class=" w-100  quote_detail_wraper">
                                 <div class="quote_info">
-                                    <h3 class="d-flex align-items-center active_quote"><a href="#">{{$company->company}}  ({{$values->userbid->model}})</a> <span class="order_id">#{{$values->userbid->reference_no}}</span></h3>
+                                    <h5 class="d-flex align-items-center active_quote"><a href="#">{{$company->company}}  ({{$values->userbid->model}})</a> <span class="order_id">#{{$values->userbid->reference_no}}</span></h5>
                                     <p class="mb-0">{{$values->userbid->description1}}</p>
                                     <p >{{$values->userbid->phone}}</p>
                                 </div>

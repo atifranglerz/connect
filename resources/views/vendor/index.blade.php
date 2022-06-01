@@ -58,7 +58,7 @@
 {{--                    </div>--}}
 {{--                    <div class=" w-100  quote_detail_wraper">--}}
 {{--                        <div class="quote_info">--}}
-{{--                            <h3 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})</h3>--}}
+{{--                            <h5 class="d-flex align-items-center active_quote">{{$company->company}}  ({{$userbidid->model}})</h5>--}}
 {{--                            <p class="mb-0">{{$userbidid->description1}}</p>--}}
 {{--                            <p >{{$userbidid->phone}}</p>--}}
 {{--                        </div>--}}

@@ -18,8 +18,8 @@
                     </div>
                     <div class=" w-100  quote_detail_wraper align-items-sm-center">
                         <div class="quote_info Leavereview mb-sm-3">
-                            <h3 class="d-flex align-items-center active_quote">Car Repair
-                            </h3>
+                            <h5 class="d-flex align-items-center active_quote">Car Repair
+                            </h5>
                             <p class="mb-0">Red Suzuki For Repair</p>
                             <p >0987654321778</p>
                             <div class="card_icons d-flex justify-content-center align-items-center">
@@ -59,8 +59,8 @@
                     </div>
                     <div class=" w-100  quote_detail_wraper align-items-sm-center">
                         <div class="quote_info Leavereview mb-sm-3">
-                            <h3 class="d-flex align-items-center active_quote">Car Repair
-                            </h3>
+                            <h5 class="d-flex align-items-center active_quote">Car Repair
+                            </h5>
                             <p class="mb-0">Red Suzuki For Repair</p>
                             <p >0987654321778</p>
                             <div class="card_icons d-flex justify-content-center align-items-center">
@@ -100,8 +100,8 @@
                     </div>
                     <div class=" w-100  quote_detail_wraper align-items-sm-center">
                         <div class="quote_info Leavereview mb-sm-3">
-                            <h3 class="d-flex align-items-center active_quote">Car Repair
-                            </h3>
+                            <h5 class="d-flex align-items-center active_quote">Car Repair
+                            </h5>
                             <p class="mb-0">Red Suzuki For Repair</p>
                             <p >0987654321778</p>
                             <div class="card_icons d-flex justify-content-center align-items-center">
