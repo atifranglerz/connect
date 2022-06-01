@@ -207,9 +207,15 @@ class WorkshopController extends Controller
                     'category_id' =>intval($cat),
                 ]);
             }
+            $schdule=GarageTiming::where('garage_id',$garage->id)->get();
+            foreach ($schdule as $time){
+                GarageTiming::find($time->id)->delete();
+            }
+
             $length = count($request->day);
             for ($i = 0; $i < $length; $i++) {
-                GarageTiming::where('garage_id', $id)->update([
+
+                GarageTiming::create([
                     'garage_id' => $garage->id,
                     'day' => $request->day[$i],
                     'from' => $request->from[$i],
