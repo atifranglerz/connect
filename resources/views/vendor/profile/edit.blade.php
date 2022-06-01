@@ -15,13 +15,8 @@
                             <div class="col-12 mb-3  signup_input_wraper">
 {{--                                <div class="input-images-5">--}}
 {{--                                </div>--}}
-                                <label class="img_wraper_label">
-                                  <div class="file_icon_wraper">
-                                    <img src="{{asset('public/assets/images/fileuploadicon.svg')}}">
-                                  </div>
-                                  <p class="mb-0">Upload Your Picture </p>
-                                  <input type="file" name="image" value="{{$profile->image}}" size="60" >
-                                </label>
+                                <div id="profileImage">
+                                </div>
                             </div>
 
                             <div class="col-12 mb-3  signup_input_wraper">
@@ -214,3 +209,16 @@
 {{--        });--}}
 {{--    </script>--}}
 {{--@endsection--}}
+@section('script')
+    <script>
+        $(function() {
+            let preloaded = [
+                {id: 1, src: 'https://picsum.photos/500/500?random=1'},
+            ];
+            $('#profileImage').imageUploader({
+                preloaded: preloaded,
+                maxFiles:1,
+            });
+        });
+    </script>
+@endsection
