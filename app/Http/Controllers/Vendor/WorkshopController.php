@@ -169,7 +169,7 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, $id)
     {
-dd($request->closed);
+
         $request->validate([
             'garage_name' => 'required',
             'address' => 'required',

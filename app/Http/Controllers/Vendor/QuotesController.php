@@ -9,7 +9,7 @@ use App\Models\UserBid;
 use App\Models\User ;
 use App\Models\ModelYear;
 use App\Models\Company;
-use App\Models\vendorBid;
+use App\Models\VendorBid;
 use App\Models\UserWishlist;
 use App\Models\VendorQuote;
 
@@ -60,9 +60,10 @@ class QuotesController extends Controller
           $data->price = $request->price;
           $data->time = $request->time;
           $data->description = $request->description;
-          $data->vat = $request->description;
-          $data->net_total = $request->description;
+          $data->vat = $request->vat;
+          $data->net_total =$request->net_total;
           $data->save();
+
           if (count($request->service_name)>0){
 
               for ($i = 0; $i < count($request->service_name); $i++) {
