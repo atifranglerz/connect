@@ -242,16 +242,6 @@
                             <li>Please note after replacement/repair of the above any additional requirement if required can only be ascertained after testing of said repair/replacement.</li>
                         </ul>
                         <p class="font-italic">Remarks : ALL PARTS USED AND AFTER MARKET......... NO WARRANTY</p>
-                        <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <b>Customer's Signature</b>
-                                <span class="px-3">-------</span>
-                            </div>
-                            <div class="col-sm-6">
-                                <b>Workshop Manager Signature</b>
-                                <span class="px-3">-------</span>
-                            </div>
-                        </div>
                         <b class="font-italic small">
                             Please Note : Vehicle Must be collected with 3 days of Invoice/Estimate date, Failing which there
                             will be a parking charge of AED 50/- per day incurred by customer. Motormec will not be

@@ -22,8 +22,8 @@
                                 <li class="nav-item nav_item_li" role="presentation">
                                     <button class="nav-link tab_btns" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"></button>
                                 </li>
-                                <li class="nav-item nav_item_li" role="presentation">
-                                    <button class="nav-link tab_btns" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
+                                <li class="nav-item nav_item_li d-none" role="presentation">
+                                    <button class="nav-link tab_btns" id="inspection-report-link" data-bs-toggle="tab" data-bs-target="#inspectionReport" type="button" role="tab" aria-controls="inspectionReport" aria-selected="false"></button>
                                 </li>
                                 <li class="nav-item nav_item_li" role="presentation">
                                     <button class="nav-link tab_btns " id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourthtab" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
@@ -38,6 +38,14 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row g-lg-3 g-2">
+                                        <div class="col-12">
+                                            <select class="form-select form-control" id="lookingFor">
+                                                <option value=""></option>
+                                                <option value="I have Inspection Report & Looking for the Quotations">I have Inspection Report & Looking for the Quotations</option>
+                                                <option value="I don't know the Problem and Requesting for the Inspection">I don't know the Problem and Requesting for the Inspection</option>
+                                                <option value="I know about what i'm looking for and requesting for the Quotations">I know about what i'm looking for and requesting for the Quotations</option>
+                                            </select>
+                                        </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" >
                                             @error('model')
@@ -84,16 +92,6 @@
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <select class="form-select form-control garage-services" name="category[]" multiple aria-label="Type of Service">
-                                                @foreach($catagary as $data)
-                                                    <option value="{{$data->id }}">{{$data->name}}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('category')
-                                            <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
                                         <!-- <div class="col-lg-6 col-md-6">
                                           <input type="text" class="form-control" placeholder="Timeline For Work" aria-label="Timeline For Work">
                                         </div>
@@ -103,12 +101,24 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                         </div>
-
                                         <div class="col-lg-6 col-md-6">
                                             <input type="number" class="form-control" name="day" placeholder="Days e.g (7)" aria-label="Day" required>
                                             @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
+                                        </div>
+                                        <div class="col-12 services-dropdown-block">
+                                            <select class="form-select form-control garage-services" name="category[]" multiple aria-label="Type of Service">
+                                                @foreach($catagary as $data)
+                                                    <option value="{{$data->id }}">{{$data->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('category')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <textarea name="description1" placeholder="Add information in details" class="form-control" rows="5"></textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
@@ -128,18 +138,13 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="form-floating">
-                                                <input name="description1" class="form-control" placeholder="Add information in details" id="floatingTextarea2" style="height: 106px"></input>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
                                                 <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade form-step px-lg-3" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <div class="tab-pane fade form-step px-lg-3" id="inspectionReport" role="tabpanel" aria-labelledby="inspection-report-link">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
                                             <div class="input-images-2" accept="pdf/*" data-type='Pdf'>
@@ -147,9 +152,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="form-floating">
-                          <input class="form-control" name="description2" placeholder="Add information in details" id="floatingTextarea2" style="height: 106px"></input>
-                                            </div>
+                                            <textarea name="description2" placeholder="Special Requirements" class="form-control" rows="5"></textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
@@ -187,14 +190,19 @@
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-6 col-md-12">
+                                            <div class="col-lg-6 col-md-12 get-quotes-block">
                                                 <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
                                                     <button class="btn btn-secondary block get_appointment" name="action" value="all_garage" type="submit">GET QUOTES FROM ALL GARAGES</button>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-12">
+                                            <div class="col-lg-6 col-md-12 get-quotes-block">
                                                 <div class="d-grid gap-2 mt-lg-3 mb-4">
                                                     <button class="btn text-center btn-primary get_quot block get_appointment" name="action" value="preferred_garage" type="submit">GET QUOTES FROM PREFFERED GARAGES</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 d-none" id="requestForInspection">
+                                                <div align="center" class="mt-3">
+                                                    <button class="btn text-center btn-primary get_quot block get_appointment" type="submit">SEND REQUEST FOR INSPECTION</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,6 +243,34 @@
 
             formSteps[formStepsNum].classList.add("form-step-active");
         }
+
+        $(function() {
+            $('#lookingFor').select2({
+                placeholder: 'What you looking for? (Required)',
+            });
+            $('#lookingFor').on('select2:select', function () {
+                var val = $('#lookingFor').val();
+                let valOne = "I have Inspection Report & Looking for the Quotations";
+                let valTwo = "I don't know the Problem and Requesting for the Inspection";
+                let valThree = "I know about what i'm looking for and requesting for the Quotations";
+                if(val==valOne) {
+                    $('.services-dropdown-block').removeClass('d-none');
+                    $('#inspection-report-link').closest('li').removeClass('d-none');
+                    $('#requestForInspection').addClass('d-none');
+                    $('.get-quotes-block').removeClass('d-none');
+                } else if (val==valTwo) {
+                    $('.services-dropdown-block').addClass('d-none');
+                    $('#inspection-report-link').closest('li').addClass('d-none');
+                    $('#requestForInspection').removeClass('d-none');
+                    $('.get-quotes-block').addClass('d-none');
+                } else {
+                    $('#inspection-report-link').closest('li').addClass('d-none');
+                    $('.services-dropdown-block').removeClass('d-none');
+                    $('#requestForInspection').addClass('d-none');
+                    $('.get-quotes-block').removeClass('d-none');
+                }
+            });
+        });
     </script>
 @endsection
 
