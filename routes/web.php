@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
@@ -106,6 +107,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('garage', 'GarageController');
         Route::resource('order', 'OrderController');
         Route::resource('news', 'NewsController');
+        /* slider */
+        Route::get('slider', [SliderController::class,'index']);
+        Route::post('slider', [SliderController::class,'store']);
+        Route::get('slider/edit/{id}', [SliderController::class,'edit']);
+        Route::post('slider/update/{id}', [SliderController::class,'update']);
+        Route::any('slider/destroy/{id}', [SliderController::class,'destroy']);
 
         /* All About Route */
         Route::get('about', 'AboutController@index')->name('about.index');

@@ -2,6 +2,7 @@
 @section('content')
 <?php $category = \App\Models\GarageCategory::where('garage_id',$garage->id)->pluck('category_id');
       $category_name = \App\Models\Category::whereIn('id',$category)->get();
+use Illuminate\Support\Facades\Auth;
 
 ?>
 <section class="banner_section">
@@ -51,7 +52,9 @@
                 <h5 class="store_addres">{{ucfirst($garage->city)}}, {{ucfirst($garage->country)}}</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
+                @if (Auth::check())
                 <h5 class="store_addres">{{$garage->phone}}</h5>
+                    @endif
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
                 <h5 class="store_addres">
