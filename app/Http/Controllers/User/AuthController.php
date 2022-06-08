@@ -35,7 +35,7 @@ class AuthController extends Controller
             'city'=> ['required','alpha'] ,
             'post_box'=>'required',
             'address'=>'required',
-            'phone' => 'required',
+            'phone' => 'required|digits:12',
             'password' => 'required|confirmed',
         ]);
         $role = Role::where('name', 'user')->first();

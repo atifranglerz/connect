@@ -94,7 +94,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="inputNumber" placeholder="Telephone No.">
+                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="inputNumber" placeholder="+973528173872">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

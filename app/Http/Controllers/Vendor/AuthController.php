@@ -42,7 +42,7 @@ class AuthController extends Controller
             'country'=>['required','string'],
             'city'=> ['required','string'],
             'post_box'=>'required',
-            'phone' => ['required'],
+            'phone' => 'required|digits:12',
             'image_license'=>'required',
             'trading_license'=>'required',
             'vat'=>'required',
@@ -226,7 +226,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => 'required',
+            'phone' => 'required|digits:12',
         ]);
         $vendor = Vendor::findorFail($id);
         $vendor->name = $request->name;
