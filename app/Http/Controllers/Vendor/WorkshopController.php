@@ -78,8 +78,8 @@ class WorkshopController extends Controller
                 foreach($request->file('images') as $image)
                 {
                     $name=time().'.' . $image->getClientOriginalExtension();
-                    $name=$image->move('public/image/garage/', $name);
-                    $garage['image']=$name;
+                   $image->move('public/image/garage/',$name);
+                    $garage['image']='public/image/garage/'.$name;
                 }
 
                 /*if ($request->has('old_image')) {
@@ -126,8 +126,7 @@ class WorkshopController extends Controller
             return view('vendor.workshop.preview_workshop',compact('preview_garage'));
             return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
         } else {
-            $preview_garage=Garage::find($garage->id);
-            return view('vendor.workshop.preview_workshop',compact('preview_garage'));
+
             return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'warning'));
         }
 
@@ -213,19 +212,17 @@ class WorkshopController extends Controller
                     'category_id' =>intval($cat),
                 ]);
             }
-            $schdule=GarageTiming::where('garage_id',$garage->id)->get();
-            foreach ($schdule as $time){
-                GarageTiming::find($time->id)->delete();
-            }
 
-            $length = count($request->day);
+            $garage_timing=GarageTiming::where('garage_id',$garage->id)->get();
+            $length=count($garage_timing);
             for ($i = 0; $i < $length; $i++) {
                 if(isset($request->closed[$i])){
+
                     $closed=1;
                 }else{
                     $closed=0;
                 }
-                GarageTiming::create([
+                GarageTiming::find($garage_timing[$i]->id)->update([
                     'garage_id' => $garage->id,
                     'day' => $request->day[$i],
                     'from' => $request->from[$i],
@@ -234,6 +231,8 @@ class WorkshopController extends Controller
                 ]);
             }
         }
+        $preview_garage=Garage::find($garage->id);
+        return view('vendor.workshop.preview_workshop',compact('preview_garage'));
         return $this->message($garage, 'vendor.dashboard', 'workshop Update Successfully', 'workshop not Update Error');
     }
 
@@ -246,5 +245,9 @@ class WorkshopController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function finish(){
+        $garage=Garage::where('vendor_id',auth()->id())->first();
+        return $this->message($garage, 'vendor.dashboard', 'workshop Saved Successfully', 'workshop not Create Error');
     }
 }

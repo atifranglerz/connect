@@ -1,5 +1,6 @@
 @extends('vendor.layout.app')
 @section('content')
+
     <section class="pb-5 login_content_wraper">
         <div class="container">
             <div class="row">
@@ -191,7 +192,7 @@
                                                     <div
                                                         class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
                                                         <label class="form-check-label" for="autoSizingCheck">Closed:</label>
-                                                        <input class="form-check-input wrk_day_chek" name="checkbox[]" type="checkbox" {{ ($value->closed == "1" ? 'checked' : '') }} id="autoSizingCheck">
+                                                        <input class="form-check-input wrk_day_chek" name="closed[]" type="checkbox" {{ ($value->closed == "1" ? 'checked' : '') }} id="autoSizingCheck">
                                                     </div>
                                                 </div>
                                             </div>
@@ -340,7 +341,7 @@
 
         $(function() {
             let preloaded = [
-                {id: 1, src: '{{asset($garage->image)}}'},
+                {id: 1, src:'{{asset($garage->image)}}'},
             ];
             $('.workshop-image').imageUploader({
                 preloaded: preloaded,

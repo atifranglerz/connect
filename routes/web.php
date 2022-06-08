@@ -160,6 +160,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('bid-details/{id}', 'BidController@bidDetails')->name('bid-details');
         Route::resource('ads', 'AdsController');
         Route::resource('used_car', 'UsedCarController');
+        Route::get('garage-finish', 'WorkshopController@finish');
         Route::resource('workshop', 'WorkshopController');
         Route::resource('profile', 'ProfileController');
         /*Logout*/

@@ -12,8 +12,8 @@
  		</div>
  		<div class="carousel-inner">
  			<div class="carousel-item Stor_detai_item active">
- 				<div class="preferd_vendors_star"><img src="assets/images/preferdicon.svg"></div>
- 				<img src="assets/images/repair2.jpg" class="d-block w-100" alt="banner image">
+ 				<div class="preferd_vendors_star"><img src="{{asset('public/assets/images/preferdicon.svg')}}"></div>
+ 				<img src="{{asset($preview_garage->image)}}" class="d-block w-100" alt="banner image">
  				<div class="carousel-caption d-none d-md-block">
  				</div>
  			</div>
@@ -44,13 +44,13 @@
 	<div class="container-lg container-fluid">
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
-				<h4 class="store_addres mb-0">SUZUKI REPAIRS</h4>
+				<h4 class="store_addres mb-0">{{$preview_garage->garage_name}}</h4>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
-				<h4 class="store_addres mb-0">SHARJAH, UAE</h4>
+				<h4 class="store_addres mb-0">{{$preview_garage->city}},UAE</h4>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
-				<h4 class="store_addres mb-0">+92 345 123 4567</h4>
+				<h4 class="store_addres mb-0">{{$preview_garage->phone}}</h4>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
 				<h4 class="store_addres mb-0"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 5.0</h4>
@@ -62,35 +62,17 @@
 	<div class="container-lg container-fluid">
 		<div class="main_row d-flex align-items-center justify-content-between flex-wrap">
 			<div class="stor_add_show_wraper">
+
+                @foreach($preview_garage->garageCategory as $sevice)
 				<div class="stor_add_show_wraper_innr">
-					<img src="assets/images/slidecaricon.svg">
+					<img src="{{asset($sevice->category->icon)}}">
 				</div>
-				<h3 class="mb-0 ms-2 ">ROAD ASSIST</h3>
+
+				<h3 class="mb-0 ms-2 ">{{$sevice->category->name}}</h3>
 			</div>
-			<div class="stor_add_show_wraper">
-				<div class="stor_add_show_wraper_innr">
-					<img src="assets/images/slidecaricon.svg">
-				</div>
-				<h3 class="mb-0 ms-2 ">RTA REGISTRATION</h3>
-			</div>
-			<div class="stor_add_show_wraper">
-				<div class="stor_add_show_wraper_innr">
-					<img src="assets/images/iconrp3.svg">
-				</div>
-				<h3 class="mb-0 ms-2 ">OIL CHANGE</h3>
-			</div>
-			<div class="stor_add_show_wraper">
-				<div class="stor_add_show_wraper_innr">
-					<img src="assets/images/iconrp4.svg">
-				</div>
-				<h3 class="mb-0 ms-2 ">SPARE PARTS</h3>
-			</div>
-			<div class="stor_add_show_wraper">
-				<div class="stor_add_show_wraper_innr">
-					<img src="assets/images/tickicon.svg">
-				</div>
-				<h3 class="mb-0 ms-2 ">INSURANCE REGISTRATION</h3>
-			</div>
+            @endforeach
+
+
 		</div>
 
 	</div>
@@ -101,44 +83,28 @@
 			<div class="col-lg-8 col-md-6 col-sm-6">
 				<div class="over_view_part">
 					<h3 class=" text-center mb-5">OVERVIEW</h3>
-					<p>We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.
-					</p>
-					<br>
-					<p> We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote.</p>
+                    <p>{{$preview_garage->description}}</p>
+{{--					<p>We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.--}}
+{{--					</p>--}}
+{{--					<br>--}}
+{{--					<p> We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote.</p>--}}
 
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="over_view_part timing_hours">
 					<h3 class=" text-center mb-5">OPENING HOURS</h3>
+                    @foreach($preview_garage->garageTiming as $Timing)
 					<div class="timing_container">
-						<p class="time_for_opning mb-0">Monday</p>
-						<p class="time_for_opning mb-1">8:30am - 5:30pm</p>
+						<p class="time_for_opning mb-0">{{$Timing->day}}</p>
+                        @if($Timing->closed==1)
+						<p class="time_for_opning mb-1">{{$Timing->from}} - {{$Timing->from}}</p>
+                        @else
+                            <p class="time_for_opning mb-1">Closed</p>
+                            @endif
 					</div>
-					<div class="timing_container">
-						<p class="time_for_opning mb-1">Tuesday</p>
-						<p class="time_for_opning mb-1">8:30am - 5:30pm</p>
-					</div>
-					<div class="timing_container">
-						<p class="time_for_opning mb-1">Wednesday</p>
-						<p class="time_for_opning mb-1">8:30am - 5:30pm</p>
-					</div>
-					<div class="timing_container">
-						<p class="time_for_opning mb-1">Thursady</p>
-						<p class="time_for_opning mb-1">8:30am - 5:30pm</p>
-					</div>
-					<div class="timing_container">
-						<p class="time_for_opning mb-1">Friday</p>
-						<p class="time_for_opning mb-1">8:30am - 5:30pm</p>
-					</div>
-					<div class="timing_container">
-						<p class="time_for_opning mb-1">Saturday</p>
-						<p class="time_for_opning mb-1">Closed</p>
-					</div>
-					<div class="timing_container">
-						<p class="time_for_opning mb-1">Sunday</p>
-						<p class="time_for_opning mb-1">Closed</p>
-					</div>
+                        @endforeach
+
 				</div>
 				<div class="d-grid gap-2 mt-3">
 					<button class="btn btn-primary get_appointment" type="button">GET BOOKING
@@ -239,10 +205,10 @@
 			<div class="col-lg-8 mx-auto">
 				<div class="row mt-5 g-3">
 					<div class="col-lg-6 col-md-6 col-sm-6">
-						<a href="" class="btn btn-secondary d-block d-flex justify-content-center justify-content-center w-100">EDIT GARAGE</a>
+						<a href="{{route('vendor.workshop.edit',Auth::id())}}" class="btn btn-secondary d-block d-flex justify-content-center justify-content-center w-100">EDIT GARAGE</a>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6">
-					<a href="" class="btn btn-primary btn_anchhor d-block d-flex justify-content-center justify-content-center" >FINISH CREATING GARAGE</a>
+					<a href="{{url('vendor/garage-finish')}}" class="btn btn-primary btn_anchhor d-block d-flex justify-content-center justify-content-center" >FINISH GARAGE</a>
 				</div>
 				</div>
 
