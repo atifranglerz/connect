@@ -93,8 +93,6 @@ class WorkshopController extends Controller
             $garage->address = $request->address;
             $garage->post_box = $request->post_box;
             $garage->save();
-
-
             if ($garage) {
 
                 $categories = $request->category;
@@ -108,7 +106,6 @@ class WorkshopController extends Controller
                 }
 
                 $length =count($request->day);
-
 
                 for ($i = 0; $i < $length; $i++) {
                     if(isset($request->closed[$i])){

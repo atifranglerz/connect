@@ -1,9 +1,6 @@
 @extends('web.layout.app')
- <style type="text/css">
- 	.login_sinup{
- 		display: none;
- 	}
- </style>
+
+
 @section('content')
  <section class="banner_section">
  	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -253,14 +250,4 @@
 		</div>
 	</div>
 </section>
-
-
-
-
-
-
-
-
-
-
 @endsection
