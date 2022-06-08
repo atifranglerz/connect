@@ -246,7 +246,7 @@
 
         $(function() {
             $('#lookingFor').select2({
-                placeholder: 'What you looking for? (Required)',
+                placeholder: 'What are you looking for? (Required)',
             });
             $('#lookingFor').on('select2:select', function () {
                 var val = $('#lookingFor').val();
