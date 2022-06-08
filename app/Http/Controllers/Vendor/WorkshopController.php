@@ -125,9 +125,12 @@ class WorkshopController extends Controller
                     ]);
                 }
             }
-
+            $preview_garage=Garage::find($garage->id);
+            return view('vendor.workshop.preview_workshop',compact('preview_garage'));
             return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
         } else {
+            $preview_garage=Garage::find($garage->id);
+            return view('vendor.workshop.preview_workshop',compact('preview_garage'));
             return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'warning'));
         }
 

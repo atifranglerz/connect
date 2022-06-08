@@ -1,9 +1,10 @@
- <?php include 'headersignup.php';?> 
+@extends('web.layout.app')
  <style type="text/css">
  	.login_sinup{
  		display: none;
  	}
  </style>
+@section('content')
  <section class="banner_section">
  	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
  		<div class="carousel-indicators">
@@ -94,7 +95,7 @@
 				<h3 class="mb-0 ms-2 ">INSURANCE REGISTRATION</h3>
 			</div>
 		</div>
-		
+
 	</div>
 </section>
 <section class=" py-lg-5 py-md-4 py-2">
@@ -107,7 +108,7 @@
 					</p>
 					<br>
 					<p> We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote.</p>
-					
+
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-6 col-sm-6">
@@ -140,10 +141,10 @@
 					<div class="timing_container">
 						<p class="time_for_opning mb-1">Sunday</p>
 						<p class="time_for_opning mb-1">Closed</p>
-					</div>				
+					</div>
 				</div>
 				<div class="d-grid gap-2 mt-3">
-					<button class="btn btn-primary get_appointment" type="button">GET BOOKING 
+					<button class="btn btn-primary get_appointment" type="button">GET BOOKING
 						<img src="assets/images/appoinmenticon.svg">
 					</button>
 				</div>
@@ -183,7 +184,7 @@
 							<!-- <label for="floatingTextarea2">Comments</label> -->
 						</div>
 						<div class="d-grid gap-2 mt-3">
-							<button class="btn btn-primary get_appointment text-center" type="button">QUOTE REQUEST 
+							<button class="btn btn-primary get_appointment text-center" type="button">QUOTE REQUEST
 								<!-- <img src="assets/images/appoinmenticon.svg"> -->
 							</button>
 						</div>
@@ -211,7 +212,7 @@
 							<p class="testimonail_person_name text-center mb-1">Hassan Ali</p>
 							<p class="testimonail_person_rating text-center"><span>5.0</span></p>
 						</div>
-					</div>					
+					</div>
 				</div>
 				<div class="d-grid gap-2 mt-3">
 					<button class="btn btn-primary get_appointment" type="button">ADD TO PREFFERED GARAGE
@@ -262,4 +263,4 @@
 
 
 
-<?php include 'footersignup.php';?>
+@endsection
