@@ -13,33 +13,37 @@
         </div>
         <div class="row g-2">
             <div class="col-lg-12 col-md-12 col-12  mx-auto">
-                <div class="all_quote_card replies_allquot ">
-                    <div class=" w-100  quote_detail_wraper replies ">
-                        <div class="active_bid_dtl_card_left">
-                            <div class="quote_info">
-                                <h5 class="heading-color d-flex align-items-center active_quote nowrape">{{$company->company}}</h5>
-                                <p class="mb-0">{{$data->car_owner_name}}</p>
-
-                                <p class="mb-0">{{$data->phone}}</p>
-                                <p class="milage">Mileage  <span>{{$data->mileage}}km</span></p>
-                            </div>
-
-                            <div class="d-flex chat_view__detail qoute_replies vendor_order days">
-                                <h5 class="heading-color active_bidDay">{{$data->day}} Days</h5>
-                                <a href="#" class="chat_icon">
-                                    <i class="fa-solid fa-message"></i>
-                                    <!-- <img src="assets/images/meassageiconblk.svg"> -->
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class=" active_bid_dtl_card_right">
-                            <h5 class="offer_quote_heading">{{$data->model}}</h5>
-{{--                            <h3 class="offer_quote_heading second_heading">My Quote <span>AED 1200</span></h3>--}}
-                        </div>
+                <div class="table-responsive white-background-box">
+                        <table class="table table-bordered table-striped table-dark mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Customer's Name</th>
+                                    <th>Model</th>           
+                                    <th>Company</th>                         
+                                    <th>Milage e.g 40 Km</th>
+                                    <th>Days e.g (7)</th>
+                                    <th>Chat Now</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{$data->car_owner_name}}</td>
+                                    <td>{{$data->model}}</td>
+                                    <td>{{$company->company}}</td>
+                                    <td>{{$data->mileage}}km</td>
+                                    <td>{{$data->day}}</td>
+                                    <td>
+                                        <div class="chat_view__detail d-flex justify-content-center">
+                                            <a href="#" class="justify-content-center chat_icon">
+                                                <i class="fa-solid fa-message"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="row  mt-5">
             <div class="col-lg-12">
@@ -57,7 +61,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
-                    <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5">
+                    <h5 class="heading-color">Car Images</h5>
+                    <div class="owl-carousel carousel_se_03_carousel owl-theme mt-4">
                         @if(count($images) == 0)
                         <div class="item">
                             <div class="carAd_img_wraper doc_img customer_dashboard">
@@ -129,7 +134,8 @@
         <div class="row mt-5">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
-                    <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5">
+                    <h5 class="active_order_req">Police /Accident /Inspection Report</h5>
+                    <div class="owl-carousel carousel_se_03_carousel owl-theme mt-4">
                         @if(count($documents) == 0)
                             <div class="item">
                                 <div class="carAd_img_wraper doc_img customer_dashboard">
@@ -262,12 +268,11 @@
                     </div>
 
 
-                    <h5 class="active_order_req">Police /Accident /Inspection Report</h5>
+                    <h5 class="heading-color">Special Requirements</h5>
 
                     <div class="vendor__rply__dttl">
                         <p>{{$data->description2}}</p>
                     </div>
-
                 </div>
             </div>
         </div>
