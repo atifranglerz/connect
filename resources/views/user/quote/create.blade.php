@@ -169,23 +169,23 @@
                                         </div>
                                         <div class="row g-2">
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control"  name="maker_name" placeholder="Name" aria-label="Make" required>
+                                                <input type="text" class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"  disabled name="maker_name" placeholder="Name" aria-label="Make" required>
                                                 @error('name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No" required>
-                                                @error('phone')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                                @enderror
-                                            </div>
+{{--                                            <div class="col-lg-6 col-md-6">--}}
+{{--                                                <input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No" required>--}}
+{{--                                                @error('phone')--}}
+{{--                                                <div class="text-danger p-2">{{ $message }}</div>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
                                             <div class="col-lg-6 col-md-6">
 {{--                                                <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email">--}}
                                                 <input type="email" name="email" class="form-control" disabled value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control" name="address" placeholder="Address" aria-label="Car Milage" required>
+                                            <div class="col-lg-12 col-md-12">
+                                                <input type="text" class="form-control" name="address" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}" placeholder="Address" aria-label="Car Milage" required>
                                                 @error('address')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
