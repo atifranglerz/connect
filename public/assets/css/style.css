@@ -69,6 +69,14 @@
     --light-gray-tranparent: #a9a9a98c;
     --light-white: #FBFBFB;
 }
+.label-fa-question {
+    background-color: #fff;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    color: var(--orange);
+    cursor: pointer;
+    padding: 2px 5px;
+}
 .heading-color {
     color: var(--orange);
 }
@@ -126,6 +134,24 @@ body span.select2-selection.select2-selection--single {
 body .btn:not(.fa), body a:not(.fa) {
     font-family: Inter,sans-serif!important;
 }
+/*tooltip css*/
+.tooltip-inner {
+    background-color: #12253d!important;
+    max-width: 355px;
+}
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: #12253d!important;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: #12253d!important;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: #12253d!important;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: #12253d!important;
+}
+/*tooltip css*/
 /*............................. header style starts  ......................*/
 header {
     position: sticky;

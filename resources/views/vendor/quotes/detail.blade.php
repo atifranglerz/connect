@@ -278,7 +278,7 @@
                         @csrf
                         <div class="row ">
                             <div class="col-lg-9 mx-auto">
-                                <h6 class="heading-color">Service Details</h6>
+                                <h6 class="heading-color">Services/Labor Details <sup class="fa fa-question label-fa-question" data-toggle="tooltip" data-placement="top" title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup></h6>
                                 <div class="conten-row-block-main-container services-details">
                                     <div class="mb-3 row content-block-row">
                                         <div class="col-sm-4">
@@ -307,7 +307,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h6 class="heading-color">Spares Details</h6>
+                                <h6 class="heading-color">Spares Details <sup class="fa fa-question label-fa-question" data-toggle="tooltip" data-placement="top" title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup></h6>
                                 <div class="conten-row-block-main-container spares-details">
                                     <div class="mb-3 row content-block-row">
                                         <div class="col-sm-4">
@@ -336,7 +336,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h6 class="heading-color">Others</h6>
+                                <h6 class="heading-color">Others <sup class="fa fa-question label-fa-question" data-toggle="tooltip" data-placement="top" title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup></h6>
                                 <div class="conten-row-block-main-container extras-details">
                                     <div class="mb-3 row content-block-row">
                                         <div class="col-sm-4">
@@ -414,4 +414,15 @@
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+    <script>
+        $(function() {
+            /*tooltip*/
+            $('[data-toggle="tooltip"]').tooltip({
+                trigger: 'hover'
+            });
+            /*tooltip*/
+        });
+    </script>
 @endsection

@@ -62,7 +62,7 @@
 
                                     <p class="mb-0">{{$value->userbid->description1}}</p>
 
-                                    <p >{{$value->userbid->phone}}</p>
+                                    <!-- <p>{{$value->userbid->phone}}</p> -->
 
                                 </div>
 
