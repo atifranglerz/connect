@@ -28,7 +28,7 @@
                                     </li>
                                 </ul>
                                 <div class="col-lg-9 mx-auto">
-                                    <p class=" request_quote_heading">CAR INFORMATION</p>
+                                    <p class=" request_quote_heading">Garage INFORMATION</p>
                                 </div>
                             </div>
                         <form enctype="multipart/form-data" method="post" action="{{ route('vendor.workshop.store') }}">
