@@ -77,6 +77,18 @@
     cursor: pointer;
     padding: 2px 5px;
 }
+.modal-header {
+    border-bottom: 2px dashed var(--orange);
+}
+.modal-footer {
+    border-top: 2px dashed var(--orange);
+}
+.modal-open {
+    overflow: hidden;
+}
+#toast-container>div {
+    opacity: 1!important;
+}
 .heading-color {
     color: var(--orange);
 }
@@ -1520,4 +1532,7 @@ body span.select2-selection.select2-selection--single {
     .text-right {
         text-align: right!important;
     }
+}
+.text-justify {
+    text-align: justify!important;
 }

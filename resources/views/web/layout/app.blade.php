@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
 
     <title>Repair my Car</title>
@@ -132,8 +133,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Top Searches</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h6 class="modal-title" id="exampleModalLabel">Top Searches</h6>
+                <a type="button" class="heading-color" data-bs-dismiss="modal"><span class="fa fa-times"></span></a>
             </div>
             <div class="modal-body">
                 <div class="garage_name">
@@ -153,6 +154,7 @@
 <script src="https://kit.fontawesome.com/611bc9fae4.js" crossorigin="anonymous"></script>
 <script src="{{asset('public/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
+<script src="{{asset('public/assets/toastr/js/toastr.min.js')}}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 @yield('script')
