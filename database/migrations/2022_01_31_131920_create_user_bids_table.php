@@ -25,7 +25,7 @@ class CreateUserBidsTable extends Migration
             $table->text('description2')->nullable();
             $table->string('car_owner_name');
             $table->integer('day');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('address');
             $table->enum('status',['active', 'cancel', 'complete'])->default('active');
             $table->timestamps();

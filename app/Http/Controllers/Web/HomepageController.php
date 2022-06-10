@@ -13,6 +13,7 @@ use App\Models\GarageCategory;
 use App\Models\News;
 use App\Models\PrefferedGarage;
 use App\Models\PrivacyPolicy;
+use App\Models\Slider;
 use App\Models\TermCondition;
 use App\Models\UserReview;
 use App\Models\Vendor;
@@ -28,6 +29,7 @@ class HomepageController extends Controller
         $data['news'] = News::limit(4)->latest()->get();
         $data['ads'] = Ads::limit(8)->latest()->get();
         $data['garage'] = Garage::limit(8)->latest()->get();
+        $data['slider']=Slider::all();
 
         return view('web/index' ,$data) ;
     }

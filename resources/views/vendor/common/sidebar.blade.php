@@ -18,6 +18,10 @@
             </li>
             <li>
                 <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>All Quotes</span></a>
+
+            </li>
+            <li>
+                <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>Requested Inspections</span></a>
             </li>
             <li>
                 <a href="{{route('vendor.all-active-order')}}"><img src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>Active Orders</span></a>

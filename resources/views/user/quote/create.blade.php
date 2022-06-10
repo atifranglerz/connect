@@ -39,15 +39,15 @@
                                 <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-12">
-                                            <select class="form-select form-control" id="lookingFor">
+                                            <select name="looking_for" class="form-select form-control" id="lookingFor">
                                                 <option value=""></option>
-                                                <option value="I have Inspection Report & Looking for the Quotations">I have Inspection Report & Looking for the Quotations</option>
-                                                <option value="I don't know the Problem and Requesting for the Inspection">I don't know the Problem and Requesting for the Inspection</option>
-                                                <option value="I know about what i'm looking for and requesting for the Quotations">I know about what i'm looking for and requesting for the Quotations</option>
+                                                <option value="I have Inspection Report & Looking for the Quotations" @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations') selected @endif>I have Inspection Report & Looking for the Quotations</option>
+                                                <option value="I don't know the Problem and Requesting for the Inspection" @if(old('looking_for')=="I don't know the Problem and Requesting for the Inspection") selected @endif>I don't know the Problem and Requesting for the Inspection</option>
+                                                <option value="I know about what i'm looking for and requesting for the Quotations" @if(old('looking_for')=="I know about what i'm looking for and requesting for the Quotations") selected @endif>I know about what i'm looking for and requesting for the Quotations</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="model" placeholder="Model" aria-label="Car Milage" >
+                                            <input type="text" class="form-control" name="model" value="{{old('model')}}" placeholder="Model" aria-label="Car Milage" >
                                             @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -56,7 +56,7 @@
                                                 <select class="form-select form-control company-name-field" name="company_id" aria-label="Type of Service" >
                                                     <option value=""></option>
                                                     @foreach($company as $data)
-                                                        <option value="{{$data->id }}">{{$data->company }}</option>
+                                                        <option value="{{$data->id }}" @if(old('company_id')==$data->id) selected @endif>{{$data->company }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('company_id')
@@ -64,19 +64,19 @@
                                                 @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="registration_no" placeholder="Registration No." aria-label="Car Milage" >
+                                            <input type="text" class="form-control" value="{{old('registration_no')}}" name="registration_no" placeholder="Registration No." aria-label="Car Milage" >
                                             @error('registration_no')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage" >
+                                            <input type="text" class="form-control" value="{{old('Chasis_no')}}" name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage" >
                                             @error('Chasis_no')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="color" placeholder="Color" aria-label="Car Milage" >
+                                            <input type="text" class="form-control" name="color" value="{{old('color')}}" placeholder="Color" aria-label="Car Milage" >
                                             @error('color')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -85,7 +85,7 @@
                                             <select class="form-select form-control model-year-field" name="model_year_id" aria-label="Type of Service" required>
                                                 <option value=""></option>
                                                 @foreach($year as $data)
-                                                    <option value="{{$data->id }}">{{$data->model_year }}</option>
+                                                    <option value="{{$data->id }}" @if(old('model_year_id')==$data->id) selected @endif>{{$data->model_year }}</option>
                                                 @endforeach
                                             </select>
                                             @error('model_year_id')
@@ -96,13 +96,13 @@
                                           <input type="text" class="form-control" placeholder="Timeline For Work" aria-label="Timeline For Work">
                                         </div>
                    -->                   <div class="col-lg-6 col-md-6">
-                                        <input type="number" class="form-control" name="mileage" placeholder="Milage e.g 40 Km" aria-label="Car Milage" required>
+                                        <input type="number" class="form-control"  name="mileage" value="{{old('mileage')}}" placeholder="Milage e.g 40 Km" aria-label="Car Milage" required>
                                         @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
-                                            <input type="number" class="form-control" name="day" placeholder="Days e.g (7)" aria-label="Day" required>
+                                            <input type="number" class="form-control" name="day" value="{{old('day')}}" placeholder="Days e.g (7)" aria-label="Day" required>
                                             @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -118,7 +118,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="description1" placeholder="Add information in details" class="form-control" rows="5"></textarea>
+                                            <textarea name="description1" placeholder="Add information in details" class="form-control" rows="5">{{old('description1')}}</textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
@@ -130,12 +130,14 @@
                                 <div class="tab-pane fade form-step px-lg-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
+                                            <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box again to upload another)</small></b></label>
                                             <div class="input-images">
 {{--                                                input field name  car_images --}}
-                                                @error('car_images')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                                @enderror
+
                                             </div>
+                                            @error('car_images')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
@@ -147,12 +149,16 @@
                                 <div class="tab-pane fade form-step px-lg-3" id="inspectionReport" role="tabpanel" aria-labelledby="inspection-report-link">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3">
+
                                             <div class="input-images-2" accept="pdf/*" data-type='Pdf'>
 {{--                                                input field name files--}}
                                             </div>
+                                            @error('files')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="description2" placeholder="Special Requirements" class="form-control" rows="5"></textarea>
+                                            <textarea name="description2" placeholder="Special Requirements" class="form-control" rows="5">{{old('description2')}}</textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
@@ -164,12 +170,13 @@
                                 <div class="tab-pane fade form-step px-lg-3" id="fourthtab" role="tabpanel" aria-labelledby="fourth-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="row g-2 col-lg-12 mb-3">
+                                            <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box again to upload another)</small></b></label>
                                             <div class="input-images-3"></div>
 {{--                                            input field name doucment--}}
                                         </div>
                                         <div class="row g-2">
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"  disabled name="maker_name" placeholder="Name" aria-label="Make" required>
+                                                <input type="text" class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"   name="maker_name" placeholder="Name" aria-label="Make" required>
                                                 @error('name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -248,7 +255,11 @@
             $('#lookingFor').select2({
                 placeholder: 'What are you looking for? (Required)',
             });
+            lookingFor();
             $('#lookingFor').on('select2:select', function () {
+                lookingFor();
+            });
+            function lookingFor() {
                 var val = $('#lookingFor').val();
                 let valOne = "I have Inspection Report & Looking for the Quotations";
                 let valTwo = "I don't know the Problem and Requesting for the Inspection";
@@ -269,7 +280,7 @@
                     $('#requestForInspection').addClass('d-none');
                     $('.get-quotes-block').removeClass('d-none');
                 }
-            });
+            }
         });
     </script>
 @endsection

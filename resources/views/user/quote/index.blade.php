@@ -20,8 +20,13 @@
                             <?php
                             $img = \App\Models\UserBidImage::where('user_bid_id',$value->id)->where('type','image')->oldest()->first();
                             $company = \App\Models\Company::where('id',$value->company_id)->first();
+
+                            $img1=Explode(",",$img->car_image);
+
+
+
                             ?>
-                            <img src="{{ asset($img->car_image) }}">
+                            <img src="{{asset($img1[0])}}">
 {{--                            <img src="{{ asset('public/user/assets/images/repair3.jpg')}}">--}}
                         </div>
                         <div class=" w-100  quote_detail_wraper">

@@ -39,18 +39,29 @@ class QuoteController extends Controller
     {
         $request->validate([
             'car_images'=>'required',
+            'looking_for'=>'required',
             'model' => 'required' ,
             'company_id' => 'required',
             'model_year_id' => 'required',
             'mileage' =>'required' ,
             'day'=>'required',
             'maker_name' => 'required',
-            'phone' => 'required',
             'address'=> 'required',
             'registration_no'=> 'required',
             'Chasis_no'=> 'required',
             'color'=> 'required',
         ]);
+       if($request->looking_for=='I have Inspection Report & Looking for the Quotations'){
+           $request->validate([
+               'files'=>'required',
+           ]);
+       }
+        if($request->looking_for=='I have Inspection Report & Looking for the Quotations'||$request->looking_for=="I know about what i'm looking for and requesting for the Quotations"){
+            $request->validate([
+                'category'=>'required',
+            ]);
+        }
+
 
         $quote = new UserBid();
         $quote->user_id = Auth::id() ;
@@ -68,6 +79,7 @@ class QuoteController extends Controller
         $quote->registration_no = $request->registration_no;
         $quote->Chasis_no = $request->Chasis_no;
         $quote->color = $request->color;
+        $quote->looking_for = $request->looking_for;
         $quote->save();
 
         // this is car image save
@@ -80,7 +92,8 @@ class QuoteController extends Controller
                 $images[] = 'public/image/ads/' . $image;
             }
             $imagefiles->user_bid_id =  $quote->id;
-            $imagefiles->car_image = implode(",", $images); ;
+            $imagefiles->car_image = implode(",", $images);
+
             $imagefiles->type = 'image' ;
             $imagefiles->save() ;
         }
@@ -106,7 +119,7 @@ class QuoteController extends Controller
             }
             $accidentailfile->user_bid_id =  $quote->id;
             $accidentailfile->car_image = implode(",", $files); ;
-            $accidentailfile->type = 'file' ;
+            $accidentailfile->type ='registerImage' ;
             $accidentailfile->save() ;
         }
         if ($request->category) {

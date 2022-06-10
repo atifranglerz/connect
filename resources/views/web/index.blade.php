@@ -55,16 +55,21 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" ></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+
             <div class="carousel-inner">
+                @forelse($slider as $slider_image)
+                  @if($loop->iteration==1)
                 <div class="carousel-item active">
-                    <img src="{{ asset('public/assets/images/mainbannerimg.png ') }}" class="d-block w-100" alt="banner image">
+                    <img src="{{ asset($slider_image->image) }}" class="d-block w-100" alt="banner image">
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('public/assets/images/cleaning-1837331.jpg') }}" class="d-block w-100" alt="banner image">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('public/assets/images/car-engine-1548434_1920.jpg') }} " class="d-block w-100" alt="banner image">
-                </div>
+                      @else
+                        <div class="carousel-item ">
+                            <img src="{{ asset($slider_image->image) }}" class="d-block w-100" alt="banner image">
+                        </div>
+                    @endif
+                @empty
+                @endforelse
+
             </div>
         </div>
     </section>

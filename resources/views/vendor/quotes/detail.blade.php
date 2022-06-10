@@ -18,31 +18,60 @@
                             <thead>
                                 <tr>
                                     <th>Customer's Name</th>
-                                    <th>Model</th>           
-                                    <th>Company</th>                         
+                                    <th>Company</th>
+                                    <th>Registration No.</th>
+                                    <th>Chasis No.</th>
+                                    <th>Model</th>
                                     <th>Milage e.g 40 Km</th>
-                                    <th>Days e.g (7)</th>
-                                    <th>Chat Now</th>
+                                    <th>Color</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{$data->car_owner_name}}</td>
-                                    <td>{{$data->model}}</td>
                                     <td>{{$company->company}}</td>
-                                    <td>{{$data->mileage}}km</td>
+                                    <td>{{$data->registration_no}}</td>
+                                    <td>{{$data->Chasis_no}}</td>
                                     <td>{{$data->day}}</td>
-                                    <td>
-                                        <div class="chat_view__detail d-flex justify-content-center">
-                                            <a href="#" class="justify-content-center chat_icon">
-                                                <i class="fa-solid fa-message"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <td>{{$data->mileage}}km</td>
+                                    <td>{{$data->color}}</td>
+
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
+                <div class="table-responsive white-background-box mt-3">
+                    <table class="table table-bordered table-striped table-dark mb-0">
+                        <thead>
+                        <tr>
+
+                            <th>Estimated Days e.g (7)</th>
+
+                            <th>Services Required</th>
+
+                            <th>Chat Now</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+
+
+                            <td>{{$data->day}}</td>
+                            <td> @forelse($data->services as $services)@if($loop->iteration==1){{$services->category->name}}@else, {{$services->category->name}} @endif @empty @endforelse</td>
+
+                            <td>
+                                <div class="chat_view__detail d-flex justify-content-center">
+                                    <a href="#" class="justify-content-center chat_icon">
+                                        <i class="fa-solid fa-message"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
                 </div>
         </div>
         <div class="row  mt-5">
@@ -57,80 +86,63 @@
             </div>
         </div>
         <?php
-        $images = \App\Models\UserBidImage::where('user_bid_id',$data->id)->where('type','image')->get();?>
+        $car_images = \App\Models\UserBidImage::where('user_bid_id',$data->id)->where('type','image')->first();
+        $car_images=Explode(",",$car_images->car_image);
+
+        ?>
         <div class="row">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <h5 class="heading-color">Car Images</h5>
                     <div class="owl-carousel carousel_se_03_carousel owl-theme mt-4">
-                        @if(count($images) == 0)
-                        <div class="item">
-                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                            </div>
-                        </div>
-                        @elseif(count($images) == 1)
-                            @foreach($images as $image)
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset($image->car_image) }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                        @elseif(count($images) == 2)
-                            @foreach($images as $image)
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset($image->car_image) }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                        @else
-                            @foreach($images as $image)
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset($image->car_image) }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+                        @if(count($car_images) > 0)
+                            @for($i=0;$i<count($car_images);$i++)
+                              <div class="item">
+                                  <div class="carAd_img_wraper doc_img customer_dashboard">
+                                      <img src="{{ asset($car_images[$i]) }}">
+                                  </div>
+                               </div>
+                        @endfor
+                            @endif
+
+
+
                     </div>
 
                 </div>
             </div>
         </div>
         <?php
-        $documents = \App\Models\UserBidImage::where('user_bid_id',$data->id)->where('type','file')->get();?>
+        $car_images = \App\Models\UserBidImage::where('user_bid_id',$data->id)->where('type','registerImage')->first();
+        $car_images=Explode(",",$car_images->car_image);
+
+        ?>
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="all_quote_card  vendor_rply_dtlL _text">
+                    <h5 class="heading-color">Registration Copy Images </h5>
+                    <div class="owl-carousel carousel_se_03_carousel owl-theme mt-4">
+                        @if(count($car_images) > 0)
+                            @for($i=0;$i<count($car_images);$i++)
+                                <div class="item">
+                                    <div class="carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset($car_images[$i]) }}">
+                                    </div>
+                                </div>
+                            @endfor
+                        @endif
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <?php
+        $documents = \App\Models\UserBidImage::where('user_bid_id',$data->id)->where('type','file')->get();
+
+        ?>
         <div class="row mt-5">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
@@ -268,7 +280,7 @@
                     </div>
 
 
-                    <h5 class="heading-color">Special Requirements</h5>
+                    <h5 class="heading-color mt-4">Special Requirements</h5>
 
                     <div class="vendor__rply__dttl">
                         <p>{{$data->description2}}</p>

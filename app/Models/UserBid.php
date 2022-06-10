@@ -15,6 +15,11 @@ class UserBid extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    public function services()
+    {
+        return $this->hasMany(UserBidCategory::class, 'user_bid_id', 'id');
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');

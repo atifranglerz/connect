@@ -17,6 +17,7 @@ class AddCoulmnInUserBid extends Migration
             $table->string('color')->nullable();
             $table->string('Chasis_no')->nullable();
             $table->string('registration_no')->nullable();
+            $table->string('looking_for')->nullable();
         });
     }
 
