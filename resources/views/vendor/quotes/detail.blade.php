@@ -415,11 +415,21 @@
                                             @error('description')<span class="text-danger">{{$message}}</span>@enderror
                                             <label for="floatingTextarea2">Add Repairing Details</label>
                                         </div>
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="d-grid gap-2 mt-3 mb-4">
-                                                <button class="btn btn-secondary block get_appointment" type="submit">SUBMIT QUOTE</button>
-                                            </div>
-                                        </div>
+                                       <div class="row">
+                                           <div class="col-lg-6 col-md-6">
+                                               <div class="d-grid gap-2 mt-3 mb-4">
+                                                   <button class="btn btn-secondary block get_appointment" id="btnSubmit" type="submit">SUBMIT QUOTE</button>
+                                               </div>
+
+                                           </div>
+                                           <input type="hidden" name="btnType" id="btnType" value="0" >
+                                           <div class="col-lg-6 col-md-6">
+                                               <div class="d-grid gap-2 mt-3 mb-4">
+                                                   <button class="btn btn-secondary block get_appointment" data-toggle="modal" data-target="#privTermsPolicyModal"  type="button">PREVIEW QUOTE</button>
+                                               </div>
+
+                                           </div>
+                                       </div>
                                     </div>
                                 </div>
                             </div>
@@ -431,6 +441,25 @@
         </div>
     </div>
 </section>
+    <!-- Modal -->
+    <div class="modal fade" id="privTermsPolicyModal" aria-labelledby="privTermsPolicy" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="privTermsPolicy">Privacy Policy and Terms & Conditions</h6>
+                </div>
+                <div class="modal-body">
+                    <h6 class="sec_main_heading text-center">Privacy Policy</h6>
+                    <p class="text-justify">It is Repair My Car policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to repairmycar.com. We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources. This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
+                    <h6 class="sec_main_heading text-center">Terms & Conditions</h6>
+                    <p class="text-justify">It is Repair My Car policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to repairmycar.com. We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources. This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" id="agreePrivTerms" data-bs-dismiss="modal" style="padding: 8px 16px!important;height: unset">I Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
     <script>
@@ -440,6 +469,20 @@
                 trigger: 'hover'
             });
             /*tooltip*/
+        });
+        $(document).ready(function(){
+            $(document).on('click','#preview', function(event){
+                // event.preventDefault();
+                $('#btnType').val('1');
+
+
+            });
+            $(document).on('click','#btnSubmit', function(event){
+                $('#btnType').val('0');
+
+
+            });
+
         });
     </script>
 @endsection

@@ -23,7 +23,6 @@ class HomepageController extends Controller
 {
     public function index()
     {
-
         $data['page_title']  = "home" ;
         $data['services'] = Category::limit(8)->latest()->get();
         $data['news'] = News::limit(4)->latest()->get();

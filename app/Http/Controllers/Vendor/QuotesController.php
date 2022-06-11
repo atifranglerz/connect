@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Garage;
 use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Models\UserBid;
@@ -19,8 +20,24 @@ class QuotesController extends Controller
     {
 
         $data['page_title'] = 'index ';
-        $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->get();
-        $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->get();
+        $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid', function ($q) {
+                $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection");
+            })->get();
+        $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid',function ($q) {
+            $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection");
+        })->get();
+        return view('vendor.quotes.index', $data);
+    }
+    public function requestedInspections()
+    {
+
+        $data['page_title'] = 'Requested Inspections';
+        $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid',function ($q) {
+            $q->Where('looking_for', '=',"I don't know the Problem and Requesting for the Inspection");
+        })->get();
+        $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid',function ($q) {
+            $q->Where('looking_for', '=',"I don't know the Problem and Requesting for the Inspection");
+        })->get();
 
 
         return view('vendor.quotes.index', $data);
@@ -34,7 +51,12 @@ class QuotesController extends Controller
     }
     public function bidresponse (Request $request)
     {
-
+        if($request->btnType==1){
+            $page_title='Preview';
+            $data=$request->all();
+            $garage=Garage::where('vendor_id',auth()->id())->first();
+            return view('vendor.quotes.preview', compact('page_title' , 'data','garage'));
+        }
       if(VendorBid::where('garage_id',auth()->user()->garage->id)->where('user_bid_id',$request->bid_id)->doesntExist()) {
           $request->validate([
               'bid_id' => 'required',
@@ -54,6 +76,7 @@ class QuotesController extends Controller
               'vat' => 'required',
               'net_total' => 'required',
           ]);
+
           $data = new \App\Models\VendorBid();
           $data->user_bid_id = $request->bid_id;
           $data->garage_id = $request->garage_id;

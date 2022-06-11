@@ -37,6 +37,7 @@ class QuoteController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'car_images'=>'required',
             'looking_for'=>'required',
@@ -129,6 +130,7 @@ class QuoteController extends Controller
                 $user->category_id = $data ;
                 $user->save();
             if($request->action == 'all_garage'){
+
                 $vendor_quote=new VendorQuote;
                 $vendor_quote->user_id=Auth()->user()->id;
                 $vendor_quote->user_bit_id=$quote->id;
@@ -136,6 +138,7 @@ class QuoteController extends Controller
                 $SendNotification =new  SendNotification();
                 dispatch($SendNotification);
             }else{
+
                 $id=Auth()->user()->id;
                 $data=UserWishlist::where('user_id',$id)->with('garage')->get();
                 foreach($data as $list_item){
@@ -150,8 +153,19 @@ class QuoteController extends Controller
 
             }
 
+        }else{
+            if($request->action == 'all_garage'){
+
+                $vendor_quote=new VendorQuote;
+                $vendor_quote->user_id=Auth()->user()->id;
+                $vendor_quote->user_bit_id=$quote->id;
+                $vendor_quote->save();
+                $SendNotification =new  SendNotification();
+                dispatch($SendNotification);
+            }
         }
         if($request->action == 'all_garage'){
+
         return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
         }else{
             return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Preffered Garages', 'Quotation has not been sent to all the Preffered Garages');

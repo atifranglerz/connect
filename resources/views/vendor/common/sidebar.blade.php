@@ -21,7 +21,7 @@
 
             </li>
             <li>
-                <a href="{{ route('vendor.quoteindex') }}"><img src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>Requested Inspections</span></a>
+                <a href="{{ url('vendor/requested-inspections') }}"><img src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>Requested Inspections</span></a>
             </li>
             <li>
                 <a href="{{route('vendor.all-active-order')}}"><img src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>Active Orders</span></a>

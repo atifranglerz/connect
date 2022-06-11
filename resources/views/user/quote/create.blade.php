@@ -209,7 +209,7 @@
                                             </div>
                                             <div class="col-12 d-none" id="requestForInspection">
                                                 <div align="center" class="mt-3">
-                                                    <button class="btn text-center btn-primary get_quot block get_appointment" type="submit">SEND REQUEST FOR INSPECTION</button>
+                                                    <button class="btn text-center btn-primary get_quot block get_appointment" name="action" value="all_garage" type="submit">SEND REQUEST FOR INSPECTION</button>
                                                 </div>
                                             </div>
                                         </div>

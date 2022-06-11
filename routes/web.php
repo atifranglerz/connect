@@ -161,6 +161,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('order/all-active','ordersController@order_all')->name('all-active-order');
         Route::get('order/index','ordersController@active_order')->name('order/index');
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
+        Route::get('requested-inspections', 'QuotesController@requestedInspections');
         Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
         Route::post('bidresponse', 'QuotesController@bidresponse')->name('bidresponse');
         Route::get('my-bids', 'BidController@getBids')->name('my-bids');
@@ -203,6 +204,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('chat', 'ChatController');
         Route::resource('ads', 'AdsController');
         Route::get('quoteindex', 'QuoteController@index')->name('quoteindex');
+
         Route::get('quotecreate', 'QuoteController@create')->name('quotecreate');
         Route::post('quotestore', 'QuoteController@store')->name('quotestore');
         Route::get('response/{id}', 'QuoteController@reply')->name('response');
