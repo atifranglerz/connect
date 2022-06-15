@@ -15,4 +15,8 @@ class GarageCategory extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+    public function garage()
+    {
+        return $this->belongsTo(Garage::class, 'garage_id', 'id');
+    }
 }

@@ -1,5 +1,6 @@
 @extends('web.layout.app')
 @section('content')
+
     <section class="looking_for garages">
         <div class="container-lg container-fluid">
             <div class="row">
@@ -11,29 +12,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-10 mx-auto">
+                <div class="col-lg-8 mx-auto">
                     <form class="mb-5 mt-3">
 
                         <div class="input-group mb-3 search_garages_wraper">
-                            <input type="text" class="form-control search_garages" placeholder="Search For Your Favorite Garages" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn search" type="button" id="button-addon2">Search</button>
+                            <input type="text" class="form-control search_garages" placeholder="Search For Your Favorite Garages (Type Here)" aria-label="Recipient's username" aria-describedby="button-addon2" style="padding-right: 16px">
+{{--                            <button class="btn search" type="button" id="button-addon2">Search</button>--}}
                             <div class="srearch_icon_wraper">
                                 <img src="{{asset('public/assets/images/searchicon.')}}svg">
                             </div>
 
-                            <div class="slide_icon_wraper">
-                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <img src="{{asset('public/assets/images/slideicon.s')}}vg">
-                                </a>
+{{--                            <div class="slide_icon_wraper">--}}
+{{--                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">--}}
+{{--                                    <img src="{{asset('public/assets/images/slideicon.s')}}vg">--}}
+{{--                                </a>--}}
 
-                            </div>
+{{--                            </div>--}}
 
                         </div>
                     </form>
 
                 </div>
             </div>
-            <div class="row g-3">
+            <div class="row g-3 appendGarage">
                 @if(count($garages) > 0)
                     @foreach($garages as $value)
                 <div class="col-lg-3 col-md-4 col-sm-4">
@@ -103,4 +104,28 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           var services;
+            $(".search_garages").on("keyup", function () {
+               var val=$('.search_garages').val();
+                services={{$id}};
+                $.ajax({
+                    url: '{{URL::to('/service-garage')}}',
+                    type: 'GET',
+                    data: { 'val':val,'service':services},
+
+                    success: function(response)
+                    {
+                        $(".appendGarage").empty();
+                        $(".appendGarage").append(response);
+
+                    }
+                });
+            });
+
+
+        });
+    </script>
 @endsection

@@ -32,19 +32,17 @@
                     </div>
                 </div>
                 <div class="banner_search_box_wraper">
-                    <form action="{{route('search_service')}}" class="d-flex banner_form">
-                        <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="selCatFilter">
+                    <form action="{{route('search-garage')}}" class="d-flex banner_form">
+                        <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2 banner_select category" aria-label="Default select example"  id="selCatFilter">
                             <option selected disabled value="">Select category</option>
-                            @foreach($services as $value)
+                            @foreach($all_services as $value)
                             <option value="{{$value->id}}">{{$value->name}}</option>
                             @endforeach
                         </select>
                         <!-- <input class="typeahead form-control form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50"> -->
-                        <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2  banner_select" aria-label="Default select example" name="category" id="selGarFilter">
-                            <option selected disabled value="">Select Garage</option>
-                            @foreach($garage as $value)
-                            <option value="{{$value->id}}">{{$value->garage_name}}</option>
-                            @endforeach
+                        <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2 banner_select" aria-label="Default select example" name="garage" id="selGarFilter">
+                                <option selected disabled value="">Select Category First</option>
+
                         </select>
                         <button class="btn  search_btn" type="submit">SEARCH</button>
                     </form>
@@ -429,4 +427,30 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+                $(".category").on("change", function () {
+                    var val  =$("#selCatFilter option:selected").val();
+
+                    $.ajax({
+                        url: '{{URL::to('/category-garage')}}',
+                        type: 'GET',
+                        data: { 'val':val},
+
+                        success: function(response)
+                        {
+                            $("#selGarFilter").empty();
+                            $("#selGarFilter").append(response);
+
+                        }
+                    });
+                });
+
+
+        });
+    </script>
 @endsection
+
+

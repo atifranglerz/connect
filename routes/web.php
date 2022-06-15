@@ -37,9 +37,11 @@ Route::group(['namespace' => 'Web'], function () {
     });
 
     Route::get('/', 'HomepageController@index')->name('home');
+    Route::get('category-garage', 'HomepageController@categoryGarage');
     Route::get('register', 'HomepageController@register')->name('register');
     Route::get('loginpage', 'HomepageController@loginchoice')->name('loginpage');
     Route::get('used_cars', 'HomepageController@usedcars')->name('used_cars');
+    Route::post('search-used-car', 'HomepageController@searchCar')->name('search-used-car');
     Route::get('car-detail/{id}', 'HomepageController@carDetail')->name('car_detail');
     Route::get('car_service', 'HomepageController@carService')->name('car_service');
     Route::get('vendors-by-service/{id}', 'HomepageController@vendorsByService')->name('vendors-by-service');
@@ -49,6 +51,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::post('add-to-preffered-garage', 'HomepageController@addToPrefferedGarage')->name('add-to-preffered-garage');
     Route::get('vendorlist', 'HomepageController@allvendor')->name('vendorlist');
     Route::get('search_service', 'HomepageController@searchService')->name('search_service');
+    Route::get('service-garage', 'HomepageController@serviceGarage')->name('service-garage');
+    Route::get('search-garage', 'HomepageController@searchGarage')->name('search-garage');
     Route::get('news', 'HomepageController@news')->name('news');
     Route::get('faq', 'HomepageController@faqnews')->name('faq');
     Route::get('news_detail/{id}', 'HomepageController@newsDetail')->name('news_detail');

@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Ads;
 use App\Models\Category;
+use App\Models\Company;
 use App\Models\ContactVendor;
 use App\Models\Garage;
 use App\Models\GarageCategory;
+use App\Models\ModelYear;
 use App\Models\News;
 use App\Models\PrefferedGarage;
 use App\Models\PrivacyPolicy;
@@ -17,6 +19,7 @@ use App\Models\Slider;
 use App\Models\TermCondition;
 use App\Models\UserReview;
 use App\Models\Vendor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -29,9 +32,16 @@ class HomepageController extends Controller
         $data['ads'] = Ads::limit(8)->latest()->get();
         $data['garage'] = Garage::limit(8)->latest()->get();
         $data['slider']=Slider::all();
+        $data['all_services'] = Category::latest()->get();
 
         return view('web/index' ,$data) ;
     }
+    public function categoryGarage(Request $request){
+        $data=GarageCategory::where('category_id',$request->val)->with('garage')->get();
+
+        return view('web/appendGarage',compact('data')) ;
+
+     }
     public function carService()
     {
         $data['page_title']  = "carservice Page" ;
@@ -43,13 +53,22 @@ class HomepageController extends Controller
     public function vendorsByService($id)
     {
         $data['page_title']  = 'vendors by service';
+        $data['id']  = $id;
         $garage_category = GarageCategory::where('category_id',$id)->distinct()->pluck('garage_id');
         $data['garages'] = Garage::whereIn('id',$garage_category)->get();
 
 
         return view('web.vendorlistbyservice', $data);
     }
+    public function serviceGarage(Request $request){
 
+            $search=$request->val;
+            $data['garages']=GarageCategory::where('category_id',$request->service)->with('garage')->whereHas('garage', function($query) use ($search){
+                $query->where('garage_name', 'LIKE', "%$search%");
+            })->get();
+
+        return view('web.append_servicesGarage', $data);
+    }
     public function allvendor()
     {
         $data['page_title']  = 'vendors list';
@@ -129,10 +148,22 @@ class HomepageController extends Controller
     {
         $data['page_title']  = 'used cars';
         $data['ads'] = Ads::all();
-
+        $data['company'] = Company::all();
+        $data['year'] = ModelYear::all();
         return view('web.used_cars', $data);
     }
-
+    public function searchCar(Request $request){
+    //  dd($request->all());
+        $search[]=$request->modelFrom;
+        $search[]=$request->modelTo;
+       $search1=$request->company_id;
+        $data['page_title']  = 'used cars';
+        $data['ads'] =Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->where('city',$request->city)->with('modelYear','company')->whereHas('modelYear', function($query) use ($search){
+            $query->whereBetween('model_year', [$search[0],$search[1]]);})->whereHas('company', function($query) use ($search1){$query->where('company',$search1);})->get();
+        $data['company'] = Company::all();
+        $data['year'] = ModelYear::all();
+        return view('web.used_cars', $data);
+    }
     public function carDetail($id)
     {
         $data['page_title']  = 'used car';
@@ -159,6 +190,24 @@ class HomepageController extends Controller
 
             return view('web.vendorlistbyservice', $data);
         }
+    }
+    public function searchGarage(){
+
+
+        $data['page_title']  = 'vendor detail';
+        $data['garage'] = Garage::find($_GET['garage']);
+        $data['services'] = Category::all();
+        $data['user_wishlist'] = \App\Models\UserWishlist::where('user_id',auth()->id())->where('garage_id',$data['garage']->id)->first();
+        $data['user_review'] = \App\Models\UserReview::where('garage_id',$data['garage']->id)->get();
+        $totalReviews = UserReview::where('garage_id',$data['garage']->id)->count();
+        $rating= UserReview::where('garage_id',$data['garage']->id)->sum('rating');
+        if($totalReviews ==0 && $rating ==0)
+        {
+            $data['overAllRatings'] = 0;
+        }else{
+            $data['overAllRatings'] = $rating/$totalReviews;
+        }
+        return view('web.gerage_detail', $data);
     }
 
     public function news()
@@ -208,4 +257,5 @@ class HomepageController extends Controller
         $about = About::firstorFail();
         return view('web.about', compact('page_title','about'));
     }
+
 }
