@@ -143,6 +143,7 @@
         $documents = \App\Models\UserBidImage::where('user_bid_id',$data->id)->where('type','file')->get();
 
         ?>
+        @if($data->looking_for=='I have Inspection Report & Looking for the Quotations')
         <div class="row mt-5">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
@@ -288,6 +289,7 @@
                 </div>
             </div>
         </div>
+        @endif
         <div class="row mt-5">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
