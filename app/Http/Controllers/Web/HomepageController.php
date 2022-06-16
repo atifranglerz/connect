@@ -153,7 +153,7 @@ class HomepageController extends Controller
         return view('web.used_cars', $data);
     }
     public function searchCar(Request $request){
-    //  dd($request->all());
+
         $search[]=$request->modelFrom;
         $search[]=$request->modelTo;
        $search1=$request->company_id;

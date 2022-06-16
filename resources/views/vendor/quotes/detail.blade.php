@@ -443,6 +443,8 @@
     </div>
 </section>
     <!-- Modal -->
+
+
     <div class="modal fade" id="previewBidDetails" aria-labelledby="previewBidDetails" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -451,28 +453,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="pb-0 main_content_wraper">
-                        <h3 class="sec_main_heading text-center">Porsche Car Repair GARAGE</h3>
-                        <p class="sec_main_para text-center"> P.O. Box </p>
-                        <p class="sec_main_para text-center"><b>Tel : </b><span>97-1234-567-890</span>, <b>Fax : </b><span>3881433</span></p>
-                        <p class="sec_main_para text-center"><b>email : </b><span>vendor@gmail.com</span></p>
+                        <h3 class="sec_main_heading text-center">{{\Illuminate\Support\Facades\Auth::user()->garage->garage_name}} GARAGE</h1>
+                            <p class="sec_main_para text-center">{{\Illuminate\Support\Facades\Auth::user()->garage->address}} P.O. Box {{\Illuminate\Support\Facades\Auth::user()->garage->post_box}}</p>
+                            <p class="sec_main_para text-center"><b>Tel : </b><span>{{\Illuminate\Support\Facades\Auth::user()->garage->phone}}</span>, <b>Fax : </b><span>3881433</span></p>
+                            <p class="sec_main_para text-center"><b>email : </b><span>{{\Illuminate\Support\Facades\Auth::user()->email}}</span></p>
                         <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h5>
                         <div class="table-responsive bg-white">
                             <table class="table table-bordered table-striped table-dark mb-0">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <td colspan="2">Vendor Admin</td>
+                                        <td colspan="2">{{\Illuminate\Support\Facades\Auth::user()->name}}</td>
                                         <th>Est. No.</th>
-                                        <td>1</td>
+                                        <td>{{mt_rand(1, 999999)}}</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th>Phone</th>
-                                        <td>097489380293</td>
+                                        <td>{{\Illuminate\Support\Facades\Auth::user()->phone}}</td>
                                         <th>Fax :</th>
                                         <th>Est. Date</th>
-                                        <td>15-Jun-2022</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->created)->format('d-M-Y')}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -678,7 +680,7 @@
                 <td><span class="item-rate"></span>.00</td>
                 <td><span class="item-amount"></span>.00</td>
             </tr>`);
-            
+
             $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row serDetail${++serDetail}">
                                         <div class="col-sm-4">
                                             <input type="text" name="service_name[]" class="form-control particular-item" placeholder="Particular">
@@ -718,7 +720,7 @@
                 <td><span class="item-rate"></span>.00</td>
                 <td><span class="item-amount"></span>.00</td>
             </tr>`);
-            
+
             $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row spareDetail${++sparesDetail}">
                                         <div class="col-sm-4">
                                             <input type="text" name="spares_name[]" class="form-control particular-item" placeholder="Particular">
@@ -758,7 +760,7 @@
                 <td><span class="item-rate"></span>.00</td>
                 <td><span class="item-amount"></span>.00</td>
             </tr>`);
-            
+
             $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row othersDetail${++othersDetail}">
                                         <div class="col-sm-4">
                                             <input type="text" name="others_name[]" class="form-control particular-item" placeholder="Particular">
@@ -800,10 +802,10 @@
 
                 let $quanInput = $(this).closest('.content-block-row').find('input.qty');
                 let val1 = parseInt($quanInput.val());
-                
+
                 let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
                 let val2 = parseInt($rateInput.val());
-                
+
                 let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
                 $amountInput.val(val1*val2).change();
                 amountTotal();
@@ -842,7 +844,7 @@
             let $quanInput = $(this).closest('.input-group').find('input.qty');
             var val1 = parseInt($quanInput.val());
             $quanInput.val( val1-1 ).change();
-    
+
             let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
             let val2 = parseInt($rateInput.val());
 
@@ -883,7 +885,7 @@
             let netTotal = amountTotal + percentRoundOff
             $('.netTotal').val(netTotal);
             $('.netTotal').text(netTotal);
-        } 
+        }
         /*Amount Total, Vat, Net Total Calculations*/
     </script>
 @endsection

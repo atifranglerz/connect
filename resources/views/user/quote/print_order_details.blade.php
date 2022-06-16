@@ -17,7 +17,7 @@
                                     <th>Name</th>
                                     <td colspan="2">{{$data->vendordetail->vendor->name}}</td>
                                     <th>Est. No.</th>
-                                    <td>{{$data->id}}</td>
+                                    <td>{{mt_rand(1, 999999)}}</td>
                                 </tr>
                             </thead>
                             <tbody>
