@@ -130,7 +130,7 @@
                                     <label for="particular" class="heading-color">Particular</label>
                                     <input type="text" class="form-control" value="{{$service->service_name}}" placeholder="Particular" readonly>
                                     @else
-                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="Particular" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-2">
@@ -138,7 +138,7 @@
                                     <label for="quantity" class="heading-color">Quantity</label>
                                     <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
                                     @else
-                                        <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
+                                        <input type="number" value="{{$service->service_quantity}}" class="form-control mt-2" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-3">
@@ -146,7 +146,7 @@
                                     <label for="rate" class="heading-color">Rate</label>
                                     <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="Rate" readonly>
                                         @endif
                                 </div>
                                 <div class="col-sm-3">
@@ -154,7 +154,7 @@
                                     <label for="amount" class="heading-color">amount</label>
                                     <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}"  class="form-control" placeholder="Amount" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control mt-2" placeholder="Amount" readonly>
                                     @endif
                                 </div>
                                     @endif
@@ -182,7 +182,7 @@
                                     <label for="particular" class="heading-color">Particular</label>
                                     <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
                                     @else
-                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="Particular" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-2">
@@ -190,7 +190,7 @@
                                     <label for="quantity" class="heading-color">Quantity</label>
                                     <input type="number" value="{{$service->service_quantity}}"  class="form-control" readonly>
                                     @else
-                                        <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
+                                        <input type="number" value="{{$service->service_quantity}}" class="form-control mt-2" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-3">
@@ -198,7 +198,7 @@
                                     <label for="rate" class="heading-color">Rate</label>
                                     <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="Rate" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-3">
@@ -206,7 +206,7 @@
                                     <label for="amount" class="heading-color">amount</label>
                                     <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}} mt-2" class="form-control" placeholder="Amount" readonly>
                                         @endif
                                 </div>
                                     @endif
