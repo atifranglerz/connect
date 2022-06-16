@@ -222,25 +222,7 @@
                         </div>
                     </div>
                     <div>
-                        <ul class="font-italic px-4">
-                            <li>
-                                The above estimate is an approximate and is based on our initial inspection of the vehicle. An additional estimate shall be prepared and send for any extra work or parts required, after dismantling
-                            </li>
-                            <li>
-                                When an estimation for repair is given, it is understood that the total cost of repair would be ±25% of the
-                                estimated amount. After preparation of the estimation, if the customer does not repair the car he/she should pay a
-                                minimum of AED 450/- or more ( depending on the diagnose time expenditure) will be charged if job estimated and
-                                not repaired / pulled out.
-                            </li>
-                            <li>
-                                If estimate value is above AED 1000 customer is required to make full advance payment for parts and 50% of labour.
-                            </li>
-                            <li>Estimate is valid for 7 days only</li>
-                            <li>Vehicle delivery is subject to availability of parts.</li>
-                            <li>Signed copy of estimate with approval has to be sent for commencement of work.</li>
-                            <li>Vehicle once ready for delivery should be collected with in 3 days, after which MOTORMEC GARAGE will not be liable for any damages or losses.</li>
-                            <li>Please note after replacement/repair of the above any additional requirement if required can only be ascertained after testing of said repair/replacement.</li>
-                        </ul>
+                        <p class="font-italic">$data->description</p>
                         <p class="font-italic">Remarks : ALL PARTS USED AND AFTER MARKET......... NO WARRANTY</p>
                         <b class="font-italic small">
                             Please Note : Vehicle Must be collected with 3 days of Invoice/Estimate date, Failing which there

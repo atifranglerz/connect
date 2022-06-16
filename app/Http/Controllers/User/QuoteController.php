@@ -62,8 +62,6 @@ class QuoteController extends Controller
                 'category'=>'required',
             ]);
         }
-
-
         $quote = new UserBid();
         $quote->user_id = Auth::id() ;
         $quote->model = $request->model;

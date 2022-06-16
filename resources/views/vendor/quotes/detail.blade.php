@@ -32,7 +32,7 @@
                                     <td>{{$company->company}}</td>
                                     <td>{{$data->registration_no}}</td>
                                     <td>{{$data->Chasis_no}}</td>
-                                    <td>{{$data->day}}</td>
+                                    <td>{{$data->modelYear->model_year}}</td>
                                     <td>{{$data->mileage}}km</td>
                                     <td>{{$data->color}}</td>
 
@@ -485,24 +485,24 @@
                                 <thead>
                                     <tr>
                                         <th>Registration No.</th>
-                                        <td>34234</td>
+                                        <td>{{$data->registration_no}}</td>
                                         <th>Milage Kms.</th>
-                                        <td>555</td>
+                                        <td>{{$data->mileage}}km</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th>Make</th>
-                                        <td>Honda</td>
+                                        <td>{{$company->company}}</td>
                                         <th>Color</th>
-                                        <td>Grey/Silver</td>
+                                        <td>{{$data->color}}</td>
                                     </tr>
                                     <tr>
                                         <th>Chasis No.</th>
-                                        <td>234234</td>
+                                        <td>{{$data->Chasis_no}}</td>
                                         <th>Year</th>
 
-                                        <td>2005</td>
+                                        <td>{{$data->modelYear->model_year}}</td>
                                     </tr>
                                 </tbody>
                             </table>
