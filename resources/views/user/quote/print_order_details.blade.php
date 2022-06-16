@@ -222,7 +222,7 @@
                         </div>
                     </div>
                     <div>
-                        <p class="font-italic">$data->description</p>
+                        <p class="font-italic">{{$data->description}}</p>
                         <p class="font-italic">Remarks : ALL PARTS USED AND AFTER MARKET......... NO WARRANTY</p>
                         <b class="font-italic small">
                             Please Note : Vehicle Must be collected with 3 days of Invoice/Estimate date, Failing which there
