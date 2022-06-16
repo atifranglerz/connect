@@ -17,11 +17,12 @@
                 $userbid = \App\Models\UserBid::where('id',$value->user_bid_id)->first();
                 $img = \App\Models\UserBidImage::where('user_bid_id',$userbid->id)->where('type','image')->oldest()->first();
                 $company = \App\Models\Company::where('id',$userbid->company_id)->first();
+                    $img1=Explode(",",$img->car_image);
                 ?>
             <div class="col-lg-6 col-md-6 col-sm-6 col-10  mx-auto">
                 <div class="all_quote_card replies_allquot h-100 ">
                     <div class="car_inner_imagg replies_qout">
-                        <img src="{{ asset($img->car_image) }}">
+                        <img src="{{ asset($img1[0])}}">
                     </div>
                     <div class=" w-100  quote_detail_wraper replies ">
                         <div class="quote_info">
