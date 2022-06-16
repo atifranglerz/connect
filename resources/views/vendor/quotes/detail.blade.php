@@ -308,7 +308,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='number' name='service_quantity[]' value='0' class='form-control qty' />
+                                                <input type='number' name='service_quantity[]' min='0' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -337,7 +337,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='number' name='spares_quantity[]' value='0' class='form-control qty' />
+                                                <input type='number' name='spares_quantity[]' min='0' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -366,7 +366,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary minus'><span class="fa fa-minus"></span></button>
                                                 </div>
-                                                <input type='number' name='others_quantity[]' value='0' class='form-control qty' />
+                                                <input type='number' name='others_quantity[]' min='0' value='0' class='form-control qty' />
                                                 <div class="p-0 input-group-text">
                                                     <button class='w-auto h-100 px-1 btn btn-secondary plus'><span class="fa fa-plus"></span></button>
                                                 </div>
@@ -449,7 +449,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title">Live Preview</h6>
+                    <h6 class="modal-title">PDF Live Preview</h6>
                 </div>
                 <div class="modal-body">
                     <div class="pb-0 main_content_wraper">
@@ -532,7 +532,7 @@
                                         <td></td>
                                         <td></td>
                                         <th>Services : </th>
-                                        <td><span></span>.00</td>
+                                        <td class="services-details"><span class="inner"></span>.00</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -562,7 +562,7 @@
                                         <td></td>
                                         <td></td>
                                         <th>Spares : </th>
-                                        <td><span></span>.00</td>
+                                        <td class="spares-details"><span class="inner"></span>.00</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -592,7 +592,7 @@
                                         <td></td>
                                         <td></td>
                                         <th>Others : </th>
-                                        <td><span></span>.00</td>
+                                        <td class="extras-details"><span class="inner"></span>.00</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -690,7 +690,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class="w-auto h-100 px-1 btn btn-secondary minus"><span class="fa fa-minus" aria-hidden="true"></span></button>
                                                 </div>
-                                                <input type="number" name="service_quantity[]" value="0" class="form-control qty">
+                                                <input type="number" name="service_quantity[]" min="0" value="0" class="form-control qty">
                                                 <div class="p-0 input-group-text">
                                                     <button class="w-auto h-100 px-1 btn btn-secondary plus"><span class="fa fa-plus" aria-hidden="true"></span></button>
                                                 </div>
@@ -730,7 +730,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class="w-auto h-100 px-1 btn btn-secondary minus"><span class="fa fa-minus" aria-hidden="true"></span></button>
                                                 </div>
-                                                <input type="number" name="spares_quantity[]" value="0" class="form-control qty">
+                                                <input type="number" name="spares_quantity[]" min="0" value="0" class="form-control qty">
                                                 <div class="p-0 input-group-text">
                                                     <button class="w-auto h-100 px-1 btn btn-secondary plus"><span class="fa fa-plus" aria-hidden="true"></span></button>
                                                 </div>
@@ -770,7 +770,7 @@
                                                 <div class="p-0 input-group-text">
                                                     <button class="w-auto h-100 px-1 btn btn-secondary minus"><span class="fa fa-minus" aria-hidden="true"></span></button>
                                                 </div>
-                                                <input type="number" name="others_quantity[]" value="0" class="form-control qty">
+                                                <input type="number" name="others_quantity[]" min="0" value="0" class="form-control qty">
                                                 <div class="p-0 input-group-text">
                                                     <button class="w-auto h-100 px-1 btn btn-secondary plus"><span class="fa fa-plus" aria-hidden="true"></span></button>
                                                 </div>
@@ -810,12 +810,19 @@
                 $amountInput.val(val1*val2).change();
                 amountTotal();
 
-
                 let mainParent = $(this).closest('.content-block-row').attr('class').split(' ').pop();
                 $('.' + mainParent).find('.particular-item').text($parItem);
                 $('.' + mainParent).find('.item-rate').text(val2);
                 $('.' + mainParent).find('.qty').text(val1);
                 $('.' + mainParent).find('.item-amount').text(val1*val2);
+
+                let mainDiv = $(this).closest('.conten-row-block-main-container').attr('class').split(' ').pop();
+                let itemAmount = $('.' + mainDiv).find('.item-amount');
+                var sum = 0;
+                $(itemAmount).each(function(e) {
+                    sum += parseInt($(this).val());
+                });
+                $('.' + mainDiv).find('.inner').text(sum);
             }, 500);
         });
 
@@ -836,6 +843,13 @@
             $('.' + mainParent).find('.qty').text(val1+1);
             $('.' + mainParent).find('.item-amount').text((val1+1)*val2);
 
+            let mainDiv = $(this).closest('.conten-row-block-main-container').attr('class').split(' ').pop();
+            let itemAmount = $('.' + mainDiv).find('.item-amount');
+            var sum = 0;
+            $(itemAmount).each(function(e) {
+                sum += parseInt($(this).val());
+            });
+            $('.' + mainDiv).find('.inner').text(sum);
             amountTotal();
         });
 
@@ -843,7 +857,6 @@
             e.preventDefault();
             let $quanInput = $(this).closest('.input-group').find('input.qty');
             var val1 = parseInt($quanInput.val());
-            $quanInput.val( val1-1 ).change();
 
             let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
             let val2 = parseInt($rateInput.val());
@@ -852,10 +865,18 @@
             $amountInput.val((val1-1)*val2).change();
 
             if (val1 > 0) {
+                $quanInput.val( val1-1 ).change();
                 let mainParent = $(this).closest('.content-block-row').attr('class').split(' ').pop();
                 $('.' + mainParent).find('.qty').text(val1-1);
                 $('.' + mainParent).find('.item-amount').text((val1-1)*val2);
 
+                let mainDiv = $(this).closest('.conten-row-block-main-container').attr('class').split(' ').pop();
+                let itemAmount = $('.' + mainDiv).find('.item-amount');
+                var sum = 0;
+                $(itemAmount).each(function(e) {
+                    sum += parseInt($(this).val());
+                });
+                $('.' + mainDiv).find('.inner').text(sum);
                 amountTotal();
             }
         });
