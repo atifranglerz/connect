@@ -299,9 +299,9 @@
                             <div class="col-lg-9 mx-auto">
                                 <h6 class="heading-color">Services/Labor Details <sup class="fa fa-question label-fa-question" data-toggle="tooltip" data-placement="top" title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup></h6>
                                 <div class="conten-row-block-main-container services-details">
-                                    <div class="mb-3 row content-block-row">
+                                    <div class="mb-3 row content-block-row serDetail1">
                                         <div class="col-sm-4">
-                                            <input type="text" name="service_name[]" class="form-control" placeholder="Particular" />
+                                            <input type="text" name="service_name[]" class="form-control particular-item" placeholder="Particular" />
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
@@ -321,16 +321,16 @@
                                             <input type="number" min="1" value='' name="services_amount[]" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
-                                            <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
+                                            <button class="w-auto btn btn-secondary add-btn services-detail-add-btn"><span class="fa fa-plus"></span></button>
                                             <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus"></span></button>
                                         </div>
                                     </div>
                                 </div>
                                 <h6 class="heading-color">Spares Details <sup class="fa fa-question label-fa-question" data-toggle="tooltip" data-placement="top" title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup></h6>
                                 <div class="conten-row-block-main-container spares-details">
-                                    <div class="mb-3 row content-block-row">
+                                    <div class="mb-3 row content-block-row spareDetail1">
                                         <div class="col-sm-4">
-                                            <input type="text" name="spares_name[]" class="form-control" placeholder="Particular" />
+                                            <input type="text" name="spares_name[]" class="form-control particular-item" placeholder="Particular" />
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
@@ -350,16 +350,16 @@
                                             <input type="number" min="1" value='' name="spares_amount[]" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
-                                            <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
+                                            <button class="w-auto btn btn-secondary add-btn spares-detail-add-btn"><span class="fa fa-plus"></span></button>
                                             <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus"></span></button>
                                         </div>
                                     </div>
                                 </div>
                                 <h6 class="heading-color">Others <sup class="fa fa-question label-fa-question" data-toggle="tooltip" data-placement="top" title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup></h6>
                                 <div class="conten-row-block-main-container extras-details">
-                                    <div class="mb-3 row content-block-row">
+                                    <div class="mb-3 row content-block-row othersDetail1">
                                         <div class="col-sm-4">
-                                            <input type="text" name="others_name[]" class="form-control" placeholder="Particular" />
+                                            <input type="text" name="others_name[]" class="form-control particular-item" placeholder="Particular" />
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
@@ -379,7 +379,7 @@
                                             <input type="number" min="1" name="others_amount[]" class="form-control item-amount" placeholder="Amount" />
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
-                                            <button class="w-auto btn btn-secondary add-btn"><span class="fa fa-plus"></span></button>
+                                            <button class="w-auto btn btn-secondary add-btn others-detail-add-btn"><span class="fa fa-plus"></span></button>
                                             <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus"></span></button>
                                         </div>
                                     </div>
@@ -387,7 +387,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Estimate Total</h6>
-                                        <input type="number" name="price" class="form-control" id="amountTotal" placeholder="AED Price">
+                                        <input type="number" name="price" class="form-control amountTotal" placeholder="AED Price">
                                         @error('price')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
@@ -398,12 +398,12 @@
                                         @error('vendor_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <?php $garage = \App\Models\Garage::where('vendor_id',auth()->id())->first();?>
                                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                                        <input type="number" name="vat" class="form-control" id="vatPercent" placeholder="AED Price">
+                                        <input type="number" name="vat" class="form-control vatPercent" placeholder="AED Price">
                                         @error('vat')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <h6 class="heading-color">Net Total</h6>
-                                        <input type="number"  name="net_total" class="form-control" id="netTotal" placeholder="AED Price">
+                                        <input type="number"  name="net_total" class="form-control netTotal" placeholder="AED Price">
                                         @error('net_total')<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
@@ -427,9 +427,8 @@
                                            <input type="hidden" name="btnType" id="btnType" value="0" >
                                            <div class="col-lg-6 col-md-6">
                                                <div class="d-grid gap-2 mt-3 mb-4">
-                                                   <button class="btn btn-secondary block get_appointment" data-toggle="modal" data-target="#privTermsPolicyModal"  type="button">PREVIEW QUOTE</button>
+                                                   <button class="btn btn-secondary block get_appointment" data-bs-toggle="modal" data-bs-target="#previewBidDetails" type="button">PREVIEW QUOTE</button>
                                                </div>
-
                                            </div>
                                        </div>
                                     </div>
@@ -444,20 +443,191 @@
     </div>
 </section>
     <!-- Modal -->
-    <div class="modal fade" id="privTermsPolicyModal" aria-labelledby="privTermsPolicy" aria-hidden="true">
+    <div class="modal fade" id="previewBidDetails" aria-labelledby="previewBidDetails" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="privTermsPolicy">Privacy Policy and Terms & Conditions</h6>
+                    <h6 class="modal-title">Live Preview</h6>
                 </div>
                 <div class="modal-body">
-                    <h6 class="sec_main_heading text-center">Privacy Policy</h6>
-                    <p class="text-justify">It is Repair My Car policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to repairmycar.com. We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources. This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
-                    <h6 class="sec_main_heading text-center">Terms & Conditions</h6>
-                    <p class="text-justify">It is Repair My Car policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to repairmycar.com. We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources. This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary" id="agreePrivTerms" data-bs-dismiss="modal" style="padding: 8px 16px!important;height: unset">I Agree</button>
+                    <div class="pb-0 main_content_wraper">
+                        <h3 class="sec_main_heading text-center">Porsche Car Repair GARAGE</h3>
+                        <p class="sec_main_para text-center"> P.O. Box </p>
+                        <p class="sec_main_para text-center"><b>Tel : </b><span>97-1234-567-890</span>, <b>Fax : </b><span>3881433</span></p>
+                        <p class="sec_main_para text-center"><b>email : </b><span>vendor@gmail.com</span></p>
+                        <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h5>
+                        <div class="table-responsive bg-white">
+                            <table class="table table-bordered table-striped table-dark mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td colspan="2">Vendor Admin</td>
+                                        <th>Est. No.</th>
+                                        <td>1</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>097489380293</td>
+                                        <th>Fax :</th>
+                                        <th>Est. Date</th>
+                                        <td>15-Jun-2022</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h6 class="mt-3">Vehicle Detail :</h6>
+                        <div class="table-responsive bg-white">
+                            <table class="table table-bordered table-striped table-dark mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Registration No.</th>
+                                        <td>34234</td>
+                                        <th>Milage Kms.</th>
+                                        <td>555</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Make</th>
+                                        <td>Honda</td>
+                                        <th>Color</th>
+                                        <td>Grey/Silver</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Chasis No.</th>
+                                        <td>234234</td>
+                                        <th>Year</th>
+
+                                        <td>2005</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h6 class="mt-3">Services Detail :</h6>
+                        <div class="table-responsive bg-white">
+                            <table class="table table-bordered table-striped table-dark mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>SL No</th>
+                                        <th>Particulars</th>
+                                        <th>Qty</th>
+                                        <th>Rate</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="serDetail1">
+                                        <td>1</td>
+                                        <td class="particular-item"></td>
+                                        <td class="qty"></td>
+                                        <td><span class="item-rate"></span>.00</td>
+                                        <td><span class="item-amount"></span>.00</td>
+                                    </tr>
+                                    <tr class="services-detail">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <th>Services : </th>
+                                        <td><span></span>.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h6 class="mt-3">Spares Detail :</h6>
+                        <div class="table-responsive bg-white">
+                            <table class="table table-bordered table-striped table-dark mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>SL No</th>
+                                        <th>Particulars</th>
+                                        <th>Qty</th>
+                                        <th>Rate</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="spareDetail1">
+                                        <td>1</td>
+                                        <td class="particular-item"></td>
+                                        <td class="qty"></td>
+                                        <td><span class="item-rate"></span>.00</td>
+                                        <td><span class="item-amount"></span>.00</td>
+                                    </tr>
+                                    <tr class="spares-detail">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <th>Spares : </th>
+                                        <td><span></span>.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h6 class="mt-3">Others :</h6>
+                        <div class="table-responsive bg-white">
+                            <table class="table table-bordered table-striped table-dark mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>SL No</th>
+                                        <th>Particulars</th>
+                                        <th>Qty</th>
+                                        <th>Rate</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="othersDetail1">
+                                        <td>1</td>
+                                        <td class="particular-item"></td>
+                                        <td class="qty"></td>
+                                        <td><span class="item-rate"></span>.00</td>
+                                        <td><span class="item-amount"></span>.00</td>
+                                    </tr>
+                                    <tr class="others-detail">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <th>Others : </th>
+                                        <td><span></span>.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="my-3 row mx-0">
+                            <div class="offset-md-7 col-md-5 offset-sm-4 col-sm-8">
+                                <div class="row">
+                                    <b class="col-6">Estimate Total</b>
+                                    <div class="col-6 text-xl-right">
+                                        <span class="amountTotal"></span>.00</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <b class="col-6">VAT 5%</b>
+                                    <div class="col-6 text-xl-right">
+                                        <span class="vatPercent"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <b class="col-6">Net Total</b>
+                                    <div class="col-6 text-xl-right">
+                                        <span class="netTotal"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p id="repairingDetails" class="font-italic"></p>
+                            <p class="font-italic">Remarks : ALL PARTS USED AND AFTER MARKET......... NO WARRANTY</p>
+                            <b class="font-italic small">
+                                Please Note : Vehicle Must be collected with 3 days of Invoice/Estimate date, Failing which there
+                                will be a parking charge of AED 50/- per day incurred by customer. Motormec will not be
+                                responsible if the vehcile is collected / picked / impounded by Dubai local authorities for which
+                                it will be the customers responibility to get the vehicle released at thier own costs.
+                            </b>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -474,17 +644,246 @@
         });
         $(document).ready(function(){
             $(document).on('click','#preview', function(event){
-                // event.preventDefault();
                 $('#btnType').val('1');
-
-
             });
             $(document).on('click','#btnSubmit', function(event){
                 $('#btnType').val('0');
+            })
+        });
 
+        $('textarea[name="description"]').keyup(function() {
+            let repDescription = $(this).val();
+            $('#repairingDetails').text(repDescription);
+        });
 
-            });
+        let serDetail = 1;
+        let sertrId = 1;
+        let sertdId = 1;
+
+        let sparesDetail = 1;
+        let sparestrId = 1;
+        let sparestdId = 1;
+
+        let othersDetail = 1;
+        let otherstrId = 1;
+        let otherstdId = 1;
+
+        $(document).on('click', '.services-detail-add-btn', function(e) {
+            e.preventDefault();
+
+            $('.services-detail').before(`<tr class="serDetail${++sertrId}">
+                <td>${++sertdId}</td>
+                <td class="particular-item"></td>
+                <td class="qty"></td>
+                <td><span class="item-rate"></span>.00</td>
+                <td><span class="item-amount"></span>.00</td>
+            </tr>`);
+            
+            $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row serDetail${++serDetail}">
+                                        <div class="col-sm-4">
+                                            <input type="text" name="service_name[]" class="form-control particular-item" placeholder="Particular">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="input-group">
+                                                <div class="p-0 input-group-text">
+                                                    <button class="w-auto h-100 px-1 btn btn-secondary minus"><span class="fa fa-minus" aria-hidden="true"></span></button>
+                                                </div>
+                                                <input type="number" name="service_quantity[]" value="0" class="form-control qty">
+                                                <div class="p-0 input-group-text">
+                                                    <button class="w-auto h-100 px-1 btn btn-secondary plus"><span class="fa fa-plus" aria-hidden="true"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value="" name="services_rate[]" class="form-control item-rate" placeholder="Rate">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value="" name="services_amount[]" class="form-control item-amount" placeholder="Amount">
+                                        </div>
+                                        <div class="col-sm-2 d-flex flex-wrap">
+                                            <button class="w-auto btn btn-secondary add-btn services-detail-add-btn"><span class="fa fa-plus" aria-hidden="true"></span></button>
+                                            <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>`);
 
         });
+
+        $(document).on('click', '.spares-detail-add-btn', function(e) {
+            e.preventDefault();
+
+            $('.spares-detail').before(`<tr class="spareDetail${++sparestrId}">
+                <td>${++sparestdId}</td>
+                <td class="particular-item"></td>
+                <td class="qty"></td>
+                <td><span class="item-rate"></span>.00</td>
+                <td><span class="item-amount"></span>.00</td>
+            </tr>`);
+            
+            $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row spareDetail${++sparesDetail}">
+                                        <div class="col-sm-4">
+                                            <input type="text" name="spares_name[]" class="form-control particular-item" placeholder="Particular">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="input-group">
+                                                <div class="p-0 input-group-text">
+                                                    <button class="w-auto h-100 px-1 btn btn-secondary minus"><span class="fa fa-minus" aria-hidden="true"></span></button>
+                                                </div>
+                                                <input type="number" name="spares_quantity[]" value="0" class="form-control qty">
+                                                <div class="p-0 input-group-text">
+                                                    <button class="w-auto h-100 px-1 btn btn-secondary plus"><span class="fa fa-plus" aria-hidden="true"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value="" name="spares_rate[]" class="form-control item-rate" placeholder="Rate">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value="" name="spares_amount[]" class="form-control item-amount" placeholder="Amount">
+                                        </div>
+                                        <div class="col-sm-2 d-flex flex-wrap">
+                                            <button class="w-auto btn btn-secondary add-btn spares-detail-add-btn"><span class="fa fa-plus" aria-hidden="true"></span></button>
+                                            <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>`);
+
+        });
+
+        $(document).on('click', '.others-detail-add-btn', function(e) {
+            e.preventDefault();
+
+            $('.others-detail').before(`<tr class="othersDetail${++otherstrId}">
+                <td>${++otherstdId}</td>
+                <td class="particular-item"></td>
+                <td class="qty"></td>
+                <td><span class="item-rate"></span>.00</td>
+                <td><span class="item-amount"></span>.00</td>
+            </tr>`);
+            
+            $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row othersDetail${++othersDetail}">
+                                        <div class="col-sm-4">
+                                            <input type="text" name="others_name[]" class="form-control particular-item" placeholder="Particular">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="input-group">
+                                                <div class="p-0 input-group-text">
+                                                    <button class="w-auto h-100 px-1 btn btn-secondary minus"><span class="fa fa-minus" aria-hidden="true"></span></button>
+                                                </div>
+                                                <input type="number" name="others_quantity[]" value="0" class="form-control qty">
+                                                <div class="p-0 input-group-text">
+                                                    <button class="w-auto h-100 px-1 btn btn-secondary plus"><span class="fa fa-plus" aria-hidden="true"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value="" name="others_rate[]" class="form-control item-rate" placeholder="Rate">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" min="1" value="" name="others_amount[]" class="form-control item-amount" placeholder="Amount">
+                                        </div>
+                                        <div class="col-sm-2 d-flex flex-wrap">
+                                            <button class="w-auto btn btn-secondary add-btn others-detail-add-btn"><span class="fa fa-plus" aria-hidden="true"></span></button>
+                                            <button class="w-auto btn btn-secondary remove-btn"><span class="fa fa-minus" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>`);
+
+        });
+
+        $(document).on('click', '.remove-btn', function(e) {
+            e.preventDefault();
+            let mainParent = $(this).closest('.content-block-row').attr('class').split(' ').pop();
+            $('.' + mainParent).remove();
+        });
+
+        $(document).on('keyup', ".particular-item, .qty, .item-rate", function() {
+            setTimeout(() => {
+                let $parItem = $(this).closest('.content-block-row').find('input.particular-item').val();
+
+                let $quanInput = $(this).closest('.content-block-row').find('input.qty');
+                let val1 = parseInt($quanInput.val());
+                
+                let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
+                let val2 = parseInt($rateInput.val());
+                
+                let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
+                $amountInput.val(val1*val2).change();
+                amountTotal();
+
+
+                let mainParent = $(this).closest('.content-block-row').attr('class').split(' ').pop();
+                $('.' + mainParent).find('.particular-item').text($parItem);
+                $('.' + mainParent).find('.item-rate').text(val2);
+                $('.' + mainParent).find('.qty').text(val1);
+                $('.' + mainParent).find('.item-amount').text(val1*val2);
+            }, 500);
+        });
+
+        /*Amount Total, Vat, Net Total Calculations*/
+        $(document).on('click', '.plus', function(e) {
+            e.preventDefault();
+            let $quanInput = $(this).closest('.input-group').find('input.qty');
+            let val1 = parseInt($quanInput.val());
+            $quanInput.val( val1+1 ).change();
+
+            let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
+            let val2 = parseInt($rateInput.val());
+
+            let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
+            $amountInput.val((val1+1)*val2).change();
+
+            let mainParent = $(this).closest('.content-block-row').attr('class').split(' ').pop();
+            $('.' + mainParent).find('.qty').text(val1+1);
+            $('.' + mainParent).find('.item-amount').text((val1+1)*val2);
+
+            amountTotal();
+        });
+
+        $(document).on('click', '.minus', function(e) {
+            e.preventDefault();
+            let $quanInput = $(this).closest('.input-group').find('input.qty');
+            var val1 = parseInt($quanInput.val());
+            $quanInput.val( val1-1 ).change();
+    
+            let $rateInput = $(this).closest('.content-block-row').find('input.item-rate');
+            let val2 = parseInt($rateInput.val());
+
+            let $amountInput = $(this).closest('.content-block-row').find('input.item-amount');
+            $amountInput.val((val1-1)*val2).change();
+
+            if (val1 > 0) {
+                let mainParent = $(this).closest('.content-block-row').attr('class').split(' ').pop();
+                $('.' + mainParent).find('.qty').text(val1-1);
+                $('.' + mainParent).find('.item-amount').text((val1-1)*val2);
+
+                amountTotal();
+            }
+        });
+
+        function amountTotal() {
+            var sum_value = 0;
+            $('.item-amount').each(function(){
+            sum_value += +$(this).val();
+            $('.amountTotal').val(sum_value);
+            $('.amountTotal').text(sum_value);
+            });
+
+            var amountTotal = parseInt($('.amountTotal').val());
+
+            //The percent that we want to get.
+            var percentToGet = 5;
+
+            //Calculate the percent.
+            var percentCal = (percentToGet / 100) * amountTotal;
+
+            var percentRoundOff = parseInt(Math.ceil(percentCal));
+            //Alert it out for demonstration purposes.
+            // alert(percentToGet + "% of " + amountTotal + " is " + percent);
+
+            $('.vatPercent').val(percentRoundOff);
+            $('.vatPercent').text(percentRoundOff);
+            let netTotal = amountTotal + percentRoundOff
+            $('.netTotal').val(netTotal);
+            $('.netTotal').text(netTotal);
+        } 
+        /*Amount Total, Vat, Net Total Calculations*/
     </script>
 @endsection
