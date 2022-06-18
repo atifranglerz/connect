@@ -28,7 +28,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" name="phone" value="{{ old('phone') }}" id="inputNumber" placeholder="Mobile Number">
+                                <input type="number" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="Mobile Number">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -63,25 +63,31 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" name="address" value="{{ old('address') }}" id="inputNumber" placeholder="Address">
+                                <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Address">
                                 @error('address')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}"  id="inputNumber" placeholder="P/O Box">
+                                <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}" placeholder="P/O Box">
                                 @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control"  name="password" id="inputNumber" placeholder="Password">
+                                <div class="position-relative d-flex align-items-center">
+                                    <input id="inputPass" name="password" type="password" class="form-control" placeholder="Password">
+                                    <span toggle="#inputPass" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
+                                </div>
                                 @error('password')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control" name="password_confirmation" id="inputNumber" placeholder="Confirm Password">
+                                <div class="position-relative d-flex align-items-center">
+                                    <input id="inputConPass" name="password_confirmation" type="password" class="form-control" placeholder="Confirm Password">
+                                    <span toggle="#inputConPass" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
+                                </div>
                                 @error('password_confirmation')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

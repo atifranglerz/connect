@@ -18,7 +18,10 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control pass" name="password" id="inputPassword" placeholder="Password">
+                                <div class="position-relative d-flex align-items-center">
+                                    <input id="inputPassword" name="password" type="password" class="form-control pass" placeholder="Password">
+                                    <span toggle="#inputPassword" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
+                                </div>
                                 @error('password')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

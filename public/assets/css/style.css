@@ -69,6 +69,15 @@
     --light-gray-tranparent: #a9a9a98c;
     --light-white: #FBFBFB;
 }
+.fa.fa-eye, .fa.fa-eye-slash {
+    font-weight: bold!important;
+}
+.toggle-password {
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+    color: #5b6c7c;
+}
 .label-fa-question {
     background-color: #fff;
     border: 2px solid var(--orange);

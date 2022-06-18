@@ -9,7 +9,7 @@
                             <h4 class="sec_main_heading text-center mb-0">WELCOME BACK!</h4>
                             <p class="sec_main_para text-center mb-0">Fill This To Login</p>
                         </div>
-                        <form action="{{ route('user.login')}}" method="post" class="pt-5">
+                        <form action="{{ route('user.login')}}" method="post" id="loginForm" class="pt-5">
                             @csrf
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email" class="form-control" id="inputEmail"  name="email" placeholder="Email">
@@ -18,8 +18,10 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" class="form-control pass" id="inputPassword" name="password" placeholder="Password">
-                                <!-- <i class="bi bi-eye toggle_pass"></i> -->
+                                <div class="position-relative d-flex align-items-center">
+                                    <input id="inputPassword" name="password" type="password" class="form-control pass" placeholder="Password">
+                                    <span toggle="#inputPassword" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
+                                </div>
                                 @error('password')
                                   <span class="text-danger">{{ $message }}</span>
                                 @enderror
