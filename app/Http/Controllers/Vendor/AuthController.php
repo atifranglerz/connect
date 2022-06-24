@@ -321,4 +321,10 @@ class AuthController extends Controller
             dd($e->getMessage());
         }
     }
+
+    //accept term and condition
+    public function terms(Request $request){
+        $vendor = Vendor::find($request->authid)->update(['term_condition'=>1]);
+       return response()->json('success');
+    }
 }

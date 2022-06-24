@@ -54,6 +54,8 @@
                                     <h5 class="d-flex align-items-center active_quote heading-color"><a href="#" class="heading-color">{{$value->userBid->company->company}}  ({{$value->userbid->model}})</a> <span class="order_id">#{{$value->userbid->reference_no}}</span></h5>
 
                                     <p class="mb-0">{{$value->userbid->description1}}</p>
+                                  
+                             
 
                                     <!-- <p>{{$value->userbid->phone}}</p> -->
 
@@ -67,7 +69,15 @@
 
                                         <a href="#" class="chat_icon"><!-- <img src="assets/images/meassageiconblk.svg"> --><i class="fa-solid fa-message"></i></a>
 
-                                        <a href="{{ route('vendor.quotedetail',$value->userbid->id ) }}" class="btn-secondary">VIEW DETAILS</a>
+                                        <?php
+                                            $id =  $value->userbid->id;
+                                            $offer = \App\Models\VendorBidStatus::where([['user_bid_id',$id],['vendor_id',Auth::id()]])->first();
+                                        ?>
+                                            @if($offer == NULL)
+                                                <a href="{{ route('vendor.quotedetail',$value->userbid->id ) }}" class="btn-secondary">VIEW DETAILS</a>                                           
+                                            @else                                           
+                                                <a href="{{ route('vendor.view-offer',$value->userbid->id ) }}" class="btn-secondary">VIEW OFFER</a>
+                                            @endif
 
                                     </div>
 

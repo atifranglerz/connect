@@ -32,6 +32,8 @@ class User extends Authenticatable
         'post_box',
         'longitude',
         'latitude',
+        'term_condition',
+
 
     ];
 

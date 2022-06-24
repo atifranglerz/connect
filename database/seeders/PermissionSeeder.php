@@ -57,8 +57,8 @@ class PermissionSeeder extends Seeder
         $user = \App\Models\Vendor::create([
             'name' => 'Vendor Admin',
             'email' => 'dadyd@gmail.com',
-            'phone' => '093489380093',
             'password' => Hash::make(12345678),
+            'phone' => '093489380093',
         ]);
         $user->assignRole($role2);
 

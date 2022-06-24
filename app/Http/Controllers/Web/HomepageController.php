@@ -119,6 +119,7 @@ class HomepageController extends Controller
 
     public function addToPrefferedGarage(Request $request)
     {
+        // dd($request);
         $preferredgarageexist = \App\Models\UserWishlist::where('user_id',$request->user_id)->where('garage_id',$request->garage_id)->first();
         if($preferredgarageexist) {
             $preferredgarageexist->delete();

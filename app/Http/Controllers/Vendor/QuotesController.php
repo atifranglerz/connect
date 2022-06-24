@@ -7,6 +7,7 @@ use App\Models\Garage;
 use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Models\UserBid;
+use App\Models\VendorBidStatus;
 use App\Models\User ;
 use App\Models\ModelYear;
 use App\Models\Company;
@@ -18,14 +19,17 @@ class QuotesController extends Controller
 {
     public function index()
     {
+        
 
         $data['page_title'] = 'index ';
         $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid', function ($q) {
-                $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection");
+                $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection")->Where('offer_status','!=','ordered');
             })->get();
         $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid',function ($q) {
-            $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection");
+            
+            $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection")->Where('offer_status','!=','ordered');
         })->get();
+
         return view('vendor.quotes.index', $data);
     }
     public function requestedInspections()
@@ -44,13 +48,16 @@ class QuotesController extends Controller
     }
     public function quotedetail ($id)
     {
+        
 
         $page_title = 'quote detail ';
         $data = UserBid::with('user','company','modelYear')->findOrFail($id);
+      
         return view('vendor.quotes.detail', compact('page_title' , 'data'));
     }
     public function bidresponse (Request $request)
     {
+
         if($request->btnType==1){
             $page_title='Preview';
             $data=$request->all();
@@ -131,12 +138,26 @@ class QuotesController extends Controller
                   }
               }
           }
+
+
+          // check  after sending bid on user quote
+           $status = new VendorBidStatus();
+           $status->vendor_id = $request->vendor_id;
+           $status->user_bid_id = $request->bid_id;
+           $status->status = 1;
+           $status->save();
+
           return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
       }else{
           return redirect()->back()->with(['message' =>'You are already bided on this quote', 'alert' => 'error']);
 
-
       }
+    }
 
+
+    //vendor view offer
+    public function viewOffer($id){
+        $data=VendorBid::where('user_bid_id',$id)->with('part','vendordetail')->first();
+        return view('vendor.quotes.quote_offer_details',compact('data'));
     }
 }

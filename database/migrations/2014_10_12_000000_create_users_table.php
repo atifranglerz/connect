@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->integer('post_box')->nullable();
             $table->double('longitude')->nullable();
             $table->double('latitude')->nullable();
+            $table->integer('term_condition')->default(0);
             $table->text('image')->nullable();
             $table->rememberToken();
             $table->timestamps();

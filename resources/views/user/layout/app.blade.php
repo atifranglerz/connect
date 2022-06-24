@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('public/user/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <title>Customer panel |{{ $page_title ?? "" }}</title>
     <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/user/assets/favicon/favicon.ico') }}' />
     <style>
@@ -199,6 +200,7 @@
 <script src="{{ asset('public/user/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('public/assets/toastr/js/toastr.min.js')}}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 @yield('script')
 <!-- Sweet Alert -->

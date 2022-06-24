@@ -87,4 +87,77 @@
         </div>
 </section>
 
+ <!-- Modal -->
+ <div class="modal fade" id="privTermsPolicyModal" aria-labelledby="privTermsPolicy" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="privTermsPolicy">Privacy Policy and Terms & Conditions</h6>
+                </div>
+                <div class="modal-body">
+                    <h6 class="sec_main_heading text-center">Privacy Policy</h6>
+                    <p class="text-justify">It is Repair My Car policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to repairmycar.com. We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources. This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
+                    <h6 class="sec_main_heading text-center">Terms & Conditions</h6>
+                    <p class="text-justify">It is Repair My Car policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to repairmycar.com. We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources. This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" id="agreePrivTerms" data-bs-dismiss="modal" style="padding: 8px 16px!important;height: unset">I Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+@endsection
+@section('script')
+<?php
+
+$vendor = \App\Models\Vendor::find(Auth::id());
+$term = $vendor->term_condition;
+?>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script>
+         var term = '<?php echo $term; ?>';
+         var authid = '<?php echo $vendor->id; ?>';
+         
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        if(term == 0){
+
+        $(function() {
+            $('#privTermsPolicyModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $("#privTermsPolicyModal").modal('show');
+            $(document).on('click', '#agreePrivTerms', function() {
+                toastr.success("You've agreed to our Privacy Policy and Terms & Conditions");
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {'X-CSRF-Token': '{{ csrf_token() }}',},
+                    url: "{{ route('vendor.terms_condition') }}",
+                    data: {'id': 1,'authid':authid},
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        });
+    }
+    </script>
 @endsection

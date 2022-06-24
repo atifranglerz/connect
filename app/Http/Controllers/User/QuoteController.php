@@ -78,6 +78,7 @@ class QuoteController extends Controller
         $quote->registration_no = $request->registration_no;
         $quote->Chasis_no = $request->Chasis_no;
         $quote->color = $request->color;
+        $quote->offer_status = "pending";
         $quote->looking_for = $request->looking_for;
         $quote->save();
 
@@ -121,6 +122,7 @@ class QuoteController extends Controller
             $accidentailfile->type ='registerImage' ;
             $accidentailfile->save() ;
         }
+        
         if ($request->category) {
             foreach ($request->category as $data) {
                 $user = new UserBidCategory() ;
@@ -135,6 +137,8 @@ class QuoteController extends Controller
                 $vendor_quote->save();
                 $SendNotification =new  SendNotification();
                 dispatch($SendNotification);
+    
+
             }else{
 
                 $id=Auth()->user()->id;

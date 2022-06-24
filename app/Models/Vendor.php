@@ -33,6 +33,7 @@ class Vendor extends Authenticatable
         'post_box',
         'longitude',
         'latitude',
+        'term_condition',
     ];
 
     /**
@@ -60,4 +61,6 @@ class Vendor extends Authenticatable
     {
         return $this->HasOne(Garage::class, 'vendor_id', 'id');
     }
+
+
 }

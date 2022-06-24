@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\UserBid;
 use App\Models\VendorBid;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,12 @@ class PaymentController extends Controller
         $order->transaction_id = $request->transaction_id;
         $order->payment_type = $request->payment_type;
         $order->save();
+
+        //after order confirm update quote status
+        $quote = UserBid::find($request->user_bid_id);
+        $quote->offer_status = "ordered";
+        $quote->save();
+
 
         return $this->message($order, 'user.order.index', 'Payment Successfully Added', '  Error');
 

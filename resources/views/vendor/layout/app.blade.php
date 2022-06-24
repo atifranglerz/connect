@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('public/vendor/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/vendor/assets/image-uploader/dist/image-uploader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <title>Vendor Pannel</title>
     <style>
         /* width */
@@ -89,6 +90,7 @@
     @include('vendor.common.sidebar')
     <div class="right_main" id="dashboardSidebarRightContent">
         @include('vendor.common.header')
+        
         @yield('content')
     </div>
 </div>
@@ -98,6 +100,7 @@
 <script src="{{ asset('public/vendor/assets/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('public/vendor/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('public/assets/toastr/js/toastr.min.js')}}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 @yield('script')
 <!-- Sweet Alert -->

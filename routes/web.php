@@ -144,6 +144,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
     Route::get('register_garage_view', 'GarageController@registerGarage')->name('register_garage_view');
     Route::post('login', 'AuthController@vendorLogin')->name('login');
     Route::post('register', 'AuthController@vendorRegister')->name('register');
+    Route::post('terms_condition', 'AuthController@terms')->name('terms_condition');
     //Route::post('create_ads/index','AdsController@store')->name('create_ads/index');
 
     /*Route::get('facebook', 'AuthController@facebookRedirect')->name('facebook');
@@ -167,6 +168,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('requested-inspections', 'QuotesController@requestedInspections');
         Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
+        Route::get('view-offer/{id}', 'QuotesController@viewOffer')->name('view-offer');
         Route::post('bidresponse', 'QuotesController@bidresponse')->name('bidresponse');
         Route::get('my-bids', 'BidController@getBids')->name('my-bids');
         Route::get('bid-details/{id}', 'BidController@bidDetails')->name('bid-details');
@@ -185,6 +187,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::get('register', 'AuthController@register');
     Route::post('login', 'AuthController@userLogin')->name('login');
     Route::post('register', 'AuthController@userRegister')->name('register');
+    Route::post('terms_condition', 'AuthController@terms')->name('terms_condition');
+
     /*Route::get('facebook', 'AuthController@facebookRedirect')->name('facebook');
     Route::get('facebook/callback', 'AuthController@loginWithFacebook');
     Route::get('google', 'AuthController@redirectToGoogle')->name('google');

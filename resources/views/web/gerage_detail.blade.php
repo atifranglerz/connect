@@ -220,11 +220,11 @@ use Illuminate\Support\Facades\Auth;
                 <div class="d-grid gap-2 mt-3">
 
                     @if(auth()->check())
-                        @if(session()->has('alert-garage-success'))
+                        <!-- @if(session()->has('alert-garage-success'))
                             <div class="alert alert-success">
                                 {{ session()->get('alert-garage-success') }}
                             </div>
-                        @endif
+                        @endif -->
                         @if(session()->has('alert-error'))
                             <div class="alert alert-danger">
                                 {{ session()->get('alert-error') }}
@@ -266,5 +266,34 @@ use Illuminate\Support\Facades\Auth;
     </div>
 </section>
 
-
+@endsection
+@section('script')
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        $(document).ready(function() {
+            <?php if(session('alert-garage-success'))       
+                {
+            ?>
+               toastr.success('{{ Session::get('alert-garage-success') }}');
+            <?php
+                }
+            ?>
+        });
+       
+    </script>
 @endsection
