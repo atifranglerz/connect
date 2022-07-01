@@ -13,7 +13,7 @@
                 <div class="name_of_contact">
                     <p class="mb-0" id="vendor">{{$chated_user->name}}</p>
                     @if($now > $gettime)
-                    <p class="mb-0 status">ofline</p>
+                    <p class="mb-0 status">offline</p>
                     @else
                     <p class="mb-0 status">online</p>
                     @endif
@@ -43,20 +43,27 @@
             <div class="message_txt_wraper">
                 <p class="mb-2">{{$data->created_at->format('h:s A')}}</p>
                 <p class="mb-0 message_txt" id="receiver_side">
-                <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true" style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
-                {{$data->body}}</p>
+                    <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
+                        style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
+                    {{$data->body}}
+                </p>
             </div>
         </div>
         @else
         <div class="inbox_contact align-items-end justify-content-end top_main">
             <div class="message_txt_wraper">
                 <p class="mb-2 text-end">{{$data->created_at->format('h:s A')}}</p>
+
+                <!-- <img src="{{ asset(auth()->user()->image)}}"> -->
+
                 <p class="mb-0 message_txt second" id="receiver_side">
-                <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true" style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>    
-                {{$data->body}}</p>
+                    <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
+                        style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
+                    {{$data->body}}
+                </p>
+
             </div>
             <div class="contact_img second_msg">
-                <img src="{{ asset(auth()->user()->image)}}">
             </div>
         </div>
         @endif

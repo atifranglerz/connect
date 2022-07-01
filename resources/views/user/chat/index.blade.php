@@ -85,12 +85,14 @@ $(document).on('click', '.favorite', function() {
     });
 });
 
+
 $(document).ready(function() {
     $(document).on('click', '#sendMsg', function() {
 
         let body = $('#typeMsg').val();
         let id = $('#receiver_id').val();
         let attachment = $('#attachment').val();
+        console.log(attachment);
         if (body != ' ') {
             $.ajax({
                 type: 'POST',

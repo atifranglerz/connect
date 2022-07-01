@@ -19,7 +19,8 @@ class CreateChatFavoritesTable extends Migration
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('online_status')->nullable();
+            $table->string('vendor_online')->nullable();
+            $table->string('customer_online')->nullable();
             $table->string('vendor_status')->default(0);
             $table->string('customer_status')->default(0);
 

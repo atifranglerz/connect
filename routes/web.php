@@ -161,14 +161,14 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         //chatting
-        Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
-        Route::get('chat/{id}', 'chatcontroller@chat')->name('chat');
-        Route::post('chat/favorite', 'chatcontroller@favorite')->name('chat.favorite');
-        Route::post('chat/chatSend', 'chatcontroller@store')->name('chatSend');
-        Route::post('chat/delete', 'chatcontroller@delete')->name('chat.delete');
-        Route::post('chat/alldelete', 'chatcontroller@alldelete')->name('chat.all_delete');
-        Route::post('chat/chatted_delete', 'chatcontroller@chattedDelete')->name('chat.chatted_delete');
-        Route::post('chat/online/status', 'chatcontroller@status')->name('online.status');
+        Route::get('chat/index', 'ChatController@index')->name('chat.index');
+        Route::get('chat/{id}', 'ChatController@chat')->name('chat');
+        Route::post('chat/favorite', 'ChatController@favorite')->name('chat.favorite');
+        Route::post('chat/chatSend', 'ChatController@store')->name('chatSend');
+        Route::post('chat/delete', 'ChatController@delete')->name('chat.delete');
+        Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');
+        Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
+        Route::post('chat/online/status', 'ChatController@status')->name('online.status');
 
         Route::get('orders', 'ordersController@index')->name('orders');
         Route::get('create/order', 'ordersController@create');
@@ -220,13 +220,13 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
          //chatting
         //  Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
-         Route::get('chat/{id}', 'chatcontroller@chat')->name('chat');
-         Route::post('chat/favorite', 'chatcontroller@favorite')->name('chat.favorite');
-         Route::post('chat/chatSend', 'chatcontroller@store')->name('chatSend');
-         Route::post('chat/delete', 'chatcontroller@delete')->name('chat.delete');
-         Route::post('chat/alldelete', 'chatcontroller@alldelete')->name('chat.all_delete');
-        Route::post('chat/chatted_delete', 'chatcontroller@chattedDelete')->name('chat.chatted_delete');
-        Route::post('chat/online/status', 'chatcontroller@status')->name('online.status');
+         Route::get('chat/{id}', 'ChatController@chat')->name('chat');
+         Route::post('chat/favorite', 'ChatController@favorite')->name('chat.favorite');
+         Route::post('chat/chatSend', 'ChatController@store')->name('chatSend');
+         Route::post('chat/delete', 'ChatController@delete')->name('chat.delete');
+         Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');
+        Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
+        Route::post('chat/online/status', 'ChatController@status')->name('online.status');
 
 
         /* Logout */

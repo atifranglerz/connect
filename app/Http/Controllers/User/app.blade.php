@@ -230,29 +230,29 @@
                 $('#sideNavOverlay').addClass('d-none');
             }
         }
-       // $('.notification_tooltip').hide();
-       $(document).on('click', '.notify-btn', function() {
+        // $('.notification_tooltip').hide();
+        $(document).on('click', '.notify-btn', function() {
             $('#notification_tolltip').toggle();
         });
         $(document).on('click', '#Logout_Profile', function() {
             $('#TopProfile').toggle();
         });
-        $(document).on('click', '#chat_toggle', function() {
-            $(".submenue").hide();
-            $(this).siblings(".submenue").toggle();
+        $(document).on('click', '#chat_toggle', function () {
 
+            $(".submenue").toggle();
         });
-        // window.addEventListener('click', function(e){
-        //     if (document.getElementById('chat_toggle').contains(e.target)){
-        //         // Clicked inside the  box
-        //         // alert("inside clicked");
-        //         $("#delet_message_toggle").css("display","block");
-        //     }
-        //     else{
-        //         $("#delet_message_toggle").css("display","none");
-        //         // alert("out side");
-        //     }
-        // });
+        window.addEventListener('click', function(e){
+            if (document.getElementById('chat_toggle').contains(e.target)){
+                // Clicked inside the  box
+                // alert("inside clicked");
+                $("#delet_message_toggle").css("display","block");
+            }
+            else{
+                $("#delet_message_toggle").css("display","none");
+                // alert("out side");
+            }
+        });
+
         $("#search_input").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $(".main_contact>a>.inbox_contact").filter(function() {
@@ -386,30 +386,6 @@
 
     });
 </script>
-<script>
-        setInterval(ajaxCall, 5000);
-        function ajaxCall() {
-            var id = 1;
-            console.log(id);
-            $.ajax({
-            type: "POST",
-            dataType: "json",
-            headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-            url: "{{ route('vendor.online.status') }}",
-            data: {
-                'id': id
-            },
-            success: function(response) {
-                console.log(response);
-                $('#users').empty();
-                $('#users').append(response.message);
-                $('#notify').html(response.unread);
-            }
-        });
-        }
-    </script>
 </body>
 </html>
 

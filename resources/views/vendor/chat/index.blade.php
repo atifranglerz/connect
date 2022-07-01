@@ -60,6 +60,14 @@
 
 @section('script')
 <script>
+
+$('#attachment').change( function(event) {
+var tmppath = URL.createObjectURL(event.target.files[0]);
+    $("img").fadeIn("fast").attr('src',tmppath);  
+    console.log(tmppath);
+
+});
+
 $(document).on('click', '.favorite', function() {
     var id = $(this).attr('id');
     console.log(id);
@@ -98,7 +106,7 @@ $(document).ready(function() {
         let body = $('#typeMsg').val();
         let id = $('#receiver_id').val();
         let attachment = $('#attachment').val();
-        if (body != ' ') {
+
             $.ajax({
                 type: 'POST',
                 url: "{{ route('vendor.chatSend') }}",
@@ -120,11 +128,13 @@ $(document).ready(function() {
 
                 }
             });
-        }
+        
     });
 });
 $(document).ready(function() {
-
+    $('input[type=file]').change(function () {
+    console.log(this.files[0].mozFullPath);
+});
     $("#sendMsg").click(function(e) {
         e.preventDefault();
         let body = $('#typeMsg').val();

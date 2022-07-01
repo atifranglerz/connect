@@ -26,6 +26,7 @@ class CreateChatsTable extends Migration
             $table->foreign('customer_receiver_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('body',5000)->nullable();
             $table->string('attachment')->nullable();
+            $table->string('msgtype')->nullable();
             $table->boolean('seen')->default(0);
             $table->integer('vendor_deleted')->default(0);
             $table->integer('customer_deleted')->default(0);

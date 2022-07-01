@@ -7,7 +7,6 @@
                     $gettime = strtotime($user->online_status)+5;
                     $now = strtotime(Carbon\Carbon::now());
                 ?>
-                <p>{{$now.'/'.$gettime}}</p>
                 <div class="contact_img">
                     <img src="{{ asset($chated_user->image)}}">
 
@@ -15,7 +14,7 @@
                 <div class="name_of_contact">
                     <p class="mb-0" id="vendor">{{$chated_user->name}}</p>
                     @if($now > $gettime)
-                    <p class="mb-0 status">ofline</p>
+                    <p class="mb-0 status">offline</p>
                     @else
                     <p class="mb-0 status">online</p>
                     @endif
@@ -73,13 +72,12 @@
 </div>
 
 <div class="sending_input_field">
-    <form id="chatForm" class="message-form" method="POST" action="{{ route('vendor.chatSend') }}">
+    <form id="chatForm" class="message-form" method="POST" action="{{ route('vendor.chatSend') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-floating d-flex align-items-center form_sending_wraper">
             <textarea class="form-control enterKey" name="body" id="typeMsg" placeholder="Say Somthing"></textarea>
             <input type="hidden" value="{{$id}}" name="receiver_id" id="receiver_id">
             <a href="#" class="btn btn-info" id="sendMsg">send</a>
-
             <div class="file_input_messages">
                 <input type="file" id="attachment" name="attachment" class="messages_file">
             </div>

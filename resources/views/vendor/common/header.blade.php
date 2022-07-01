@@ -6,11 +6,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-custom-orange ">
         <div class="container-lg container-fluid">
-            <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button"  id="menuToggle">
-                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class=" fa-solid fa-bars"></span>
-              </button> -->
-
+            <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button"  id="menuToggle"><!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class=" fa-solid fa-bars"></span></button> -->
                 <span class=" fa-solid fa-bars"></span>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -68,7 +64,6 @@
                                 </li>
                                 <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
