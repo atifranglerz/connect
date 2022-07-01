@@ -32,6 +32,10 @@
             <li>
                 <a href="{{route('vendor.ads.create')}}"><img src="{{ asset('public/vendor/assets/images/dashsellcaricon.svg') }}"><span>Sell Your Car</span></a>
             </li>
+           
+            <li><a href="{{route('vendor.term_condition')}}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Terms & Conditions (Agreed)</span></a></li>
+
+           
 
         </ul>
     </div>

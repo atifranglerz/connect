@@ -43,7 +43,10 @@
                 </ul>
                 <div class="login_sinup">
                     <div class="accoutntData">
-                        <a href="#" ><i class="fa-solid fa-message"></i></a>
+                    <?php
+                        $unread = \App\Models\Chat::where([['vendor_receiver_id',auth()->user()->id],['seen',0]])->count('seen');
+                   ?>
+                        <a href="{{ route('vendor.chat.index') }}" ><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
                     </div>
                     <div class="accoutntData">
                         <a href="#" class="notify-btn" ><i class="fa-solid fa-bell"></i></a>

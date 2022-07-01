@@ -33,6 +33,7 @@ class User extends Authenticatable
         'longitude',
         'latitude',
         'term_condition',
+        'online_status',
 
 
     ];

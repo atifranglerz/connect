@@ -28,7 +28,7 @@
         .login_sinup > .accoutntData > .notification_tooltip > ul.notification_list::-webkit-scrollbar, .form_sending_wraper > textarea::-webkit-scrollbar, ul.sidebar_navcigation::-webkit-scrollbar {
             display: none;
         }
-
+      
 /*rating stars*/
 .rating-stars {
     padding: 0px 15px;
@@ -329,9 +329,11 @@
         $(document).on('click', '#Logout_Profile', function() {
             $('#TopProfile').toggle();
         });
+        
+
         $(document).on('click', '#chat_toggle', function () {
 
-            $(".submenue").toggle();
+            $(this).siblings(".submenue").toggle();
         });
         window.addEventListener('click', function(e){
             if (document.getElementById('chat_toggle').contains(e.target)){
@@ -341,6 +343,23 @@
             }
             else{
                 $("#delet_message_toggle").css("display","none");
+                // alert("out side");
+            }
+        });
+
+
+        $(document).on('click', '#del_toggle', function () {
+
+            $(this).siblings(".submenue").toggle();
+        });
+        window.addEventListener('click', function(e){
+            if (document.getElementById('del_toggle').contains(e.target)){
+                // Clicked inside the  box
+                // alert("inside clicked");
+                $("#delet_user_toggle").css("display","block");
+            }
+            else{
+                $("#delet_user_toggle").css("display","none");
                 // alert("out side");
             }
         });
@@ -362,11 +381,10 @@
                 return false;
             }
             else {
-                $(".cahtting_messages").append('<div class="main_message"><div class="inbox_contact align-items-end justify-content-end top_main"><div class="message_txt_wraper"><p class="mb-2 text-end">11:20 AM, Today</p><p class="mb-0 message_txt second">'+typeMsg+'</p></div><div class="contact_img second_msg"><img src="assets/images/repair2.jpg"></div></div></div>');
+                // $(".cahtting_messages").append('<div class="main_message"><div class="inbox_contact align-items-end justify-content-end top_main"><div class="message_txt_wraper"><p class="mb-2 text-end">11:20 AM, Today</p><p class="mb-0 message_txt second">'+typeMsg+'</p></div><div class="contact_img second_msg"><img src="assets/images/repair2.jpg"></div></div></div>');
                 var chat_message = $(".cahtting_messages");
                 chat_message.animate({scrollTop: chat_message[0].scrollHeight}, 1000);
                 $("#typeMsg").val("");
-
             }
         });
         $(document).on('keypress',function(e) {
@@ -470,5 +488,29 @@
 
     });
 </script>
+<script>
+        setInterval(ajaxCall, 5000);
+        function ajaxCall() {
+            var id = 1;
+            console.log(id);
+            $.ajax({
+            type: "POST",
+            dataType: "json",
+            headers: {
+                'X-CSRF-Token': '{{ csrf_token() }}',
+            },
+            url: "{{ route('user.online.status') }}",
+            data: {
+                'id': id
+            },
+            success: function(response) {
+                console.log(response);
+                $('#users').empty();
+                $('#users').append(response.message);
+                $('#notify').html(response.unread);
+            }
+        });
+        }
+    </script>
 </body>
 </html>

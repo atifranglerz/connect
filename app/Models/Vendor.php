@@ -34,6 +34,7 @@ class Vendor extends Authenticatable
         'longitude',
         'latitude',
         'term_condition',
+        'online_status',
     ];
 
     /**

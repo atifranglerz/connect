@@ -37,7 +37,13 @@
                 </ul>
                 <div class="login_sinup">
                     <div class="accoutntData">
-                        <a href="{{ route('user.dashboard') }}" ><i class="fa-solid fa-message"></i></a>
+
+                    <?php
+                        $unread = \App\Models\Chat::where([['customer_receiver_id',auth()->user()->id],['seen',0]])->count('seen');
+                   ?>
+                    
+                    
+                        <a href="{{ route('user.chat.index') }}" ><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
                     </div>
                     <div class="accoutntData">
                         <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i></a>

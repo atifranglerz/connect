@@ -402,8 +402,9 @@
             var typeMsg = $("#typeMsg").val();
             if (typeMsg == "") {
                 return false;
-            } else {
-                $(".cahtting_messages").append('<div class="main_message"><div class="inbox_contact align-items-end justify-content-end top_main"><div class="message_txt_wraper"><p class="mb-2 text-end">11:20 AM, Today</p><p class="mb-0 message_txt second">' + typeMsg + '</p></div><div class="contact_img second_msg"><img src="assets/images/repair2.jpg"></div></div></div>');
+            } 
+            else {
+                // $(".cahtting_messages").append('<div class="main_message"><div class="inbox_contact align-items-end justify-content-end top_main"><div class="message_txt_wraper"><p class="mb-2 text-end">11:20 AM, Today</p><p class="mb-0 message_txt second">' + typeMsg + '</p></div><div class="contact_img second_msg"><img src="assets/images/repair2.jpg"></div></div></div>');
                 var chat_message = $(".cahtting_messages");
                 chat_message.animate({scrollTop: chat_message[0].scrollHeight}, 1000);
                 $("#typeMsg").val("");

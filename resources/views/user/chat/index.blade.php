@@ -5,146 +5,193 @@
     <div class="side_inbox">
         <div class="side_inbox_search_sec text-center">
             <h5 class="inbox_nmae">Inbox</h5>
-            <form >
+            <form>
                 <div class="searchInput">
-                    <input class="form-control me-2" id="search_input"  placeholder="Search">
+                    <input class="form-control me-2" id="search_input" placeholder="Search">
                     <a href="#" type="submit"><img src="{{ asset('public/assets/images/searchicon.svg')}}"></a>
                 </div>
             </form>
         </div>
-        <div class="main_contact mt-3">
-            <a href="#">
-                <div class="inbox_contact">
+        <div id="users" class="main_contact mt-3">
+            @foreach($vendors as $data)
+            <a href="#" class="favorite d-flex align-items-center" id="{{$data->vendor->id}}">
+                <?php
+                    $unread = \App\Models\Chat::where([['customer_receiver_id',auth()->user()->id],['vendor_sender_id',$data->vendor_id],['seen',0]])->count('seen');
+                   ?>
+                <div class="inbox_contact justify-content-between">
+                    <p id="userNotify">{{$unread}}</p>
                     <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
+                        <img src="{{ asset($data->vendor->image)}}">
                     </div>
-                    <div class="name_of_contact"><p class="mb-0">vendor name</p></div>
+                    <div class="name_of_contact">
+                        <p class="mb-0">{{$data->vendor->name}}</p>
+                    </div>
+                    <div class="chat_toggle_button">
+                        <a href="#" id="del_toggle"><span class="bi bi-three-dots-vertical text-white"></span></a>
+                        <div class="submenue shadow " id="delet_user_toggle">
+                            <ul>
+                                <li><a href="#" class="chatted_delete d-block" id="{{$data->vendor->id}}">
+                                        <span class="fa fa-trash text-danger" aria-hidden="true"
+                                            style="margin-right: 8px"></span>
+                                        delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">Ali name</p></div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">vendor name</p></div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">Asif name</p></div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">Noman name</p></div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">Zain name</p></div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">vendor name</p></div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="inbox_contact">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="name_of_contact"><p class="mb-0">vendor name</p></div>
-                </div>
-            </a>
+
+            @endforeach
         </div>
     </div>
 
-    <div class="chat_section" style="background-image:url('assets/images/chat_bg.png')" >
-        <div class="chat_top_name ">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="#">
-                    <div class="inbox_contact top_main">
-                        <div class="contact_img">
-                            <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                        </div>
-                        <div class="name_of_contact">
-                            <p class="mb-0">vendor name</p>
-                            <p class="mb-0 status">online</p>
-                        </div>
-                    </div>
-                </a>
-                <div class="chat_toggle_button">
-                    <a href="#" id="chat_toggle"><i class="bi bi-three-dots-vertical"></i></a>
-                    <div class="submenue shadow " id="delet_message_toggle">
-                        <ul>
-                            <li><a href="#" id="MobileContactToggler">Delete All Messages</a></li>
+    <div class="chat_section" style="background-image:url('assets/images/chat_bg.png')">
+        <div id="append_msg">
 
-                        </ul>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-        <div class="cahtting_messages">
-            <div class="main_message">
-                <div class="inbox_contact align-items-end top_main">
-                    <div class="contact_img">
-                        <img src="{{ asset('public/assets/images/repair2.jpg')}}">
-                    </div>
-                    <div class="message_txt_wraper">
-                        <p class="mb-2">11:20 AM, Today</p>
-                        <p class="mb-0 message_txt">Sample text sample text Sample text sample text Sample text sample text Sample text sample text Sample text sample text</p>
-                    </div>
-                </div>
-            </div>
+            <!-- append chat section -->
 
-            <!-- <div class="main_message">
-                <div class="inbox_contact align-items-end top_main">
-                    <div class="contact_img">
-                        <img src="assets/images/repair2.jpg">
-                    </div>
-                    <div class="message_txt_wraper">
-                        <p class="mb-2">11:20 AM, Today</p>
-                        <p class="mb-0 message_txt">Sample text sample text Sample text sample text Sample text sample text Sample text sample text Sample text sample text</p>
-                    </div>
-                </div>
-            </div>-->
-        </div>
-        <div class="sending_input_field">
-            <form  method="post"  enctype="multipart/form-data" id="uploadForm">
-                <div class="form-floating d-flex align-items-center form_sending_wraper">
-                    <textarea class="form-control enterKey" id="typeMsg" placeholder="Say Somthing" ></textarea>
-                    <a href="#" id="sendMsg"   disabled>send</a>
-                    <div class="file_input_messages">
-                        <input type="file" name="file" class="messages_file">
-                    </div>
-                </div>
-            </form>
+
         </div>
     </div>
 
 
 </section>
 @endsection
-<?php //include 'footer.php';?><!-- -->
+
+@section('script')
+<script>
+$(document).on('click', '.favorite', function() {
+    var id = $(this).attr('id');
+    console.log(id);
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('user.chat.favorite') }}",
+        data: {
+            'id': id
+        },
+        success: function(response) {
+            console.log(response);
+            $('#users').empty();
+            $('#users').append(response.vendors);
+            $('#append_msg').empty();
+            $('#append_msg').append(response.message);
+            $('#notify').html(response.unread);
+        }
+
+    });
+});
+
+$(document).ready(function() {
+    $(document).on('click', '#sendMsg', function() {
+
+        let body = $('#typeMsg').val();
+        let id = $('#receiver_id').val();
+        let attachment = $('#attachment').val();
+        if (body != ' ') {
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('user.chatSend') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id: id,
+                    body: body,
+                    attachment: attachment,
+                },
+                dataType: "json",
+
+                success: function(response) {
+                    console.log(response);
+                    $('#users').empty();
+                    $('#users').append(response.vendors);
+                    $('#append_msg').empty();
+                    $('#append_msg').append(response.message);
+                    $('#notify').html(response.unread);
+
+
+                }
+            });
+        }
+    });
+});
+
+
+$(document).on('click', '.MobileContactToggler', function() {
+
+    let id = $('#receiver_id').val();
+    // alert(id);
+    console.log(id);
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('user.chat.all_delete') }}",
+        data: {
+            'id': id
+        },
+        success: function(response) {
+            console.log(response);
+            $('#append_msg').empty();
+            $('#append_msg').append(response.message);
+        }
+
+    });
+});
+
+$(document).on('click', '.delete', function() {
+    var msg_id = $(this).attr('id');
+    let id = $('#receiver_id').val();
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('user.chat.delete') }}",
+        data: {
+            'msg_id': msg_id,
+            'id': id
+        },
+        success: function(response) {
+            console.log(response);
+            $('#append_msg').empty();
+            $('#append_msg').append(response.message);
+        }
+
+    });
+});
+
+
+
+$(document).on('click', '.chatted_delete', function() {
+    var id = $(this).attr('id');
+    console.log(id);
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('user.chat.chatted_delete') }}",
+        data: {
+            'id': id
+        },
+        success: function(response) {
+            console.log(response);
+            $('#users').empty();
+            $('#users').append(response.message);
+            $('#append_msg').empty();
+
+        }
+
+    });
+});
+
+</script>
+@endsection

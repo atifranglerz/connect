@@ -158,8 +158,18 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     /*Vendor Auth Routes*/
     Route::group(['middleware' => ['auth:vendor', 'role:vendor']], function () {
+        Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        //chatting
         Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
+        Route::get('chat/{id}', 'chatcontroller@chat')->name('chat');
+        Route::post('chat/favorite', 'chatcontroller@favorite')->name('chat.favorite');
+        Route::post('chat/chatSend', 'chatcontroller@store')->name('chatSend');
+        Route::post('chat/delete', 'chatcontroller@delete')->name('chat.delete');
+        Route::post('chat/alldelete', 'chatcontroller@alldelete')->name('chat.all_delete');
+        Route::post('chat/chatted_delete', 'chatcontroller@chattedDelete')->name('chat.chatted_delete');
+        Route::post('chat/online/status', 'chatcontroller@status')->name('online.status');
+
         Route::get('orders', 'ordersController@index')->name('orders');
         Route::get('create/order', 'ordersController@create');
         Route::get('fullfillment/{id}', 'ordersController@fullfillment')->name('fullfillment');
@@ -200,6 +210,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
+        Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::get('payment_page/{id}', 'PaymentController@index')->name('payment_page');
         Route::post('payment-info', 'PaymentController@payment_info')->name('payment-info');
@@ -207,6 +218,17 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
         Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
+         //chatting
+        //  Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
+         Route::get('chat/{id}', 'chatcontroller@chat')->name('chat');
+         Route::post('chat/favorite', 'chatcontroller@favorite')->name('chat.favorite');
+         Route::post('chat/chatSend', 'chatcontroller@store')->name('chatSend');
+         Route::post('chat/delete', 'chatcontroller@delete')->name('chat.delete');
+         Route::post('chat/alldelete', 'chatcontroller@alldelete')->name('chat.all_delete');
+        Route::post('chat/chatted_delete', 'chatcontroller@chattedDelete')->name('chat.chatted_delete');
+        Route::post('chat/online/status', 'chatcontroller@status')->name('online.status');
+
+
         /* Logout */
         Route::post('logout', 'AuthController@logout')->name('logout');
         Route::resource('chat', 'ChatController');
@@ -228,4 +250,3 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
 
     });
 });
-

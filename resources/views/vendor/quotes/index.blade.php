@@ -67,7 +67,7 @@
 
                                     <div class="d-flex align-items-center chat_view__detail">
 
-                                        <a href="#" class="chat_icon"><!-- <img src="assets/images/meassageiconblk.svg"> --><i class="fa-solid fa-message"></i></a>
+                                        <a type="button" href="{{url('vendor/chat/'.$value->user_id)}}" class="chat_icon"><!-- <img src="assets/images/meassageiconblk.svg"> --><i class="fa-solid fa-message"></i></a>
 
                                         <?php
                                             $id =  $value->userbid->id;
