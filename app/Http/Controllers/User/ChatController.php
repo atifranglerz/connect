@@ -79,17 +79,18 @@ class ChatController extends Controller
         $chat->type = "customer";
         $chat->customer_sender_id = $auth_id;
         $chat->vendor_receiver_id = $id;
-        $chat->body = $request->body;
-
+        
         if ($request->file('attachment')) {
             $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('attachment')->getClientOriginalExtension());
             $request->file('attachment')->move('public/chat/', $doucments);
             $file = 'public/chat/' . $doucments;
             $chat->attachment = $file;
+            $chat->filetext = $request->body;
             $chat->msgtype = 'file';
         }
         else
         {
+            $chat->body = $request->body;
             $chat->msgtype = 'text';
         }
         $chat->save();

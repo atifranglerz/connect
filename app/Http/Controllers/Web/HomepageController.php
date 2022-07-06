@@ -124,11 +124,11 @@ class HomepageController extends Controller
                 'Chasis_no' => 'required',
                 'color' => 'required',
             ]);
-            // if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
-            //     $request->validate([
-            //         'files' => 'required',
-            //     ]);
-            // }
+            if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
+                $request->validate([
+                    'files' => 'required',
+                ]);
+            }
             if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations' || $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
                 $request->validate([
                     'category' => 'required',

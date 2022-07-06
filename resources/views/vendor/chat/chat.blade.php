@@ -52,6 +52,8 @@
                 </p>
                 @else
                 <img src="{{ asset($data->attachment)}}" width="100px">
+                <a download="image" href="{{ asset($data->attachment)}}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
+                <p> {{$data->filetext ?? ''}}</p>
                 @endif
             </div>
         </div>
@@ -66,7 +68,9 @@
                     {{$data->body}}
                 </p>
                 @else
+                <a download="image" href="{{ asset($data->attachment)}}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
                 <img src="{{ asset($data->attachment)}}" width="100px">
+                <p> {{$data->filetext ?? ''}}</p>
                 @endif
             </div>
             <div class="contact_img second_msg">

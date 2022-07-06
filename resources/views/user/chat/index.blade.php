@@ -51,15 +51,17 @@
 
         </div>
         <div class="sending_input_field d-none" id="sendMessageForm" >
+        <img id="showImage" src="" />
             <form enctype="multipart/form-data" id="chatForm">
                 @csrf
                 <div class="form-floating d-flex align-items-center form_sending_wraper">
                 <input type="hidden" @if(isset($id)) value="{{$id}}" @endif name="receiver_id" id="receiver_id">
                     <textarea class="form-control enterKey" name="body" id="typeMsg"
                         placeholder="Say Somthing"></textarea>
-                    <button type="submit" class="btn btn-primary">send</button>
+                    <button type="submit" class="btn btn-primary" id="sendMsg">send</button>
                     <div class="file_input_messages">
-                        <input type="file" id="attachment" name="attachment" class="messages_file">
+                    <input type="file" id="attachment" name="attachment" accept="image/gif, image/jpeg, image/png"
+                            onchange="readURL(this);" class="messages_file">
                     </div>
                 </div>
             </form>
@@ -70,6 +72,19 @@
 
 @section('script')
 <script>
+
+    //show selected file
+function readURL(input) {
+    $('#showImage').removeClass('d-none');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#showImage').attr('src', e.target.result).width(70).height(70);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 $(document).on('click', '.favorite', function() {
     var id = $(this).attr('id');
     console.log(id);
@@ -108,6 +123,8 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 $('#users').empty();
+                $("#typeMsg").val("");
+                $("#attachment").val("");
                 $('#users').append(response.vendors);
                 $('#append_msg').empty();
                 $('#append_msg').append(response.message);

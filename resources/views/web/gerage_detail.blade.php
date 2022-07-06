@@ -278,8 +278,8 @@ use Illuminate\Support\Facades\Auth;
                                     <div class="col-lg-12 mb-3">
                                         <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
                                                     again to upload another)</small></b></label>
-                                        <div class="input-images">
-                                            {{--input field name  car_images --}}
+                                        <div class="input-imagess">
+                                            input field name car_images
 
                                         </div>
                                         @error('car_images')
@@ -290,8 +290,8 @@ use Illuminate\Support\Facades\Auth;
                                 <div class="row g-lg-3 g-2">
                                     <div class="col-lg-12 mb-3">
 
-                                        <div class="input-images-2" accept="pdf/*" data-type='Pdf'>
-                                            {{--input field name files--}}
+                                        <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'>
+                                            input field name files
                                         </div>
                                         @error('files')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -307,8 +307,8 @@ use Illuminate\Support\Facades\Auth;
                                     <div class="row g-2 col-lg-12 mb-3">
                                         <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
                                                     again to upload another)</small></b></label>
-                                        <div class="input-images-3"></div>
-                                        {{--input field name doucment--}}
+                                        <div class="input-imagess-3"></div>
+                                        input field name doucment
                                     </div>
                                     <div class="row g-2">
                                         <div class="col-lg-6 col-md-6">
@@ -318,34 +318,33 @@ use Illuminate\Support\Facades\Auth;
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        {{--<div class="col-lg-6 col-md-6">--}}
-                                        {{--<input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No" required>--}}
-                                        {{--@error('phone')--}}
-                                        {{--<div class="text-danger p-2">{{ $message }}
-                                    </div>--}}
-                                    {{--@enderror--}}
-                                    {{--</div>--}}
-                                    <div class="col-lg-6 col-md-6">
-                                        {{--<input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email">--}}
-                                        <input type="email" name="email" class="form-control" value="">
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <input type="text" class="form-control" name="address" value=""
-                                            placeholder="Address" aria-label="Car Milage" required>
-                                        @error('address')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                        <!-- <div class="col-lg-6 col-md-6">
+                                            <input type="text" class="form-control" name="phone" placeholder="Mobile No"
+                                                aria-label="Mobile No" required>
+                                            @error('phone')
+                                            <div class="text-danger p-2">{{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div> -->
+                                        <div class="col-lg-6 col-md-6">
+                                            <input type="email" class="form-control" name="email" placeholder="Email"
+                                                aria-label="Email">
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <input type="text" class="form-control" name="address" value=""
+                                                placeholder="Address" aria-label="Car Milage" required>
+                                            @error('address')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="d-grid gap-2 mt-3">
-                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE
-                                REQUEST
-                            </button>
-                        </div>
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST </button>
+                            </div>
                     </form>
                 </div>
             </div>

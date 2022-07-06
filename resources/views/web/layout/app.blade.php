@@ -426,6 +426,27 @@
 
     });
 
+    $(document).ready(function(){
+        $('.input-imagess').imageUploader({
+            extensions: ['.png', '.jpg'],
+            maxFiles:5,
+        });
+        $(".input-imagess>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Car image <b class="small">(Format: png, jpg only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+        $('.input-imagess-2').imageUploader({
+            extensions: ['.pdf'],
+            mimes: ['application/pdf'],
+            maxFiles:1,
+        });
+        $(".input-imagess-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><input type="file" name="files" size="60" ></label>   ');
+        
+        $('.input-imagess-3').imageUploader({
+            extensions: ['.png', '.jpg'],
+            maxFiles:5,
+        });
+        $(".input-imagess-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Add Registration Copy Image <b class="small">(Format: png, jpg only)</b></p><input type="file" name="doucment[]" size="60" ></label>   ');
+       
+    });
+
     (function ($) {
         "use strict";
 
