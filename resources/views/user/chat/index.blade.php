@@ -47,14 +47,24 @@
     <div class="chat_section" style="background-image:url('assets/images/chat_bg.png')">
         <div id="append_msg">
 
-
             <!-- append chat section -->
 
-
+        </div>
+        <div class="sending_input_field d-none" id="sendMessageForm" >
+            <form enctype="multipart/form-data" id="chatForm">
+                @csrf
+                <div class="form-floating d-flex align-items-center form_sending_wraper">
+                <input type="hidden" @if(isset($id)) value="{{$id}}" @endif name="receiver_id" id="receiver_id">
+                    <textarea class="form-control enterKey" name="body" id="typeMsg"
+                        placeholder="Say Somthing"></textarea>
+                    <button type="submit" class="btn btn-primary">send</button>
+                    <div class="file_input_messages">
+                        <input type="file" id="attachment" name="attachment" class="messages_file">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-
-
 </section>
 @endsection
 
@@ -75,56 +85,45 @@ $(document).on('click', '.favorite', function() {
         },
         success: function(response) {
             console.log(response);
+            $('#sendMessageForm').removeClass('d-none');
+            $('#receiver_id').val(response.id);
             $('#users').empty();
             $('#users').append(response.vendors);
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
             $('#notify').html(response.unread);
         }
-
     });
 });
 
 
 $(document).ready(function() {
-    $(document).on('click', '#sendMsg', function() {
-
-        let body = $('#typeMsg').val();
-        let id = $('#receiver_id').val();
-        let attachment = $('#attachment').val();
-        console.log(attachment);
-        if (body != ' ') {
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('user.chatSend') }}",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    id: id,
-                    body: body,
-                    attachment: attachment,
-                },
-                dataType: "json",
-
-                success: function(response) {
-                    console.log(response);
-                    $('#users').empty();
-                    $('#users').append(response.vendors);
-                    $('#append_msg').empty();
-                    $('#append_msg').append(response.message);
-                    $('#notify').html(response.unread);
-
-
-                }
-            });
-        }
+    $('form').on('submit',function(event){ 
+        event.preventDefault();
+        $.ajax({
+            url: "{{ route('user.chatSend') }}",
+            type: 'POST',
+            data: new FormData(this),
+            async: false,
+            success: function(response) {
+                console.log(response);
+                $('#users').empty();
+                $('#users').append(response.vendors);
+                $('#append_msg').empty();
+                $('#append_msg').append(response.message);
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+        });
     });
 });
+
 
 
 $(document).on('click', '.MobileContactToggler', function() {
 
     let id = $('#receiver_id').val();
-    // alert(id);
     console.log(id);
     $.ajax({
         type: "POST",
@@ -141,9 +140,9 @@ $(document).on('click', '.MobileContactToggler', function() {
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
         }
-
     });
 });
+
 
 $(document).on('click', '.delete', function() {
     var msg_id = $(this).attr('id');
@@ -165,7 +164,6 @@ $(document).on('click', '.delete', function() {
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
         }
-
     });
 });
 
@@ -186,14 +184,12 @@ $(document).on('click', '.chatted_delete', function() {
         },
         success: function(response) {
             console.log(response);
+            $('#sendMessageForm').addClass('d-none');
             $('#users').empty();
             $('#users').append(response.message);
             $('#append_msg').empty();
-
         }
-
     });
 });
-
 </script>
 @endsection

@@ -42,25 +42,30 @@
             </div>
             <div class="message_txt_wraper">
                 <p class="mb-2">{{$data->created_at->format('h:s A')}}</p>
+                @if($data->msgtype == "text")
                 <p class="mb-0 message_txt" id="receiver_side">
                     <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
                         style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
                     {{$data->body}}
                 </p>
+                @else
+                <img src="{{ asset($data->attachment)}}" width="100px">
+                @endif
             </div>
         </div>
         @else
         <div class="inbox_contact align-items-end justify-content-end top_main">
             <div class="message_txt_wraper">
                 <p class="mb-2 text-end">{{$data->created_at->format('h:s A')}}</p>
-
-                <!-- <img src="{{ asset(auth()->user()->image)}}"> -->
-
-                <p class="mb-0 message_txt second" id="receiver_side">
+                @if($data->msgtype == "text")
+                <p class="mb-0 message_txt" id="receiver_side">
                     <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
                         style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
                     {{$data->body}}
                 </p>
+                @else
+                <img src="{{ asset($data->attachment)}}" width="100px" >
+                @endif
 
             </div>
             <div class="contact_img second_msg">
@@ -70,19 +75,4 @@
         @endforeach
         @endif
     </div>
-</div>
-
-<div class="sending_input_field">
-    <form id="chatForm" class="message-form" method="POST" action="{{ route('vendor.chatSend') }}">
-        @csrf
-        <div class="form-floating d-flex align-items-center form_sending_wraper">
-            <textarea class="form-control enterKey" name="body" id="typeMsg" placeholder="Say Somthing"></textarea>
-            <input type="hidden" value="{{$id}}" name="receiver_id" id="receiver_id">
-            <a href="#" class="btn btn-info" id="sendMsg">send</a>
-
-            <div class="file_input_messages">
-                <input type="file" id="attachment" name="attachment" class="messages_file">
-            </div>
-        </div>
-    </form>
 </div>

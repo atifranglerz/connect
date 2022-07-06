@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('image')->nullable();
             $table->text('icon')->nullable();
             $table->enum('priority', [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            $table->integer('position')->nullable();
             $table->timestamps();
         });
     }

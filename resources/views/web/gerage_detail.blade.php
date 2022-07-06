@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\Auth;
 <section class="banner_section">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active " aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" ></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active "
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item Stor_detai_item active">
@@ -54,7 +58,7 @@ use Illuminate\Support\Facades\Auth;
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
                 @if (Auth::check())
                 <h5 class="store_addres">{{$garage->phone}}</h5>
-                    @endif
+                @endif
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3 col-6">
                 <h5 class="store_addres">
@@ -77,25 +81,26 @@ use Illuminate\Support\Facades\Auth;
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     @elseif(round($overAllRatings) == '3')
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
                     @elseif(round($overAllRatings) == '4')
                     <i class="fa-solid fa-star" style="color:black;"></i>
                     <i class="fa-solid fa-star" style="color:black;"></i>
                     <i class="fa-solid fa-star" style="color:black;"></i>
                     <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
                     @elseif(round($overAllRatings) == '5')
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star" style="color:black;"></i>
-                        <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
+                    <i class="fa-solid fa-star" style="color:black;"></i>
                     @endif
-                    ({{round($overAllRatings)}})</h5>
+                    ({{round($overAllRatings)}})
+                </h5>
             </div>
         </div>
     </div>
@@ -133,7 +138,8 @@ use Illuminate\Support\Facades\Auth;
                     @foreach($g_timing as $timing)
                     <div class="timing_container">
                         <p class="time_for_opning mb-0">{{ucfirst($timing->day)}}</p>
-                        <p class="time_for_opning mb-1">@if($timing->closed == 0) Closed @else{{$timing->from}} - {{$timing->to}}@endif</p>
+                        <p class="time_for_opning mb-1">@if($timing->closed == 0) Closed @else{{$timing->from}} -
+                            {{$timing->to}}@endif</p>
                     </div>
                     @endforeach
                 </div>
@@ -147,101 +153,256 @@ use Illuminate\Support\Facades\Auth;
             </div>
 
         </div>
-        <div class="row g-4 mt-3">
+        <div class="row g-4 mt-3" style="display:flex">
             <div class="col-lg-8 col-md-6 col-sm-6">
                 <div class="over_view_part">
                     <h5 class=" text-center mb-5 heading-color">CONTACT VENDOR</h5>
                     @if(session()->has('alert-success'))
-                        <div class="alert alert-success">
-                            {{ session()->get('alert-success') }}
-                        </div>
+                    <div class="alert alert-success">
+                        {{ session()->get('alert-success') }}
+                    </div>
                     @endif
-                    <form class="row g-3" method="post" action="{{ route('contact-vendor') }}">
+                    <form class="row g-3" method="post" action="{{ route('contact-vendor') }}"
+                        enctype="multipart/form-data" class="needs-validation" novalidate>
                         @csrf
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                        <div class="col-md-12 col-lg-6">
-                            <input type="text" class="form-control" name="car_model" id="inputCarModel" placeholder="Car Model" required>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <div class="row g-lg-3 g-2">
+                                    <div class="col-12">
+                                        <select name="looking_for" class="form-select form-control" id="lookingFor">
+                                            <option value=""></option>
+                                            <option value="I have Inspection Report & Looking for the Quotations"
+                                                @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations'
+                                                ) selected @endif>I have Inspection Report & Looking for the
+                                                Quotations</option>
+                                            <option value="I don't know the Problem and Requesting for the Inspection"
+                                                @if(old('looking_for')=="I don't know the Problem and Requesting for the Inspection"
+                                                ) selected @endif>I don't know the Problem and Requesting for the
+                                                Inspection</option>
+                                            <option
+                                                value="I know about what i'm looking for and requesting for the Quotations"
+                                                @if(old('looking_for')=="I know about what i'm looking for and requesting for the Quotations"
+                                                ) selected @endif>I know about what i'm looking for and requesting
+                                                for the Quotations</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text" class="form-control" name="model" value="{{old('model')}}"
+                                            placeholder="Model" aria-label="Car Milage">
+                                        @error('model')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <select class="form-select form-control company-name-field" name="company_id"
+                                            aria-label="Type of Service">
+                                            <option value=""></option>
+                                            @foreach($company as $data)
+                                            <option value="{{$data->id }}" @if(old('company_id')==$data->id)
+                                                selected @endif>{{$data->company }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('company_id')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text" class="form-control" value="{{old('registration_no')}}"
+                                            name="registration_no" placeholder="Registration No."
+                                            aria-label="Car Milage">
+                                        @error('registration_no')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text" class="form-control" value="{{old('Chasis_no')}}"
+                                            name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage">
+                                        @error('Chasis_no')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text" class="form-control" name="color" value="{{old('color')}}"
+                                            placeholder="Color" aria-label="Car Milage">
+                                        @error('color')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <select class="form-select form-control model-year-field" name="model_year_id"
+                                            aria-label="Type of Service" required>
+                                            <option value=""></option>
+                                            @foreach($year as $data)
+                                            <option value="{{$data->id }}" @if(old('model_year_id')==$data->id)
+                                                selected @endif>{{$data->model_year }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('model_year_id')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="number" class="form-control" name="mileage"
+                                            value="{{old('mileage')}}" placeholder="Milage e.g 40 Km"
+                                            aria-label="Car Milage" required>
+                                        @error('mileage')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="number" class="form-control" name="day" value="{{old('day')}}"
+                                            placeholder="Days e.g (7)" aria-label="Day" required>
+                                        @error('day')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12 services-dropdown-block">
+                                        <select class="form-select form-control garage-services" name="category[]"
+                                            multiple aria-label="Type of Service">
+                                            @foreach($catagary as $data)
+                                            <option value="{{$data->id }}">{{$data->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <textarea name="description1" placeholder="Add information in details"
+                                            class="form-control" rows="5">{{old('description1')}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row g-lg-3 g-2">
+                                    <div class="col-lg-12 mb-3">
+                                        <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
+                                                    again to upload another)</small></b></label>
+                                        <div class="input-images">
+                                            {{--input field name  car_images --}}
+
+                                        </div>
+                                        @error('car_images')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row g-lg-3 g-2">
+                                    <div class="col-lg-12 mb-3">
+
+                                        <div class="input-images-2" accept="pdf/*" data-type='Pdf'>
+                                            {{--input field name files--}}
+                                        </div>
+                                        @error('files')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <textarea name="description2" placeholder="Special Requirements"
+                                            class="form-control" rows="5">{{old('description2')}}</textarea>
+                                    </div>
+
+                                </div>
+                                <div class="row g-lg-3 g-2">
+                                    <div class="row g-2 col-lg-12 mb-3">
+                                        <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
+                                                    again to upload another)</small></b></label>
+                                        <div class="input-images-3"></div>
+                                        {{--input field name doucment--}}
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-lg-6 col-md-6">
+                                            <input type="text" class="form-control" value="" name="maker_name"
+                                                placeholder="Name" aria-label="Make" required>
+                                            @error('name')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        {{--<div class="col-lg-6 col-md-6">--}}
+                                        {{--<input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No" required>--}}
+                                        {{--@error('phone')--}}
+                                        {{--<div class="text-danger p-2">{{ $message }}
+                                    </div>--}}
+                                    {{--@enderror--}}
+                                    {{--</div>--}}
+                                    <div class="col-lg-6 col-md-6">
+                                        {{--<input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email">--}}
+                                        <input type="email" name="email" class="form-control" value="">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <input type="text" class="form-control" name="address" value=""
+                                            placeholder="Address" aria-label="Car Milage" required>
+                                        @error('address')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-12 col-lg-6">
-                            <input type="text" class="form-control" name="car_make" id="inputCarMake" placeholder="Car Make" required>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <select id="inputService" name="category" class="form-select" required>
-                                <option selected disabled value="">Type of Service</option>
-                                @foreach($services as $service)
-                                <option value="{{$service->name}}">{{$service->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <input type="text" name="customer_name" class="form-control" id="inputCustomerName" placeholder="Customer Name" required>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email ID" required>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="contact_no" class="form-control" id="inputContactNo" placeholder="Contact No." required>
-                        </div>
-                        <div class="col-md-12 col-lg-12">
-                            <textarea class="form-control" name="detail" placeholder="Add more in details" id="" style="height: 108px" required></textarea>
-                            <!-- <label for="floatingTextarea2">Comments</label> -->
-                        </div>
+
                         <div class="d-grid gap-2 mt-3">
-                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST
+                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE
+                                REQUEST
                             </button>
                         </div>
-
                     </form>
                 </div>
-
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 ">
                 <div class="over_view_part timing_hours">
-                <h5 class="text-center mb-5 heading-color">REVIEWS</h5>
+                    <h5 class="text-center mb-5 heading-color">REVIEWS</h5>
                     <div class="owl-carousel carousel_se_01_carousel owl-theme">
                         @if(count($user_review) >0)
                         @foreach($user_review as $review)
                         <div class="item">
                             <p class="text-center reviews">"{{$review->review}}"</p>
-                            <p class="testimonail_person_name text-center mb-1 reviews">{{getUserNameById($review->user_id)}}</p>
-                            <p class="testimonail_person_rating text-center reviews"><span>{{$review->rating}}</span></p>
+                            <p class="testimonail_person_name text-center mb-1 reviews">
+                                {{getUserNameById($review->user_id)}}</p>
+                            <p class="testimonail_person_rating text-center reviews"><span>{{$review->rating}}</span>
+                            </p>
                         </div>
                         @endforeach
                         @else
                         <div class="item">
-                            <p class="text-center reviews">"Suzuki repairs are best in town. They did everything best at affordable rates and speedily. Thumbs up!"</p>
+                            <p class="text-center reviews">"Suzuki repairs are best in town. They did everything best at
+                                affordable rates and speedily. Thumbs up!"</p>
                             <p class="testimonail_person_name text-center mb-1 reviews">Hassan Ali</p>
                             <p class="testimonail_person_rating text-center reviews"><span>5.0</span></p>
                         </div>
-                       @endif
+                        @endif
 
                     </div>
                 </div>
                 <div class="d-grid gap-2 mt-3">
 
                     @if(auth()->check())
-                        <!-- @if(session()->has('alert-garage-success'))
+                    <!-- @if(session()->has('alert-garage-success'))
                             <div class="alert alert-success">
                                 {{ session()->get('alert-garage-success') }}
                             </div>
                         @endif -->
-                        @if(session()->has('alert-error'))
-                            <div class="alert alert-danger">
-                                {{ session()->get('alert-error') }}
-                            </div>
-                        @endif
+                    @if(session()->has('alert-error'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('alert-error') }}
+                    </div>
+                    @endif
                     <form class="g-3" method="post" action="{{ route('add-to-preffered-garage') }}">
                         @csrf
                         <input type="hidden" name="user_id" value="{{auth()->id()}}">
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                    <button class="w-100 btn btn-primary get_appointment heart" type="submit">
-                       @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticon.svg')}}"> @endif
-                    </button>
+                        <button class="w-100 btn btn-primary get_appointment heart" type="submit">
+                            @if($user_wishlist) PREFFERED GARAGE <img
+                                src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED
+                            GARAGE <img src="{{asset('public/vendor/assets/images/hearticon.svg')}}"> @endif
+                        </button>
                     </form>
                     @else
-                        <button class="w-100 btn btn-primary get_appointment heart" type="button">ADD TO PREFFERED GARAGE
-                            @if($user_wishlist) PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE <img src="{{asset('public/vendor/assets/images/hearticon.svg')}}"> @endif
-                        </button>
+                    <button class="w-100 btn btn-primary get_appointment heart" type="button">ADD TO PREFFERED GARAGE
+                        @if($user_wishlist) PREFFERED GARAGE <img
+                            src="{{asset('public/vendor/assets/images/hearticoc.svg')}}"> @else ADD TO PREFFERED GARAGE
+                        <img src="{{asset('public/vendor/assets/images/hearticon.svg')}}"> @endif
+                    </button>
                     @endif
                 </div>
                 <div class="d-grid gap-2 mt-3">
@@ -257,7 +418,9 @@ use Illuminate\Support\Facades\Auth;
                 <div class="over_view_part timing_hours mape_wraper mt-4">
                     <h5 class="text-center mb-5 heading-color">LOCATION</h5>
                     <div class="responsive-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889" height="550" frameborder="0" style="border:0" allowfullscreen>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889"
+                            height="550" frameborder="0" style="border:0" allowfullscreen>
                         </iframe>
                     </div>
                 </div>
@@ -268,32 +431,32 @@ use Illuminate\Support\Facades\Auth;
 
 @endsection
 @section('script')
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        $(document).ready(function() {
-            <?php if(session('alert-garage-success'))       
+<script>
+toastr.options = {
+    "closeButton": true,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+$(document).ready(function() {
+    <?php if(session('alert-garage-success'))       
                 {
             ?>
-               toastr.success('{{ Session::get('alert-garage-success') }}');
-            <?php
+    toastr.success('{{ Session::get('
+        alert - garage - success ') }}');
+    <?php
                 }
             ?>
-        });
-       
-    </script>
+});
+</script>
 @endsection

@@ -29,7 +29,6 @@ class QuotesController extends Controller
             
             $q->Where('looking_for', '!=',"I don't know the Problem and Requesting for the Inspection")->Where('offer_status','!=','ordered');
         })->get();
-
         return view('vendor.quotes.index', $data);
     }
     public function requestedInspections()

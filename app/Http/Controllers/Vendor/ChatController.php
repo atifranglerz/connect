@@ -38,18 +38,20 @@ class ChatController extends Controller
 
     public function favorite(Request $request)
     {
+        // return response()->json($chated_user);
+        
         $id = $request->id;
         $auth_id = Auth::id();
         $message = Chat::where([['vendor_sender_id', $auth_id], ['customer_receiver_id', $request->id], ['vendor_deleted', '=', 0]])
-            ->orWhere([['vendor_receiver_id', $auth_id], ['customer_sender_id', $request->id], ['vendor_deleted', '=', 0]])->orderBy('created_at')->get();
-
+        ->orWhere([['vendor_receiver_id', $auth_id], ['customer_sender_id', $request->id], ['vendor_deleted', '=', 0]])->orderBy('created_at')->get();
+        
         $unread = Chat::Where([['vendor_receiver_id', $auth_id], ['customer_sender_id', $request->id]])->get();
         foreach ($unread as $data) {
             $data->seen = 1;
             $data->save();
         }
         $chated_user = User::find($id);
-        $data = view('vendor.chat.chat')->with(['message' => $message, 'chated_user' => $chated_user, 'id' => $id])->render();
+        $data = view('vendor.chat.chat')->with(['message' => $message, 'chated_user' => $chated_user])->render();
         $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
         $customer = view('vendor.chat.chatteduser')->with(['customer' => $customer])->render();
 
@@ -60,29 +62,31 @@ class ChatController extends Controller
             'message' => $data,
             'unread' => $total_unread,
             'customer' => $customer,
-
+            'id' => $id,
         ]);
-
     }
 
     public function store(Request $request)
     {
         // return response()->json($request);
-
-        $id = $request->id;
+        $id = $request->receiver_id;
 
         $auth_id = Auth::id();
         $chat = new Chat();
         $chat->type = "vendor";
         $chat->vendor_sender_id = $auth_id;
-        $chat->customer_receiver_id = $request->id;
+        $chat->customer_receiver_id = $id;
         $chat->body = $request->body;
         if ($request->file('attachment')) {
             $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('attachment')->getClientOriginalExtension());
             $request->file('attachment')->move('public/chat/', $doucments);
             $file = 'public/chat/' . $doucments;
             $chat->attachment = $file;
-            $chat->bodytype = 'file';
+            $chat->msgtype = 'file';
+        }
+        else
+        {
+            $chat->msgtype = 'text';
         }
         $chat->save();
 
@@ -94,17 +98,17 @@ class ChatController extends Controller
         $chatted->vendor_status = 0;
         $chatted->save();
 
-        $message = Chat::where([['vendor_sender_id', $auth_id], ['customer_receiver_id', $request->id], ['vendor_deleted', '=', 0]])
-            ->orWhere([['vendor_receiver_id', $auth_id], ['customer_sender_id', $request->id], ['vendor_deleted', '=', 0]])->orderBy('created_at')->get();
+        $message = Chat::where([['vendor_sender_id', $auth_id], ['customer_receiver_id', $id], ['vendor_deleted', '=', 0]])
+            ->orWhere([['vendor_receiver_id', $auth_id], ['customer_sender_id', $id], ['vendor_deleted', '=', 0]])->orderBy('created_at')->get();
 
-        $unread = Chat::Where([['vendor_receiver_id', $auth_id], ['customer_sender_id', $request->id]])->get();
+        $unread = Chat::Where([['vendor_receiver_id', $auth_id], ['customer_sender_id', $id]])->get();
         foreach ($unread as $data) {
             $data->seen = 1;
             $data->save();
         }
         $chated_user = User::find($id);
-        // return response()->json($message);
-        $data = view('vendor.chat.chat')->with(['message' => $message, 'chated_user' => $chated_user, 'id' => $id])->render();
+
+        $data = view('vendor.chat.chat')->with(['message' => $message, 'chated_user' => $chated_user])->render();
         $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
         $customer = view('vendor.chat.chatteduser')->with(['customer' => $customer])->render();
 
@@ -115,21 +119,17 @@ class ChatController extends Controller
             'message' => $data,
             'unread' => $total_unread,
             'customer' => $customer,
-            'id' => $request->id,
-
         ]);
 
     }
 
     public function delete(Request $request)
     {
-
         $auth_id = Auth::id();
         $id = $request->id;
         $msg_id = $request->msg_id;
 
         $message = Chat::find($msg_id);
-
         if ($message->customer_deleted == 1) {
             $message->delete();
         } else {
@@ -150,10 +150,9 @@ class ChatController extends Controller
         return response()->json([
             'success' => 'Status updated successfully',
             'message' => $data,
-            'id' => $request->id,
-
         ]);
     }
+
 
     public function alldelete(Request $request)
     {
@@ -163,7 +162,6 @@ class ChatController extends Controller
 
         $message = Chat::where([['vendor_sender_id', $auth_id], ['customer_receiver_id', $request->id], ['vendor_deleted', '=', 0]])
             ->orWhere([['vendor_receiver_id', $auth_id], ['customer_sender_id', $request->id], ['vendor_deleted', '=', 0]])->orderBy('created_at')->get();
-        // return response()->json($message);
 
         foreach ($message as $data) {
             if ($data->customer_deleted == 1) {
@@ -188,8 +186,6 @@ class ChatController extends Controller
         return response()->json([
             'success' => 'Status updated successfully',
             'message' => $data,
-            'id' => $request->id,
-
         ]);
     }
 
@@ -211,9 +207,9 @@ class ChatController extends Controller
             'success' => 'Status updated successfully',
             'message' => $data,
         ]);
-
     }
 
+    
     public function status(Request $request)
     {
         // return response()->json($request);

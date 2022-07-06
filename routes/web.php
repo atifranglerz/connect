@@ -102,6 +102,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('vendor', 'VendorController')->except('create', 'store', 'show');
         /* All Category & SubCategory Route */
         Route::resource('category', 'CategoryController');
+         /* Category set orders */
+        Route::post('category/order', 'CategoryController@orderUpdate')->name('cat_order.update');
         Route::resource('subcategory', 'SubCategoryController');
         Route::resource('childcategory', 'ChildCategoryController');
         Route::resource('brand', 'BrandController');

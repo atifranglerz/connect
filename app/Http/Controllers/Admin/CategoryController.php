@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::orderby('position','ASC')->get();
         $page_title = 'Category';
         return view('admin.category.index', compact('categories', 'page_title'));
     }
@@ -141,4 +141,22 @@ class CategoryController extends Controller
         $category->delete();
         return $this->message($category, 'admin.category.index', 'Category Delete Successfully', 'Category Delete Error');
     }
+
+
+
+
+    public function orderUpdate(Request $request){
+        $category = Category::all();
+      foreach ($category as $product) {
+          foreach ($request->order as $order) {
+              if ($order['id'] == $product->id) {
+                  $product->update(['position' => $order['position']]);
+              }
+          }
+      }
+        return response('Update Successfully.', 200);
+    }
+
+
+    
 }
