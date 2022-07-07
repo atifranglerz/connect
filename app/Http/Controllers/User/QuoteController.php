@@ -134,8 +134,8 @@ class QuoteController extends Controller
                 $vendor_quote->user_id = Auth()->user()->id;
                 $vendor_quote->user_bit_id = $quote->id;
                 $vendor_quote->save();
-                // $SendNotification =new  SendNotification();
-                // dispatch($SendNotification);
+                $SendNotification =new  SendNotification();
+                dispatch($SendNotification);
 
             } else {
 
@@ -159,8 +159,8 @@ class QuoteController extends Controller
                 $vendor_quote->user_id = Auth()->user()->id;
                 $vendor_quote->user_bit_id = $quote->id;
                 $vendor_quote->save();
-                // $SendNotification =new  SendNotification();
-                // dispatch($SendNotification);
+                $SendNotification =new  SendNotification();
+                dispatch($SendNotification);
             }
         }
         if ($request->action == 'all_garage') {

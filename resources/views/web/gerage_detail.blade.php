@@ -457,5 +457,41 @@ $(document).ready(function() {
                 }
             ?>
 });
+
+
+
+
+$(function() {
+    $('#lookingFor').select2({
+        placeholder: 'What are you looking for? (Required)',
+    });
+    lookingFor();
+    $('#lookingFor').on('select2:select', function() {
+        lookingFor();
+    });
+
+    function lookingFor() {
+        var val = $('#lookingFor').val();
+        let valOne = "I have Inspection Report & Looking for the Quotations";
+        let valTwo = "I don't know the Problem and Requesting for the Inspection";
+        let valThree = "I know about what i'm looking for and requesting for the Quotations";
+        if (val == valOne) {
+            $('.services-dropdown-block').removeClass('d-none');
+            $('#inspection-report-link').closest('li').removeClass('d-none');
+            $('#requestForInspection').addClass('d-none');
+            $('.get-quotes-block').removeClass('d-none');
+        } else if (val == valTwo) {
+            $('.services-dropdown-block').addClass('d-none');
+            $('#inspection-report-link').closest('li').addClass('d-none');
+            $('#requestForInspection').removeClass('d-none');
+            $('.get-quotes-block').addClass('d-none');
+        } else {
+            $('#inspection-report-link').closest('li').addClass('d-none');
+            $('.services-dropdown-block').removeClass('d-none');
+            $('#requestForInspection').addClass('d-none');
+            $('.get-quotes-block').removeClass('d-none');
+        }
+    }
+});
 </script>
 @endsection

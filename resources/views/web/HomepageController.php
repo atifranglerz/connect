@@ -103,7 +103,7 @@ class HomepageController extends Controller
     public function contactVendor(Request $request)
     {
 
-        return $request;
+         return $request;
         if (User::where('email', $request->email)->doesntExist()) {
             return redirect()->route('loginpage')->with(['message' =>'Your given email is not Registered! Please inter valid email or Register first', 'alert' => 'error']);
         } else {
