@@ -14,6 +14,7 @@
                 @if(count($orders) >0)
                 @foreach($orders as $order)
                     <?php
+                    $garage = \App\Models\Garage::find($order->garage_id);
                     $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
                     $img = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->where('type','image')->oldest()->first();
                     $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
@@ -55,7 +56,7 @@
                                 </div>
                                 <h5 class=" text-sm-center">AED {{$userbidid->price}}</h5>
                                 <div class="d-flex align-items-center chat_view__detail">
-                                    <a href="#" class="chat_icon">
+                                    <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon">
                                         <i class="fa-solid fa-message"></i>
                                         <!-- <img src="assets/images/meassageiconblk.svg"> -->
                                     </a>

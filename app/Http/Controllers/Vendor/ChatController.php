@@ -20,17 +20,20 @@ class ChatController extends Controller
         return view('vendor.chat.index', compact('customer'));
     }
 
-    //add in fevorit and go to chat page
+   //add in fevorit and go to chat page
     public function chat($id)
     {
+        $date = strtotime(Carbon::now());
         if (ChatFavorite::where('vendor_id', auth()->user()->id)->where('customer_id', $id)->doesntExist()) {
             $data = new ChatFavorite();
             $data->customer_id = $id;
             $data->vendor_id = Auth::id();
+            $data->customer_online = $date;
             $data->save();
         }
         $chatted = ChatFavorite::where([['customer_id', $id], ['vendor_id', Auth::id()]])->first();
         $chatted->vendor_status = 0;
+        $chatted->customer_online = $date;
         $chatted->save();
 
         return redirect()->route('vendor.chat.index');

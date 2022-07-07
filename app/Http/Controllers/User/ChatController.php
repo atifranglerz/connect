@@ -24,20 +24,26 @@ class ChatController extends Controller
         return view('user.chat.index', compact('vendors'));
     }
 
-    //add in fevorit and go to chat page
-    public function chat($id)
-    {
-        if (ChatFavorite::where('vendor_id', auth()->user()->id)->where('customer_id', $id)->doesntExist()) {
-            $data = new ChatFavorite();
-            $data->customer_id = $id;
-            $data->vendor_id = Auth::id();
-            $data->save();
-        }
-        $chatted = ChatFavorite::where([['customer_id', Auth::id()], ['vendor_id', $id]])->first();
-        $chatted->customer_status = 0;
-        $chatted->save();
-        return redirect()->route('vendor.chat.index');
-    }
+     //add in fevorit and go to chat page
+     public function chat($id)
+     {
+         $date = strtotime(Carbon::now());
+         if (ChatFavorite::where('customer_id', auth()->user()->id)->where('vendor_id', $id)->doesntExist()) {
+             $data = new ChatFavorite();
+             $data->customer_id = Auth::id();
+             $data->vendor_id = $id;
+             $data->vendor_online = $date;
+             $data->save();
+         }
+         $chatted = ChatFavorite::where([['customer_id', Auth::id()], ['vendor_id', $id]])->first();
+         $chatted->customer_status = 0;
+         $chatted->vendor_online = $date;
+         $chatted->save();
+ 
+         return redirect()->route('user.chat.index');
+     }
+
+
 
     public function favorite(Request $request)
     {

@@ -14,11 +14,13 @@
             @if(count($data) > 0)
             @foreach($data as $value)
                 <?php
+                $garage = \App\Models\Garage::find($value->garage_id);
                 $userbid = \App\Models\UserBid::where('id',$value->user_bid_id)->first();
                 $img = \App\Models\UserBidImage::where('user_bid_id',$userbid->id)->where('type','image')->oldest()->first();
                 $company = \App\Models\Company::where('id',$userbid->company_id)->first();
                     $img1=Explode(",",$img->car_image);
                 ?>
+
             <div class="col-lg-6 col-md-6 col-sm-6 col-10  mx-auto">
                 <div class="all_quote_card replies_allquot h-100 ">
                     <div class="car_inner_imagg replies_qout">
@@ -32,7 +34,7 @@
                         </div>
                         <div class="quote_detail_btn_wraper replies">
                             <div class="d-flex chat_view__detail qoute_replies">
-                                <a href="#" class="chat_icon">
+                                <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>
                                     <!--   <img src="public/user/assets/images/meassageiconblk.svg"> -->
                                 </a>
