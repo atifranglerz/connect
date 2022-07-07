@@ -169,7 +169,7 @@ $(function() {
                 if (response.status == "success") {
                     console.log(response);
                 } else {
-                    console.log(response);
+                    window.location.reload();
                 }
             }
         });

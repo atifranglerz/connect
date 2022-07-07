@@ -273,42 +273,31 @@ use Illuminate\Support\Facades\Auth;
                                         <textarea name="description1" placeholder="Add information in details"
                                             class="form-control" rows="5">{{old('description1')}}</textarea>
                                     </div>
-                                </div>
-                                <div class="row g-lg-3 g-2">
-                                    <div class="col-lg-12 mb-3">
+                                    <div class="col-lg-12">
                                         <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
                                                     again to upload another)</small></b></label>
-                                        <div class="input-imagess">
-                                            input field name car_images
-
-                                        </div>
+                                        <div class="input-imagess"></div>
                                         @error('car_images')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="row g-lg-3 g-2">
-                                    <div class="col-lg-12 mb-3">
-
-                                        <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'>
-                                            input field name files
-                                        </div>
+                                    <div class="col-lg-12">
+                                        <label class="mb-2 heading-color"><b>Upload Document <small>(Upload Upto 1 PDF)</small></b></label>
+                                        <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'></div>
                                         @error('files')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 mb-3">
                                         <textarea name="description2" placeholder="Special Requirements"
-                                            class="form-control" rows="5">{{old('description2')}}</textarea>
+                                                  class="form-control" rows="5">{{old('description2')}}</textarea>
                                     </div>
-
                                 </div>
                                 <div class="row g-lg-3 g-2">
-                                    <div class="row g-2 col-lg-12 mb-3">
+                                    <div>
                                         <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
                                                     again to upload another)</small></b></label>
                                         <div class="input-imagess-3"></div>
-                                        input field name doucment
                                     </div>
                                     <div class="row g-2">
                                         <div class="col-lg-6 col-md-6">
@@ -345,6 +334,7 @@ use Illuminate\Support\Facades\Auth;
                             <div class="d-grid gap-2 mt-3">
                                 <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST </button>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -448,11 +438,10 @@ toastr.options = {
     "hideMethod": "fadeOut"
 }
 $(document).ready(function() {
-    <?php if(session('alert-garage-success'))       
+    <?php if(session('alert-garage-success'))
                 {
             ?>
-    toastr.success('{{ Session::get('
-        alert - garage - success ') }}');
+    toastr.success('{{ Session::get('alert-garage-success') }}');
     <?php
                 }
             ?>
