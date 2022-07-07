@@ -49,14 +49,13 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Services</h4>
+                            <h4>All Services <small class="font-weight-bold">(Note: You can re-order the services by dragging item up-down as per priority)</small></h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">#</th>
                                             <th>Service</th>
                                             <th>Image</th>
                                             <th>Icon</th>
@@ -66,7 +65,6 @@
                                     <tbody id="tablecontents">
                                         @forelse($categories as $category)
                                         <tr class="row1" data-id="{{ $category->id }}">
-                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ ucwords($category->name) }}</td>
                                             <td>
                                                 @if(isset($category->image))
