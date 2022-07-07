@@ -1,6 +1,6 @@
 @extends('user.layout.app')
 @section('content')
-<section class="main_wraper d-flex">
+<section class="main_wraper d-flex" style="background-image:url(https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg);background-size: contain">
     <div class="chat_overlay d-none"></div>
     <div class="side_inbox">
         <div class="side_inbox_search_sec text-center">
@@ -19,8 +19,8 @@
                     $unread = \App\Models\Chat::where([['customer_receiver_id',auth()->user()->id],['vendor_sender_id',$data->vendor_id],['seen',0]])->count('seen');
                    ?>
                 <div class="inbox_contact justify-content-between">
-                    <p id="userNotify">{{$unread}}</p>
-                    <div class="contact_img">
+                    <div class="position-relative contact_img">
+                        <p id="userNotify">{{$unread}}</p>
                         <img src="{{ asset($data->vendor->image)}}">
                     </div>
                     <div class="name_of_contact">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div class="chat_section" style="background-image:url('assets/images/chat_bg.png')">
+    <div class="chat_section">
         <div id="append_msg">
 
             <!-- append chat section -->
@@ -113,7 +113,7 @@ $(document).on('click', '.favorite', function() {
 
 
 $(document).ready(function() {
-    $('form').on('submit',function(event){ 
+    $('form').on('submit',function(event){
         event.preventDefault();
         $.ajax({
             url: "{{ route('user.chatSend') }}",

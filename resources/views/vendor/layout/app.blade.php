@@ -30,7 +30,7 @@
         }
     </style>
     <style >
-        
+
         .form-check-input:checked {
             background-color: var(--orange);
             border-color: var(--orang-mask);
@@ -91,7 +91,7 @@
     @include('vendor.common.sidebar')
     <div class="right_main" id="dashboardSidebarRightContent">
         @include('vendor.common.header')
-        
+
         @yield('content')
     </div>
 </div>
@@ -269,14 +269,13 @@
             }
             $('#showImage').addClass('d-none');
         });
-        
+
         $(document).on('keypress',function(e) {
             if(e.which == 13) {
                 $("#sendMsg").click();
             }
         });
-        $("input.messages_file[type=file]").before("<img src='assets/images/File.svg' class='messages_file_uploader_image' width='20' height='20' />");
-
+        $("input.messages_file[type=file]").before('<span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span>');
 
         sidebarScrollHeight();
         $(window).resize(function(){

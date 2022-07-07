@@ -1970,7 +1970,7 @@ ul.sidebar_navcigation>li>a>img{
     display: block;
     width: 100%;
     height: 100vh;
-    background-color: var(--gray);
+    background-color: #212529;
     position: fixed;
     padding: 20px 10px;
     z-index: 888;
@@ -2040,6 +2040,7 @@ padding-right: 35px;
     align-items: center;
     border-bottom: 1px solid var(--white);
     padding: 10px 0;
+    position: relative;
 }
 .name_of_contact>p{
     color: var(--white);
@@ -2089,11 +2090,42 @@ padding-right: 35px;
     max-width: 418px;
     width: 100%;
     background-color: var(--white);
-    padding: 10px 10px;
+    padding: 16px 8px 4px;
     border: 1px solid #000654;
     border-radius: 4px;
     position: relative;
     word-break: break-all;
+}
+a[download="image"] {
+    background: #FFF;
+    color: var(--orange);
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-download-block + p {
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 1px dashed #000;
+}
+p#userNotify {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--orange);
+    color: #FFF;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .inbox_contact.top_main>.message_txt_wraper>.message_txt:before{
         position: absolute;
@@ -2157,7 +2189,8 @@ padding-right: 35px;
 
 /*nEW STYLE for chat*/
 .chat_toggle_button{
-    position: relative;
+    position: absolute;
+    right: 0;
 }
 .submenue{
     width: 200px;

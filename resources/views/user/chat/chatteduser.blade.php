@@ -8,19 +8,18 @@
             $now = strtotime(Carbon\Carbon::now());
             ?>
         <div class="inbox_contact justify-content-between">
-
-            <p id="userNotify">{{$unread}}</p>
-            <div class="contact_img">
+            <div class="position-relative contact_img">
+                <p id="userNotify">{{$unread}}</p>
                 <img src="{{ asset($data->vendor->image)}}">
+                @if($now < $gettime)
+                    <h1 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0" class="online-offline-dot">.</h1>
+                @else
+                    <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0" class="online-offline-dot">.</h1>
+                @endif
             </div>
             <div class="name_of_contact">
                 <p class="mb-0">{{$data->vendor->name}}</p>
             </div>
-            @if($now < $gettime) 
-                <h1 style="color: rgb(17, 243, 17); font-size: 100px;">.</h1>
-            @else
-                <h1 style="color:white; font-size: 100px;">.</h1>
-            @endif
                 <div class="chat_toggle_button">
                     <a href="#" id="del_toggle"><span class="bi bi-three-dots-vertical text-white"></span></a>
                     <div class="submenue shadow " id="delet_user_toggle">

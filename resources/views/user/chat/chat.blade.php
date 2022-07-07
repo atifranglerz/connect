@@ -45,13 +45,21 @@
                 @if($data->msgtype == "text")
                 <p class="mb-0 message_txt" id="receiver_side">
                     <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
-                        style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
+                        style="right: 3px;top: 3px;font-size: 11px;cursor: pointer" id="{{$data->id}}"></span>
                     {{$data->body}}
                 </p>
                 @else
-                <img src="{{ asset($data->attachment)}}" width="100px">
-                <a download="image" href="{{ asset($data->attachment)}}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
-                <p> {{$data->filetext ?? ''}}</p>
+                <div class="message_txt">
+                    <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
+                          style="right: 3px;top: 3px;font-size: 11px;cursor: pointer" id="{{$data->id}}"></span>
+                    <div class="position-relative d-flex justify-content-center align-items-center img-download-block">
+                        <img src="{{ asset($data->attachment)}}" width="100px">
+                        <a class="position-absolute" download="image" href="{{ asset($data->attachment)}}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    </div>
+                    @if(isset($data->filetext))
+                    <p class="mb-0">{{$data->filetext ?? ''}}</p>
+                    @endif
+                </div>
                 @endif
             </div>
         </div>
@@ -62,13 +70,21 @@
                 @if($data->msgtype == "text")
                 <p class="mb-0 message_txt" id="receiver_side">
                     <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
-                        style="right: 3px;top: 3px;font-size: 14px;cursor: pointer" id="{{$data->id}}"></span>
+                        style="right: 3px;top: 3px;font-size: 11px;cursor: pointer" id="{{$data->id}}"></span>
                     {{$data->body}}
                 </p>
                 @else
-                <a download="image" href="{{ asset($data->attachment)}}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
-                <img src="{{ asset($data->attachment)}}" width="100px" >
-                <p> {{$data->filetext ?? ''}}</p>
+                <div class="message_txt">
+                    <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
+                          style="right: 3px;top: 3px;font-size: 11px;cursor: pointer" id="{{$data->id}}"></span>
+                    <div class="position-relative d-flex justify-content-center align-items-center img-download-block">
+                        <a class="position-absolute" download="image" href="{{ asset($data->attachment)}}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
+                        <img src="{{ asset($data->attachment)}}" width="100px">
+                    </div>
+                    @if(isset($data->filetext))
+                    <p class="mb-0">{{$data->filetext ?? ''}}</p>
+                    @endif
+                </div>
                 @endif
 
             </div>

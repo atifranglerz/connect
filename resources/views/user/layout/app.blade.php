@@ -29,7 +29,7 @@
         .login_sinup > .accoutntData > .notification_tooltip > ul.notification_list::-webkit-scrollbar, .form_sending_wraper > textarea::-webkit-scrollbar, ul.sidebar_navcigation::-webkit-scrollbar {
             display: none;
         }
-      
+
 /*rating stars*/
 .rating-stars {
     padding: 0px 15px;
@@ -330,7 +330,7 @@
         $(document).on('click', '#Logout_Profile', function() {
             $('#TopProfile').toggle();
         });
-        
+
 
         $(document).on('click', '#chat_toggle', function () {
 
@@ -384,13 +384,13 @@
             $('#showImage').addClass('d-none');
         });
 
-        
+
         $(document).on('keypress',function(e) {
             if(e.which == 13) {
                 $("#sendMsg").click();
             }
         });
-        $("input.messages_file[type=file]").before("<img src='assets/images/File.svg' class='messages_file_uploader_image' width='20' height='20' />");
+        $("input.messages_file[type=file]").before('<span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span>');
 
         sidebarScrollHeight();
         $(window).resize(function(){

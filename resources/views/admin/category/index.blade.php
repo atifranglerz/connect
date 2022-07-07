@@ -49,7 +49,7 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Services</h4>
+                            <h4>All Services <small class="font-weight-bold">(Note: You can drag and drop the services as per priority...)</small></h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
