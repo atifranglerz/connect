@@ -154,7 +154,9 @@ class CategoryController extends Controller
               }
           }
       }
-        return response('Update Successfully.', 200);
+       return response()->json([
+            'success' => 'Status updated successfully',
+        ]);
     }
 
 
