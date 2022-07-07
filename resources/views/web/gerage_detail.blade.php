@@ -166,174 +166,170 @@ use Illuminate\Support\Facades\Auth;
                         enctype="multipart/form-data" class="needs-validation" novalidate>
                         @csrf
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel"
-                                aria-labelledby="home-tab">
-                                <div class="row g-lg-3 g-2">
-                                    <div class="col-12">
-                                        <select name="looking_for" class="form-select form-control" id="lookingFor">
-                                            <option value=""></option>
-                                            <option value="I have Inspection Report & Looking for the Quotations"
-                                                @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations'
-                                                ) selected @endif>I have Inspection Report & Looking for the
-                                                Quotations</option>
-                                            <option value="I don't know the Problem and Requesting for the Inspection"
-                                                @if(old('looking_for')=="I don't know the Problem and Requesting for the Inspection"
-                                                ) selected @endif>I don't know the Problem and Requesting for the
-                                                Inspection</option>
-                                            <option
-                                                value="I know about what i'm looking for and requesting for the Quotations"
-                                                @if(old('looking_for')=="I know about what i'm looking for and requesting for the Quotations"
-                                                ) selected @endif>I know about what i'm looking for and requesting
-                                                for the Quotations</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" name="model" value="{{old('model')}}"
-                                            placeholder="Model" aria-label="Car Milage">
-                                        @error('model')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <select class="form-select form-control company-name-field" name="company_id"
-                                            aria-label="Type of Service">
-                                            <option value=""></option>
-                                            @foreach($company as $data)
-                                            <option value="{{$data->id }}" @if(old('company_id')==$data->id)
-                                                selected @endif>{{$data->company }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('company_id')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" value="{{old('registration_no')}}"
-                                            name="registration_no" placeholder="Registration No."
-                                            aria-label="Car Milage">
-                                        @error('registration_no')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" value="{{old('Chasis_no')}}"
-                                            name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage">
-                                        @error('Chasis_no')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" name="color" value="{{old('color')}}"
-                                            placeholder="Color" aria-label="Car Milage">
-                                        @error('color')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <select class="form-select form-control model-year-field" name="model_year_id"
-                                            aria-label="Type of Service" required>
-                                            <option value=""></option>
-                                            @foreach($year as $data)
-                                            <option value="{{$data->id }}" @if(old('model_year_id')==$data->id)
-                                                selected @endif>{{$data->model_year }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('model_year_id')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="number" class="form-control" name="mileage"
-                                            value="{{old('mileage')}}" placeholder="Milage e.g 40 Km"
-                                            aria-label="Car Milage" required>
-                                        @error('mileage')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="number" class="form-control" name="day" value="{{old('day')}}"
-                                            placeholder="Days e.g (7)" aria-label="Day" required>
-                                        @error('day')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-12 services-dropdown-block">
-                                        <select class="form-select form-control garage-services" name="category[]"
-                                            multiple aria-label="Type of Service">
-                                            @foreach($catagary as $data)
-                                            <option value="{{$data->id }}">{{$data->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <textarea name="description1" placeholder="Add information in details"
-                                            class="form-control" rows="5">{{old('description1')}}</textarea>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
-                                                    again to upload another)</small></b></label>
-                                        <div class="input-imagess"></div>
-                                        @error('car_images')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label class="mb-2 heading-color"><b>Upload Document <small>(Upload Upto 1 PDF)</small></b></label>
-                                        <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'></div>
-                                        @error('files')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-12 mb-3">
-                                        <textarea name="description2" placeholder="Special Requirements"
-                                                  class="form-control" rows="5">{{old('description2')}}</textarea>
-                                    </div>
+                        <div class="row g-lg-3 g-2">
+                            <div class="col-12">
+                                <select name="looking_for" class="form-select form-control" id="lookingFor">
+                                    <option value=""></option>
+                                    <option value="I have Inspection Report & Looking for the Quotations"
+                                        @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations'
+                                        ) selected @endif>I have Inspection Report & Looking for the
+                                        Quotations</option>
+                                    <option value="I don't know the Problem and Requesting for the Inspection"
+                                        @if(old('looking_for')=="I don't know the Problem and Requesting for the Inspection"
+                                        ) selected @endif>I don't know the Problem and Requesting for the
+                                        Inspection</option>
+                                    <option
+                                        value="I know about what i'm looking for and requesting for the Quotations"
+                                        @if(old('looking_for')=="I know about what i'm looking for and requesting for the Quotations"
+                                        ) selected @endif>I know about what i'm looking for and requesting
+                                        for the Quotations</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="text" class="form-control" name="model" value="{{old('model')}}"
+                                    placeholder="Model" aria-label="Car Milage">
+                                @error('model')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <select class="form-select form-control company-name-field" name="company_id"
+                                    aria-label="Type of Service">
+                                    <option value=""></option>
+                                    @foreach($company as $data)
+                                    <option value="{{$data->id }}" @if(old('company_id')==$data->id)
+                                        selected @endif>{{$data->company }}</option>
+                                    @endforeach
+                                </select>
+                                @error('company_id')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="text" class="form-control" value="{{old('registration_no')}}"
+                                    name="registration_no" placeholder="Registration No."
+                                    aria-label="Car Milage">
+                                @error('registration_no')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="text" class="form-control" value="{{old('Chasis_no')}}"
+                                    name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage">
+                                @error('Chasis_no')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="text" class="form-control" name="color" value="{{old('color')}}"
+                                    placeholder="Color" aria-label="Car Milage">
+                                @error('color')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <select class="form-select form-control model-year-field" name="model_year_id"
+                                    aria-label="Type of Service" required>
+                                    <option value=""></option>
+                                    @foreach($year as $data)
+                                    <option value="{{$data->id }}" @if(old('model_year_id')==$data->id)
+                                        selected @endif>{{$data->model_year }}</option>
+                                    @endforeach
+                                </select>
+                                @error('model_year_id')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="number" class="form-control" name="mileage"
+                                    value="{{old('mileage')}}" placeholder="Milage e.g 40 Km"
+                                    aria-label="Car Milage" required>
+                                @error('mileage')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="number" class="form-control" name="day" value="{{old('day')}}"
+                                    placeholder="Days e.g (7)" aria-label="Day" required>
+                                @error('day')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 services-dropdown-block">
+                                <select class="form-select form-control garage-services" name="category[]"
+                                    multiple aria-label="Type of Service">
+                                    @foreach($catagary as $data)
+                                    <option value="{{$data->id }}">{{$data->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('category')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea name="description1" placeholder="Add information in details"
+                                    class="form-control" rows="5">{{old('description1')}}</textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
+                                            again to upload another)</small></b></label>
+                                <div class="input-imagess"></div>
+                                @error('car_images')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="police-inspection-report">
+                                <div class="col-lg-12 mb-3">
+                                    <label class="mb-2 heading-color"><b>Upload Document <small>(Upload Upto 1 PDF)</small></b></label>
+                                    <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'></div>
+                                    @error('files')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                <div class="row g-lg-3 g-2">
-                                    <div>
-                                        <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
-                                                    again to upload another)</small></b></label>
-                                        <div class="input-imagess-3"></div>
-                                    </div>
-                                    <div class="row g-2">
-                                        <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" value="" name="maker_name"
-                                                placeholder="Name" aria-label="Make" required>
-                                            @error('name')
-                                            <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <!-- <div class="col-lg-6 col-md-6">
-                                            <input type="text" class="form-control" name="phone" placeholder="Mobile No"
-                                                aria-label="Mobile No" required>
-                                            @error('phone')
-                                            <div class="text-danger p-2">{{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div> -->
-                                        <div class="col-lg-6 col-md-6">
-                                            <input type="email" class="form-control" name="email" placeholder="Email"
-                                                aria-label="Email">
-                                        </div>
-                                        <div class="col-lg-12 col-md-12">
-                                            <input type="text" class="form-control" name="address" value=""
-                                                placeholder="Address" aria-label="Car Milage" required>
-                                            @error('address')
-                                            <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                    </div>
+                                <div class="col-lg-12 mb-3">
+                                    <textarea name="description2" placeholder="Special Requirements"
+                                              class="form-control" rows="5">{{old('description2')}}</textarea>
                                 </div>
                             </div>
-
-                            <div class="d-grid gap-2 mt-3">
-                                <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST </button>
+                        </div>
+                        <div class="row mt-0 g-lg-3 g-2">
+                            <div>
+                                <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
+                                            again to upload another)</small></b></label>
+                                <div class="input-imagess-3"></div>
                             </div>
+                            <div class="row g-2">
+                                <div class="col-lg-6 col-md-6">
+                                    <input type="text" class="form-control" value="" name="maker_name"
+                                        placeholder="Name" aria-label="Make" required>
+                                    @error('name')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <!-- <div class="col-lg-6 col-md-6">
+                                    <input type="text" class="form-control" name="phone" placeholder="Mobile No"
+                                        aria-label="Mobile No" required>
+                                    @error('phone')
+                                    <div class="text-danger p-2">{{ $message }}
+                                    </div>
+                                    @enderror
+                                </div> -->
+                                <div class="col-lg-6 col-md-6">
+                                    <input type="email" class="form-control" name="email" placeholder="Email"
+                                        aria-label="Email">
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <input type="text" class="form-control" name="address" value=""
+                                        placeholder="Address" aria-label="Car Milage" required>
+                                    @error('address')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST </button>
                         </div>
                     </form>
                 </div>
@@ -466,16 +462,16 @@ $(function() {
         let valThree = "I know about what i'm looking for and requesting for the Quotations";
         if (val == valOne) {
             $('.services-dropdown-block').removeClass('d-none');
-            $('#inspection-report-link').closest('li').removeClass('d-none');
+            $('.police-inspection-report').removeClass('d-none');
             $('#requestForInspection').addClass('d-none');
             $('.get-quotes-block').removeClass('d-none');
         } else if (val == valTwo) {
             $('.services-dropdown-block').addClass('d-none');
-            $('#inspection-report-link').closest('li').addClass('d-none');
+            $('.police-inspection-report').addClass('d-none');
             $('#requestForInspection').removeClass('d-none');
             $('.get-quotes-block').addClass('d-none');
         } else {
-            $('#inspection-report-link').closest('li').addClass('d-none');
+            $('.police-inspection-report').addClass('d-none');
             $('.services-dropdown-block').removeClass('d-none');
             $('#requestForInspection').addClass('d-none');
             $('.get-quotes-block').removeClass('d-none');
