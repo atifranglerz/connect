@@ -34,7 +34,8 @@
                                 <h3 class="vendor_order_id">Order Id: #{{$order->order_code}}</h3>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
                                     <h3 class="">{{$userbidid->day}} Days</h3>
-                                    <a href="#" class="chat_icon">
+                                    <a href="{{url('vendor/chat/'.$userbidid->user_id)}}" class="chat_icon">
+
                                         <i class="fa-solid fa-message"></i>
                                         <!-- <img src="assets/images/meassageiconblk.svg"> -->
                                     </a>

@@ -34,7 +34,7 @@
                             <div class="quote_detail_btn_wraper">
                                 <h5 class=" text-sm-center">AED {{$order->total}}</h5>
                                 <div class="d-flex align-items-center chat_view__detail">
-                                    <a href="#" class="chat_icon">
+                                    <a href="{{url('vendor/chat/'.$userbidid->user_id)}}" class="chat_icon">
                                         <i class="fa-solid fa-message"></i>
                                         <!-- <img src="assets/images/meassageiconblk.svg"> -->
                                     </a>
