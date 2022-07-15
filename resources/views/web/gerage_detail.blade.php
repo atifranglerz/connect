@@ -2,12 +2,14 @@
 @section('content')
 <?php $category = \App\Models\GarageCategory::where('garage_id',$garage->id)->pluck('category_id');
       $category_name = \App\Models\Category::whereIn('id',$category)->get();
+      $garage = \App\Models\Garage::find($garage->id);
+
 use Illuminate\Support\Facades\Auth;
 
 ?>
 <section class="banner_section">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
+        <!-- <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active "
                 aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
@@ -16,16 +18,15 @@ use Illuminate\Support\Facades\Auth;
                 aria-label="Slide 3"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
                 aria-label="Slide 4"></button>
-        </div>
+        </div> -->
         <div class="carousel-inner">
             <div class="carousel-item Stor_detai_item active">
                 <div class="preferd_vendors_star"><img src="{{asset('public/assets/images/preferdicon.svg')}}"></div>
-                <img src="{{asset('public/assets/images/repair2.jpg')}}" class="d-block w-100" alt="banner image">
+                <img src="{{asset($garage->image)}}" class="d-block w-100" alt="banner image">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
-            <div class="carousel-item Stor_detai_item ">
-
+            <!-- <div class="carousel-item Stor_detai_item ">
                 <img src="{{asset('public/assets/images/repair2.jpg')}}" class="d-block w-100" alt="banner image">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
@@ -33,7 +34,7 @@ use Illuminate\Support\Facades\Auth;
 
             <div class="carousel-item Stor_detai_item ">
                 <div class="preferd_vendors_star"><img src="{{asset('public/assets/images/preferdicon.svg')}}"></div>
-                <img src="{{asset('public/assets/images/repair2.jpg')}}" class="d-block w-100" alt="banner image">
+                <img src="{{asset($garage->image)}}" class="d-block w-100" alt="banner image">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
@@ -42,7 +43,7 @@ use Illuminate\Support\Facades\Auth;
                 <img src="{{asset('public/assets/images/repair2.jpg')}}" class="d-block w-100" alt="banner image">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -393,9 +394,9 @@ use Illuminate\Support\Facades\Auth;
                     @endif
                 </div>
                 <div class="d-grid gap-2 mt-3">
-                    <button class="w-100 btn btn-primary get_appointment heart" type="button">CONTACT VIA MESSAGE
+                    <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="w-100 btn btn-primary get_appointment heart" >CONTACT VIA MESSAGE
                         <img src="{{asset('public/vendor/assets/images/messageicon.svg')}}">
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -439,8 +440,7 @@ $(document).ready(function() {
     <?php if(session('alert-garage-success'))
                 {
             ?>
-    toastr.success('{{ Session::get('
-        alert - garage - success ') }}');
+    toastr.success('{{ Session::get('alert-garage-success') }}');
     <?php
                 }
             ?>
