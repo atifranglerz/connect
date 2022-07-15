@@ -62,7 +62,7 @@
 
                             <td>
                                 <div class="chat_view__detail d-flex justify-content-center">
-                                    <a href="#" class="justify-content-center chat_icon">
+                                    <a href="{{url('vendor/chat/'.$data->user->id)}}" class="justify-content-center chat_icon">
                                         <i class="fa-solid fa-message"></i>
                                     </a>
                                 </div>

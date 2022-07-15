@@ -489,9 +489,12 @@
 <script>
         setInterval(ajaxCall, 5000);
         function ajaxCall() {
+            $(".favorite.active").trigger('click');
+            var c_id = $('.favorite.active').attr('id');
             var id = 1;
             console.log(id);
             $.ajax({
+                
             type: "POST",
             dataType: "json",
             headers: {
@@ -505,6 +508,7 @@
                 console.log(response);
                 $('#users').empty();
                 $('#users').append(response.message);
+                $("#" + c_id).addClass('active');
                 $('#notify').html(response.unread);
             }
         });

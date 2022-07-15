@@ -4,7 +4,7 @@
         <?php
             $unread = \App\Models\Chat::where([['vendor_receiver_id',auth()->user()->id],['customer_sender_id',$data->customer_id],['seen',0]])->count('seen');
             $user = \App\Models\User::where('id',$data->customer->id)->first();
-            $gettime = strtotime($user->online_status)+8;
+            $gettime = strtotime($user->online_status)+5;
             $now = strtotime(Carbon\Carbon::now());
        ?>
         <div class="inbox_contact justify-content-between">

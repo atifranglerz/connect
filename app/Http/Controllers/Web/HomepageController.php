@@ -103,37 +103,42 @@ class HomepageController extends Controller
     public function contactVendor(Request $request)
     {
 
-        return $request;
+
+        // return $request;
+        $request->validate([
+            'car_images' => 'required',
+            'looking_for' => 'required',
+            'model' => 'required',
+            'company_id' => 'required',
+            'registration_no' => 'required',
+            'Chasis_no' => 'required',
+            'color' => 'required',
+            'model_year_id' => 'required',
+            'mileage' => 'required',
+            'day' => 'required',
+            'doucment' => 'required',
+            'car_images' => 'required',
+            'email' => 'required',
+            'maker_name' => 'required',
+            'address' => 'required',
+        ]);
+        if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
+            $request->validate([
+                'files' => 'required',
+            ]);
+        }
+        if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations' || $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
+            $request->validate([
+                'category' => 'required',
+            ]);
+        }
+
+        
         if (User::where('email', $request->email)->doesntExist()) {
             return redirect()->route('loginpage')->with(['message' =>'Your given email is not Registered! Please inter valid email or Register first', 'alert' => 'error']);
         } else {
             $user = User::where('email', $request->email)->first();
             $vendor = Garage::find($request->garage_id);
-
-            $request->validate([
-                'car_images' => 'required',
-                'looking_for' => 'required',
-                'model' => 'required',
-                'company_id' => 'required',
-                'model_year_id' => 'required',
-                'mileage' => 'required',
-                'day' => 'required',
-                'maker_name' => 'required',
-                'address' => 'required',
-                'registration_no' => 'required',
-                'Chasis_no' => 'required',
-                'color' => 'required',
-            ]);
-            if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
-                $request->validate([
-                    'files' => 'required',
-                ]);
-            }
-            if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations' || $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
-                $request->validate([
-                    'category' => 'required',
-                ]);
-            }
 
             $quote = new UserBid();
             $quote->user_id = $user->id;
@@ -212,36 +217,8 @@ class HomepageController extends Controller
             $vendor_quote->save();
             return redirect()->back()->with(['message' =>'Your Qoute has been submitted successfully', 'alert' => 'success']);
 
-            // $SendNotification = new SendNotification();
-            // dispatch($SendNotification);
-
-            // if ($request->action == 'all_garage') {
-
-            //     return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
-            // } else {
-            //     return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Preffered Garages', 'Quotation has not been sent to all the Preffered Garages');
-            // }
-
         }
-        // $request->validate([
-        //     'car_model' => 'required',
-        //     'car_make' => 'required',
-        //     'category' => 'required',
-        //     'customer_name' => 'required',
-        //     'email' => 'required',
-        //     'contact_no' => 'required',
-        //     'detail' => 'required',
-        // ]);
-        // $contact_vendors = new ContactVendor();
-        // $contact_vendors->car_model = $request->car_model;
-        // $contact_vendors->car_make = $request->car_make;
-        // $contact_vendors->category = $request->category;
-        // $contact_vendors->customer_name = $request->customer_name;
-        // $contact_vendors->email = $request->email;
-        // $contact_vendors->contact_no = $request->contact_no;
-        // $contact_vendors->detail = $request->detail;
-        // $contact_vendors->save();
-        // return redirect()->back()->with('alert-success', 'Contacted Vendor successfully');
+
     }
 
     public function addToPrefferedGarage(Request $request)

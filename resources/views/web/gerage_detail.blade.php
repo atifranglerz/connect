@@ -168,7 +168,7 @@ use Illuminate\Support\Facades\Auth;
                         <input type="hidden" name="garage_id" value="{{$garage->id}}">
                         <div class="row g-lg-3 g-2">
                             <div class="col-12">
-                                <select name="looking_for" class="form-select form-control" id="lookingFor">
+                                <select name="looking_for" class="form-select form-control" id="lookingFor" required>
                                     <option value=""></option>
                                     <option value="I have Inspection Report & Looking for the Quotations"
                                         @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations'
@@ -178,8 +178,7 @@ use Illuminate\Support\Facades\Auth;
                                         @if(old('looking_for')=="I don't know the Problem and Requesting for the Inspection"
                                         ) selected @endif>I don't know the Problem and Requesting for the
                                         Inspection</option>
-                                    <option
-                                        value="I know about what i'm looking for and requesting for the Quotations"
+                                    <option value="I know about what i'm looking for and requesting for the Quotations"
                                         @if(old('looking_for')=="I know about what i'm looking for and requesting for the Quotations"
                                         ) selected @endif>I know about what i'm looking for and requesting
                                         for the Quotations</option>
@@ -187,14 +186,14 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <input type="text" class="form-control" name="model" value="{{old('model')}}"
-                                    placeholder="Model" aria-label="Car Milage">
+                                    placeholder="Model" aria-label="Car Milage" required>
                                 @error('model')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <select class="form-select form-control company-name-field" name="company_id"
-                                    aria-label="Type of Service">
+                                    aria-label="Type of Service" required>
                                     <option value=""></option>
                                     @foreach($company as $data)
                                     <option value="{{$data->id }}" @if(old('company_id')==$data->id)
@@ -207,22 +206,22 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <input type="text" class="form-control" value="{{old('registration_no')}}"
-                                    name="registration_no" placeholder="Registration No."
-                                    aria-label="Car Milage">
+                                    name="registration_no" placeholder="Registration No." aria-label="Car Milage"
+                                    required>
                                 @error('registration_no')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <input type="text" class="form-control" value="{{old('Chasis_no')}}"
-                                    name="Chasis_no" placeholder="Chasis No." aria-label="Car Milage">
+                                <input type="text" class="form-control" value="{{old('Chasis_no')}}" name="Chasis_no"
+                                    placeholder="Chasis No." aria-label="Car Milage" required>
                                 @error('Chasis_no')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <input type="text" class="form-control" name="color" value="{{old('color')}}"
-                                    placeholder="Color" aria-label="Car Milage">
+                                    placeholder="Color" aria-label="Car Milage" required>
                                 @error('color')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -241,9 +240,8 @@ use Illuminate\Support\Facades\Auth;
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <input type="number" class="form-control" name="mileage"
-                                    value="{{old('mileage')}}" placeholder="Milage e.g 40 Km"
-                                    aria-label="Car Milage" required>
+                                <input type="number" class="form-control" name="mileage" value="{{old('mileage')}}"
+                                    placeholder="Milage e.g 40 Km" aria-label="Car Milage" required>
                                 @error('mileage')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -256,8 +254,8 @@ use Illuminate\Support\Facades\Auth;
                                 @enderror
                             </div>
                             <div class="col-12 services-dropdown-block">
-                                <select class="form-select form-control garage-services" name="category[]"
-                                    multiple aria-label="Type of Service">
+                                <select class="form-select form-control garage-services" name="category[]" multiple
+                                    aria-label="Type of Service" required>
                                     @foreach($catagary as $data)
                                     <option value="{{$data->id }}">{{$data->name}}</option>
                                     @endforeach
@@ -280,7 +278,8 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                             <div class="police-inspection-report">
                                 <div class="col-lg-12 mb-3">
-                                    <label class="mb-2 heading-color"><b>Upload Document <small>(Upload Upto 1 PDF)</small></b></label>
+                                    <label class="mb-2 heading-color"><b>Upload Document <small>(Upload Upto 1
+                                                PDF)</small></b></label>
                                     <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'></div>
                                     @error('files')
                                     <div class="text-danger p-2">{{ $message }}</div>
@@ -288,7 +287,7 @@ use Illuminate\Support\Facades\Auth;
                                 </div>
                                 <div class="col-lg-12 mb-3">
                                     <textarea name="description2" placeholder="Special Requirements"
-                                              class="form-control" rows="5">{{old('description2')}}</textarea>
+                                        class="form-control" rows="5">{{old('description2')}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -297,30 +296,32 @@ use Illuminate\Support\Facades\Auth;
                                 <label class="mb-2 heading-color"><b>Upload upto 5 images <small>(Click box
                                             again to upload another)</small></b></label>
                                 <div class="input-imagess-3"></div>
+                                @error('doucment')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="row g-2">
+
                                 <div class="col-lg-6 col-md-6">
-                                    <input type="text" class="form-control" value="" name="maker_name"
-                                        placeholder="Name" aria-label="Make" required>
-                                    @error('name')
+                                    <input type="text" class="form-control" @if(isset(auth()->user()->name))
+                                    value="{{auth()->user()->name}}" readonly @endif name="maker_name"
+                                    placeholder="Name"
+                                    aria-label="Make" required>
+                                    @error('maker_name')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <!-- <div class="col-lg-6 col-md-6">
-                                    <input type="text" class="form-control" name="phone" placeholder="Mobile No"
-                                        aria-label="Mobile No" required>
-                                    @error('phone')
-                                    <div class="text-danger p-2">{{ $message }}
-                                    </div>
-                                    @enderror
-                                </div> -->
                                 <div class="col-lg-6 col-md-6">
-                                    <input type="email" class="form-control" name="email" placeholder="Email"
-                                        aria-label="Email">
+                                    <input type="email" class="form-control" @if(isset(auth()->user()->email))
+                                    value="{{auth()->user()->email}}" readonly @endif name="email" placeholder="Email"
+                                    aria-label="Email" required>
+                                    @error('email')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <input type="text" class="form-control" name="address" value=""
-                                        placeholder="Address" aria-label="Car Milage" required>
+                                        placeholder="Address" aria-label="Car Milage" required >
                                     @error('address')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
@@ -329,7 +330,8 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                         </div>
                         <div class="d-grid gap-2 mt-3">
-                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE REQUEST </button>
+                            <button class="w-100 btn btn-primary get_appointment heart text-center" type="submit">QUOTE
+                                REQUEST </button>
                         </div>
                     </form>
                 </div>
@@ -437,7 +439,8 @@ $(document).ready(function() {
     <?php if(session('alert-garage-success'))
                 {
             ?>
-    toastr.success('{{ Session::get('alert-garage-success') }}');
+    toastr.success('{{ Session::get('
+        alert - garage - success ') }}');
     <?php
                 }
             ?>

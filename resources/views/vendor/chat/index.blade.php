@@ -93,7 +93,7 @@ function readURL(input) {
 
 $(document).on('click', '.favorite', function() {
     var id = $(this).attr('id');
-    console.log(id);
+    // console.log(id);
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -111,6 +111,7 @@ $(document).on('click', '.favorite', function() {
             $('#receiver_id').val(response.id);
             $('#users').empty();
             $('#users').append(response.customer);
+            $("#" + id).addClass('active');
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
             $('#notify').html(response.unread);
@@ -122,6 +123,8 @@ $(document).on('click', '.favorite', function() {
 
 $(document).ready(function() {
     $('form').on('submit', function(event) {
+        let c_id = $('#receiver_id').val();
+        // alert(c_id);
         event.preventDefault();
         $.ajax({
             url: "{{ route('vendor.chatSend') }}",
@@ -134,6 +137,7 @@ $(document).ready(function() {
                 $("#typeMsg").val("");
                 $("#attachment").val("");
                 $('#users').append(response.customer);
+                $("#" + c_id).addClass('active');
                 $('#append_msg').empty();
                 $('#append_msg').append(response.message);
                 $('#notify').html(response.unread);

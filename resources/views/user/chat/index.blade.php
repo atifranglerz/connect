@@ -104,6 +104,7 @@ $(document).on('click', '.favorite', function() {
             $('#receiver_id').val(response.id);
             $('#users').empty();
             $('#users').append(response.vendors);
+            $("#" + id).addClass('active');
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
             $('#notify').html(response.unread);
@@ -114,6 +115,7 @@ $(document).on('click', '.favorite', function() {
 
 $(document).ready(function() {
     $('form').on('submit',function(event){
+        let c_id = $('#receiver_id').val();
         event.preventDefault();
         $.ajax({
             url: "{{ route('user.chatSend') }}",
@@ -126,6 +128,7 @@ $(document).ready(function() {
                 $("#typeMsg").val("");
                 $("#attachment").val("");
                 $('#users').append(response.vendors);
+                $("#" + c_id).addClass('active');
                 $('#append_msg').empty();
                 $('#append_msg').append(response.message);
             },

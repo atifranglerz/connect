@@ -382,6 +382,9 @@
 <script>
         setInterval(ajaxCall, 5000);
         function ajaxCall() {
+            $(".favorite.active").trigger('click');
+            var c_id = $('.favorite.active').attr('id');
+            // alert(c_id);
             var id = 1;
             console.log(id);
             $.ajax({
@@ -398,6 +401,7 @@
                 console.log(response);
                 $('#users').empty();
                 $('#users').append(response.message);
+                $("#" + c_id).addClass('active');
                 $('#notify').html(response.unread);
             }
         });
