@@ -69,6 +69,12 @@
     --light-gray-tranparent: #a9a9a98c;
     --light-white: #FBFBFB;
 }
+.favorite + .inbox_contact {
+    padding: 8px 8px;
+}
+.favorite.active + .inbox_contact {
+    background-color: #2778c455;
+}
 .fa.fa-eye, .fa.fa-eye-slash {
     font-weight: bold!important;
 }
