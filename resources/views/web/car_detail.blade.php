@@ -199,9 +199,15 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2 mt-3">
-                    <button class="btn btn-primary get_appointment" type="button">CONTACT VIA MESSAGE
+                    @if(isset(auth()->user()->id))
+                    <a @if(isset($ad->vendor_id)) href="{{url('user/chat/'.$ad->vendor_id)}}" @elseif($ad->vendor_id == auth()->user()->id) href="#" @elseif($ad->user_id == auth()->user()->id) href="#"  @else href="{{url('vendor/chat/'.$ad->user_id)}}" @endif class="btn btn-primary get_appointment">CONTACT VIA MESSAGE
                         <img src="{{ asset('public/assets/images/messageicon.svg') }}">
-                    </button>
+                    </a>
+                    @else
+                    <a onclick="myFunction()" class="btn btn-primary get_appointment">CONTACT VIA MESSAGE
+                        <img src="{{ asset('public/assets/images/messageicon.svg') }}">
+                    </a>
+                    @endif
                 </div>
             </div>
 
@@ -209,4 +215,27 @@
 
     </div>
 </section>
+@endsection
+@section('script')
+<script>
+toastr.options = {
+    "closeButton": true,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+function myFunction() {
+    toastr.warning('Please login first');
+}
+</script>
 @endsection

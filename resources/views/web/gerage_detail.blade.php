@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
         </div> -->
         <div class="carousel-inner">
             <div class="carousel-item Stor_detai_item active">
-                <div class="preferd_vendors_star"><img src="{{asset('public/assets/images/preferdicon.svg')}}"></div>
+                <div class="preferd_vendors_star">@if($user_wishlist)<img src="{{asset('public/assets/images/preferdicon.svg')}}"> @endif</div>
                 <img src="{{asset($garage->image)}}" class="d-block w-100" alt="banner image">
                 <div class="carousel-caption d-none d-md-block">
                 </div>

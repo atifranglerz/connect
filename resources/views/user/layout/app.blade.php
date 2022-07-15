@@ -489,12 +489,12 @@
 <script>
         setInterval(ajaxCall, 5000);
         function ajaxCall() {
+            // alert('sdgs');
             $(".favorite.active").trigger('click');
             var c_id = $('.favorite.active').attr('id');
             var id = 1;
             console.log(id);
             $.ajax({
-                
             type: "POST",
             dataType: "json",
             headers: {
@@ -512,6 +512,9 @@
                 $('#notify').html(response.unread);
             }
         });
+        // setTimeout(() => {
+        //     $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+        // }, 1);
         }
     </script>
 </body>
