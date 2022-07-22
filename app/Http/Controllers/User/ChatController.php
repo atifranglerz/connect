@@ -248,12 +248,18 @@ class ChatController extends Controller
 
         $chated_user = Vendor::find($id);
         $data = view('user.chat.new')->with(['message' => $message, 'chated_user' => $chated_user])->render();
+        
+        $notification = webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->get();
+        $notification = view('user.notification.index')->with(['notification' => $notification])->render();
+
+
 
         return response()->json([
             'success' => 'Status updated successfully',
             'msg' => $msg_unread,
             'notificat' => $notify_unread,
             'message' => $data,
+            'notification' => $notification,
             'data' => $message,
             // 'vendors' => $vendors,
         ]);

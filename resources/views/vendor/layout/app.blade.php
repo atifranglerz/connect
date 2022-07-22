@@ -400,6 +400,8 @@
                     $('#notify').html(response.msg);
                     $('#notfication').html(response.notificat);
                     $('.cahtting_messages').append(response.message);
+                    $('#notification_tolltip').empty();
+                    $('#notification_tolltip').append(response.notification);
                     if(response.data!=''){
                         setTimeout(() => {
                             $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);

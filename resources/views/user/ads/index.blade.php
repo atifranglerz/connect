@@ -27,7 +27,7 @@
                                 <h5 class="d-flex align-items-center active_quote">{{$data->model}}</h5>
                                 <p class="mb-0">Maker : {{$data->company->company}}</p>
                                 <p class="mb-0">Model Year : {{$data->modelYear->model_year}}</p>
-                                <p >Engine : {{$data->mileage}} CC</p>
+                                <p >Engine : {{$data->engine}} CC</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
                                 <h3 class=" text-sm-center">AED {{$data->price}}</h3>
