@@ -57,20 +57,20 @@ class AuthController extends Controller
         $vendor = new  Vendor();
         if ($request->file('profile_image')) {
             $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('profile_image')->getClientOriginalExtension());
-            $request->file('profile_image')->move('public/image/ads/', $doucments1);
-            $file1 = 'public/image/ads/' . $doucments1;
+            $request->file('profile_image')->move('public/image/profile/', $doucments1);
+            $file1 = 'public/image/profile/' . $doucments1;
             $vendor->image = $file1 ;
         }
         if ($request->file('id_card')) {
             $doucments2 = hexdec(uniqid()) . '.' . strtolower($request->file('id_card')->getClientOriginalExtension());
-            $request->file('id_card')->move('public/image/ads/', $doucments2);
-            $file2 = 'public/image/ads/' . $doucments2;
+            $request->file('id_card')->move('public/image/profile/', $doucments2);
+            $file2 = 'public/image/profile/' . $doucments2;
             $vendor->id_card = $file2 ;
         }
         if ($request->file('image_license')) {
             $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
-            $request->file('image_license')->move('public/image/ads/', $doucments3);
-            $file3 = 'public/image/ads/' . $doucments3;
+            $request->file('image_license')->move('public/image/profile/', $doucments3);
+            $file3 = 'public/image/profile/' . $doucments3;
             $vendor->image_license= $file3 ;
 
         }

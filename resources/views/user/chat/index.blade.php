@@ -1,6 +1,7 @@
 @extends('user.layout.app')
 @section('content')
-<section class="main_wraper d-flex" style="background-image:url(https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg);background-size: contain">
+<section class="main_wraper d-flex"
+    style="background-image:url(https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg);background-size: contain">
     <div class="chat_overlay d-none"></div>
     <div class="side_inbox">
         <div class="side_inbox_search_sec text-center">
@@ -16,12 +17,22 @@
             @foreach($vendors as $data)
             <a href="#" class="favorite d-flex align-items-center" id="{{$data->vendor->id}}">
                 <?php
-                    $unread = \App\Models\Chat::where([['customer_receiver_id',auth()->user()->id],['vendor_sender_id',$data->vendor_id],['seen',0]])->count('seen');
-                   ?>
+                    $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['vendor_sender_id', $data->vendor_id], ['seen', 0]])->count('seen');
+                    $vendor = \App\Models\Vendor::where('id', $data->vendor->id)->first();
+                    $gettime = strtotime($vendor->online_status) + 8;
+                    $now = strtotime(Carbon\Carbon::now());
+                ?>
                 <div class="inbox_contact justify-content-between">
                     <div class="position-relative contact_img">
                         <p id="userNotify">{{$unread}}</p>
                         <img src="{{ asset($data->vendor->image)}}">
+                        @if($now < $gettime) <h1
+                            style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
+                            class="online-offline-dot">.</h1>
+                            @else
+                            <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
+                                class="online-offline-dot">.</h1>
+                            @endif
                     </div>
                     <div class="name_of_contact">
                         <p class="mb-0">{{$data->vendor->name}}</p>
@@ -50,17 +61,17 @@
             <!-- append chat section -->
 
         </div>
-        <div class="sending_input_field d-none" id="sendMessageForm" >
-        <img id="showImage" src="" />
+        <div class="sending_input_field d-none" id="sendMessageForm">
+            <img id="showImage" src="" />
             <form enctype="multipart/form-data" id="chatForm">
                 @csrf
                 <div class="form-floating d-flex align-items-center form_sending_wraper">
-                <input type="hidden" @if(isset($id)) value="{{$id}}" @endif name="receiver_id" id="receiver_id">
+                    <input type="hidden" @if(isset($id)) value="{{$id}}" @endif name="receiver_id" id="receiver_id">
                     <textarea class="form-control enterKey" name="body" id="typeMsg"
                         placeholder="Say Somthing"></textarea>
                     <button type="submit" class="btn btn-primary" id="sendMsg">send</button>
                     <div class="file_input_messages">
-                    <input type="file" id="attachment" name="attachment" accept="image/gif, image/jpeg, image/png"
+                        <input type="file" id="attachment" name="attachment" accept="image/gif, image/jpeg, image/png"
                             onchange="readURL(this);" class="messages_file">
                     </div>
                 </div>
@@ -72,8 +83,7 @@
 
 @section('script')
 <script>
-
-    //show selected file
+//show selected file
 function readURL(input) {
     $('#showImage').removeClass('d-none');
     if (input.files && input.files[0]) {
@@ -85,8 +95,10 @@ function readURL(input) {
     }
 }
 
+
 $(document).on('click', '.favorite', function() {
     var id = $(this).attr('id');
+    $(".favorite").removeClass('active');
     console.log(id);
     $.ajax({
         type: "POST",
@@ -108,13 +120,16 @@ $(document).on('click', '.favorite', function() {
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
             $('#notify').html(response.unread);
+            setTimeout(() => {
+                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+            }, 10);
         }
     });
 });
 
 
 $(document).ready(function() {
-    $('form').on('submit',function(event){
+    $('form').on('submit', function(event) {
         let c_id = $('#receiver_id').val();
         event.preventDefault();
         $.ajax({
@@ -139,6 +154,28 @@ $(document).ready(function() {
     });
 });
 
+
+setInterval(ajaxC, 10000);
+function ajaxC() {
+    var id = $('.favorite.active').attr('id');
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('user.chatted.status') }}",
+        data: {
+            'id': id
+        },
+        success: function(response) {
+            console.log(response);
+            $('#users').empty();
+            $('#users').append(response.vendors);
+            $("#" + id).addClass('active');
+        }
+    });
+}
 
 
 $(document).on('click', '.MobileContactToggler', function() {
@@ -183,6 +220,9 @@ $(document).on('click', '.delete', function() {
             console.log(response);
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
+            setTimeout(() => {
+                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+            }, 10);
         }
     });
 });

@@ -55,6 +55,16 @@ class OrderController extends Controller
     {
         $page_title = "Completed Order";
         $order = Order::findOrFail($id);
+        return view('user.order.pending-order-update', compact('page_title','order'));
+        // return view('user.order.completed-order', compact('page_title','order'));
+    }
+
+
+    public function summary($id)
+    {
+        $page_title = "Completed Order";
+        $order = Order::findOrFail($id);
+        // return view('user.order.pending-order-update', compact('page_title','order'));
         return view('user.order.completed-order', compact('page_title','order'));
     }
 

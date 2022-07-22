@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->integer('term_condition')->default(0);
             $table->text('image')->nullable();
             $table->dateTime('online_status')->nullable();
+            $table->string('type')->default('user');
 
             $table->rememberToken();
             $table->timestamps();

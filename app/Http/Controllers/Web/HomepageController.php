@@ -103,7 +103,6 @@ class HomepageController extends Controller
     public function contactVendor(Request $request)
     {
 
-
         // return $request;
         $request->validate([
             'car_images' => 'required',
@@ -133,9 +132,8 @@ class HomepageController extends Controller
             ]);
         }
 
-        
         if (User::where('email', $request->email)->doesntExist()) {
-            return redirect()->route('loginpage')->with(['message' =>'Your given email is not Registered! Please inter valid email or Register first', 'alert' => 'error']);
+            return redirect()->route('loginpage')->with(['message' => 'Your given email is not Registered! Please inter valid email or Register first', 'alert' => 'error']);
         } else {
             $user = User::where('email', $request->email)->first();
             $vendor = Garage::find($request->garage_id);
@@ -166,8 +164,8 @@ class HomepageController extends Controller
                 $images = [];
                 foreach ($request->file('car_images') as $data) {
                     $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                    $data->move('public/image/ads/', $image);
-                    $images[] = 'public/image/ads/' . $image;
+                    $data->move('public/image/add/', $image);
+                    $images[] = 'public/image/add/' . $image;
                 }
                 $imagefiles->user_bid_id = $quote->id;
                 $imagefiles->car_image = implode(",", $images);
@@ -179,8 +177,8 @@ class HomepageController extends Controller
             $registrationfiles = new UserBidImage();
             if ($request->file('files')) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('files')->getClientOriginalExtension());
-                $request->file('files')->move('public/image/ads/', $doucments);
-                $file = 'public/image/ads/' . $doucments;
+                $request->file('files')->move('public/image/add/', $doucments);
+                $file = 'public/image/add/' . $doucments;
                 $registrationfiles->user_bid_id = $quote->id;
                 $registrationfiles->car_image = $file;
                 $registrationfiles->type = 'file';
@@ -192,8 +190,8 @@ class HomepageController extends Controller
                 $files = [];
                 foreach ($request->file('doucment') as $data) {
                     $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                    $data->move('public/image/ads/', $doucments);
-                    $files[] = 'public/image/ads/' . $doucments;
+                    $data->move('public/image/add/', $doucments);
+                    $files[] = 'public/image/add/' . $doucments;
                 }
                 $accidentailfile->user_bid_id = $quote->id;
                 $accidentailfile->car_image = implode(",", $files);
@@ -215,7 +213,7 @@ class HomepageController extends Controller
             $vendor_quote->user_bit_id = $quote->id;
             $vendor_quote->vendor_id = $vendor->vendor_id;
             $vendor_quote->save();
-            return redirect()->back()->with(['message' =>'Your Qoute has been submitted successfully', 'alert' => 'success']);
+            return redirect()->back()->with(['message' => 'Your Qoute has been submitted successfully', 'alert' => 'success']);
 
         }
 
@@ -253,7 +251,7 @@ class HomepageController extends Controller
     public function usedcars()
     {
         $data['page_title'] = 'used cars';
-        $data['ads'] = Ads::all();
+        $data['ads'] = Ads::orderBy('id', 'desc')->get();
         $data['company'] = Company::all();
         $data['year'] = ModelYear::all();
         return view('web.used_cars', $data);
@@ -265,8 +263,35 @@ class HomepageController extends Controller
         $search[] = $request->modelTo;
         $search1 = $request->company_id;
         $data['page_title'] = 'used cars';
-        $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->where('city', $request->city)->with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-            $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+        // fech records according filteration
+        if (isset($request->priceFrom) && isset($request->priceTo)) {
+            $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->with('modelYear', 'company')->get();
+        } elseif (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo)) {
+            $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->with('modelYear', 'company')->orwhereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->get();
+        } elseif (isset($request->modelFrom) && isset($request->modelTo)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->get();
+        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+        } elseif (isset($request->company_id) && isset($request->city)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->get();
+
+        } elseif (isset($request->company_id)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+
+        } elseif (isset($request->city)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->get();
+        } else {
+            $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->where('city', $request->city)->with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+        }
+        //end felter
+
         $data['company'] = Company::all();
         $data['year'] = ModelYear::all();
         return view('web.used_cars', $data);

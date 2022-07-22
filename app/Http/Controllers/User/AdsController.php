@@ -18,7 +18,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::where('user_id',auth()->id())->with('company', 'modelYear')->get();
+        $ads = Ads::where('user_id', auth()->id())->with('company', 'modelYear')->get();
         return view('user.ads.index', compact('ads'));
     }
 
@@ -32,7 +32,7 @@ class AdsController extends Controller
         $company = Company::all();
         $year = ModelYear::all();
         $page_title = 'Ad index';
-        return view('user.ads.create', compact('company','year','page_title'));
+        return view('user.ads.create', compact('company', 'year', 'page_title'));
     }
 
     /**
@@ -44,29 +44,30 @@ class AdsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'car_images'=>'required',
-            'doucment'=>'required' ,
+            'city' => 'required',
+            'car_images' => 'required',
+            'doucment' => 'required',
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',
-            'price' =>'required',
-            'color' =>'required',
-            'engine'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
-            'mileage'=>'required',
+            'price' => 'required',
+            'color' => 'required',
+            'engine' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'mileage' => 'required',
         ]);
         $ads = new Ads();
         if ($request->file('car_images')) {
             $images = [];
             foreach ($request->file('car_images') as $data) {
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $image);
-                $images[] = 'public/image/ads/' . $image;
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
             }
             /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
+            $old_image = $request->image;
+            unlink($old_image);
             }*/
             $ads->images = implode(",", $images);
         }
@@ -74,18 +75,18 @@ class AdsController extends Controller
             $files = [];
             foreach ($request->file('doucment') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $doucments);
-                $files[] = 'public/image/ads/' . $doucments;
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
             }
 
             /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
+            $old_image = $request->image;
+            unlink($old_image);
             }*/
             $ads->document_file = implode(",", $files);
         }
         $ads->model = $request->model;
-        $ads->company_id =  $request->company_id ;
+        $ads->company_id = $request->company_id;
         $ads->model_year_id = $request->model_year_id;
         $ads->price = $request->price;
         $ads->color = $request->color;
@@ -93,6 +94,8 @@ class AdsController extends Controller
         $ads->phone = $request->phone;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
+        $ads->city = $request->city;
+        $ads->country = $request->country;
         $ads->description = $request->description;
         $ads->user_id = Auth::id();
         // please correect this
@@ -123,7 +126,7 @@ class AdsController extends Controller
         //dd($ads);
         $company = Company::all();
         $year = ModelYear::all();
-        return view('user.ads.edit', compact('ads' , 'company', 'year'));
+        return view('user.ads.edit', compact('ads', 'company', 'year'));
     }
 
     /**
@@ -135,18 +138,19 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request);
+        // return $request;
 
         $request->validate([
+
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',
-            'price' =>'required',
-            'color' =>'required',
-            'engine'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
-            'mileage'=>'required',
+            'price' => 'required',
+            'color' => 'required',
+            'engine' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'mileage' => 'required',
         ]);
         $ads = Ads::findOrFail($id);
         if ($request->file('car_images')) {
@@ -154,21 +158,22 @@ class AdsController extends Controller
             foreach ($request->file('car_images') as $data) {
                 //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $image);
-                $images[] = 'public/image/ads/' . $image;
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
             }
             /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
+            $old_image = $request->image;
+            unlink($old_image);
             }*/
             $ads->images = implode(",", $images);
         }
-        if ($request->file('files')) {
+
+        if ($request->file('doucment')) {
             $files = [];
-            foreach ($request->file('files') as $data) {
+            foreach ($request->file('doucment') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $doucments);
-                $files[] = 'public/image/ads/' . $doucments;
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
             }
 
             /*if ($request->has('old_image')) {
@@ -179,7 +184,7 @@ class AdsController extends Controller
         }
 
         $ads->model = $request->model;
-        $ads->company_id =  $request->company_id ;
+        $ads->company_id = $request->company_id;
         $ads->model_year_id = $request->model_year_id;
         $ads->price = $request->price;
         $ads->color = $request->color;
@@ -187,6 +192,8 @@ class AdsController extends Controller
         $ads->phone = $request->phone;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
+        $ads->city = $request->city;
+        $ads->country = $request->country;
         $ads->description = $request->description;
         $ads->user_id = Auth::id();
         $ads->update();
@@ -204,6 +211,6 @@ class AdsController extends Controller
     {
         $ad = Ads::findOrFail($id);
         $ad->delete();
-        return $this->message($ad , 'user.ads.index', 'ad deleted Successfully', '  Ad is not delete Error');
+        return $this->message($ad, 'user.ads.index', 'ad deleted Successfully', '  Ad is not delete Error');
     }
 }

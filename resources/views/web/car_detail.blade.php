@@ -1,32 +1,32 @@
 @extends('web.layout.app')
 @section('content')
-    <?php $images = explode(',',$ad->images);
+<?php $images = explode(',',$ad->images);
           $docs = explode(',',$ad->document_file);
     ?>
 <section class="caradDetailBabnner py-5">
     <div class="container">
         <div class="owl-carousel carousel_se_02_carousel owl-theme">
             @if(count($images) == 0)
-                <div class="item">
-                    <div class="carAd_img_wraper">
-                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                    </div>
+            <div class="item">
+                <div class="carAd_img_wraper">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
-                <div class="item">
-                    <div class="carAd_img_wraper">
-                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                    </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
-                <div class="item">
-                    <div class="carAd_img_wraper">
-                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                    </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
+            </div>
             @elseif(count($images) == 1)
             @foreach($images as $image)
             <div class="item">
                 <div class="carAd_img_wraper">
-                    <img src="{{ asset($image) }}">
+                    <img src="{{url($image) }}">
                 </div>
             </div>
             <div class="item">
@@ -41,31 +41,26 @@
             </div>
             @endforeach
             @elseif(count($images) == 2)
-                @foreach($images as $image)
-                    <div class="item">
-                        <div class="carAd_img_wraper">
-                            <img src="{{ asset($image) }}">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="carAd_img_wraper">
-                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                        </div>
-                    </div>
-                @endforeach
+            @foreach($images as $image)
+            <div class="item">
+                <div class="carAd_img_wraper">
+                    <img src="{{ asset($image) }}">
+                </div>
+            </div>
+            @endforeach
+            <div class="item">
+                <div class="carAd_img_wraper">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
             @else
-                @foreach($images as $image)
-                    <div class="item">
-                        <div class="carAd_img_wraper">
-                            <img src="{{ asset($image) }}">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="carAd_img_wraper">
-                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                        </div>
-                    </div>
-                @endforeach
+            @foreach($images as $image)
+            <div class="item">
+                <div class="carAd_img_wraper">
+                    <img src="{{ asset($image) }}">
+                </div>
+            </div>
+            @endforeach
             @endif
 
         </div>
@@ -79,10 +74,11 @@
                 <h5 class="store_addres">{{getCompany($ad->company_id)}}</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h5 class="store_addres">@if($ad->vendor_id !=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h5>
+                <h5 class="store_addres">@if($ad->vendor_id!=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h5>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h5 class="store_addres">@if($ad->vendor_id !=null){{getCityByVendor($ad->vendor_id)}}@else{{getCityByVendor($ad->user_id)}}@endif</h5>
+            <h5 class="store_addres">{{$ad->city}}</h5>
+                <!-- <h5 class="store_addres">@if($ad->vendor_id!=null){{getCityByVendor($ad->vendor_id)}}@else{{getCityByVendor($ad->user_id)}}@endif</h5> -->
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
                 <h5 class="store_addres">Price : {{$ad->price}}</h5>
@@ -101,60 +97,60 @@
         </div>
         <div class="owl-carousel carousel_se_02_carousel owl-theme">
             @if($docs && count($docs) == 0)
-                <div class="item">
-                    <div class="carAd_img_wraper doc_img">
-                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                    </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
-                <div class="item">
-                    <div class="carAd_img_wraper doc_img">
-                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                    </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
-                <div class="item">
-                    <div class="carAd_img_wraper doc_img">
-                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                    </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
+            </div>
             @elseif($docs && count($docs) == 1)
-                @foreach($docs as $doc)
-                    <div class="item">
-                        <div class="carAd_img_wraper doc_img">
-                            <img src="{{ asset($doc) }}">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="carAd_img_wraper doc_img">
-                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="carAd_img_wraper doc_img">
-                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                        </div>
-                    </div>
-                @endforeach
+            @foreach($docs as $doc)
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset($doc) }}">
+                </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
+            @endforeach
             @elseif($docs && count($docs) ==2)
-                @foreach($docs as $doc)
-                    <div class="item">
-                        <div class="carAd_img_wraper doc_img">
-                            <img src="{{ asset($doc) }}">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="carAd_img_wraper doc_img">
-                            <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                        </div>
-                    </div>
-                @endforeach
+            @foreach($docs as $doc)
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset($doc) }}">
+                </div>
+            </div>
+            @endforeach
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
             @else
-                @foreach($docs as $doc)
-                    <div class="item">
-                        <div class="carAd_img_wraper doc_img">
-                            <img src="{{ asset($doc) }}">
-                        </div>
-                    </div>
-                @endforeach
+            @foreach($docs as $doc)
+            <div class="item">
+                <div class="carAd_img_wraper doc_img">
+                    <img src="{{ asset($doc) }}">
+                </div>
+            </div>
+            @endforeach
             @endif
         </div>
 
@@ -200,7 +196,28 @@
                 </div>
                 <div class="d-grid gap-2 mt-3">
                     @if(isset(auth()->user()->id))
-                    <a @if(isset($ad->vendor_id)) href="{{url('user/chat/'.$ad->vendor_id)}}" @elseif($ad->vendor_id == auth()->user()->id) href="#" @elseif($ad->user_id == auth()->user()->id) href="#"  @else href="{{url('vendor/chat/'.$ad->user_id)}}" @endif class="btn btn-primary get_appointment">CONTACT VIA MESSAGE
+                    <a @if(auth()->user()->type == 'vendor')
+                            @if(isset($ad->vendor_id))
+                                @if($ad->vendor_id == auth()->user()->id) href="#"
+                                @else
+                                href="#"
+                                @endif
+                            @else
+                                href="{{url('vendor/chat/'.$ad->user_id)}}"
+                            @endif
+                        @else
+                        @if(isset($ad->user_id))
+                                @if($ad->user_id == auth()->user()->id)
+                                href="#"
+                                @else
+                                href="#"
+                                @endif
+                            @else
+                                href="{{url('user/chat/'.$ad->vendor_id)}}"
+                            @endif
+                        @endif
+                         class="btn btn-primary
+                        get_appointment">CONTACT VIA MESSAGE
                         <img src="{{ asset('public/assets/images/messageicon.svg') }}">
                     </a>
                     @else
@@ -234,6 +251,7 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
 }
+
 function myFunction() {
     toastr.warning('Please login first');
 }

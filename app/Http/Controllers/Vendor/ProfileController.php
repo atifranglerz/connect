@@ -75,7 +75,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {;
+    {
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -90,8 +90,8 @@ class ProfileController extends Controller
         $vendor =  Vendor::findOrFail($id);
         if ($request->file('image')) {
             $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/ads/', $doucments);
-            $file = 'public/image/ads/' . $doucments;
+            $request->file('image')->move('public/image/profile/', $doucments);
+            $file = 'public/image/profile/' . $doucments;
             $vendor->image = $file ;
         }
         $vendor->name = $request->name ;

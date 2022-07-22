@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\ChatFavorite;
+use App\Models\webNotification;
 use App\Models\User;
 use App\Models\Vendor;
 use Carbon\Carbon;
@@ -219,21 +220,61 @@ class ChatController extends Controller
     public function status(Request $request)
     {
         // return response()->json($request);
+        $id = $request->id;
         $auth_id = Auth::id();
 
         $user = Vendor::where('id', $auth_id)->first();
         $user->online_status = Carbon::now();
         $user->save();
 
-        $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
-        $data = view('vendor.chat.chatteduser')->with(['customer' => $customer])->render();
+        $message = Chat::Where([['vendor_receiver_id', $auth_id], ['customer_sender_id', $id],['vendor_deleted', '=', 0],['seen',0]])->orderBy('created_at')->get();
+        foreach ($message as $data) {
+            $data->seen = 1;
+            $data->save();
+        }
 
-        $total_unread = Chat::where([['vendor_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
+        $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
+        $customer = view('vendor.chat.chatteduser')->with(['customer' => $customer])->render();
+
+        $msg_unread = Chat::where([['vendor_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
+        $notify_unread = webNotification::where([['vendor_id', auth()->user()->id], ['seen', 0]])->count('seen');
+        
+        
+        $chated_user = User::find($id);
+        $data = view('vendor.chat.new')->with(['message' => $message, 'chated_user' => $chated_user])->render();
+
+ 
         return response()->json([
             'success' => 'Status updated successfully',
-            'unread' => $total_unread,
+            'msg' => $msg_unread,
+            'notificat' => $notify_unread,
             'message' => $data,
+            'data' => $message,
+            'customer' => $customer,
 
+        ]);
+    }
+
+
+    public function chatted(Request $request)
+    {
+        $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
+        $customer = view('vendor.chat.chatteduser')->with(['customer' => $customer])->render();
+
+        return response()->json([
+            'success' => 'Status updated successfully',
+            'customer' => $customer,
+
+        ]);
+    }
+
+
+    public function notification(Request $request){
+        $notification = webNotification::find($request->id);
+        $notification->seen = 1;
+        $notification->save();
+        return response()->json([
+            'success' => 'Status updated successfully',
         ]);
     }
 

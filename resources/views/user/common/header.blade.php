@@ -6,7 +6,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-custom-orange shadow">
         <div class="container-lg container-fluid">
-            <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button"  id="menuToggle">
+            <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button" id="menuToggle">
                 <span class=" fa-solid fa-bars"></span>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -14,7 +14,9 @@
                     <img src="{{ asset('public/assets/images/repair-my-car-logos/repairmycarlogo.png') }}">
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class=" fa-solid fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -38,33 +40,22 @@
                 <div class="login_sinup">
                     <div class="accoutntData">
 
-                    <?php
-                        $unread = \App\Models\Chat::where([['customer_receiver_id',auth()->user()->id],['seen',0]])->count('seen');
-                   ?>
-                    
-                    
-                        <a href="{{ route('user.chat.index') }}" ><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
+                        <?php
+                            $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
+                            $notification = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->get();
+                            $unread_noty = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->count('seen');
+                            ?>
+
+                        <a href="{{ route('user.chat.index') }}"><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
                     </div>
                     <div class="accoutntData">
-                        <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i></a>
+                        <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i><span id="notfication" class="chatbox-option__notification notify text-red">{{$unread_noty}}</span></a>
                         <div class="notification_tooltip " id="notification_tolltip">
                             <ul class="notification_list shadow">
-                                <li><a href="#">Your Received a message from Ali</a> <a href="#"><i class="bi bi-plus"></i></a>
+                                @foreach($notification as $data)
+                                <li><a href="{{ $data->links }}" class="notification" id="{{$data->id}}">{{$data->title}}</a> <a href="#"><i class="bi bi-plus"></i></a>
                                 </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -74,10 +65,12 @@
                             <ul class="notification_list shadow">
                                 <li><a href="{{ route('user.profile.index') }}">Profile</a>
                                 </li>
-                                <li><a href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                <li><a href=""
+                                        onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                         Logout<span class="fas fa-sign-out-alt"></span>
                                     </a>
-                                    <form id="frm-logout" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                    <form id="frm-logout" action="{{ route('user.logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
                                 </li>
@@ -86,9 +79,7 @@
                         </div>
 
                     </div>
-
                 </div>
-
             </div>
         </div>
     </nav>

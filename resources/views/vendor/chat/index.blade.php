@@ -1,6 +1,7 @@
 @extends('vendor.layout.app')
 @section('content')
-<section class="main_wraper d-flex" style="background-image:url(https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg);background-size: contain">
+<section class="main_wraper d-flex"
+    style="background-image:url(https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg);background-size: contain">
     <div class="chat_overlay d-none"></div>
     <div class="side_inbox">
         <div class="side_inbox_search_sec text-center">
@@ -17,31 +18,37 @@
             <a href="#" class="favorite d-flex align-items-center" id="{{$data->customer->id}}">
                 <?php
                         $unread = \App\Models\Chat::where([['vendor_receiver_id',auth()->user()->id],['customer_sender_id',$data->customer_id],['seen',0]])->count('seen');
+                        $user = \App\Models\User::where('id',$data->customer->id)->first();
+                        $gettime = strtotime($user->online_status)+8;
+                        $now = strtotime(Carbon\Carbon::now());
                    ?>
                 <div class="inbox_contact justify-content-between">
-                    <p id="userNotify">{{$unread}}</p>
-                    <div class="contact_img">
+                    <div class="position-relative contact_img">
+                        <p id="userNotify">{{$unread}}</p>
                         <img src="{{ asset($data->customer->image)}}">
+                        @if($now < $gettime) <h1
+                            style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
+                            class="online-offline-dot">.</h1>
+                            @else
+                            <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
+                                class="online-offline-dot">.</h1>
+                            @endif
                     </div>
                     <div class="name_of_contact">
                         <p class="mb-0">{{$data->customer->name}}</p>
                     </div>
-                    <div>
-                        <div class="chat_toggle_button">
-                            <a href="#" id="chat_toggle"><span class="bi bi-three-dots-vertical text-white"></span></a>
-                            <div class="submenue shadow " id="delet_message_toggle">
-                                <ul>
-                                    <li><a href="#" class="chatted_delete d-block" id="{{$data->customer->id}}">
-                                            <span class="fa fa-trash text-danger" aria-hidden="true"
-                                                style="margin-right: 8px"></span>
-                                            delete</a></li>
-                                </ul>
-                            </div>
+                    <div class="chat_toggle_button">
+                        <a href="#" id="chat_toggle"><span class="bi bi-three-dots-vertical text-white"></span></a>
+                        <div class="submenue shadow " id="delet_message_toggle">
+                            <ul>
+                                <li><a href="#" class="chatted_delete d-block" id="{{$data->customer->id}}">
+                                        <span class="fa fa-trash text-danger" aria-hidden="true"
+                                            style="margin-right: 8px"></span>
+                                        delete</a></li>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
-
             </a>
             @endforeach
         </div>
@@ -76,7 +83,6 @@
 
 @section('script')
 <script>
-
 //show selected file
 function readURL(input) {
     $('#showImage').removeClass('d-none');
@@ -93,6 +99,7 @@ function readURL(input) {
 
 $(document).on('click', '.favorite', function() {
     var id = $(this).attr('id');
+    $(".favorite").removeClass('active');
     // console.log(id);
     $.ajax({
         type: "POST",
@@ -115,6 +122,9 @@ $(document).on('click', '.favorite', function() {
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
             $('#notify').html(response.unread);
+            setTimeout(() => {
+                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+            }, 10);
         }
     });
 });
@@ -150,6 +160,28 @@ $(document).ready(function() {
 });
 
 
+setInterval(ajaxC, 10000);
+function ajaxC() {
+    var id = $('.favorite.active').attr('id');
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('vendor.chatted.status') }}",
+        data: {
+            'id': id
+        },
+        success: function(response) {
+            console.log(response);
+            $('#users').empty();
+            $('#users').append(response.customer);
+            $("#" + id).addClass('active');
+        }
+    });
+}
+
 
 $(document).on('click', '.delete', function() {
     var msg_id = $(this).attr('id');
@@ -170,6 +202,9 @@ $(document).on('click', '.delete', function() {
             console.log(response);
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
+            setTimeout(() => {
+                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+            }, 10);
         }
     });
 });

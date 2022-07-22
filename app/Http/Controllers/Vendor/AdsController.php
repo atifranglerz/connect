@@ -45,6 +45,7 @@ class AdsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'city'=>'required',
             'car_images'=>'required',
             'files'=> 'required',
             'model' => 'required',
@@ -63,8 +64,8 @@ class AdsController extends Controller
             foreach ($request->file('car_images') as $data) {
                 //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $image);
-                $images[] = 'public/image/ads/' . $image;
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
             }
             /*if ($request->has('old_image')) {
                 $old_image = $request->image;
@@ -76,8 +77,8 @@ class AdsController extends Controller
             $files = [];
             foreach ($request->file('files') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $doucments);
-                $files[] = 'public/image/ads/' . $doucments;
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
             }
 
             /*if ($request->has('old_image')) {
@@ -95,7 +96,10 @@ class AdsController extends Controller
         $ads->phone = $request->phone;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
+        $ads->city = $request->city;
+        $ads->country = $request->country;
         $ads->description = $request->description;
+
         $ads->vendor_id = Auth::id();
         $ads->save();
         return $this->message($ads, 'vendor.ads.index', 'Ads Create Successfully', 'Ads Create Error');
@@ -135,6 +139,7 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request;
         $request->validate([
             'model' => 'required',
             'company_id' => 'required',
@@ -152,8 +157,8 @@ class AdsController extends Controller
             foreach ($request->file('car_images') as $data) {
                 //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $image);
-                $images[] = 'public/image/ads/' . $image;
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
             }
             /*if ($request->has('old_image')) {
                 $old_image = $request->image;
@@ -165,8 +170,8 @@ class AdsController extends Controller
             $files = [];
             foreach ($request->file('files') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $doucments);
-                $files[] = 'public/image/ads/' . $doucments;
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
             }
 
             /*if ($request->has('old_image')) {
@@ -185,6 +190,8 @@ class AdsController extends Controller
         $ads->phone = $request->phone;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
+        $ads->city = $request->city;
+        $ads->country = $request->country;
         $ads->description = $request->description;
         $ads->vendor_id = Auth::id();
         $ads->update();

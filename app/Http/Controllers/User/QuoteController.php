@@ -15,13 +15,14 @@ use App\Models\VendorBid;
 use App\Models\VendorQuote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\SendNotification;
 
 class QuoteController extends Controller
 {
     public function index()
     {
         $data['page_title'] = 'quote/index ';
-        $data['user_bid'] = UserBid::where('user_id', Auth::id())->get();
+        $data['user_bid'] = UserBid::where([['user_id', Auth::id()],['offer_status','!=','ordered']])->get();
         return view('user.quote.index', $data);
     }
 
@@ -86,8 +87,8 @@ class QuoteController extends Controller
             $images = [];
             foreach ($request->file('car_images') as $data) {
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $image);
-                $images[] = 'public/image/ads/' . $image;
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
             }
             $imagefiles->user_bid_id = $quote->id;
             $imagefiles->car_image = implode(",", $images);
@@ -99,8 +100,8 @@ class QuoteController extends Controller
         $registrationfiles = new UserBidImage();
         if ($request->file('files')) {
             $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('files')->getClientOriginalExtension());
-            $request->file('files')->move('public/image/ads/', $doucments);
-            $file = 'public/image/ads/' . $doucments;
+            $request->file('files')->move('public/image/add/', $doucments);
+            $file = 'public/image/add/' . $doucments;
             $registrationfiles->user_bid_id = $quote->id;
             $registrationfiles->car_image = $file;
             $registrationfiles->type = 'file';
@@ -112,8 +113,8 @@ class QuoteController extends Controller
             $files = [];
             foreach ($request->file('doucment') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/ads/', $doucments);
-                $files[] = 'public/image/ads/' . $doucments;
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
             }
             $accidentailfile->user_bid_id = $quote->id;
             $accidentailfile->car_image = implode(",", $files);

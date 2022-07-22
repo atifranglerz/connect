@@ -42,6 +42,8 @@ class CreateVendorsTable extends Migration
             $table->string('billing_address');
             $table->integer('term_condition')->default(0);
             $table->dateTime('online_status')->nullable();
+            $table->string('type')->default('vendor');
+
 
             $table->rememberToken();
             $table->timestamps();

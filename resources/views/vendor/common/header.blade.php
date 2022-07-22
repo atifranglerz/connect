@@ -6,7 +6,8 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-custom-orange ">
         <div class="container-lg container-fluid">
-            <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button"  id="menuToggle"><!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class=" fa-solid fa-bars"></span></button> -->
+            <a href="#" class="sidebqar_toggler navbar-toggler d-block me-2" type="button" id="menuToggle">
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class=" fa-solid fa-bars"></span></button> -->
                 <span class=" fa-solid fa-bars"></span>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -14,7 +15,9 @@
                     <img src="{{ asset('public/assets/images/repair-my-car-logos/repairmycarlogo.png') }}">
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class=" fa-solid fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,33 +42,25 @@
                 </ul>
                 <div class="login_sinup">
                     <div class="accoutntData">
-                    <?php
+                        <?php
                         $unread = \App\Models\Chat::where([['vendor_receiver_id',auth()->user()->id],['seen',0]])->count('seen');
+                        $notification = \App\Models\webNotification::where([['vendor_id', auth()->user()->id], ['seen', 0]])->get();
+                        $unread_noty = \App\Models\webNotification::where([['vendor_id', auth()->user()->id], ['seen', 0]])->count('seen');
                    ?>
-                        <a href="{{ route('vendor.chat.index') }}" ><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
+                        <a href="{{ route('vendor.chat.index') }}"><i class="fa-solid fa-message"></i><span id="notify"
+                                class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
                     </div>
                     <div class="accoutntData">
-                        <a href="#" class="notify-btn" ><i class="fa-solid fa-bell"></i></a>
-                        <div class="notification_tooltip " id="notification_tolltip">
-                            <ul class="notification_list shadow">
-                                <li><a href="#">Your Received a message from Ali</a> <a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                                <li><a href="#">Your Received a message from Ali</a><a href="#"><i class="bi bi-plus"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+                         <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i><span id="notfication"
+                                class="chatbox-option__notification notify text-red">{{$unread_noty}}</span></a>
+                            <div class="notification_tooltip " id="notification_tolltip">
+                                <ul class="notification_list shadow">
+                                    @foreach($notification as $data)
+                                    <li><a href="{{ $data->links }}" class="notification"id="{{$data->id}}">{{$data->title}}</a> <a href="#"><i class="bi bi-plus"></i></a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                     </div>
                     <div class="accoutntData">
                         <a href="#" id="Logout_Profile"><i class="fa-solid fa-user"></i></a>
@@ -73,8 +68,11 @@
                             <ul class="notification_list shadow">
                                 <li><a href="{{route('vendor.profile.index')}}">Profile</a>
                                 </li>
-                                <li><a href="" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout<span class="fas fa-sign-out-alt"></span></a></li>
-                                <form id="frm-logout" action="{{ route('vendor.logout') }}" method="POST" style="display: none;">
+                                <li><a href=""
+                                        onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout<span
+                                            class="fas fa-sign-out-alt"></span></a></li>
+                                <form id="frm-logout" action="{{ route('vendor.logout') }}" method="POST"
+                                    style="display: none;">
                                     @csrf
                                 </form>
                             </ul>

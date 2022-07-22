@@ -44,13 +44,13 @@ class AuthController extends Controller
 //            $file =$request->file('images');
 //            $extension = $file->getClientOriginalExtension(); // getting image extension
 //            $filename = time().'.' . $extension;
-//            $request->file('images')->move('public/image/user/', $filename);
-//            $file = 'public/image/user/' . $filename;
+//            $request->file('images')->move('public/image/profile/', $filename);
+//            $file = 'public/image/profile/' . $filename;
 //            $user->image = $file ;
             foreach($request->file('images') as $image)
             {
                 $name=time().'.' . $image->getClientOriginalExtension();
-                $name=$image->move('public/image/user/', $name);
+                $name=$image->move('public/image/profile/', $name);
                 $user['image']=$name;
             }
         }

@@ -37,8 +37,8 @@ class profileController extends Controller
         $user =  user::findOrFail($id);
         if ($request->file('image')) {
             $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/ads/', $doucments);
-            $file = 'public/image/ads/' . $doucments;
+            $request->file('image')->move('public/image/profile/', $doucments);
+            $file = 'public/image/profile/' . $doucments;
             $user->image = $file ;
         }
         $user->name = $request->name ;

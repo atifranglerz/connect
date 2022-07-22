@@ -171,12 +171,17 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');
         Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
         Route::post('chat/online/status', 'ChatController@status')->name('online.status');
+        Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
+        Route::post('notification', 'ChatController@notification')->name('notification');
+
 
         Route::get('orders', 'ordersController@index')->name('orders');
         Route::get('create/order', 'ordersController@create');
         Route::get('fullfillment/{id}', 'ordersController@fullfillment')->name('fullfillment');
         Route::get('order/all-active','ordersController@order_all')->name('all-active-order');
         Route::get('order/index','ordersController@active_order')->name('order/index');
+        Route::post('queryChat/', 'ordersController@queryChat')->name('queryChat');
+
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('requested-inspections', 'QuotesController@requestedInspections');
         Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
@@ -229,6 +234,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
          Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');
         Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
         Route::post('chat/online/status', 'ChatController@status')->name('online.status');
+        Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
+        Route::post('notification', 'ChatController@notification')->name('notification');
 
 
         /* Logout */
@@ -246,6 +253,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
+        Route::get('order/summary/{id}', 'OrderController@summary')->name('order.summary');
+
 
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');

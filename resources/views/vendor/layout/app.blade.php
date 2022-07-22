@@ -380,32 +380,57 @@
     });
 </script>
 <script>
-        setInterval(ajaxCall, 5000);
+       
+        setInterval(ajaxCall, 1000);
+
         function ajaxCall() {
-            $(".favorite.active").trigger('click');
-            var c_id = $('.favorite.active').attr('id');
-            // alert(c_id);
-            var id = 1;
-            console.log(id);
+            var id = $('.favorite.active').attr('id');
             $.ajax({
-            type: "POST",
-            dataType: "json",
-            headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-            url: "{{ route('vendor.online.status') }}",
-            data: {
-                'id': id
-            },
-            success: function(response) {
-                console.log(response);
-                $('#users').empty();
-                $('#users').append(response.message);
-                $("#" + c_id).addClass('active');
-                $('#notify').html(response.unread);
-            }
-        });
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('vendor.online.status') }}",
+                data: {
+                    'id': id
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('#notify').html(response.msg);
+                    $('#notfication').html(response.notificat);
+                    $('.cahtting_messages').append(response.message);
+                    if(response.data!=''){
+                        setTimeout(() => {
+                            $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+                        }, 100);
+                    }
+
+                }
+            });
         }
+
+
+
+
+        $(document).on('click', '.notification', function() {
+                var id = $(this).attr('id');
+                console.log(id);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{ route('vendor.notification') }}",
+                    data: {
+                        'id': id
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    }
+                });
+            });
     </script>
 </body>
 </html>

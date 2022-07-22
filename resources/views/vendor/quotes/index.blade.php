@@ -14,7 +14,7 @@
 
                     <h4 class="sec_main_heading text-center mb-0">ALL QUOTES</h4>
 
-                    {{--                        <p class="sec_main_para text-center">Select your preferred garage</p>--}}
+                    {{--  <p class="sec_main_para text-center">Select your preferred garage</p>--}}
 
                 </div>
 
@@ -33,15 +33,9 @@
 
 
                         <?php
-
-                                $img = \App\Models\UserBidImage::where('user_bid_id',$value->user_bit_id)->where('type','image')->oldest()->first();
-
-
-
-
-                                $img1=Explode(",",$img->car_image);
-                                ?>
-
+                            $img = \App\Models\UserBidImage::where('user_bid_id',$value->user_bit_id)->where('type','image')->oldest()->first();
+                            $img1=Explode(",",$img->car_image);
+                        ?>
                         <img src="{{ asset($img1[0]) }}">
 
                     </div>
