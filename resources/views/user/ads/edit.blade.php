@@ -26,39 +26,15 @@
                                         $img1=Explode(",",$ads->images);
                                         $docx=Explode(",",$ads->document_file);
                                     ?>
-                                    <div style="hight: 70px;">
-                                        @foreach($img1 as $img1)
-                                        <img src="{{ asset($img1) }}" width="60px" height="40px">
-                                        @endforeach
+                                    <div class="car_images">
                                     </div>
-                                    <div class="input-images">
-                                    </div>
-                                    <!-- <label class="img_wraper_label">
-                                          <div class="file_icon_wraper">
-                                            <img src="assets/images/fileuploadicon.svg">
-                                          </div>
-                                          <p class="mb-0">Upload Car image</p>
-                                          <input type="file" size="60" >
-                                        </label> -->
                                     @error('car_images')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-3">
-                                    <div style="hight: 70px;">
-                                        @foreach($docx as $img)
-                                        <img src="{{ asset($img) }}" width="60px" height="40px">
-                                        @endforeach
+                                    <div class="doc_images">
                                     </div>
-                                    <div class="input-images-3">
-                                    </div>
-                                    <!-- <label class="img_wraper_label">
-                                          <div class="file_icon_wraper">
-                                            <img src="assets/images/fileuploadicon.svg">
-                                          </div>
-                                          <p class="mb-0">Upload Car image</p>
-                                          <input type="file" size="60" >
-                                        </label> -->
                                     @error('files')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
@@ -191,4 +167,29 @@
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+<script>
+
+$(function() {
+    let preloaded = [{
+        id: 1, src: '{{asset($ads->images)}}'},
+     ];
+    $('.car_images').imageUploader({
+        preloaded: preloaded,
+        maxFiles: 3,
+    });
+});
+
+$(function() {
+    let preloaded = [{
+        id: 1,
+        src: '{{asset($ads->document_file)}}'
+    }, ];
+    $('.doc_images').imageUploader({
+        preloaded: preloaded,
+        maxFiles: 3,
+    });
+});
+</script>
 @endsection

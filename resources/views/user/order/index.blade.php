@@ -44,7 +44,7 @@
                                 <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>
                                 </a>
-                                <a href="{{route('user.order.show',$order->id)}}" class="btn-secondary">VIEW DETAILS</a>
+                                <a href="{{route('user.order.summary',$order->id)}}" class="btn-secondary">VIEW DETAILS</a>
                             </div>
                         </div>
                     </div>

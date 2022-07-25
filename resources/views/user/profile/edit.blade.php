@@ -75,7 +75,8 @@
     <script>
         $(function() {
             let preloaded = [
-                {id: 1, src: 'https://picsum.photos/500/500?random=1'},
+                {id: 1,
+                src: '{{asset($profile->image)}}'},
             ];
             $('#profileImage').imageUploader({
                 preloaded: preloaded,

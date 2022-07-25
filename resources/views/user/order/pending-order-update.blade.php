@@ -44,30 +44,66 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="row">
-      <div class="col-lg-12">
-        <div class="over_view_part carad_data">
-          <h3 class=" text-center mb-5">LEGAL DOCS</h3>
-        </div>
-      </div>
-    </div> -->
+        <?php 
+        $images = explode(',',$bidfile->car_image);
+        ?>
         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5">
+            @if(count($images) == 0)
             <div class="item">
                 <div class="carAd_img_wraper doc_img customer_dashboard">
-                    <img src="assets/images/doc1.jpg">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
             </div>
             <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                    <img src="assets/images/doc2.jpg">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
             </div>
             <div class="item">
-                <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                    <img src="assets/images/doc3.jpg">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
                 </div>
             </div>
-
+            @elseif(count($images) == 1)
+            @foreach($images as $image)
+            <div class="item">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{url($image) }}">
+                </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
+            <div class="item">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
+            @endforeach
+            @elseif($images && count($images) ==2)
+            @foreach($images as $image)
+            <div class="item">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset($image) }}">
+                </div>
+            </div>
+            @endforeach
+            <div class="item">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                </div>
+            </div>
+            @else
+            @foreach($images as $image)
+            <div class="item">
+                <div class="carAd_img_wraper doc_img customer_dashboard">
+                    <img src="{{ asset($image) }}">
+                </div>
+            </div>
+            @endforeach
+            @endif
         </div>
         <div class="row mt-5">
             <div class=" col-xl-7 col-lg-9 col-md-9 col-sm-11 mx-auto">
@@ -132,61 +168,13 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="row  mt-5">
-      <div class="col-lg-12">
-
-        <div class="all_quote_card  vendor_rply_dtlL _text">
-          <div class="over_view_part carad_data vendor_detail">
-            <h3 class=" text-center mb-5">CAR DETAILS</h3>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="row mt-1 g-3">
-                <div class="col-lg-6 col-md-6">
-                  <div class="d-grid gap-2 ">
-                    <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Model
-                    </button>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="d-grid gap-2 ">
-                    <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Make
-                    </button>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="d-grid gap-2 ">
-                    <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Type of Service
-                    </button>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="d-grid gap-2 ">
-                    <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Customer Name
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
         <div class="row">
             <div class="col-xl-5 col-lg-6  col-md-8 mx-auto">
                 <div class="row mt-5 mb-4 g-3">
-                    <!--  <div class="col-lg-6 col-md-6">
-            <div class="d-grid gap-2 mt-lg-3 ">
-              <button class="btn text-center btn-primary get_quot block get_appointment " type="button">CANCEL ORDER
-              </button>
-            </div>
-          </div> -->
                     <div class="col-lg-6 col-md-6 col-sm-4 mx-auto">
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a href="{{route('user.order.summary',$order->id)}}" class="btn btn-secondary block get_appointment">MARK AS COMPLETE</a>
+                            <a  href="{{route('user.order.show',$order->id)}}"
+                                class="btn btn-secondary block get_appointment">MARK AS COMPLETE</a>
                             </button>
                         </div>
                     </div>

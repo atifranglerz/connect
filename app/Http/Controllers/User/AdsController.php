@@ -153,18 +153,18 @@ class AdsController extends Controller
             'mileage' => 'required',
         ]);
         $ads = Ads::findOrFail($id);
-        if ($request->file('car_images')) {
+        if ($request->file('images')) {
             $images = [];
-            foreach ($request->file('car_images') as $data) {
+            foreach ($request->file('images') as $data) {
                 //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $image);
                 $images[] = 'public/image/add/' . $image;
             }
-            /*if ($request->has('old_image')) {
-            $old_image = $request->image;
-            unlink($old_image);
-            }*/
+            // if ($request->has('old_image')) {
+            // $old_image = $request->image;
+            // unlink($old_image);
+            // }
             $ads->images = implode(",", $images);
         }
 

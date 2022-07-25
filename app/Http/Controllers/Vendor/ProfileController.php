@@ -88,11 +88,15 @@ class ProfileController extends Controller
              'conform_password'=>'required',
         ]);
         $vendor =  Vendor::findOrFail($id);
-        if ($request->file('image')) {
-            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/profile/', $doucments);
-            $file = 'public/image/profile/' . $doucments;
-            $vendor->image = $file ;
+        if ($request->file('images')) {
+            $images = [];
+            foreach ($request->file('images') as $data) {
+                //dd($data);
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $vendor->image = implode(",", $images);
         }
         $vendor->name = $request->name ;
         $vendor->email = $request->email ;

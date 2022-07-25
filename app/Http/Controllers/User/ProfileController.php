@@ -27,6 +27,8 @@ class profileController extends Controller
 
     public function updateProfile(Request $request, $id)
     {
+        return $request;
+
         $request->validate([
             'name' => 'required',
             'phone'=>'required',
@@ -35,11 +37,15 @@ class profileController extends Controller
             'post_box' =>'required',
         ]);
         $user =  user::findOrFail($id);
-        if ($request->file('image')) {
-            $doucments = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/profile/', $doucments);
-            $file = 'public/image/profile/' . $doucments;
-            $user->image = $file ;
+        if ($request->file('images')) {
+            $images = [];
+            foreach ($request->file('images') as $data) {
+                //dd($image);
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $user->image = implode(",", $images);
         }
         $user->name = $request->name ;
         $user->phone = $request->phone ;

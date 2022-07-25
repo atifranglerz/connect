@@ -26,39 +26,25 @@
                                         $img1=Explode(",",$ads->images);
                                         $docx=Explode(",",$ads->document_file);
                                     ?>
-                                    <div style="hight: 70px;">
+                                    <!-- <div style="hight: 70px;">
                                         @foreach($img1 as $img1)
                                         <img src="{{ asset($img1) }}" width="60px" height="40px">
                                         @endforeach
-                                    </div>
+                                    </div> -->
                                     <div class="input-images">
                                     </div>
-                                    <!-- <label class="img_wraper_label">
-                                              <div class="file_icon_wraper">
-                                                <img src="assets/images/fileuploadicon.svg">
-                                              </div>
-                                              <p class="mb-0">Upload Car image</p>
-                                              <input type="file" size="60" >
-                                            </label> -->
                                     @error('car_images')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-3">
-                                    <div style="hight: 70px;">
+                                    <!-- <div style="hight: 70px;">
                                         @foreach($docx as $img)
                                         <img src="{{ asset($img) }}" width="60px" height="40px">
                                         @endforeach
-                                    </div>
+                                    </div> -->
                                     <div class="input-images-3">
                                     </div>
-                                    <!-- <label class="img_wraper_label">
-                                              <div class="file_icon_wraper">
-                                                <img src="assets/images/fileuploadicon.svg">
-                                              </div>
-                                              <p class="mb-0">Upload Car image</p>
-                                              <input type="file" size="60" >
-                                            </label> -->
                                     @error('files')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
@@ -199,53 +185,28 @@
     </div>
 </section>
 @endsection
-{{--@section('script')--}}
-{{--    <script>--}}
-{{--        $.ajaxSetup({--}}
-{{--            headers: {--}}
-{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--            }--}}
-{{--        });--}}
-{{--        $(document).ready(function () {--}}
-{{--            //alert("abc");--}}
-{{--            $('#edit').on('submit', function (e) {--}}
-{{--                e.preventDefault();--}}
-{{--                var id = {{$ads->id}};--}}
-{{--                let formData = new FormData(this);--}}
-{{--                $.ajax({--}}
-{{--                    type: 'Put',--}}
-{{--                    url: "{{ url('vendor/ads') }}" + '/' + id,--}}
-{{--                    data: formData,--}}
-{{--                    contentType: false,--}}
-{{--                    processData: false,--}}
-{{--                    success: (response) => {--}}
-{{--                        if (response) {--}}
-{{--                            this.reset();--}}
-{{--                            alert('Image has been uploaded successfully');--}}
-{{--                        }--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--<script type="text/javascript">--}}
-{{--    $.ajaxSetup({--}}
-{{--        headers: {--}}
-{{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--        }--}}
-{{--    });--}}
-{{--    $(".btn-submit").click(function(e){--}}
-{{--        e.preventDefault();--}}
-{{--        var fd = new FormData (this) ;--}}
-{{--        var id = 5 ;--}}
-{{--        $.ajax({--}}
-{{--            type:'PUT',--}}
-{{--            url:"{{ route('ads.update' , 4 ) }}" ,--}}
-{{--            data: fd ,--}}
-{{--            success:function(data){--}}
-{{--                alert(data);--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
-{{--@endsection--}}
+@section('script')
+<script>
+$(function() {
+    let preloaded = [{
+        id: 1,
+        src: '{{asset($ads->images)}}'
+    }, ];
+    $('.input-images').imageUploader({
+        preloaded: preloaded,
+        maxFiles: 3,
+    });
+});
+
+$(function() {
+    let preloaded = [{
+        id: 1,
+        src: '{{asset($ads->document_file)}}'
+    }, ];
+    $('.input-images-3').imageUploader({
+        preloaded: preloaded,
+        maxFiles: 3,
+    });
+});
+</script>
+@endsection

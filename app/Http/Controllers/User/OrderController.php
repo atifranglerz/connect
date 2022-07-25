@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\UserBid;
 use App\Models\VendorBid;
+use App\Models\UserBidImage;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -55,8 +56,8 @@ class OrderController extends Controller
     {
         $page_title = "Completed Order";
         $order = Order::findOrFail($id);
-        return view('user.order.pending-order-update', compact('page_title','order'));
-        // return view('user.order.completed-order', compact('page_title','order'));
+        $bidfile = UserBidImage::where([['user_bid_id',$order->user_bid_id],['type','registerImage']])->first();
+        return view('user.order.pending-order-update', compact('page_title','order','bidfile'));
     }
 
 
@@ -64,7 +65,7 @@ class OrderController extends Controller
     {
         $page_title = "Completed Order";
         $order = Order::findOrFail($id);
-        // return view('user.order.pending-order-update', compact('page_title','order'));
+        $vendorBid = VendorBid::find($order->vendor_bid_id);
         return view('user.order.completed-order', compact('page_title','order'));
     }
 
