@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
     <title>Repair my Car</title>
 </head>
 <body>
@@ -156,6 +156,7 @@
 <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
 <script src="{{asset('public/assets/toastr/js/toastr.min.js')}}"></script>
 <script src="{{asset('public/assets/select2/js/select2.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/js/lightgallery-all.min.js"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 @yield('script')
 <!-- Sweet Alert -->
@@ -402,7 +403,7 @@
             var typeMsg = $("#typeMsg").val();
             if (typeMsg == "") {
                 return false;
-            } 
+            }
             else {
                 // $(".cahtting_messages").append('<div class="main_message"><div class="inbox_contact align-items-end justify-content-end top_main"><div class="message_txt_wraper"><p class="mb-2 text-end">11:20 AM, Today</p><p class="mb-0 message_txt second">' + typeMsg + '</p></div><div class="contact_img second_msg"><img src="assets/images/repair2.jpg"></div></div></div>');
                 var chat_message = $(".cahtting_messages");
@@ -438,13 +439,13 @@
             maxFiles:1,
         });
         $(".input-imagess-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><input type="file" name="files" size="60" ></label>   ');
-        
+
         $('.input-imagess-3').imageUploader({
             extensions: ['.png', '.jpg'],
             maxFiles:5,
         });
         $(".input-imagess-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Add Registration Copy Image <b class="small">(Format: png, jpg only)</b></p><input type="file" name="doucment[]" size="60" ></label>   ');
-       
+
     });
 
     (function ($) {

@@ -5,61 +5,80 @@
     ?>
 <section class="caradDetailBabnner py-5">
     <div class="container">
-        <div class="owl-carousel carousel_se_02_carousel owl-theme">
+        <h4 class="text-center mb-4 heading-color">CAR IMAGES</h4>
+        <div class="owl-carousel carousel_se_02_carousel owl-theme" id="carImages">
             @if(count($images) == 0)
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @elseif(count($images) == 1)
             @foreach($images as $image)
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{url($image) }}">
+            <a href="{{url($image) }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{url($image) }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
             @elseif(count($images) == 2)
             @foreach($images as $image)
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset($image) }}">
+            <a href="{{asset($image) }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset($image) }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @else
             @foreach($images as $image)
-            <div class="item">
-                <div class="carAd_img_wraper">
-                    <img src="{{ asset($image) }}">
+            <a href="{{asset($image) }}">
+                <div class="item">
+                    <div class="carAd_img_wraper">
+                        <img src="{{ asset($image) }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
             @endif
 
@@ -71,17 +90,17 @@
     <div class="container-lg container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h5 class="store_addres">{{getCompany($ad->company_id)}}</h5>
+                <h6 class="store_addres">Company: {{getCompany($ad->company_id)}}</h6>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h5 class="store_addres">@if($ad->vendor_id!=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h5>
+                <h6 class="store_addres">Country: @if($ad->vendor_id!=null){{getCountryByVendor($ad->vendor_id)}}@else{{getCountryByVendor($ad->user_id)}}@endif</h6>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-            <h5 class="store_addres">{{$ad->city}}</h5>
+            <h6 class="store_addres">City: {{$ad->city}}</h6>
                 <!-- <h5 class="store_addres">@if($ad->vendor_id!=null){{getCityByVendor($ad->vendor_id)}}@else{{getCityByVendor($ad->user_id)}}@endif</h5> -->
             </div>
             <div class="col-lg-3 col-md-6 col-sm-3">
-                <h5 class="store_addres">Price : {{$ad->price}}</h5>
+                <h6 class="store_addres">Price: {{$ad->price}}</h6>
             </div>
         </div>
     </div>
@@ -95,61 +114,79 @@
                 </div>
             </div>
         </div>
-        <div class="owl-carousel carousel_se_02_carousel owl-theme">
+        <div class="owl-carousel carousel_se_02_carousel owl-theme" id="carDocs">
             @if($docs && count($docs) == 0)
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @elseif($docs && count($docs) == 1)
             @foreach($docs as $doc)
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset($doc) }}">
+            <a href="{{ asset($doc) }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset($doc) }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            </a>
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
             @elseif($docs && count($docs) ==2)
             @foreach($docs as $doc)
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset($doc) }}">
+            <a href="{{ asset($doc) }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset($doc) }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
+            <a href="{{ asset('public/assets/images/no-preview.png') }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @else
             @foreach($docs as $doc)
-            <div class="item">
-                <div class="carAd_img_wraper doc_img">
-                    <img src="{{ asset($doc) }}">
+            <a href="{{ asset($doc) }}">
+                <div class="item">
+                    <div class="carAd_img_wraper doc_img">
+                        <img src="{{ asset($doc) }}">
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
             @endif
         </div>
@@ -235,6 +272,19 @@
 @endsection
 @section('script')
 <script>
+    $(function() {
+        $('#carImages, #carDocs').lightGallery({
+            thumbnail:true,
+            zoom: true,
+            fullScreen: true,
+            counter: true,
+            clone: true,
+            autoplayControls: false,
+            download: true,
+            share: false
+        });
+    });
+
 toastr.options = {
     "closeButton": true,
     "newestOnTop": false,
