@@ -139,9 +139,7 @@ class AdsController extends Controller
     public function update(Request $request, $id)
     {
         // return $request;
-
         $request->validate([
-
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',
@@ -153,9 +151,9 @@ class AdsController extends Controller
             'mileage' => 'required',
         ]);
         $ads = Ads::findOrFail($id);
-        if ($request->file('images')) {
+        if ($request->file('car_images')) {
             $images = [];
-            foreach ($request->file('images') as $data) {
+            foreach ($request->file('car_images') as $data) {
                 //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $image);
@@ -175,11 +173,6 @@ class AdsController extends Controller
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
             }
-
-            /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
-            }*/
             $ads->document_file = implode(",", $files);
         }
 

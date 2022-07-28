@@ -21,29 +21,33 @@
                             @csrf
                             @method('put')
                             <div class="row g-lg-3 g-2">
-                                <div class="col-lg-6 col-md-6 mb-3">
                                     <?php
-                                        $img1=Explode(",",$ads->images);
+                                        $images=Explode(",",$ads->images);
+                                        $img1 = $images[0];
+                                        if(isset($images[1])){
+                                            $img2 = $images[1];
+                                        }
+                                        if(isset($images[2])){
+                                            $img3 = $images[2];
+                                        }
                                         $docx=Explode(",",$ads->document_file);
+                                        $doc1 = $docx[0];
+                                        if(isset($docx[1])){
+                                            $doc2 = $docx[1];
+                                        }
+                                        if(isset($docx[2])){
+                                            $doc3 = $docx[2];
+                                        }
                                     ?>
-                                    <!-- <div style="hight: 70px;">
-                                        @foreach($img1 as $img1)
-                                        <img src="{{ asset($img1) }}" width="60px" height="40px">
-                                        @endforeach
-                                    </div> -->
-                                    <div class="input-images">
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    <div class="car_images">
                                     </div>
                                     @error('car_images')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-3">
-                                    <!-- <div style="hight: 70px;">
-                                        @foreach($docx as $img)
-                                        <img src="{{ asset($img) }}" width="60px" height="40px">
-                                        @endforeach
-                                    </div> -->
-                                    <div class="input-images-3">
+                                    <div class="doc_images">
                                     </div>
                                     @error('files')
                                     <div class="text-danger p-2">{{ $message }}</div>
@@ -170,12 +174,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <!-- <div class="col-lg-6 col-md-12">
-                                          <div class="d-grid gap-2 mt-lg-3 mb-4">
-                                            <button class="btn text-center btn-primary get_quot block get_appointment" type="button">GET QUOTES FROM PREFFERED GARAGES
-                                            </button>
-                                          </div>
-                                        </div> -->
                             </div>
                         </form>
                     </div>
@@ -187,26 +185,84 @@
 @endsection
 @section('script')
 <script>
+@if(isset($img3))
 $(function() {
-    let preloaded = [{
-        id: 1,
-        src: '{{asset($ads->images)}}'
-    }, ];
-    $('.input-images').imageUploader({
+    let preloaded = [
+        {id: 1, src: '{{asset($img1)}}'},
+        {id: 2, src: '{{asset($img2)}}'},
+        {id: 3, src: '{{asset($img3)}}'},
+    ];
+    $('.car_images').imageUploader({
         preloaded: preloaded,
+        imagesInputName: 'car_images',
+        preloadedInputName: 'old_car',
         maxFiles: 3,
     });
 });
+@elseif(isset($img2))
+$(function() {
+    let preloaded = [
+        {id: 1, src: '{{asset($img1)}}'},
+        {id: 2, src: '{{asset($img2)}}'},
+    ];
+    $('.car_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'car_images',
+        preloadedInputName: 'old_car',
+        maxFiles: 3,
+    });
+});
+@else
+$(function() {
+    let preloaded = [
+        {id: 1,src: '{{asset($img1)}}'},
+     ];
+    $('.car_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'car_images',
+        preloadedInputName: 'old_car',
+        maxFiles: 3,
+    });
+});
+@endif
 
+//update the documents images
+@if(isset($doc3))
 $(function() {
-    let preloaded = [{
-        id: 1,
-        src: '{{asset($ads->document_file)}}'
-    }, ];
-    $('.input-images-3').imageUploader({
+    let preloaded = [
+        {id: 1, src: '{{asset($doc1)}}'},
+        {id: 2, src: '{{asset($doc2)}}'},
+        {id: 3, src: '{{asset($doc3)}}'},
+    ];
+    $('.doc_images').imageUploader({
         preloaded: preloaded,
+        imagesInputName: 'doucment',
         maxFiles: 3,
     });
 });
+@elseif(isset($doc2))
+$(function() {
+    let preloaded = [
+        {id: 1, src: '{{asset($doc1)}}'},
+        {id: 2, src: '{{asset($doc2)}}'},
+    ];
+    $('.doc_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'doucment',
+        maxFiles: 3,
+    });
+});
+@else
+$(function() {
+    let preloaded = [
+        {id: 1,src: '{{asset($doc1)}}'},
+     ];
+    $('.doc_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'doucment',
+        maxFiles: 3,
+    });
+});
+@endif
 </script>
 @endsection

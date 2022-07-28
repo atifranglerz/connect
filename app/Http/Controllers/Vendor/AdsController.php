@@ -152,7 +152,7 @@ class AdsController extends Controller
             'mileage'=>'required',
         ]);
         $ads = Ads::findOrFail($id);
-        if ($request->file('car_images')) {
+        if($request->file('car_images')) {
             $images = [];
             foreach ($request->file('car_images') as $data) {
                 //dd($data);
@@ -160,24 +160,16 @@ class AdsController extends Controller
                 $data->move('public/image/add/', $image);
                 $images[] = 'public/image/add/' . $image;
             }
-            /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
-            }*/
             $ads->images = implode(",", $images);
         }
-        if ($request->file('files')) {
+
+        if ($request->file('doucment')) {
             $files = [];
-            foreach ($request->file('files') as $data) {
+            foreach ($request->file('doucment') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
             }
-
-            /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
-            }*/
             $ads->document_file = implode(",", $files);
         }
 

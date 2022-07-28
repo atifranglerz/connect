@@ -21,11 +21,27 @@
                             @csrf
                             @method('put')
                             <div class="row g-lg-3 g-2">
-                                <div class="col-lg-6 col-md-6 mb-3">
-                                    <?php
-                                        $img1=Explode(",",$ads->images);
+                                    <?php                                 
+                                        $images=Explode(",",$ads->images);
+                                        $img1 = $images[0];
+                                        if(isset($images[1])){
+                                            $img2 = $images[1];
+                                        }
+                                        if(isset($images[2])){;
+                                            $img3 = $images[2];
+                                        }
+
                                         $docx=Explode(",",$ads->document_file);
+                                        $doc1 = $docx[0];
+                                        if(isset($docx[1])){
+                                            $doc2 = $docx[1];
+                                        }
+                                        if(isset($docx[2])){
+                                            $doc3 = $docx[2];
+                                        }
+                                       
                                     ?>
+                                <div class="col-lg-6 col-md-6 mb-3">
                                     <div class="car_images">
                                     </div>
                                     @error('car_images')
@@ -170,26 +186,85 @@
 @endsection
 @section('script')
 <script>
-
+@if(isset($img3))
 $(function() {
-    let preloaded = [{
-        id: 1, src: '{{asset($ads->images)}}'},
+    let preloaded = [
+        {id: 1, src: '{{asset($img1)}}'},
+        {id: 2, src: '{{asset($img2)}}'},
+        {id: 3, src: '{{asset($img3)}}'},
+    ];
+    $('.car_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'car_images',
+        preloadedInputName: 'Custom Name',
+        maxFiles: 3,
+    });
+});
+@elseif(isset($img2))
+$(function() {
+    let preloaded = [
+        {id: 1, src: '{{asset($img1)}}'},
+        {id: 2, src: '{{asset($img2)}}'},
+    ];
+    $('.car_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'car_images',
+        preloadedInputName: 'Custom Name',
+        maxFiles: 3,
+    });
+});
+@else
+$(function() {
+    let preloaded = [
+        {id: 1,src: '{{asset($img1)}}'},
      ];
     $('.car_images').imageUploader({
         preloaded: preloaded,
+        imagesInputName: 'car_images',
+        preloadedInputName: 'Custom Name',
         maxFiles: 3,
     });
 });
+@endif
 
+
+//update the documents images
+@if(isset($doc3))
 $(function() {
-    let preloaded = [{
-        id: 1,
-        src: '{{asset($ads->document_file)}}'
-    }, ];
+    let preloaded = [
+        {id: 1, src: '{{asset($doc1)}}'},
+        {id: 2, src: '{{asset($doc2)}}'},
+        {id: 3, src: '{{asset($doc3)}}'},
+    ];
     $('.doc_images').imageUploader({
         preloaded: preloaded,
+        imagesInputName: 'doucment',
         maxFiles: 3,
     });
 });
+@elseif(isset($doc2))
+$(function() {
+    let preloaded = [
+        {id: 1, src: '{{asset($doc1)}}'},
+        {id: 2, src: '{{asset($doc2)}}'},
+    ];
+    $('.doc_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'doucment',
+        maxFiles: 3,
+    });
+});
+@else
+$(function() {
+    let preloaded = [
+        {id: 1,src: '{{asset($doc1)}}'},
+     ];
+    $('.doc_images').imageUploader({
+        preloaded: preloaded,
+        imagesInputName: 'doucment',
+        maxFiles: 3,
+    });
+});
+@endif
 </script>
 @endsection
