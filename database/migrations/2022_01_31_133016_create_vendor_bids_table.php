@@ -24,6 +24,7 @@ class CreateVendorBidsTable extends Migration
             $table->string('time');
             $table->text('description');
             $table->enum('status',['none', 'accept', 'cancel'])->nullable();
+            $table->string('new')->nullable();
             $table->timestamps();
         });
     }

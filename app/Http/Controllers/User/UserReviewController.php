@@ -36,6 +36,7 @@ class UserReviewController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $review_prev = UserReview::where('user_id',auth()->id())->where('garage_id',$request->garage_id)->first();
         if($review_prev){
 

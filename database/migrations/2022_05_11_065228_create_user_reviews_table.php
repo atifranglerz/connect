@@ -18,7 +18,7 @@ class CreateUserReviewsTable extends Migration
             $table->foreignId('user_id')->unsigned()->constrained('users')->onDelete('cascade');
             $table->double('rating')->default(0);
             $table->text('review')->nullable();
-            $table->foreignId('garage_id')->unsigned()->constrained('vendors')->onDelete('cascade');
+            $table->foreignId('garage_id')->unsigned()->constrained('garages')->onDelete('cascade');
             $table->timestamps();
         });
     }

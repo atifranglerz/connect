@@ -26,7 +26,6 @@ class PaymentController extends Controller
     {
 
     }
-
     public function payment_info (Request $request)
     {
         // return $request;

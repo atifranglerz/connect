@@ -181,6 +181,9 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('order/all-active','ordersController@order_all')->name('all-active-order');
         Route::get('order/index','ordersController@active_order')->name('order/index');
         Route::post('queryChat/', 'ordersController@queryChat')->name('queryChat');
+        Route::get('addfund/{id}', 'ordersController@addfund')->name('addfund');
+        Route::post('finalFund', 'ordersController@finalFund')->name('finalFund');
+        Route::post('completeInovoice', 'ordersController@completeInovoice')->name('completeInovoice');
 
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('requested-inspections', 'QuotesController@requestedInspections');
@@ -254,6 +257,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
         Route::get('order/summary/{id}', 'OrderController@summary')->name('order.summary');
+        Route::get('order/invoce/{id}', 'OrderController@invoce')->name('order.invoce');
+        Route::get('order/cancel/view/{id}', 'OrderController@cancelView')->name('order.cancel.view');
+        Route::post('order/cancel', 'OrderController@cancelOrder')->name('order.cancel');
+        Route::get('accept/resolution/{id}', 'OrderController@acceptResolution')->name('accept-resolution');
+        Route::get('reject/resolution/{id}', 'OrderController@rejectResolution')->name('reject-resolution');
 
 
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);

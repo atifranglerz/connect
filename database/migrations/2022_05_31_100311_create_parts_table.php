@@ -21,6 +21,7 @@ class CreatePartsTable extends Migration
             $table->string('service_quantity')->nullable();
             $table->string('service_rate')->nullable();
             $table->string('type')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

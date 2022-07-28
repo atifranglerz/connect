@@ -5,8 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\UserBid;
-use App\Models\VendorBid;
+use App\Models\Part;
 use App\Models\UserBidImage;
+use App\Models\VendorBid;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,56 +20,105 @@ class OrderController extends Controller
     public function index()
     {
         $page_title = "Active Order";
-        $userbidid = UserBid::where('user_id',auth()->id())->pluck('id');
-        $orders = Order::whereIn('user_bid_id',$userbidid)->get();
+        $userbidid = UserBid::where('user_id', auth()->id())->pluck('id');
+        $orders = Order::whereIn('user_bid_id', $userbidid)->get();
 
-        return view('user.order.index', compact('page_title','orders'));
+        return view('user.order.index', compact('page_title', 'orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $page_title = "Completed Order";
-        $order = Order::findOrFail($id);
-        $bidfile = UserBidImage::where([['user_bid_id',$order->user_bid_id],['type','registerImage']])->first();
-        return view('user.order.pending-order-update', compact('page_title','order','bidfile'));
+        $order = Order::with('vendorbid')->findOrFail($id);
+        $bidfile = UserBidImage::where([['user_bid_id', $order->user_bid_id], ['type', 'registerImage']])->first();
+        $vendorBid = VendorBid::with('part')->where('id', $order->vendor_bid_id)->first();
+       
+        $value = 0;
+        $newinvoce = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
+            $q->where('status', '=', '0');
+        }])->find($order->vendor_bid_id);
+        return view('user.order.pending-order-update', compact('page_title', 'order', 'bidfile', 'vendorBid','newinvoce'));
     }
 
+    public function invoce($id)
+    {
+        // return $id;
+        $value = 0;
+        $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
+            $q->where('status', '=', '0');
+        }])->where('id', '=', $id)->first();
+        return view('user.order.invoice', compact('data'));
+    }
+
+
+    public function acceptResolution($id)
+    {
+        $value = 0;
+        $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
+            $q->where('status', '=', '0');
+        }])->find($id);
+        $array = explode(",", $data->new);
+        $data->price = $data->price+ $array[0]; 
+        $data->vat = $data->vat+ $array[1]; 
+        $data->time = $data->time+ $array[2]; 
+        $data->net_total = $data->net_total+$array[0]+$array[1];
+        $data->new = NULL;
+        $data->save();
+        
+        $part = Part::where([['status',0],['vendor_bid_id',$id]])->get();
+        foreach($part as $part){
+            $part->status = 1;
+            $part->save();
+        }
+
+        $order = Order::where('vendor_bid_id',$id)->first();
+        return redirect()->route('user.order.show',$order->id)->with($this->data("Extra budget Request Accepted Successfully", 'success'));
+    
+    }
+
+    public function rejectResolution($id)
+    {
+        $value = 0;
+        $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
+            $q->where('status', '=', '0');
+        }])->find($id);
+        $data->new = NULL;
+        $data->save();
+        
+        $part = Part::where([['status',0],['vendor_bid_id',$id]])->get();
+        foreach($part as $part){
+            $part->delete();
+        }
+        // return "dd";
+        $order = Order::where('vendor_bid_id',$id)->first();
+
+        return redirect()->route('user.order.show',$order->id)->with($this->data("Extra budget Request Rejected Successfully", 'success'));
+    }
 
     public function summary($id)
     {
         $page_title = "Completed Order";
         $order = Order::findOrFail($id);
         $vendorBid = VendorBid::find($order->vendor_bid_id);
-        return view('user.order.completed-order', compact('page_title','order'));
+        return view('user.order.completed-order', compact('page_title', 'order'));
     }
 
+    public function cancelView($id)
+    {
+        $page_title = "Completed Order";
+        $order = Order::findOrFail($id);
+        $vendorBid = VendorBid::find($order->vendor_bid_id);
+        return view('user.order.cancel-order', compact('page_title', 'order'));
+    }
+    public function cancelOrder(Request $request)
+    {
+        $page_title = "Completed Order";
+        $order = Order::findOrFail($request->order_id);
+        $order->status = "cancelled";
+        $order->reason = $request->reason;
+        $order->save();
+        return redirect()->route('user.order.summary', $request->order_id)->with('alert-order-success', 'Your Order Cancelled Successfully');
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,7 +153,8 @@ class OrderController extends Controller
         //
     }
 
-    public function pendingOrderUpdate(){
+    public function pendingOrderUpdate()
+    {
 
         return view('user.order.pending-order-update');
     }

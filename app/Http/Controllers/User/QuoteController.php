@@ -187,7 +187,11 @@ class QuoteController extends Controller
     }
     public function printOrderDetails($id)
     {
-        $data = VendorBid::where('id', $id)->with('part', 'vendordetail')->first();
+        $value = 0;
+        $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
+            $q->where('status', '=', '1');
+        }])->where('id', '=', $id)->first();
+        // $data = VendorBid::where('id', $id)->with('part', 'vendordetail')->first();
         return view('user.quote.print_order_details', compact('data'));
     }
 

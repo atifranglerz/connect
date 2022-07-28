@@ -5,22 +5,23 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
+                @if($order->status == 'cancelled')
+                    <h1 class="sec_main_heading text-center mb-0"> ORDER CANCELED</h1>
+                    @else
                     <h1 class="sec_main_heading text-center mb-0"> ACTIVE ORDER</h1>
-                    <!-- <p class="sec_main_para text-center">See what are the active orders you have</p> -->
+                    @endif
                 </div>
             </div>
         </div>
         <div class="row g-2">
             <div class="col-lg-6 col-md-12 col-sm-12 col-11  mx-auto">
                 <div class="all_quote_card replies_allquot ">
-                    <!-- <div class="car_inner_imagg ">
-                          <img src="assets/images/repair3.jpg">
-                        </div> -->
                     <?php
                         $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->first();
                         $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
-
                         $userbidimage = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->get();
+                        $user = \App\Models\User::find($order->userbid->user_id);
+                        // dd($user);
                         ?>
                     <div class=" w-100  quote_detail_wraper replies ">
                         <div class="quote_info">
@@ -28,7 +29,7 @@
                                 ({{$userbidid->model}})</h3>
                             <p class="mb-0">{{$userbidid->car_owner_name}}</p>
 
-                            <p class="mb-0">{{$userbidid->phone}}</p>
+                            <p class="mb-0">{{$user->phone}}</p>
                             <p class="milage">Mileage <span>{{$userbidid->mileage}}km</span></p>
                         </div>
                         <div class="quote_detail_btn_wraper replies">
@@ -47,17 +48,6 @@
                     </div>
                 </div>
             </div>
-            {{--                <div class="col-lg-3 col-md-6 col-sm-6 col-11  mx-auto">--}}
-            {{--                    <div class="all_quote_card replies_allquot h-100 ">--}}
-            {{--                        <div class=" w-100  quote_detail_wraper replies ">--}}
-            {{--                            <div class="quote_info">--}}
-            {{--                                <h3 class="d-flex align-items-center active_quote nowrape  ">Suzuki Alto</h3>--}}
-            {{--                                <p class="mb-0">2017</p>--}}
-            {{--                                <p class="mb-0">Suzuki</p>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
             <div class="col-lg-6 col-md-6 col-sm-6 col-11  mx-auto">
                 <div class="all_quote_card  replies_allquot h-100">
                     <div class=" w-100  quote_detail_wraper replies payviainsu">
@@ -167,7 +157,78 @@
                 </div>
             </div>
         </div>
+        @if($order->status == 'pending')
+        <div class="row">
+            <div class="col-xl-10 col-lg-6  col-md-10 col-sm-10 mx-auto">
+                <div class="row mt-3 mb-4 g-3">
 
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="d-grid gap-2 mt-lg-3 ">
+                            <a href="{{route('vendor.addfund',$order->user_bid_id)}}"
+                                class="btn btn-secondary block get_appointment" type="button"> ADD FUNDS
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="d-grid gap-2 mt-lg-3 ">
+                            <form action="{{route('vendor.completeInovoice')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
+                                <input type="hidden" name="order_no" value="{{$order->order_code}}">
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                <button
+                                    class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
+                                    type="submit"> SEND FINAL INVOICE TO CUSTOMER </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
+        <div class="row  mt-5">
+            <div class="col-lg-12">
+
+                <div class="all_quote_card  vendor_rply_dtlL _text">
+                    <div class="over_view_part carad_data vendor_detail">
+                        <h3 class=" text-center mb-5">ORDER CANCEL REASON</h3>
+                    </div>
+                    <div class="vendor__rply__dttl">
+                        <p>{{$order->reason}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </section>
+@endsection
+@section('script')
+<script>
+toastr.options = {
+    "closeButton": true,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+$(document).ready(function() {
+    <?php if(session('alert-order-success'))
+                {
+            ?>
+    toastr.success('{{ Session::get('alert-order-success') }}');
+    <?php
+                }
+            ?>
+});
+</script>
 @endsection

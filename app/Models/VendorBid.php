@@ -10,7 +10,7 @@ class VendorBid extends Model
     use HasFactory;
 
     protected $fillable = [
-        'garage_id', 'user_bid_id', 'price', 'status',
+        'garage_id', 'user_bid_id', 'price', 'status','new'
     ];
     public function vendordetail()
     {

@@ -243,8 +243,13 @@
                                                 it will be the customers responibility to get the vehicle released
                                                 at thier own costs.
                                             </b>
-                                            <a class="btn-secondary get_appointment mt-3" href="#" id="pdf">Download
-                                                Pdf</a>
+                                            <div style="display:flex;width: 600px;margin:auto;">
+
+                                                <a href="{{route('user.reject-resolution',$data->id)}}" class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center mt-3" >REJECT RESOLUTION</a>
+                                                <a class="btn-secondary get_appointment mt-3" href="#" id="pdf">Download
+                                                    Pdf</a>
+                                                <a href="{{route('user.accept-resolution',$data->id)}}" class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center mt-3" >ACCEPT RESOLUTION</a>
+                                            </div>
                                         </div>
 
                 </div>

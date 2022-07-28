@@ -10,6 +10,7 @@
                         $company = \App\Models\Company::where('id',$userbid->company_id)->first();
                         $garage = \App\Models\Garage::where('id',$order->garage_id)->first();
                         $vendor = \App\Models\Vendor::where('id',$garage->vendor_id)->first();
+                        $part = \App\Models\Part::where([['vendor_bid_id',$order->vendor_bid_id],['type','services']])->first();
                         ?>
                     <div class="car_inner_imagg vendor_rply_dtl ">
                         <img @if($garage->image && $garage->image != null) src="{{asset($garage->image)}}" @else
@@ -115,11 +116,11 @@
                         <div class="col-lg-5 col-sm-5">
                             <div class="invoice_details mb-5">
                                 <h4>Work Days</h4>
-                                <h4 class="__gray">7</h4>
+                                <h4 class="__gray">{{$order->vendorbid->time}}</h4>
                             </div>
                             <div class="invoice_details">
                                 <h4>Labor Pay</h4>
-                                <h4 class="__gray">AED 170</h4>
+                                <h4 class="__gray">AED {{$part->service_rate}}</h4>
                             </div>
 
 
@@ -137,7 +138,7 @@
                             </div>
                             <div class="invoice_details">
                                 <h4>Total Invoice</h4>
-                                <h4 class="__gray">AED 450</h4>
+                                <h4 class="__gray">AED {{$order->vendorbid->net_total}}</h4>
                             </div>
                         </div>
                     </div>
@@ -146,7 +147,6 @@
 
             </div>
         </div>
-
         <div class="row  mt-5">
             <div class="col-lg-12">
 
@@ -154,16 +154,9 @@
                     <div class="over_view_part carad_data vendor_detail">
                         <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
                     </div>
+                    <?php $vendor_bid = \App\Models\VendorBid::where('garage_id',$order->garage_id)->where('user_bid_id',$order->user_bid_id)->first();?>
                     <div class="vendor__rply__dttl">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                            piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-                            McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
-                            more obscure Latin words, consectetur,</p>
+                        <p>{{$vendor_bid->description}}</p>
                     </div>
                 </div>
             </div>
@@ -173,7 +166,13 @@
                 <div class="row mt-5 mb-4 g-3">
                     <div class="col-lg-6 col-md-6 col-sm-4 mx-auto">
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a  href="{{route('user.order.show',$order->id)}}"
+                            @if($newinvoce->part !='[]')
+                            <a href="{{route('user.order.invoce',$newinvoce->id)}}" class="btn btn-secondary block get_appointment">NEW INVOICE</a>
+                            @endif
+                            <a href="{{url('user/print-order-details',$vendorBid->id)}}" class="btn btn-secondary block get_appointment">INVOICE</a>
+                        </div>
+                        <div class="d-grid gap-2 mt-lg-3 ">
+                            <a href="{{route('user.payment_page',$vendor_bid->id)}}"
                                 class="btn btn-secondary block get_appointment">MARK AS COMPLETE</a>
                             </button>
                         </div>

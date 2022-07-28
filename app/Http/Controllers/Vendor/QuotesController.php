@@ -52,7 +52,6 @@ class QuotesController extends Controller
     }
     public function bidresponse(Request $request)
     {
-
         if ($request->btnType == 1) {
             $page_title = 'Preview';
             $data = $request->all();
@@ -160,7 +159,8 @@ class QuotesController extends Controller
     //vendor view offer
     public function viewOffer($id)
     {
-        $data = VendorBid::where('user_bid_id', $id)->with('part', 'vendordetail')->first();
+
+        $data = VendorBid::with('part', 'vendordetail')->where('user_bid_id', $id)->first();
         return view('vendor.quotes.quote_offer_details', compact('data'));
     }
 }

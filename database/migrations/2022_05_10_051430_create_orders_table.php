@@ -33,6 +33,7 @@ class CreateOrdersTable extends Migration
             //$table->integer('subtotal')->default(0);
             $table->integer('total')->default(0);
             $table->enum('status',['pending','complete','cancelled']);
+            $table->longText('reason')->nullable();
             $table->timestamps();
         });
     }
