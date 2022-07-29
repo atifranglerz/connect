@@ -6,7 +6,6 @@
             <div class="col-lg-5 col-md-10 mx-auto">
                 <div class="cuatomer_signup_form_wraper">
                     <div class="main_content_wraper">
-                        <h4 class="sec_main_heading text-center mb-0">WELCOME BACK!</h4>
                         <p class="sec_main_para text-center mb-0">Fill Up your details to Recover Your Password !</p>
                     </div>
 

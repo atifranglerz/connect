@@ -6,8 +6,7 @@
                 <div class="col-lg-5 col-md-8 col-sm-10 mx-auto">
                     <div class="cuatomer_signup_form_wraper">
                         <div class="main_content_wraper">
-                            <h4 class="sec_main_heading text-center mb-0">WELCOME BACK!</h4>
-                            <p class="sec_main_para text-center mb-0">Fill This To Login</p>
+                            <h5 class="sec_main_heading text-center mb-0">Fill This To Login</h5>
                         </div>
                         <form class="pt-5" action="{{route('vendor.login')}}" method="post" >
                             @csrf
