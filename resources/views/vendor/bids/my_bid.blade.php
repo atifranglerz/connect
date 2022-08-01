@@ -18,8 +18,10 @@
                         <?php
                           $user = \App\Models\UserBid::find($bid->user_bid_id);
                           $img = \App\Models\UserBidImage::where('user_bid_id',$bid->userBid->id)->where('type','image')->oldest()->first();
-                        ?>
-                        <img src="{{asset($img->car_image)}}">
+                          $img1=Explode(",",$img->car_image);
+                       
+                       ?>
+                        <img src="{{asset($img1[0])}}">
 
                     </div>
                     <div class=" w-100  quote_detail_wraper replies dashboard_activ_bid ">

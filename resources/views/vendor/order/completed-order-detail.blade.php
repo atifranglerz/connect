@@ -14,7 +14,7 @@
             $company = \App\Models\Company::where('id',$order->userbid->company_id)->first();
             $modelYear = \App\Models\ModelYear::find($order->userbid->model_year_id);
             $user = \App\Models\User::find($order->userbid->user_id);
-            $userbidimage = \App\Models\UserBidImage::where([['user_bid_id',$order->userbid->id],['type','registerImage']])->first();
+            $userbidimage = \App\Models\UserBidImage::where([['user_bid_id',$order->userbid->id],['type','image']])->first();
             $userbidimage = explode(',',$userbidimage->car_image);
             $review_prev = \App\Models\UserReview::where('user_id',$user->id)->where('garage_id',$order->garage_id)->first();
         ?>
@@ -33,8 +33,7 @@
                             <h3 class="vendor_order_id">Order Id: #{{$order->order_code}}</h3>
                             <div class="d-flex chat_view__detail qoute_replies vendor_order ">
                                 <h3 class="">{{$order->vendorbid->time}} Days</h3>
-                                <a href="#" class="chat_icon">
-                                    <i class="fa-solid fa-message"></i>
+                                <a href="{{url('vendor/chat/'.$user->id)}}" class="justify-content-center chat_icon"> <i class="fa-solid fa-message"></i>
                                 </a>
                             </div>
                         </div>
@@ -149,7 +148,6 @@
                         </div>
                         @endforeach
                         @endif
-
                     </div>
                 </div>
             </div>

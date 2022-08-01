@@ -21,6 +21,6 @@ class BidController extends Controller
    
    public function bidDetails($id){
       $data=VendorBid::find($id);
-       return view('vendor.bids.bid_detail',compact('data'));
+      return view('vendor.bids.bid_detail',compact('data'));
    }
 }
