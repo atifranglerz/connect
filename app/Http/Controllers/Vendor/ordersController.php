@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Notification;
 use App\Mail\AboutOrder;
 use App\Models\ChatFavorite;
 use App\Models\Garage;
@@ -76,12 +77,16 @@ class ordersController extends Controller
         $message['body3'] = "with your garage.";
         $message['link1'] = url('user/order/summary', $request->order_id);
         $message['link2'] = route('user.chat.index');
+        $message['type'] = "order";
         $user = User::find($request->id);
+        $message['email'] = $user->email;
 
         $gettime = strtotime($user->online_status) + 10;
         $now = strtotime(Carbon::now());
         if ($now > $gettime) {
-            Mail::to($user->email)->send(new AboutOrder($message));
+            $Notification = new Notification($message);
+            dispatch($Notification);
+            // Mail::to($user->email)->send(new AboutOrder($message));
         } else {
             $notification = new webNotification();
             $notification->customer_id = $request->id;
@@ -94,12 +99,7 @@ class ordersController extends Controller
         return redirect()->route('vendor.chat.index');
     }
 
-    // public function addfund($id){
 
-    //     $order = Order::with('vendorbid','userbid')->where('id', $id)->first();
-
-    //     return view('vendor.order.add-fund1',compact('order'));
-    // }
 
     public function addfund($id)
     {
@@ -138,11 +138,11 @@ class ordersController extends Controller
             'vat' => 'required',
             'net_total' => 'required',
         ]);
-        $data=array();
-        array_push($data,$request->price,$request->vat,$request->time);
+        $data = array();
+        array_push($data, $request->price, $request->vat, $request->time);
         $new = implode(",", $data);
 
-        $data = VendorBid::where([['user_bid_id',$request->bid_id],['garage_id',$request->garage_id]])->first();
+        $data = VendorBid::where([['user_bid_id', $request->bid_id], ['garage_id', $request->garage_id]])->first();
         $data->new = $new;
         $data->save();
 
@@ -196,33 +196,37 @@ class ordersController extends Controller
             }
         }
 
-        // //notification to the customer of placing the bid on his quote
+        // //notification to the customer when vendor request for extra budget
         $order = Order::where('user_bid_id', $request->bid_id)->first();
         $user = UserBid::find($request->bid_id);
 
         $message['title'] = "Order Completed";
         $message['order_no'] = $order->order_code;
         $message['order_id'] = $order->id;
-        $message['body1'] = "We are pleased to inform you that your ";
-        $message['body2'] = " has been successfully completed. Your selected garage/service has posted the final invoice. Kindly sign in to check your order and complete the payment by the releasing the funds.";
-        $message['link1'] = url('user/order/summary', $order->id);
-
+        $message['body1'] = "We are pleased to inform you that your";
+        $message['body2'] = " is under process. Your selected garage/service has posted the extra budget invoice. Kindly sign in to check your order extra budget request.";
+        $message['link1'] = url('user/order', $order->id);
+        $message['type'] = "order";
         $user = User::find($user->user_id);
+        $message['email'] = $user->email;
+
 
         $gettime = strtotime($user->online_status) + 10;
         $now = strtotime(Carbon::now());
         if ($now > $gettime) {
-            Mail::to($user->email)->send(new AboutOrder($message));
+            $Notification = new Notification($message);
+            dispatch($Notification);
+            // Mail::to($user->email)->send(new AboutOrder($message));
         } else {
             $notification = new webNotification();
             $notification->customer_id = $user->id;
-            $notification->title = "Your Order has been Completed successfully #" . $order->order_code;
-            $notification->links = url('user/order/summary', $order->id);
+            $notification->title = " Garage Request of Extra budget against #" . $order->order_code;
+            $notification->links = url('user/order', $order->id);
             $notification->body = ' ';
             $notification->save();
         }
 
-        return redirect()->route('vendor.fullfillment', $order->id)->with('alert-order-success', 'Order Reminder send to customer and final updated Invoice');
+        return redirect()->route('vendor.fullfillment', $order->id)->with($this->data("Extra budget Request send Successfully", 'success'));
 
     }
 
@@ -235,13 +239,16 @@ class ordersController extends Controller
         $message['body1'] = "We are pleased to inform you that your ";
         $message['body2'] = " has been successfully completed. Your selected garage/service has posted the final invoice. Kindly sign in to check your order and complete the payment by the releasing the funds.";
         $message['link1'] = url('user/order/summary', $request->order_id);
-
+        $message['type'] = "order";
         $user = User::find($request->user_id);
+        $message['email'] = $user->email;
 
         $gettime = strtotime($user->online_status) + 10;
         $now = strtotime(Carbon::now());
         if ($now > $gettime) {
-            Mail::to($user->email)->send(new AboutOrder($message));
+            $Notification = new Notification($message);
+            dispatch($Notification);
+            // Mail::to($user->email)->send(new AboutOrder($message));
         } else {
             $notification = new webNotification();
             $notification->customer_id = $request->user_id;
@@ -251,7 +258,7 @@ class ordersController extends Controller
             $notification->save();
         }
 
-        return redirect()->back()->with('alert-order-success', 'Order Reminder send to customer and final Invoice');
+        return redirect()->back()->with($this->data("Order Reminder send to customer and final Invoice", 'success'));
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendNotification;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Garage;
@@ -15,14 +16,13 @@ use App\Models\VendorBid;
 use App\Models\VendorQuote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Jobs\SendNotification;
 
 class QuoteController extends Controller
 {
     public function index()
     {
         $data['page_title'] = 'quote/index ';
-        $data['user_bid'] = UserBid::where([['user_id', Auth::id()],['offer_status','!=','ordered']])->get();
+        $data['user_bid'] = UserBid::where([['user_id', Auth::id()], ['offer_status', '!=', 'ordered']])->get();
         return view('user.quote.index', $data);
     }
 
@@ -81,6 +81,10 @@ class QuoteController extends Controller
         $quote->looking_for = $request->looking_for;
         $quote->save();
 
+        //mail notification to the vendor
+        $message['body1'] = auth()->user()->name;
+        $message['link1'] = url('vendor/quotedetail', $quote->id);
+        
         // this is car image save
         $imagefiles = new UserBidImage();
         if ($request->file('car_images')) {
@@ -121,7 +125,6 @@ class QuoteController extends Controller
             $accidentailfile->type = 'registerImage';
             $accidentailfile->save();
         }
-
         if ($request->category) {
             foreach ($request->category as $data) {
                 $user = new UserBidCategory();
@@ -135,7 +138,7 @@ class QuoteController extends Controller
                 $vendor_quote->user_id = Auth()->user()->id;
                 $vendor_quote->user_bit_id = $quote->id;
                 $vendor_quote->save();
-                $SendNotification =new  SendNotification();
+                $SendNotification = new SendNotification($message);
                 dispatch($SendNotification);
 
             } else {
@@ -160,7 +163,7 @@ class QuoteController extends Controller
                 $vendor_quote->user_id = Auth()->user()->id;
                 $vendor_quote->user_bit_id = $quote->id;
                 $vendor_quote->save();
-                $SendNotification =new  SendNotification();
+                $SendNotification = new SendNotification($message);
                 dispatch($SendNotification);
             }
         }

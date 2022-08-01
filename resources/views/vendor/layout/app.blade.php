@@ -30,7 +30,91 @@
         }
     </style>
     <style >
+/*rating stars*/
+.rating-stars {
+    padding: 0px 15px;
+    margin-bottom: 16px;
+    justify-content: center;
+}
 
+.rating__label {
+    margin-bottom: 0;
+}
+
+/* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+.rating-group {
+    display: inline-flex;
+}
+
+/* make hover effect work properly in IE */
+.rating__icon {
+    pointer-events: none;
+}
+
+/* hide radio inputs */
+.rating__input {
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* set icon padding and size */
+.rating__label {
+    cursor: pointer;
+    /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+    padding: 0 0.1em;
+    font-size: 24px;
+}
+
+/* add padding and positioning to half star labels */
+.rating__label--half {
+    padding-right: 0;
+    margin-right: -30px;
+    z-index: 2;
+}
+
+/* set default star color */
+.rating__icon--star {
+    color: #ff6a00;
+}
+
+/* set color of none icon when unchecked */
+.rating__icon--none {
+    color: #eee;
+}
+
+/* if none icon is checked, make it red */
+.rating__input--none:checked + .rating__label .rating__icon--none {
+    color: red;
+}
+
+/* if any input is checked, make its following siblings grey */
+.rating__input:checked ~ .rating__label .rating__icon--star {
+    color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.rating-group:hover .rating__label .rating__icon--star,
+.rating-group:hover .rating__label--half .rating__icon--star {
+    color: #ff6a00;
+}
+
+/* make hovered input's following siblings grey on hover */
+.rating__input:hover ~ .rating__label .rating__icon--star,
+.rating__input:hover ~ .rating__label--half .rating__icon--star {
+    color: #ddd;
+}
+
+/* make none icon grey on rating group hover */
+.rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+    color: #eee;
+}
+
+/* make none icon red on hover */
+.rating__input--none:hover + .rating__label .rating__icon--none {
+    color: #ff6a00;
+}
+
+/*rating stars*/
         .form-check-input:checked {
             background-color: var(--orange);
             border-color: var(--orang-mask);

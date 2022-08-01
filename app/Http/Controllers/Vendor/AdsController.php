@@ -7,6 +7,8 @@ use App\Models\Ads;
 use App\Models\category;
 use App\Models\Company ;
 use App\Models\ModelYear;
+use App\Jobs\Notification;
+use App\Models\webNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,6 +104,22 @@ class AdsController extends Controller
 
         $ads->vendor_id = Auth::id();
         $ads->save();
+
+
+        $message['email'] = auth()->user()->email;
+        $message['type'] = "ads";
+        $message['link1'] = url('vendor/ads');
+        //mail notification
+        $Notification = new Notification($message);
+        dispatch($Notification);
+        //web notification
+        $notification = new webNotification();
+        $notification->vendor_id = auth()->user()->id;
+        $notification->title = " Advertisement Placement Completed ";
+        $notification->links = url('vendor/ads');
+        $notification->body = ' ';
+        $notification->save();
+
         return $this->message($ads, 'vendor.ads.index', 'Ads Create Successfully', 'Ads Create Error');
     }
 

@@ -17,7 +17,7 @@
                 <div class="all_quote_card ">
                     <div class="car_inner_imagg ">
                         <?php
-                            $total_bid = \App\Models\vendorbid::where('user_bid_id',$value->user_bit_id)->count();
+                            $total_bid = \App\Models\VendorBid::where('user_bid_id',$value->user_bit_id)->count();
                             $img = \App\Models\UserBidImage::where('user_bid_id',$value->user_bit_id)->where('type','image')->oldest()->first();
                             $img1=Explode(",",$img->car_image);
                         ?>

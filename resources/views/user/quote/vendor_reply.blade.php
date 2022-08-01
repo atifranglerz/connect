@@ -13,8 +13,16 @@
                     </div>
                     <div class="col-lg-6  col-md-6 col-sm-6">
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a href="{{route('user.payment_page',$data->id)}}" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
-                            </a>
+                            
+                        <form enctype="multipart/form-data" method="post" action="{{ route('user.payment_page') }}"
+                            class="needs-validation" novalidate>
+                            @csrf
+                            <input type="hidden" name="bid_id" value="{{$data->id}}">
+                            <input type="hidden" name="type" value="qoute">
+                            <button class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="submt">ACCEPT QUOTE</button>
+                        </form>
+                        <!-- <a href="{{route('user.payment_page',$data->id)}}" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
+                        </a> -->
                         </div>
                     </div>
                 </div>

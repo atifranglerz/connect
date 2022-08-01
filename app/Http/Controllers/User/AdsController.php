@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Ads;
 use App\Models\Company;
 use App\Models\ModelYear;
+use App\Jobs\Notification;
+use App\Models\webNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,6 +103,21 @@ class AdsController extends Controller
         $ads->user_id = Auth::id();
         // please correect this
         $ads->save();
+
+        $message['email'] = auth()->user()->email;
+        $message['type'] = "ads";
+        $message['link1'] = url('user/ads');
+        //mail notification
+        $Notification = new Notification($message);
+        dispatch($Notification);
+        //web notification
+        $notification = new webNotification();
+        $notification->customer_id = auth()->user()->id;
+        $notification->title = " Advertisement Placement Completed ";
+        $notification->links = url('user/ads');
+        $notification->body = ' ';
+        $notification->save();
+
         return $this->message($ads, 'user.ads.index', 'Ads Create Successfully', 'Ads Create Error');
     }
 

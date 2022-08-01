@@ -35,6 +35,14 @@ Route::group(['namespace' => 'Web'], function () {
         Artisan::call('optimize:clear');
         return 'Application cache cleared!';
     });
+    Route::get('/queue_listen', function () {
+        Artisan::call('queue:listen');
+        return 'Application queue listen success!';
+    });
+    Route::get('/queue_work', function () {
+        Artisan::call('queue:work');
+        return 'Application queue work success';
+    });
 
     Route::get('/', 'HomepageController@index')->name('home');
     Route::get('category-garage', 'HomepageController@categoryGarage');
@@ -222,7 +230,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        Route::get('payment_page/{id}', 'PaymentController@index')->name('payment_page');
+        Route::post('payment_page', 'PaymentController@index')->name('payment_page');
         Route::post('payment-info', 'PaymentController@payment_info')->name('payment-info');
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');

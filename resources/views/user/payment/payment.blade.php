@@ -26,16 +26,17 @@
                             </div>
 
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_name" placeholder="Name" >
+                                <input type="text" class="form-control" name="customer_name" placeholder="Name">
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_address" placeholder="Address" >
+                                <input type="text" class="form-control" name="customer_address" placeholder="Address">
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_postal_code" placeholder="Postal Code" >
+                                <input type="text" class="form-control" name="customer_postal_code"
+                                    placeholder="Postal Code">
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="customer_city" placeholder="City" >
+                                <input type="text" class="form-control" name="customer_city" placeholder="City">
                             </div>
 
                         </div>
@@ -50,25 +51,37 @@
                             </div>
 
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="card_number" placeholder="Card Number" aria-label="Make" >
+                                <input type="text" class="form-control" name="card_number" placeholder="Card Number"
+                                    aria-label="Make">
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="cardholder_name" placeholder="Cardholder Name" aria-label="Make" >
+                                <input type="text" class="form-control" name="cardholder_name"
+                                    placeholder="Cardholder Name" aria-label="Make">
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="expiry_date" placeholder="Expiry Date" aria-label="Make" >
+                                <input type="text" class="form-control" name="expiry_date" placeholder="Expiry Date"
+                                    aria-label="Make">
                             </div>
                             <div class="inpu_wraper mb-3">
-                                <input type="text" class="form-control" name="cvv" placeholder="CVV" aria-label="Make" >
+                                <input type="text" class="form-control" name="cvv" placeholder="CVV" aria-label="Make">
                             </div>
 
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto">
+                            @if($type == "order")
+                            <input type="hidden" name="type" value="order">
+                            <div class="col-lg-5 col-sm-5 ">
+                                <button class="btn text-center btn-secondary get_quot block get_appointment"
+                                    type="submit">COMPLETE PAYMENT</button>
+                            </div>
+                            @else
                             <div class="row">
+                                <input type="hidden" name="type" value="quote">
                                 <div class="col-lg-5 col-sm-5">
-                                    <button class="btn text-center btn-secondary get_quot block get_appointment" type="submit">CONFIRM ORDER</button>
+                                    <button class="btn text-center btn-secondary get_quot block get_appointment"
+                                        type="submit">CONFIRM ORDER</button>
                                 </div>
                                 <div class="col-lg-2 col-sm-2">
                                     <div>
@@ -77,9 +90,12 @@
 
                                 </div>
                                 <div class="col-lg-5 col-sm-5">
-                                    <a href="" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center" type="button">PAY VIA INSURANCE COMPANY</a>
+                                    <a href=""
+                                        class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
+                                        type="button">PAY VIA INSURANCE COMPANY</a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </form>
@@ -87,10 +103,10 @@
             </div>
         </div>
 
-        <div class="row  mt-5">
+        <!-- <div class="row  mt-5">
             <div class="col-lg-8 mx-auto">
                 <div></div>
-                <!-- <div class="conform_btns d-flex  align-items-center justify-content-center">
+                <div class="conform_btns d-flex  align-items-center justify-content-center">
                   <div class="d-grid gap-2 ">
                     <button class="btn text-center btn-secondary get_quot block get_appointment" type="button">CONFIRM ORDER
                     </button>
@@ -102,9 +118,9 @@
                     <a href="insurancePayment.php" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-between" type="button">PAY VIA INSURANCE COMPANY
                     </a>
                   </div>
-                </div> -->
+                </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 @endsection

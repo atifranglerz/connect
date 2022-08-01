@@ -172,9 +172,14 @@
                             <a href="{{url('user/print-order-details',$vendorBid->id)}}" class="btn btn-secondary block get_appointment">INVOICE</a>
                         </div>
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a href="{{route('user.payment_page',$vendor_bid->id)}}"
-                                class="btn btn-secondary block get_appointment">MARK AS COMPLETE</a>
-                            </button>
+                        <form enctype="multipart/form-data" method="post" action="{{ route('user.payment_page') }}"
+                            class="needs-validation" novalidate>
+                            @csrf
+                            <input type="hidden" name="bid_id" value="{{$vendor_bid->id}}">
+                            <input type="hidden" name="type" value="order">
+                            <button class="btn btn-secondary block get_appointment" type="submt">MARK AS COMPLETE</button>
+                        </form>
+                            <!-- <a href="{{route('user.payment_page',$vendor_bid->id)}}" class="btn btn-secondary block get_appointment">MARK AS COMPLETE</a> -->
                         </div>
                     </div>
                 </div>

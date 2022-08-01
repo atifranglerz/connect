@@ -354,7 +354,6 @@
             </div>
             <div class="row  mt-5">
                 <div class="col-lg-12">
-
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="row">
                             <div class="col-lg-8 mx-auto">

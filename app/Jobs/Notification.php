@@ -8,10 +8,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Mail\AboutOrder;
 use Mail;
-use App\Models\Vendor;
 
-class SendNotification implements ShouldQueue
+class Notification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -34,11 +34,16 @@ class SendNotification implements ShouldQueue
      */
     public function handle()
     {
-        
-        $data =  Vendor::all();
-          foreach($data as $content){   
-        $email = new \App\Mail\SendNotification($this->message);
-        Mail::to($content->email)->send($email);
+        //
+        if($this->message['type']=="order"){
+
+            // $notificaton = new \App\Mail\AboutOrder;
+            Mail::to($this->message['email'])->send(new AboutOrder($this->message));
         }
+        else{
+
+            Mail::to($this->message['email'])->send(new \App\Mail\Notification($this->message));
+        }
+      
     }
 }
