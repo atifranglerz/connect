@@ -258,32 +258,36 @@ class HomepageController extends Controller
     }
     public function searchCar(Request $request)
     {
-
         $search[] = $request->modelFrom;
         $search[] = $request->modelTo;
         $search1 = $request->company_id;
         $data['page_title'] = 'used cars';
         // fech records according filteration
-        if (isset($request->priceFrom) && isset($request->priceTo)) {
-            $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->with('modelYear', 'company')->get();
+
+        if (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->whereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->get();
         } elseif (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo)) {
-            $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->with('modelYear', 'company')->orwhereHas('modelYear', function ($query) use ($search) {
+            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->orwhereHas('modelYear', function ($query) use ($search) {
                 $query->whereBetween('model_year', [$search[0], $search[1]]);})->get();
+        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->get();
+        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+        } elseif (isset($request->priceFrom) && isset($request->priceTo)) {
+            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->get();
         } elseif (isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
                 $query->whereBetween('model_year', [$search[0], $search[1]]);})->get();
-        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
-        } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
         } elseif (isset($request->company_id) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->get();
-
         } elseif (isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
-
         } elseif (isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->get();
         } else {

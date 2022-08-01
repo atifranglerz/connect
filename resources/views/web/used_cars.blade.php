@@ -170,7 +170,7 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title price mb-0 ">Price : {{ $value->price }}</h5>
-                                <h5 class="card-title location mb-0 ">{{ $value->address }}</h5>
+                                <h5 class="card-title location mb-0 ">{{ $value->city }}</h5>
                             </div>
                         </div>
                     </div>
