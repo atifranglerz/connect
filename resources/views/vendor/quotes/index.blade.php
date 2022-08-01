@@ -20,6 +20,8 @@
                             $total_bid = \App\Models\VendorBid::where('user_bid_id',$value->user_bit_id)->count();
                             $img = \App\Models\UserBidImage::where('user_bid_id',$value->user_bit_id)->where('type','image')->oldest()->first();
                             $img1=Explode(",",$img->car_image);
+                            $user = \App\Models\User::find($value->userbid->user_id);
+
                         ?>
                         <img src="{{ asset($img1[0]) }}">
                     </div>
@@ -29,7 +31,8 @@
                             class="heading-color">{{$value->userBid->company->company}}
                             ({{$value->userbid->model}})</a> <span
                             class="order_id">#{{$value->userbid->reference_no}}</span></h5>
-                            <p class="mb-0">{{$value->userbid->description1}}</p>
+                            <p class="mb-0">{{ $value->userbid->car_owner_name }}</p>
+                            <p class="mb-0">{{ $user->phone }}</p>
                         </div>
                         <div class="mt-5 quote_info ">
                                 <p class="quote_rev vndr_rply__dtl "><span> {{$total_bid}} bids</span>

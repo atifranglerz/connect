@@ -19,7 +19,7 @@
                 $img = \App\Models\UserBidImage::where('user_bid_id',$userbidid->id)->where('type','image')->oldest()->first();
                 $img1=Explode(",",$img->car_image);
                 $company = \App\Models\Company::where('id',$userbidid->company_id)->first();
-
+                $user = \App\Models\User::find($order->userbid->user_id);
                 ?>
             <div class="col-lg-10 col-md-12 col-sm-12 col-10  mx-auto">
                 <div class="all_quote_card ">
@@ -30,7 +30,8 @@
                         <div class="quote_info">
                             <h5 class="d-flex align-items-center active_quote">{{$company->company}}
                                 ({{$userbidid->model}}) <span class="order_id">{{$order->status}}</span></h5>
-                            <p class="mb-0">{{$userbidid->description1}}</p>
+                                <p class="mb-0">{{ $userbidid->car_owner_name }}</p>
+                                <p class="mb-0">{{ $user->phone }}</p>
                             <p>{{$userbidid->phone}}</p>
                         </div>
                         <div class="quote_detail_btn_wraper">
