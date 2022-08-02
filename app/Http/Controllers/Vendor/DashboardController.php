@@ -7,6 +7,8 @@ use App\Models\Garage;
 use App\Models\Order;
 use App\Models\UserReview;
 use App\Models\Vendor;
+use App\Models\TermCondition;
+use App\Models\PrivacyPolicy;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -14,10 +16,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         $page_title = 'Vendor Dashboard';
         $vendor_garage = Garage::where('vendor_id',auth()->id())->first();
-        $completedOrders = Order::where('status','complete')->count();
+        $completedOrders = Order::where([['status','complete'],['garage_id',$vendor_garage->id]])->count();
         $totalReviews = UserReview::where('garage_id',$vendor_garage->id)->count();
         $rating= UserReview::where('garage_id',$vendor_garage->id)->sum('rating');
         if($totalReviews ==0 && $rating ==0)
@@ -27,6 +28,8 @@ class DashboardController extends Controller
             $overAllRatings = $rating/$totalReviews;
         }
         $order = Order::where('garage_id',$vendor_garage->id)->latest()->first();
+        $data['terms'] =  PrivacyPolicy::first();
+        $data['policy'] = TermCondition::first();
 
         /*$dateFrom = Carbon::now()->subDays(30);
         $dateTo = Carbon::now();
@@ -68,6 +71,9 @@ class DashboardController extends Controller
         // Vendor  //
 
         //return view('vendor.index', compact('page_title', 'monthlyRevenue', 'previousMonthlyRevenue', 'monthlyVendor', 'previousMonthlyVendor', 'monthlyOrder', 'previousMonthlyOrder'));
-    return view('vendor.index', compact('page_title','completedOrders','totalReviews','overAllRatings','order'));
+    return view('vendor.index', compact('page_title','completedOrders','totalReviews','overAllRatings','order','data'));
     }
+
+
+    
 }

@@ -168,7 +168,7 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // return $request;
         $request->validate([
             'garage_name' => 'required',
             'address' => 'required',
@@ -186,32 +186,40 @@ class WorkshopController extends Controller
         $garage->vat = $request->vat;
         $garage->phone = $request->phone;
         $garage->garage_name = $request->garage_name;
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            $image = hexdec(uniqid()) . '.' . strtolower($file->getClientOriginalExtension());
-            $file->move('public/image/garage/', $image);
-            $garage->image = 'public/image/garage/' . $image;
-            /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
-            }*/
-
+        if ($request->file('images')) {
+            foreach($request->file('images') as $image)
+            {
+                $name=time().'.' . $image->getClientOriginalExtension();
+               $image->move('public/image/garage/',$name);
+                $garage['image']='public/image/garage/'.$name;
+            }
         }
+        $garage->description = $request->description;
         $garage->country = $request->country;
         $garage->city = $request->city;
         $garage->address = $request->address;
         $garage->post_box = $request->post_box;
         $garage->save();
         if ($garage) {
+
+            $data=GarageCategory::where('garage_id',$id)->get();
+            foreach($data as $cat){
+                $cat->delete();
+            }
             $categories = $request->category;
             foreach ($categories as $cat) {
-
-//                $data=GarageCategory::where('garage_id',$id)->get();
-                GarageCategory::where('garage_id', $id)->update([
+                $data=[
                     'garage_id' => $garage->id,
                     'category_id' =>intval($cat),
-                ]);
-            }
+                    ];
+              GarageCategory::create($data);
+          }
+            // foreach ($categories as $cat) {
+            //     GarageCategory::where('garage_id', $id)->update([
+            //         'garage_id' => $garage->id,
+            //         'category_id' =>intval($cat),
+            //     ]);
+            // }
 
             $garage_timing=GarageTiming::where('garage_id',$garage->id)->get();
             $length=count($garage_timing);

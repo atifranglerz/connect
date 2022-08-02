@@ -36,25 +36,14 @@ class UserReviewController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        $review_prev = UserReview::where('user_id',auth()->id())->where('garage_id',$request->garage_id)->first();
-        if($review_prev){
-
-            $review_prev->user_id = auth()->id();
-            $review_prev->rating = $request->rating;
-            $review_prev->review = $request->review;
-            $review_prev->garage_id  = $request->garage_id;
-            $review_prev->save();
-            return $this->message($review_prev, 'user.order.index', 'Thanks for submit your review', 'Failed to submit review');
-        }else{
             $review = new UserReview();
             $review->user_id = auth()->id();
             $review->rating = $request->rating;
             $review->review = $request->review;
             $review->garage_id  = $request->garage_id;
+            $review->order_id  = $request->order_id;
             $review->save();
             return $this->message($review, 'user.order.index', 'Thanks for submit your review', 'Failed to submit review');
-        }
     }
 
     /**

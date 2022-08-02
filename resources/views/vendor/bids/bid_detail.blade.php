@@ -33,7 +33,7 @@
                                     <p class="milage">Mileage <span>{{ $data->userBid->mileage }}km</span></p>
                                 </div>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order days ">
-                                    <h3 class="active_bidDay">{{ $data->time }}</h3>
+                                    <h3 class="active_bidDay">Days {{$data->time }}</h3>
                                     <a href="{{ url('vendor/chat/' . $data->userBid->user->id) }}" class="chat_icon">
                                         <i class="fa-solid fa-message"></i>
                                         <!-- <img src="assets/images/meassageiconblk.svg"> -->

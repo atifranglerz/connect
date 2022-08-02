@@ -31,7 +31,6 @@ class AuthController extends Controller
 
     public function vendorRegister(Request $request)
     {
-
         $request->validate([
             'profile_image' =>'required' ,
             "id_card" =>'required',
@@ -122,7 +121,7 @@ class AuthController extends Controller
                 if (empty($garage)) {
                     return redirect()->route('vendor.workshop.index')->with($this->data("create Workshop first ", 'success'));
                 } else{
-                    return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully and workshop already created", 'success'));
+                    return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully", 'success'));
                 }
             } else {
                 return redirect()->back()->with($this->data("you have not this Role!", 'error'));
