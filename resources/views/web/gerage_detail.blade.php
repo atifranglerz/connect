@@ -174,7 +174,7 @@ use Illuminate\Support\Facades\Auth;
                                     <option value="I have Inspection Report & Looking for the Quotations"
                                         @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations'
                                         ) selected @endif>I have Inspection Report & Looking for the
-                                        Quotations</option>
+                                        Quotation</option>
                                     <option value="I don't know the Problem and Requesting for the Inspection"
                                         @if(old('looking_for')=="I don't know the Problem and Requesting for the Inspection"
                                         ) selected @endif>I don't know the Problem and Requesting for the
@@ -182,7 +182,7 @@ use Illuminate\Support\Facades\Auth;
                                     <option value="I know about what i'm looking for and requesting for the Quotations"
                                         @if(old('looking_for')=="I know about what i'm looking for and requesting for the Quotations"
                                         ) selected @endif>I know about what i'm looking for and requesting
-                                        for the Quotations</option>
+                                        for the Quotation</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6">
