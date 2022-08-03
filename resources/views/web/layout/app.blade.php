@@ -62,25 +62,23 @@
                             <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('used_cars') }}">Used Cars For
                                 Sale</a>
                         </li>
-                        @if (auth()->check())
-                            @if (auth()->user()->type == 'user')
-                                <li class="nav-item">
-                                    <a class="nav-link px-lg-2 px-3 px-md-2"
-                                        href="@if (auth()->check()) {{ url('user/quotecreate') }}@else{{ url('user/login') }} @endif">Request
-                                        A Quote</a>
-                                </li>
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link px-lg-2 px-3 px-md-2"
-                                        href="@if (auth()->check()) {{ route('vendor.ads.index') }}@else{{ url('vendor/login') }} @endif">My
-                                        Ads Listing</a>
-                                </li>
-                            @endif
+                        @if (Auth::guard('web')->check())
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-2 px-3 px-md-2"
+                                    href="@if (auth()->check()) {{ url('user/quotecreate') }}@else{{ url('user/login') }} @endif">Request
+                                    A Quote</a>
+                            </li>
+                        @elseif(Auth::guard('vendor')->check())
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-2 px-3 px-md-2"
+                                    href="@if (auth()->guard('vendor')->check()) {{ route('vendor.ads.index') }}@else{{ url('vendor/login') }} @endif">My
+                                    Ads Listing</a>
+                            </li>
                         @endif
                     </ul>
                     <div class="d-flex login_header_main">
-                        @if (auth()->check())
-                            @if (auth()->user()->type == 'user')
+                        @if (Auth::guard('vendor')->check() || Auth::guard('web')->check())
+                            @if (Auth::guard('web')->check())
                                 <a href="{{ route('user.profile.index') }}" class="me-4 me-md-3">Profile</a>
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
@@ -91,7 +89,7 @@
                                     style="display: none;">
                                     @csrf
                                 </form>
-                            @else
+                            @elseif(Auth::guard('vendor')->check())
                                 <a href="{{ route('vendor.profile.index') }}" class="me-4 me-md-3">Profile</a>
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
