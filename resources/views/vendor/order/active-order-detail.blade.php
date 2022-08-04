@@ -66,6 +66,7 @@
                                 <h3 class="d-flex align-items-center active_quote nowrape"> Budget</h3>
                                 <div class="quote_detail_btn_wraper">
                                     <h3 class="quotereplies">AED {{ $order->total }}</h3>
+                                    <a href="{{url('vendor/print-order-details',$order->vendor_bid_id )}}">view invoice</a>
                                 </div>
                             </div>
                         </div>

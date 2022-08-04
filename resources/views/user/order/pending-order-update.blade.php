@@ -10,8 +10,14 @@
                         $company = \App\Models\Company::where('id',$userbid->company_id)->first();
                         $garage = \App\Models\Garage::where('id',$order->garage_id)->first();
                         $vendor = \App\Models\Vendor::where('id',$garage->vendor_id)->first();
-                        $part = \App\Models\Part::where([['vendor_bid_id',$order->vendor_bid_id],['type','services']])->first();
-                        ?>
+                        $part = \App\Models\Part::where([['vendor_bid_id',$order->vendor_bid_id],['type','services'],['status',1]])->get();
+                        $total_labour = 0;
+                        foreach ($part as $value) {
+                           $total =  $value->service_quantity *$value->service_rate;
+                           $total_labour+=$total;
+                        }
+                       
+                    ?>
                     <div class="car_inner_imagg vendor_rply_dtl ">
                         <img @if($garage->image && $garage->image != null) src="{{asset($garage->image)}}" @else
                         src="{{ asset('public/assets/images/repair2.jpg') }}" @endif>
@@ -120,7 +126,7 @@
                             </div>
                             <div class="invoice_details">
                                 <h4>Labor Pay</h4>
-                                <h4 class="__gray">AED {{$part->service_rate}}</h4>
+                                <h4 class="__gray">AED {{$total_labour}}</h4>
                             </div>
 
 

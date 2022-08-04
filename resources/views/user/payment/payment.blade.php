@@ -18,7 +18,7 @@
                     <input type="hidden" name="user_bid_id" value="{{$vendorbid->user_bid_id}}">
                     <input type="hidden" name="vendor_bid_id" value="{{$vendorbid->id}}">
                     <input type="hidden" name="garage_id" value="{{$vendorbid->garage_id}}">
-                    <input type="hidden" name="amount" value="{{$vendorbid->price}}">
+                    <input type="hidden" name="amount" value="{{$vendorbid->net_total}}">
                     <div class="row g-2">
                         <div class="col-lg-5 col-md-5 col-sm-5">
                             <div class=" billing_info">

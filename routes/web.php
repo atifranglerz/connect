@@ -196,6 +196,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('addfund/{id}', 'ordersController@addfund')->name('addfund');
         Route::post('finalFund', 'ordersController@finalFund')->name('finalFund');
         Route::post('completeInovoice', 'ordersController@completeInovoice')->name('completeInovoice');
+        Route::get('print-order-details/{id}', 'ordersController@printOrderDetails')->name('print-order-details');
+
 
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('requested-inspections', 'QuotesController@requestedInspections');

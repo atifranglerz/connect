@@ -124,7 +124,7 @@ class ordersController extends Controller
             'bid_id' => 'required',
             'garage_id' => 'required',
             'price' => 'required',
-            'time' => 'required',
+            // 'time' => 'required',
             'description' => 'required',
             'service_name' => 'required',
             'service_quantity' => 'required',
@@ -138,8 +138,14 @@ class ordersController extends Controller
             'vat' => 'required',
             'net_total' => 'required',
         ]);
+        if($request->time == NULL){
+            $time = 0;
+        }
+        else{
+            $time = $request->time;
+        }
         $data = array();
-        array_push($data, $request->price, $request->vat, $request->time);
+        array_push($data, $request->price, $request->vat, $time);
         $new = implode(",", $data);
 
         $data = VendorBid::where([['user_bid_id', $request->bid_id], ['garage_id', $request->garage_id]])->first();
@@ -265,5 +271,17 @@ class ordersController extends Controller
         return redirect()->back()->with($this->data("Order Reminder send to customer and final Invoice", 'success'));
 
     }
+
+
+    public function printOrderDetails($id)
+    {
+        $value = 0;
+        $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
+            $q->where('status', '=', '1');
+        }])->where('id', '=', $id)->first();
+        // $data = VendorBid::where('id', $id)->with('part', 'vendordetail')->first();
+        return view('user.quote.print_order_details', compact('data'));
+    }
+
 
 }

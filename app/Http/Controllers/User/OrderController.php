@@ -65,6 +65,11 @@ class OrderController extends Controller
         $data->new = null;
         $data->save();
 
+        //update total price of order
+        $order = Order::where('vendor_bid_id',$data->id)->first();
+        $order->total = $order->total + $array[0] + $array[1];
+        $order->save();
+
         $part = Part::where([['status', 0], ['vendor_bid_id', $id]])->get();
         foreach ($part as $part) {
             $part->status = 1;
