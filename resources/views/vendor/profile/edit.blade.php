@@ -58,7 +58,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="country" value="{{$profile->country}}" class="form-control" id="inpuCountry" placeholder="Country">
+                                <input type="text" name="country" value="{{$profile->country}}" class="form-control" id="inpuCountry" placeholder="Country" readonly>
                                 @error('country')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -80,62 +80,13 @@
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
-                            </div>
-{{--                            <div class="col-12 mb-3  signup_input_wraper">--}}
-{{--                                <div class="input-images-7"></div>--}}
-{{--                                <!-- <label class="img_wraper_label">--}}
-{{--                                  <div class="file_icon_wraper">--}}
-{{--                                    <img src="assets/images/fileuploadicon.svg">--}}
-{{--                                  </div>--}}
-{{--                                  <p class="mb-0">Upload Your Trade License and ID </p>--}}
-{{--                                  <input type="file" size="60" >--}}
-{{--                                </label> -->--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h5 class="mb-0 heading-color">Legal Info</h5>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" name="edit_profile" class="form-control"  placeholder="Trading License No.">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" name="detail" class="form-control"  placeholder="VAT Details">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h5 class="mb-0 heading-color">Billing Info</h5>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-6  ">--}}
-{{--                                        <select class="form-select" name="typeofarea" aria-label="Type of Service">--}}
-{{--                                            <option selected>Area</option>--}}
-{{--                                            <option value="1">2019</option>--}}
-{{--                                            <option value="2">2020</option>--}}
-{{--                                            <option value="3">2021</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-6 ">--}}
-{{--                                        <select class="form-select" type="typeofcity" aria-label="Type of Service">--}}
-{{--                                            <option selected>City</option>--}}
-{{--                                            <option value="1">2019</option>--}}
-{{--                                            <option value="2">2020</option>--}}
-{{--                                            <option value="3">2021</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            </div>                          
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" value="{{$profile->address}}" name="address" class="form-control"  placeholder="Address">
                                 @error('address')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-{{--                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">--}}
-{{--                                <h5 class="mb-0 heading-color">Add Number For Appointment</h5>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-12 mb-3 signup_input_wraper">--}}
-{{--                                <input type="text" name="garage_number" class="form-control"  placeholder="Telephone No.">--}}
-{{--                            </div>--}}
-
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h5 class="mb-0 heading-color">Password</h5>
                             </div>
@@ -164,51 +115,6 @@
         </div>
     </section>
 @endsection
-{{--@section('script')--}}
-{{--    <script>--}}
-{{--        $.ajaxSetup({--}}
-{{--            headers: {--}}
-{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--            }--}}
-{{--        });--}}
-{{--        $(document).ready(function () {--}}
-{{--            //alert("abc");--}}
-{{--            $('#update-profile').on('submit', function (e) {--}}
-{{--                e.preventDefault();--}}
-{{--                let formData = new FormData(this);--}}
-{{--                var id = {{ \Illuminate\Support\Facades\Auth::id() }}--}}
-{{--                $.ajax({--}}
-{{--                    type: "post",--}}
-{{--                    url: "{{ url('vendor/profile') }}" + '/' + id,--}}
-
-{{--                    data: formData,--}}
-{{--                    contentType: false,--}}
-{{--                    processData: false,--}}
-{{--                    success: (response) => {--}}
-{{--                        console.log(response.message);--}}
-{{--                        const Toast = Swal.mixin({--}}
-{{--                            toast: true,--}}
-{{--                            position: 'top-end',--}}
-{{--                            showConfirmButton: false,--}}
-{{--                            timer: 1000,--}}
-{{--                            timerProgressBar: true,--}}
-{{--                            didOpen: (toast) => {--}}
-{{--                                toast.addEventListener('mouseenter', Swal.stopTimer)--}}
-{{--                                toast.addEventListener('mouseleave', Swal.resumeTimer)--}}
-{{--                            }--}}
-{{--                        })--}}
-{{--                        Toast.fire({--}}
-{{--                            icon: response.status,--}}
-{{--                            title: response.message,--}}
-{{--                        });--}}
-{{--                        window.setTimeout(function(){location.reload()},1000)--}}
-{{--                    }--}}
-
-{{--                });--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endsection--}}
 @section('script')
     <script>
         $(function() {
