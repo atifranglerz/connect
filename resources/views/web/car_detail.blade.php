@@ -101,10 +101,10 @@
                 <div class="col-lg-3 col-md-6 col-sm-3">
                     <h6 class="store_addres">City: {{ $ad->city }}</h6>
                     <!-- <h5 class="store_addres">
-    @if ($ad->vendor_id != null)
+        @if ($ad->vendor_id != null)
     {{ getCityByVendor($ad->vendor_id) }}@else{{ getCityByVendor($ad->user_id) }}
     @endif
-    </h5> -->
+        </h5> -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-3">
                     <h6 class="store_addres">Price: {{ $ad->price }}</h6>
@@ -239,13 +239,13 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2 mt-3">
-                        @if (auth()->guard('web')->check())
-                            <a @if (isset($ad->vendor_id)) href="{{ url('user/chat/' . $ad->vendor_id) }}" @else href="#" @endif
+                        @if(Auth::guard('web')->check())
+                            <a @if(isset($ad->vendor_id)) href="{{ url('user/chat/' . $ad->vendor_id) }}" @else onclick="user()" href="#" @endif
                                 class="btn btn-primary get_appointment">CONTACT VIA MESSAGE
                                 <img src="{{ asset('public/assets/images/messageicon.svg') }}">
                             </a>
-                        @elseif(auth()->guard('vendor')->check())
-                            <a @if (isset($ad->user_id)) href="{{ url('vendor/chat/' . $ad->user_id) }}" @else href="#" @endif
+                        @elseif(Auth::guard('vendor')->check())
+                            <a @if(isset($ad->user_id)) href="{{ url('vendor/chat/' . $ad->user_id) }}" @else onclick="vendor()" href="#" @endif
                                 class="btn btn-primary get_appointment">CONTACT VIA MESSAGE
                                 <img src="{{ asset('public/assets/images/messageicon.svg') }}">
                             </a>
@@ -296,6 +296,14 @@
 
         function myFunction() {
             toastr.warning('Please login first');
+        }
+
+        function user() {
+            toastr.warning('You can not communicate to other Customer');
+        }
+
+        function vendor() {
+            toastr.warning('You can not communicate to other Vendor');
         }
     </script>
 @endsection

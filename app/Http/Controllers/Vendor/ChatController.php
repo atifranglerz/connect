@@ -233,28 +233,16 @@ class ChatController extends Controller
             $data->save();
         }
 
-        $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
-        $customer = view('vendor.chat.chatteduser')->with(['customer' => $customer])->render();
-
         $msg_unread = Chat::where([['vendor_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
-        $notify_unread = webNotification::where([['vendor_id', auth()->user()->id], ['seen', 0]])->count('seen');
-        
         
         $chated_user = User::find($id);
         $data = view('vendor.chat.new')->with(['message' => $message, 'chated_user' => $chated_user])->render();
 
-        $notification = webNotification::where([['vendor_id', auth()->user()->id], ['seen', 0]])->orderBy('id', 'DESC')->get();
-        $notification = view('vendor.notification.index')->with(['notification' => $notification])->render();
-
- 
         return response()->json([
             'success' => 'Status updated successfully',
             'msg' => $msg_unread,
-            'notificat' => $notify_unread,
             'message' => $data,
             'data' => $message,
-            'notification' => $notification,
-            'customer' => $customer,
 
         ]);
     }
@@ -273,13 +261,5 @@ class ChatController extends Controller
     }
 
 
-    public function notification(Request $request){
-        $notification = webNotification::find($request->id);
-        $notification->seen = 1;
-        $notification->save();
-        return response()->json([
-            'success' => 'Status updated successfully',
-        ]);
-    }
 
 }

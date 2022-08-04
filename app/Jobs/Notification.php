@@ -40,6 +40,10 @@ class Notification implements ShouldQueue
             // $notificaton = new \App\Mail\AboutOrder;
             Mail::to($this->message['email'])->send(new AboutOrder($this->message));
         }
+        elseif($this->message['type']=="quote"){
+            
+            Mail::to($this->message['email'])->send(new \App\Mail\QuoteRespons($this->message));
+        }
         else{
 
             Mail::to($this->message['email'])->send(new \App\Mail\Notification($this->message));

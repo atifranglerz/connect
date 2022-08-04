@@ -40,10 +40,8 @@
 
 
                                 <div class="d-flex align-items-center chat_view__detail">
-                                    <a href="#" class="chat_icon">
-                                        <i class="fa-solid fa-message"></i>
-                                        <!-- <img src="public/user/assets/images/meassageiconblk.svg")  -->
-                                    </a>
+                                    <a href="{{url('user/chat/'.$wishlist->vendor_id)}}" class="chat_icon"><i class="fa-solid fa-message"></i></a>
+
                                   <?php  $userwishlist = \App\Models\UserWishlist::where('user_id',auth()->id())->where('garage_id',$wishlist->id)->first();?>
                                     <form action="{{ route('user.wishlist.destroy', $userwishlist->id) }}" method="POST" style="display: inline-block">
                                         @csrf

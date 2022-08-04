@@ -30,6 +30,7 @@ class PaymentController extends Controller
     }
     public function payment_info(Request $request)
     {
+
         if ($request->type == "order") {
             $order = Order::where([['user_bid_id', $request->user_bid_id], ['vendor_bid_id', $request->vendor_bid_id]])->first();
             $order->status = "complete";
@@ -47,6 +48,15 @@ class PaymentController extends Controller
             //mail notification to user
             $Notification = new Notification($message);
             dispatch($Notification);
+
+            //web notification to vendor
+            $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
+            $notification = new webNotification();
+            $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
+            $notification->title = auth()->user()->name . " Confirm to complete order and release the payment, Order#" . $order->order_code;
+            $notification->links = url('vendor/fullfillment', $order->id);
+            $notification->body = ' ';
+            $notification->save();
 
             return $this->message($order, 'user.order.index', 'Order Completed and Payment Successfully Added', '  Error');
 

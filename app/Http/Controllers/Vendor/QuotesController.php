@@ -12,6 +12,9 @@ use App\Models\VendorBidStatus;
 use App\Models\VendorQuote;
 use App\Models\webNotification;
 use Illuminate\Http\Request;
+use App\Jobs\Notification;
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Auth;
 
 class QuotesController extends Controller
@@ -139,16 +142,31 @@ class QuotesController extends Controller
             $status->user_bid_id = $request->bid_id;
             $status->status = 1;
             $status->save();
+
             //notification to the customer of placing the bid on his quote
             $qoute = UserBid::find($request->bid_id);
+            $garage = Garage::where('vendor_id', auth()->id())->first();
             $user = User::find($qoute->user_id);
-            $notification = new webNotification();
-            $notification->customer_id = $qoute->user_id;
-            $notification->title = auth()->user()->name . " " . "place a bid on your Quote";
-            $notification->links = route('user.vendorReply', $data->id);
-            $notification->body = '.';
-            $notification->save();
 
+            $message['body1'] = $garage->garage_name;
+            $message['link1'] = route('user.vendorReply', $data->id);
+            $message['type'] = "quote";
+            $message['email'] = $user->email;
+
+            $gettime = strtotime($user->online_status) + 10;
+            $now = strtotime(Carbon::now());
+            if ($now > $gettime) {
+                $Notification = new Notification($message);
+                dispatch($Notification);
+                // Mail::to($user->email)->send(new AboutOrder($message));
+            } else {
+                $notification = new webNotification();
+                $notification->customer_id = $qoute->user_id;
+                $notification->title = auth()->user()->name . " " . "place a bid on your Quote";
+                $notification->links = route('user.vendorReply', $data->id);
+                $notification->body = '.';
+                $notification->save();
+            }
             return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
         } else {
             return redirect()->back()->with(['message' => 'You are already bided on this quote', 'alert' => 'error']);

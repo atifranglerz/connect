@@ -144,7 +144,7 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return redirect()->route('user.order.summary', $request->order_id)->with('alert-order-success', 'Your Order Cancelled Successfully');
+        return redirect()->route('user.order.summary', $request->order_id)->with($this->data("Your Order Cancelled Successfully", 'success'));
     }
     /**
      * Show the form for editing the specified resource.

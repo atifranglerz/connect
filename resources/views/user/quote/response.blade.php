@@ -34,10 +34,7 @@
                         </div>
                         <div class="quote_detail_btn_wraper replies">
                             <div class="d-flex chat_view__detail qoute_replies">
-                                <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon">
-                                    <i class="fa-solid fa-message"></i>
-                                    <!--   <img src="public/user/assets/images/meassageiconblk.svg"> -->
-                                </a>
+                                <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon"><i class="fa-solid fa-message"></i></a>
                                 <div class="card_icons respons_qoute d-flex justify-content-center align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id',$value->garage_id)->pluck('category_id');
                                     $category_name = \App\Models\Category::whereIn('id',$category)->get();

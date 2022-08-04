@@ -482,10 +482,7 @@
                 success: function(response) {
                     console.log(response);
                     $('#notify').html(response.msg);
-                    $('#notfication').html(response.notificat);
                     $('.cahtting_messages').append(response.message);
-                    $('#notification_tolltip').empty();
-                    $('#notification_tolltip').append(response.notification);
                     if(response.data!=''){
                         setTimeout(() => {
                             $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
@@ -496,6 +493,27 @@
             });
         }
 
+
+        setInterval(ajaxC, 10000);
+            function ajaxC() {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{ route('vendor.notification') }}",
+                    data: {
+                        'id': 1
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#notfication').html(response.unread);
+                        $('#notification_tolltip').empty();
+                        $('#notification_tolltip').append(response.notification);
+                    }
+                });
+            }
 
 
 
@@ -508,12 +526,15 @@
                     headers: {
                         'X-CSRF-Token': '{{ csrf_token() }}',
                     },
-                    url: "{{ route('vendor.notification') }}",
+                    url: "{{ route('vendor.status.notification') }}",
                     data: {
                         'id': id
                     },
                     success: function(response) {
                         console.log(response);
+                        $('#notfication').html(response.unread);
+                        $('#notification_tolltip').empty();
+                        $('#notification_tolltip').append(response.notification);
                     }
                 });
             });

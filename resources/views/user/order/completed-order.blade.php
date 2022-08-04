@@ -846,8 +846,7 @@
             <?php if(session('alert-order-success'))
                 {
             ?>
-            toastr.success('{{ Session::get('
-                    alert - order - success ') }}');
+            toastr.success('{{ Session::get('alert-order-success') }}');
             <?php
                 }
             ?>

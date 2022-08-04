@@ -69,7 +69,7 @@ class ordersController extends Controller
         $chatted->customer_online = $date;
         $chatted->save();
 
-        $message['title'] = "Query from your Garage/service provider";
+        $message['title'] = "Query from your Garage/service provider ".auth()->user()->name;
         $message['order_no'] = $request->order_no;
         $message['order_id'] = $request->order_id;
         $message['body1'] = "Please take a moment to promptly respond to your ";
@@ -90,7 +90,7 @@ class ordersController extends Controller
         } else {
             $notification = new webNotification();
             $notification->customer_id = $request->id;
-            $notification->title = "Query from your Garage about Order No " . $request->order_no;
+            $notification->title = "Query from ".auth()->user()->name." about Order No " . $request->order_no;
             $notification->links = route('user.chat.index');
             $notification->body = 'Please take a moment to promptly respond to your order related questions and messages to streamline the order completion process and prevent any misunderstanding. Chat Now with your garage.';
             $notification->save();
@@ -199,12 +199,14 @@ class ordersController extends Controller
         // //notification to the customer when vendor request for extra budget
         $order = Order::where('user_bid_id', $request->bid_id)->first();
         $user = UserBid::find($request->bid_id);
+        $garage = Garage::where('vendor_id', auth()->id())->first();
 
-        $message['title'] = "Order Completed";
+
+        $message['title'] = "Extra budget request";
         $message['order_no'] = $order->order_code;
         $message['order_id'] = $order->id;
         $message['body1'] = "We are pleased to inform you that your";
-        $message['body2'] = " is under process. Your selected garage/service has posted the extra budget invoice. Kindly sign in to check your order extra budget request.";
+        $message['body2'] = " is under process. Your selected garage ".$garage->garage_name." has posted the extra budget invoice. Kindly sign in to check your order extra budget request.";
         $message['link1'] = url('user/order', $order->id);
         $message['type'] = "order";
         $user = User::find($user->user_id);
@@ -220,7 +222,7 @@ class ordersController extends Controller
         } else {
             $notification = new webNotification();
             $notification->customer_id = $user->id;
-            $notification->title = " Garage Request of Extra budget against #" . $order->order_code;
+            $notification->title = $garage->garage_name." Request of Extra budget against #" . $order->order_code;
             $notification->links = url('user/order', $order->id);
             $notification->body = ' ';
             $notification->save();
@@ -233,11 +235,13 @@ class ordersController extends Controller
     public function completeInovoice(Request $request)
     {
         // return $request;
+        $garage = Garage::where('vendor_id', auth()->id())->first();
+
         $message['title'] = "Order Completed";
         $message['order_no'] = $request->order_no;
         $message['order_id'] = $request->order_id;
         $message['body1'] = "We are pleased to inform you that your ";
-        $message['body2'] = " has been successfully completed. Your selected garage/service has posted the final invoice. Kindly sign in to check your order and complete the payment by the releasing the funds.";
+        $message['body2'] = " has been successfully completed. Your selected garage" .$garage->garage_name.  "has posted the final invoice. Kindly sign in to check your order and complete the payment by the releasing the funds.";
         $message['link1'] = url('user/order/summary', $request->order_id);
         $message['type'] = "order";
         $user = User::find($request->user_id);

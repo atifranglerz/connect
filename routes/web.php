@@ -180,7 +180,11 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
         Route::post('chat/online/status', 'ChatController@status')->name('online.status');
         Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
-        Route::post('notification', 'ChatController@notification')->name('notification');
+
+        //notification
+        Route::post('notification', 'NotificationController@notification')->name('notification');
+        Route::post('status/notification', 'NotificationController@status')->name('status.notification');
+
 
 
         Route::get('orders', 'ordersController@index')->name('orders');
@@ -246,7 +250,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
         Route::post('chat/online/status', 'ChatController@status')->name('online.status');
         Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
-        Route::post('notification', 'ChatController@notification')->name('notification');
+        //notification
+        Route::post('notification', 'NotificationController@notification')->name('notification');
+        Route::post('status/notification', 'NotificationController@status')->name('status.notification');
 
 
         /* Logout */

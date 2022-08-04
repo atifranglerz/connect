@@ -244,24 +244,15 @@ class ChatController extends Controller
             $data->save();
         }
         $msg_unread = Chat::where([['customer_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
-        $notify_unread = webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->count('seen');
 
         $chated_user = Vendor::find($id);
         $data = view('user.chat.new')->with(['message' => $message, 'chated_user' => $chated_user])->render();
         
-        $notification = webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->orderBy('id', 'DESC')->get();
-        $notification = view('user.notification.index')->with(['notification' => $notification])->render();
-
-
-
         return response()->json([
             'success' => 'Status updated successfully',
             'msg' => $msg_unread,
-            'notificat' => $notify_unread,
             'message' => $data,
-            'notification' => $notification,
             'data' => $message,
-            // 'vendors' => $vendors,
         ]);
 
     }
@@ -277,16 +268,6 @@ class ChatController extends Controller
         ]);
     }
 
-    //change status of unseen notification
-    public function notification(Request $request)
-    {
-        $notification = webNotification::find($request->id);
-        $notification->seen = 1;
-        $notification->save();
-        return response()->json([
-            'success' => 'Status updated successfully',
-        ]);
-
-    }
+   
 
 }
