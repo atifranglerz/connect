@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p class="news_article_date"><span>Updated On: </span>jan 1,2020</p>
+                <p class="news_article_date"><span>Updated On: </span>{{$news->updated_at->format('M d, Y')}}</p>
             </div>
         </div>
     </div>

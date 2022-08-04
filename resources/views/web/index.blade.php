@@ -274,7 +274,7 @@
                             <img src="{{ $value->image }}" class="card-img-top" alt="Car image">
                         </div>
                         <div class="card-body px-lg-4 px-sm-2">
-                            <p class="card-title date ">{{$value->created_at}} Jan 1, 2022</p>
+                            <p class="card-title date ">{{$value->created_at->format('M d, Y')}}</p>
                             <p class="sec_main_para car_text ">{{$value->title}}</p>
                         </div>
                     </div>
