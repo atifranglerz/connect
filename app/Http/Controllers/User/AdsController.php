@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Notification;
 use App\Models\Ads;
 use App\Models\Company;
 use App\Models\ModelYear;
-use App\Jobs\Notification;
 use App\Models\webNotification;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -169,21 +168,32 @@ class AdsController extends Controller
             'mileage' => 'required',
         ]);
         $ads = Ads::findOrFail($id);
+
+        //update car images
         if ($request->file('car_images')) {
             $images = [];
             foreach ($request->file('car_images') as $data) {
-                //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $image);
                 $images[] = 'public/image/add/' . $image;
             }
-            // if ($request->has('old_image')) {
-            // $old_image = $request->image;
-            // unlink($old_image);
-            // }
-            $ads->images = implode(",", $images);
+            $new = implode(",", $images);
+            if (isset($request->car_old)) {
+                $old = implode(",", $request->car_old);
+                $ads->images = $old . "," . $new;
+            } else {
+                $ads->images = $new;
+            }
+        } else {
+            if (isset($request->car_old)) {
+                $old = implode(",", $request->car_old);
+                $ads->images = $old;
+            } else {
+                $ads->images = " ";
+            }
         }
 
+        //update car documents
         if ($request->file('doucment')) {
             $files = [];
             foreach ($request->file('doucment') as $data) {
@@ -191,7 +201,20 @@ class AdsController extends Controller
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
             }
-            $ads->document_file = implode(",", $files);
+            $new = implode(",", $files);
+            if (isset($request->doc_old)) {
+                $old = implode(",", $request->doc_old);
+                $ads->document_file = $old . "," . $new;
+            } else {
+                $ads->document_file = $new;
+            }
+        } else {
+            if (isset($request->doc_old)) {
+                $old = implode(",", $request->doc_old);
+                $ads->document_file = $old;
+            } else {
+                $ads->document_file = "";
+            }
         }
 
         $ads->model = $request->model;

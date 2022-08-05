@@ -26,7 +26,7 @@
                                     $preImages = [];
                                     foreach ($images as $image) {
                                         $obj = (object) ['id' => '', 'src' => ''];
-                                        $obj->id = $ads;
+                                        $obj->id = $image;
                                         $obj->src = asset($image);
                                         $preImages[] = $obj;
                                     }
@@ -36,10 +36,10 @@
                                     $docx = Explode(',', $ads->document_file);
                                     $preDocx = [];
                                     foreach ($docx as $doc) {
-                                        $obj1 = (object) ['id' => '', 'src' => ''];
-                                        $obj1->id = 1;
-                                        $obj1->src = asset($doc);
-                                        $preDocx[] = $obj1;
+                                        $obj = (object) ['id' => '', 'src' => ''];
+                                        $obj->id = $doc;
+                                        $obj->src = asset($doc);
+                                        $preDocx[] = $obj;
                                     }
                                     $preDocx = json_encode($preDocx);
                                     ?>

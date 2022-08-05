@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ads;
-use App\Models\category;
-use App\Models\Company ;
-use App\Models\ModelYear;
 use App\Jobs\Notification;
+use App\Models\Ads;
+use App\Models\Company;
+use App\Models\ModelYear;
 use App\Models\webNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +20,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::where('vendor_id',auth()->id())->with('company', 'modelYear')->get();
+        $ads = Ads::where('vendor_id', auth()->id())->with('company', 'modelYear')->get();
         return view('vendor.ads.index', compact('ads'));
     }
 
@@ -35,7 +34,7 @@ class AdsController extends Controller
         $company = Company::all();
         $year = ModelYear::all();
         $page_title = 'Ad index';
-        return view('vendor.ads.create', compact('company','year','page_title'));
+        return view('vendor.ads.create', compact('company', 'year', 'page_title'));
     }
 
     /**
@@ -47,18 +46,18 @@ class AdsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'city'=>'required',
-            'car_images'=>'required',
-            'files'=> 'required',
+            'city' => 'required',
+            'car_images' => 'required',
+            'files' => 'required',
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',
-            'price' =>'required',
-            'color' =>'required',
-            'engine'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
-            'mileage'=>'required',
+            'price' => 'required',
+            'color' => 'required',
+            'engine' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'mileage' => 'required',
         ]);
         $ads = new Ads();
         if ($request->file('car_images')) {
@@ -70,8 +69,8 @@ class AdsController extends Controller
                 $images[] = 'public/image/add/' . $image;
             }
             /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
+            $old_image = $request->image;
+            unlink($old_image);
             }*/
             $ads->images = implode(",", $images);
         }
@@ -84,13 +83,13 @@ class AdsController extends Controller
             }
 
             /*if ($request->has('old_image')) {
-                $old_image = $request->image;
-                unlink($old_image);
+            $old_image = $request->image;
+            unlink($old_image);
             }*/
             $ads->document_file = implode(",", $files);
         }
         $ads->model = $request->model;
-        $ads->company_id =  $request->company_id ;
+        $ads->company_id = $request->company_id;
         $ads->model_year_id = $request->model_year_id;
         $ads->price = $request->price;
         $ads->color = $request->color;
@@ -104,7 +103,6 @@ class AdsController extends Controller
 
         $ads->vendor_id = Auth::id();
         $ads->save();
-
 
         $message['email'] = auth()->user()->email;
         $message['type'] = "ads";
@@ -145,7 +143,7 @@ class AdsController extends Controller
         $ads = Ads::findOrFail($id);
         $company = Company::all();
         $year = ModelYear::all();
-        return view('vendor.ads.edit', compact('ads' , 'company', 'year'));
+        return view('vendor.ads.edit', compact('ads', 'company', 'year'));
     }
 
     /**
@@ -157,30 +155,44 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $request;
         $request->validate([
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',
-            'price' =>'required',
-            'color' =>'required',
-            'engine'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
-            'mileage'=>'required',
+            'price' => 'required',
+            'color' => 'required',
+            'engine' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'mileage' => 'required',
         ]);
         $ads = Ads::findOrFail($id);
-        if($request->file('car_images')) {
+        //update car images
+        if ($request->file('car_images')) {
             $images = [];
             foreach ($request->file('car_images') as $data) {
-                //dd($data);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $image);
                 $images[] = 'public/image/add/' . $image;
             }
-            $ads->images = implode(",", $images);
+            $new = implode(",", $images);
+            if (isset($request->car_old)) {
+                $old = implode(",", $request->car_old);
+                $ads->images = $old . "," . $new;
+            } else {
+                $ads->images = $new;
+            }
+        } else {
+            if (isset($request->car_old)) {
+                $old = implode(",", $request->car_old);
+                $ads->images = $old;
+            } else {
+                $ads->images = " ";
+
+            }
         }
 
+        //update car documents
         if ($request->file('doucment')) {
             $files = [];
             foreach ($request->file('doucment') as $data) {
@@ -188,11 +200,25 @@ class AdsController extends Controller
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
             }
-            $ads->document_file = implode(",", $files);
+            $new = implode(",", $files);
+            if (isset($request->doc_old)) {
+                $old = implode(",", $request->doc_old);
+                $ads->document_file = $old . "," . $new;
+            } else {
+                $ads->document_file = $new;
+            }
+        } else {
+            if (isset($request->doc_old)) {
+                $old = implode(",", $request->doc_old);
+                $ads->document_file = $old;
+            } else {
+                $ads->document_file = " ";
+
+            }
         }
 
         $ads->model = $request->model;
-        $ads->company_id =  $request->company_id ;
+        $ads->company_id = $request->company_id;
         $ads->model_year_id = $request->model_year_id;
         $ads->price = $request->price;
         $ads->color = $request->color;
@@ -219,6 +245,6 @@ class AdsController extends Controller
     {
         $ad = Ads::findOrFail($id);
         $ad->delete();
-        return $this->message($ad , 'vendor.ads.index', 'ad deleted Successfully', '  Ad is not delete Error');
+        return $this->message($ad, 'vendor.ads.index', 'ad deleted Successfully', '  Ad is not delete Error');
     }
 }

@@ -405,7 +405,7 @@ use Illuminate\Support\Facades\Auth;
             <div class="col-lg-12">
                 <div class="over_view_part timing_hours mape_wraper mt-4">
                     <h5 class="text-center mb-5 heading-color">LOCATION</h5>
-                    <div class="responsive-map">
+                    <div class="responsive-map" id="map1">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889"
                             height="550" frameborder="0" style="border:0" allowfullscreen>
@@ -482,4 +482,34 @@ $(function() {
     }
 });
 </script>
+
+{{-- google map --}}
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwh-vVMRBE4HFwtz1a65drC7iw8feYr5w&callback=initMap&v=weekly"
+        async></script>
+    <script type="text/javascript">
+        var lat = 30.762180;
+        var long = 76.766090;
+
+        function initMap() {
+
+            const myLatLng = {
+                lat: JSON.parse(lat),
+                lng: JSON.parse(long)
+            };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 5,
+                center: myLatLng,
+            });
+
+            new google.maps.Marker({
+                position: myLatLng,
+                map,
+                title: "Hello Rajkot!",
+            });
+        }
+
+        window.initMap = initMap;
+    </script>
+
 @endsection
