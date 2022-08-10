@@ -1,34 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Company;
 
-use Illuminate\Http\Request;
-use App\Models\InsuranceCompany;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\TermCondition;
+use App\Models\InsuranceCompany;
+use App\Models\PrivacyPolicy;
 
-class InsurancePaymentController extends Controller
+class TermConditionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $page_title = "Insurance Payment";
-        $company = InsuranceCompany::all();
-        return view('user.insurance_payment.index', compact('company','page_title'));
+        $data['terms'] =  PrivacyPolicy::first();
+        $data['policy'] = TermCondition::first();
+        return view('company.termCondition.index',compact('data'));
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+     //accept term and condition
+     public function terms(Request $request)
+     {
+         $company = InsuranceCompany::find($request->authid)->update(['term_condition' => 1]);
+         
+         return response()->json('success');
+     }
 
     /**
      * Store a newly created resource in storage.

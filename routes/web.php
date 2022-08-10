@@ -278,10 +278,43 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('order/cancel', 'OrderController@cancelOrder')->name('order.cancel');
         Route::get('accept/resolution/{id}', 'OrderController@acceptResolution')->name('accept-resolution');
         Route::get('reject/resolution/{id}', 'OrderController@rejectResolution')->name('reject-resolution');
-
-
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
 
+    });
+});
+
+
+Route::group(['prefix' => 'company', 'namespace' => 'Company', 'as' => 'company.'], function () {
+    Route::get('/', function () {
+        return view('company.auth.login');
+    })->name('admin.login');
+    /* Admin Login Or Register Form */
+    Route::get('login', 'AuthController@login')->name('login');
+    Route::get('register', 'AuthController@register')->name('register');
+    Route::post('login', 'AuthController@companyLogin')->name('login');
+    Route::post('register', 'AuthController@companyRegister')->name('register');
+    /*Forgot Password*/
+    Route::get('forget_password', 'AuthController@forgetPassword')->name('forget_password');
+    Route::post('reset-password', 'AuthController@resetPassword')->name('reset_password');
+    Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
+    Route::get('otp', 'AuthController@otp')->name('otp');
+    Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
+    Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
+    /* Admin Auth Routes */
+    Route::group(['middleware' => ['auth:company', 'role:company']], function () {
+        /* Dashboard */
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        Route::post('terms_condition', 'TermConditionController@terms')->name('terms_condition');
+        Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
+
+        /* Logout */
+        Route::post('logout', 'AuthController@logout')->name('logout');
+        /* Company profile */
+        Route::get('/profile', 'ProfileController@index')->name('profile');
+        Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
+        Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
+        // Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
+       
     });
 });

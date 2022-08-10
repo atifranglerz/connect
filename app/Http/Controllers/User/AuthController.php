@@ -40,12 +40,12 @@ class AuthController extends Controller
         $role = Role::where('name', 'user')->first();
         $user = new  User();
         if ($request->file('images')) {
-//            $file =$request->file('images');
-//            $extension = $file->getClientOriginalExtension(); // getting image extension
-//            $filename = time().'.' . $extension;
-//            $request->file('images')->move('public/image/profile/', $filename);
-//            $file = 'public/image/profile/' . $filename;
-//            $user->image = $file ;
+           $file =$request->file('images');
+           $extension = $file->getClientOriginalExtension(); // getting image extension
+           $filename = time().'.' . $extension;
+           $request->file('images')->move('public/image/profile/', $filename);
+           $file = 'public/image/profile/' . $filename;
+           $user->image = $file ;
             foreach($request->file('images') as $image)
             {
                 $name=time().'.' . $image->getClientOriginalExtension();
@@ -64,6 +64,7 @@ class AuthController extends Controller
         $user->save();
         $user_email = $request->email;
         $data['name'] = $request->name ;
+        $data['link'] = url('user/login');
         if ($user) {
             $user->assignRole($role);
             Mail::to($user_email)->send(new Login($data));

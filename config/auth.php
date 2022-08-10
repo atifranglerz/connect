@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'vendors',
         ],
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'insurance_companies',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'vendors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Vendor::class,
+        ],
+        'insurance_companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\InsuranceCompany::class,
         ],
 
         // 'users' => [
@@ -117,6 +125,12 @@ return [
         ],
         'vendors' => [
             'provider' => 'vendors',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'insurance_companies' => [
+            'provider' => 'insurance_companies',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

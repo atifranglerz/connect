@@ -1,10 +1,10 @@
 <div id="dashboardSidebar">
     <div class="main_profile_img_name">
         <div class="customer_dashboard_img_wraper">
-            <img src="{{ asset('/'.Illuminate\Support\Facades\Auth::user()->image) }}">
+            <img src="{{ asset('/'.Illuminate\Support\Facades\Auth::guard('vendor')->user()->image) }}">
         </div>
         <div class="name_of_person mx-auto text-center">
-            <h5 class="heading">{{Auth::user()->name}}</h5>
+            <h5 class="heading">{{Auth::guard('vendor')->user()->name}}</h5>
         </div>
     </div>
 

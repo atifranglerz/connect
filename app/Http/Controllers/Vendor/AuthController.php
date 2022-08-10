@@ -92,6 +92,8 @@ class AuthController extends Controller
         $vendor->save();
         $vendor_email = $request->email;
         $data['name'] = $request->name ;
+        $data['link'] = url('vendor/login');
+
         if ($vendor) {
             $vendor->assignRole($role);
             Mail::to($vendor_email)->send(new Login($data));
