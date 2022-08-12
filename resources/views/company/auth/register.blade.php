@@ -22,7 +22,7 @@
                                 </label>
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control"  name="name" value="{{ old('name') }}" id="inputName" placeholder="Full Name">
+                                <input type="text" class="form-control"  name="name" value="{{ old('name') }}" id="inputName" placeholder="Company Name">
                                 @error('name')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -62,12 +62,6 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Address">
                                 @error('address')
-                                <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}" placeholder="P/O Box">
-                                @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>

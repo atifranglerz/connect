@@ -31,7 +31,6 @@ class AuthController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:insurance_companies'],
             'country' => ['required'],
             'city' => ['required'],
-            // 'post_box'=>'required',
             'address' => 'required',
             'phone' => 'required|digits:12',
             'password' => 'required|confirmed',
@@ -52,7 +51,6 @@ class AuthController extends Controller
         $company->password = bcrypt($request->password);
         $company->country = $request->country;
         $company->city = $request->city;
-        // $company->post_box = $request->post_box;
         $company->save();
         $company_email = $request->email;
         $data['name'] = $request->name;

@@ -158,7 +158,6 @@ class QuotesController extends Controller
             if ($now > $gettime) {
                 $Notification = new Notification($message);
                 dispatch($Notification);
-                // Mail::to($user->email)->send(new AboutOrder($message));
             } else {
                 $notification = new webNotification();
                 $notification->customer_id = $qoute->user_id;

@@ -90,7 +90,7 @@
 
                                 </div>
                                 <div class="col-lg-5 col-sm-5">
-                                    <a href=""
+                                    <a href="{{route('user.payment-insurance',$vendorbid->id)}}"
                                         class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
                                         type="button">PAY VIA INSURANCE COMPANY</a>
                                 </div>
@@ -102,25 +102,6 @@
 
             </div>
         </div>
-
-        <!-- <div class="row  mt-5">
-            <div class="col-lg-8 mx-auto">
-                <div></div>
-                <div class="conform_btns d-flex  align-items-center justify-content-center">
-                  <div class="d-grid gap-2 ">
-                    <button class="btn text-center btn-secondary get_quot block get_appointment" type="button">CONFIRM ORDER
-                    </button>
-                  </div>
-                  <div >
-                    <h3 class="conform_order_H3">OR</h3>
-                  </div>
-                  <div class="d-grid gap-2 ">
-                    <a href="insurancePayment.php" class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-between" type="button">PAY VIA INSURANCE COMPANY
-                    </a>
-                  </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </section>
 @endsection

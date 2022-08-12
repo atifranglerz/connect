@@ -12,12 +12,13 @@
             <?php
             $company = \App\Models\Company::where('id', $order->userbid->company_id)->first();
             $modelYear = \App\Models\ModelYear::find($order->userbid->model_year_id);
+            $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
             $user = \App\Models\User::find($order->userbid->user_id);
             $userbidimage = \App\Models\UserBidImage::where([['user_bid_id', $order->userbid->id], ['type', 'image']])->first();
             $userbidimage = explode(',', $userbidimage->car_image);
-        //     $review_prev = \App\Models\UserReview::where('user_id', $user->id)->where('garage_id', $order->garage_id)->first();
+            //     $review_prev = \App\Models\UserReview::where('user_id', $user->id)->where('garage_id', $order->garage_id)->first();
             $review_prev = \App\Models\UserReview::where('order_id', $order->id)->first();
-
+            
             ?>
             <div class="row g-2">
                 <div class="col-lg-5 col-md-12 col-11  mx-auto">
@@ -34,7 +35,8 @@
                                 <h3 class="vendor_order_id">Order Id: #{{ $order->order_code }}</h3>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
                                     <h3 class="">{{ $order->vendorbid->time }} Days</h3>
-                                    <a href="{{ url('vendor/chat/' . $user->id) }}" class="justify-content-center chat_icon">
+                                    <a href="{{ url('vendor/chat/' . $user->id) }}"
+                                        class="justify-content-center chat_icon">
                                         <i class="fa-solid fa-message"></i>
                                     </a>
                                 </div>
@@ -59,9 +61,19 @@
                             <div class="quote_detail_btn_wraper">
                                 <div class="d-flex align-items-center chat_view__detail allreplies ">
                                     <div class="pay_via_insurance_header_garages">
-                                        <p>Payed Via Insurance</p>
+                                        @if ($order->paid_by == 'company')
+                                            @if ($insurancestatus->status == 0)
+                                                <p>Payment Is Pending</p>
+                                            @endif
+                                            @if ($insurancestatus->status == 1)
+                                                <p>Payed via Insurance</p>
+                                            @endif
+                                        @else
+                                            <p>Payed By Customer</p>
+                                        @endif
                                         <i class="bi bi-star-fill"></i>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="quote_info">

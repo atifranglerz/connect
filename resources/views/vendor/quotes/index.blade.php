@@ -21,7 +21,6 @@
                             $img = \App\Models\UserBidImage::where('user_bid_id',$value->user_bit_id)->where('type','image')->oldest()->first();
                             $img1=Explode(",",$img->car_image);
                             $user = \App\Models\User::find($value->userbid->user_id);
-
                         ?>
                         <img src="{{ asset($img1[0]) }}">
                     </div>
@@ -45,9 +44,9 @@
                                         class="fa-solid fa-message"></i>
                                 </a>
                                 <?php
-                                            $id =  $value->userbid->id;
-                                            $offer = \App\Models\VendorBidStatus::where([['user_bid_id',$id],['vendor_id',Auth::id()]])->first();
-                                        ?>
+                                    $id =  $value->userbid->id;
+                                    $offer = \App\Models\VendorBidStatus::where([['user_bid_id',$id],['vendor_id',Auth::id()]])->first();
+                                ?>
                                 @if($offer == NULL)
                                 <a href="{{ route('vendor.quotedetail',$value->userbid->id ) }}"
                                     class="btn-secondary">VIEW DETAILS</a>

@@ -12,9 +12,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 mx-auto">
                 <div class="row g-4">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="card">
                             <div class="sing_up_img_wraper card-img-top">
                                 <img src="{{asset('public/assets/images/vendorsingupimg.jpg')}}"  alt="image">
@@ -26,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="card">
                             <div class="sing_up_img_wraper card-img-top">
                                 <img src="{{asset('public/assets/images/usersignupimg.jpg')}}" alt="image">
@@ -38,6 +37,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card">
+                            <div class="sing_up_img_wraper card-img-top">
+                                <img src="{{asset('public/assets/images/company-logo.jpg')}}" alt="image">
+                            </div>
+                            <div class="card-body text-center">
+                                <p class="card-text text-center sing_up_card_txt">Get list of Insurance company providing their insurance service, register your company and grow business.
+                                </p>
+                                <a href="{{route('company.register')}}" class="btn btn-secondary Signup_btn">Company</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
@@ -45,7 +56,6 @@
                         </h5>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </section>

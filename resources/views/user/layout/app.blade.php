@@ -501,7 +501,7 @@
                         'id': id
                     },
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         $('#notify').html(response.msg);
                         $('.cahtting_messages').append(response.message);
                         if(response.data!=''){
@@ -526,7 +526,7 @@
                         'id': 1
                     },
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         $('#notfication').html(response.unread);
                         $('#notification_tolltip').empty();
                         $('#notification_tolltip').append(response.notification);

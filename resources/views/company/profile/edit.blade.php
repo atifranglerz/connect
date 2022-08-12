@@ -1,4 +1,4 @@
-@extends('user.layout.app')
+@extends('company.layout.app')
 @section('content')
     <section class="pb-5 login_content_wraper">
         <div class="container-lg container-fluid" >

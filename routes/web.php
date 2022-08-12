@@ -238,6 +238,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::post('payment_page', 'PaymentController@index')->name('payment_page');
         Route::post('payment-info', 'PaymentController@payment_info')->name('payment-info');
+        Route::get('payment-insurance/{id}', 'PaymentController@payment_insurance')->name('payment-insurance');
+        //profile
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
@@ -255,6 +257,10 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         //notification
         Route::post('notification', 'NotificationController@notification')->name('notification');
         Route::post('status/notification', 'NotificationController@status')->name('status.notification');
+        
+        // payment via insurance company
+        Route::post('email', 'InsurancePaymentController@email')->name('email');
+        Route::post('payment-request', 'InsurancePaymentController@payment_request')->name('payment-request');
 
 
         /* Logout */
@@ -315,6 +321,16 @@ Route::group(['prefix' => 'company', 'namespace' => 'Company', 'as' => 'company.
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
         // Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
+        
+        //insurance request 
+        Route::get('insurance-index', 'RequestController@index')->name('insurance-index');
+        Route::get('paid-insurance', 'RequestController@paidInsurance')->name('paid-insurance');
+        Route::get('car/detail/{id}', 'RequestController@carDetail')->name('car-detail');
+        Route::get('pay/payment/{id}', 'RequestController@payPayment')->name('pay-payment');
+        Route::get('print-order-details/{id}', 'RequestController@printOrderDetails')->name('print-order-details');
+
+
        
+
     });
 });

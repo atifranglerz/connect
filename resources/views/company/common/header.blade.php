@@ -27,7 +27,7 @@
                 </div>
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link " href="">My Ads Listing</a>
                     </li>
                     <li class="nav-item">
@@ -35,30 +35,32 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="" >Orders</a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="login_sinup">
-                    <div class="accoutntData">
-
-                        <?php
-                            $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
-                            $notification = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->get();
-                            $unread_noty = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->count('seen');
-                            ?>
-
-                        <a href="#"><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
+                    {{-- <?php
+                    $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
+                    $notification = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->get();
+                    $unread_noty = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->count('seen');
+                    ?> --}}
+                    {{-- <div class="accoutntData">
+                        <a href="#"><i class="fa-solid fa-message"></i><span id="notify"
+                                class="chatbox-option__notification notify text-red">{{ $unread }}</span></a>
                     </div>
                     <div class="accoutntData">
-                        <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i><span id="notfication" class="chatbox-option__notification notify text-red">{{$unread_noty}}</span></a>
+                        <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i><span id="notfication"
+                                class="chatbox-option__notification notify text-red">{{ $unread_noty }}</span></a>
                         <div class="notification_tooltip " id="notification_tolltip">
                             <ul class="notification_list shadow">
-                                @foreach($notification as $data)
-                                <li><a href="{{ $data->links }}" class="notification" id="{{$data->id}}">{{$data->title}}</a> <a href="#" class="notification" id="{{$data->id}}"><i class="bi bi-plus"></i></a>
-                                </li>
+                                @foreach ($notification as $data)
+                                    <li><a href="{{ $data->links }}" class="notification"
+                                            id="{{ $data->id }}">{{ $data->title }}</a> <a href="#"
+                                            class="notification" id="{{ $data->id }}"><i class="bi bi-plus"></i></a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="accoutntData">
                         <a href="#" id="Logout_Profile"><i class="fa-solid fa-user"></i></a>
                         <div class="notification_tooltip" id="TopProfile">

@@ -20,6 +20,10 @@ class VendorBid extends Model
     {
         return $this->belongsTo(UserBid::class, 'user_bid_id', 'id');
     }
+    public function order()
+    {
+        return $this->hasOne(Order::class, 'vendor_bid_id', 'id');
+    }
     public function part()
     {
         return $this->hasMany(Part::class, 'vendor_bid_id', 'id');

@@ -24,7 +24,7 @@ class ordersController extends Controller
     {
         $page_title = "All Order";
         $garage = Garage::where('vendor_id', auth()->id())->first();
-        $orders = Order::where('garage_id', $garage->id)->get();
+        $orders = Order::where('garage_id', $garage->id)->orderBy('id','desc')->get();
 
         return view('vendor.order.orders', compact('page_title', 'orders'));
     }
@@ -43,7 +43,7 @@ class ordersController extends Controller
     {
         $page_title = "Active Order";
         $garage = Garage::where('vendor_id', auth()->id())->first();
-        $orders = Order::where([['garage_id', $garage->id], ['status', 'pending']])->get();
+        $orders = Order::where([['garage_id', $garage->id], ['status', 'pending']])->orderBy('id','desc')->get();
 
         return view('vendor.order.order-all', compact('page_title', 'orders'));
     }

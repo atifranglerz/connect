@@ -9,12 +9,9 @@
     </div>
     <div class="sidebar_navigation">
         <ul class="sidebar_navcigation">
-            <li><a href="#"><img src="{{ asset('public/user/assets/images/dashomeicon.svg') }}"> <span>Home</span></a></li>
-            <li><a href="#"><img src="{{ asset('public/user/assets/images/dashinboxicon.svg') }}"><span>Inbox</span></a></li>
-            <li><a href="#"><img src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>All Quotes</span></a></li>
-            <li><a href="#"><img src="{{ asset('public/user/assets/images/dashhearticon.svg') }}"><span>Preferred Garages</span></a></li>
-            <li><a href="#"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Payment Via Insurance</span></a></li>
-            <li><a href="#"><img src="{{ asset('public/user/assets/images/dashsellcaricon.svg') }}"><span>Sell Your Car</span></a></li>
+            <li><a href="{{route('company.dashboard')}}"><img src="{{ asset('public/user/assets/images/dashomeicon.svg') }}"> <span>Home</span></a></li>
+            <li><a href="{{route('company.insurance-index')}}"><img src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>Insurance Request</span></a></li>
+            <li><a href="{{route('company.paid-insurance')}}"><img src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>Paid Insurance</span></a></li>
             <li><a href="{{route('company.term_condition')}}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Terms & Conditions (Agreed)</span></a></li>
         </ul>
     </div>

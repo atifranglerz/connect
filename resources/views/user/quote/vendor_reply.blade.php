@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="quote_detail_btn_wraper">
-                            <h4 class=" text-sm-center vendor_replies_dtl">AED {{$data->price}}</h4>
+                            <h4 class=" text-sm-center vendor_replies_dtl">AED {{$data->net_total}}</h4>
                             <div class="quote_info">
                                 <p class="quote_rev vndr_rply__dtl">Time Frame Offered<span> {{$data->time}}  Days</span></p>
                             </div>
@@ -263,7 +263,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="d-grid gap-2 ">
+                                    <div class="d-grid gap-2">
                                         <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Make : {{$company->company}}</button>
                                     </div>
                                 </div>
@@ -280,8 +280,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@
             <li><a href="{{ route('user.chat.index') }}"><img src="{{ asset('public/user/assets/images/dashinboxicon.svg') }}"><span>Inbox</span></a></li>
             <li><a href="{{ route('user.quoteindex') }}"><img src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>All Quotes</span></a></li>
             <li><a href="{{ route('user.wishlist.index') }}"><img src="{{ asset('public/user/assets/images/dashhearticon.svg') }}"><span>Preferred Garages</span></a></li>
-            <li><a href="{{ route('user.payment.index') }}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Payment Via Insurance</span></a></li>
+            {{-- <li><a href="{{ route('user.payment.index') }}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Payment Via Insurance</span></a></li> --}}
             <li><a href="{{ route('user.ads.create') }}"><img src="{{ asset('public/user/assets/images/dashsellcaricon.svg') }}"><span>Sell Your Car</span></a></li>
             <li><a href="{{route('user.term_condition')}}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Terms & Conditions (Agreed)</span></a></li>
         </ul>

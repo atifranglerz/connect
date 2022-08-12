@@ -1,4 +1,4 @@
-@extends('user.layout.app')
+@extends('company.layout.app')
 @section('content')
     <?php use \Illuminate\Support\Facades\Auth; ?>
     <section class="dashboard_main_section" style="background-image:url({{ url('public/user/assets/images/gradiantbg.jpg') }});">

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Customer panel |{{ $page_title ?? "" }}</title>
+    <title>Company panel |{{ $page_title ?? "" }}</title>
     <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/user/assets/favicon/favicon.ico') }}' />
     <style>
         /* width */

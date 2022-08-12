@@ -18,7 +18,7 @@ class DashboardController extends Controller
     //
     public function index(){
 
-        $page_title = 'Company Dashboard';
+        $page_title = 'Dashboard';
  
         $data['terms'] =  PrivacyPolicy::first();
         $data['policy'] = TermCondition::first();

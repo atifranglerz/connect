@@ -111,7 +111,7 @@ $(document).on('click', '.favorite', function() {
             'id': id
         },
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             $('#sendMessageForm').removeClass('d-none');
             $('#receiver_id').val(response.id);
             $('#users').empty();

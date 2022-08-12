@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Mail\AboutOrder;
+use App\Jobs\Notification;
+use App\Models\InsuranceCompany;
 use App\Models\Order;
 use App\Models\UserBid;
 use App\Models\Vendor;
 use App\Models\VendorBid;
 use App\Models\webNotification;
-use App\Jobs\Notification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -79,6 +78,7 @@ class PaymentController extends Controller
             $order->cvv = $request->cvv;
             $order->transaction_id = $request->transaction_id;
             $order->payment_type = $request->payment_type;
+            $order->paid_by = "customer";
             $order->save();
 
             //after order confirm update quote status
@@ -98,26 +98,42 @@ class PaymentController extends Controller
             //mail notification to user
             $Notification = new Notification($message);
             dispatch($Notification);
-            // Mail::to(auth()->user()->email)->send(new AboutOrder($message));
 
-            // web notification to the vendor
+            // web  or mail notification to the vendor
             $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
-            // $vendor = Vendor::find($vendorbid->vendordetail->vendor_id);
-            // $gettime = strtotime($vendor->online_status) + 10;
-            // $now = strtotime(Carbon::now());
-            // if ($now > $gettime) {
-            //     Mail::to($vendor->email)->send(new AboutOrder($message));
-            // } else {
-            $notification = new webNotification();
-            $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
-            $notification->title = auth()->user()->name . " accept your quote and place Order #" . $order_no;
-            $notification->links = url('vendor/fullfillment', $order->id);
-            $notification->body = ' ';
-            $notification->save();
-            // }
+            $vendor = Vendor::find($vendorbid->vendordetail->vendor_id);
+
+            $message['title'] = "Order Placement";
+            $message['order_no'] = $order_no;
+            $message['order_id'] = $order->id;
+            $message['body1'] = Auth::user()->name . " placed ";
+            $message['body2'] = "successfully to you.";
+            $message['link1'] = url('vendor/fullfillment', $order->id);
+            $message['type'] = "order";
+            $message['email'] = $vendor->email;
+
+            $gettime = strtotime($vendor->online_status) + 10;
+            $now = strtotime(Carbon::now());
+            if ($now > $gettime) {
+                $Notification = new Notification($message);
+                dispatch($Notification);
+            } else {
+                $notification = new webNotification();
+                $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
+                $notification->title = auth()->user()->name . " accept your quote and place Order #" . $order_no;
+                $notification->links = url('vendor/fullfillment', $order->id);
+                $notification->body = ' ';
+                $notification->save();
+            }
         }
 
         return $this->message($order, 'user.order.index', 'Payment Successfully Added', '  Error');
+    }
 
+    public function payment_insurance($id)
+    {
+        $company = InsuranceCompany::all();
+
+        return view('user.insurance_payment.index', compact('id', 'company'));
     }
 }

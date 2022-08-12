@@ -18,6 +18,7 @@
                     <div class="all_quote_card replies_allquot ">
                         <?php
                         $userbidid = \App\Models\UserBid::where('id', $order->user_bid_id)->first();
+                        $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
                         $company = \App\Models\Company::where('id', $userbidid->company_id)->first();
                         $userbidimage = \App\Models\UserBidImage::where([['user_bid_id', $order->userbid->id], ['type', 'image']])->first();
                         $userbidimage = explode(',', $userbidimage->car_image);
@@ -55,18 +56,28 @@
                     <div class="all_quote_card  replies_allquot h-100">
                         <div class=" w-100  quote_detail_wraper replies payviainsu">
                             <div class="quote_detail_btn_wraper">
-                                <div class="d-flex align-items-center chat_view__detail allreplies ">
+                                <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
                                     <div class="pay_via_insurance_header_garages">
-                                        <p>Payed Via Insurance</p>
+                                        @if ($order->paid_by == 'company')
+                                            @if ($insurancestatus->status == 0)
+                                                <p>Payment Is Pending</p>
+                                            @endif
+                                            @if ($insurancestatus->status == 1)
+                                                <p>Payed via Insurance</p>
+                                            @endif
+                                        @else
+                                            <p>Payed By Customer</p>
+                                        @endif
                                         <i class="bi bi-star-fill"></i>
                                     </div>
+
                                 </div>
+                                <a href="{{ url('vendor/print-order-details', $order->vendor_bid_id) }}">view invoice</a>
                             </div>
                             <div class="quote_info">
                                 <h3 class="d-flex align-items-center active_quote nowrape"> Budget</h3>
                                 <div class="quote_detail_btn_wraper">
                                     <h3 class="quotereplies">AED {{ $order->total }}</h3>
-                                    <a href="{{url('vendor/print-order-details',$order->vendor_bid_id )}}">view invoice</a>
                                 </div>
                             </div>
                         </div>
