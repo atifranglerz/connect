@@ -1930,7 +1930,7 @@ padding-right: 35px;
     border-radius: 4px;
     position: relative;
 }
-a[download="image"] {
+a[download="file"] {
     background: #FFF;
     color: var(--orange);
     border-radius: 50px;

@@ -28,6 +28,8 @@ class CreateChatsTable extends Migration
             $table->string('attachment')->nullable();
             $table->string('filetext')->nullable();
             $table->string('msgtype')->nullable();
+            $table->enum('vendor_file_status',['0','1']);
+            $table->enum('customer_file_status',['0','1']);
             $table->boolean('seen')->default(0);
             $table->integer('vendor_deleted')->default(0);
             $table->integer('customer_deleted')->default(0);

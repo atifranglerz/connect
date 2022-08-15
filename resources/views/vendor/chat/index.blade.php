@@ -62,7 +62,7 @@
                 <!-- append chat section -->
             </div>
             <div class="sending_input_field d-none" id="sendMessageForm">
-                <img id="showImage" src="" />
+                <p><img id="showImage" width="70" /></p>
                 <form enctype="multipart/form-data" id="chatForm">
                     @csrf
                     <div class="form-floating d-flex align-items-center form_sending_wraper">
@@ -71,8 +71,8 @@
                         <textarea class="form-control enterKey" name="body" id="typeMsg" placeholder="Say Somthing"></textarea>
                         <button type="submit" class="btn btn-primary" id="sendMsg">send</button>
                         <div class="file_input_messages">
-                            <input type="file" id="attachment" name="attachment"
-                                accept="image/gif, image/jpeg, image/png" onchange="readURL(this);" class="messages_file">
+                            <input type="file" id="attachment" name="attachment" onchange="loadFile(event)"
+                                class="messages_file">
                         </div>
 
                     </div>
@@ -84,17 +84,20 @@
 
 @section('script')
     <script>
-        //show selected file
-        function readURL(input) {
-            $('#showImage').removeClass('d-none');
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result).width(70).height(70);
-                };
-                reader.readAsDataURL(input.files[0]);
+
+         //show selected file
+        var loadFile = function(event) {
+            var file = $("#attachment").val();
+            var extention = file.split('.');
+            if (extention[1] == "docx") {
+                $('#showImage').attr("src", "{{ asset('public/assets/images/wordicon.png') }}");
+            } else if (extention[1] == "pdf") {
+                $('#showImage').attr("src", "{{ asset('public/assets/images/pdficon.png') }}");
+            } else {
+                var image = document.getElementById('showImage');
+                image.src = URL.createObjectURL(event.target.files[0]);
             }
-        }
+        };
 
 
 

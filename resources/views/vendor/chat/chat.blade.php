@@ -69,7 +69,7 @@
                                         @endif
                                         @if ($data->vendor_file_status == 0)
                                             <a class="position-absolute filedownload" id="{{ $data->id }}"
-                                                download="image" href="{{ asset($data->attachment) }}"
+                                                download="file" href="{{ asset($data->attachment) }}"
                                                 title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                     </div>
@@ -98,7 +98,7 @@
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($data->vendor_file_status == 0)
                                             <a class="position-absolute filedownload" id="{{ $data->id }}"
-                                                download="image" href="{{ asset($data->attachment) }}"
+                                                download="file" href="{{ asset($data->attachment) }}"
                                                 title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                         @if ($file[1] == 'docx')

@@ -68,9 +68,8 @@
                                         @else
                                             <img src="{{ asset($data->attachment) }}" width="100px">
                                         @endif
-                                        <p>{{ $file[1] }}</p>
                                         @if ($data->customer_file_status == 0)
-                                            <a class="position-absolute filedownload" download="image"
+                                            <a class="position-absolute filedownload" download="file"
                                                 id="{{ $data->id }}" href="{{ asset($data->attachment) }}"
                                                 title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
@@ -101,7 +100,7 @@
                                     <div
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($data->customer_file_status == 0)
-                                            <a class="position-absolute filedownload" download="image"
+                                            <a class="position-absolute filedownload" download="file"
                                                 id="{{ $data->id }}" href="{{ asset($data->attachment) }}"
                                                 title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
