@@ -26,6 +26,8 @@
             <li>
                 <a href="{{route('vendor.all-active-order')}}"><img src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>Active Orders</span></a>
             </li>
+            <li><a href="{{ route('vendor.archive') }}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Archived</span></a></li>
+
             <li>
                 <a href="{{route('vendor.workshop.edit',  Auth::id()  )}}"><img src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>Edit Workshop</span></a>
             </li>

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
-    <title>Repair my Car</title>
+    <title>{{__('msg.Repair my Car')}}</title>
 </head>
 
 <body>
@@ -55,47 +55,39 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('car_service') }}">Garages &
-                                Services</a>
+                            <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('car_service') }}">{{ __('msg.Garages & Services')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('used_cars') }}">Used Cars For
-                                Sale</a>
+                            <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('used_cars') }}">{{ __('msg.Used Cars For Sale')}}</a>
                         </li>
                         @if (Auth::guard('web')->check())
                             <li class="nav-item">
                                 <a class="nav-link px-lg-2 px-3 px-md-2"
-                                    href="@if (auth()->check()) {{ url('user/quotecreate') }}@else{{ url('user/login') }} @endif">Request
-                                    A Quote</a>
+                                    href="@if (auth()->check()) {{ url('user/quotecreate') }}@else{{ url('user/login') }} @endif">{{ __('msg.Request A Quote')}}</a>
                             </li>
                         @elseif(Auth::guard('vendor')->check())
                             <li class="nav-item">
                                 <a class="nav-link px-lg-2 px-3 px-md-2"
-                                    href="@if (auth()->guard('vendor')->check()) {{ route('vendor.ads.index') }}@else{{ url('vendor/login') }} @endif">My
-                                    Ads Listing</a>
+                                    href="@if (auth()->guard('vendor')->check()) {{ route('vendor.ads.index') }}@else{{ url('vendor/login') }} @endif">{{__('msg.My Ads Listing')}}</a>
                             </li>
                         @endif
                     </ul>
                     <div class="d-flex login_header_main">
                         @if (Auth::guard('vendor')->check() || Auth::guard('web')->check())
                             @if (Auth::guard('web')->check())
-                                <a href="{{ route('user.profile.index') }}" class="me-4 me-md-3">Profile</a>
+                                <a href="{{ route('user.profile.index') }}" class="me-4 me-md-3">{{ __('msg.Profile')}}</a>
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
-                                        class="fas fa-sign-out-alt"></i>
-                                    Logout
-                                </a>
+                                        class="fas fa-sign-out-alt"></i>{{ __('msg.Logout')}}</a>
                                 <form id="frm-logout" action="{{ route('user.logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf
                                 </form>
                             @elseif(Auth::guard('vendor')->check())
-                                <a href="{{ route('vendor.profile.index') }}" class="me-4 me-md-3">Profile</a>
+                                <a href="{{ route('vendor.profile.index') }}" class="me-4 me-md-3">{{ __('msg.Profile')}}</a>
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
-                                        class="fas fa-sign-out-alt"></i>
-                                    Logout
-                                </a>
+                                        class="fas fa-sign-out-alt"></i>{{ __('msg.Logout')}}</a>
                                 <form id="frm-logout" action="{{ route('vendor.logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf
@@ -104,9 +96,8 @@
                         @else
                             <div class="login_sinup">
                                 <a href="{{ route('vendor.register') }}"> <i
-                                        class="fa fa-briefcase me-2 me-md-1"></i>
-                                    Register Your Garage</a>
-                                <a href="{{ route('loginpage') }}" class="login ms-lg-2">Login</a>
+                                        class="fa fa-briefcase me-2 me-md-1"></i>{{ __('msg.Register Your Garage')}}</a>
+                                <a href="{{ route('loginpage') }}" class="login ms-lg-2">{{ __('msg.Login')}}</a>
                             </div>
                         @endif
                     </div>
@@ -120,33 +111,33 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5">
                     <div class="footer_link">
-                        <h5 class="text-white main-heading">LINKS</h5>
+                        <h5 class="text-white main-heading">{{__('msg.LINKS')}}</h5>
                         <ul>
                             <li><a href="{{ route('register') }}"><span class="fa fa-briefcase me-2 me-md-1"
-                                        style="margin-right: 8px"></span>Register your business</a></li>
+                                        style="margin-right: 8px"></span>{{__('msg.Register your business')}}</a></li>
                             <li><a href="{{ route('about') }}"><span class="fa fa-info-circle me-2 me-md-1"
-                                        style="margin-right: 8px"></span>About Us</a></li>
+                                        style="margin-right: 8px"></span>{{__('msg.About Us')}}</a></li>
                             <li><a href="{{ route('term') }}"><span class="fa fa-pencil-square"
-                                        style="margin-right: 8px"></span>Terms & Conditions</a></li>
+                                        style="margin-right: 8px"></span>{{__('msg.Terms & Conditions')}}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-3">
                     <div class="footer_link">
-                        <h5 class="text-white main-heading">LINKS</h5>
+                        <h5 class="text-white main-heading">{{__('msg.LINKS')}}</h5>
                         <ul>
                             <li><a href="{{ route('privacy_policy') }}"><span class="fa fa-lock"
-                                        style="margin-right: 8px"></span>Privicy Policy</a></li>
+                                        style="margin-right: 8px"></span>{{__('msg.Privicy Policy')}}</a></li>
                             <li><a href="{{ route('news') }}"><span class="fa fa-newspaper"
-                                        style="margin-right: 8px" aria-hidden="true"></span>News</a></li>
+                                        style="margin-right: 8px" aria-hidden="true"></span>{{__('msg.News')}}</a></li>
                             <li><a href="{{ route('faq') }}"><span class="fa fa-question-circle"
-                                        style="margin-right: 8px" aria-hidden="true"></span>FAQ </a></li>
+                                        style="margin-right: 8px" aria-hidden="true"></span>{{__('msg.FAQ')}}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4">
                     <div class="footer_link">
-                        <h5 class="text-white main-heading">CONNECT</h5>
+                        <h5 class="text-white main-heading">{{__('msg.CONNECT')}}</h5>
                         <div class="social_icons mb-3">
                             <a href="#">
                                 <img src="{{ asset('public/assets/images/facbook.svg') }}">
@@ -161,7 +152,7 @@
                                 <img src="{{ asset('public/assets/images/youtube.svg') }}">
                             </a>
                         </div>
-                        <h5 class="text-white footer_contact_heading">CONTACT US</h5>
+                        <h5 class="text-white footer_contact_heading">{{__('msg.CONTACT US')}}</h5>
                         <p class="footer_address">+92 345 123 4678 </p>
                         <p class="footer_address">abc@email.com </p>
                         <p class="footer_address">1- Industrial Area, City</p>

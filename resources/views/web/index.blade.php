@@ -1,30 +1,31 @@
 @extends('web.layout.app')
 @section('content')
+
 <section class="banner_section">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-caption " style="z-index: 1;">
-            <h2 class="heading">SEARCH AND FIND THE BEST GARAGES FOR YOU</h2>
+            <h2 class="heading">{{ __('msg.SEARCH AND FIND THE BEST GARAGES FOR YOU')}}</h2>
             <div class="banner_dot_img">
                 <img src="{{ asset('public/assets/images/divider.svg') }}">
             </div>
-            <p>Customer’s Journey</p>
+            <p>{{__('msg.Customer’s Journey')}}</p>
             <div class="banner_btn_main_wraper">
                 <div class=" banner_btn_inner_wrapper">
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon1.svg') }}">
-                        <a href="{{route('register')}}" class=" banner_btns">Sign Up</a>
+                        <a href="{{route('register')}}" class=" banner_btns">{{__('msg.Sign Up')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon2.svg') }}">
-                        <a href="{{route('user.login')}}" class=" banner_btns">Place an order</a>
+                        <a href="{{route('user.login')}}" class=" banner_btns">{{__('msg.Place an order')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon3.svg') }}">
-                        <a href="" class=" banner_btns">Vendors Realtime quotes</a>
+                        <a href="" class=" banner_btns">{{__('msg.Vendors Realtime quotes')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon4.svg') }}">
-                        <a href="{{route('vendorlist')}}" class=" banner_btns">Select a Garage/Vendor</a>
+                        <a href="{{route('vendorlist')}}" class=" banner_btns">{{__('msg.Select a Garage/Vendor')}}</a>
                     </div>
                 </div>
                 <div class="divider mt-3 ">
@@ -35,7 +36,7 @@
                 <form action="{{route('search-garage')}}" class="d-flex banner_form">
                     <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2 banner_select category"
                         aria-label="Default select example" id="selCatFilter">
-                        <option selected disabled value="">Select category</option>
+                        <option selected disabled value="">{{__('msg.Select category')}}</option>
                         @foreach($all_services as $value)
                         <option value="{{$value->id}}">{{$value->name}}</option>
                         @endforeach
@@ -43,10 +44,10 @@
                     <!-- <input class="typeahead form-control form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50"> -->
                     <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2 banner_select"
                         aria-label="Default select example" name="garage" id="selGarFilter">
-                        <option selected disabled value="">Select Category First</option>
+                        <option selected disabled value="">{{__("msg.Select Category First")}}</option>
 
                     </select>
-                    <button class="btn  search_btn" type="submit">SEARCH</button>
+                    <button class="btn  search_btn" type="submit">{{__('msg.SEARCH')}}</button>
                 </form>
             </div>
         </div>
@@ -81,8 +82,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">looking for</h4>
-                    <p class="sec_main_para text-center">get expert car service providers to get your car repaired</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.LOOKING FOR')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Get Expert Car Service Providers To Get Your Car Repaired')}}</p>
                 </div>
             </div>
         </div>
@@ -101,8 +102,7 @@
         <div class="row">
             <div class="col-lg-5 mx-auto">
                 <div class="text-center view_all_btn_wrapper">
-                    <a href="{{route('car_service')}}" class="view_all_btn">view all
-                    </a>
+                    <a href="{{route('car_service')}}" class="view_all_btn">{{__('msg.VIEW ALL')}}</a>
                 </div>
             </div>
         </div>
@@ -114,8 +114,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">used cars for sale</h4>
-                    <p class="sec_main_para text-center">find used cars for sale around you</p>
+                    <h4 class="sec_main_heading text-center">{{ __('msg.Used Cars For Sale')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Find Used Cars For Sale Around You')}}</p>
 
                 </div>
             </div>
@@ -148,8 +148,7 @@
         <div class="row">
             <div class="col-lg-5 mx-auto">
                 <div class="text-center view_all_btn_wrapper">
-                    <a href="{{route('used_cars')}}" class="view_all_btn">view all
-                    </a>
+                    <a href="{{route('used_cars')}}" class="view_all_btn">{{__('msg.VIEW ALL')}}</a>
                 </div>
             </div>
         </div>
@@ -162,7 +161,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12  ">
                 <div class="main_content_wraper about_connect_wraper">
-                    <h4 class="sec_main_heading about_connect_heading mb-4">Repair My Car</h4>
+                    <h4 class="sec_main_heading about_connect_heading mb-4">{{__('msg.Repair my Car')}}</h4>
                     <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting
                         industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
                         unknown printer took a galley of type and scrambled it to make a type specimen book. It has
@@ -194,7 +193,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">top rated vendors</h4>
+                    <h4 class="sec_main_heading text-center">{{__('msg.TOP RATED VENDORS')}}</h4>
                     <p class="sec_main_para text-center">find some popular service providers based on their quality</p>
                 </div>
             </div>

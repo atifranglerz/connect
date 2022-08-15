@@ -2,30 +2,39 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
-use App\Models\About;
 use App\Models\Ads;
-use App\Models\Category;
-use App\Models\Company;
-use App\Models\ContactVendor;
-use App\Models\Garage;
-use App\Models\GarageCategory;
-use App\Models\ModelYear;
 use App\Models\News;
-use App\Models\PrivacyPolicy;
-use App\Models\Slider;
-use App\Models\TermCondition;
 use App\Models\User;
+use App\Models\About;
+use App\Models\Garage;
+use App\Models\Slider;
+use App\Models\Company;
 use App\Models\UserBid;
-use App\Models\UserBidCategory;
-use App\Models\UserBidImage;
+use App\Models\Category;
+use App\Models\ModelYear;
 use App\Models\UserReview;
-use App\Models\UserWishlist;
 use App\Models\VendorQuote;
+use App\Models\UserBidImage;
+use App\Models\UserWishlist;
 use Illuminate\Http\Request;
+use App\Models\ContactVendor;
+use App\Models\PrivacyPolicy;
+use App\Models\TermCondition;
+use App\Models\GarageCategory;
+use App\Models\UserBidCategory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 
 class HomepageController extends Controller
 {
+
+    public function language()
+    {
+        config(['app.locale' => 'arb']);
+        $text = '<?php return ' . var_export(config('app'), true) . ';';
+        file_put_contents(config_path('app.php'), $text);
+        Artisan::call('cache:clear');
+    }
     public function index()
     {
         $data['page_title'] = "home";
@@ -383,6 +392,7 @@ class HomepageController extends Controller
     }
     public function loginchoice()
     {
+
         $page_title = 'login choice';
         return view('web.loginpage', compact('page_title'));
     }

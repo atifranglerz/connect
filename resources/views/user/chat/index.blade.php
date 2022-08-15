@@ -71,7 +71,7 @@
                         placeholder="Say Somthing"></textarea>
                     <button type="submit" class="btn btn-primary" id="sendMsg">send</button>
                     <div class="file_input_messages">
-                        <input type="file" id="attachment" name="attachment" accept="image/gif, image/jpeg, image/png"
+                        <input type="file" id="attachment" name="attachment" 
                             onchange="readURL(this);" class="messages_file">
                     </div>
                 </div>
@@ -196,6 +196,26 @@ $(document).on('click', '.MobileContactToggler', function() {
             console.log(response);
             $('#append_msg').empty();
             $('#append_msg').append(response.message);
+        }
+    });
+});
+
+// file status change and move to archive
+$(document).on('click', '.filedownload', function() {
+    var msg_id = $(this).attr('id');
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}',
+        },
+        url: "{{ route('user.archive.download') }}",
+        data: {
+            'msg_id': msg_id,
+        },
+        success: function(response) {
+            console.log(response);
         }
     });
 });

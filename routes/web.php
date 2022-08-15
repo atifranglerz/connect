@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +13,7 @@ use App\Http\Controllers\OrderController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('about', 'Admin\AboutController@show');
 Route::group(['namespace' => 'Web'], function () {
@@ -44,6 +43,7 @@ Route::group(['namespace' => 'Web'], function () {
         return 'Application queue work success';
     });
 
+    Route::get('language', 'HomepageController@language');
     Route::get('/', 'HomepageController@index')->name('home');
     Route::get('category-garage', 'HomepageController@categoryGarage');
     Route::get('register', 'HomepageController@register')->name('register');
@@ -68,7 +68,6 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('term_condition', 'HomepageController@term')->name('term');
     Route::get('about', 'HomepageController@about')->name('about');
     Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
-
 
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
@@ -110,7 +109,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('vendor', 'VendorController')->except('create', 'store', 'show');
         /* All Category & SubCategory Route */
         Route::resource('category', 'CategoryController');
-         /* Category set orders */
+        /* Category set orders */
         Route::post('category/order', 'CategoryController@orderUpdate')->name('cat_order.update');
         Route::resource('subcategory', 'SubCategoryController');
         Route::resource('childcategory', 'ChildCategoryController');
@@ -122,11 +121,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('order', 'OrderController');
         Route::resource('news', 'NewsController');
         /* slider */
-        Route::get('slider', [SliderController::class,'index']);
-        Route::post('slider', [SliderController::class,'store']);
-        Route::get('slider/edit/{id}', [SliderController::class,'edit']);
-        Route::post('slider/update/{id}', [SliderController::class,'update']);
-        Route::any('slider/destroy/{id}', [SliderController::class,'destroy']);
+        Route::get('slider', [SliderController::class, 'index']);
+        Route::post('slider', [SliderController::class, 'store']);
+        Route::get('slider/edit/{id}', [SliderController::class, 'edit']);
+        Route::post('slider/update/{id}', [SliderController::class, 'update']);
+        Route::any('slider/destroy/{id}', [SliderController::class, 'destroy']);
 
         /* All About Route */
         Route::get('about', 'AboutController@index')->name('about.index');
@@ -185,19 +184,16 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('notification', 'NotificationController@notification')->name('notification');
         Route::post('status/notification', 'NotificationController@status')->name('status.notification');
 
-
-
         Route::get('orders', 'ordersController@index')->name('orders');
         Route::get('create/order', 'ordersController@create');
         Route::get('fullfillment/{id}', 'ordersController@fullfillment')->name('fullfillment');
-        Route::get('order/all-active','ordersController@order_all')->name('all-active-order');
-        Route::get('order/index','ordersController@active_order')->name('order/index');
+        Route::get('order/all-active', 'ordersController@order_all')->name('all-active-order');
+        Route::get('order/index', 'ordersController@active_order')->name('order/index');
         Route::post('queryChat/', 'ordersController@queryChat')->name('queryChat');
         Route::get('addfund/{id}', 'ordersController@addfund')->name('addfund');
         Route::post('finalFund', 'ordersController@finalFund')->name('finalFund');
         Route::post('completeInovoice', 'ordersController@completeInovoice')->name('completeInovoice');
         Route::get('print-order-details/{id}', 'ordersController@printOrderDetails')->name('print-order-details');
-
 
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('requested-inspections', 'QuotesController@requestedInspections');
@@ -213,6 +209,9 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::resource('profile', 'ProfileController');
         /*Logout*/
         Route::post('logout', 'AuthController@logout')->name('logout');
+        Route::get('archive','ArchiveController@index')->name('archive');
+        Route::post('archive/download','ArchiveController@fileDownload')->name('archive.download');
+
     });
 });
 
@@ -244,24 +243,23 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
         Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
-         //chatting
+        //chatting
         //  Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
-         Route::get('chat/{id}', 'ChatController@chat')->name('chat');
-         Route::post('chat/favorite', 'ChatController@favorite')->name('chat.favorite');
-         Route::post('chat/chatSend', 'ChatController@store')->name('chatSend');
-         Route::post('chat/delete', 'ChatController@delete')->name('chat.delete');
-         Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');
+        Route::get('chat/{id}', 'ChatController@chat')->name('chat');
+        Route::post('chat/favorite', 'ChatController@favorite')->name('chat.favorite');
+        Route::post('chat/chatSend', 'ChatController@store')->name('chatSend');
+        Route::post('chat/delete', 'ChatController@delete')->name('chat.delete');
+        Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');
         Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
         Route::post('chat/online/status', 'ChatController@status')->name('online.status');
         Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
         //notification
         Route::post('notification', 'NotificationController@notification')->name('notification');
         Route::post('status/notification', 'NotificationController@status')->name('status.notification');
-        
+
         // payment via insurance company
         Route::post('email', 'InsurancePaymentController@email')->name('email');
         Route::post('payment-request', 'InsurancePaymentController@payment_request')->name('payment-request');
-
 
         /* Logout */
         Route::post('logout', 'AuthController@logout')->name('logout');
@@ -286,10 +284,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('reject/resolution/{id}', 'OrderController@rejectResolution')->name('reject-resolution');
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
+        Route::get('archive','ArchiveController@index')->name('archive');
+        Route::post('archive/download','ArchiveController@fileDownload')->name('archive.download');
 
     });
 });
-
 
 Route::group(['prefix' => 'company', 'namespace' => 'Company', 'as' => 'company.'], function () {
     Route::get('/', function () {
@@ -321,16 +320,13 @@ Route::group(['prefix' => 'company', 'namespace' => 'Company', 'as' => 'company.
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
         // Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
-        
-        //insurance request 
+
+        //insurance request
         Route::get('insurance-index', 'RequestController@index')->name('insurance-index');
         Route::get('paid-insurance', 'RequestController@paidInsurance')->name('paid-insurance');
         Route::get('car/detail/{id}', 'RequestController@carDetail')->name('car-detail');
         Route::get('pay/payment/{id}', 'RequestController@payPayment')->name('pay-payment');
         Route::get('print-order-details/{id}', 'RequestController@printOrderDetails')->name('print-order-details');
-
-
-       
 
     });
 });

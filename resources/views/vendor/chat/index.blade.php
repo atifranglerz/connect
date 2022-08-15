@@ -237,6 +237,26 @@
         });
 
 
+        // file status change and move to archive
+        $(document).on('click', '.filedownload', function() {
+            var msg_id = $(this).attr('id');
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('vendor.archive.download') }}",
+                data: {
+                    'msg_id': msg_id,
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+
         $(document).on('click', '.chatted_delete', function() {
             var id = $(this).attr('id');
 
