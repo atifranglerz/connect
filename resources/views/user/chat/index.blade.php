@@ -85,6 +85,7 @@
     <script>
         //show selected file
         var loadFile = function(event) {
+            $('#showImage').removeClass('d-none');
             var file = $("#attachment").val();
             var extention = file.split('.');
             if (extention[1] == "docx") {

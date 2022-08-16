@@ -37,7 +37,7 @@
         @if (count($message) > 0)
             @foreach ($message as $data)
                 <?php
-                $file = explode('.', $data->attachment);
+                    $file = explode('.', $data->attachment);
                 ?>
                 @if ($data->type == 'customer')
                     <div class="inbox_contact align-items-end top_main">

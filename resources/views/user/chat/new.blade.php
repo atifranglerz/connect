@@ -1,6 +1,9 @@
 <div class="main_message">
     @if(count($message)>0)
     @foreach($message as $data)
+    <?php
+        $file = explode('.', $data->attachment);
+    ?>
     @if($data->type == "vendor")
     <div class="inbox_contact align-items-end top_main">
         <div class="contact_img">
@@ -16,15 +19,28 @@
             </p>
             @else
             <div class="message_txt">
-                <span class="fa fa-trash text-danger position-absolute del-content delete" aria-hidden="true"
-                    style="right: 3px;top: 3px;font-size: 11px;cursor: pointer" id="{{$data->id}}"></span>
-                <div class="position-relative d-flex justify-content-center align-items-center img-download-block">
-                    <img src="{{ asset($data->attachment)}}" width="100px">
-                    <a class="position-absolute" download="image" href="{{ asset($data->attachment)}}" title="image"><i
-                            class="fa fa-download" aria-hidden="true"></i></a>
+                <span class="fa fa-trash text-danger position-absolute del-content delete"
+                    aria-hidden="true" style="right: 3px;top: 3px;font-size: 11px;cursor: pointer"
+                    id="{{ $data->id }}"></span>
+                <div
+                    class="position-relative d-flex justify-content-center align-items-center img-download-block">
+                    @if ($data->customer_file_status == 0)
+                        <a class="position-absolute filedownload" id="{{ $data->id }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    @endif
+                    @if ($file[1] == 'docx')
+                        <img src="{{ asset('public/assets/images/wordicon.png') }}" width="70px">
+                    @elseif ($file[1] == 'pdf')
+                        <img src="{{ asset('public/assets/images/pdficon.png') }}" width="70px">
+                    @elseif ($file[1] == 'xlsx')
+                        <img src="{{ asset('public/assets/images/excelicon.png') }}" width="70px">
+                    @elseif ($file[1] == 'pptx')
+                        <img src="{{ asset('public/assets/images/ppicon.png') }}" width="70px">
+                    @else
+                        <img src="{{ asset($data->attachment) }}" width="100px">
+                    @endif
                 </div>
-                @if(isset($data->filetext))
-                <p class="mb-0">{{$data->filetext ?? ''}}</p>
+                @if (isset($data->filetext))
+                    <p class="mb-0">{{ $data->filetext ?? '' }}</p>
                 @endif
             </div>
             @endif
