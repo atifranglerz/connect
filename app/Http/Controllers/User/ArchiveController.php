@@ -29,11 +29,12 @@ class ArchiveController extends Controller
         return response()->json([
             'success' => 'Status updated successfully',
         ]);
+        
     }
 
     public function index()
     {
-       $data =  Archive::where('customer_id',Auth::id())->get();
-        return view('user.archive.index',compact('data'));
+       $attachment =  Archive::where('customer_id',Auth::id())->get();
+        return view('user.archive.index',compact('attachment'));
     }
 }

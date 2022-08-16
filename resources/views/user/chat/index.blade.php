@@ -91,6 +91,10 @@
                 $('#showImage').attr("src", "{{ asset('public/assets/images/wordicon.png') }}");
             } else if (extention[1] == "pdf") {
                 $('#showImage').attr("src", "{{ asset('public/assets/images/pdficon.png') }}");
+            } else if (extention[1] == "xlsx") {
+                $('#showImage').attr("src", "{{ asset('public/assets/images/excelicon.png') }}");
+            } else if (extention[1] == "pptx") {
+                $('#showImage').attr("src", "{{ asset('public/assets/images/ppicon.png') }}");
             } else {
                 var image = document.getElementById('showImage');
                 image.src = URL.createObjectURL(event.target.files[0]);
@@ -207,7 +211,7 @@
         // file status change and move to archive
         $(document).on('click', '.filedownload', function() {
             var msg_id = $(this).attr('id');
-
+            $(this).addClass('d-none');
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -219,7 +223,8 @@
                     'msg_id': msg_id,
                 },
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
+                    toastr.success("file move to archived",'success');
                 }
             });
         });

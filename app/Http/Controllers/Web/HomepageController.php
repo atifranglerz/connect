@@ -94,7 +94,7 @@ class HomepageController extends Controller
         $data['catagary'] = Category::all();
         // $data['page_title'] = 'Request Quote';
         $data['page_title'] = 'vendor detail';
-        $data['garage'] = Garage::find($id);
+        $data['garage'] = Garage::with('vendor')->find($id);
         $data['services'] = Category::all();
         $data['user_wishlist'] = \App\Models\UserWishlist::where('user_id', auth()->id())->where('garage_id', $data['garage']->id)->first();
         $data['user_review'] = \App\Models\UserReview::where('garage_id', $data['garage']->id)->get();
@@ -105,7 +105,6 @@ class HomepageController extends Controller
         } else {
             $data['overAllRatings'] = $rating / $totalReviews;
         }
-        // return $data;
         return view('web.gerage_detail', $data);
     }
 

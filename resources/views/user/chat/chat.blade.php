@@ -60,18 +60,22 @@
                                         aria-hidden="true" style="right: 3px;top: 3px;font-size: 11px;cursor: pointer"
                                         id="{{ $data->id }}"></span>
                                     <div
+                                    dfgsdss
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($file[1] == 'docx')
                                             <img src="{{ asset('public/assets/images/wordicon.png') }}" width="70px">
                                         @elseif ($file[1] == 'pdf')
                                             <img src="{{ asset('public/assets/images/pdficon.png') }}" width="70px">
+                                        @elseif ($file[1] == 'xlsx')
+                                            <img src="{{ asset('public/assets/images/excelicon.png') }}" width="70px">
+                                        @elseif ($file[1] == 'pptx')
+                                            <img src="{{ asset('public/assets/images/ppicon.png') }}" width="70px">
                                         @else
                                             <img src="{{ asset($data->attachment) }}" width="100px">
                                         @endif
                                         @if ($data->customer_file_status == 0)
-                                            <a class="position-absolute filedownload" download="file"
-                                                id="{{ $data->id }}" href="{{ asset($data->attachment) }}"
-                                                title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            <a class="position-absolute filedownload" 
+                                                id="{{ $data->id }}" ><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                     </div>
                                     @if (isset($data->filetext))
@@ -100,14 +104,16 @@
                                     <div
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($data->customer_file_status == 0)
-                                            <a class="position-absolute filedownload" download="file"
-                                                id="{{ $data->id }}" href="{{ asset($data->attachment) }}"
-                                                title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            <a class="position-absolute filedownload" id="{{ $data->id }}"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                         @if ($file[1] == 'docx')
                                             <img src="{{ asset('public/assets/images/wordicon.png') }}" width="70px">
                                         @elseif ($file[1] == 'pdf')
                                             <img src="{{ asset('public/assets/images/pdficon.png') }}" width="70px">
+                                        @elseif ($file[1] == 'xlsx')
+                                            <img src="{{ asset('public/assets/images/excelicon.png') }}" width="70px">
+                                        @elseif ($file[1] == 'pptx')
+                                            <img src="{{ asset('public/assets/images/ppicon.png') }}" width="70px">
                                         @else
                                             <img src="{{ asset($data->attachment) }}" width="100px">
                                         @endif

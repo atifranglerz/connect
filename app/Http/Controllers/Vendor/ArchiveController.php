@@ -33,7 +33,7 @@ class ArchiveController extends Controller
 
     public function index()
     {
-        $data = Archive::where('vendor_id', Auth::id())->get();
-        return view('vendor.archive.index', compact('data'));
+        $attachment = Archive::where('vendor_id', Auth::id())->get();
+        return view('vendor.archive.index', compact('attachment'));
     }
 }

@@ -162,22 +162,8 @@
             <div class="col-lg-6 col-md-12  ">
                 <div class="main_content_wraper about_connect_wraper">
                     <h4 class="sec_main_heading about_connect_heading mb-4">{{__('msg.Repair my Car')}}</h4>
-                    <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into electronic</p>
-                    <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into electronic</p>
-
-                    <p class="about_connect_txt">Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into electronic</p>
-
-                    <!-- <p class="sec_main_para">find used cars for sale around you</p> -->
-
+                    <p class="about_connect_txt">{{__('msg.project description')}}</p>
+                    
                 </div>
             </div>
             <!-- <div class="col-lg-6">
