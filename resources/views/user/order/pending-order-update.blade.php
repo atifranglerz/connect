@@ -16,7 +16,7 @@
                            $total =  $value->service_quantity *$value->service_rate;
                            $total_labour+=$total;
                         }
-                       
+
                     ?>
                     <div class="car_inner_imagg vendor_rply_dtl ">
                         <img @if($garage->image && $garage->image != null) src="{{asset($garage->image)}}" @else
@@ -40,9 +40,9 @@
                         </div>
                         <div class="quote_detail_btn_wraper">
                             <div class="quote_detail_btn_wraper">
-                                <h3 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h3>
+                                <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h5>
                             </div>
-                            <h3 class=" text-sm-center">AED {{$order->total}}</h3>
+                            <h5 class=" text-sm-center">AED {{$order->total}}</h5>
                             <div class="completed_order_id">
                                 <p>Order ID: <span>#{{$order->order_code}}</span></p>
                             </div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <?php 
+        <?php
         $images = explode(',',$bidfile->car_image);
         ?>
         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5">
@@ -116,7 +116,7 @@
             <div class=" col-xl-7 col-lg-9 col-md-9 col-sm-11 mx-auto">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="over_view_part carad_data vendor_detail">
-                        <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
+                        <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-5 col-sm-5">
@@ -158,7 +158,7 @@
 
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="over_view_part carad_data vendor_detail">
-                        <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
+                        <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
                     </div>
                     <?php $vendor_bid = \App\Models\VendorBid::where('garage_id',$order->garage_id)->where('user_bid_id',$order->user_bid_id)->first();?>
                     <div class="vendor__rply__dttl">

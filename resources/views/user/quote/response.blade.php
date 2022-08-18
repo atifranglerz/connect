@@ -34,7 +34,7 @@
                                 <div class=" w-100  quote_detail_wraper replies ">
                                     <div class="quote_info">
                                         <h5 class="d-flex align-items-center active_quote nowrape heading-color">
-                                            {{ $company->company }} {{ $userbid->model }}</h3>
+                                            {{ $company->company }} {{ $userbid->model }}</h5>
                                             <p class="mb-0">{{ $userbid->description1 }}</p>
                                             <p>{{ $userbid->phone }}</p>
                                     </div>

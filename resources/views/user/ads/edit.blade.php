@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">EDIT YOUR AD FOR USED CAR</h1>
+                        <h4 class="sec_main_heading text-center mb-0">EDIT YOUR AD FOR USED CAR</h4>
                         <p class="sec_main_para text-center">Edit your ad</p>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                                             $preImages[] = $obj;
                                         }
                                         $preImages = json_encode($preImages);
-                                        
+
                                         //update the documents images
                                         $docx = Explode(',', $ads->document_file);
                                         $preDocx = [];

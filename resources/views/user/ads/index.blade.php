@@ -30,7 +30,7 @@
                                 <p >Engine : {{$data->engine}} CC</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
-                                <h3 class=" text-sm-center">AED {{$data->price}}</h3>
+                                <h5 class=" text-sm-center">AED {{$data->price}}</h5>
                                 <div class="d-flex  align-items-center chat_view__detail">
                                     <form method="post" action="{{route('user.ads.destroy', $data->id )}}" >
                                         @method('delete')

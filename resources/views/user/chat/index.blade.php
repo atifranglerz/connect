@@ -27,11 +27,11 @@
                                 <p id="userNotify">{{ $unread }}</p>
                                 <img src="{{ asset($data->vendor->image) }}">
                                 @if ($now < $gettime)
-                                    <h1 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
-                                        class="online-offline-dot">.</h1>
+                                    <h4 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
+                                        class="online-offline-dot">.</h4>
                                 @else
-                                    <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
-                                        class="online-offline-dot">.</h1>
+                                    <h4 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
+                                        class="online-offline-dot">.</h4>
                                 @endif
                             </div>
                             <div class="name_of_contact">

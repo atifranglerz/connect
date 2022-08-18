@@ -105,7 +105,7 @@
                                             </div>
                                             <div class="col-lg-2 col-sm-2">
                                                 <div>
-                                                    <h3 class="conform_order_H3 text-center">OR</h3>
+                                                    <h5 class="conform_order_H3 text-center">OR</h5>
                                                 </div>
 
                                             </div>

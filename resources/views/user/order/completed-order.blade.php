@@ -34,9 +34,9 @@
                             </div>
                             <div class="quote_detail_btn_wraper">
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h3>
+                                    <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h3 class=" text-sm-center">AED {{ $order->total }}</h3>
+                                <h5 class=" text-sm-center">AED {{ $order->total }}</h5>
                                 <div class="completed_order_id">
                                     <p>Order ID: <span>#{{ $order->order_code }}</span></p>
                                 </div>
@@ -50,7 +50,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
+                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
                         </div>
 
                         <?php $vendor_bid = \App\Models\VendorBid::where('garage_id', $order->garage_id)
@@ -67,7 +67,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h3 class=" text-center mb-5">CAR DETAILS</h3>
+                            <h5 class=" text-center mb-5">CAR DETAILS</h5>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 mx-auto">
@@ -140,7 +140,7 @@
 
                             <div class="all_quote_card  vendor_rply_dtlL _text">
                                 <div class="over_view_part carad_data vendor_detail">
-                                    <h3 class=" text-center mb-4">YOUR REVIEW</h3>
+                                    <h5 class=" text-center mb-4">YOUR REVIEW</h5>
                                 </div>
                                 <div class="d-flex align-items-center rating-stars">
                                     <div class="rating-group">
@@ -419,7 +419,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="over_view_part carad_data vendor_detail Leave_review">
-                                <h3 class=" text-center mb-2 mt-5">REVIEW WORKSHOP</h3>
+                                <h5 class=" text-center mb-2 mt-5">REVIEW WORKSHOP</h5>
                             </div>
 
                         </div>
@@ -527,7 +527,7 @@
                         <div class="col-lg-12">
                             <div class="all_quote_card  vendor_rply_dtlL _text">
                                 <div class="over_view_part carad_data vendor_detail">
-                                    <h3 class=" text-center mb-4">YOUR REVIEW</h3>
+                                    <h5 class=" text-center mb-4">YOUR REVIEW</h5>
                                 </div>
                                 <div class="d-flex align-items-center rating-stars">
                                     <div class="rating-group">
@@ -810,7 +810,7 @@
 
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h3 class=" text-center mb-5">ORDER CANCEL REASON</h3>
+                                <h5 class=" text-center mb-5">ORDER CANCEL REASON</h5>
                             </div>
                             <div class="vendor__rply__dttl">
                                 <p>{{ $order->reason }}</p>

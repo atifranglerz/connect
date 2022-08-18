@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5 white-background-box">
-                    <h3 class="sec_main_heading text-center">{{$data->vendordetail->garage_name}} GARAGE</h1>
+                    <h5 class="sec_main_heading text-center">{{$data->vendordetail->garage_name}} GARAGE</h4>
                         <p class="sec_main_para text-center">{{$data->vendordetail->address}} P.O. Box
                             {{$data->vendordetail->post_box}}</p>
                         <p class="sec_main_para text-center"><b>Tel : </b><span>{{$data->vendordetail->phone}}</span>,
@@ -13,7 +13,7 @@
                         </p>
                         <p class="sec_main_para text-center"><b>email :
                             </b><span>{{$data->vendordetail->vendor->email}}</span></p>
-                        <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h1>
+                        <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h4>
                             <div class="table-responsive bg-white">
                                 <table class="table table-bordered table-striped table-dark mb-0">
                                     <thead>
@@ -35,7 +35,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <h6 class="mt-3">Vehicle Detail :</h1>
+                            <h6 class="mt-3">Vehicle Detail :</h4>
                                 <div class="table-responsive bg-white">
                                     <table class="table table-bordered table-striped table-dark mb-0">
                                         <thead>
@@ -111,7 +111,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <h6 class="mt-3">Spares Detail :</h1>
+                                <h6 class="mt-3">Spares Detail :</h4>
                                     <div class="table-responsive bg-white">
                                         <table class="table table-bordered table-striped table-dark mb-0">
                                             <thead>
@@ -158,7 +158,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <h6 class="mt-3">Others :</h1>
+                                    <h6 class="mt-3">Others :</h4>
                                         <div class="table-responsive bg-white">
                                             <table class="table table-bordered table-striped table-dark mb-0">
                                                 <thead>
