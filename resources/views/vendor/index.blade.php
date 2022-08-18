@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
-                            <h5>{{round($overAllRatings,2)}}</h3>
+                            <h5>{{round($overAllRatings,2)}}</h5>
                             <h5 class="heading-color text-center">Overall Rating</h5>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
 {{--                            <p >{{$userbidid->phone}}</p>--}}
 {{--                        </div>--}}
 {{--                        <div class="quote_detail_btn_wraper">--}}
-{{--                            <h3 class=" text-sm-center">AED {{$order->total}}</h3>--}}
+{{--                            <h5 class=" text-sm-center">AED {{$order->total}}</h5>--}}
 {{--                            <div class="d-flex align-items-center chat_view__detail">--}}
 {{--                                <a href="#" class="chat_icon">--}}
 {{--                                    <i class="fa-solid fa-message"></i>--}}
@@ -107,7 +107,7 @@
         </div>
     </div>
 
-  
+
 @endsection
 @section('script')
 <?php
@@ -119,7 +119,7 @@ $term = $vendor->term_condition;
     <script>
          var term = '<?php echo $term; ?>';
          var authid = '<?php echo $vendor->id; ?>';
-         
+
         toastr.options = {
             "closeButton": true,
             "newestOnTop": false,

@@ -30,9 +30,9 @@
                                 </div>
                                 <div class=" w-100  quote_detail_wraper">
                                     <div class="quote_info">
-                                        <h3 class="d-flex align-items-center active_quote heading-color"><a href="#"
+                                        <h5 class="d-flex align-items-center active_quote heading-color"><a href="#"
                                                 class="heading-color">{{ $company->company }} {{ $value->model }}</a> <span
-                                                class="order_id">#{{ $userBid->reference_no }}</span></h3>
+                                                class="order_id">#{{ $userBid->reference_no }}</span></h5>
                                         <p class="mb-0">{{ $userBid->car_owner_name }}</p>
                                         <p class="mb-0">{{ $userBid->phone }}</p>
                                     </div>

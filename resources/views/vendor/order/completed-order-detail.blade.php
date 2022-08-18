@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h1 class="sec_main_heading text-center mb-0">ORDER COMPLETED</h1>
+                        <h4 class="sec_main_heading text-center mb-0">ORDER COMPLETED</h4>
                     </div>
                 </div>
             </div>
@@ -18,23 +18,23 @@
             $userbidimage = explode(',', $userbidimage->car_image);
             //     $review_prev = \App\Models\UserReview::where('user_id', $user->id)->where('garage_id', $order->garage_id)->first();
             $review_prev = \App\Models\UserReview::where('order_id', $order->id)->first();
-            
+
             ?>
             <div class="row g-2">
                 <div class="col-lg-5 col-md-12 col-11  mx-auto">
                     <div class="all_quote_card replies_allquot ">
                         <div class=" w-100  quote_detail_wraper replies ">
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape ">Car Details</h3>
+                                <h5 class="d-flex align-items-center active_quote nowrape ">Car Details</h5>
                                 <p class="mb-0">{{ $order->customer_name }}</p>
 
                                 <p class="mb-0">{{ $user->phone }}</p>
                                 <p class="milage">Mileage <span>{{ $order->userbid->mileage }}km</span></p>
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h3 class="vendor_order_id">Order Id: #{{ $order->order_code }}</h3>
+                                <h5 class="vendor_order_id">Order Id: #{{ $order->order_code }}</h5>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h3 class="">{{ $order->vendorbid->time }} Days</h3>
+                                    <h5 class="">{{ $order->vendorbid->time }} Days</h5>
                                     <a href="{{ url('vendor/chat/' . $user->id) }}"
                                         class="justify-content-center chat_icon">
                                         <i class="fa-solid fa-message"></i>
@@ -48,7 +48,7 @@
                     <div class="all_quote_card replies_allquot h-100 ">
                         <div class=" w-100  quote_detail_wraper replies ">
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape  ">{{ $company->company }}</h3>
+                                <h5 class="d-flex align-items-center active_quote nowrape  ">{{ $company->company }}</h5>
                                 <p class="mb-0">{{ $modelYear->model_year }}</p>
                                 <p class="mb-0">{{ $company->company }}</p>
                             </div>
@@ -77,9 +77,9 @@
                                 </div>
                             </div>
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape"> Budget</h3>
+                                <h5 class="d-flex align-items-center active_quote nowrape"> Budget</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class="quotereplies">AED {{ $order->total }}</h3>
+                                    <h5 class="quotereplies">AED {{ $order->total }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
             <div class="row  mt-5">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <h3 class="active_order_req">Requirments</h3>
+                        <h5 class="active_order_req">Requirments</h5>
 
                         <div class="vendor__rply__dttl">
                             <p>{{ $order->vendorbid->description }}</p>
@@ -171,7 +171,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
+                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $order->vendorbid->description }}</p>
@@ -184,7 +184,7 @@
                     <div class="col-lg-12">
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h3 class=" text-center mb-4">YOUR REVIEW</h3>
+                                <h5 class=" text-center mb-4">YOUR REVIEW</h5>
                             </div>
                             <div class="d-flex align-items-center rating-stars">
                                 <div class="rating-group">

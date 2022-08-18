@@ -64,7 +64,7 @@
 					<img src="{{asset($sevice->category->icon)}}">
 				</div>
 
-				<h3 class="mb-0 ms-2 ">{{$sevice->category->name}}</h3>
+				<h5 class="mb-0 ms-2 ">{{$sevice->category->name}}</h5>
 			</div>
             @endforeach
 
@@ -78,7 +78,7 @@
 		<div class="row g-4">
 			<div class="col-lg-8 col-md-6 col-sm-6">
 				<div class="over_view_part">
-					<h3 class=" text-center mb-5">OVERVIEW</h3>
+					<h5 class=" text-center mb-5">OVERVIEW</h5>
                     <p>{{$preview_garage->description}}</p>
 {{--					<p>We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.--}}
 {{--					</p>--}}
@@ -89,7 +89,7 @@
 			</div>
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="over_view_part timing_hours">
-					<h3 class=" text-center mb-5">OPENING HOURS</h3>
+					<h5 class=" text-center mb-5">OPENING HOURS</h5>
                     @foreach($preview_garage->garageTiming as $Timing)
 					<div class="timing_container">
 						<p class="time_for_opning mb-0">{{$Timing->day}}</p>
@@ -113,7 +113,7 @@
 		<div class="row g-4 mt-3">
 			<div class="col-lg-8 col-sm-6 col-md-6">
 				<div class="over_view_part">
-					<h3 class=" text-center mb-5">CONTACT VENDOR</h3>
+					<h5 class=" text-center mb-5">CONTACT VENDOR</h5>
 					<form class="row g-3">
 						<div class="col-md-12 col-lg-6">
 							<input type="text" class="form-control" id="inputCarModel" placeholder="Car Model">
@@ -154,7 +154,7 @@
 			</div>
 			<div class="col-lg-4 col-sm-6 col-md-6 ">
 				<div class="over_view_part timing_hours">
-					<h3 class=" text-center mb-5">REVIEWS</h3>
+					<h5 class=" text-center mb-5">REVIEWS</h5>
 					<div class="owl-carousel carousel_se_01_carousel owl-theme">
 						<div class="item">
 							<p class="text-center reviews">"Suzuki repairs are best in town. They did everything best at affordable rates and speedily. Thumbs up!"</p>
@@ -189,7 +189,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="over_view_part timing_hours mape_wraper mt-4">
-					<h3 class=" text-center mb-5">REVIEWS</h3>
+					<h5 class=" text-center mb-5">REVIEWS</h5>
 					<div class="responsive-map">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889" height="550" frameborder="0" style="border:0" allowfullscreen>
 						</iframe>

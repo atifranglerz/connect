@@ -478,8 +478,8 @@
             </div>
             <div class="modal-body">
                 <div class="pb-0 main_content_wraper">
-                    <h3 class="sec_main_heading text-center">
-                        {{\Illuminate\Support\Facades\Auth::user()->garage->garage_name}} GARAGE</h1>
+                    <h5 class="sec_main_heading text-center">
+                        {{\Illuminate\Support\Facades\Auth::user()->garage->garage_name}} GARAGE</h4>
                         <p class="sec_main_para text-center">
                             {{\Illuminate\Support\Facades\Auth::user()->garage->address}} P.O. Box
                             {{\Illuminate\Support\Facades\Auth::user()->garage->post_box}}</p>

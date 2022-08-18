@@ -126,7 +126,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="over_view_part timing_hours mape_wraper mt-4">
-                                                    <h3 class=" text-center mb-5">Google Maps</h3>
+                                                    <h5 class=" text-center mb-5">Google Maps</h5>
                                                     <div class="input-group mb-3 mx-lg-5 mx-md-3 mx-1 search_garages_wraper vendor_crt_wrkshop">
                                                         <input type="text" class="form-control search_garages creat_wrk" placeholder="Search For Your Next Car" aria-label="Recipient's username" aria-describedby="button-addon2">
                                                         <button class="btn search crt_wrik" type="button" id="button-addon2">Search</button>

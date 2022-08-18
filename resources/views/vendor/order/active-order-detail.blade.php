@@ -6,9 +6,9 @@
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
                         @if ($order->status == 'cancelled')
-                            <h1 class="sec_main_heading text-center mb-0"> ORDER CANCELED</h1>
+                            <h4 class="sec_main_heading text-center mb-0"> ORDER CANCELED</h4>
                         @else
-                            <h1 class="sec_main_heading text-center mb-0"> ACTIVE ORDER</h1>
+                            <h4 class="sec_main_heading text-center mb-0"> ACTIVE ORDER</h4>
                         @endif
                     </div>
                 </div>
@@ -28,17 +28,17 @@
                         ?>
                         <div class=" w-100  quote_detail_wraper replies ">
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape ">{{ $company->company }}
-                                    ({{ $userbidid->model }})</h3>
+                                <h5 class="d-flex align-items-center active_quote nowrape ">{{ $company->company }}
+                                    ({{ $userbidid->model }})</h5>
                                 <p class="mb-0">{{ $userbidid->car_owner_name }}</p>
 
                                 <p class="mb-0">{{ $user->phone }}</p>
                                 <p class="milage">Mileage <span>{{ $userbidid->mileage }}km</span></p>
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h3 class="vendor_order_id">Order Id: #{{ $order->order_code }}</h3>
+                                <h5 class="vendor_order_id">Order Id: #{{ $order->order_code }}</h5>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h3 class="">{{ $userbidid->day }} Days</h3>
+                                    <h5 class="">{{ $userbidid->day }} Days</h5>
                                     <form action="{{ route('vendor.queryChat') }}" method="POST" class="chat_view__detail">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $userbidid->user_id }}">
@@ -75,9 +75,9 @@
                                 <a href="{{ url('vendor/print-order-details', $order->vendor_bid_id) }}">view invoice</a>
                             </div>
                             <div class="quote_info">
-                                <h3 class="d-flex align-items-center active_quote nowrape"> Budget</h3>
+                                <h5 class="d-flex align-items-center active_quote nowrape"> Budget</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h3 class="quotereplies">AED {{ $order->total }}</h3>
+                                    <h5 class="quotereplies">AED {{ $order->total }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <h3 class="active_order_req">Requirments</h3>
+                        <h5 class="active_order_req">Requirments</h5>
 
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description1 }}</p>
@@ -238,7 +238,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h3 class=" text-center mb-5">REPAIR DETAILS</h3>
+                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description2 }}</p>
@@ -280,7 +280,7 @@
 
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h3 class=" text-center mb-5">ORDER CANCEL REASON</h3>
+                                <h5 class=" text-center mb-5">ORDER CANCEL REASON</h5>
                             </div>
                             <div class="vendor__rply__dttl">
                                 <p>{{ $order->reason }}</p>
