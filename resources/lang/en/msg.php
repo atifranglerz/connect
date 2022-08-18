@@ -4,6 +4,8 @@ return [
     'Garages & Services' => 'Garages & Services',
     'Register Your Garage' => 'Register Your Garage',
     'Login' => 'Login',
+    'Logout' => 'Logout',
+    'Used Cars For Sale' => 'Used Cars For Sale',
     'Request A Quote' => 'Request A Quote',
     'Profile' => 'Profile',
     'My Ads Listing' => 'My Ads Listing',

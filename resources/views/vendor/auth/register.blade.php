@@ -87,7 +87,27 @@
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <select class="form-select form-control insurance-company" name="company[]" aria-label="company" multiple="multiple">
+                                    @foreach ($company as $data)
+                                        <option value="{{$data->id}}">{{$data->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('garage_catagary')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            {{-- <div class="col-12 mb-3 signup_input_wraper">
+                                <select class="form-select form-control" name="company" aria-label="company">
+                                    <option selected disabled value="">Select Insurance Company</option>
+                                    @foreach ($company as $data)
+                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('company')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div> --}}
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="number" name="post_box" value="{{ old('post_box') }}" class="form-control" placeholder="P/O Box">
                                 @error('post_box')

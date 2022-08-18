@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use App\Http\Controllers\Controller;
-use App\Mail\ForgetPassword;
+use Carbon\Carbon;
 use App\Mail\Login;
-use App\Models\Category;
-use App\Models\Country;
+use App\Models\User;
 use App\Models\Garage;
 use App\Models\Vendor;
-use App\Models\User;
-use Carbon\Carbon;
+use App\Models\Country;
+use App\Models\Category;
+use App\Mail\ForgetPassword;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\InsuranceCompany;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
     public function register()
     {
-
+        $data['company'] = InsuranceCompany::all();
         $data['page_title'] = 'Vendor Register';
         $data['countries'] = Country::all();
         $data['categories'] = Category::all();
@@ -41,6 +42,7 @@ class AuthController extends Controller
             'country'=>['required','string'],
             'city'=> ['required','string'],
             'post_box'=>'required',
+            'company'=>'required',
             'phone' => 'required|digits:12',
             'image_license'=>'required',
             'trading_license'=>'required',
@@ -90,6 +92,12 @@ class AuthController extends Controller
         $vendor->garages_catagory=implode(', ',$request->garages_catagary);
         $vendor->trading_license=$request->trading_license;
         $vendor->save();
+
+        foreach($request->company as $id){
+            $company = InsuranceCompany::find($id);
+            $vendor->company()->attach($company);
+        }
+
         $vendor_email = $request->email;
         $data['name'] = $request->name ;
         $data['link'] = url('vendor/login');
@@ -116,6 +124,10 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        $vendor = Vendor::where('email', $request->email)->first();
+        if (isset($vendor) && $vendor->action == 0) {
+            return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
+        }
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
             if ($vendor_role) {

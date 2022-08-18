@@ -188,8 +188,8 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <select class="form-select" name="company" id="company"
                                             aria-label="Type of Service">
-                                            <option selected value=" ">Select Insurance Company</option>
-                                            @foreach ($company as $item)
+                                            <option selected disabled value="">Select Insurance Company</option>
+                                            @foreach ($company->company as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>

@@ -90,6 +90,13 @@
                 </ul>
             </li>
             --}}
+            <li class="dropdown @if (request()->routeIs('admin.insurance-company', 'admin.insurance-company.edit')) active @endif">
+                <a href="#" class="menu-toggle nav-link has-dropdown ">
+                    <i data-feather="user"></i><span>Insurance Company</span></a>
+                <ul class="dropdown-menu">
+                    <li class=""><a class="nav-link " href="{{ route('admin.insurance-company') }}">Company</a></li>
+                </ul>
+            </li>
             <li class="dropdown @if (request()->routeIs('admin.vendor.index', 'admin.vendor.create', 'admin.vendor.edit', 'admin.vendor.show')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown ">
                     <i data-feather="user"></i><span>Vendors</span></a>

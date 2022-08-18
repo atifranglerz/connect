@@ -14,7 +14,7 @@ class InsuranceCompany extends Authenticatable
 
     protected $guarded = 'company';
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -22,6 +22,7 @@ class InsuranceCompany extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'action',
         'facebook_social_id',
         'google_social_id',
         'image',
@@ -34,6 +35,25 @@ class InsuranceCompany extends Authenticatable
         'term_condition',
     ];
 
+/**
+ * The customer that belong to the InsuranceCompany
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+ */
+    public function customers()
+    {
+        return $this->belongsToMany(User::class, 'insurance_user');
+    }
+
+/**
+ * The vendor that belong to the InsuranceCompany
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+ */
+    public function vendors()
+    {
+        return $this->belongsToMany(Vendor::class, 'insurance_vendor',);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

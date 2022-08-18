@@ -34,10 +34,20 @@ class User extends Authenticatable
         'latitude',
         'term_condition',
         'online_status',
-
-
     ];
 
+ 
+    /**
+     * The company that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function company()
+    {
+        return $this->belongsToMany(InsuranceCompany::class, 'insurance_user', 'user_id', 'company_id');
+
+    }
+     
     /**
      * The attributes that should be hidden for serialization.
      *

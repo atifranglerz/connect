@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Auth;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Vendor;
 use App\Models\UserBid;
@@ -25,7 +26,7 @@ class InsurancePaymentController extends Controller
     public function index()
     {
         $page_title = "Insurance Payment";
-        $company = InsuranceCompany::all();
+       $company = User::with('company')->find(Auth::id());
         return view('user.insurance_payment.index', compact('company', 'page_title'));
     }
 
@@ -40,7 +41,7 @@ class InsurancePaymentController extends Controller
 
     public function payment_request(Request $request)
     {
-
+return $request;
         $request->validate([
             'vendor_bid_id' => 'required',
             'company' => 'required',],

@@ -64,4 +64,16 @@ class Vendor extends Authenticatable
     }
 
 
+    /**
+     * The roles that belong to the Vendor
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function company()
+    {
+        return $this->belongsToMany(InsuranceCompany::class, 'insurance_vendor', 'vendor_id', 'company_id');
+
+    }
+
+
 }

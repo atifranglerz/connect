@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
-use App\Mail\Login;
 use App\Mail\ForgetPassword;
+use App\Mail\Login;
 use App\Models\Country;
 use App\Models\InsuranceCompany;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
-use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -76,6 +76,11 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+        $company = InsuranceCompany::where('email', $request->email)->first();
+        if (isset($company) && $company->action == 0) {
+            return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
+        }
+
         if (Auth::guard('company')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $company_role = Auth::guard('company')->user()->hasRole('company');
             if ($company_role) {
@@ -85,7 +90,6 @@ class AuthController extends Controller
         return redirect()->back()->with($this->data("Company Email Or Password Invalid!", 'error'));
 
     }
-
 
     public function forgetPassword()
     {
@@ -150,13 +154,11 @@ class AuthController extends Controller
         return $this->message($company, 'company.login', 'Password Update Successfully', 'Password Update Error');
     }
 
-
     public function logout(Request $request)
     {
 
         $company = Auth::guard('company')->logout();
         return redirect()->route('company.login')->with($this->data("Your Company Logout Successfully", 'success'));
     }
-
 
 }

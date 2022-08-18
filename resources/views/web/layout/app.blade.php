@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4">
                     <div class="footer_link">
-                        <h5 class="text-white main-heading">{{__('msg.CONNECT')}}</h5>
+                        <h5 class="text-white main-heading">{{__('msg.Repair my Car')}}</h5>
                         <div class="social_icons mb-3">
                             <a href="#">
                                 <img src="{{ asset('public/assets/images/facbook.svg') }}">

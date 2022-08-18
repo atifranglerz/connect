@@ -19,6 +19,7 @@ class CreateInsuranceCompaniesTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('action')->default('1');
             $table->string('country');
             $table->string('city');
             $table->string('address')->nullable();

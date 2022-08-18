@@ -5,7 +5,7 @@
   'url' => 'http://localhost/connect',
   'asset_url' => NULL,
   'timezone' => 'Asia/Karachi',
-  'locale' => 'arb',
+  'locale' => 'en',
   'fallback_locale' => 'en',
   'faker_locale' => 'en_US',
   'key' => 'base64:7cGvBDCVYB0cjdjob3xveYoDqBnzfUjsYtWRoCnno0k=',

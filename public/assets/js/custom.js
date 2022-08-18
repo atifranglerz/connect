@@ -69,6 +69,9 @@ $(function() {
         placeholder: 'Select Year',
     });
     /*Multiple select*/
+    $('.insurance-company').select2({
+        placeholder: 'Select Insurance Company',
+    });
     $('.offer-garage-services').select2({
         placeholder: 'Select The Services You Offering',
     });
