@@ -36,15 +36,41 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" name="city" placeholder="City" value="{{ $profile->city }}">
-                                @error('city')
+                                <input type="text" class="form-control" id="inputNumber" name="country" placeholder="Country" value="{{ $profile->country }}" readonly>
+                                @error('country')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" name="country" placeholder="Country" value="{{ $profile->country }}" readonly>
-                                @error('country')
-                                <div class="text-danger p-2">{{ $message }}</div>
+                                <select class="form-select form-control" name="city" aria-label="City">
+                                    @if (isset($profile->city))
+                                        <option selected value="{{ $profile->city }}">{{ $profile->city }}</option>
+                                    @endif
+                                    <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>Dubai
+                                    </option>
+                                    <option value="Abu Dhabi" @if (old('city') == 'Abu Dhabi') selected @endif>Abu
+                                        Dhabi</option>
+                                    <option value="Sharjah" @if (old('city') == 'Sharjah') selected @endif>
+                                        Sharjah
+                                    </option>
+                                    <option value="Ras Al Khaimah"
+                                        @if (old('city') == 'Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
+                                    <option value="Ajman" @if (old('city') == 'Ajman') selected @endif>Ajman
+                                    </option>
+                                </select>
+                                @error('city')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <select class="form-select form-control insurance-company" name="company"
+                                    aria-label="company" value="">
+                                    @foreach ($company as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('garage_catagary')
+                                    <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">

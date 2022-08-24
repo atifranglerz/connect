@@ -35,8 +35,8 @@
                                     <div class="quote_info">
                                         <h5 class="d-flex align-items-center active_quote nowrape heading-color">
                                             {{ $company->company }} {{ $userbid->model }}</h5>
-                                            <p class="mb-0">{{ $userbid->description1 }}</p>
-                                            <p>{{ $userbid->phone }}</p>
+                                        <p class="mb-0">{{ $userbid->description1 }}</p>
+                                        <p>{{ $userbid->phone }}</p>
                                     </div>
                                     <div class="quote_detail_btn_wraper replies">
                                         <div class="d-flex chat_view__detail qoute_replies">
@@ -62,15 +62,17 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-10   mx-auto">
                             <div class="d-flex flex-column align-items-start all_quote_card replies_allquot h-100">
                                 <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
-                                    @foreach ($vendor->company as $company)
-                                        @if ($user->company[0]->name == $company->name)
-                                            <div class="w-100 pay_via_insurance_header_garages">
-                                                <p style="margin-right: 8px">{{ $company->name }}</p>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
+                                    @if (isset($user->company[0]->name,$vendor->company))
+                                        @foreach ($vendor->company as $company)
+                                            @if ($user->company[0]->name == $company->name)
+                                                <div class="w-100 pay_via_insurance_header_garages">
+                                                    <p style="margin-right: 8px">{{ $company->name }}</p>
+                                                    <i class="bi bi-star-fill"></i>
+                                                </div>
                                             @break
                                         @endif
-                                @endforeach
+                                    @endforeach
+                                @endif
                             </div>
                             <div class=" w-100  quote_detail_wraper replies second">
                                 <div class="quote_info">
@@ -82,7 +84,8 @@
                                 </div>
                                 <div class="quote_detail_btn_wraper">
                                     <div class="d-flex align-items-center chat_view__detail allreplies ">
-                                        <a href="{{ route('user.vendorReply', $value->id) }}" class="btn-secondary">VIEW
+                                        <a href="{{ route('user.vendorReply', $value->id) }}"
+                                            class="btn-secondary">VIEW
                                             DETAILS</a>
                                     </div>
                                 </div>

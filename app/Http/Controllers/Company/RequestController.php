@@ -60,11 +60,11 @@ class RequestController extends Controller
         $user = User::find($vendorbid->userBid->user_id);
 
         // notification content
-        $message['title'] = "Payment Confirmation";
+        $message['title'] = "Payment Completed";
         $message['order_no'] = $vendorbid->order->order_code;
         $message['order_id'] = $vendorbid->order->id;
-        $message['body1'] = "The Insurance Company " . Auth::guard('company')->user()->name . " has been accept your insurance request and paid it against";
-        $message['body2'] = " . Your selected garage/ service provider will be starting the work soon. To stay updated on the status of your order please sign in to your account or stay tuned as we will communicate to you once the job is completed.";
+        $message['body1'] = "Congratulations, your insurance company " . Auth::guard('company')->user()->name . " has completed the payment for your ";
+        $message['body2'] = " . Enjoy your service, please don’t forget to download the invoice for your record, and rate the service that you have received from your garage/service provider. ";
         $message['link1'] = url('user/order/summary', $vendorbid->order->id);
         $message['type'] = "order";
         $message['email'] = $user->email;
@@ -104,7 +104,7 @@ class RequestController extends Controller
         } else {
             $notification = new webNotification();
             $notification->vendor_id = $vendor->id;
-            $notification->title = "The Insurance Company " . Auth::guard('company')->user()->name . "has been release the payment against Order #" . $vendorbid->order->order_code;
+            $notification->title = "The " . Auth::guard('company')->user()->name . "has been release the payment against Order #" . $vendorbid->order->order_code;
             $notification->links = url('vendor/fullfillment', $vendorbid->order->id);
             $notification->body = ' ';
             $notification->save();

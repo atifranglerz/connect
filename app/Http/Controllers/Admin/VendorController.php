@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\SubCategory;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class VendorController extends Controller
 {
@@ -104,9 +101,8 @@ class VendorController extends Controller
         $vendor = Vendor::findOrFail($id);
         if ($vendor->hasRole('vendor')) {
             if (Hash::check($request->old_password, $vendor->password)) {
-                $vendor->fill([
-                    'password' => Hash::make($request->new_password)
-                ])->save();
+                $vendor->password = bcrypt($request->password);
+                $vendor->save();
 
                 return redirect()->route('admin.vendor.index')->with($this->data("Update Vendor Password Successfully", 'success'));
             } else {
@@ -124,7 +120,7 @@ class VendorController extends Controller
         if ($vendor->hasRole('vendor')) {
             if ($vendor->action == 0) {
                 $vendor->fill([
-                    'action' => 1
+                    'action' => 1,
                 ])->save();
                 return redirect()->route('admin.vendor.index')->with($this->data("Vendor Activate Successfully", 'success'));
             } else {
@@ -141,7 +137,7 @@ class VendorController extends Controller
         if ($vendor->hasRole('vendor')) {
             if ($vendor->action == 1) {
                 $vendor->fill([
-                    'action' => 0
+                    'action' => 0,
                 ])->save();
                 return redirect()->route('admin.vendor.index')->with($this->data("Vendor DeActivate Successfully", 'success'));
             } else {

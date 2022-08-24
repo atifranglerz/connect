@@ -5,9 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Mail\ForgetPassword;
 use App\Mail\Login;
-use App\Models\User;
 use App\Models\Country;
+use App\Models\InsuranceCompany;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,39 +22,39 @@ class AuthController extends Controller
     public function register()
     {
         $page_title = 'User Register';
+
+        $data['company'] = InsuranceCompany::all();
         $data['countries'] = Country::all();
         return view('user.auth.register', $data, compact('page_title'));
     }
 
     public function userRegister(Request $request)
-    {
+    {;
         $request->validate([
-            'images' => 'required' ,
+            'images' => 'required',
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'country'=>['required'] ,
-            'city'=> ['required','alpha'] ,
-            'post_box'=>'required',
-            'address'=>'required',
+            'country' => 'required',
+            'city' => 'required',
+            'post_box' => 'required',
+            'address' => 'required',
             'phone' => 'required|digits:12',
             'password' => 'required|confirmed',
+            'company' => 'required',
         ]);
         $role = Role::where('name', 'user')->first();
-        $user = new  User();
-        if ($request->file('images')) {
-           $file =$request->file('images');
-           $extension = $file->getClientOriginalExtension(); // getting image extension
-           $filename = time().'.' . $extension;
-           $request->file('images')->move('public/image/profile/', $filename);
-           $file = 'public/image/profile/' . $filename;
-           $user->image = $file ;
-            foreach($request->file('images') as $image)
-            {
-                $name=time().'.' . $image->getClientOriginalExtension();
-                $name=$image->move('public/image/profile/', $name);
-                $user['image']=$name;
-            }
-        }
+        $user = new User();
+
+        // if ($request->file('images')) {
+        //     $images = [];
+        //     foreach ($request->file('images') as $data) {
+        //         $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+        //         $data->move('public/image/profile/', $image);
+        //         $images[] = 'public/image/profile/' . $image;
+        //     }
+        //     $user->image = implode(",", $images);
+        // }
+        
         $user->name = $request->name;
         $user->city = $request->city;
         $user->email = $request->email;
@@ -62,8 +64,12 @@ class AuthController extends Controller
         $user->city = $request->city;
         $user->post_box = $request->post_box;
         $user->save();
-        $user_email = $request->email;
-        $data['name'] = $request->name ;
+
+        $company = InsuranceCompany::find($request->company);
+        $user->company()->attach($company);
+
+        $user_email = $user->email;
+        $data['name'] = $user->name;
         $data['link'] = url('user/login');
         if ($user) {
             $user->assignRole($role);
@@ -86,6 +92,12 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+
+        $user = User::where('email', $request->email)->first();
+        if (isset($user) && $user->action == 0) {
+            return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
+        }
+
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
@@ -96,7 +108,8 @@ class AuthController extends Controller
 
     }
 
-    public function forgetPassword(){
+    public function forgetPassword()
+    {
         $page_title = 'Forget Password';
         return view('user.auth.forget_password', compact('page_title'));
     }
@@ -115,7 +128,7 @@ class AuthController extends Controller
             DB::table('password_resets')->insert([
                 'email' => $vendor->email,
                 'token' => $data['token'],
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
             return redirect()->back()->with($this->data("Forget Password Email Send Successfully.", 'success'));
             // Mail::to($request->email)->send(new ResetPassword($details));
@@ -175,15 +188,15 @@ class AuthController extends Controller
             $user = Socialite::driver('facebook')->user();
             $isUser = User::where('social_id', $user->id)->first();
 
-            if($isUser){
+            if ($isUser) {
                 Auth::login($isUser);
                 return redirect('/dashboard');
-            }else{
+            } else {
                 $createUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'fb_id' => $user->id,
-                    'password' => encrypt('user@123')
+                    'password' => encrypt('user@123'),
                 ]);
 
                 Auth::login($createUser);
@@ -210,15 +223,15 @@ class AuthController extends Controller
         try {
             $user = Socialite::driver('google')->user();
             $finduser = User::where('social_id', $user->id)->first();
-            if($finduser){
+            if ($finduser) {
                 Auth::login($finduser);
                 return redirect('/');
-            }else{
+            } else {
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => encrypt('123456dummy')
+                    'google_id' => $user->id,
+                    'password' => encrypt('123456dummy'),
                 ]);
                 Auth::login($newUser);
                 return redirect('/home');
@@ -229,8 +242,9 @@ class AuthController extends Controller
     }
 
     //accept term and condition
-    public function terms(Request $request){
-        $user = User::find($request->authid)->update(['term_condition'=>1]);
-       return response()->json('success');
+    public function terms(Request $request)
+    {
+        $user = User::find($request->authid)->update(['term_condition' => 1]);
+        return response()->json('success');
     }
 }

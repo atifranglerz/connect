@@ -296,6 +296,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('order/cancel', 'OrderController@cancelOrder')->name('order.cancel');
         Route::get('accept/resolution/{id}', 'OrderController@acceptResolution')->name('accept-resolution');
         Route::get('reject/resolution/{id}', 'OrderController@rejectResolution')->name('reject-resolution');
+        Route::post('order/complete', 'OrderController@completeOrder')->name('order.complete');
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
         Route::get('archive','ArchiveController@index')->name('archive');
@@ -307,8 +308,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
 Route::group(['prefix' => 'company', 'namespace' => 'Company', 'as' => 'company.'], function () {
     Route::get('/', function () {
         return view('company.auth.login');
-    })->name('admin.login');
-    /* Admin Login Or Register Form */
+    })->name('company.login');
+    /* Company Login Or Register Form */
     Route::get('login', 'AuthController@login')->name('login');
     Route::get('register', 'AuthController@register')->name('register');
     Route::post('login', 'AuthController@companyLogin')->name('login');

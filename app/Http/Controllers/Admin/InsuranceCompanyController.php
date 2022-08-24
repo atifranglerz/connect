@@ -102,7 +102,8 @@ class InsuranceCompanyController extends Controller
         $company = InsuranceCompany::findOrFail($id);
         if ($company->hasRole('company')) {
             if (Hash::check($request->old_password, $company->password)) {
-                $company->update(['password' => Hash::make($request->password)]);
+                $company->password = bcrypt($request->password);
+                $company->save();
 
                 return redirect()->route('admin.insurance-company')->with($this->data("Update Insurance Company Password Successfully", 'success'));
             } else {

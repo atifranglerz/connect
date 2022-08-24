@@ -175,11 +175,11 @@ class PaymentController extends Controller
         $quote->save();
 
         //mail notification to customer
-        $message['title'] = "Order Placement and Insurance Request Completion";
+        $message['title'] = "Placement of quotes with your insurance company";
         $message['order_no'] = $order_no;
         $message['order_id'] = $order->id;
-        $message['body1'] = "Your ";
-        $message['body2'] = "has been successfully placed and Insurance requset send to your Insurance Company. After paying payment by insurance company your selected garage/ service provider will be starting the work soon.";
+        $message['body1'] = "You have successfully completed the placement of quote with your insurance company for ";
+        $message['body2'] = ". Stay tuned and receive updates on the quotes status.";
         $message['link1'] = url('user/order/summary', $order->id);
         $message['type'] = "order";
         $message['email'] = auth()->user()->email;
@@ -216,11 +216,11 @@ class PaymentController extends Controller
 
 
         //mail notification to Insurance Company
-        $message['title'] = "Car Insurance Request";
+        $message['title'] = "Incomplete order reminder";
         $message['order_no'] = $order_no;
         $message['order_id'] = $order->id;
-        $message['body1'] = Auth::user()->name." has been place the ";
-        $message['body2'] = "for his car repairing and request to you for insurance. Plesse pay the payment so that his selected garage will be started the work soon.";
+        $message['body1'] = "Our most qualified garages and service providers are excited to work on ";
+        $message['body2'] = " we kindly request you to take a moment to select the service providers to streamline the process of completion for your customer.";
         $message['link1'] = url('company/car/detail', $vendor_bid_id);
         $message['type'] = "order";
         $message['email'] = $company->company[0]->email;

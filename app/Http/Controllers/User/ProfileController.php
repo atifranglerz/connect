@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\InsuranceCompany;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,9 +22,11 @@ class profileController extends Controller
     public function edit($id)
     {
         //$user = Auth::guard('web')->user();
+        $company = InsuranceCompany::all();
+
         $page_title = 'User Profile Edit';
         $profile = user::findOrFail($id);
-        return view('user.profile.edit', compact('profile', 'page_title'));
+        return view('user.profile.edit', compact('profile', 'page_title','company'));
     }
 
     public function updateProfile(Request $request, $id)
@@ -53,6 +57,14 @@ class profileController extends Controller
         $user->country = $request->country ;
         $user->post_box = $request->post_box ;
         $user->update();
+
+        if (isset($request->company)) {
+            $company = DB::table('insurance_user')->where('user_id', Auth::id())->delete();
+ 
+                $company = InsuranceCompany::find($request->company);
+                $user->company()->attach($company);
+
+        }
         return $this->message($user, 'user.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 

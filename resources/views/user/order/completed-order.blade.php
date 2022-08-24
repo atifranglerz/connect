@@ -10,6 +10,8 @@
                         $company = \App\Models\Company::where('id', $userbid->company_id)->first();
                         $garage = \App\Models\Garage::where('id', $order->garage_id)->first();
                         $vendor = \App\Models\Vendor::where('id', $garage->vendor_id)->first();
+                        $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
+                        
                         ?>
                         <div class="car_inner_imagg vendor_rply_dtl ">
                             <img
@@ -32,6 +34,21 @@
                                     @endforeach
                                 </div>
                             </div>
+                            @if ($order->paid_by == 'company')
+                                <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
+                                    <div class="pay_via_insurance_header_garages">
+                                        @if ($order->paid_by == 'company')
+                                            @if ($insurancestatus->status == 0)
+                                                <p>Payment Is Pending</p>
+                                            @endif
+                                            @if ($insurancestatus->status == 1)
+                                                <p>Payed via Insurance</p>
+                                            @endif
+                                        @endif
+                                        <i class="bi bi-star-fill"></i>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="quote_detail_btn_wraper">
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
@@ -162,7 +179,8 @@
                                                     class="rating__icon rating__icon--star fa fa-star"
                                                     style="color: gray;"></i></label>
                                         @elseif($review_prev->rating == '0.5')
-                                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                            <label aria-label="0 stars" class="rating__label"
+                                                for="rating2-0">&nbsp;</label>
                                             <label aria-label="0.5 stars" class="rating__label rating__label--half"
                                                 for="rating2-05"><i
                                                     class="rating__icon rating__icon--star fa fa-star-half"></i></label>

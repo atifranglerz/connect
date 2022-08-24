@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\Order;
 use App\Models\Part;
+use App\Models\Order;
 use App\Models\UserBid;
-use App\Models\UserBidImage;
 use App\Models\VendorBid;
-use App\Models\webNotification;
+use App\Jobs\Notification;
+use App\Models\UserBidImage;
 use Illuminate\Http\Request;
+use App\Models\webNotification;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -22,7 +23,7 @@ class OrderController extends Controller
     {
         $page_title = "Active Order";
         $userbidid = UserBid::where('user_id', auth()->id())->pluck('id');
-        $orders = Order::whereIn('user_bid_id', $userbidid)->get();
+        $orders = Order::whereIn('user_bid_id', $userbidid)->orderBy('id', 'desc')->get();
 
         return view('user.order.index', compact('page_title', 'orders'));
     }
@@ -66,7 +67,7 @@ class OrderController extends Controller
         $data->save();
 
         //update total price of order
-        $order = Order::where('vendor_bid_id',$data->id)->first();
+        $order = Order::where('vendor_bid_id', $data->id)->first();
         $order->total = $order->total + $array[0] + $array[1];
         $order->save();
 
@@ -151,43 +152,42 @@ class OrderController extends Controller
 
         return redirect()->route('user.order.summary', $request->order_id)->with($this->data("Your Order Cancelled Successfully", 'success'));
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function pendingOrderUpdate()
     {
 
         return view('user.order.pending-order-update');
+    }
+
+    public function completeOrder(Request $request)
+    {
+        $order = Order::findOrFail($request->order_id);
+        $order->status = "complete";
+        $order->save();
+
+        // notification content
+        $message['title'] = "Order Completed";
+        $message['order_no'] = $order->order_code;
+        $message['order_id'] = $order->id;
+        $message['body1'] = "Congratulate on completing the order ";
+        $message['body2'] = "We want to thank you for choosing our services, it has been our pleasure to have you as a valued customer. Please don’t forget to download your invoice for your record, and rate the service that you have received from your garage.";
+        $message['link1'] = url('user/order/summary', $order->id);
+        $message['type'] = "order";
+        $message['email'] = auth()->user()->email;
+        //mail notification to user
+        $Notification = new Notification($message);
+        dispatch($Notification);
+
+        //web notification to vendor
+        $vendorbid = VendorBid::with('vendordetail')->find($order->vendor_bid_id);
+        $notification = new webNotification();
+        $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
+        $notification->title = auth()->user()->name . " Confirm to complete order and leave the review, Order#" . $order->order_code;
+        $notification->links = url('vendor/fullfillment', $order->id);
+        $notification->body = ' ';
+        $notification->save();
+
+        return $this->message($order, 'user.order.index', 'Order Completed Successfully Added', '  Error');
+
     }
 }

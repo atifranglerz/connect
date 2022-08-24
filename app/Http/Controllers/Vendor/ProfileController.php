@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ads;
-use Illuminate\Http\Request;
+use App\Models\InsuranceCompany;
 use App\Models\vendor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -18,8 +20,8 @@ class ProfileController extends Controller
     public function index()
     {
         $page_title = 'Profile';
-        $data =  Vendor::findOrFail(Auth::id());
-        return view('vendor.profile.index', compact('page_title' , 'data'));
+        $data = Vendor::findOrFail(Auth::id());
+        return view('vendor.profile.index', compact('page_title', 'data'));
     }
 
     /**
@@ -62,8 +64,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = Vendor::findOrFail($id);
-        return view('vendor.profile.edit', compact('profile'));
+        $company = InsuranceCompany::all();
+        $profile = Vendor::with('company')->findOrFail($id);
+        return view('vendor.profile.edit', compact('profile', 'company'));
 
     }
 
@@ -80,14 +83,14 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required',
             'country' => 'required',
-            'city' =>'required',
-            'postbox' =>'required',
-            'phone'=>'required',
-            'address'=>'required',
-            'password'=>'required',
-             'conform_password'=>'required',
+            'city' => 'required',
+            'postbox' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            // 'password'=>'required',
+            //  'conform_password'=>'required',
         ]);
-        $vendor =  Vendor::findOrFail($id);
+        $vendor = Vendor::findOrFail($id);
         if ($request->file('images')) {
             $images = [];
             foreach ($request->file('images') as $data) {
@@ -98,14 +101,26 @@ class ProfileController extends Controller
             }
             $vendor->image = implode(",", $images);
         }
-        $vendor->name = $request->name ;
-        $vendor->email = $request->email ;
-        $vendor->country = $request->country ;
-        $vendor->post_box = $request->postbox ;
-        $vendor->phone = $request->phone ;
-        $vendor->address = $request->address ;
-        $vendor->password = bcrypt($request->password) ;
+        $vendor->name = $request->name;
+        $vendor->email = $request->email;
+        $vendor->country = $request->country;
+        $vendor->post_box = $request->postbox;
+        $vendor->phone = $request->phone;
+        $vendor->city = $request->city;
+        $vendor->address = $request->address;
+        // $vendor->password = Hash::make($request->password);
         $vendor->update();
+
+        if (isset($request->company)) {
+
+            $company = DB::table('insurance_vendor')->where('vendor_id', Auth::guard('vendor')->id())->delete();
+           
+            foreach($request->company as $id) {
+                $company = InsuranceCompany::find($id);
+                $vendor->company()->attach($company);
+            }
+        }
+
         return $this->message($vendor, 'vendor.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 

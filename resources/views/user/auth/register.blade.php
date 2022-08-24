@@ -65,6 +65,17 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
+                                <select class="form-select form-control" name="company" aria-label="company">
+                                    <option selected disabled value="">Select Insurance Company</option>
+                                    @foreach ($company as $data)
+                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('company')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Address">
                                 @error('address')
                                 <div class="text-danger p-2">{{ $message }}</div>

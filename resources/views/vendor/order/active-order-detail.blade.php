@@ -265,9 +265,15 @@
                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
                                         <input type="hidden" name="order_no" value="{{ $order->order_code }}">
                                         <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                        <button
-                                            class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                            type="submit"> SEND FINAL INVOICE TO CUSTOMER </button>
+                                        @if ($order->paid_by == 'company' && $insurancestatus->status == 0)
+                                                <button
+                                                    class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
+                                                    type="submit"> SEND FINAL INVOICE TO CUSTOMER </button>
+                                        @else
+                                            <button
+                                                class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
+                                                type="submit"> SEND FINAL INVOICE TO CUSTOMER </button>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
