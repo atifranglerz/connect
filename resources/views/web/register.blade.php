@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper pt-5">
-                    <h4 class="sec_main_heading text-center">SIGN UP</h4>
-                    <p class="sec_main_para text-center">Choose your role to signup</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.Sign Up')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Choose your role to signup')}}</p>
                 </div>
             </div>
         </div>
@@ -19,9 +19,8 @@
                                 <img src="{{asset('public/assets/images/vendorsingupimg.jpg')}}"  alt="image">
                             </div>
                             <div class="card-body text-center">
-                                <p class="card-text text-center sing_up_card_txt">Vendors across the country are providing their amazing services, Join in to register your self as one of them.
-                                </p>
-                                <a href="{{route('vendor.register')}}" class="btn btn-secondary Signup_btn">VENDOR</a>
+                                <p class="card-text text-center sing_up_card_txt">{{__('msg.vendor_detail')}}</p>
+                                <a href="{{route('vendor.register')}}" class="btn btn-secondary Signup_btn">{{__('msg.Vendor')}}</a>
                             </div>
                         </div>
                     </div>
@@ -31,9 +30,8 @@
                                 <img src="{{asset('public/assets/images/usersignupimg.jpg')}}" alt="image">
                             </div>
                             <div class="card-body text-center">
-                                <p class="card-text text-center sing_up_card_txt">Get list of vendors providing their services, based on best pricing select quote and get your work done.
-                                </p>
-                                <a href="{{route('user.register')}}" class="btn btn-secondary Signup_btn">CUSTOMER</a>
+                                <p class="card-text text-center sing_up_card_txt">{{__('msg.customer_detail')}}</p>
+                                <a href="{{route('user.register')}}" class="btn btn-secondary Signup_btn">{{__('msg.Customer')}}</a>
                             </div>
                         </div>
                     </div>
@@ -43,9 +41,8 @@
                                 <img src="{{asset('public/assets/images/company-logo.jpg')}}" alt="image">
                             </div>
                             <div class="card-body text-center">
-                                <p class="card-text text-center sing_up_card_txt">Get list of Insurance company providing their insurance service, register your company and grow business.
-                                </p>
-                                <a href="{{route('company.register')}}" class="btn btn-secondary Signup_btn">Company</a>
+                                <p class="card-text text-center sing_up_card_txt">{{__('msg.company_detail')}}</p>
+                                <a href="{{route('company.register')}}" class="btn btn-secondary Signup_btn">{{__('msg.Company')}}</a>
                             </div>
                         </div>
                     </div>

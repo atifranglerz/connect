@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h4 class="sec_main_heading text-center mb-0">POST AN AD FOR USED CAR</h4>
-                    <p class="sec_main_para text-center">Post Ad For Your Car You Want To Sell</p>
+                    <h4 class="sec_main_heading text-center mb-0">{{__('msg.POST AN AD FOR USED CAR')}}</h4>
+                    <p class="sec_main_para text-center">{{__("msg.Post Ad For Your Car You Want To Sell")}}</p>
                 </div>
             </div>
         </div>
@@ -30,10 +30,10 @@
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="modelname" placeholder="Model" aria-label="Model">
+                                    <input type="text" class="form-control" name="modelname" placeholder="{{__('msg.Model')}}" aria-label="Model">
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" class="form-control" name="make" placeholder="Make" aria-label="Make">
+                                    <input type="text" class="form-control" name="make" placeholder="{{__('msg.mak')}}" aria-label="Make">
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <select class="form-select"  name="typeOfService" aria-label="Type of Service">

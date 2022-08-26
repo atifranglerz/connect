@@ -5,7 +5,7 @@
         <div class="chat_overlay d-none"></div>
         <div class="side_inbox">
             <div class="side_inbox_search_sec text-center">
-                <h5 class="inbox_nmae">Inbox</h5>
+                <h5 class="inbox_nmae">{{__('msg.Inbox')}}</h5>
                 <form>
                     <div class="searchInput">
                         <input class="form-control me-2" id="search_input" placeholder="Search">
@@ -45,7 +45,7 @@
                                         <li><a href="#" class="chatted_delete d-block" id="{{ $data->customer->id }}">
                                                 <span class="fa fa-trash text-danger" aria-hidden="true"
                                                     style="margin-right: 8px"></span>
-                                                delete</a></li>
+                                                {{__('msg.delete')}}</a></li>
                                     </ul>
                                 </div>
                             </div>

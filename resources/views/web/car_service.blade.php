@@ -6,8 +6,8 @@
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
 {{--                    <h1 class="sec_main_heading text-center">GARAGES</h1>--}}
-                    <h4 class="sec_main_heading text-center">ALL SERVICES</h4>
-                    <p class="sec_main_para text-center">Choose any service from the list below and find best available service providers</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.ALL SERVICES')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Choose Any Service From The List Below And Find Best Available Service Providers')}}</p>
 
                 </div>
             </div>

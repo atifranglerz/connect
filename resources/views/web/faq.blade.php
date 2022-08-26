@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">FAQ</h4>
-                    <p class="sec_main_para text-center">Most Answered Questions</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.FAQ')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Most Answered Questions')}}</p>
                 </div>
             </div>
         </div>

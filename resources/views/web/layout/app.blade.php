@@ -167,17 +167,17 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Top Searches</h6>
+                    <h6 class="modal-title" id="exampleModalLabel">{{__('msg.Top Searches')}}</h6>
                     <a type="button" class="heading-color" data-bs-dismiss="modal"><span
                             class="fa fa-times"></span></a>
                 </div>
                 <div class="modal-body">
                     <div class="garage_name">
-                        <p>Fields Required From Clint Side</p>
+                        <p>{{__('msg.Fields Required From Client Side')}}</p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{{__('msg.OK')}}</button>
 
                 </div>
             </div>

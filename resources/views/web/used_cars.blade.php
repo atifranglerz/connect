@@ -11,17 +11,17 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">CAR FOR SALE</h4>
-                    <p class="sec_main_para allgarages text-center">Search For Used Cars</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.CAR FOR SALE')}}</h4>
+                    <p class="sec_main_para allgarages text-center">{{__('msg.Search For Used Cars')}}</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="mb-5 mt-3">
                 <div class="input-group mb-3 search_garages_wraper">
-                    <input type="text" class="form-control search_garages" placeholder="Search For Your Next Car"
+                    <input type="text" class="form-control search_garages" placeholder="{{__('msg.Search For Your Next Car')}}"
                         aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn search" type="button" id="button-addon2">Search</button>
+                    <button class="btn search" type="button" id="button-addon2">{{__('msg.SEARCH')}}</button>
                     <div class="srearch_icon_wraper">
                         <img src="{{ asset('public/assets/images/searchicon.svg') }}">
                     </div>
@@ -39,7 +39,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h6 class="modal-title" id="exampleModalLabel">Top Searches</h6>
+                        <h6 class="modal-title" id="exampleModalLabel">{{__('msg.Top Searches')}}</h6>
                         <a type="button" class="heading-color" data-bs-dismiss="modal"><span
                                 class="fa fa-times"></span></a>
                     </div>
@@ -51,22 +51,22 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Price</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.Price')}}</h6>
                                         </div>
-                                        <input type="text" name="priceFrom" class="form-control" placeholder="From"
+                                        <input type="text" name="priceFrom" class="form-control" placeholder="{{__('msg.From')}}"
                                             aria-label="Model">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-sm-0 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Price</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.Price')}}</h6>
                                         </div>
-                                        <input type="text" name="priceTo" class="form-control" placeholder="To"
+                                        <input type="text" name="priceTo" class="form-control" placeholder="{{__('msg.To')}}"
                                             aria-label="Model">
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Model From</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.Model From')}}</h6>
                                         </div>
                                         <select class="form-select form-control model-year-field" name="modelFrom"
                                             aria-label="Type of Service">
@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Model To</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.Model To')}}</h6>
                                         </div>
                                         <select class="form-select form-control model-year-field" name="modelTo"
                                             aria-label="Type of Service">
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Car Maker</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.Car Maker')}}</h6>
                                         </div>
                                         <select class="form-select form-control company-name-field" name="company_id"
                                             aria-label="Type of Service">
@@ -102,19 +102,19 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Milage</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.mileage')}}</h6>
                                         </div>
                                         <input type="text" name="milage" class="form-control"
-                                            placeholder="Milage e.g 40 Km" aria-label="Model">
+                                            placeholder="{{__('msg.Mileage e.g 40 Km')}}" aria-label="Model">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">Country</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.Country')}}</h6>
                                         </div>
                                         <select class="form-select form-control" name="country" aria-label="Country"
                                             disabled>
-                                            <option disabled value="">Select Country</option>
-                                            <option value="United Arab Emirates" selected>United Arab Emirates</option>
+                                            <option disabled value="">{{__('msg.Select Country')}}</option>
+                                            <option value="United Arab Emirates" selected>{{__('msg.United Arab Emirates')}}</option>
                                         </select>
                                         @error('country')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -122,10 +122,10 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                         <div class="col-12 mb-2 signup_vendor ">
-                                            <h6 class="mb-0 heading">City</h6>
+                                            <h6 class="mb-0 heading">{{__('msg.City')}}</h6>
                                         </div>
                                         <select class="form-select form-control" name="city" aria-label="City">
-                                            <option selected disabled value="">Select City</option>
+                                            <option selected disabled value="">{{__('msg.Select City')}}</option>
                                             <option value="Dubai" @if(old('city')=='Dubai' ) selected @endif>Dubai
                                             </option>
                                             <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi' ) selected @endif>Abu
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary flterClass" type="submit">Search</button>
+                        <button class="btn btn-primary flterClass" type="submit">{{__('msg.SEARCH')}}</button>
                     </div>
                     </form>
                 </div>
@@ -169,7 +169,7 @@
                                 <!-- <h5 class="card-title">{{ modelYear($value->model_year_id)}}</h5> -->
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : {{ $value->price }}</h5>
+                                <h5 class="card-title price mb-0 ">{{__('msg.Price')}} : {{ $value->price }}</h5>
                                 <h5 class="card-title location mb-0 ">{{ $value->city }}</h5>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
             </div>
             @endforeach
             @else
-            Oops... Sorry no used cars found !
+            {{__('msg.Oops... Sorry, no used cars found!')}}
             @endif
         </div>
         <div class="row">

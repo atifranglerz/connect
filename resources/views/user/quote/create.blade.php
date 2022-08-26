@@ -311,7 +311,7 @@ function updateFormSteps() {
 
 $(function() {
     $('#lookingFor').select2({
-        placeholder: 'What are you looking for? (Required)',
+        placeholder: "{{__('msg.What are you looking for? (Required)')}}",
     });
     lookingFor();
     $('#lookingFor').on('select2:select', function() {

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">ORDER COMPLETED</h4>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.ORDER COMPLETED')}}</h4>
                     </div>
                 </div>
             </div>

@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h4 class="sec_main_heading text-center mb-0">ALL ORDERS</h4>
-                    <p class="sec_main_para text-center">See your order history here</p>
+                    <h4 class="sec_main_heading text-center mb-0">{{__('msg.ALL ORDERS')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.See your order history here')}}</p>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                             <p>{{$userbidid->phone}}</p>
                         </div>
                         <div class="quote_detail_btn_wraper">
-                            <h5 class=" text-sm-center">AED {{$order->total}}</h5>
+                            <h5 class=" text-sm-center">{{__('msg.AED')}} {{$order->total}}</h5>
                             <div class="d-flex align-items-center chat_view__detail">
                                 <form action="{{route('vendor.queryChat')}}" method="POST" class="chat_view__detail">
                                     @csrf
@@ -44,8 +44,7 @@
                                     <input type="hidden" name="order_id" value="{{$order->id}}">
                                     <button type="submit" class="chat_icon"><i class="fa-solid fa-message"></i></button>
                                 </form>
-                                <a href="{{route('vendor.fullfillment',$order->id)}}" class="btn-secondary">VIEW
-                                    DETAILS</a>
+                                <a href="{{route('vendor.fullfillment',$order->id)}}" class="btn-secondary">{{__('msg.view_details')}}</a>
                             </div>
 
 

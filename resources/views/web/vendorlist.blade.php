@@ -12,9 +12,9 @@
 
                     <div class="main_content_wraper">
 
-                        <h4 class="sec_main_heading text-center">ALL GARAGES</h4>
+                        <h4 class="sec_main_heading text-center">{{__('msg.ALL GARAGES')}}</h4>
 
-                        <p class="sec_main_para allgarages text-center">Search popular service providers based on their service quality</p>
+                        <p class="sec_main_para allgarages text-center">{{__('msg.Search popular service providers based on their service quality')}}</p>
 
                     </div>
 
@@ -32,9 +32,9 @@
 
                         <div class="input-group mb-3 search_garages_wraper">
 
-                            <input type="text" class="form-control search_garages" placeholder="Search For Your Favorite Garages" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="text" class="form-control search_garages" placeholder="{{__('msg.Search For Your Favorite Garages (Type Here)')}}" aria-label="Recipient's username" aria-describedby="button-addon2">
 
-                            <button class="btn search" type="button" id="button-addon2">Search</button>
+                            <button class="btn search" type="button" id="button-addon2">{{__('msg.SEARCH')}}</button>
 
                             <div class="srearch_icon_wraper">
 
@@ -147,9 +147,7 @@
                     @endforeach
 
                 @else
-
-                    Oops... Sorry no garrages found related to this category service !
-
+                <p>{{__('msg.Oops... Sorry, no garages found related to this category service!')}}</p>
                 @endif
 
 

@@ -43,7 +43,14 @@ Route::group(['namespace' => 'Web'], function () {
         return 'Application queue work success';
     });
 
-    Route::get('language', 'HomepageController@language');
+    // route for the language translation
+    Route::get('language/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    });
+
+    // Route::get('language', 'HomepageController@language');
     Route::get('/', 'HomepageController@index')->name('home');
     Route::get('category-garage', 'HomepageController@categoryGarage');
     Route::get('register', 'HomepageController@register')->name('register');
@@ -113,14 +120,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('insurance-company/deactivate/{id}', 'InsuranceCompanyController@deactivate')->name('insurance-company.deactivate');
         //Route::get('get/company/permission/{role}', 'InsuranceCompanyController@getRole');
         Route::post('insurance-company/updatePassword/{id}', 'InsuranceCompanyController@updatePassword')->name('insurance-company.updatePassword');
-        
+
         Route::get('insurance-company/', 'InsuranceCompanyController@index')->name('insurance-company');
         Route::get('insurance-company/edit/{id}', 'InsuranceCompanyController@edit')->name('insurance-company.edit');
         Route::put('insurance-company/update/{id}', 'InsuranceCompanyController@update')->name('insurance-company.update');
         Route::delete('insurance-company/destroy/{id}', 'InsuranceCompanyController@destroy')->name('insurance-company.destroy');
-       
+
         Route::resource('company', 'InsuranceCompanyController')->except('create', 'store', 'show');
-       
+
         /* All Category & SubCategory Route */
         Route::resource('category', 'CategoryController');
         /* Category set orders */
@@ -223,8 +230,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::resource('profile', 'ProfileController');
         /*Logout*/
         Route::post('logout', 'AuthController@logout')->name('logout');
-        Route::get('archive','ArchiveController@index')->name('archive');
-        Route::post('archive/download','ArchiveController@fileDownload')->name('archive.download');
+        Route::get('archive', 'ArchiveController@index')->name('archive');
+        Route::post('archive/download', 'ArchiveController@fileDownload')->name('archive.download');
 
     });
 });
@@ -299,8 +306,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('order/complete', 'OrderController@completeOrder')->name('order.complete');
         // Route::get('pending-order-update', [OrderController::class, 'pendingOrderUpdate']);
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
-        Route::get('archive','ArchiveController@index')->name('archive');
-        Route::post('archive/download','ArchiveController@fileDownload')->name('archive.download');
+        Route::get('archive', 'ArchiveController@index')->name('archive');
+        Route::post('archive/download', 'ArchiveController@fileDownload')->name('archive.download');
 
     });
 });

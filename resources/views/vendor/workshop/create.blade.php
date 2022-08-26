@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-3">CREATE WORKSHOP</h4>
-                        <p class="sec_main_para text-center">Set Up How Your Workshop Looks Like</p>
+                        <h4 class="sec_main_heading text-center mb-3">{{__('msg.CREATE_WORKSHOP')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Set Up How Your Workshop Looks Like')}}</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                                     </li>
                                 </ul>
                                 <div class="col-lg-9 mx-auto">
-                                    <p class=" request_quote_heading">Garage INFORMATION</p>
+                                    <p class=" request_quote_heading">{{__('msg.Garage INFORMATION')}}</p>
                                 </div>
                             </div>
                         <form enctype="multipart/form-data" method="post" action="{{ route('vendor.workshop.store') }}">
@@ -37,13 +37,13 @@
                                     <div class="tab-pane fade show active form-step form-step-active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="garage_name"   value="{{$authvendor->garage_name}}" class="form-control" placeholder="Workshop Name">
+                                                <input type="text" name="garage_name"   value="{{$authvendor->garage_name}}" class="form-control" placeholder="{{__('msg.Workshop Name')}}">
                                                 @error('garage_name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="address" class="form-control" placeholder="Address">
+                                                <input type="text" name="address" class="form-control" placeholder="{{__('msg.Address')}}">
                                                 @error('address')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -52,18 +52,17 @@
                                                 <input type="email" name="email" class="form-control" disabled value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text"  name="phone"  value="{{$authvendor->phone}}" class="form-control" placeholder="Phone Number" >
+                                                <input type="text"  name="phone"  value="{{$authvendor->phone}}" class="form-control" placeholder="{{_('msg.Phone Number')}}" >
                                                 @error('phone')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <select class="form-select form-control" name="country" aria-label="Country">
+                                                <input type="text" class="form-control" value="United Arab Emirates" name="country" aria-label="Country">
+                                                {{-- <select class="form-select form-control" name="country" aria-label="Country">
                                                     <option selected disabled value="">Select Country</option>
-
-                                                        <option value="United Arab Emirates" @if($authvendor->country =='United Arab Emirates') selected @endif>United Arab Emirates</option>
-
-                                                </select>
+                                                        <option value="United Arab Emirates" @if($authvendor->country =='United Arab Emirates') selected disabled @endif>{{__('msg.United Arab Emirates')}}</option>
+                                                </select> --}}
                                                 @error('country')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -71,11 +70,11 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <select class="form-select form-control" name="city" aria-label="City">
                                                     <option selected disabled value="">Select City</option>
-                                                    <option value="Dubai" @if($authvendor->city=='Dubai') selected @endif>Dubai</option>
-                                                    <option value="Abu Dhabi" @if($authvendor->city=='Abu Dhabi') selected @endif>Abu Dhabi</option>
-                                                    <option value="Sharjah" @if($authvendor->city=='Sharjah') selected @endif>Sharjah</option>
-                                                    <option value="Ras Al Khaimah" @if($authvendor->city=='Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
-                                                    <option value="Ajman" @if($authvendor->city=='Ajman') selected @endif>Ajman</option>
+                                                    <option value="Dubai" @if($authvendor->city=='Dubai') selected @endif>{{__('msg.Dubai')}}</option>
+                                                    <option value="Abu Dhabi" @if($authvendor->city=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
+                                                    <option value="Sharjah" @if($authvendor->city=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
+                                                    <option value="Ras Al Khaimah" @if($authvendor->city=='Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
+                                                    <option value="Ajman" @if($authvendor->city=='Ajman') selected @endif>{{__('msg.Ajman')}}</option>
                                                 </select>
                                                 @error('city')
                                                 <div class="text-danger p-2">{{ $message }}</div>
@@ -88,7 +87,7 @@
 {{--                                                @enderror--}}
 {{--                                            </div>--}}
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="number" name="post_box"  value="{{$authvendor->post_box}}" class="form-control" placeholder="P/O Box" >
+                                                <input type="number" name="post_box"  value="{{$authvendor->post_box}}" class="form-control" placeholder="{{__('msg.P/O Box')}}" >
                                                 @error('post_box')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -106,30 +105,30 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="trading_no"   value="{{$authvendor->trading_license}}" class="form-control" placeholder="Trading License No" >
+                                                <input type="text" name="trading_no"   value="{{$authvendor->trading_license}}" class="form-control" placeholder="{{__('msg.Trading License No.')}}" >
                                                 @error('trading_no')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="vat"   value="{{$authvendor->vat}}" class="form-control" placeholder="VAT DETAIL" >
+                                                <input type="text" name="vat"   value="{{$authvendor->vat}}" class="form-control" placeholder="{{__('msg.VAT Details')}}" >
                                                 @error('vat')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">{{__('msg.NEXT')}}</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="over_view_part timing_hours mape_wraper mt-4">
-                                                    <h5 class=" text-center mb-5">Google Maps</h5>
+                                                    <h5 class=" text-center mb-5">{{__('msg.Google Maps')}}</h5>
                                                     <div class="input-group mb-3 mx-lg-5 mx-md-3 mx-1 search_garages_wraper vendor_crt_wrkshop">
                                                         <input type="text" class="form-control search_garages creat_wrk" placeholder="Search For Your Next Car" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                                        <button class="btn search crt_wrik" type="button" id="button-addon2">Search</button>
+                                                        <button class="btn search crt_wrik" type="button" id="button-addon2">{{__('msg.SEARCH')}}</button>
                                                         <div class="srearch_icon_wraper crt_wrk_shp">
                                                             <span class="fa fa-location" aria-hidden="true"></span>
                                                             <!-- <img src="{{asset('public/assets/images/location-icon.svg')}}"> -->
@@ -160,7 +159,7 @@
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
                                                     <textarea class="form-control"  name="description" placeholder="Add information in details" id="floatingTextarea2" style="height: 106px"></textarea>
-                                                    <label for="floatingTextarea2">Add overview in detail</label>
+                                                    <label for="floatingTextarea2">{{__('msg.Add overview in detail')}}</label>
                                                     @error('description')
                                                     <div class="text-danger p-2">{{ $message }}</div>
                                                     @enderror
@@ -168,7 +167,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">{{__('msg.News')}}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,114 +175,114 @@
                                     <div class="tab-pane fade form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Monday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Monday">
-                                                <input  name="from[]" type="text" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input  name="from[]" type="text" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input name="to[]" type="text" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input name="to[]" type="text" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
 
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input name="closed[0]" class="form-check-input wrk_day_chek"  type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Tuesday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Tuesday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Tuesday">
-                                                <input  type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input  type="text" name="from[]" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="text" name="to[]" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input type="text" name="to[]" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input class="form-check-input wrk_day_chek"  name="closed[1]" type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Wednesday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Wednesday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Wednesday">
-                                                <input type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input type="text" name="from[]" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="text" name="to[]" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input type="text" name="to[]" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input class="form-check-input wrk_day_chek" name="closed[2]" type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Thursday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Thursday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Thursday">
-                                                <input type="text"  name="from[]" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input type="text"  name="from[]" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="text" name="to[]" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input type="text" name="to[]" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input class="form-check-input wrk_day_chek"  name="closed[3]" type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Friday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Friday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Friday">
-                                                <input type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input type="text" name="from[]" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="text" name="to[]" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input type="text" name="to[]" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input class="form-check-input wrk_day_chek" name="closed[4]" type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Saturday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Saturday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Saturday ">
-                                                <input type="text" name="from[]" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input type="text" name="from[]" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="text" name="to[]" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input type="text" name="to[]" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input class="form-check-input wrk_day_chek" name="closed[5]" type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3 align-items-center justify-content-center">
-                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Sunday</label>
+                                            <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{__('msg.Sunday')}}</label>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
                                                 <input type="hidden" name="day[]" value="Sunday">
-                                                <input type="text"  name="from[]" class="form-control" placeholder="From :10:00Am " id="">
+                                                <input type="text"  name="from[]" class="form-control" placeholder="{{__('msg.From: 10:00 Am')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">
-                                                <input type="text" name="to[]" class="form-control" placeholder="To :06:00Pm " id="">
+                                                <input type="text" name="to[]" class="form-control" placeholder="{{__('msg.To: 06:00 Pm')}}" id="">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                 <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                    <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                    <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                     <input class="form-check-input wrk_day_chek"  name="closed[6]" type="checkbox" id="autoSizingCheck">
                                                 </div>
                                             </div>
@@ -291,7 +290,7 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-3 mb-4">
-                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">NEXT</button>
+                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">{{__('msg.NEXT')}}</button>
                                             </div>
                                         </div>
                                     </div>

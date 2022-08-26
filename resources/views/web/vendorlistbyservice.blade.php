@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h4 class="sec_main_heading text-center">ALL GARAGES</h4>
-                        <p class="sec_main_para allgarages text-center">Search popular service providers based on their service quality</p>
+                        <h4 class="sec_main_heading text-center">{{__('msg.ALL GARAGES')}}</h4>
+                        <p class="sec_main_para allgarages text-center">{{__('msg.Search popular service providers based on their service quality')}}</p>
                     </div>
                 </div>
             </div>
@@ -16,8 +16,8 @@
                     <form class="mb-5 mt-3">
 
                         <div class="input-group mb-3 search_garages_wraper">
-                            <input type="text" class="form-control search_garages" placeholder="Search For Your Favorite Garages (Type Here)" aria-label="Recipient's username" aria-describedby="button-addon2" style="padding-right: 16px">
-{{--                            <button class="btn search" type="button" id="button-addon2">Search</button>--}}
+                            <input type="text" class="form-control search_garages" placeholder="{{__('msg.Search For Your Favorite Garages (Type Here)')}}" aria-label="Recipient's username" aria-describedby="button-addon2" style="padding-right: 16px">
+                           {{-- <button class="btn search" type="button" id="button-addon2">{{__('msg.SEARCH')}}</button> --}}
                             <div class="srearch_icon_wraper">
                                 <img src="{{asset('public/assets/images/searchicon.')}}svg">
                             </div>
@@ -67,7 +67,7 @@
                 </div>
                     @endforeach
                 @else
-                    Oops... Sorry no garrages found related to this category service !
+                    <p>{{__('msg.Oops... Sorry, no garages found related to this category service!')}}</p>
                 @endif
 
             </div>

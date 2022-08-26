@@ -27,7 +27,7 @@
                             <li><a href="#" class="chatted_delete d-block" id="{{$data->customer->id}}">
                                     <span class="fa fa-trash text-danger" aria-hidden="true"
                                         style="margin-right: 8px"></span>
-                                    delete</a></li>
+                                    {{__('msg.delete')}}</a></li>
                         </ul>
                     </div>
                 </div>

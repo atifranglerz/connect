@@ -7,42 +7,42 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h4 class="sec_main_heading text-center mb-0">DASHBOARD</h4>
-                    <p class="sec_main_para text-center">See what's happening on your profile</p>
+                    <h4 class="sec_main_heading text-center mb-0">{{__('msg.DASHBOARD')}}</h4>
+                    <p class="sec_main_para text-center">{{__("msg.See what's happening on your profile")}}</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-11 col-md-11  mx-auto">
                 <div class="quote_card_heading _top_dash  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                    <h5>Previous Stats</h5>
+                    <h5>{{__('msg.Previous Stats')}}</h5>
                     <!-- <a href="#">View All</a> -->
                 </div>
                 <div class="row g-3">
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100 ">
                             <h5>{{$completedOrders}}</h5>
-                            <h5 class="heading-color text-center">Completed Orders</h5>
+                            <h5 class="heading-color text-center">{{__('msg.Completed Orders')}}</h5>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
                             <h5>{{$totalReviews}}</h5>
-                            <h5 class="heading-color text-center">Total Reviews</h5>
+                            <h5 class="heading-color text-center">{{__('msg.Total Reviews')}}</h5>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <div class="all_quote_card dashboard_card top_dashboard flex-column shadow h-100">
                             <h5>{{round($overAllRatings,2)}}</h5>
-                            <h5 class="heading-color text-center">Overall Rating</h5>
+                            <h5 class="heading-color text-center">{{__('msg.Overall Rating')}}</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-11 col-md-12  mx-auto">
                 <div class="quote_card_heading  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                    <h5>Active Orders</h5>
-                    <a href="{{route('vendor.orders')}}">View All</a>
+                    <h5>{{__('msg.Active Orders')}}</h5>
+                    <a href="{{route('vendor.orders')}}">{{__('msg.VIEW ALL')}}</a>
                 </div>
 {{--                <?php--}}
 {{--                $userbidid = \App\Models\UserBid::where('id',$order->user_bid_id)->firstOrFail();?>--}}
@@ -78,7 +78,7 @@
                     <div class="all_quote_card ">
                         <div class=" w-100  quote_detail_wraper">
                             <div class="quote_info">
-                                <p class="mb-0">No Data found !</p>
+                                <p class="mb-0">{{__('msg.No Data found!')}}</p>
                             </div>
                         </div>
                     </div>
@@ -92,16 +92,16 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="privTermsPolicy">Privacy Policy and Terms & Conditions</h6>
+                    <h6 class="modal-title" id="privTermsPolicy">{{__('msg.Privacy Policy and Terms & Conditions')}}</h6>
                 </div>
                 <div class="modal-body">
-                    <h6 class="sec_main_heading text-center">Privacy Policy</h6>
+                    <h6 class="sec_main_heading text-center">{{__('msg.Privicy Policy')}}</h6>
                     <p class="text-justify">{!! $data['policy']->description !!}</p>
-                    <h6 class="sec_main_heading text-center">Terms & Conditions</h6>
+                    <h6 class="sec_main_heading text-center">{{__('msg.Terms & Conditions')}}</h6>
                     <p class="text-justify">{!! $data['terms']->description !!}</p>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary" id="agreePrivTerms" data-bs-dismiss="modal" style="padding: 8px 16px!important;height: unset">I Agree</button>
+                    <button type="button" class="btn btn-primary" id="agreePrivTerms" data-bs-dismiss="modal" style="padding: 8px 16px!important;height: unset">{{__('msg.I Agree')}}</button>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@ $term = $vendor->term_condition;
             });
             $("#privTermsPolicyModal").modal('show');
             $(document).on('click', '#agreePrivTerms', function() {
-                toastr.success("You've agreed to our Privacy Policy and Terms & Conditions");
+                toastr.success("{{__('msg.You agreed to our Privacy Policy and Terms & Conditions')}}");
                 $.ajax({
                     type: "POST",
                     dataType: "json",

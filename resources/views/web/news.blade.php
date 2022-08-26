@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h4 class="sec_main_heading text-center">latest news</h4>
-                        <p class="sec_main_para text-center">See what new for you in our portal</p>
+                        <h4 class="sec_main_heading text-center">{{__('msg.latest_news')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.See what is new for you in our portal')}}</p>
                     </div>
                 </div>
             </div>

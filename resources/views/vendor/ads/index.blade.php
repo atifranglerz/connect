@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">MY ADS</h4>
-                        <p class="sec_main_para text-center">Edit Or Delete Your Previous Ads</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.MY ADS')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Edit Or Delete Your Previous Ads')}}</p>
                     </div>
                 </div>
             </div>
@@ -30,14 +30,14 @@
                                     <p >{{$data->engine}} CC</p>
                                 </div>
                                 <div class="quote_detail_btn_wraper">
-                                    <h5 class=" text-sm-center">AED {{$data->price}}</h5>
+                                    <h5 class=" text-sm-center">{{__('msg.AED')}} {{$data->price}}</h5>
                                     <div class="d-flex  align-items-center chat_view__detail">
                                         <form method="post" action="{{route('vendor.ads.destroy', $data->id )}}" >
                                             @method('delete')
                                             @csrf
-                                        <button  type="submit" class="btn-secondary edit_del_btns me-2">DELETE</button>
+                                        <button  type="submit" class="btn-secondary edit_del_btns me-2">{{__('msg.delete')}}</button>
                                         </form>
-                                        <a href="{{ route('vendor.ads.edit' ,  $data->id) }}" class="btn btn-primary edit_del_btns">EDIT</a>
+                                        <a href="{{ route('vendor.ads.edit' ,  $data->id) }}" class="btn btn-primary edit_del_btns">{{__('msg.edit')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                 @endforeach
                 @else
                 <div class="all_quote_card">
-                    <p class="mb-0">Oops... No Ads Found related to this vendor !</p>
+                    <p class="mb-0">{{__('msg.Oops... No Ads Found related to this vendor!')}}</p>
                 </div>
                 @endif
             </div>

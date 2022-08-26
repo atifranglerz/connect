@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">Edit WORKSHOP</h4>
-                        <p class="sec_main_para text-center">Set Up How Your Workshop Looks Like</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.Edit Workshop')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Set Up How Your Workshop Looks Like')}}</p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                     </li>
                                 </ul>
                                 <div class="col-lg-9 mx-auto">
-                                    <p class=" request_quote_heading">CAR INFORMATION</p>
+                                    <p class=" request_quote_heading">{{__('msg.CAR INFORMATION')}}</p>
                                 </div>
                             </div>
                             <form enctype="multipart/form-data" method="post" action="{{ route('vendor.workshop.update',$garage->id ) }}">
@@ -117,18 +117,18 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">NEXT</button>
+                                                    <button class="btn btn-secondary block get_appointment next-tab-btn" type="button">{{__('msg.NEXT')}}</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="over_view_part timing_hours mape_wraper mt-4">
-                                                    <h5 class="heading-color text-center mb-4">Google Maps</h5>
+                                                    <h5 class="heading-color text-center mb-4">{{__('msg.Google Maps')}}</h5>
                                                     <div
                                                         class="input-group mb-3 mx-lg-5 mx-md-3 mx-1 search_garages_wraper vendor_crt_wrkshop">
                                                         <input type="text" class="form-control search_garages creat_wrk" placeholder="Search For Your Next Car" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                                        <button class="btn search crt_wrik" type="button" id="button-addon2">Search</button>
+                                                        <button class="btn search crt_wrik" type="button" id="button-addon2">{{__('msg.SEARCH')}}</button>
                                                         <div class="srearch_icon_wraper crt_wrk_shp">
                                                             <span class="fa fa-location" aria-hidden="true"></span>
                                                             <!-- <img src="{{asset('public/assets/images/location-icon.svg')}}"> -->
@@ -169,7 +169,7 @@
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
                                                     <button class="btn btn-secondary block get_appointment next-tab-btn"
-                                                            type="button">NEXT
+                                                            type="button">{{__('msg.NEXT')}}
                                                     </button>
                                                 </div>
                                             </div>
@@ -191,7 +191,7 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-3 mb-3">
                                                     <div
                                                         class="form-check crt_wrkshop d-flex justify-content-between align-items-center">
-                                                        <label class="form-check-label" for="autoSizingCheck">Closed:</label>
+                                                        <label class="form-check-label" for="autoSizingCheck">{{__('msg.Closed:')}}</label>
                                                         <input class="form-check-input wrk_day_chek" name="closed[]" type="checkbox" {{ ($value->closed == "1" ? 'checked' : '') }} id="autoSizingCheck">
                                                     </div>
                                                 </div>
@@ -199,110 +199,9 @@
                                         @endforeach
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
-                                                 <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">NEXT</button>
+                                                 <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">{{__('msg.NEXT')}}</button>
                                             </div>
                                          </div>
-                                        {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
-                                        {{--                                        <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="From :10:00Am " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="To :06:00Pm " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">--}}
-                                        {{--                                            <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <label class="form-check-label" for="autoSizingCheck">--}}
-                                        {{--                                                    Closed:</label>--}}
-                                        {{--                                                <input class="form-check-input wrk_day_chek" type="checkbox" id="autoSizingCheck">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
-                                        {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
-                                        {{--                                        <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="From :10:00Am " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="To :06:00Pm " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">--}}
-                                        {{--                                            <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <label class="form-check-label" for="autoSizingCheck">--}}
-                                        {{--                                                    Closed:</label>--}}
-                                        {{--                                                <input class="form-check-input wrk_day_chek" type="checkbox" id="autoSizingCheck">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
-                                        {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
-                                        {{--                                        <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="From :10:00Am " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="To :06:00Pm " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">--}}
-                                        {{--                                            <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <label class="form-check-label" for="autoSizingCheck">--}}
-                                        {{--                                                    Closed:</label>--}}
-                                        {{--                                                <input class="form-check-input wrk_day_chek" type="checkbox" id="autoSizingCheck">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
-                                        {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
-                                        {{--                                        <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="From :10:00Am " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="To :06:00Pm " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">--}}
-                                        {{--                                            <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <label class="form-check-label" for="autoSizingCheck">--}}
-                                        {{--                                                    Closed:</label>--}}
-                                        {{--                                                <input class="form-check-input wrk_day_chek" type="checkbox" id="autoSizingCheck">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
-                                        {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
-                                        {{--                                        <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="From :10:00Am " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="To :06:00Pm " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">--}}
-                                        {{--                                            <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <label class="form-check-label" for="autoSizingCheck">--}}
-                                        {{--                                                    Closed:</label>--}}
-                                        {{--                                                <input class="form-check-input wrk_day_chek" type="checkbox" id="autoSizingCheck">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
-                                        {{--                                    <div class="row mb-3 align-items-center justify-content-center">--}}
-                                        {{--                                        <label for="inputEmail3" class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">Monday</label>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="From :10:00Am " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3 crt_wrkshop">--}}
-                                        {{--                                            <input type="text" class="form-control" placeholder="To :06:00Pm " id="">--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-3 col-md-3 col-sm-3 mb-3">--}}
-                                        {{--                                            <div class="form-check crt_wrkshop d-flex justify-content-between align-items-center">--}}
-                                        {{--                                                <label class="form-check-label" for="autoSizingCheck">--}}
-                                        {{--                                                    Closed:</label>--}}
-                                        {{--                                                <input class="form-check-input wrk_day_chek" type="checkbox" id="autoSizingCheck">--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="col-lg-12">--}}
-                                        {{--                                            <div class="d-grid gap-2 mt-3 mb-4">--}}
-                                        {{--                                                <button class="btn btn-secondary block get_appointment next-tab-btn" type="submit">NEXT</button>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
                                     </div>
                                 </div>
                             </form>

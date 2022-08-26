@@ -136,7 +136,7 @@
                                 <h6 class="card-title block-head-txt">{{ $value->model }}</h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title price mb-0 ">Price : AED {{ $value->price }}</h5>
+                                <h5 class="card-title price mb-0 ">{{__('msg.Price')}} :{{__('msg.AED')}}  {{$value->price }}</h5>
                                 <h5 class="card-title location mb-0 ">{{ $value->city }}</h5>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
                     <h4 class="sec_main_heading text-center">{{__('msg.TOP RATED VENDORS')}}</h4>
-                    <p class="sec_main_para text-center">find some popular service providers based on their quality</p>
+                    <p class="sec_main_para text-center">{{__('msg.Find Some Popular Service Providers Based On Their Quality')}}</p>
                 </div>
             </div>
         </div>
@@ -226,13 +226,13 @@
             </div>
             @endforeach
             @else
-            Oops... Sorry no garrages found !
+            {{__('msg.Oops... Sorry, no garages found!')}}
             @endif
         </div>
         <div class="row">
             <div class="col-lg-5 mx-auto">
                 <div class="text-center view_all_btn_wrapper">
-                    <a href="{{route('vendorlist')}}" class="view_all_btn">view all</a>
+                    <a href="{{route('vendorlist')}}" class="view_all_btn">{{__('msg.VIEW ALL')}}</a>
                 </div>
             </div>
         </div>
@@ -244,8 +244,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">latest news</h4>
-                    <p class="sec_main_para text-center">keep yourself updated !</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.latest_news')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Keep Yourself Updated!')}}</p>
                 </div>
             </div>
         </div>
@@ -271,7 +271,7 @@
         <div class="row">
             <div class="col-lg-5 mx-auto">
                 <div class="text-center view_all_btn_wrapper">
-                    <a href="{{route('news')}}" class="view_all_btn">view all</a>
+                    <a href="{{route('news')}}" class="view_all_btn">{{__('msg.VIEW ALL')}}</a>
                 </div>
             </div>
         </div>
@@ -283,8 +283,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">near you</h4>
-                    <p class="sec_main_para text-center">Find some popular service providers based on their quality</p>
+                    <h4 class="sec_main_heading text-center">{{__('msg.near_you')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Find Some Popular Service Providers Based On Their Quality')}}</p>
                 </div>
             </div>
         </div>
@@ -415,7 +415,7 @@
         <div class="row">
             <div class="col-lg-5 mx-auto">
                 <div class="text-center view_all_btn_wrapper">
-                    <a href="{{route('vendorlist')}}" class="view_all_btn">view all</a>
+                    <a href="{{route('vendorlist')}}" class="view_all_btn">{{__('msg.VIEW ALL')}}</a>
                 </div>
             </div>
         </div>
@@ -427,13 +427,13 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-6 col-md-8 col-sm-8">
                 <div class="rigister_heading">
-                    <h4 class="heading">REGISTER YOUR GARAGE/WORKSHOP</h4>
+                    <h4 class="heading">{{__('msg.REGISTER YOUR GARAGE/WORKSHOP')}}</h4>
                 </div>
             </div>
             <div class="col-lg-2 col-md-1 col-sm-1"></div>
             <div class="col-lg-4 col-md-3 col-sm-3">
                 <div class="rigister_btn d-flex justify-content-center align-items-center">
-                    <a href="{{route('vendor.register')}}">REGISTER</a>
+                    <a href="{{route('vendor.register')}}">{{__('msg.register')}}</a>
                 </div>
             </div>
         </div>

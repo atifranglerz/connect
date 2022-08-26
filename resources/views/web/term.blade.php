@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
-                        <h4 class="sec_main_heading text-center">Term and condition</h4>
+                        <h4 class="sec_main_heading text-center">{{__('msg.Terms & Conditions')}}</h4>
                     </div>
                 </div>
             </div>
