@@ -25,9 +25,9 @@
                             <div class="  w-100  quote_detail_wraper align-items-md-center">
                                 <div class="quote_info Leavereview">
                                     <h5 class="d-flex align-items-center active_quote heading-color">{{$data->model}}</h5>
-                                    <p class="mb-0">{{$data->company->company}}</p>
-                                    <p class="mb-0">{{$data->modelYear->model_year}}</p>
-                                    <p >{{$data->engine}} CC</p>
+                                    <p class="mb-0">{{__('msg.Car Maker')}} : {{$data->company->company}}</p>
+                                    <p class="mb-0">{{__('msg.Model Year')}} : {{$data->modelYear->model_year}}</p>
+                                    <p >{{__('msg.Engine')}} : {{$data->engine}} CC</p>
                                 </div>
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center">{{__('msg.AED')}} {{$data->price}}</h5>

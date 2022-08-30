@@ -45,10 +45,10 @@
                                     <div class="pay_via_insurance_header_garages">
                                         @if ($order->paid_by == 'company')
                                             @if ($insurancestatus->status == 0)
-                                                <p>Payment Is Pending</p>
+                                                <p>{{__('msg.Payment Is Pending')}}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
-                                                <p>Payed via Insurance</p>
+                                                <p>{{__('msg.PAY VIA INSURANCE COMPANY')}}</p>
                                             @endif
                                         @endif
                                         <i class="bi bi-star-fill"></i>
@@ -59,7 +59,7 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center">AED {{ $order->total }}</h5>
+                                <h5 class=" text-sm-center">{{__('msg.AED')}} {{ $order->total }}</h5>
                                 <div class="completed_order_id">
                                     <p>Order ID: <span>#{{ $order->order_code }}</span></p>
                                 </div>
@@ -133,17 +133,17 @@
                 <div class=" col-xl-7 col-lg-9 col-md-9 col-sm-11 mx-auto">
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
+                            <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
                         </div>
                         <div class="row">
                             <div class="col-lg-5 col-sm-5">
                                 <div class="invoice_details mb-5">
-                                    <h4>Work Days</h4>
+                                    <h4>{{__('msg.Work Days')}}</h4>
                                     <h4 class="__gray">{{ $order->vendorbid->time }}</h4>
                                 </div>
                                 <div class="invoice_details">
-                                    <h4>Labor Pay</h4>
-                                    <h4 class="__gray">AED {{ $total_labour }}</h4>
+                                    <h4>{{__('msg.Labor Pay')}}</h4>
+                                    <h4 class="__gray">{{__('msg.AED')}} {{ $total_labour }}</h4>
                                 </div>
 
 
@@ -156,12 +156,12 @@
                             </div>
                             <div class="col-lg-5 col-sm-5">
                                 <div class="invoice_details mb-5">
-                                    <h4>Per Day Rate</h4>
-                                    <h4 class="__gray">AED 120</h4>
+                                    <h4>{{__('msg.Per Day Rate')}}</h4>
+                                    <h4 class="__gray">{{__('msg.AED')}} 120</h4>
                                 </div>
                                 <div class="invoice_details">
-                                    <h4>Total Invoice</h4>
-                                    <h4 class="__gray">AED {{ $order->vendorbid->net_total }}</h4>
+                                    <h4>{{__('msg.Total Invoice')}}</h4>
+                                    <h4 class="__gray">{{__('msg.AED')}} {{ $order->vendorbid->net_total }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
+                            <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
                         </div>
                         <?php $vendor_bid = \App\Models\VendorBid::where('garage_id', $order->garage_id)
                             ->where('user_bid_id', $order->user_bid_id)
@@ -193,10 +193,10 @@
                             <div class="d-grid gap-2 mt-lg-3 ">
                                 @if ($newinvoce->part != '[]')
                                     <a href="{{ route('user.order.invoce', $newinvoce->id) }}"
-                                        class="btn btn-secondary block get_appointment">NEW INVOICE</a>
+                                        class="btn btn-secondary block get_appointment">{{__('msg.NEW INVOICE')}}</a>
                                 @endif
                                 <a href="{{ url('user/print-order-details', $vendorBid->id) }}"
-                                    class="btn btn-secondary block get_appointment">INVOICE</a>
+                                    class="btn btn-secondary block get_appointment">{{__('msg.INVOICE')}}</a>
                             </div>
                             <div class="d-grid gap-2 mt-lg-3 ">
                                 @if ($order->paid_by == 'company')
@@ -206,13 +206,12 @@
                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
                                         @if ($order->paid_by == 'company')
                                             @if ($insurancestatus->status == 0)
-                                            <button class="btn btn-secondary block get_appointment disabled" type="submt">CONFIRM TO
+                                            <button class="btn btn-secondary block get_appointment disabled" type="submt">{{__('msg.CONFIRM TO COMPLETE')}}</button>
                                             @endif
                                             @if ($insurancestatus->status == 1) 
-                                            <button class="btn btn-secondary block get_appointment" type="submt">CONFIRM TO
+                                            <button class="btn btn-secondary block get_appointment" type="submt">{{__('msg.CONFIRM TO COMPLETE')}}</button>
                                             @endif
                                         @endif
-                                            COMPLETE</button>
                                     </form>
                                 @else
                                     <form enctype="multipart/form-data" method="post"
@@ -220,8 +219,7 @@
                                         @csrf
                                         <input type="hidden" name="bid_id" value="{{ $vendor_bid->id }}">
                                         <input type="hidden" name="type" value="order">
-                                        <button class="btn btn-secondary block get_appointment" type="submt">MARK AS
-                                            COMPLETE</button>
+                                        <button class="btn btn-secondary block get_appointment" type="submt">{{__('msg.MARK AS COMPLETE')}}</button>
                                     </form>
                                 @endif
                             </div>

@@ -39,10 +39,10 @@
                                     <div class="pay_via_insurance_header_garages">
                                         @if ($order->paid_by == 'company')
                                             @if ($insurancestatus->status == 0)
-                                                <p>Payment Is Pending</p>
+                                                <p>{{__('msg.Payment Is Pending')}}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
-                                                <p>Payed via Insurance</p>
+                                                <p>{{__('msg.Paid via Insurance')}}</p>
                                             @endif
                                         @endif
                                         <i class="bi bi-star-fill"></i>
@@ -53,9 +53,9 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center">AED {{ $order->total }}</h5>
+                                <h5 class=" text-sm-center">{{__('msg.AED')}} {{ $order->total }}</h5>
                                 <div class="completed_order_id">
-                                    <p>Order ID: <span>#{{ $order->order_code }}</span></p>
+                                    <p>{{__('msg.Order Id:')}}: <span>#{{ $order->order_code }}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
+                            <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
                         </div>
 
                         <?php $vendor_bid = \App\Models\VendorBid::where('garage_id', $order->garage_id)
@@ -84,7 +84,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">CAR DETAILS</h5>
+                            <h5 class=" text-center mb-5">{{__('msg.CAR DETAILS')}}</h5>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 mx-auto">
@@ -92,14 +92,14 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="d-grid gap-2 ">
                                             <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                                type="button">Car Model : {{ getModelByUserBid($order->user_bid_id) }}
+                                                type="button">{{__('msg.Model')}} : {{ getModelByUserBid($order->user_bid_id) }}
                                             </button>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="d-grid gap-2 ">
                                             <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                                type="button">Car Make : {{ $company->company }}
+                                                type="button">{{__('msg.Car Make')}} : {{ $company->company }}
                                             </button>
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="d-grid gap-2 ">
                                             <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                                type="button">Type of Service : @foreach ($userbidcategories as $userbidcategory)
+                                                type="button">{{__('msg.Type of Service')}} : @foreach ($userbidcategories as $userbidcategory)
                                                     {{ $userbidcategory->name }},
                                                 @endforeach
                                             </button>
@@ -117,7 +117,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="d-grid gap-2 ">
                                             <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                                type="button">Customer Name : {{ auth()->user()->name }}
+                                                type="button">{{__('msg.Customer Name')}}: {{ auth()->user()->name }}
                                             </button>
                                         </div>
                                     </div>
@@ -137,14 +137,14 @@
                                 <div class="d-grid gap-2 mt-lg-3 ">
                                     <a href="{{ route('user.order.cancel.view', $order->id) }}"
                                         class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                        type="button">CANCEL ORDER
+                                        type="button">{{__('msg.CANCEL ORDER')}}
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="d-grid gap-2 mt-lg-3 ">
                                     <a href="{{ route('user.order.show', $order->id) }}"
-                                        class="btn btn-secondary block get_appointment" type="button">MARK AS COMPLETE
+                                        class="btn btn-secondary block get_appointment" type="button">{{__('msg.MARK AS COMPLETE')}}
                                     </a>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
 
                             <div class="all_quote_card  vendor_rply_dtlL _text">
                                 <div class="over_view_part carad_data vendor_detail">
-                                    <h5 class=" text-center mb-4">YOUR REVIEW</h5>
+                                    <h5 class=" text-center mb-4">{{__('msg.YOUR REVIEW')}}</h5>
                                 </div>
                                 <div class="d-flex align-items-center rating-stars">
                                     <div class="rating-group">
@@ -437,7 +437,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="over_view_part carad_data vendor_detail Leave_review">
-                                <h5 class=" text-center mb-2 mt-5">REVIEW WORKSHOP</h5>
+                                <h5 class=" text-center mb-2 mt-5">{{__('msg.REVIEW WORKSHOP')}}</h5>
                             </div>
 
                         </div>

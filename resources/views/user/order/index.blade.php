@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h4 class="sec_main_heading text-center mb-0">ALL ORDERS</h4>
-                    <p class="sec_main_para text-center">See Your Previously Completed Orders and Details</p>
+                    <h4 class="sec_main_heading text-center mb-0">{{__('msg.ALL ORDERS')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.See Your Previously Completed Orders and Details')}}</p>
                 </div>
             </div>
         </div>
@@ -39,12 +39,12 @@
                             <div class="quote_detail_btn_wraper">
                                 <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h5>
                             </div>
-                            <h5 class=" text-sm-center">AED {{$userbidid->price}}</h5>
+                            <h5 class=" text-sm-center">{{__('msg.AED')}} {{$userbidid->price}}</h5>
                             <div class="d-flex align-items-center chat_view__detail">
                                 <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>
                                 </a>
-                                <a href="{{route('user.order.summary',$order->id)}}" class="btn-secondary">VIEW DETAILS</a>
+                                <a href="{{route('user.order.summary',$order->id)}}" class="btn-secondary">{{__('msg.view_details')}}</a>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
 
                     <div class=" w-100  quote_detail_wraper">
                         <div class="quote_info">
-                            <p class="mb-0">No Orders has been added !</p>
+                            <p class="mb-0">{{__('msg.No Orders have been added!')}}</p>
                         </div>
                     </div>
                 </div>

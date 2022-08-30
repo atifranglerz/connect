@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper mt-5">
-                        <h4 class="sec_main_heading text-center mb-0">PROFILE</h4>
-                        <p class="sec_main_para text-center">Your profile</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.Profile')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Your profile')}}</p>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="col-lg-10 col-md-12 mx-auto ">
                     <div class="edit_profile_link_wraper mb-lg-4 mb-3">
 
-                        <a href="{{ route('user.profile.edit',Auth::id()) }}"><img src="{{ asset('public/user/assets/images/editicon.svg') }}">Edit</a>
+                        <a href="{{ route('user.profile.edit',Auth::id()) }}"><img src="{{ asset('public/user/assets/images/editicon.svg') }}">{{__('msg.edit')}}</a>
                     </div>
                 </div>
                 <div class="col-lg-7 mx-auto">

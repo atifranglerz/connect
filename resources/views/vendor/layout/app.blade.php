@@ -539,6 +539,43 @@
                 });
             });
     </script>
+    <script>
+        $('#flexSwitchCheckDefault').on('click', function() {
+            if ($(this).prop('checked') == true) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{url('language/en')}}",
+                    data: {
+                        'id': 1
+                    },
+                    success: function(response) {
+                        window.location.reload();
+                        // console.log(response);
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{url('language/arb')}}",
+                    data: {
+                        'id': 1
+                    },
+                    success: function(response) {
+                         window.location.reload();
+                        // console.log(response);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

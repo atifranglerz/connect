@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0"> MY OFFERED QUOTE</h4>
-                        <p class="sec_main_para text-center">See How You Responded To This Request</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.MY OFFERED QUOTE')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.See How You Responded To This Request')}}</p>
                     </div>
                 </div>
             </div>
@@ -17,13 +17,13 @@
                         <table class="table table-bordered table-striped table-dark mb-0">
                             <thead>
                                 <tr>
-                                    <th>Customer's Name</th>
-                                    <th>Company</th>
-                                    <th>Registration No.</th>
-                                    <th>Chasis No.</th>
-                                    <th>Model</th>
-                                    <th>Milage e.g 40 Km</th>
-                                    <th>Color</th>
+                                    <th>{{__('msg.Customer Name')}}</th>
+                                    <th>{{__('msg.Company')}}</th>
+                                    <th>{{__('msg.Registration No.')}}</th>
+                                    <th>{{__('msg.Chasis No.')}}</th>
+                                    <th>{{__('msg.Model')}}</th>
+                                    <th>{{__('msg.Mileage e.g 40 Km')}}</th>
+                                    <th>{{__('msg.Color')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,11 +46,11 @@
                             <thead>
                                 <tr>
 
-                                    <th>Estimated Days e.g (7)</th>
+                                    <th>{{__('msg.Estimated Days e.g (7)')}}</th>
 
-                                    <th>Services Required</th>
+                                    <th>{{__('msg.Services Required')}}</th>
 
-                                    <th>Chat Now</th>
+                                    <th>{{__('msg.Chat Now')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,7 +84,7 @@
             <div class="row  mt-5">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <h5 class="active_order_req">Requirments</h5>
+                        <h5 class="active_order_req">{{__('msg.Requirements')}}</h5>
 
                         <div class="vendor__rply__dttl">
                             <p>{{ $data->description1 }}</p>
@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text">
-                        <h5 class="heading-color">Car Images</h5>
+                        <h5 class="heading-color">{{__('msg.CAR IMAGES')}}</h5>
                         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
                             @if ($car_images && count($car_images) == 0)
                                 <div class="item">
@@ -177,7 +177,7 @@
             <div class="row mt-5">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text">
-                        <h5 class="heading-color">Registration Copy Images </h5>
+                        <h5 class="heading-color">{{__('msg.Registration Copy Images')}} </h5>
                         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
                             @if ($register_images && count($register_images) == 0)
                                 <div class="item">
@@ -255,7 +255,7 @@
                 <div class="row mt-5">
                     <div class="col-lg-12">
                         <div class="all_quote_card  vendor_rply_dtlL _text">
-                            <h5 class="active_order_req">Police /Accident /Inspection Report</h5>
+                            <h5 class="active_order_req">{{__('msg.Police /Accident /Inspection Report')}}</h5>
                             <div class="owl-carousel carousel_se_03_carousel owl-theme mt-4">
                                 @if (count($documents) == 0)
                                     <div class="item">
@@ -413,7 +413,7 @@
                             </div>
 
 
-                            <h5 class="heading-color mt-4">Special Requirements</h5>
+                            <h5 class="heading-color mt-4">{{__('msg.Special Requirements')}}</h5>
 
                             <div class="vendor__rply__dttl">
                                 <p>{{ $data->description2 }}</p>
@@ -429,7 +429,7 @@
                             @csrf
                             <div class="row ">
                                 <div class="col-lg-9 mx-auto">
-                                    <h6 class="heading-color">Services/Labor Details <sup
+                                    <h6 class="heading-color">{{__("msg.Services/Labor Details")}} <sup
                                             class="fa fa-question label-fa-question" data-toggle="tooltip"
                                             data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
@@ -438,7 +438,7 @@
                                         <div class="mb-3 row content-block-row serDetail1">
                                             <div class="col-sm-4">
                                                 <input type="text" name="service_name[]"
-                                                    class="form-control particular-item" placeholder="Particular" />
+                                                    class="form-control particular-item" placeholder="{{__('msg.Particular')}}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="input-group">
@@ -457,12 +457,12 @@
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="services_rate[]" class="form-control item-rate"
-                                                    placeholder="Rate" />
+                                                    placeholder="{{__('msg.Rate')}}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="services_amount[]" class="form-control item-amount"
-                                                    placeholder="Amount" />
+                                                    placeholder="{{__('msg.Amount')}}" />
                                             </div>
                                             <div class="col-sm-2 d-flex flex-wrap">
                                                 <button
@@ -473,7 +473,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="heading-color">Spares Details <sup class="fa fa-question label-fa-question"
+                                    <h6 class="heading-color">{{__('msg.Spares Details')}} <sup class="fa fa-question label-fa-question"
                                             data-toggle="tooltip" data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
                                     </h6>
@@ -481,7 +481,7 @@
                                         <div class="mb-3 row content-block-row spareDetail1">
                                             <div class="col-sm-4">
                                                 <input type="text" name="spares_name[]"
-                                                    class="form-control particular-item" placeholder="Particular" />
+                                                    class="form-control particular-item" placeholder="{{__('msg.Particular')}}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="input-group">
@@ -499,12 +499,12 @@
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value='' name="spares_rate[]"
-                                                    class="form-control item-rate" placeholder="Rate" />
+                                                    class="form-control item-rate" placeholder="{{__('msg.Rate')}}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="spares_amount[]" class="form-control item-amount"
-                                                    placeholder="Amount" />
+                                                    placeholder="{{__('msg.Amount')}}" />
                                             </div>
                                             <div class="col-sm-2 d-flex flex-wrap">
                                                 <button
@@ -515,7 +515,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="heading-color">Others <sup class="fa fa-question label-fa-question"
+                                    <h6 class="heading-color">{{__('msg.Others')}} <sup class="fa fa-question label-fa-question"
                                             data-toggle="tooltip" data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
                                     </h6>
@@ -523,7 +523,7 @@
                                         <div class="mb-3 row content-block-row othersDetail1">
                                             <div class="col-sm-4">
                                                 <input type="text" name="others_name[]"
-                                                    class="form-control particular-item" placeholder="Particular" />
+                                                    class="form-control particular-item" placeholder="{{__('msg.Particular')}}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="input-group">
@@ -541,11 +541,11 @@
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" name="others_rate[]"
-                                                    class="form-control item-rate" placeholder="Rate" />
+                                                    class="form-control item-rate" placeholder="{{__('msg.Rate')}}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" name="others_amount[]"
-                                                    class="form-control item-amount" placeholder="Amount" />
+                                                    class="form-control item-amount" placeholder="{{__('msg.Amount')}}" />
                                             </div>
                                             <div class="col-sm-2 d-flex flex-wrap">
                                                 <button
@@ -558,15 +558,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                            <h6 class="heading-color">Estimate Total</h6>
+                                            <h6 class="heading-color">{{__('msg.Estimate Total')}}</h6>
                                             <input type="number" name="price" class="form-control amountTotal"
-                                                placeholder="AED Price">
+                                                placeholder="{{__('msg.AED Price')}}">
                                             @error('price')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                            <h6 class="heading-color">Vat 5%</h6>
+                                            <h6 class="heading-color">{{__('msg.vat')}} 5%</h6>
                                             <input type="hidden" name="bid_id" value="{{ $data->id }}">
                                             @error('bid_id')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -578,23 +578,23 @@
                                             <?php $garage = \App\Models\Garage::where('vendor_id', auth()->id())->first(); ?>
                                             <input type="hidden" name="garage_id" value="{{ $garage->id }}">
                                             <input type="number" name="vat" class="form-control vatPercent"
-                                                placeholder="AED Price">
+                                                placeholder="{{__('msg.AED Price')}}">
                                             @error('vat')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                            <h6 class="heading-color">Net Total</h6>
+                                            <h6 class="heading-color">{{__('msg.Net Total')}}</h6>
                                             <input type="number" name="net_total" class="form-control netTotal"
-                                                placeholder="AED Price">
+                                                placeholder="{{__('msg.AED Price')}}">
                                             @error('net_total')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                            <h6 class="heading-color">Time Frame</h6>
+                                            <h6 class="heading-color">{{__('msg.Time Frame')}}</h6>
                                             <input type="text" name="time" class="form-control"
-                                                placeholder="Estimated Time">
+                                                placeholder="{{__('msg.Estimated Time')}}">
                                             @error('time')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -606,13 +606,13 @@
                                                 @error('description')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
-                                                <label for="floatingTextarea2">Add Repairing Details</label>
+                                                <label for="floatingTextarea2">{{__('msg.Add Repairing Details')}}</label>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="d-grid gap-2 mt-3 mb-4">
                                                         <button class="btn btn-secondary block get_appointment"
-                                                            id="btnSubmit" type="submit">SUBMIT QUOTE</button>
+                                                            id="btnSubmit" type="submit">{{__('msg.SUBMIT QUOTE')}}</button>
                                                     </div>
 
                                                 </div>
@@ -621,7 +621,7 @@
                                                     <div class="d-grid gap-2 mt-3 mb-4">
                                                         <button class="btn btn-secondary block get_appointment"
                                                             data-bs-toggle="modal" data-bs-target="#previewBidDetails"
-                                                            type="button">PREVIEW QUOTE</button>
+                                                            type="button">{{__('msg.PREVIEW QUOTE')}}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -648,75 +648,75 @@
                 <div class="modal-body">
                     <div class="pb-0 main_content_wraper">
                         <h5 class="sec_main_heading text-center">
-                            {{ \Illuminate\Support\Facades\Auth::user()->garage->garage_name }} GARAGE</h4>
+                            {{ \Illuminate\Support\Facades\Auth::user()->garage->garage_name }} {{__('msg.GARAGE')}}</h4>
                             <p class="sec_main_para text-center">
-                                {{ \Illuminate\Support\Facades\Auth::user()->garage->address }} P.O. Box
+                                {{ \Illuminate\Support\Facades\Auth::user()->garage->address }} {{__('msg.P/O Box')}}
                                 {{ \Illuminate\Support\Facades\Auth::user()->garage->post_box }}</p>
                             <p class="sec_main_para text-center"><b>Tel :
-                                </b><span>{{ \Illuminate\Support\Facades\Auth::user()->garage->phone }}</span>, <b>Fax :
+                                </b><span>{{ \Illuminate\Support\Facades\Auth::user()->garage->phone }}</span>, <b>{{__('msg.Fax')}} :
                                 </b><span>3881433</span></p>
-                            <p class="sec_main_para text-center"><b>email :
+                            <p class="sec_main_para text-center"><b>{{__('msg.Email')}} :
                                 </b><span>{{ \Illuminate\Support\Facades\Auth::user()->email }}</span></p>
-                            <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h5>
+                            <h5 class="sec_main_heading text-center my-3">{{__('msg.JOB ESTIMATE')}}</h5>
                             <div class="table-responsive bg-white">
                                 <table class="table table-bordered table-striped table-dark mb-0">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
                                             <td colspan="2">{{ \Illuminate\Support\Facades\Auth::user()->name }}</td>
-                                            <th>Est. No.</th>
+                                            <th>{{__('msg.id')}}</th>
                                             <td>{{ mt_rand(1, 999999) }}</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>Phone</th>
+                                            <th>{{__('msg.Phone')}}</th>
                                             <td>{{ \Illuminate\Support\Facades\Auth::user()->phone }}</td>
-                                            <th>Fax :</th>
-                                            <th>Est. Date</th>
+                                            <th>{{__('msg.Fax')}} :</th>
+                                            <th>{{__('msg.Date')}}</th>
                                             <td>{{ \Carbon\Carbon::parse($data->created)->format('d-M-Y') }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <h6 class="mt-3">Vehicle Detail :</h6>
+                            <h6 class="mt-3">{{__('msg.Vehicle Detail')}} :</h6>
                             <div class="table-responsive bg-white">
                                 <table class="table table-bordered table-striped table-dark mb-0">
                                     <thead>
                                         <tr>
-                                            <th>Registration No.</th>
+                                            <th>{{__('msg.Registration No.')}}</th>
                                             <td>{{ $data->registration_no }}</td>
-                                            <th>Milage Kms.</th>
-                                            <td>{{ $data->mileage }}km</td>
+                                            <th>{{__('msg.mileage')}}.</th>
+                                            <td>{{ $data->mileage }}{{__('msg.Km')}}</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>Make</th>
+                                            <th>{{__('msg.Car Make')}}</th>
                                             <td>{{ $company->company }}</td>
-                                            <th>Color</th>
+                                            <th>{{__('msg.Color')}}</th>
                                             <td>{{ $data->color }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Chasis No.</th>
+                                            <th>{{__('msg.Chasis No.')}}</th>
                                             <td>{{ $data->Chasis_no }}</td>
-                                            <th>Year</th>
+                                            <th>{{__('msg.Color')}}</th>
 
                                             <td>{{ $data->modelYear->model_year }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <h6 class="mt-3">Services Detail :</h6>
+                            <h6 class="mt-3">{{__('msg.Services Detail')}} :</h6>
                             <div class="table-responsive bg-white">
                                 <table class="table table-bordered table-striped table-dark mb-0">
                                     <thead>
                                         <tr>
-                                            <th>SL No</th>
-                                            <th>Particulars</th>
-                                            <th>Qty</th>
-                                            <th>Rate</th>
-                                            <th>Amount</th>
+                                            <th>{{__('msg.SL No')}}</th>
+                                            <th>{{__('msg.Particular')}}</th>
+                                            <th>{{__('msg.Qty')}}</th>
+                                            <th>{{__('msg.Rate')}}</th>
+                                            <th>{{__('msg.Amount')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -731,22 +731,22 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <th>Services : </th>
+                                            <th>{{__('msg.Services')}} : </th>
                                             <td class="services-details"><span class="inner"></span>.00</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <h6 class="mt-3">Spares Detail :</h6>
+                            <h6 class="mt-3">{{__('msg.Spares Details')}}:</h6>
                             <div class="table-responsive bg-white">
                                 <table class="table table-bordered table-striped table-dark mb-0">
                                     <thead>
                                         <tr>
-                                            <th>SL No</th>
-                                            <th>Particulars</th>
-                                            <th>Qty</th>
-                                            <th>Rate</th>
-                                            <th>Amount</th>
+                                            <th>{{__('msg.SL No')}}</th>
+                                            <th>{{__('msg.Particular')}}</th>
+                                            <th>{{__('msg.Qty')}}</th>
+                                            <th>{{__('msg.Rate')}}</th>
+                                            <th>{{__('msg.Amount')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -761,22 +761,22 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <th>Spares : </th>
+                                            <th>{{__('msg.Spares')}} : </th>
                                             <td class="spares-details"><span class="inner"></span>.00</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <h6 class="mt-3">Others :</h6>
+                            <h6 class="mt-3">{{__('msg.Others')}} :</h6>
                             <div class="table-responsive bg-white">
                                 <table class="table table-bordered table-striped table-dark mb-0">
                                     <thead>
                                         <tr>
-                                            <th>SL No</th>
-                                            <th>Particulars</th>
-                                            <th>Qty</th>
-                                            <th>Rate</th>
-                                            <th>Amount</th>
+                                            <th>{{__('msg.SL No')}}</th>
+                                            <th>{{__('msg.Particular')}}</th>
+                                            <th>{{__('msg.Qty')}}</th>
+                                            <th>{{__('msg.Rate')}}</th>
+                                            <th>{{__('msg.Amount')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -791,7 +791,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <th>Others : </th>
+                                            <th>{{__('msg.Others')}}  : </th>
                                             <td class="extras-details"><span class="inner"></span>.00</td>
                                         </tr>
                                     </tbody>
@@ -800,19 +800,19 @@
                             <div class="my-3 row mx-0">
                                 <div class="offset-md-7 col-md-5 offset-sm-4 col-sm-8">
                                     <div class="row">
-                                        <b class="col-6">Estimate Total</b>
+                                        <b class="col-6">{{__('msg.Estimate Total')}}</b>
                                         <div class="col-6 text-xl-right">
                                             <span class="amountTotal"></span>.00</span>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <b class="col-6">VAT 5%</b>
+                                        <b class="col-6">{{__('msg.vat')}} 5%</b>
                                         <div class="col-6 text-xl-right">
                                             <span class="vatPercent"></span>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <b class="col-6">Net Total</b>
+                                        <b class="col-6">{{__('msg.Net Total')}}</b>
                                         <div class="col-6 text-xl-right">
                                             <span class="netTotal"></span>
                                         </div>
@@ -821,15 +821,8 @@
                             </div>
                             <div>
                                 <p id="repairingDetails" class="font-italic"></p>
-                                <p class="font-italic">Remarks : ALL PARTS USED AND AFTER MARKET......... NO WARRANTY</p>
-                                <b class="font-italic small">
-                                    Please Note : Vehicle Must be collected with 3 days of Invoice/Estimate date, Failing
-                                    which there
-                                    will be a parking charge of AED 50/- per day incurred by customer. Motormec will not be
-                                    responsible if the vehcile is collected / picked / impounded by Dubai local authorities
-                                    for which
-                                    it will be the customers responibility to get the vehicle released at thier own costs.
-                                </b>
+                                <p class="font-italic">{{__('msg.Remarks: ALL PARTS USED AND AFTERMARKET......... NO WARRANTY')}}</p>
+                                <b class="font-italic small">{{__('msg.offer_term')}}/b>
                             </div>
                     </div>
                 </div>
@@ -885,7 +878,7 @@
 
             $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row serDetail${++serDetail}">
                                         <div class="col-sm-4">
-                                            <input type="text" name="service_name[]" class="form-control particular-item" placeholder="Particular">
+                                            <input type="text" name="service_name[]" class="form-control particular-item" placeholder="{{__('msg.Particular')}}">
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
@@ -899,10 +892,10 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value="" name="services_rate[]" class="form-control item-rate" placeholder="Rate">
+                                            <input type="number" min="1" value="" name="services_rate[]" class="form-control item-rate" placeholder="{{__('msg.Rate')}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value="" name="services_amount[]" class="form-control item-amount" placeholder="Amount">
+                                            <input type="number" min="1" value="" name="services_amount[]" class="form-control item-amount" placeholder="{{__('msg.Amount')}}">
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn services-detail-add-btn"><span class="fa fa-plus" aria-hidden="true"></span></button>
@@ -925,7 +918,7 @@
 
             $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row spareDetail${++sparesDetail}">
                                         <div class="col-sm-4">
-                                            <input type="text" name="spares_name[]" class="form-control particular-item" placeholder="Particular">
+                                            <input type="text" name="spares_name[]" class="form-control particular-item" placeholder="{{__('msg.Particular')}}">
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
@@ -939,10 +932,10 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value="" name="spares_rate[]" class="form-control item-rate" placeholder="Rate">
+                                            <input type="number" min="1" value="" name="spares_rate[]" class="form-control item-rate" placeholder="{{__('msg.Rate')}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value="" name="spares_amount[]" class="form-control item-amount" placeholder="Amount">
+                                            <input type="number" min="1" value="" name="spares_amount[]" class="form-control item-amount" placeholder="{{__('msg.Amount')}}">
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn spares-detail-add-btn"><span class="fa fa-plus" aria-hidden="true"></span></button>
@@ -965,7 +958,7 @@
 
             $(this).closest('.conten-row-block-main-container').append(`<div class="mb-3 row content-block-row othersDetail${++othersDetail}">
                                         <div class="col-sm-4">
-                                            <input type="text" name="others_name[]" class="form-control particular-item" placeholder="Particular">
+                                            <input type="text" name="others_name[]" class="form-control particular-item" placeholder="{{__('msg.Particular')}}">
                                         </div>
                                         <div class="col-sm-2">
                                             <div class="input-group">
@@ -979,10 +972,10 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value="" name="others_rate[]" class="form-control item-rate" placeholder="Rate">
+                                            <input type="number" min="1" value="" name="others_rate[]" class="form-control item-rate" placeholder="{{__('msg.Rate')}}">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="1" value="" name="others_amount[]" class="form-control item-amount" placeholder="Amount">
+                                            <input type="number" min="1" value="" name="others_amount[]" class="form-control item-amount" placeholder="{{__('msg.Amount')}}">
                                         </div>
                                         <div class="col-sm-2 d-flex flex-wrap">
                                             <button class="w-auto btn btn-secondary add-btn others-detail-add-btn"><span class="fa fa-plus" aria-hidden="true"></span></button>

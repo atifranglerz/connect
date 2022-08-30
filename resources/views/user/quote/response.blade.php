@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">RESPONSE TO YOUR QUOTES</h4>
-                        <p class="sec_main_para text-center">See what garage owners have to say about your quote</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.RESPONSE TO YOUR QUOTES')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.See what garage owners have to say about your quote')}}</p>
                     </div>
                 </div>
             </div>
@@ -79,14 +79,13 @@
                                     <h5 class="d-flex align-items-center active_quote nowrape heading-color">
                                         {{ $value->vendordetail->vendor->name }}</h5>
                                     <div class="quote_detail_btn_wraper">
-                                        <h5 class="quotereplies">AED {{ $value->net_total }} </h5>
+                                        <h5 class="quotereplies">{{__('msg.AED')}} {{ $value->net_total }} </h5>
                                     </div>
                                 </div>
                                 <div class="quote_detail_btn_wraper">
                                     <div class="d-flex align-items-center chat_view__detail allreplies ">
                                         <a href="{{ route('user.vendorReply', $value->id) }}"
-                                            class="btn-secondary">VIEW
-                                            DETAILS</a>
+                                            class="btn-secondary">{{__('msg.view_details')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +98,7 @@
 
                         <div class=" w-100  quote_detail_wraper replies ">
 
-                            <p class="mb-0">No response has been added by users on your quote !</p>
+                            <p class="mb-0">{{_('msg.No response has been added by users to your quote!')}}</p>
 
                         </div>
                     </div>

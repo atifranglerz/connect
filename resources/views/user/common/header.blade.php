@@ -22,19 +22,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="d-flex  customer_heading_main">
                     <div class="costumer_heading">
-                        <h6 class="mb-0">Customer Dashboard</h6>
+                        <h6 class="mb-0">{{__('msg.Customer Dashboard')}}</h6>
                     </div>
                 </div>
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.ads.index') }}">My Ads Listing</a>
+                        <a class="nav-link " href="{{ route('user.ads.index') }}">{{__('msg.My Ads Listing')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.quotecreate') }}">Request A Quote</a>
+                        <a class="nav-link " href="{{ route('user.quotecreate') }}">{{__('msg.Request A Quote')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.order.index') }}">Orders</a>
+                        <a class="nav-link " href="{{ route('user.order.index') }}">{{__('msg.Orders')}}</a>
                     </li>
                 </ul>
                 <div class="login_sinup">
@@ -63,11 +63,11 @@
                         <a href="#" id="Logout_Profile"><i class="fa-solid fa-user"></i></a>
                         <div class="notification_tooltip" id="TopProfile">
                             <ul class="notification_list shadow">
-                                <li><a href="{{ route('user.profile.index') }}">Profile</a>
+                                <li><a href="{{ route('user.profile.index') }}">{{__('msg.Profile')}}</a>
                                 </li>
                                 <li><a href=""
                                         onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-                                        Logout<span class="fas fa-sign-out-alt"></span>
+                                        {{__('msg.Logout')}}<span class="fas fa-sign-out-alt"></span>
                                     </a>
                                     <form id="frm-logout" action="{{ route('user.logout') }}" method="POST"
                                         style="display: none;">

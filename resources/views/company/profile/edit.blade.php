@@ -6,8 +6,8 @@
                 <div class="col-xl-5 col-lg-6 col-md-9 col-sm-9 mx-auto">
                     <div class="cuatomer_signup_form_wraper mt-5">
                         <div class="main_content_wraper">
-                            <h4 class="sec_main_heading text-center mb-0">EDIT</h4>
-                            <p class="sec_main_para text-center mb-0">Edit your profile details</p>
+                            <h4 class="sec_main_heading text-center mb-0">{{ __('msg.edit') }}</h4>
+                            <p class="sec_main_para text-center mb-0">{{ __('msg.Edit your profile details') }}</p>
                         </div>
 
                         <form class="pt-5" action="{{ route('company.profile.post', $profile->id )}}" method="post" enctype="multipart/form-data">
@@ -18,13 +18,13 @@
                                 </div>
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" value="{{$profile->name }}">
+                                <input type="text" class="form-control" id="inputName" name="name" placeholder="{{ __('msg.Name') }}" value="{{$profile->name }}">
                                 @error('name')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" id="inputNumber" name="phone" placeholder="Mobile Number" value="{{ $profile->phone }}">
+                                <input type="number" class="form-control" id="inputNumber" name="phone" placeholder="{{ __('msg.Phone Number') }}" value="{{ $profile->phone }}">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

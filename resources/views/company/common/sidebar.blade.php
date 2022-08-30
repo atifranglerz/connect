@@ -22,6 +22,7 @@
         <form id="cmp-logout" action="{{ route('company.logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
+        @include('locale/index');
 
         <div class="form-check form-switch toggler_switch lang_toggler mt-1 mt-lg-3">
             <label class="form-check-label arabi" for="flexSwitchCheckDefault">Arabic</label>

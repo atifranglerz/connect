@@ -6,8 +6,8 @@
                 <div class="col-lg-5 col-md-8 col-sm-8 mx-auto">
                     <div class="cuatomer_signup_form_wraper mt-5 mt-lg-5 ">
                         <div class="main_content_wraper">
-                            <h4 class="sec_main_heading text-center mb-0">WELCOME!</h4>
-                            <p class="sec_main_para text-center mb-0">Fill Up your details to Create New Account</p>
+                            <h4 class="sec_main_heading text-center mb-0">{{__('msg.WELCOME!')}}!</h4>
+                            <p class="sec_main_para text-center mb-0">{{__('msg.Fill Up your details to Create New Account')}}</p>
                         </div>
 
                         <form  method="post" action="{{route('company.register')}}" enctype="multipart/form-data" class="pt-5">
@@ -22,7 +22,7 @@
                                 </label>
                             </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                <input type="text" class="form-control"  name="name" value="{{ old('name') }}" id="inputName" placeholder="Company Name">
+                                <input type="text" class="form-control"  name="name" value="{{ old('name') }}" id="inputName" placeholder="{{Company Name}}">
                                 @error('name')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -48,12 +48,12 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select form-control" name="city" aria-label="City">
-                                    <option selected disabled value="">Select City</option>
-                                    <option value="Dubai" @if(old('city')=='Dubai') selected @endif>Dubai</option>
-                                    <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>Abu Dhabi</option>
-                                    <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>Sharjah</option>
-                                    <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
-                                    <option value="Ajman" @if(old('city')=='Ajman') selected @endif>Ajman</option>
+                                    <option selected disabled value="">{{__('msg.Select City')}}</option>
+                                    <option value="Dubai" @if(old('city')=='Dubai') selected @endif>{{__('msg.Dubai')}}</option>
+                                    <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
+                                    <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
+                                    <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
+                                    <option value="Ajman" @if(old('city')=='Ajman') selected @endif>{{__('msg.Ajman')}}</option>
                                 </select>
                                 @error('city')
                                 <div class="text-danger p-2">{{ $message }}</div>

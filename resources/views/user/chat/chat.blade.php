@@ -13,9 +13,9 @@
                 <div class="name_of_contact">
                     <p class="mb-0" id="vendor">{{ $chated_user->name }}</p>
                     @if ($now > $gettime)
-                        <p class="mb-0 status">offline</p>
+                        <p class="mb-0 status">{{__('msg.offline')}}</p>
                     @else
-                        <p class="mb-0 status">online</p>
+                        <p class="mb-0 status">{{__('msg.online')}}</p>
                     @endif
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <a href="#" id="chat_toggle"><i class="bi bi-three-dots-vertical"></i></a>
             <div class="submenue shadow " id="delet_message_toggle">
                 <ul>
-                    <li><a href="#" class="MobileContactToggler" id="MobileContactToggler">Delete All Messages</a>
+                    <li><a href="#" class="MobileContactToggler" id="MobileContactToggler">{{__('msg.Delete All Messages')}}</a>
                     </li>
 
                 </ul>

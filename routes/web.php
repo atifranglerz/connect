@@ -44,10 +44,12 @@ Route::group(['namespace' => 'Web'], function () {
     });
 
     // route for the language translation
-    Route::get('language/{locale}', function ($locale) {
+    Route::post('language/{locale}', function ($locale) {
         app()->setLocale($locale);
         session()->put('locale', $locale);
-        return redirect()->back();
+        return response()->json([
+            'success' => 'Status updated successfully',
+        ]);
     });
 
     // Route::get('language', 'HomepageController@language');

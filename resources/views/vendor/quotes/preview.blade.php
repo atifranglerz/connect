@@ -6,41 +6,40 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5 white-background-box">
-                        <h5 class="sec_main_heading text-center">{{$garage->garage_name}} GARAGE</h4>
-                            <p class="sec_main_para text-center">{{$garage->address}} P.O. Box {{$garage->post_box}}</p>
-                            <p class="sec_main_para text-center"><b>Tel : </b><span>{{$garage->phone}}</span>, <b>Fax : </b><span>3881433</span></p>
-                            <p class="sec_main_para text-center"><b>email : </b><span>{{auth()->user()->email}}</span></p>
-                            <h5 class="sec_main_heading text-center my-3">JOB ESTIMATE</h4>
-                                @dd('hello');
+                        <h5 class="sec_main_heading text-center">{{$garage->garage_name}} {{__('msg.GARAGE')}}</h4>
+                            <p class="sec_main_para text-center">{{$garage->address}} {{__('msg.P/O Box')}} {{$garage->post_box}}</p>
+                            <p class="sec_main_para text-center"><b>{{__('msg.Tel')}} : </b><span>{{$garage->phone}}</span>, <b>Fax : </b><span>3881433</span></p>
+                            <p class="sec_main_para text-center"><b>{{__('msg.Email')}} : </b><span>{{auth()->user()->email}}</span></p>
+                            <h5 class="sec_main_heading text-center my-3">{{__('msg.JOB ESTIMATE')}}</h4>
                                 <div class="table-responsive bg-white">
                                     <table class="table table-bordered table-striped table-dark mb-0">
                                         <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>{{__('msg.Name')}}</th>
                                             <td colspan="2">{{$data->vendordetail->vendor->name}}</td>
-                                            <th>Est. No.</th>
+                                            <th>{{__('msg.id')}}</th>
                                             <td>{{$data->id}}</td>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <th>Phone</th>
+                                            <th>{{__('msg.Phone')}}</th>
                                             <td>{{$data->vendordetail->vendor->phone}}</td>
-                                            <th>Fax :</th>
-                                            <th>Est. Date</th>
+                                            <th>{{__('msg.Fax')}} :</th>
+                                            <th>{{__('msg.Date')}}</th>
                                             <td>{{ \Carbon\Carbon::parse($data->created)->format('d-M-Y')}}</td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <h6 class="mt-3">Vehicle Detail :</h4>
+                                <h6 class="mt-3">{{__('msg.view_details')}} :</h4>
                                     <div class="table-responsive bg-white">
                                         <table class="table table-bordered table-striped table-dark mb-0">
                                             <thead>
                                             <tr>
-                                                <th>Registration No.</th>
+                                                <th>{{__('msg.Registration No.')}}.</th>
                                                 <td>{{$data->userBid->registration_no}}</td>
-                                                <th>Milage Kms.</th>
+                                                <th>{{__('msg.mileage')}}.</th>
                                                 <td>{{$data->userBid->mileage}}</td>
                                             </tr>
                                             </thead>

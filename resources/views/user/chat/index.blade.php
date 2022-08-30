@@ -5,10 +5,10 @@
         <div class="chat_overlay d-none"></div>
         <div class="side_inbox">
             <div class="side_inbox_search_sec text-center">
-                <h5 class="inbox_nmae">Inbox</h5>
+                <h5 class="inbox_nmae">{{__('msg.Inbox')}}</h5>
                 <form>
                     <div class="searchInput">
-                        <input class="form-control me-2" id="search_input" placeholder="Search">
+                        <input class="form-control me-2" id="search_input" placeholder="{{__('msg.SEARCH')}}">
                         <a href="#" type="submit"><img src="{{ asset('public/assets/images/searchicon.svg') }}"></a>
                     </div>
                 </form>
@@ -45,7 +45,7 @@
                                         <li><a href="#" class="chatted_delete d-block" id="{{ $data->vendor->id }}">
                                                 <span class="fa fa-trash text-danger" aria-hidden="true"
                                                     style="margin-right: 8px"></span>
-                                                delete</a></li>
+                                                {{__('msg.delete')}}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                         <input type="hidden" @if (isset($id)) value="{{ $id }}" @endif
                             name="receiver_id" id="receiver_id">
                         <textarea class="form-control enterKey" name="body" id="typeMsg" placeholder="Say Somthing"></textarea>
-                        <button type="submit" class="btn btn-primary" id="sendMsg">send</button>
+                        <button type="submit" class="btn btn-primary" id="sendMsg">{{__('msg.send')}}</button>
                         <div class="file_input_messages">
                             <input type="file" id="attachment" name="attachment" onchange="loadFile(event)"
                                 class="messages_file">

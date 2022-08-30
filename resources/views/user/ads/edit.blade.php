@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">EDIT YOUR AD FOR USED CAR</h4>
-                        <p class="sec_main_para text-center">Edit your ad</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.EDIT YOUR AD FOR USED CAR')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Edit your ad')}}</p>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                                     </div>
 
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="model" class="form-control" placeholder="Model"
+                                        <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}}"
                                             value="{{ $ads->model }}" aria-label="Model">
                                         @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -95,35 +95,35 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="price" value="{{ $ads->price }}"
-                                            class="form-control" placeholder="Price" aria-label="Price">
+                                            class="form-control" placeholder="{{__('msg.Price')}}" aria-label="Price">
                                         @error('price')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="color" value="{{ $ads->color }}"
-                                            class="form-control" placeholder="Color" aria-label="Color">
+                                            class="form-control" placeholder="{{__('msg.Color')}}" aria-label="Color">
                                         @error('color')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="engine" value="{{ $ads->engine }}"
-                                            class="form-control" placeholder="Engine" aria-label="Engine">
+                                            class="form-control" placeholder="{{__('msg.Engine')}}" aria-label="Engine">
                                         @error('engine')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="phone" value="{{ $ads->phone }}"
-                                            class="form-control" placeholder="Phone No" aria-label="Price">
+                                            class="form-control" placeholder="{{__('msg.Phone Number')}}" aria-label="Price">
                                         @error('phone')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="address" value="{{ $ads->address }}"
-                                            class="form-control" placeholder="Address" aria-label="Price">
+                                            class="form-control" placeholder="{{__('msg.Address')}}" aria-label="Price">
                                         @error('address')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -131,8 +131,8 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <select class="form-select form-control" name="country" aria-label="Country"
                                             disabled>
-                                            <option disabled value="">Select Country</option>
-                                            <option value="United Arab Emirates" selected>United Arab Emirates</option>
+                                            <option disabled value="">{{__('msg.Country')}}</option>
+                                            <option value="United Arab Emirates" selected>{{__('msg.United Arab Emirates')}}</option>
                                         </select>
                                         @error('country')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -143,17 +143,11 @@
                                             @if (isset($ads->city))
                                                 <option selected value="{{ $ads->city }}">{{ $ads->city }}</option>
                                             @endif
-                                            <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>Dubai
-                                            </option>
-                                            <option value="Abu Dhabi" @if (old('city') == 'Abu Dhabi') selected @endif>Abu
-                                                Dhabi</option>
-                                            <option value="Sharjah" @if (old('city') == 'Sharjah') selected @endif>
-                                                Sharjah
-                                            </option>
-                                            <option value="Ras Al Khaimah"
-                                                @if (old('city') == 'Ras Al Khaimah') selected @endif>Ras Al Khaimah</option>
-                                            <option value="Ajman" @if (old('city') == 'Ajman') selected @endif>Ajman
-                                            </option>
+                                            <option value="Dubai" @if(old('city')=='Dubai') selected @endif>{{__('msg.Dubai')}}</option>
+                                            <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
+                                            <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
+                                            <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
+                                            <option value="Ajman" @if(old('city')=='Ajman') selected @endif>{{__('msg.Ajman')}}</option>
                                         </select>
                                         @error('city')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -161,7 +155,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="mileage" class="form-control"
-                                            value="{{ $ads->mileage }}" placeholder="Car Milage" aria-label="Price">
+                                            value="{{ $ads->mileage }}" placeholder="{{__('msg.mileage')}}" aria-label="Price">
                                         @error('mileage')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -169,13 +163,13 @@
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
                                             <input class="form-control" name="description"
-                                                value="{{ $ads->description }}" valyuplaceholder="Add Repairing Details"
+                                                value="{{ $ads->description }}" placeholder="{{__('msg.Add more details')}}"
                                                 id="floatingTextarea2" style="height: 100px"></input>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
-                                            <button class="btn btn-secondary block get_appointment" type="submit">NEXT
+                                            <button class="btn btn-secondary block get_appointment" type="submit">{{__('msg.NEXT')}}
                                             </button>
                                         </div>
                                     </div>

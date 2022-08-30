@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h4 class="sec_main_heading text-center mb-0">ALL QUOTES</h4>
+                    <h4 class="sec_main_heading text-center mb-0">{{__('msg.All Quotes')}}</h4>
                 </div>
             </div>
         </div>
@@ -34,11 +34,11 @@
                             <p class="mb-0">{{ $user->phone }}</p>
                         </div>
                         <div class="mt-5 quote_info ">
-                                <p class="quote_rev vndr_rply__dtl "><span> {{$total_bid}} bids</span>
+                                <p class="quote_rev vndr_rply__dtl "><span> {{$total_bid}} {{__('msg.bids')}}</span>
                                 </p>
                             </div>
                         <div class="quote_detail_btn_wraper">
-                            <h5 class="text-sm-center">AED {{$value->userbid->price}}</h5>
+                            <h5 class="text-sm-center">{{__('msg.AED')}} {{$value->userbid->price}}</h5>
                             <div class="d-flex align-items-center chat_view__detail">
                                 <a type="button" href="{{url('vendor/chat/'.$value->user_id)}}" class="chat_icon"><i
                                         class="fa-solid fa-message"></i>
@@ -49,10 +49,10 @@
                                 ?>
                                 @if($offer == NULL)
                                 <a href="{{ route('vendor.quotedetail',$value->userbid->id ) }}"
-                                    class="btn-secondary">VIEW DETAILS</a>
+                                    class="btn-secondary">{{__('msg.view_details')}}</a>
                                 @else
                                 <a href="{{ route('vendor.view-offer',$value->userbid->id ) }}"
-                                    class="btn-secondary">VIEW OFFER</a>
+                                    class="btn-secondary">{{__('msg.View offer')}}</a>
                                 @endif
                             </div>
                         </div>

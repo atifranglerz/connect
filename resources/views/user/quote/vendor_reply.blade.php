@@ -7,7 +7,7 @@
                 <div class="row mt-5 mb-4 g-3">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="d-grid gap-2 mt-lg-3 ">
-                            <a href="{{route('user.quoteindex')}}" class="btn text-center btn-primary get_quot block get_appointment d-flex justify-content-center align-items-center" type="button">GO BACK TO ALL QUOTES
+                            <a href="{{route('user.quoteindex')}}" class="btn text-center btn-primary get_quot block get_appointment d-flex justify-content-center align-items-center" type="button">{{__('msg.GO BACK TO ALL QUOTES')}}
                             </a>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                             @csrf
                             <input type="hidden" name="bid_id" value="{{$data->id}}">
                             <input type="hidden" name="type" value="qoute">
-                            <button class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="submt">ACCEPT QUOTE</button>
+                            <button class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="submt">{{__('msg.ACCEPT QUOTE')}}</button>
                         </form>
                         <!-- <a href="{{route('user.payment_page',$data->id)}}" class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center" type="button">ACCEPT QUOTE
                         </a> -->
@@ -58,9 +58,9 @@
                             </div>
                         </div>
                         <div class="quote_detail_btn_wraper">
-                            <h4 class=" text-sm-center vendor_replies_dtl">AED {{$data->net_total}}</h4>
+                            <h4 class=" text-sm-center vendor_replies_dtl">{{__('msg.AED')}} {{$data->net_total}}</h4>
                             <div class="quote_info">
-                                <p class="quote_rev vndr_rply__dtl">Time Frame Offered<span> {{$data->time}}  Days</span></p>
+                                <p class="quote_rev vndr_rply__dtl">{{__('msg.Time Frame Offered')}}<span> {{$data->time}}  {{__('msg.Days')}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -72,10 +72,10 @@
 
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="over_view_part carad_data vendor_detail">
-                        <h5 class=" text-center mb-5 heading heading-color">REPAIR DETAILS</h5>
+                        <h5 class=" text-center mb-5 heading heading-color">{{__('msg.REPAIR DETAILS')}}</h5>
                     </div>
                     <div class="col-md-9 mx-auto vendor__rply__dttl">
-                        <h6 class="heading-color">Service Details</h6>
+                        <h6 class="heading-color">{{__('msg.Services Detail')}}</h6>
                         <div class="conten-row-block-main-container services-details">
                             <div class="mb-3 row content-block-row">
                                 @php
@@ -86,16 +86,16 @@
                                 <div class="col-sm-4">
 
                                     @if($count==0)
-                                    <label for="particular" class="heading-color">Particular</label>
-                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                    <label for="particular" class="heading-color">{{__('msg.Particular')}}</label>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="{{__('msg.Particular')}}" readonly>
                                     @else
-                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="Particular" readonly>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="{{__('msg.Particular')}}" readonly>
                                     @endif
 
                                 </div>
                                 <div class="col-sm-2">
                                     @if($count==0)
-                                    <label for="quantity" class="heading-color">Quantity</label>
+                                    <label for="quantity" class="heading-color">{{__('msg.Quantity')}}</label>
                                         <input type="number" value="{{$service->service_quantity}}"  class="form-control" readonly>
                                     @else
                                         <input type="number" value="{{$service->service_quantity}}"  class="form-control mt-2" readonly>
@@ -104,16 +104,16 @@
                                 </div>
                                 <div class="col-sm-3">
                                     @if($count==0)
-                                    <label for="rate" class="heading-color">Rate</label>
-                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    <label for="rate" class="heading-color">{{__('msg.Rate')}}</label>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="{{__('msg.Rate')}}" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="Rate" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="{{__('msg.Rate')}}" readonly>
                                     @endif
 
                                 </div>
                                 <div class="col-sm-3">
                                     @if($count++==0)
-                                    <label for="amount" class="heading-color">amount</label>
+                                    <label for="amount" class="heading-color">{{__('msg.Amount')}}</label>
                                         <input type="number" min="1"  value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
                                     @else
                                         <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control mt-2" placeholder="Amount" readonly>
@@ -125,7 +125,7 @@
                                 @endforelse
                             </div>
                         </div>
-                        <h6 class="heading-color">Spares Details</h6>
+                        <h6 class="heading-color">{{__("msg.Spares Details")}}</h6>
                         <div class="conten-row-block-main-container services-details">
                             <div class="mb-3 row content-block-row">
                                 @php
@@ -135,15 +135,15 @@
                                     @if($service->type=='spares')
                                 <div class="col-sm-4">
                                     @if($count==0)
-                                    <label for="particular" class="heading-color">Particular</label>
-                                    <input type="text" class="form-control" value="{{$service->service_name}}" placeholder="Particular" readonly>
+                                    <label for="particular" class="heading-color">{{__('msg.Particular')}}</label>
+                                    <input type="text" class="form-control" value="{{$service->service_name}}" placeholder="{{__('msg.Particular')}}" readonly>
                                     @else
-                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="Particular" readonly>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="{{__('msg.Particular')}}" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-2">
                                     @if($count==0)
-                                    <label for="quantity" class="heading-color">Quantity</label>
+                                    <label for="quantity" class="heading-color">{{__('msg.Quantity')}}</label>
                                     <input type="number" value="{{$service->service_quantity}}" class="form-control" readonly>
                                     @else
                                         <input type="number" value="{{$service->service_quantity}}" class="form-control mt-2" readonly>
@@ -151,15 +151,15 @@
                                 </div>
                                 <div class="col-sm-3">
                                     @if($count==0)
-                                    <label for="rate" class="heading-color">Rate</label>
-                                    <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    <label for="rate" class="heading-color">{{__('msg.Rate')}}</label>
+                                    <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="{{__('msg.Rate')}}" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="Rate" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="{{__('msg.Rate')}}" readonly>
                                         @endif
                                 </div>
                                 <div class="col-sm-3">
                                     @if($count++==0)
-                                    <label for="amount" class="heading-color">amount</label>
+                                    <label for="amount" class="heading-color">{{__('msg.Amount')}}</label>
                                     <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}"  class="form-control" placeholder="Amount" readonly>
                                     @else
                                         <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control mt-2" placeholder="Amount" readonly>
@@ -172,7 +172,7 @@
                                         @endforelse
                             </div>
                         </div>
-                        <h6 class="heading-color">Others</h6>
+                        <h6 class="heading-color">{{__('msg.Others')}}</h6>
                         <div class="conten-row-block-main-container services-details">
                             <div class="mb-3 row content-block-row">
                                 @php
@@ -187,15 +187,15 @@
 
                                 <div class="col-sm-4">
                                     @if($count==0)
-                                    <label for="particular" class="heading-color">Particular</label>
-                                    <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="Particular" readonly>
+                                    <label for="particular" class="heading-color">{{__('msg.Particular')}}</label>
+                                    <input type="text" value="{{$service->service_name}}" class="form-control" placeholder="{{__('msg.Particular')}}" readonly>
                                     @else
-                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="Particular" readonly>
+                                        <input type="text" value="{{$service->service_name}}" class="form-control mt-2" placeholder="{{__('msg.Particular')}}" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-2">
                                     @if($count==0)
-                                    <label for="quantity" class="heading-color">Quantity</label>
+                                    <label for="quantity" class="heading-color">{{__('msg.Quantity')}}</label>
                                     <input type="number" value="{{$service->service_quantity}}"  class="form-control" readonly>
                                     @else
                                         <input type="number" value="{{$service->service_quantity}}" class="form-control mt-2" readonly>
@@ -203,15 +203,15 @@
                                 </div>
                                 <div class="col-sm-3">
                                     @if($count==0)
-                                    <label for="rate" class="heading-color">Rate</label>
-                                    <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="Rate" readonly>
+                                    <label for="rate" class="heading-color">{{__('msg.Rate')}}</label>
+                                    <input type="number" min="1" value="{{$service->service_rate}}" class="form-control" placeholder="{{__('msg.Rate')}}" readonly>
                                     @else
-                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="Rate" readonly>
+                                        <input type="number" min="1" value="{{$service->service_rate}}" class="form-control mt-2" placeholder="{{__('msg.Rate')}}" readonly>
                                     @endif
                                 </div>
                                 <div class="col-sm-3">
                                     @if($count++==0)
-                                    <label for="amount" class="heading-color">amount</label>
+                                    <label for="amount" class="heading-color">{{__('msg.Amount')}}</label>
                                     <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}}" class="form-control" placeholder="Amount" readonly>
                                     @else
                                         <input type="number" min="1" value="{{$service->service_rate*$service->service_quantity}} mt-2" class="form-control" placeholder="Amount" readonly>
@@ -224,25 +224,25 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <h6 class="heading-color">Estimate Total</h6>
+                                <h6 class="heading-color">{{__('msg.Estimate Total')}}</h6>
                                 <input type="number" value="{{$total}}" class="form-control" placeholder="AED Price" readonly>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <h6 class="heading-color">Vat 5%</h6>
+                                <h6 class="heading-color">{{__('msg.vat')}} 5%</h6>
                                 <input type="number" value="{{$data->vat}}" class="form-control" placeholder="AED Price" readonly>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <h6 class="heading-color">Net Total</h6>
+                                <h6 class="heading-color">{{__('msg.Net Total')}}</h6>
                                 <input type="number" value="{{$data->vat+$total}}" class="form-control" placeholder="AED Price" readonly>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                <h6 class="heading-color">Time Frame</h6>
+                                <h6 class="heading-color">{{__('msg.Time Frame')}}</h6>
                                 <input type="text" value="{{$data->time}}" name="time" class="form-control" placeholder="Estimated Time" readonly>
                             </div>
                         </div>
-                        <h6 class="heading-color">Repairing Details</h6>
+                        <h6 class="heading-color">{{__('msg.REPAIR DETAILS')}}</h6>
                         <p>{{$data->description}}</p>
-                        <a class="btn-secondary get_appointment" href="{{url('user/print-order-details',$data->id)}}">Preview</a>
+                        <a class="btn-secondary get_appointment" href="{{url('user/print-order-details',$data->id)}}">{{__('msg.Preview')}}</a>
                     </div>
                 </div>
             </div>
@@ -252,31 +252,31 @@
 
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="over_view_part carad_data vendor_detail">
-                        <h5 class="text-center mb-5 heading heading-color">CAR DETAILS</h5>
+                        <h5 class="text-center mb-5 heading heading-color">{{__('msg.CAR DETAILS')}}</h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-10 col-sm-8  mx-auto">
                             <div class="row mt-1 g-3">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Model : {{$userbid->model}}</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">{{__('msg.Model')}} : {{$userbid->model}}</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Car Make : {{$company->company}}</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">{{__('msg.Car Make')}} : {{$company->company}}</button>
                                     </div>
                                 </div>
                                 <?php $userbidcateg = \App\Models\UserBidCategory::where('user_bid_id',$data->user_bid_id)->pluck('category_id');
                                 $userbidcategories = \App\Models\Category::whereIn('id',$userbidcateg)->get(); ?>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Type of Service : @foreach($userbidcategories as $userbidcategory)  {{$userbidcategory->name}}, @endforeach</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">{{__('msg.Type of Service')}} : @foreach($userbidcategories as $userbidcategory)  {{$userbidcategory->name}}, @endforeach</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-grid gap-2 ">
-                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">Customer Name : {{auth()->user()->name}}</button>
+                                        <button class="btn text-center btn-primary get_quot block get_appointment" type="button">{{__('msg.Customer Name')}} : {{auth()->user()->name}}</button>
                                     </div>
                                 </div>
                             </div>

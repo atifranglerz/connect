@@ -5,16 +5,16 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">DASHBOARD</h4>
-                        <p class="sec_main_para text-center">View your profile</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.DASHBOARD')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.View your profile')}}</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-10 col-md-11 col-sm-11  mx-auto">
                     <div class="quote_card_heading  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                        <h5>All Quotes</h5>
-                        <a href="{{route('user.quoteindex')}}">View All</a>
+                        <h5>{{__('msg.All Quotes')}}</h5>
+                        <a href="{{route('user.quoteindex')}}">{{__('msg.VIEW ALL')}}</a>
                     </div>
                     @if($user_bid)
                         <?php
@@ -28,7 +28,7 @@
                                 <p class="quote_rev"><span>{{$vendor_bid}} </span> Quotes Recieved</p>
                             </div>
                             <div class="quote_detail_btn_wraper">
-                                <a href="{{route('user.response',$user_bid->id)}}" class="btn-secondary">VIEW DETAILS</a>
+                                <a href="{{route('user.response',$user_bid->id)}}" class="btn-secondary">{{__('msg.view_details')}}</a>
 
                             </div>
 
@@ -36,15 +36,15 @@
                     @else
                         <div class="all_quote_card">
                             <div class="quote_info">
-                                <p >No Quote has been added !</p>
+                                <p >{{__('msg.No Quote has been added !')}}</p>
                             </div>
                         </div>
                     @endif
                 </div>
                 <div class="col-lg-10 col-md-11 col-sm-11   mx-auto">
                     <div class="quote_card_heading mb-lg-4 mb-2 mt-lg-5 mt-3">
-                        <h5>All Orders</h5>
-                        <a href="{{route('user.order.index')}}">View All</a>
+                        <h5>{{__('msg.ALL ORDERS')}}</h5>
+                        <a href="{{route('user.order.index')}}">{{__('msg.VIEW ALL')}}</a>
                     </div>
                     @if($order)
                     <?php
@@ -62,7 +62,7 @@
                             <p class="quote_rev">Order ID:<span> #{{$order->order_code}} </span></p>
                         </div>
                         <div class="quote_detail_btn_wraper">
-                            <a href="{{route('user.order.show',$order->id)}}" class="btn-secondary">VIEW DETAILS</a>
+                            <a href="{{route('user.order.show',$order->id)}}" class="btn-secondary">{{__('msg.view_details')}}</a>
 
                         </div>
 
@@ -71,7 +71,7 @@
                         <div class="all_quote_card">
                             <div class="quote_info">
 
-                                <p >No Orders has been added !</p>
+                                <p >{{__('msg.No Orders has been added !')}}</p>
 
                             </div>
                         </div>
@@ -86,10 +86,10 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="privTermsPolicy">Privacy Policy and Terms & Conditions</h6>
+                    <h6 class="modal-title" id="privTermsPolicy">{{__('msg.Privacy Policy and Terms & Conditions')}}</h6>
                 </div>
                 <div class="modal-body">
-                    <h6 class="sec_main_heading text-center">Privacy Policy</h6>
+                    <h6 class="sec_main_heading text-center">{{__('msg.Privicy Policy')}}</h6>
                     <p class="text-justify">{!! $data['policy']->description !!}</p>
                     <h6 class="sec_main_heading text-center">Terms & Conditions</h6>
                     <p class="text-justify">{!! $data['terms']->description !!}</p>

@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-10  mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">SELF PAYMENTS</h4>
-                        <p class="sec_main_para text-center">Choose and add your payment details below</p>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.SELF PAYMENTS')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Choose and add your payment details below')}}</p>
                     </div>
                 </div>
             </div>
@@ -34,22 +34,22 @@
                         <div class="row g-2">
                             <div class="col-lg-5 col-md-5 col-sm-5">
                                 <div class=" billing_info">
-                                    <h5 class="heading-color">Billing Info</h5>
+                                    <h5 class="heading-color">{{__('msg.Billing Info')}}</h5>
                                 </div>
 
                                 <div class="inpu_wraper mb-3">
-                                    <input type="text" class="form-control" name="customer_name" placeholder="Name">
+                                    <input type="text" class="form-control" name="customer_name" placeholder="{{__('msg.Name')}}">
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <input type="text" class="form-control" name="customer_address"
-                                        placeholder="Address">
+                                        placeholder="{{__('msg.Address')}}">
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <input type="text" class="form-control" name="customer_postal_code"
-                                        placeholder="Postal Code">
+                                        placeholder="{{__('msg.Postal Code')}}">
                                 </div>
                                 <div class="inpu_wraper mb-3">
-                                    <input type="text" class="form-control" name="customer_city" placeholder="City">
+                                    <input type="text" class="form-control" name="customer_city" placeholder="{{__('msg.City')}}">
                                 </div>
 
                             </div>
@@ -60,19 +60,19 @@
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5">
                                 <div class=" billing_info">
-                                    <h5 class="heading-color">Payment Info</h5>
+                                    <h5 class="heading-color">{{__('msg.Payment Info')}}</h5>
                                 </div>
 
                                 <div class="inpu_wraper mb-3">
-                                    <input type="text" class="form-control" name="card_number" placeholder="Card Number"
+                                    <input type="text" class="form-control" name="card_number" placeholder="{{__('msg.Card Number')}}"
                                         aria-label="Make">
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <input type="text" class="form-control" name="cardholder_name"
-                                        placeholder="Cardholder Name" aria-label="Make">
+                                        placeholder="{{__('msg.Cardholder Name')}}" aria-label="Make">
                                 </div>
                                 <div class="inpu_wraper mb-3">
-                                    <input type="text" class="form-control" name="expiry_date" placeholder="Expiry Date"
+                                    <input type="text" class="form-control" name="expiry_date" placeholder="{{__('msg.Expiry Date')}}"
                                         aria-label="Make">
                                 </div>
                                 <div class="inpu_wraper mb-3">
@@ -88,7 +88,7 @@
                                     <input type="hidden" name="type" value="order">
                                     <div class="col-sm-5 mx-auto center">
                                         <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                            type="submit">COMPLETE PAYMENT</button>
+                                            type="submit">{{__('msg.COMPLETE PAYMENT')}}</button>
                                     </div>
                                 @else
                                     <div class="row">
@@ -96,23 +96,23 @@
                                         @if ($status == 'no')
                                             <div class="col-sm-5 mx-auto center">
                                                 <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                                    type="submit">CONFIRM ORDER</button>
+                                                    type="submit">{{__('msg.CONFIRM ORDER')}}</button>
                                             </div>
                                         @else
                                             <div class="col-lg-5 col-sm-5">
                                                 <button class="btn text-center btn-secondary get_quot block get_appointment"
-                                                    type="submit">CONFIRM ORDER</button>
+                                                    type="submit">{{__('msg.CONFIRM ORDER')}}</button>
                                             </div>
                                             <div class="col-lg-2 col-sm-2">
                                                 <div>
-                                                    <h5 class="conform_order_H3 text-center">OR</h5>
+                                                    <h5 class="conform_order_H3 text-center">{{__('msg.OR')}}</h5>
                                                 </div>
 
                                             </div>
                                             <div class="col-lg-5 col-sm-5">
                                                 <a href="{{ route('user.payment-insurance', $vendorbid->id) }}"
                                                     class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                                    type="button">PAY VIA INSURANCE COMPANY</a>
+                                                    type="button">{{__('msg.PAY VIA INSURANCE COMPANY')}}</a>
                                             </div>
                                         @endif
                                     </div>
