@@ -96,7 +96,7 @@
                                                     <option value="pending" {{($order->status =="pending")?'selected':''}}>Pending</option>
                                                     {{-- <option value="processing" {{($order->status =="processing")?'selected':''}}>Processing</option> --}}
                                                     {{-- <option value="shipped" {{($order->status =="shipped")?'selected':''}}>Shipped</option> --}}
-                                                    <option value="complete" {{($order->status =="delivered")?'selected':''}}>Complete</option>
+                                                    <option value="complete" {{($order->status =="complete")?'selected':''}}>Complete</option>
                                                     <option value="cancelled" {{($order->status =="cancelled")?'selected':''}}>Cancelled</option>
                                                 </select>
                                                 <div class="invalid-feedback">
