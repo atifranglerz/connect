@@ -94,9 +94,9 @@
                                                 <select class="form-control" id="validationCustom01" required="required" name="status">
                                                     <option value="">Select Status</option>
                                                     <option value="pending" {{($order->status =="pending")?'selected':''}}>Pending</option>
-                                                    <option value="processing" {{($order->status =="processing")?'selected':''}}>Processing</option>
-                                                    <option value="shipped" {{($order->status =="shipped")?'selected':''}}>Shipped</option>
-                                                    <option value="delivered" {{($order->status =="delivered")?'selected':''}}>Delivered</option>
+                                                    {{-- <option value="processing" {{($order->status =="processing")?'selected':''}}>Processing</option> --}}
+                                                    {{-- <option value="shipped" {{($order->status =="shipped")?'selected':''}}>Shipped</option> --}}
+                                                    <option value="complete" {{($order->status =="delivered")?'selected':''}}>Complete</option>
                                                     <option value="cancelled" {{($order->status =="cancelled")?'selected':''}}>Cancelled</option>
                                                 </select>
                                                 <div class="invalid-feedback">
