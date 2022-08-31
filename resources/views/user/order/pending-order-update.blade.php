@@ -48,7 +48,7 @@
                                                 <p>{{ __('msg.Payment Is Pending') }}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
-                                                <p>{{ __('msg.PAY VIA INSURANCE COMPANY') }}</p>
+                                                <p>{{ __('msg.Paid via Insurance') }}</p>
                                             @endif
                                         @endif
                                         <i class="bi bi-star-fill"></i>
@@ -59,12 +59,12 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center">Total: {{ $order->total }} {{ __('msg.AED') }}</h5>
-                                @if ($order->status != 'complete')
-                                    <h5 class=" text-sm-center">Paid: {{ $order->advance }} {{ __('msg.AED') }}</h5>
+                                <h5 class=" text-sm-center">{{__('msg.Total')}}: {{ $order->total }} {{ __('msg.AED') }}</h5>
+                                @if ($order->status != 'complete' && $order->paid_by != 'company')
+                                    <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
                                 @endif
                                 <div class="completed_order_id">
-                                    <p>Order ID: <span>#{{ $order->order_code }}</span></p>
+                                    <p>{{__('msg.Order Id:')}} <span>#{{ $order->order_code }}</span></p>
                                 </div>
                             </div>
                         </div>

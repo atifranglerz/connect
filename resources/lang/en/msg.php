@@ -279,6 +279,7 @@ return [
     'Vehicle Detail' => 'Vehicle Detail',
     'Spares' => 'Spares',
     'Services' => 'Services',
+    'Per Day Rate' => 'Per Day Rate',
     'Customer Dashboard' => 'Customer Dashboard',
     'Preferred Garages' => 'Preferred Garages',
     'View your profile' => 'View your profile',
@@ -329,6 +330,8 @@ return [
     'Labor Pay' => 'Labor Pay',
     'REVIEW WORKSHOP' => 'REVIEW WORKSHOP',
     'Please correct the errors and try again.' => 'Please correct the errors and try again.',
+    'Total' => 'Total',
+    'Advance' => 'Advance',
     
 
 

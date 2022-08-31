@@ -14,6 +14,8 @@
             $garage = \App\Models\Garage::find($vendorbid->garage_id);
             $vendor = \App\Models\Vendor::with('company')->find($garage->vendor_id);
             $user = \App\Models\User::with('company')->find(Auth::id());
+            $per = \App\Models\PaymentPercentage::select('percentage')->where('type','order')->first();
+            $per = $per->percentage; 
             $order = \App\Models\Order::where([['user_bid_id', $vendorbid->user_bid_id], ['vendor_bid_id', $vendorbid->id]])->first();
 
             foreach ($vendor->company as $company) {
@@ -24,7 +26,6 @@
                     $status = 'no';
                 }
             }
-            $per = 30;
             if ($type == 'order') {
                 $amount = $order->total - $order->advance;
             } else {
