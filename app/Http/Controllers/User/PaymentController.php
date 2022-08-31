@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\user;
-
+use Session;
+use Stripe;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
@@ -18,6 +19,31 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
+
+    public function stripe()
+    {
+        return view('user.payment.stripe');
+    }
+
+    public function stripePost(Request $request)
+    {
+        // dd($request);
+
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $request->payment * 100,
+                "currency" => "aed",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from Arshad." 
+        ]);
+  
+        Session::flash('success', 'Payment successful!');
+          
+         return ('successful pay');
+    }
+
+
+
     public function index(Request $request)
     {
         $type = $request->type;
@@ -31,8 +57,19 @@ class PaymentController extends Controller
     }
     public function payment_info(Request $request)
     {
-
+        $amount = explode(" ",$request->amount);
+        
         if ($request->type == "order") {
+            // get payment
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\Charge::create ([
+                    "amount" => $amount[0] * 100,
+                    "currency" => "aed",
+                    "source" => $request->stripeToken,
+                    "description" => "Test payment from Arshad." 
+            ]);
+      
+
             $order = Order::where([['user_bid_id', $request->user_bid_id], ['vendor_bid_id', $request->vendor_bid_id]])->first();
             $order->status = "complete";
             $order->save();
@@ -62,6 +99,16 @@ class PaymentController extends Controller
             return $this->message($order, 'user.order.index', 'Order Completed and Payment Successfully Added', '  Error');
 
         } else {
+            $amount = explode(" ",$request->amount);
+            // get payment
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\Charge::create ([
+                    "amount" => $amount[0] * 100,
+                    "currency" => "aed",
+                    "source" => $request->stripeToken,
+                    "description" => "Test payment from Arshad." 
+            ]);
+                
 
             $order = new Order();
             $order_no = mt_rand('1000', '100000');
@@ -69,7 +116,8 @@ class PaymentController extends Controller
             $order->user_bid_id = $request->user_bid_id;
             $order->vendor_bid_id = $request->vendor_bid_id;
             $order->garage_id = $request->garage_id;
-            $order->total = $request->amount;
+            $order->total = $request->net_total;
+            $order->advance = $amount[0];
             $order->customer_name = $request->customer_name;
             $order->customer_address = $request->customer_address;
             $order->customer_postal_code = $request->customer_postal_code;
@@ -129,11 +177,12 @@ class PaymentController extends Controller
             }
         }
 
-        return $this->message($order, 'user.order.index', 'Payment Successfully Added', '  Error');
+        return $this->message($order, 'user.order.index', ' Order palced Payment Successfully Added', '  Error');
     }
 
     public function payment_insurance($id)
     {
+
          $company = User::with('company')->find(Auth::id());
 
         $vendor_bid_id = $id;

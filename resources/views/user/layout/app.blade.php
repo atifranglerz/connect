@@ -29,7 +29,27 @@
         .login_sinup > .accoutntData > .notification_tooltip > ul.notification_list::-webkit-scrollbar, .form_sending_wraper > textarea::-webkit-scrollbar, ul.sidebar_navcigation::-webkit-scrollbar {
             display: none;
         }
+        .panel-title {
+            display: inline;
+            font-weight: bold;
+        }
 
+        .display-table {
+            display: table;
+        }
+
+        .display-tr {
+            display: table-row;
+        }
+
+        .display-td {
+            display: table-cell;
+            vertical-align: middle;
+            width: 61%;
+        }
+        .has-error .form-control {
+            border-color: #a94442;
+        }
 /*rating stars*/
 .rating-stars {
     padding: 0px 15px;
@@ -595,5 +615,8 @@
             }
         });
     </script>
+
+
+
 </body>
 </html>

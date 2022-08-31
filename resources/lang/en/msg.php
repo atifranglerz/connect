@@ -328,6 +328,7 @@ return [
     'Work Days' => 'Work Days',
     'Labor Pay' => 'Labor Pay',
     'REVIEW WORKSHOP' => 'REVIEW WORKSHOP',
+    'Please correct the errors and try again.' => 'Please correct the errors and try again.',
     
 
 

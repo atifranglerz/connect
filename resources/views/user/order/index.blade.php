@@ -39,7 +39,7 @@
                             <div class="quote_detail_btn_wraper">
                                 <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h5>
                             </div>
-                            <h5 class=" text-sm-center">{{__('msg.AED')}} {{$userbidid->price}}</h5>
+                            <h5 class=" text-sm-center">{{__('msg.AED')}} {{$order->total}}</h5>
                             <div class="d-flex align-items-center chat_view__detail">
                                 <a href="{{url('user/chat/'.$garage->vendor_id)}}" class="chat_icon">
                                     <i class="fa-solid fa-message"></i>

@@ -77,7 +77,10 @@
                             <div class="quote_info">
                                 <h5 class="d-flex align-items-center active_quote nowrape"> {{__('msg.Budget')}}</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h5 class="quotereplies">{{__('msg.AED')}} {{ $order->total }}</h5>
+                                    <h5 class="quotereplies">Total: {{ $order->total }} {{__('msg.AED')}}</h5>
+                                    @if ($order->status != 'complete')
+                                    <h5 class="quotereplies">Paid: {{ $order->advance }} {{ __('msg.AED') }}</h5>
+                                @endif
                                 </div>
                             </div>
                         </div>

@@ -267,6 +267,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('payment_page', 'PaymentController@index')->name('payment_page');
         Route::post('payment-info', 'PaymentController@payment_info')->name('payment-info');
         Route::get('payment-insurance/{id}', 'PaymentController@payment_insurance')->name('payment-insurance');
+        //payment stripe
+        Route::get('stripe', 'PaymentController@stripe');
+        Route::post('stripe', 'PaymentController@stripePost')->name('stripe.post');
         //profile
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
