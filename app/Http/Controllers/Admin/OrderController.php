@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->get();
+        $orders = Order::with('vendorbid', 'userbid', 'garage')->get();
         return view('admin.order.index', compact('orders'));
     }
 
@@ -60,7 +60,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $order = Order::with('user', 'orderProducts')->where('id', $id)->first();
+        $order = Order::with('vendorbid', 'userbid', 'garage')->find($id);
         return view('admin.order.edit', compact('order'));
     }
 
@@ -73,12 +73,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::findOrFail($id);
+        $order = Order::find($id);
         $order->status = $request->status;
         $order->save();
-        return redirect()->route('order.index')->with($this->message('Order Update','success'));
+        return redirect()->route('admin.order.index');
     }
-
+    // ->with($this->message('Order Update','success')
     /**
      * Remove the specified resource from storage.
      *
@@ -91,7 +91,7 @@ class OrderController extends Controller
         OrderProduct::where('order_id', $id)->delete();
         $order->delete();
 
-        if($order){
+        if ($order) {
             return redirect()->route('order.index')->with($this->message('Order Delete Successfully', 'success'));
         } else {
             return redirect()->back()->with($this->message('Order Delete Error', 'error'));

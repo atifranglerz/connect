@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\SliderController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\PercentageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +167,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('privacyPolicy', 'PrivacyPolicyController@index')->name('privacyPolicy.index');
         Route::get('privacyPolicy/edit/{id}', 'PrivacyPolicyController@edit')->name('privacyPolicy.edit');
         Route::post('privacyPolicy/update/{id}', 'PrivacyPolicyController@update')->name('privacyPolicy.update');
+
+
+        Route::get('/percentage', [PercentageController::class, 'index']);
+        Route::get('edit-percentage/{id}', [PercentageController::class, 'edit_percentage']);
+        Route::post('update-percentage/{id}', [PercentageController::class, 'update_percentage']);
     });
 });
 

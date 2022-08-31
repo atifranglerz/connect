@@ -32,7 +32,7 @@ class CreateOrdersTable extends Migration
             //$table->integer('tax_id')->nullable();
             //$table->integer('subtotal')->default(0);
             $table->integer('total')->default(0);
-            $table->enum('status',['pending','complete','cancelled']);
+            $table->enum('status',['pending','complete','Cancelled','Shipped','Delivered','Processing']);
             $table->longText('reason')->nullable();
             $table->enum('paid_by',['customer','company']);
             $table->timestamps();

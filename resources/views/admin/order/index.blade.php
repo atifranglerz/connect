@@ -20,21 +20,20 @@
                                             <th>Order Id</th>
                                             <th>Customer Name</th>
                                             <th>Store Name</th>
-                                            <th>Subtotal</th>
                                             <th>Total</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                            {{-- @dd($orders) --}}
                                         @if(isset($orders))
                                             @forelse ($orders as $order)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{ $order->order_code }}</td>
-                                                    <td>@if(isset($order->user)) {{ $order->user->name }} @else Null @endif </td>
-                                                    <td>@if(isset($order->store)) {{ $order->store->name }} @else Null @endif </td>
-                                                    <td>{{ $order->subtotal }}</td>
+                                                    <td>@if(isset($order->userbid)) {{ $order->userbid->user->name }} @else Null @endif </td>
+                                                    <td>@if(isset($order->garage)) {{ $order->garage->garage_name }} @else Null @endif </td>
                                                     <td>{{ $order->total }}</td>
                                                     <td>
                                                         @if ($order->status == 'pending')
@@ -51,8 +50,8 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('order.edit', ['order' => $order->id]) }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></a>
-                                                        <form action="{{ route('order.destroy', ['order' => $order->id] ) }}" method="POST" style="display: inline-block">
+                                                        <a href="{{ route('admin.order.edit', ['order' => $order->id]) }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></a>
+                                                        <form action="{{ route('admin.order.destroy', ['order' => $order->id] ) }}" method="POST" style="display: inline-block">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>

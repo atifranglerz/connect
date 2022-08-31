@@ -111,6 +111,13 @@
                     <li class=""><a class="nav-link " href="{{ route('admin.user.index') }}">Customers</a></li>
                 </ul>
             </li>
+            <li class="dropdown @if (request()->routeIs('admin.percentage.index', 'admin.user.create', 'admin.user.edit', 'admin.user.show')) active @endif">
+                <a href="#" class="menu-toggle nav-link has-dropdown">
+                    <i data-feather="users"></i><span>Payment Percentage</span></a>
+                <ul class="dropdown-menu">
+                    <li class=""><a class="nav-link " href="{{ url('/admin/percentage') }}">Payment Payment</a></li>
+                </ul>
+            </li>
             <li class="menu-header">Pages</li>
             <li class="dropdown @if (request()->routeIs('about.index', 'admin.about.edit', 'admin.contact.index', 'admin.contact.edit', 'admin.term.index', 'admin.term.edit', 'admin.privacyPolicy
             .index',

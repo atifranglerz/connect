@@ -22,4 +22,8 @@ class Order extends Model
     {
         return $this->belongsTo(UserBid::class, 'user_bid_id', 'id');
     }
+    public function garage()
+    {
+        return $this->belongsTo(Garage::class, 'garage_id', 'id');
+    }
 }

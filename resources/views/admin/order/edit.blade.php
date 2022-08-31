@@ -48,49 +48,49 @@
                                     <div id="print_of_order">
                                         <div class="row d-flex">
                                             <div class="col-md-3 col-lg-3 col-sm-3">
-                                                <h3 class="dark-pink">{{ucwords($order->user->name)}}</h3>
-                                                <ul>
+                                                <h4 class="dark-pink">{{ucwords($order->userbid->user->name)}}</h4>
+                                                {{-- <ul>
                                                     @foreach($order->orderProducts as $product)
                                                         <li>{{$product->product->name}} X {{$product->qty}}</li>
                                                     @endforeach
-                                                </ul>
+                                                </ul> --}}
                                             </div>
                                             <div class="col-md-3  col-lg-3 col-sm-3">
-                                                <h4 class="dark-pink">Contact: </h4><span>{{$order->user->phone}}</span>
+                                                <h6 class="dark-pink">Contact: </h6><span>{{$order->userbid->user->phone}}</span>
                                             </div>
                                             <div class="col-md-3  col-lg-3 col-sm-3">
-                                                <h4>Address:</h4>
-                                                <span>{{$order->delivery_address}}</span>
+                                                <h6>Address:</h6>
+                                                <span>{{$order->userbid->user->address}}</span>
                                             </div>
                                             <div class="col-md-3 d-flex  col-lg-3 col-sm-3" id="status">
-                                                <h4 class="dark-pink">Order Status</h4>
-                                                @if ($order->status =="pending")<span class="badge badge-warning" style="height: 22%;margin-top: 4px;font-size: 11px;">Pending</span>
-                                                @elseif($order->status =="processing")<span class="badge badge-warning" style="height: 22%;margin-top: 4px;font-size: 11px;">Processing</span>
-                                                @elseif($order->status =="shipped")<span class="badge badge-warning" style="height: 22%;margin-top: 4px;font-size: 11px;">Shipped</span>
-                                                @elseif($order->status =="delivered")<span class="badge badge-warning" style="height: 22%;margin-top: 4px;font-size: 11px;">Delivered</span>
-                                                @elseif($order->status =="cancelled")<span class="badge badge-warning" style="height: 22%;margin-top: 4px;font-size: 11px;">Cancelled</span>
+                                                <h6 class="dark-pink">Order Status</h6>
+                                                @if ($order->status =="pending")<span class="badge badge-warning" style="height:40%;margin-top: 4px;font-size: 11px;">Pending</span>
+                                                @elseif($order->status =="processing")<span class="badge badge-warning" style="height:40%;margin-top: 4px;font-size: 11px;">Processing</span>
+                                                @elseif($order->status =="shipped")<span class="badge badge-warning" style="height:40%;margin-top: 4px;font-size: 11px;">Shipped</span>
+                                                @elseif($order->status =="delivered")<span class="badge badge-warning" style="height:40%;margin-top: 4px;font-size: 11px;">Delivered</span>
+                                                @elseif($order->status =="cancelled")<span class="badge badge-warning" style="height:40%;margin-top: 4px;font-size: 11px;">Cancelled</span>
                                                 @else<span>Not Found</span>
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="row pt-5 pb-5">
                                             <div class="col-md-8  col-lg-8 col-sm-8">
-                                                <h4 class="dark-pink" style="font-weight: bold">Subtotal: {{$order->subtotal}}</h4>
+                                                {{-- <h4 class="dark-pink" style="font-weight: bold">Subtotal: {{$order->subtotal}}</h4> --}}
                                                 {{--                                <h4 class="dark-pink">Tax: {{$order->tax}}</h4>--}}
-                                                <h4 class="dark-pink" style="font-weight: bold">Shipping Charges: {{$order->shipping_cost}}</h4>
-                                                <h4 class="dark-pink" style="font-weight: bold">Total: {{$order->total}}</h4>
+                                                <h6 class="dark-pink" style="font-weight: bold">Advance Payment: {{$order->advance}}</h6>
+                                                <h6 class="dark-pink" style="font-weight: bold">Total: {{$order->total}}</h6>
                                             </div>
                                             <div class="col-md-4 col-lg-4 col-sm-4">
-                                                <h4>Created At: {{ \Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</h4>
+                                                <h6>Created At: {{ \Carbon\Carbon::parse($order->created_at)->diffForHumans()}}</h6>
                                             </div>
                                         </div>
                                     </div>
-                                    <form class="needs-validation" action="{{ route('order.update', ['order' => $order->id]) }}" method="post" novalidate="novalidate">
+                                    <form class="needs-validation" action="{{ route('admin.order.update', ['order' => $order->id]) }}" method="post" novalidate="novalidate">
                                         @csrf
                                         @method('PUT')
                                         <div class="row">
                                             <div class="col-md-4 mb-4">
-                                                <label for="validationCustom01" class="font-25 dark-pink">Order Status</label>
+                                                <label for="validationCustom01" class="font-20 dark-pink">Order Status</label>
                                                 <select class="form-control" id="validationCustom01" required="required" name="status">
                                                     <option value="">Select Status</option>
                                                     <option value="pending" {{($order->status =="pending")?'selected':''}}>Pending</option>
