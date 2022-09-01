@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PercentageController;
 
@@ -172,6 +173,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('/percentage', [PercentageController::class, 'index']);
         Route::get('edit-percentage/{id}', [PercentageController::class, 'edit_percentage']);
         Route::post('update-percentage/{id}', [PercentageController::class, 'update_percentage']);
+
+        Route::get('faqs', [FaqController::class, 'index']);
+        Route::get('add-faq', [FaqController::class, 'get_add_faq']);
+        Route::post('add-faq', [FaqController::class, 'add_faq']);
+        Route::get('edit-faq/{id}', [FaqController::class, 'edit_faq']);
+        Route::post('update-faq/{id}', [FaqController::class, 'update_faq']);
+        Route::any('delete-faq/{id}', [FaqController::class, 'delete_faq']);
     });
 });
 

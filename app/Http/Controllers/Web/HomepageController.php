@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Ads;
+use App\Models\Faq;
 use App\Models\News;
 use App\Models\User;
 use App\Models\About;
@@ -370,7 +371,8 @@ class HomepageController extends Controller
     public function faqnews()
     {
         $page_title = 'faq';
-        return view('web.faq', compact('page_title'));
+        $data=Faq::all();
+        return view('web.faq', compact('page_title','data'));
     }
     public function forget_pass()
     {
