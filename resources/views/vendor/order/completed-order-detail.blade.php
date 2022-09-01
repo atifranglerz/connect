@@ -25,16 +25,16 @@
                     <div class="all_quote_card replies_allquot ">
                         <div class=" w-100  quote_detail_wraper replies ">
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape ">Car Details</h5>
+                                <h5 class="d-flex align-items-center active_quote nowrape ">{{__('msg.CAR DETAILS')}}</h5>
                                 <p class="mb-0">{{ $order->customer_name }}</p>
 
                                 <p class="mb-0">{{ $user->phone }}</p>
-                                <p class="milage">Mileage <span>{{ $order->userbid->mileage }}km</span></p>
+                                <p class="milage">{{__('msg.mileage')}} <span>{{ $order->userbid->mileage }}km</span></p>
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h5 class="vendor_order_id">Order Id: #{{ $order->order_code }}</h5>
+                                <h5 class="vendor_order_id">{{__('msg.Order Id:')}} #{{ $order->order_code }}</h5>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h5 class="">{{ $order->vendorbid->time }} Days</h5>
+                                    <h5 class="">{{ $order->vendorbid->time }} {{__('msg.Days')}}</h5>
                                     <a href="{{ url('vendor/chat/' . $user->id) }}"
                                         class="justify-content-center chat_icon">
                                         <i class="fa-solid fa-message"></i>
@@ -63,13 +63,13 @@
                                     <div class="pay_via_insurance_header_garages">
                                         @if ($order->paid_by == 'company')
                                             @if ($insurancestatus->status == 0)
-                                                <p>Payment Is Pending</p>
+                                                <p>{{__('msg.Payment Is Pending')}}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
-                                                <p>Payed via Insurance</p>
+                                                <p>{{__('msg.Paid via Insurance')}}</p>
                                             @endif
                                         @else
-                                            <p>Payed By Customer</p>
+                                            <p>{{__('msg.Paid By Customer')}}</p>
                                         @endif
                                         <i class="bi bi-star-fill"></i>
                                     </div>
@@ -77,9 +77,9 @@
                                 </div>
                             </div>
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape"> Budget</h5>
+                                <h5 class="d-flex align-items-center active_quote nowrape"> {{__('msg.Budget')}}</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h5 class="quotereplies">AED {{ $order->total }}</h5>
+                                    <h5 class="quotereplies">{{__('msg.AED')}} {{ $order->total }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
             <div class="row  mt-5">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <h5 class="active_order_req">Requirments</h5>
+                        <h5 class="active_order_req">{{__('msg.Requirements')}}</h5>
 
                         <div class="vendor__rply__dttl">
                             <p>{{ $order->vendorbid->description }}</p>
@@ -171,7 +171,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">REPAIR DETAILS</h5>
+                            <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $order->vendorbid->description }}</p>
@@ -184,7 +184,7 @@
                     <div class="col-lg-12">
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h5 class=" text-center mb-4">YOUR REVIEW</h5>
+                                <h5 class=" text-center mb-4">{{__('msg.YOUR REVIEW')}}</h5>
                             </div>
                             <div class="d-flex align-items-center rating-stars">
                                 <div class="rating-group">

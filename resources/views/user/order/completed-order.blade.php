@@ -53,7 +53,10 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center">{{__('msg.AED')}} {{ $order->total }}</h5>
+                                <h5 class=" text-sm-center">{{__('msg.Total')}}: {{ $order->total }} {{__('msg.AED')}}</h5>
+                                @if ($order->status != 'complete' && $order->paid_by != 'company')
+                                    <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
+                                @endif
                                 <div class="completed_order_id">
                                     <p>{{__('msg.Order Id:')}}: <span>#{{ $order->order_code }}</span></p>
                                 </div>

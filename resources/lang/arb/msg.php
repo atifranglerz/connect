@@ -334,6 +334,8 @@ return [
     'Work Days' => 'أيام العمل ',
     'Labor Pay' => 'أجور العمل',
     'REVIEW WORKSHOP' => 'مراجعة ورشة العمل',
-
+    'Please correct the errors and try again.' => 'يرجى تصحيح الأخطاء وحاول مرة أخرى.',
+    'Total' => 'المجموع',
+    'Advance' => 'يتقدم',
     ]
 ?>

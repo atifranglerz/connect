@@ -37,7 +37,7 @@
                             </div>
                             <h5 class=" text-sm-center">{{__('msg.AED')}} {{$order->total}}</h5>
                             <div class="completed_order_id">
-                                <p>Order ID: <span>#{{$order->order_code}}</span></p>
+                                <p>{{__('msg.Order Id:')}} <span>#{{$order->order_code}}</span></p>
                             </div>
                         </div>
                     </div>
