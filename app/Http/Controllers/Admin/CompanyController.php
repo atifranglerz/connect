@@ -83,9 +83,15 @@ class CompanyController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    // public function destroy(Company $company)
+    // {
+    //     $company->delete();
+    //     return $this->message($company, 'admin.company.index', 'Company Delete Successfully', 'Company Delete Error');
+    // }
+    public function delete($id)
     {
-        $company->delete();
-        return $this->message($company, 'admin.company.index', 'Company Delete Successfully', 'Company Delete Error');
+        Company::destroy($id);
+        // dd('done');
+        return redirect()->route('admin.company.index')->with($this->data("Company deleted successfyully", 'success'));
     }
 }

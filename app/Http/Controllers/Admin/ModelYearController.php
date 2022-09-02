@@ -83,9 +83,9 @@ class ModelYearController extends Controller
      * @param ModelYear $modelYear
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(ModelYear $modelYear)
+    public function delete($id)
     {
-        $modelYear->delete();
-        return $this->message($modelYear, 'admin.model_year.index', 'Model year Delete Successfully', 'Model year Delete Error');
+        ModelYear::destroy($id);
+        return redirect()->route('admin.model_year.index')->with($this->data("Model Year deleted successfyully", 'success'));
     }
 }

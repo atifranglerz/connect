@@ -23,6 +23,6 @@ class PercentageController extends Controller
       $data->type=$request->type;
       $data->percentage=$request->percentage;
       $data->save();
-      return redirect('admin/percentage');
+      return redirect('admin/percentage')->with($this->data("Percentage record updated successfyully", 'success'));
     }
 }

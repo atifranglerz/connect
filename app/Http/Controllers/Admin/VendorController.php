@@ -154,8 +154,9 @@ class VendorController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function delete($id)
     {
+        // dd('usman');
         $vendor = Vendor::findOrFail($id);
         if ($vendor->hasRole('vendor')) {
             $vendor->delete();

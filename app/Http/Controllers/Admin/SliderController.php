@@ -12,15 +12,15 @@ class SliderController extends Controller
     public function index(){
 
         $data=Slider::all();
-        
+
         return view("admin/slider/index",compact('data'));
-        
+
     }
 
     public function store(Request $request){
-        
+
         $data=$request->all();
-        
+
 
         if(!empty($request->image)){
             $file=$request->file('image');
@@ -29,22 +29,21 @@ class SliderController extends Controller
             $file->move(public_path('uploads/'),$filename);
             $data['image']= 'public/uploads/'.$filename;
         }
-        
+
 
         Slider::create($data);
-        
+
         return redirect("admin/slider");
 
     }
 
-    public function destroy($id){
-
+    public function delete($id){
         Slider::destroy($id);
-        return redirect("admin/slider");
+        return redirect("admin/slider")->with($this->data("Slider  deleted successfyully", 'success'));
     }
 
     public function edit($id){
-        
+
         $data=Slider::find($id);
         return view("admin/slider/edit",compact('data'));
 

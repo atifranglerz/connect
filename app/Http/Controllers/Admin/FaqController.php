@@ -28,12 +28,12 @@ class FaqController extends Controller
         $data->question = $request->question;
         $data->answer = $request->answer;
         $data->save();
-        return redirect('admin/faqs')->with(['status' => true, 'message' => 'Faq added  Successfully']);
+        return redirect('admin/faqs')->with($this->data("Faq added succesfully", 'success'));;
     }
     public function delete_faq($id)
     {
         Faq::destroy($id);
-        return redirect('admin/faqs')->with(['status' => true, 'message' => 'Faqs Record Deleted Successfully']);
+        return redirect('admin/faqs')->with($this->data("Faq deleted successfully", 'success'));
     }
     public function edit_faq($id)
     {
@@ -50,6 +50,6 @@ class FaqController extends Controller
         $data->question = $request->question;
         $data->answer = $request->answer;
         $data->save();
-        return redirect('admin/faqs')->with(['status' => true, 'message' => 'Branches Updated Successfully']);
+        return redirect('admin/faqs')->with($this->data("Faq updated successsfully", 'success'));
     }
 }

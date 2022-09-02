@@ -140,14 +140,10 @@ class GarageController extends Controller
      * @param Garage $garage
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Garage $garage)
+    public function delete($id)
     {
-//        dd($garage);
-//        if ($garage->image !== null) {
-//            unlink($garage->image);
-//        }
-        $garage->delete();
-        return $this->message($garage, 'admin.garage.index', 'Garage Delete Successfully', 'Garage Delete Error');
+        Garage::destroy($id);
+        return redirect()->route('admin.garage.index')->with($this->data("Garage deleted successfyully", 'success'));
     }
 
 }

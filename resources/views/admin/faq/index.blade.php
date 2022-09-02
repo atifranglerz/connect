@@ -44,7 +44,6 @@
                                                             action="{{ url('admin/delete-faq/' . $content->id) }}">
                                                             @csrf
                                                             @method('DELETE')
-
                                                         </form>
                                                         </td>
                                                     </tr>

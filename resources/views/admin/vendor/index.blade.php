@@ -50,11 +50,23 @@
                                                             <a href="{{ route('admin.vendor.deactivate', ['vendor' => $vendor->id]) }}" class="btn btn-primary">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-toggle-left"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="8" cy="12" r="3"></circle></svg></a>
                                                         @endif
-                                                        <form action="{{ route('admin.vendor.destroy', $vendor->id ) }}" method="POST" style="display: inline-block">
+                                                        {{-- <button class="btn btn-primary glyphicon glyphicon-trash" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
+                                                        <form id="del_form{{ $vendor->id }}" action="{{ route('admin.vendor.destroy', $vendor->id ) }}" method="POST" style="display: inline-block">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
-                                                        </form>
+                                                             <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
+                                                        </form> --}}
+                                                        <a>
+                                                            {{-- <i class="fas fa-trash text-danger glyphicon glyphicon-trash"
+                                                               data-toggle="tooltip" data-placement="top" title="delete"
+                                                             data-id="{{ $content->id }}"></i> --}}
+                                                             <svg xmlns="http://www.w3.org/2000/svg" data-id="{{ $vendor->id }}" class="fas fa-trash text-danger glyphicon glyphicon-trash" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                             </a>
+                                                            <form id="del_form{{ $vendor->id }}"
+                                                             action="{{ url('admin/delete-vendor/' . $vendor->id) }}">
+                                                              @csrf
+                                                               @method('DELETE')
+                                                             </form>
                                                     </td>
                                                 </tr>
                                             @empty
@@ -74,4 +86,21 @@
     </div>
 @endsection
 @section('script')
+<script>
+    $(document).on('click', '.glyphicon-trash', function() {
+           Swal.fire({
+               title: 'Are you sure?',
+               text: "You won't be able to revert this!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes, delete it!'
+           }).then((result) => {
+               if (result.value) {
+                   document.getElementById('del_form' + $(this).data('id')).submit();
+               }
+           });
+       });
+</script>
 @endsection

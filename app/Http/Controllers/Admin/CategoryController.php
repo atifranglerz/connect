@@ -134,12 +134,18 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+    //     $category = Category::findOrFail($id);
+    //     //unlink($category->image);
+    //     $category->delete();
+    //     return $this->message($category, 'admin.category.index', 'Category Delete Successfully', 'Category Delete Error');
+    // }
+    public function delete($id)
     {
-        $category = Category::findOrFail($id);
-        //unlink($category->image);
-        $category->delete();
-        return $this->message($category, 'admin.category.index', 'Category Delete Successfully', 'Category Delete Error');
+        Category::destroy($id);
+        // dd('done');
+        return redirect()->route('admin.category.index')->with($this->data("Service deleted successfyully", 'success'));
     }
 
 
@@ -160,5 +166,5 @@ class CategoryController extends Controller
     }
 
 
-    
+
 }

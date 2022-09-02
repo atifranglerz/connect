@@ -3,8 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\GarageController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ModelYearController;
 use App\Http\Controllers\Admin\PercentageController;
+use App\Http\Controllers\Admin\InsuranceCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -180,7 +189,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('edit-faq/{id}', [FaqController::class, 'edit_faq']);
         Route::post('update-faq/{id}', [FaqController::class, 'update_faq']);
         Route::any('delete-faq/{id}', [FaqController::class, 'delete_faq']);
-    });
+
+         Route::any('delete-category/{id}', [CategoryController::class, 'delete']);
+         Route::any('delete-company/{id}', [CompanyController::class, 'delete']);
+         Route::any('delete-garage/{id}', [GarageController::class, 'delete']);
+         Route::any('delete-order/{id}', [OrderController::class, 'delete']);
+         Route::any('delete-news/{id}', [NewsController::class, 'delete']);
+         Route::any('delete-vendor/{id}', [VendorController::class, 'delete']);
+         Route::any('delete-insurance/{id}', [InsuranceCompanyController::class, 'delete']);
+         Route::any('delete-user/{id}', [UserController::class, 'delete']);
+         Route::any('delete-model-year/{id}', [ModelYearController::class, 'delete']);
+         Route::any('delete-slider/{id}', [SliderController::class, 'delete']);
+        });
 });
 
 Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'], function () {

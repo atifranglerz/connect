@@ -121,9 +121,10 @@ class NewsController extends Controller
      * @param  News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function delete($id)
     {
-        $news->delete();
-        return $this->message($news, 'admin.news.index', 'News Delete Successfully', 'News Delete Error');
+        News::destroy($id);
+        // dd('done');
+        return redirect()->route('admin.news.index')->with($this->data("News deleted successfyully", 'success'));
     }
 }
