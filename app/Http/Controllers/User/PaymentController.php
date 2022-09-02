@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\user;
+
+use App\Http\Controllers\Controller;
+use App\Jobs\Notification;
+use App\Models\InsuranceRequest;
+use App\Models\Order;
+use App\Models\User;
+use App\Models\UserBid;
+use App\Models\Vendor;
+use App\Models\VendorBid;
+use App\Models\webNotification;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 use Stripe;
-use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Order;
-use App\Models\Vendor;
-use App\Models\UserBid;
-use App\Models\VendorBid;
-use App\Jobs\Notification;
-use Illuminate\Http\Request;
-use App\Models\webNotification;
-use App\Models\InsuranceCompany;
-use App\Models\InsuranceRequest;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -28,21 +28,20 @@ class PaymentController extends Controller
     public function stripePost(Request $request)
     {
         // dd($request);
-
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        Stripe\Charge::create ([
-                "amount" => $request->payment * 100,
-                "currency" => "aed",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from Arshad." 
+        $stripe_obj = new Stripe\Stripe();
+        $stripe = $stripe_obj->setApiKey(env('STRIPE_SECRET'));
+        // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create([
+            "amount" => $request->payment * 100,
+            "currency" => "aed",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from Arshad.",
         ]);
-  
+
         Session::flash('success', 'Payment successful!');
-          
-         return ('successful pay');
+
+        return redirect()->back();
     }
-
-
 
     public function index(Request $request)
     {
@@ -57,23 +56,27 @@ class PaymentController extends Controller
     }
     public function payment_info(Request $request)
     {
-        $amount = explode(" ",$request->amount);
-        
+        $amount = explode(" ", $request->amount);
+
         if ($request->type == "order") {
             // get payment
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create ([
-                    "amount" => $amount[0] * 100,
-                    "currency" => "aed",
-                    "source" => $request->stripeToken,
-                    "description" => "Test payment from Arshad." 
+            Stripe\Charge::create([
+                "amount" => $amount[0] * 100,
+                "currency" => "aed",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from" . $request->name,
             ]);
-      
 
             $order = Order::where([['user_bid_id', $request->user_bid_id], ['vendor_bid_id', $request->vendor_bid_id]])->first();
             $order->status = "complete";
             $order->save();
 
+            $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
+
+            $vendor = Vendor::find($vendorbid->vendordetail->vendor_id);
+            $vendor->balance = $vendor->balance + $order->total;
+            $vendor->save();
             // notification content
             $message['title'] = "Payment Completed";
             $message['order_no'] = $order->order_code;
@@ -88,7 +91,6 @@ class PaymentController extends Controller
             dispatch($Notification);
 
             //web notification to vendor
-            $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
             $notification = new webNotification();
             $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
             $notification->title = auth()->user()->name . " Confirm to complete order and release the payment, Order#" . $order->order_code;
@@ -99,16 +101,15 @@ class PaymentController extends Controller
             return $this->message($order, 'user.order.index', 'Order Completed and Payment Successfully Added', '  Error');
 
         } else {
-            $amount = explode(" ",$request->amount);
+            $amount = explode(" ", $request->amount);
             // get payment
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create ([
-                    "amount" => $amount[0] * 100,
-                    "currency" => "aed",
-                    "source" => $request->stripeToken,
-                    "description" => "Test payment from Arshad." 
+            Stripe\Charge::create([
+                "amount" => $amount[0] * 100,
+                "currency" => "aed",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from " . $request->name,
             ]);
-                
 
             $order = new Order();
             $order_no = mt_rand('1000', '100000');
@@ -183,11 +184,10 @@ class PaymentController extends Controller
     public function payment_insurance($id)
     {
 
-         $company = User::with('company')->find(Auth::id());
+        $company = User::with('company')->find(Auth::id());
 
         $vendor_bid_id = $id;
-        $company_id =  $company->company[0]->id; 
-
+        $company_id = $company->company[0]->id;
 
         $data = new InsuranceRequest();
         $data->company_id = $company_id;
@@ -232,7 +232,7 @@ class PaymentController extends Controller
         $message['link1'] = url('user/order/summary', $order->id);
         $message['type'] = "order";
         $message['email'] = auth()->user()->email;
-        
+
         $Notification = new Notification($message);
         dispatch($Notification);
 
@@ -243,7 +243,7 @@ class PaymentController extends Controller
         $message['title'] = "Order Placement";
         $message['order_no'] = $order_no;
         $message['order_id'] = $order->id;
-        $message['body1'] = Auth::user()->name." placed ";
+        $message['body1'] = Auth::user()->name . " placed ";
         $message['body2'] = "successfully to you. The payment is pending because the customer request for payment to his insurance company. After paying by insurance company we will notify soon.";
         $message['link1'] = url('vendor/fullfillment', $order->id);
         $message['type'] = "order";
@@ -263,7 +263,6 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-
         //mail notification to Insurance Company
         $message['title'] = "Incomplete order reminder";
         $message['order_no'] = $order_no;
@@ -273,7 +272,7 @@ class PaymentController extends Controller
         $message['link1'] = url('company/car/detail', $vendor_bid_id);
         $message['type'] = "order";
         $message['email'] = $company->company[0]->email;
-        
+
         $Notification = new Notification($message);
         dispatch($Notification);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Part;
 use App\Models\Order;
+use App\Models\Vendor;
 use App\Models\UserBid;
 use App\Models\VendorBid;
 use App\Jobs\Notification;
@@ -161,7 +162,11 @@ class OrderController extends Controller
 
     public function completeOrder(Request $request)
     {
+        // return $request;
         $order = Order::findOrFail($request->order_id);
+        $vendor = Vendor::find($request->vendor_id);
+        $vendor->balance = $vendor->balance + $order->total;
+        $vendor->save();
         $order->status = "complete";
         $order->save();
 

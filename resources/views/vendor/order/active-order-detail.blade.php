@@ -6,9 +6,9 @@
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
                         @if ($order->status == 'cancelled')
-                            <h4 class="sec_main_heading text-center mb-0"> {{__('msg.ORDER CANCELED')}}</h4>
+                            <h4 class="sec_main_heading text-center mb-0"> {{ __('msg.ORDER CANCELED') }}</h4>
                         @else
-                            <h4 class="sec_main_heading text-center mb-0">{{__('msg.Active Orders')}}</h4>
+                            <h4 class="sec_main_heading text-center mb-0">{{ __('msg.Active Orders') }}</h4>
                         @endif
                     </div>
                 </div>
@@ -33,13 +33,16 @@
                                 <p class="mb-0">{{ $userbidid->car_owner_name }}</p>
 
                                 <p class="mb-0">{{ $user->phone }}</p>
-                                <p class="milage">{{__('msg.mileage')}} <span>{{ $userbidid->mileage }}{{__('msg.Km')}}</span></p>
+                                <p class="milage">{{ __('msg.mileage') }}
+                                    <span>{{ $userbidid->mileage }}{{ __('msg.Km') }}</span>
+                                </p>
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h5 class="vendor_order_id">{{__('msg.Order Id:')}} #{{ $order->order_code }}</h5>
+                                <h5 class="vendor_order_id">{{ __('msg.Order Id:') }} #{{ $order->order_code }}</h5>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
                                     <h5 class="">{{ $userbidid->day }} Days</h5>
-                                    <form action="{{ route('vendor.queryChat') }}" method="POST" class="chat_view__detail">
+                                    <form action="{{ route('vendor.queryChat') }}" method="POST"
+                                        class="chat_view__detail">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $userbidid->user_id }}">
                                         <input type="hidden" name="order_no" value="{{ $order->order_code }}">
@@ -60,27 +63,34 @@
                                     <div class="pay_via_insurance_header_garages">
                                         @if ($order->paid_by == 'company')
                                             @if ($insurancestatus->status == 0)
-                                                <p>{{__('msg.Payment Is Pending')}}</p>
+                                                <p>{{ __('msg.Payment Is Pending') }}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
-                                                <p>{{__('msg.Paid via Insurance')}}</p>
+                                                <p>{{ __('msg.Paid via Insurance') }}</p>
                                             @endif
                                         @else
-                                            <p>{{__('msg.Paid By Customer')}}</p>
+                                            <p>{{ __('msg.Paid By Customer') }}</p>
                                         @endif
                                         <i class="bi bi-star-fill"></i>
                                     </div>
 
                                 </div>
-                                <a href="{{ url('vendor/print-order-details', $order->vendor_bid_id) }}">{{__('msg.view invoice')}}</a>
+                                <a
+                                    href="{{ url('vendor/print-order-details', $order->vendor_bid_id) }}">{{ __('msg.view invoice') }}</a>
                             </div>
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape"> {{__('msg.Budget')}}</h5>
+                                <h5 class="d-flex align-items-center active_quote nowrape"> {{ __('msg.Budget') }}</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h5 class="quotereplies">{{__('msg.Total')}}: {{ $order->total }} {{__('msg.AED')}}</h5>
+                                    <h5 class="quotereplies">{{ __('msg.Total') }}: {{ $order->total }}
+                                        {{ __('msg.AED') }}</h5>
                                     @if ($order->status != 'complete' && $order->paid_by != 'company')
-                                    <h5 class="quotereplies">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
-                                @endif
+                                        <h5 class="quotereplies">{{ __('msg.Advance') }}: {{ $order->advance }}
+                                            {{ __('msg.AED') }}</h5>
+                                    @endif
+                                    @if ($order->status != 'complete' && $order->paid_by == 'company' && $insurancestatus->status == 1)
+                                        <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->total }}
+                                            {{ __('msg.AED') }}</h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -91,7 +101,7 @@
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <h5 class="active_order_req">{{__('msg.Requirements')}}</h5>
+                        <h5 class="active_order_req">{{ __('msg.Requirements') }}</h5>
 
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description1 }}</p>
@@ -241,7 +251,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
+                            <h5 class=" text-center mb-5">{{ __('msg.REPAIR DETAILS') }}</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description2 }}</p>
@@ -257,7 +267,8 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="d-grid gap-2 mt-lg-3 ">
                                     <a href="{{ route('vendor.addfund', $order->user_bid_id) }}"
-                                        class="btn btn-secondary block get_appointment" type="button"> {{__('msg.ADD FUNDS')}}
+                                        class="btn btn-secondary block get_appointment" type="button">
+                                        {{ __('msg.ADD FUNDS') }}
                                     </a>
                                 </div>
                             </div>
@@ -269,13 +280,13 @@
                                         <input type="hidden" name="order_no" value="{{ $order->order_code }}">
                                         <input type="hidden" name="user_id" value="{{ $user->id }}">
                                         @if ($order->paid_by == 'company' && $insurancestatus->status == 0)
-                                                <button
-                                                    class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
-                                                    type="submit"> {{__('msg.SEND FINAL INVOICE TO CUSTOMER')}} </button>
+                                            <button
+                                                class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
+                                                type="submit"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
                                         @else
                                             <button
                                                 class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                                type="submit"> {{__('msg.SEND FINAL INVOICE TO CUSTOMER')}} </button>
+                                                type="submit"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
                                         @endif
                                     </form>
                                 </div>
