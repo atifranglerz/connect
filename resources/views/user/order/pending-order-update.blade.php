@@ -59,12 +59,18 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center">{{__('msg.Total')}}: {{ $order->total }} {{ __('msg.AED') }}</h5>
+                                <h5 class=" text-sm-center">{{ __('msg.Total') }}: {{ $order->total }} {{ __('msg.AED') }}
+                                </h5>
                                 @if ($order->status != 'complete' && $order->paid_by != 'company')
-                                    <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
+                                    <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->advance }}
+                                        {{ __('msg.AED') }}</h5>
+                                @endif
+                                @if ($order->status != 'complete' && ($order->paid_by == 'company' && $insurancestatus->status == 1))
+                                    <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->total }}
+                                        {{ __('msg.AED') }}</h5>
                                 @endif
                                 <div class="completed_order_id">
-                                    <p>{{__('msg.Order Id:')}} <span>#{{ $order->order_code }}</span></p>
+                                    <p>{{ __('msg.Order Id:') }} <span>#{{ $order->order_code }}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -207,6 +213,7 @@
                                         action="{{ route('user.order.complete') }}" class="needs-validation" novalidate>
                                         @csrf
                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                        <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
                                         @if ($order->paid_by == 'company')
                                             @if ($insurancestatus->status == 0)
                                                 <button class="btn btn-secondary block get_appointment disabled"

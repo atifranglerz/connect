@@ -57,8 +57,11 @@
                                 @if ($order->status != 'complete' && $order->paid_by != 'company')
                                     <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
                                 @endif
+                                @if ($order->status != 'complete' && $order->paid_by == 'company' && $insurancestatus->status == 1)
+                                    <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->total }} {{ __('msg.AED') }}</h5>
+                                @endif
                                 <div class="completed_order_id">
-                                    <p>{{__('msg.Order Id:')}}: <span>#{{ $order->order_code }}</span></p>
+                                    <p>{{__('msg.Order Id:')}} <span>#{{ $order->order_code }}</span></p>
                                 </div>
                             </div>
                         </div>

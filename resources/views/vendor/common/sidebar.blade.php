@@ -6,6 +6,11 @@
         <div class="name_of_person mx-auto text-center">
             <h5 class="heading">{{ Auth::guard('vendor')->user()->name }}</h5>
         </div>
+        <div class="name_of_person mx-auto text-center">
+            <a href="{{route('vendor.acount.index')}}"class="heading">{{Auth::guard('vendor')->user()->balance}}AED</a>
+        </div>
+        <div class="name_of_person mx-auto text-center">
+        </div>
     </div>
 
     <div class="sidebar_navigation">

@@ -20,6 +20,12 @@ use App\Http\Controllers\Admin\PercentageController;
 Route::get('about', 'Admin\AboutController@show');
 Route::group(['namespace' => 'Web'], function () {
 
+
+    Route::get('/composer_update', function () {
+        $output=shell_exec('php composer update');
+        return $output;
+
+     });
     Route::get('/config_cache', function () {
         Artisan::call('config:cache');
         return 'Configuration cache cleared!';
@@ -168,6 +174,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('privacyPolicy', 'PrivacyPolicyController@index')->name('privacyPolicy.index');
         Route::get('privacyPolicy/edit/{id}', 'PrivacyPolicyController@edit')->name('privacyPolicy.edit');
         Route::post('privacyPolicy/update/{id}', 'PrivacyPolicyController@update')->name('privacyPolicy.update');
+        // All payemnt withdrawl request of vendors
+        Route::get('withdraw/index', 'WithdrawlController@index')->name('withdraw.index');
+        Route::get('withdraw/status/{id}', 'WithdrawlController@status')->name('withdraw.status');
 
 
         Route::get('/percentage', [PercentageController::class, 'index']);
@@ -216,6 +225,13 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('chat/chatted_delete', 'ChatController@chattedDelete')->name('chat.chatted_delete');
         Route::post('chat/online/status', 'ChatController@status')->name('online.status');
         Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
+
+        //payment with and accounta detail
+        Route::get('acount/index','AccountController@index')->name('acount.index');
+        Route::get('acount/create','AccountController@create')->name('acount.create');
+        Route::post('acount/store','AccountController@store')->name('acount.store');
+        Route::post('acount/update','AccountController@update')->name('acount.update');
+        Route::post('acount/withdraw_request','AccountController@withdraw')->name('withdraw_request');
 
         //notification
         Route::post('notification', 'NotificationController@notification')->name('notification');

@@ -118,6 +118,13 @@
                     <li class=""><a class="nav-link " href="{{ url('/admin/percentage') }}">Payment Payment</a></li>
                 </ul>
             </li>
+            <li class="dropdown @if (request()->routeIs('admin.withdraw.index')) active @endif">
+                <a href="#" class="menu-toggle nav-link has-dropdown">
+                    <i data-feather="users"></i><span>WithDrawl Request</span></a>
+                <ul class="dropdown-menu">
+                    <li class=""><a class="nav-link " href="{{ route('admin.withdraw.index') }}">WithDrawl Request</a></li>
+                </ul>
+            </li>
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
                     <i data-feather="users"></i><span>Faq</span></a>
