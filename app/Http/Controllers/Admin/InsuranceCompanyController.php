@@ -158,6 +158,7 @@ class InsuranceCompanyController extends Controller
     {
         $company = InsuranceCompany::findOrFail($id);
         if ($company->hasRole('company')) {
+
             $company->delete();
             return $this->message($company, 'admin.insurance-company', 'Insurance Company Deleted successfully', 'Insurance Company Delete Error');
         } else {
