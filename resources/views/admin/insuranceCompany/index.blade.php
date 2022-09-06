@@ -33,7 +33,7 @@
                                                     <td>{{ $company->name }}</td>
                                                     <td>{{ $company->email }}</td>
                                                     <td><img alt="image" @if($company->image) src="{{ asset('/'.$company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></td>
-                                                    <td>@foreach($company->roles as $role){{ $role->name }}@endforeach</td>
+                                                    <td>company</td>
                                                     <td>{{ $company->phone }}</td>
                                                     <td>@if($company->action == 1)
                                                             <div class="badge badge-success badge-shadow">Activate</div>

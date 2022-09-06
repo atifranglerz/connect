@@ -340,5 +340,22 @@ return [
     'Insurance Request' => 'طلب تأمين',
     'ALL INSURANCE REQUEST' => 'جميع طلبات التأمين',
     'PAY INSURANCE PAYMENT' => 'دفع دفع التأمين',
+    'FINANCE' => 'المالية',
+    'Account' => 'الحساب',
+    'Total' => 'المجموع',
+    'Pending Order' => 'طلب معلق',
+    'Withdraw Request' => 'طلب سحب',
+    'withdrawn' => 'منسحب',
+    'Go To Withdraw' => 'اذهب إلى الانسحاب',
+    'payment' => 'دفع',
+    'Deduction' => 'المستقطع',
+    'Received' => 'تلقى',
+    'Add Your Finance Detail' => 'أضف تفاصيل التمويل الخاصة بك',
+    'Bank Account Holder Name' => 'اسم صاحب الحساب المصرفي',
+    'Bank Name' => 'اسم البنك',
+    'Update Your Finance Detail' => 'قم بتحديث تفاصيل التمويل الخاصة بك',
+    
+
+
     ]
 ?>

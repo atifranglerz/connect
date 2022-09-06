@@ -336,6 +336,21 @@ return [
     'Advance' => 'Advance',
     'ALL INSURANCE REQUEST' => 'ALL INSURANCE REQUEST',
     'PAY INSURANCE PAYMENT' => 'PAY INSURANCE PAYMENT',
+    'FINANCE' => 'FINANCE',
+    'Account' => 'Account',
+    'Total' => 'Total',
+    'Pending Order' => 'Pending Order',
+    'Withdraw Request' => 'Withdraw Request',
+    'withdrawn' => 'withdrawn',
+    'Go To Withdraw' => 'Go To Withdraw',
+    'payment' => 'payment',
+    'Deduction' => 'Deduction',
+    'Received' => 'Received',
+    'No Orders has been added !' => 'No Orders has been added !',
+    'Add Your Finance Detail' => 'Add Your Finance Detail',
+    'Bank Account Holder Name' => 'Bank Account Holder Name',
+    'Bank Name' => 'Bank Name',
+    'Update Your Finance Detail' => 'Update Your Finance Detail',
     
 
 

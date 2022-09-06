@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper mt-5">
-                        <h4 class="sec_main_heading text-center mb-0">Finance</h4>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.FINANCE')}}</h4>
                         <p class="sec_main_para text-center"></p>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                 <div class="col-lg-10 col-md-12 mx-auto ">
                     <div class="edit_profile_link_wraper mb-lg-4 mb-3">
                         <a href="{{ route('vendor.acount.create') }}"><img
-                                src="{{ asset('public/vendor/assets/images/editicon.svg') }}">Account</a>
+                                src="{{ asset('public/vendor/assets/images/editicon.svg') }}">{{__('msg.Account')}}</a>
                     </div>
                 </div>
                 <div class="col-lg-7 mx-auto">
@@ -25,7 +25,7 @@
                                 <div class="user_icon">
                                     {{-- <img src="{{ asset('public/vendor/assets/images/user.svg') }}"> --}}
                                 </div>
-                                <p class="mb-0">Total: {{ Auth::guard('vendor')->user()->balance }} {{ __('msg.AED') }}
+                                <p class="mb-0">{{__('msg.Total')}}: {{ Auth::guard('vendor')->user()->balance }} {{ __('msg.AED') }}
                                 </p>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                     {{-- <img src="{{ asset('public/vendor/assets/images/location.svg') }}"> --}}
                                 </div>
                                 <a class="nav-link " href="{{ route('vendor.orders') }}">
-                                    <p class="mb-0 text-white" >Pending Order: {{ $pending }} {{ __('msg.AED') }}</p>
+                                    <p class="mb-0 text-white" >{{__('msg.Pending Order')}}: {{ $pending }} {{ __('msg.AED') }}</p>
                                 </a>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 <div class="user_icon">
                                     {{-- <img src="{{ asset('public/vendor/assets/images/mailicon.svg') }}"> --}}
                                 </div>
-                                <p class="mb-0">Withdraw Request: {{ $request }} {{ __('msg.AED') }}</p>
+                                <p class="mb-0">{{__('msg.Withdraw Request')}}: {{ $request }} {{ __('msg.AED') }}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -52,7 +52,7 @@
                                 <div class="user_icon">
                                     {{-- <img src="{{ asset('public/vendor/assets/images/callicon.svg') }}"> --}}
                                 </div>
-                                <p class="mb-0">withdrawn: {{ $withdraw }} {{ __('msg.AED') }}</p>
+                                <p class="mb-0">{{__('msg.withdrawn')}}: {{ $withdraw }} {{ __('msg.AED') }}</p>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <button type="button"
                         class="btn btn-primary mx-auto @if (Auth::guard('vendor')->user()->balance < 20) disabled @endif "
                         data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Go To Withdraw
+                        {{__('msg.Go To Withdraw')}}
                     </button>
 
                 </div>
@@ -72,7 +72,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="sec_main_heading text-center mb-0">Withdraw Request</h5>
+                        <h5 class="sec_main_heading text-center mb-0">{{__('msg.Withdraw Request')}}</h5>
                         <a type="button" class="heading-color" data-bs-dismiss="modal"><span
                                 class="fa fa-times"></span></a>
                     </div>
@@ -84,7 +84,7 @@
                                 <div class="row">
 
                                     <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                        <h5 class="mb-0 heading-color">payment</h5>
+                                        <h5 class="mb-0 heading-color">{{__('msg.payment')}}</h5>
                                     </div>
 
                                     <div class="col-12 mb-3  signup_input_wraper">
@@ -95,7 +95,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                        <h5 class="mb-0 heading-color">Deduction</h5>
+                                        <h5 class="mb-0 heading-color">{{__('msg.Deduction')}}</h5>
                                     </div>
 
                                     <div class="col-12 mb-3  signup_input_wraper">
@@ -106,7 +106,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                        <h5 class="mb-0 heading-color">Received</h5>
+                                        <h5 class="mb-0 heading-color">{{__('msg.Received')}}</h5>
                                     </div>
 
                                     <div class="col-12 mb-3  signup_input_wraper">

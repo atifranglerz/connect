@@ -203,7 +203,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
          $user = User::where('email', $request->email)->first();
-        if (isset($company) && $company->action == 0) {
+        if (isset($user) && $user->action == 0) {
             return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
         }
 

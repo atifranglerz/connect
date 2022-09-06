@@ -7,7 +7,7 @@
             <h5 class="heading">{{ Auth::guard('vendor')->user()->name }}</h5>
         </div>
         <div class="name_of_person mx-auto text-center">
-            <a href="{{route('vendor.acount.index')}}"class="heading">{{Auth::guard('vendor')->user()->balance}}AED</a>
+            <a href="{{route('vendor.acount.index')}}"class="heading">{{Auth::guard('vendor')->user()->balance}}{{__('msg.AED')}}</a>
         </div>
         <div class="name_of_person mx-auto text-center">
         </div>
