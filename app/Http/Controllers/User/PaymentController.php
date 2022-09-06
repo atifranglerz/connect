@@ -50,10 +50,7 @@ class PaymentController extends Controller
         $vendorbid = VendorBid::with('vendordetail')->where('id', '=', $request->bid_id)->first();
         return view('user.payment.payment', compact('page_title', 'vendorbid', 'type'));
     }
-    public function store()
-    {
 
-    }
     public function payment_info(Request $request)
     {
         $amount = explode(" ", $request->amount);
@@ -129,7 +126,11 @@ class PaymentController extends Controller
             $order->cvv = $request->cvv;
             $order->transaction_id = $request->transaction_id;
             $order->payment_type = $request->payment_type;
-            $order->paid_by = "customer";
+            if(Auth::user()->type == "user"){
+                $order->paid_by = "customer";
+            }else{
+                $order->paid_by = "insurance";
+            }
             $order->save();
 
             //after order confirm update quote status
@@ -269,12 +270,25 @@ class PaymentController extends Controller
         $message['order_id'] = $order->id;
         $message['body1'] = "Our most qualified garages and service providers are excited to work on ";
         $message['body2'] = " we kindly request you to take a moment to select the service providers to streamline the process of completion for your customer.";
-        $message['link1'] = url('company/car/detail', $vendor_bid_id);
+        $message['link1'] = url('user/car/detail', $vendor_bid_id);
         $message['type'] = "order";
         $message['email'] = $company->company[0]->email;
 
-        $Notification = new Notification($message);
-        dispatch($Notification);
+        $company = User::find($company_id);
+        $gettime = strtotime($company->online_status) + 10;
+        $now = strtotime(Carbon::now());
+        if ($now > $gettime) {
+            $Notification = new Notification($message);
+            dispatch($Notification);
+        } else {
+            $notification = new webNotification();
+            $notification->customer_id  = $company_id;
+            $notification->title = auth()->user()->name . " request for car insurance and place Order #" . $order_no;
+            $notification->links = url('user/car/detail', $vendor_bid_id);
+            $notification->body = ' ';
+            $notification->save();
+        }
+
 
         return $this->message($order, 'user.order.index', 'Your order place and payment request send to Insurance Company Successfully', 'success');
     }

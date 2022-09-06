@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\InsuranceCompany;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +21,7 @@ class profileController extends Controller
     public function edit($id)
     {
         //$user = Auth::guard('web')->user();
-        $company = InsuranceCompany::all();
+        $company = User::where('type','company')->get();
 
         $page_title = 'User Profile Edit';
         $profile = user::findOrFail($id);
@@ -31,8 +30,6 @@ class profileController extends Controller
 
     public function updateProfile(Request $request, $id)
     {
-        // return $request;
-
         $request->validate([
             'name' => 'required',
             'phone'=>'required',
@@ -61,7 +58,7 @@ class profileController extends Controller
         if (isset($request->company)) {
             $company = DB::table('insurance_user')->where('user_id', Auth::id())->delete();
  
-                $company = InsuranceCompany::find($request->company);
+                $company = User::find($request->company);
                 $user->company()->attach($company);
 
         }

@@ -72,7 +72,7 @@ class Vendor extends Authenticatable
      */
     public function company()
     {
-        return $this->belongsToMany(InsuranceCompany::class, 'insurance_vendor', 'vendor_id', 'company_id');
+        return $this->belongsToMany(User::class, 'insurance_vendor', 'vendor_id', 'company_id');
 
     }
 

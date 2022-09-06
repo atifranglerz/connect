@@ -1,4 +1,4 @@
-@extends('company.layout.app')
+@extends('user.layout.app')
 @section('content')
     <section class="pb-5 login_content_wraper" style="background-image:url(public/vendor/assets/images/gradiantbg.jpg);">
         <div class="container-lg container-fluid">

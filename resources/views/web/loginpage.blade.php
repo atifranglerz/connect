@@ -42,7 +42,7 @@
                             </div>
                             <div class="card-body text-center">
                                 <p class="card-text text-center sing_up_card_txt">{{__('msg.company_detail')}}</p>
-                                <a href="{{route('company.login')}}" class="btn btn-secondary Signup_btn">{{__('msg.Company')}}</a>
+                                <a href="{{route('user.companyLogin')}}" class="btn btn-secondary Signup_btn">{{__('msg.Company')}}</a>
                             </div>
                         </div>
                     </div>

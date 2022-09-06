@@ -18,6 +18,10 @@
             <li><a href="{{ route('user.quoteindex') }}"><img
                         src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>{{ __('msg.All Quotes') }}</span></a>
             </li>
+            @if (Auth::user()->type == 'company')
+                <li><a href="{{ route('user.insurance-index') }}"><img
+                            src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>{{__('msg.Insurance Request')}}</span></a></li>
+            @endif
             <li><a href="{{ route('user.wishlist.index') }}"><img
                         src="{{ asset('public/user/assets/images/dashhearticon.svg') }}"><span>{{ __('msg.Preferred Garages') }}</span></a>
             </li>
@@ -25,9 +29,11 @@
                         src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Archived') }}</span></a>
             </li>
             {{-- <li><a href="{{ route('user.payment.index') }}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Payment Via Insurance</span></a></li> --}}
-            <li><a href="{{ route('user.ads.create') }}"><img
-                        src="{{ asset('public/user/assets/images/dashsellcaricon.svg') }}"><span>{{ __('msg.Sell Your Car') }}</span></a>
-            </li>
+            @if (Auth::user()->type == 'user')
+                <li><a href="{{ route('user.ads.create') }}"><img
+                            src="{{ asset('public/user/assets/images/dashsellcaricon.svg') }}"><span>{{ __('msg.Sell Your Car') }}</span></a>
+                </li>
+            @endif
             <li><a href="{{ route('user.term_condition') }}"><img
                         src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Terms & Conditions (Agreed)') }}</span></a>
             </li>

@@ -337,5 +337,8 @@ return [
     'Please correct the errors and try again.' => 'يرجى تصحيح الأخطاء وحاول مرة أخرى.',
     'Total' => 'المجموع',
     'Advance' => 'يتقدم',
+    'Insurance Request' => 'طلب تأمين',
+    'ALL INSURANCE REQUEST' => 'جميع طلبات التأمين',
+    'PAY INSURANCE PAYMENT' => 'دفع دفع التأمين',
     ]
 ?>

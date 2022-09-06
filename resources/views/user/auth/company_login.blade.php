@@ -8,7 +8,7 @@
                         <div class="main_content_wraper">
                             <h5 class="sec_main_heading text-center mb-0">{{__('msg.Fill This To Login')}}</h5>
                         </div>
-                        <form class="pt-5" action="{{route('company.login')}}" method="post" >
+                        <form class="pt-5" action="{{route('user.companyLogin')}}" method="post" >
                             @csrf
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email" class="form-control" name="email" id="inputEmail" placeholder="{{__('msg.Email')}}">
@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="col-12 mb-3 signup_input_wraper forgetpaww text-right">
-                                <a href="{{route('company.forget_password')}}">{{__('msg.Forgot Password?')}}</a>
+                                <a href="{{route('user.forget_password')}}">{{__('msg.Forgot Password?')}}</a>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <h5 class="my-4 text-center login_link_heading">{{__('msg.New User?')}} <a href="{{route('company.register')}}"> {{__('msg.Sign Up')}}</a>
+                                <h5 class="my-4 text-center login_link_heading">{{__('msg.New User?')}} <a href="{{route('user.companyRegister')}}"> {{__('msg.Sign Up')}}</a>
                                 </h5>
                             </div>
 

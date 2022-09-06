@@ -22,6 +22,7 @@
                                             <th>Image</th>
                                             <th>Role</th>
                                             <th>Phone</th>
+                                            <th>Balance</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -35,6 +36,7 @@
                                                     <td><img alt="image" @if($vendor->image) src="{{ asset('/'.$vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></td>
                                                     <td>@foreach($vendor->roles as $role){{ $role->name }}@endforeach</td>
                                                     <td>{{ $vendor->phone }}</td>
+                                                    <td>{{ $vendor->balance }}</td>
                                                     <td>@if($vendor->action == 1)
                                                             <div class="badge badge-success badge-shadow">Activate</div>
                                                         @else

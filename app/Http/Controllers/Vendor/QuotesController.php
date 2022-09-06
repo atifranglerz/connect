@@ -25,11 +25,11 @@ class QuotesController extends Controller
         $data['page_title'] = 'index ';
         $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->get();
+        })->orderBy('id','DESC')->get();
         $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
 
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->get();
+        })->orderBy('id','DESC')->get();
         return view('vendor.quotes.index', $data);
     }
     public function requestedInspections()

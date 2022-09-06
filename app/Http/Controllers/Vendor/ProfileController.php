@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\vendor;
 
-use App\Http\Controllers\Controller;
-use App\Models\InsuranceCompany;
+use App\Models\User;
 use App\Models\vendor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -64,7 +64,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $company = InsuranceCompany::all();
+        $company = User::where('type','company')->get();
         $profile = Vendor::with('company')->findOrFail($id);
         return view('vendor.profile.edit', compact('profile', 'company'));
 
@@ -116,7 +116,7 @@ class ProfileController extends Controller
             $company = DB::table('insurance_vendor')->where('vendor_id', Auth::guard('vendor')->id())->delete();
            
             foreach($request->company as $id) {
-                $company = InsuranceCompany::find($id);
+                $company = User::find($id);
                 $vendor->company()->attach($company);
             }
         }

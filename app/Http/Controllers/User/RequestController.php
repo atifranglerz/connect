@@ -1,31 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\Company;
+namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\Notification;
-use App\Models\InsuranceRequest;
+use Auth;
+use Session;
+use Stripe;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorBid;
+use App\Jobs\Notification;
 use App\Models\webNotification;
-use Auth;
-use Carbon\Carbon;
+use App\Models\InsuranceRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 
 class RequestController extends Controller
 {
     public function index()
     {
-        $page_title = 'index ';
-        $insurance = InsuranceRequest::with('customer', 'bid')->where([['company_id', Auth::id()], ['status', 0]])->orderBy('id','desc')->get();
-        return view('company.insuranceRequest.index', compact('insurance', 'page_title'));
-    }
 
-    public function paidInsurance()
-    {
-        $page_title = 'paid ';
-        $insurance = InsuranceRequest::with('customer', 'bid')->where([['company_id', Auth::id()], ['status', 1]])->orderBy('id','desc')->get();
-        return view('company.insuranceRequest.paid', compact('insurance', 'page_title'));
+        $page_title = 'index ';
+        $insurance = InsuranceRequest::with('customer', 'bid')->where('company_id', Auth::id())->orderBy('id','desc')->get();
+        return view('user.insuranceRequest.index', compact('insurance', 'page_title'));
     }
 
     public function carDetail($id)
@@ -33,7 +31,7 @@ class RequestController extends Controller
         // return $id;
         $data = VendorBid::with('vendordetail')->where('id', '=', $id)->first();
         $page_title = 'detail';
-        return view('company.insuranceRequest.request_detail', compact('page_title', 'data'));
+        return view('user.insuranceRequest.request_detail', compact('page_title', 'data'));
     }
 
 
@@ -43,19 +41,34 @@ class RequestController extends Controller
         $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
             $q->where('status', '=', '1');
         }])->where('id', '=', $id)->first();
-        return view('company.insuranceRequest.print_order_details', compact('data'));
+        return view('user.insuranceRequest.print_order_details', compact('data'));
     }
 
 
 
+    public function Payment($id){
+        $data = VendorBid::where('id', '=', $id)->first();
+        return view('user.insuranceRequest.payment',compact('data'));
 
-    public function payPayment($id)
+    }
+
+    public function payPayment(Request $request)
     {
-        $insurance = InsuranceRequest::where('vendor_bid_id', $id)->first();
+        $amount = explode(" ", $request->amount);
+
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create([
+            "amount" => $amount[0] * 100,
+            "currency" => "aed",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from" . $request->name,
+        ]);
+        
+        $insurance = InsuranceRequest::where('vendor_bid_id', $request->vendor_bid_id)->first();
         $insurance->status = 1;
         $insurance->save();
 
-        $vendorbid = VendorBid::with('vendordetail', 'userBid', 'order')->where('id', '=', $id)->first();
+        $vendorbid = VendorBid::with('vendordetail', 'userBid', 'order')->where('id', '=', $request->vendor_bid_id)->first();
 
         $user = User::find($vendorbid->userBid->user_id);
 
@@ -63,13 +76,13 @@ class RequestController extends Controller
         $message['title'] = "Payment Completed";
         $message['order_no'] = $vendorbid->order->order_code;
         $message['order_id'] = $vendorbid->order->id;
-        $message['body1'] = "Congratulations, your insurance company " . Auth::guard('company')->user()->name . " has completed the payment for your ";
+        $message['body1'] = "Congratulations, your insurance company " . Auth::guard('web')->user()->name . " has completed the payment for your ";
         $message['body2'] = " . Enjoy your service, please don’t forget to download the invoice for your record, and rate the service that you have received from your garage/service provider. ";
         $message['link1'] = url('user/order/summary', $vendorbid->order->id);
         $message['type'] = "order";
         $message['email'] = $user->email;
 
-        //mail notification to user
+        //mail or web notification to user
         $gettime = strtotime($user->online_status) + 10;
         $now = strtotime(Carbon::now());
         if ($now > $gettime) {
@@ -78,7 +91,7 @@ class RequestController extends Controller
         } else {
             $notification = new webNotification();
             $notification->customer_id = $user->id;
-            $notification->title = "The Insurance Company " . Auth::guard('company')->user()->name . "paid the payment against Order #" . $vendorbid->order->order_code;
+            $notification->title = "The Insurance Company " . Auth::guard('web')->user()->name . " paid the payment against Order #" . $vendorbid->order->order_code;
             $notification->links = url('user/order/summary', $vendorbid->order->id);
             $notification->body = ' ';
             $notification->save();
@@ -90,7 +103,7 @@ class RequestController extends Controller
         $message['title'] = "Payment Confirmation";
         $message['order_no'] = $vendorbid->order->order_code;
         $message['order_id'] = $vendorbid->order->id;
-        $message['body1'] = "The Insurance Company " . Auth::guard('company')->user()->name . " has been release the payment against";
+        $message['body1'] = "The Insurance Company " . Auth::guard('web')->user()->name . " has been release the payment against";
         $message['body2'] = ".";
         $message['link1'] = url('vendor/fullfillment', $vendorbid->order->id);
         $message['type'] = "order";
@@ -104,11 +117,11 @@ class RequestController extends Controller
         } else {
             $notification = new webNotification();
             $notification->vendor_id = $vendor->id;
-            $notification->title = "The " . Auth::guard('company')->user()->name . "has been release the payment against Order #" . $vendorbid->order->order_code;
+            $notification->title = "The " . Auth::guard('web')->user()->name . " has been release the payment against Order #" . $vendorbid->order->order_code;
             $notification->links = url('vendor/fullfillment', $vendorbid->order->id);
             $notification->body = ' ';
             $notification->save();
         }
-        return back()->with($this->data("payment Successfully paid", 'success'));
+        return redirect()->route('user.insurance-index')->with($this->data("payment Successfully paid and Request is Approved", 'success'));
     }
 }

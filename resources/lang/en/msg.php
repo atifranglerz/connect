@@ -23,6 +23,8 @@ return [
     'FAQ' => 'FAQ',
     'CONTACT US' => 'CONTACT US',
     'Sign Up' => 'Sign Up',
+    'REASON FOR CANCELING' => 'REASON FOR CANCELING',
+    'Insurance Request' => 'Insurance Request',
     'Place an order' => 'Place an order',
     'Select a Garage/Vendor' => 'Select a Garage/Vendor',
     'Customer’s Journey' => 'Customer’s Journey',
@@ -332,6 +334,8 @@ return [
     'Please correct the errors and try again.' => 'Please correct the errors and try again.',
     'Total' => 'Total',
     'Advance' => 'Advance',
+    'ALL INSURANCE REQUEST' => 'ALL INSURANCE REQUEST',
+    'PAY INSURANCE PAYMENT' => 'PAY INSURANCE PAYMENT',
     
 
 

@@ -1,11 +1,11 @@
-@extends('company.layout.app')
+@extends('user.layout.app')
 @section('content')
     <section class="pb-5 login_content_wraper">
         <div class="container-lg container-fluid">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">ALL INSURANCE REQUEST</h4>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.ALL INSURANCE REQUEST')}}</h4>
                         {{-- <p class="sec_main_para text-center">Select your preferred garage</p> --}}
                     </div>
                 </div>
@@ -36,11 +36,21 @@
                                         <p class="mb-0">{{ $userBid->car_owner_name }}</p>
                                         <p class="mb-0">{{ $userBid->phone }}</p>
                                     </div>
+
+                                    <div>
+                                        @if ($value->status == 0)
+                                            <div class="heading-color" style="border: 2px solid;border-radius: 50px;padding: 6px 16px">
+                                                {{ ucwords('Pending') }}</div>
+                                        @else
+                                            <div class="heading-color" style="border: 2px solid;border-radius: 50px;padding: 6px 16px">
+                                                {{ ucwords('Approved') }}</div>
+                                        @endif
+                                    </div>
                                     <div class="quote_detail_btn_wraper">
-                                        <h5 class=" text-sm-center">AED {{ $value->bid->net_total }}</h5>
+                                        <h5 class=" text-sm-center">{{__('msg.AED')}} {{ $value->bid->net_total }}</h5>
                                         <div class="d-flex align-items-center chat_view__detail">
-                                            <a href="{{ route('company.car-detail', $value->bid->id) }}" class="btn-secondary">VIEW
-                                                DETAILS</a>
+                                            <a href="{{ route('user.car-detail', $value->bid->id) }}"
+                                                class="btn-secondary">{{__('msg.view_details')}}</a>
                                         </div>
                                     </div>
                                 </div>

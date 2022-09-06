@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
@@ -14,6 +12,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ModelYearController;
 use App\Http\Controllers\Admin\PercentageController;
 use App\Http\Controllers\Admin\InsuranceCompanyController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +29,11 @@ use App\Http\Controllers\Admin\InsuranceCompanyController;
 Route::get('about', 'Admin\AboutController@show');
 Route::group(['namespace' => 'Web'], function () {
 
-
     Route::get('/composer_update', function () {
-        $output=shell_exec('php composer update');
+        $output = shell_exec('php composer update');
         return $output;
 
-     });
+    });
     Route::get('/config_cache', function () {
         Artisan::call('config:cache');
         return 'Configuration cache cleared!';
@@ -187,7 +186,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('withdraw/index', 'WithdrawlController@index')->name('withdraw.index');
         Route::get('withdraw/status/{id}', 'WithdrawlController@status')->name('withdraw.status');
 
-
         Route::get('/percentage', [PercentageController::class, 'index']);
         Route::get('edit-percentage/{id}', [PercentageController::class, 'edit_percentage']);
         Route::post('update-percentage/{id}', [PercentageController::class, 'update_percentage']);
@@ -247,11 +245,11 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('chat/chatted/status', 'ChatController@chatted')->name('chatted.status');
 
         //payment with and accounta detail
-        Route::get('acount/index','AccountController@index')->name('acount.index');
-        Route::get('acount/create','AccountController@create')->name('acount.create');
-        Route::post('acount/store','AccountController@store')->name('acount.store');
-        Route::post('acount/update','AccountController@update')->name('acount.update');
-        Route::post('acount/withdraw_request','AccountController@withdraw')->name('withdraw_request');
+        Route::get('acount/index', 'AccountController@index')->name('acount.index');
+        Route::get('acount/create', 'AccountController@create')->name('acount.create');
+        Route::post('acount/store', 'AccountController@store')->name('acount.store');
+        Route::post('acount/update', 'AccountController@update')->name('acount.update');
+        Route::post('acount/withdraw_request', 'AccountController@withdraw')->name('withdraw_request');
 
         //notification
         Route::post('notification', 'NotificationController@notification')->name('notification');
@@ -295,6 +293,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('register', 'AuthController@userRegister')->name('register');
     Route::post('terms_condition', 'AuthController@terms')->name('terms_condition');
 
+    /* Company Login Or Register Route */
+    Route::get('companyLogin', 'AuthController@companyLoginForm')->name('companyLogin');
+    Route::post('companyLogin', 'AuthController@companyLogin')->name('companyLogin');
+    Route::get('companyRegister', 'AuthController@companyRegisterForm')->name('companyRegister');
+    Route::post('companyRegister', 'AuthController@companyRegister')->name('companyRegister');
     /*Route::get('facebook', 'AuthController@facebookRedirect')->name('facebook');
     Route::get('facebook/callback', 'AuthController@loginWithFacebook');
     Route::get('google', 'AuthController@redirectToGoogle')->name('google');
@@ -364,46 +367,13 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('archive', 'ArchiveController@index')->name('archive');
         Route::post('archive/download', 'ArchiveController@fileDownload')->name('archive.download');
 
-    });
-});
-
-Route::group(['prefix' => 'company', 'namespace' => 'Company', 'as' => 'company.'], function () {
-    Route::get('/', function () {
-        return view('company.auth.login');
-    })->name('company.login');
-    /* Company Login Or Register Form */
-    Route::get('login', 'AuthController@login')->name('login');
-    Route::get('register', 'AuthController@register')->name('register');
-    Route::post('login', 'AuthController@companyLogin')->name('login');
-    Route::post('register', 'AuthController@companyRegister')->name('register');
-    /*Forgot Password*/
-    Route::get('forget_password', 'AuthController@forgetPassword')->name('forget_password');
-    Route::post('reset-password', 'AuthController@resetPassword')->name('reset_password');
-    Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
-    Route::get('otp', 'AuthController@otp')->name('otp');
-    Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
-    Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
-    /* Admin Auth Routes */
-    Route::group(['middleware' => ['auth:company', 'role:company']], function () {
-        /* Dashboard */
-        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-        Route::post('terms_condition', 'TermConditionController@terms')->name('terms_condition');
-        Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
-
-        /* Logout */
-        Route::post('logout', 'AuthController@logout')->name('logout');
-        /* Company profile */
-        Route::get('/profile', 'ProfileController@index')->name('profile');
-        Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile/edit/{id}', 'ProfileController@updateprofile')->name('profile.post');
-        // Route::post('/profile_password', 'ProfileController@updatepassword')->name('profile.update_password');
-
-        //insurance request
+        //company insurance panel links
         Route::get('insurance-index', 'RequestController@index')->name('insurance-index');
-        Route::get('paid-insurance', 'RequestController@paidInsurance')->name('paid-insurance');
         Route::get('car/detail/{id}', 'RequestController@carDetail')->name('car-detail');
-        Route::get('pay/payment/{id}', 'RequestController@payPayment')->name('pay-payment');
+        Route::get('payments/{id}', 'RequestController@Payment')->name('payments');
+        Route::post('pay/payment', 'RequestController@payPayment')->name('pay-payment');
         Route::get('print-order-details/{id}', 'RequestController@printOrderDetails')->name('print-order-details');
 
     });
 });
+

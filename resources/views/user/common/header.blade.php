@@ -22,39 +22,51 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="d-flex  customer_heading_main">
                     <div class="costumer_heading">
-                        <h6 class="mb-0">{{__('msg.Customer Dashboard')}}</h6>
+                        @if (Auth::user()->type == 'user')
+                            <h6 class="mb-0">{{ __('msg.Customer Dashboard') }}</h6>
+                        @else
+                            <h6 class="mb-0">Company Dashboard</h6>
+                        @endif
                     </div>
                 </div>
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-
+                    
+                    @if (Auth::user()->type == 'user')
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.ads.index') }}">{{__('msg.My Ads Listing')}}</a>
+                        <a class="nav-link " href="{{ route('user.ads.index') }}">{{ __('msg.My Ads Listing') }}</a>
+                    </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('user.quotecreate') }}">{{ __('msg.Request A Quote') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.quotecreate') }}">{{__('msg.Request A Quote')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user.order.index') }}">{{__('msg.Orders')}}</a>
+                        <a class="nav-link " href="{{ route('user.order.index') }}">{{ __('msg.Orders') }}</a>
                     </li>
                 </ul>
                 <div class="login_sinup">
                     <div class="accoutntData">
 
                         <?php
-                            $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
-                            $notification = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->get();
-                            $unread_noty = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->count('seen');
-                            ?>
+                        $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['seen', 0]])->count('seen');
+                        $notification = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->get();
+                        $unread_noty = \App\Models\webNotification::where([['customer_id', auth()->user()->id], ['seen', 0]])->count('seen');
+                        ?>
 
-                        <a href="{{ route('user.chat.index') }}"><i class="fa-solid fa-message"></i><span id="notify" class="chatbox-option__notification notify text-red">{{$unread}}</span></a>
+                        <a href="{{ route('user.chat.index') }}"><i class="fa-solid fa-message"></i><span
+                                id="notify"
+                                class="chatbox-option__notification notify text-red">{{ $unread }}</span></a>
                     </div>
                     <div class="accoutntData">
-                        <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i><span id="notfication" class="chatbox-option__notification notify text-red">{{$unread_noty}}</span></a>
+                        <a href="#" class="notify-btn"><i class="fa-solid fa-bell"></i><span id="notfication"
+                                class="chatbox-option__notification notify text-red">{{ $unread_noty }}</span></a>
                         <div class="notification_tooltip " id="notification_tolltip">
                             <ul class="notification_list shadow">
-                                @foreach($notification as $data)
-                                <li><a href="{{ $data->links }}" class="notification" id="{{$data->id}}">{{$data->title}}</a> <a href="#" class="notification" id="{{$data->id}}"><i class="bi bi-plus"></i></a>
-                                </li>
+                                @foreach ($notification as $data)
+                                    <li><a href="{{ $data->links }}" class="notification"
+                                            id="{{ $data->id }}">{{ $data->title }}</a> <a href="#"
+                                            class="notification" id="{{ $data->id }}"><i
+                                                class="bi bi-plus"></i></a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -63,11 +75,11 @@
                         <a href="#" id="Logout_Profile"><i class="fa-solid fa-user"></i></a>
                         <div class="notification_tooltip" id="TopProfile">
                             <ul class="notification_list shadow">
-                                <li><a href="{{ route('user.profile.index') }}">{{__('msg.Profile')}}</a>
+                                <li><a href="{{ route('user.profile.index') }}">{{ __('msg.Profile') }}</a>
                                 </li>
                                 <li><a href=""
                                         onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-                                        {{__('msg.Logout')}}<span class="fas fa-sign-out-alt"></span>
+                                        {{ __('msg.Logout') }}<span class="fas fa-sign-out-alt"></span>
                                     </a>
                                     <form id="frm-logout" action="{{ route('user.logout') }}" method="POST"
                                         style="display: none;">

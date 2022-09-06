@@ -40,7 +40,7 @@
                             <div class="quote_detail_btn_wraper replies">
                                 <h5 class="vendor_order_id">{{ __('msg.Order Id:') }} #{{ $order->order_code }}</h5>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h5 class="">{{ $userbidid->day }} Days</h5>
+                                    <h5 class="">{{ $order->vendorbid->time }} {{ __('msg.Days') }}</h5>
                                     <form action="{{ route('vendor.queryChat') }}" method="POST"
                                         class="chat_view__detail">
                                         @csrf
@@ -68,6 +68,8 @@
                                             @if ($insurancestatus->status == 1)
                                                 <p>{{ __('msg.Paid via Insurance') }}</p>
                                             @endif
+                                        @elseif ($order->paid_by == 'insurance')
+                                            <p>{{ __('msg.Paid via Insurance') }}</p>
                                         @else
                                             <p>{{ __('msg.Paid By Customer') }}</p>
                                         @endif

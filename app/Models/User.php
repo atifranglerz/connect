@@ -44,9 +44,16 @@ class User extends Authenticatable
      */
     public function company()
     {
-        return $this->belongsToMany(InsuranceCompany::class, 'insurance_user', 'user_id', 'company_id');
+        return $this->belongsToMany(User::class, 'insurance_user', 'user_id', 'company_id');
 
     }
+
+    public function insurance()
+    {
+        return $this->hasOne(userCompany::class,'company_id');
+
+    }
+    
      
     /**
      * The attributes that should be hidden for serialization.

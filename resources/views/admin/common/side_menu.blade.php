@@ -120,9 +120,9 @@
             </li>
             <li class="dropdown @if (request()->routeIs('admin.withdraw.index')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
-                    <i data-feather="users"></i><span>WithDrawl Request</span></a>
+                    <i data-feather="users"></i><span>WithDraw Request</span></a>
                 <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link " href="{{ route('admin.withdraw.index') }}">WithDrawl Request</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.withdraw.index') }}">WithDraw Request</a></li>
                 </ul>
             </li>
             <li class="dropdown">

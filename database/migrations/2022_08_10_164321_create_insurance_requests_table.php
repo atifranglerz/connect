@@ -15,7 +15,7 @@ class CreateInsuranceRequestsTable extends Migration
     {
         Schema::create('insurance_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->unsigned()->constrained('insurance_companies')->onDelete('cascade');
+            $table->foreignId('company_id')->unsigned()->constrained('users')->onDelete('cascade');
             $table->foreignId('customer_id')->unsigned()->constrained('users')->onDelete('cascade');
             $table->foreignId('vendor_bid_id')->unsigned()->constrained('vendor_bids')->onDelete('cascade');
             $table->string('payment')->nullable();
