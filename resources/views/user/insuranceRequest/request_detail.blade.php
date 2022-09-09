@@ -319,7 +319,7 @@
                                                 <div class="d-grid gap-2 mt-lg-3 ">
                                                     <a href="{{ route('user.payments', $data->id) }}"
                                                         class="btn text-center btn-primary get_quot block get_appointment d-flex justify-content-center align-items-center"
-                                                        type="button">{{__('msg.PAY INSURANCE PAYMENT')}}
+                                                        type="button">{{__('msg.payment')}}
                                                     </a>
                                                 </div>
                                             </div>

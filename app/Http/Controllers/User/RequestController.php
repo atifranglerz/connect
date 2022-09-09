@@ -51,6 +51,7 @@ class RequestController extends Controller
 
     public function payPayment(Request $request)
     {
+        
         if ($request->action == "through_credit") {
             $amount = explode(" ", $request->amount);
 

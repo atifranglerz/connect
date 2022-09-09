@@ -1829,7 +1829,7 @@ ul.sidebar_navcigation>li>a>img{
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--gray);
-    height: 255px;
+    height: 205px;
     width: 2px;
     content: "";
 }

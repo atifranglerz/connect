@@ -282,6 +282,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('logout', 'AuthController@logout')->name('logout');
         Route::get('archive', 'ArchiveController@index')->name('archive');
         Route::post('archive/download', 'ArchiveController@fileDownload')->name('archive.download');
+        Route::post('archive/delete', 'ArchiveController@fileDelete')->name('archive.delete');
 
     });
 });
@@ -366,6 +367,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('pending-order-update', 'OrderController@pendingOrderUpdate');
         Route::get('archive', 'ArchiveController@index')->name('archive');
         Route::post('archive/download', 'ArchiveController@fileDownload')->name('archive.download');
+        Route::post('archive/delete', 'ArchiveController@fileDelete')->name('archive.delete');
+
 
         //company insurance panel links
         Route::get('insurance-index', 'RequestController@index')->name('insurance-index');

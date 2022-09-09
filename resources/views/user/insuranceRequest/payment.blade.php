@@ -82,12 +82,12 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto d-flex">
-                                <div class="col-sm-5 mx-auto center">
+                                <div class="col-sm-5 mx-auto center" style="text-align: center">
                                     <button class="btn btn-primary btn-lg btn-block"
                                         type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
 
                                 </div>
-                                <div class="col-sm-5 mx-auto center">
+                                <div class="col-sm-5 mx-auto center" style="text-align: center">
                                     <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
 
@@ -96,8 +96,8 @@
                         </div>
                     </form>
                     <div class="mt-5">
-                        <p>Right now you are going to pay 100% of the total ammount
-                            {{ $data->net_total }}, thank you</p>
+                        <p style="text-align: center">"Right now you are going to pay 100% of the total ammount
+                            {{ $data->net_total }}, thank you"</p>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-12 mb-3  signup_input_wraper">
+                                        <div class="col-12 mb-3">
                                             <input type="hidden" name="vendor_bid_id" value="{{ $data->id }}">
                                             <input type="hidden" name="action" value="through_cheque">
                                         </div>

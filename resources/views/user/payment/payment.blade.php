@@ -119,12 +119,12 @@
                                 @if ($type == 'order')
                                     <div @if ($user->type == 'company') class="d-flex" @endif>
                                         <input type="hidden" name="type" value="order">
-                                        <div class="col-sm-5 mx-auto center">
+                                        <div class="col-sm-5 mx-auto center" style="text-align: center">
                                             <button class="btn btn-primary btn-lg btn-block"
                                                 type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                         </div>
                                         @if ($user->type == 'company')
-                                            <div class="col-sm-5 mx-auto center">
+                                            <div class="col-sm-5 mx-auto center" style="text-align: center">
                                                 <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
                                             </div>
@@ -134,12 +134,12 @@
                                     <div class="row">
                                         <input type="hidden" name="type" value="quote">
                                         @if ($status == 'no')
-                                            <div class="col-sm-5 mx-auto center">
+                                            <div class="col-sm-5 mx-auto center" style="text-align: center">
                                                 <button class="btn btn-primary btn-lg btn-block"
                                                     type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                             </div>
                                             @if ($user->type == 'company')
-                                                <div class="col-sm-5 mx-auto center">
+                                                <div class="col-sm-5 mx-auto center" style="text-align: center">
                                                     <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
                                                 </div>
@@ -151,7 +151,7 @@
                                             </div>
                                             <div class="col-lg-2 col-sm-2">
                                                 <div>
-                                                    <h5 class="conform_order_H3 text-center">{{ __('msg.OR') }}</h5>
+                                                    {{-- <h5 class="conform_order_H3 text-center">{{ __('msg.OR') }}</h5> --}}
                                                 </div>
 
                                             </div>
@@ -168,13 +168,13 @@
                     </form>
                     <div class="mt-5">
                         @if ($type == 'order')
-                            <p>You've paid the {{ $per }}% of the total amount {{ $order->total }} in the first
+                            <p style="text-align: center">"You've paid the {{ $per }}% of the total amount {{ $order->total }} in the first
                                 half to make the order in process, right
-                                now we are asking you the to pay the remaining dues to make the order as completed</p>
+                                now we are asking you the to pay the remaining dues to make the order as completed"</p>
                         @else
-                            <p>Right now you are going to pay {{ $per }}% of the total ammount
+                            <p style="text-align: center">"Right now you are going to pay {{ $per }}% of the total ammount
                                 {{ $vendorbid->net_total }}, the remaining dues will be asked to
-                                pay when the order get completed, thank you</p>
+                                pay when the order get completed, thank you"</p>
                         @endif
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-12 mb-3  signup_input_wraper">
+                                        <div class="col-12 mb-3">
                                             <input type="hidden" name="user_bid_id"
                                                 value="{{ $vendorbid->user_bid_id }}">
                                             <input type="hidden" name="vendor_bid_id" value="{{ $vendorbid->id }}">

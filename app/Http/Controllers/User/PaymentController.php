@@ -53,7 +53,7 @@ class PaymentController extends Controller
 
     public function payment_info(Request $request)
     {
-        // return $request;
+
         $amount = explode(" ", $request->amount);
 
         if ($request->type == "order") {
@@ -77,9 +77,9 @@ class PaymentController extends Controller
                 if ($request->file('cheque_image')) {
                     $name = time() . '.' . $request->file('cheque_image')->getClientOriginalExtension();
                     $name = $request->file('cheque_image')->move('public/image/profile/', $name);
-                    if(isset($order['cheque_image'])){
-                        $order['cheque_image'] = $name.','.$order['cheque_image'];
-                    }else{
+                    if (isset($order['cheque_image'])) {
+                        $order['cheque_image'] = $name . ',' . $order['cheque_image'];
+                    } else {
                         $order['cheque_image'] = $name;
                     }
                 }

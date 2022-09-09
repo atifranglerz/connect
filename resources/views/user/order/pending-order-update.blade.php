@@ -145,32 +145,28 @@
                             <h5 class=" text-center mb-5">{{ __('msg.REPAIR DETAILS') }}</h5>
                         </div>
                         <div class="row">
-                            <div class="col-lg-5 col-sm-5">
+                            <div class="col-sm-5">
                                 <div class="invoice_details mb-5">
-                                    <h4>{{ __('msg.Work Days') }}</h4>
-                                    <h4 class="__gray">{{ $order->vendorbid->time }}</h4>
+                                    <h5 class="heading-color">{{ __('msg.Work Days') }}</h5>
+                                    <h5 class="__gray">{{ $order->vendorbid->time }}</h5>
                                 </div>
                                 <div class="invoice_details">
-                                    <h4>{{ __('msg.Labor Pay') }}</h4>
-                                    <h4 class="__gray">{{ __('msg.AED') }} {{ $total_labour }}</h4>
+                                    <h5 class="heading-color">{{ __('msg.Labor Pay') }}</h5>
+                                    <h5 class="__gray">{{ __('msg.AED') }} {{ $total_labour }}</h5>
                                 </div>
 
 
                             </div>
-                            <div class="col-lg-2 col-sm-2">
+                            <div class="col-sm-1">
                                 <div class="divider_invoice">
 
                                 </div>
 
                             </div>
-                            <div class="col-lg-5 col-sm-5">
-                                <div class="invoice_details mb-5">
-                                    <h4>{{ __('msg.Per Day Rate') }}</h4>
-                                    <h4 class="__gray">{{ __('msg.AED') }} 120</h4>
-                                </div>
+                            <div class="col-sm-6">
                                 <div class="invoice_details">
-                                    <h4>{{ __('msg.Total Invoice') }}</h4>
-                                    <h4 class="__gray">{{ __('msg.AED') }} {{ $order->vendorbid->net_total }}</h4>
+                                    <h5 class="heading-color">{{ __('msg.Total Invoice') }}</h5>
+                                    <h5 class="__gray">{{ __('msg.AED') }} {{ $order->vendorbid->net_total }}</h5>
                                 </div>
                             </div>
                         </div>

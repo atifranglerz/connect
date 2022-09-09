@@ -264,35 +264,32 @@
             @if ($order->status == 'pending')
                 <div class="row">
                     <div class="col-xl-10 col-lg-6  col-md-10 col-sm-10 mx-auto">
-                        <div class="row mt-3 mb-4 g-3">
-
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="d-grid gap-2 mt-lg-3 ">
-                                    <a href="{{ route('vendor.addfund', $order->user_bid_id) }}"
-                                        class="btn btn-secondary block get_appointment" type="button">
-                                        {{ __('msg.ADD FUNDS') }}
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="d-grid gap-2 mt-lg-3 ">
-                                    <form action="{{ route('vendor.completeInovoice') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                        <input type="hidden" name="order_no" value="{{ $order->order_code }}">
-                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                        @if ($order->paid_by == 'company' && $insurancestatus->status == 0)
-                                            <button
-                                                class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
-                                                type="submit"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
-                                        @else
-                                            <button
-                                                class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                                type="submit"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
-                                        @endif
-                                    </form>
-                                </div>
-                            </div>
+                        <div class="mt-3 mb-4 g-3" style="
+                        display: grid;
+                        grid-template-columns: 37% 40%;
+                        align-items: center;
+                        justify-content: center;
+                        column-gap: 15px;
+                    ">
+                            <a href="{{ route('vendor.addfund', $order->user_bid_id) }}"
+                                class="btn btn-secondary block get_appointment" type="button" style="height: 100%">
+                                {{ __('msg.ADD FUNDS') }}
+                            </a>
+                            <form action="{{ route('vendor.completeInovoice') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                <input type="hidden" name="order_no" value="{{ $order->order_code }}">
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                @if ($order->paid_by == 'company' && $insurancestatus->status == 0)
+                                    <button
+                                        class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
+                                        type="submit" style="font-size: 14px;border-radius: 6px"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
+                                @else
+                                    <button
+                                        class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
+                                        type="submit" style="font-size: 14px;border-radius: 6px"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
+                                @endif
+                            </form>
                         </div>
                     </div>
                 </div>

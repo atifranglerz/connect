@@ -19,10 +19,16 @@
                             $file_name = explode('/', $data->file);
                             ?>
                             @if ($file[1] == 'jpg' || $file[1] == 'png' || $file[1] == 'svg')
-                                <div class="mb-3 col-md-3 position-relative item">
-                                    <p class="sender-name">{{ $data->sender_name }}</p>
-                                    <div class="p-2 d-flex justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard" style="box-shadow: unset">
-                                        <a class="position-absolute filedownload" download="{{ $file_name[2] }}" id="{{ $data->id }}" href="{{ asset($data->file) }}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <div class="mb-3 col-md-3 position-relative item" id="{{ $data->id }}">
+                                    <span class="fa fa-trash text-danger position-absolute del-content delete"
+                                        aria-hidden="true" style="left: 20px;top: 5px;font-size: 14px;cursor: pointer;background: #FFF;padding: 4px"
+                                        id="{{ $data->id }}"></span>
+                                    <p class="sender-name">{{ __('msg.Sended By:') }} {{ $data->sender_name }}</p>
+                                    <div class="p-2 d-flex justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard"
+                                        style="box-shadow: unset">
+                                        <a class="position-absolute filedownload" download="{{ $file_name[2] }}"
+                                            id="{{ $data->id }}" href="{{ asset($data->file) }}" title="image"><i
+                                                class="fa fa-download" aria-hidden="true"></i></a>
                                         <img src="{{ asset($data->file) }}">
                                     </div>
                                 </div>
@@ -37,26 +43,32 @@
                     @if ($attachment->count() > 0)
                         @foreach ($attachment as $data)
                             <?php
-                                $file = explode('.', $data->file);
-                                $file_name = explode('/', $data->file);
+                            $file = explode('.', $data->file);
+                            $file_name = explode('/', $data->file);
                             ?>
-                                @if ($file[1] == 'pdf' || $file[1] == 'docx' || $file[1] == 'xlsx' || $file[1] == 'pptx')
-                                    <div class="mb-3 col-md-3 position-relative item">
-                                        <p class="sender-name">{{ $data->sender_name }}</p>
-                                        <div class="p-2 d-flex justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard" style="box-shadow: unset">
-                                            <a class="position-absolute filedownload" download="{{ $file_name[2] }}" id="{{ $data->id }}" href="{{ asset($data->file) }}" title="image"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                            @if ($file[1] == 'docx')
-                                                <img src="{{ asset('public/assets/images/wordicon.png') }}" class="file-img">
-                                            @elseif ($file[1] == 'pdf')
-                                                <img src="{{ asset('public/assets/images/pdficon.png') }}" class="file-img">
-                                            @elseif ($file[1] == 'xlsx')
-                                                <img src="{{ asset('public/assets/images/excelicon.png') }}" class="file-img">
-                                            @elseif ($file[1] == 'pptx')
-                                                <img src="{{ asset('public/assets/images/ppicon.png') }}" class="file-img">
-                                            @endif
-                                        </div>
+                            @if ($file[1] == 'pdf' || $file[1] == 'docx' || $file[1] == 'xlsx' || $file[1] == 'pptx')
+                                <div class="mb-3 col-md-3 position-relative item" id="{{ $data->id }}">
+                                    <span class="fa fa-trash text-danger position-absolute del-content delete"
+                                        aria-hidden="true" style="left: 20px;top: 5px;font-size: 14px;cursor: pointer;background: #FFF;padding: 4px"
+                                        id="{{ $data->id }}"></span>
+                                    <p class="sender-name">{{ __('msg.Sended By:') }} {{ $data->sender_name }}</p>
+                                    <div class="p-2 d-flex justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard"
+                                        style="box-shadow: unset">
+                                        <a class="position-absolute filedownload" download="{{ $file_name[2] }}"
+                                            id="{{ $data->id }}" href="{{ asset($data->file) }}" title="image"><i
+                                                class="fa fa-download" aria-hidden="true"></i></a>
+                                        @if ($file[1] == 'docx')
+                                            <img src="{{ asset('public/assets/images/wordicon.png') }}" class="file-img">
+                                        @elseif ($file[1] == 'pdf')
+                                            <img src="{{ asset('public/assets/images/pdficon.png') }}" class="file-img">
+                                        @elseif ($file[1] == 'xlsx')
+                                            <img src="{{ asset('public/assets/images/excelicon.png') }}" class="file-img">
+                                        @elseif ($file[1] == 'pptx')
+                                            <img src="{{ asset('public/assets/images/ppicon.png') }}" class="file-img">
+                                        @endif
                                     </div>
-                                @endif
+                                </div>
+                            @endif
                         @endforeach
                     @else
                         <p>There is no file</p>
@@ -66,4 +78,27 @@
         </div>
         </div>
     </section>
+@endsection
+@section('script')
+    <script>
+        $(document).on('click', '.delete', function() {
+            var file_id = $(this).attr('id');
+            // alert(file_id);
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('user.archive.delete') }}",
+                data: {
+                    'file_id': file_id,
+                },
+                success: function(response) {
+                    $("#" + file_id).addClass('d-none');
+
+                }
+            });
+        });
+    </script>
 @endsection
