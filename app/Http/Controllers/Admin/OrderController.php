@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('vendorbid', 'userbid', 'garage')->get();
+        $orders = Order::with('vendorbid', 'userbid', 'garage')->orderBy('id','DESC')->get();
         return view('admin.order.index', compact('orders'));
     }
 

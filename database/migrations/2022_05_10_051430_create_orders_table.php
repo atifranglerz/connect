@@ -36,6 +36,7 @@ class CreateOrdersTable extends Migration
             $table->enum('status',['pending','complete','cancelled']);
             $table->longText('reason')->nullable();
             $table->enum('paid_by',['customer','company','insurance']);
+            $table->string('cheque_image')->nullable();
             $table->timestamps();
         });
     }

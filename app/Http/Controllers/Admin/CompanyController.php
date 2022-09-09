@@ -38,6 +38,9 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'company' => 'required',
+        ]);
         $company = Company::create($request->all());
         return $this->message($company, 'admin.company.index', 'Company Create Successfully', 'Company Create Error');
     }
@@ -73,6 +76,10 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
+
+        $request->validate([
+            'company' => 'required',
+        ]);
         $company = $company->update($request->all());
         return $this->message($company, 'admin.company.index', 'Company Update Successfully', 'Company Update Error');
     }

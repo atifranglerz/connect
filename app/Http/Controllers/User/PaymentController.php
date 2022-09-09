@@ -35,7 +35,7 @@ class PaymentController extends Controller
             "amount" => $request->payment * 100,
             "currency" => "aed",
             "source" => $request->stripeToken,
-            "description" => "Test payment from Arshad.",
+            "description" => "Tepayment from Arshad.",
         ]);
 
         Session::flash('success', 'Payment successful!');
@@ -53,20 +53,37 @@ class PaymentController extends Controller
 
     public function payment_info(Request $request)
     {
+        // return $request;
         $amount = explode(" ", $request->amount);
 
         if ($request->type == "order") {
             // get payment
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create([
-                "amount" => $amount[0] * 100,
-                "currency" => "aed",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from" . $request->name,
-            ]);
+            if ($request->action == "through_credit") {
 
+                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                // Stripe\Charge::create([
+                //     "amount" => $amount[0] * 100,
+                //     "currency" => "aed",
+                //     "source" => $request->stripeToken,
+                //     "description" => "payment from " .$request->name,
+                // ]);
+            }
             $order = Order::where([['user_bid_id', $request->user_bid_id], ['vendor_bid_id', $request->vendor_bid_id]])->first();
             $order->status = "complete";
+            if ($request->action == "through_cheque") {
+                $request->validate([
+                    'cheque_image' => 'required',
+                ]);
+                if ($request->file('cheque_image')) {
+                    $name = time() . '.' . $request->file('cheque_image')->getClientOriginalExtension();
+                    $name = $request->file('cheque_image')->move('public/image/profile/', $name);
+                    if(isset($order['cheque_image'])){
+                        $order['cheque_image'] = $name.','.$order['cheque_image'];
+                    }else{
+                        $order['cheque_image'] = $name;
+                    }
+                }
+            }
             $order->save();
 
             $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
@@ -95,18 +112,21 @@ class PaymentController extends Controller
             $notification->body = ' ';
             $notification->save();
 
-            return $this->message($order, 'user.order.index', 'Order Completed and Payment Successfully Added', '  Error');
+            return redirect()->route('user.order.index')->with($this->data("Order Completed and Payment Successfully Added", 'success'));
 
         } else {
             $amount = explode(" ", $request->amount);
             // get payment
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create([
-                "amount" => $amount[0] * 100,
-                "currency" => "aed",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from " . $request->name,
-            ]);
+            if ($request->action == "through_credit") {
+
+                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                // Stripe\Charge::create([
+                //     "amount" => $amount[0] * 100,
+                //     "currency" => "aed",
+                //     "source" => $request->stripeToken,
+                //     "description" => "payment from " . $request->name,
+                // ]);
+            }
 
             $order = new Order();
             $order_no = mt_rand('1000', '100000');
@@ -126,10 +146,21 @@ class PaymentController extends Controller
             $order->cvv = $request->cvv;
             $order->transaction_id = $request->transaction_id;
             $order->payment_type = $request->payment_type;
-            if(Auth::user()->type == "user"){
+
+            if (Auth::user()->type == "user") {
                 $order->paid_by = "customer";
-            }else{
+            } else {
                 $order->paid_by = "insurance";
+            }
+            if ($request->action == "through_cheque") {
+                $request->validate([
+                    'cheque_image' => 'required',
+                ]);
+                if ($request->file('cheque_image')) {
+                    $name = time() . '.' . $request->file('cheque_image')->getClientOriginalExtension();
+                    $name = $request->file('cheque_image')->move('public/image/profile/', $name);
+                    $order['cheque_image'] = $name;
+                }
             }
             $order->save();
 
@@ -179,7 +210,8 @@ class PaymentController extends Controller
             }
         }
 
-        return $this->message($order, 'user.order.index', ' Order palced Payment Successfully Added', '  Error');
+        return redirect()->route('user.order.index')->with($this->data("Order palced and Payment Successfully Added", 'success'));
+
     }
 
     public function payment_insurance($id)
@@ -282,14 +314,13 @@ class PaymentController extends Controller
             dispatch($Notification);
         } else {
             $notification = new webNotification();
-            $notification->customer_id  = $company_id;
+            $notification->customer_id = $company_id;
             $notification->title = auth()->user()->name . " request for car insurance and place Order #" . $order_no;
             $notification->links = url('user/car/detail', $vendor_bid_id);
             $notification->body = ' ';
             $notification->save();
         }
 
-
-        return $this->message($order, 'user.order.index', 'Your order place and payment request send to Insurance Company Successfully', 'success');
+        return redirect()->route('user.order.index')->with($this->data("Your order placed and payment request send to Insurance Company Successfully", 'success'));
     }
 }

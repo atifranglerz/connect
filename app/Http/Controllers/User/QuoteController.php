@@ -37,6 +37,13 @@ class QuoteController extends Controller
 
     public function store(Request $request)
     {
+        if($request->action == "preferred_garage"){
+            $data = UserWishlist::where('user_id', Auth::id())->with('garage')->get();
+            if($data->isEmpty()){
+                return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
+            }
+        }
+
         $request->validate([
             'car_images' => 'required',
             'looking_for' => 'required',

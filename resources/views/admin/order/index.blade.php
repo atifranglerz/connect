@@ -37,13 +37,13 @@
                                                     <td>{{ $order->total }}</td>
                                                     <td>
                                                         @if ($order->status == 'pending')
-                                                            <div class="badge badge-success badge-shadow">{{ ucwords($order->status) }}</div>
+                                                            <div class="badge badge-warning badge-shadow">{{ ucwords($order->status) }}</div>
                                                         {{-- @elseif ($order->status == 'processing')
                                                             <div class="badge badge-danger badge-shadow">{{ ucwords($order->status) }}</div>
                                                         @elseif ($order->status == 'shipped')
                                                             <div class="badge badge-danger badge-shadow">{{ ucwords($order->status) }}</div> --}}
                                                         @elseif ($order->status == 'complete')
-                                                            <div class="badge badge-danger badge-shadow">{{ ucwords($order->status) }}</div>
+                                                            <div class="badge badge-success badge-shadow">{{ ucwords($order->status) }}</div>
                                                         @elseif ($order->status == 'cancelled')
                                                             <div class="badge badge-danger badge-shadow">{{ ucwords($order->status) }}</div>
                                                         @else<span>Not Found</span>

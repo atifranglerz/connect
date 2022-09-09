@@ -17,7 +17,9 @@
                         data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                         @csrf
                         <div class="row g-2">
-                            <input type="hidden" name="vendor_bid_id" value="{{$data->id}}">
+                            <input type="hidden" name="vendor_bid_id" value="{{ $data->id }}">
+                            <input type="hidden" name="action" value="through_credit">
+
                             <div class="col-lg-5 col-md-5 col-sm-5">
                                 <div class=" billing_info">
                                     <h5 class="heading-color">{{ __('msg.Payment Info') }}</h5>
@@ -79,10 +81,15 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto">
+                            <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto d-flex">
                                 <div class="col-sm-5 mx-auto center">
                                     <button class="btn btn-primary btn-lg btn-block"
-                                    type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
+                                        type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
+
+                                </div>
+                                <div class="col-sm-5 mx-auto center">
+                                    <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
 
                                 </div>
                             </div>
@@ -91,6 +98,47 @@
                     <div class="mt-5">
                         <p>Right now you are going to pay 100% of the total ammount
                             {{ $data->net_total }}, thank you</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="sec_main_heading text-center mb-0">{{ __('msg.Pay Through Cheque') }}</h5>
+                            <a type="button" class="heading-color" data-bs-dismiss="modal"><span
+                                    class="fa fa-times"></span></a>
+                        </div>
+                        <div class="modal-body">
+                            <div class="garage_name">
+                                <form action="{{ route('user.pay-payment') }}" method="POST" id="submitform"
+                                    enctype="multipart/form-data" class="my-2">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-3">
+                                            <label
+                                                class="mb-2 heading-color"><b>{{ __('msg.Upload Cheque image') }}<small>({{ __('msg.Click the box to upload') }})</small></b></label>
+                                            <div class="cheque-image">
+                                                {{-- input field name  check_image --}}
+
+                                            </div>
+                                            @error('cheque_image')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12 mb-3  signup_input_wraper">
+                                            <input type="hidden" name="vendor_bid_id" value="{{ $data->id }}">
+                                            <input type="hidden" name="action" value="through_cheque">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary flterClass" id="submit"
+                                type="submit">{{ __('msg.SUBMIT') }}</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -339,6 +339,7 @@ return [
     'FINANCE' => 'FINANCE',
     'Account' => 'Account',
     'Total' => 'Total',
+    'PAY THROUGH CREDIT' => 'PAY THROUGH CREDIT',
     'Pending Order' => 'Pending Order',
     'Withdraw Request' => 'Withdraw Request',
     'withdrawn' => 'withdrawn',
@@ -351,6 +352,9 @@ return [
     'Bank Account Holder Name' => 'Bank Account Holder Name',
     'Bank Name' => 'Bank Name',
     'Update Your Finance Detail' => 'Update Your Finance Detail',
+    'Upload Cheque image' => 'Upload Cheque image',
+    'Click the box to upload' => 'Click the box to upload',
+    'Pay Through Cheque' => 'PAY THROUGH CHEQUE',
     
 
 

@@ -278,6 +278,11 @@
 <script type="text/javascript">
     /*scrolling banner*/
     $(document).ready(function(){
+        $('.cheque-image').imageUploader({
+            extensions: ['.png', '.jpg'],
+            maxFiles:1,
+        });
+        $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload<b class="small">(Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
         $('.input-images').imageUploader({
             extensions: ['.png', '.jpg'],
             maxFiles:5,

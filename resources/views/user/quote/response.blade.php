@@ -98,7 +98,7 @@
 
                         <div class=" w-100  quote_detail_wraper replies ">
 
-                            <p class="mb-0">{{_('msg.No response has been added by users to your quote!')}}</p>
+                            <p class="mb-0">{{__('msg.No response has been added by users to your quote!')}}</p>
 
                         </div>
                     </div>

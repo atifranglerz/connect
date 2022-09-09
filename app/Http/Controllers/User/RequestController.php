@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\User;
 
 use Auth;
-use Session;
 use Stripe;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Vendor;
 use App\Models\VendorBid;
 use App\Jobs\Notification;
+use Illuminate\Http\Request;
 use App\Models\webNotification;
 use App\Models\InsuranceRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 
 class RequestController extends Controller
 {
@@ -22,7 +21,7 @@ class RequestController extends Controller
     {
 
         $page_title = 'index ';
-        $insurance = InsuranceRequest::with('customer', 'bid')->where('company_id', Auth::id())->orderBy('id','desc')->get();
+        $insurance = InsuranceRequest::with('customer', 'bid')->where('company_id', Auth::id())->orderBy('id', 'desc')->get();
         return view('user.insuranceRequest.index', compact('insurance', 'page_title'));
     }
 
@@ -34,7 +33,6 @@ class RequestController extends Controller
         return view('user.insuranceRequest.request_detail', compact('page_title', 'data'));
     }
 
-
     public function printOrderDetails($id)
     {
         $value = 0;
@@ -44,26 +42,39 @@ class RequestController extends Controller
         return view('user.insuranceRequest.print_order_details', compact('data'));
     }
 
-
-
-    public function Payment($id){
+    public function Payment($id)
+    {
         $data = VendorBid::where('id', '=', $id)->first();
-        return view('user.insuranceRequest.payment',compact('data'));
+        return view('user.insuranceRequest.payment', compact('data'));
 
     }
 
     public function payPayment(Request $request)
     {
-        $amount = explode(" ", $request->amount);
+        if ($request->action == "through_credit") {
+            $amount = explode(" ", $request->amount);
 
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        Stripe\Charge::create([
-            "amount" => $amount[0] * 100,
-            "currency" => "aed",
-            "source" => $request->stripeToken,
-            "description" => "Test payment from" . $request->name,
-        ]);
-        
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // Stripe\Charge::create([
+            //     "amount" => $amount[0] * 100,
+            //     "currency" => "aed",
+            //     "source" => $request->stripeToken,
+            //     "description" => "payment from " . $request->name,
+            // ]);
+        } else {
+            $request->validate([
+                'cheque_image' => 'required',
+            ]);
+
+            $order = Order::where('vendor_bid_id', $request->vendor_bid_id)->first();
+            if ($request->file('cheque_image')) {
+                    $name = time() . '.' . $request->file('cheque_image')->getClientOriginalExtension();
+                    $name = $request->file('cheque_image')->move('public/image/profile/', $name);
+                    $order['cheque_image'] = $name;
+            }
+            $order->save();
+        }
+
         $insurance = InsuranceRequest::where('vendor_bid_id', $request->vendor_bid_id)->first();
         $insurance->status = 1;
         $insurance->save();

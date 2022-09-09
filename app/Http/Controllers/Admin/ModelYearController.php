@@ -38,6 +38,9 @@ class ModelYearController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'model_year' => 'required',
+        ]);
         $model = ModelYear::create($request->all());
         return $this->message($model, 'admin.model_year.index', 'Model year Create Successfully', 'Model year Create Error');
     }
@@ -73,6 +76,9 @@ class ModelYearController extends Controller
      */
     public function update(Request $request, ModelYear $modelYear)
     {
+        $request->validate([
+            'year' => 'required',
+        ]);
         $modelYear = $modelYear->update($request->all());
         return $this->message($modelYear, 'admin.model_year.index', 'Model year Update Successfully', 'Model year Update Error');
     }

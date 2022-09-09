@@ -192,7 +192,8 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return $this->message($order, 'user.order.index', 'Order Completed Successfully Added', '  Error');
+        return redirect()->route('user.order.index')->with($this->data("Order Successfully marked as Completed", 'success'));
+
 
     }
 }

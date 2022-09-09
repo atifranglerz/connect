@@ -52,6 +52,7 @@
                         <input type="hidden" name="vendor_bid_id" value="{{ $vendorbid->id }}">
                         <input type="hidden" name="garage_id" value="{{ $vendorbid->garage_id }}">
                         <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
+                        <input type="hidden" name="action" value="through_credit">
                         <div class="row g-2">
                             <div class="col-lg-5 col-md-5 col-sm-5">
                                 <div class=" billing_info">
@@ -116,10 +117,18 @@
                         <div class="row mt-5">
                             <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto">
                                 @if ($type == 'order')
-                                    <input type="hidden" name="type" value="order">
-                                    <div class="col-sm-5 mx-auto center">
-                                        <button class="btn btn-primary btn-lg btn-block"
-                                            type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
+                                    <div @if ($user->type == 'company') class="d-flex" @endif>
+                                        <input type="hidden" name="type" value="order">
+                                        <div class="col-sm-5 mx-auto center">
+                                            <button class="btn btn-primary btn-lg btn-block"
+                                                type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
+                                        </div>
+                                        @if ($user->type == 'company')
+                                            <div class="col-sm-5 mx-auto center">
+                                                <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 @else
                                     <div class="row">
@@ -127,12 +136,18 @@
                                         @if ($status == 'no')
                                             <div class="col-sm-5 mx-auto center">
                                                 <button class="btn btn-primary btn-lg btn-block"
-                                                    type="submit">{{ __('msg.CONFIRM ORDER') }}</button>
+                                                    type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                             </div>
+                                            @if ($user->type == 'company')
+                                                <div class="col-sm-5 mx-auto center">
+                                                    <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
+                                                </div>
+                                            @endif
                                         @else
                                             <div class="col-lg-5 col-sm-5">
                                                 <button class="btn btn-primary btn-lg btn-block"
-                                                    type="submit">{{ __('msg.CONFIRM ORDER') }}</button>
+                                                    type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                             </div>
                                             <div class="col-lg-2 col-sm-2">
                                                 <div>
@@ -161,6 +176,59 @@
                                 {{ $vendorbid->net_total }}, the remaining dues will be asked to
                                 pay when the order get completed, thank you</p>
                         @endif
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="sec_main_heading text-center mb-0">{{ __('msg.Pay Through Cheque') }}</h5>
+                            <a type="button" class="heading-color" data-bs-dismiss="modal"><span
+                                    class="fa fa-times"></span></a>
+                        </div>
+                        <div class="modal-body">
+                            <div class="garage_name">
+                                <form action="{{ route('user.payment-info') }}" method="POST" id="submitform"
+                                    enctype="multipart/form-data" class="my-2">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-3">
+                                            <label
+                                                class="mb-2 heading-color"><b>{{ __('msg.Upload Cheque image') }}<small>({{ __('msg.Click the box to upload') }})</small></b></label>
+                                            <div class="cheque-image">
+                                                {{-- input field name  check_image --}}
+
+                                            </div>
+                                            @error('cheque_image')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12 mb-3  signup_input_wraper">
+                                            <input type="hidden" name="user_bid_id"
+                                                value="{{ $vendorbid->user_bid_id }}">
+                                            <input type="hidden" name="vendor_bid_id" value="{{ $vendorbid->id }}">
+                                            <input type="hidden" name="garage_id" value="{{ $vendorbid->garage_id }}">
+                                            <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
+                                            <input value="{{ $amount }} {{ __('msg.AED') }}" type='hidden'
+                                                name="amount">
+                                            <input type="hidden" name="action" value="through_cheque">
+                                            @if ($type == 'order')
+                                                <input type="hidden" name="type" value="order">
+                                            @else
+                                                <input type="hidden" name="type" value="quote">
+                                            @endif
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary flterClass" id="submit"
+                                type="submit">{{ __('msg.SUBMIT') }}</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

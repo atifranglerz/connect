@@ -348,12 +348,16 @@ return [
     'withdrawn' => 'منسحب',
     'Go To Withdraw' => 'اذهب إلى الانسحاب',
     'payment' => 'دفع',
+    'PAY THROUGH CREDIT' => 'الدفع من خلال الائتمان',
     'Deduction' => 'المستقطع',
     'Received' => 'تلقى',
     'Add Your Finance Detail' => 'أضف تفاصيل التمويل الخاصة بك',
     'Bank Account Holder Name' => 'اسم صاحب الحساب المصرفي',
     'Bank Name' => 'اسم البنك',
     'Update Your Finance Detail' => 'قم بتحديث تفاصيل التمويل الخاصة بك',
+    'Upload Cheque image' => 'تحميل صورة الشيك',
+    'Click the box to upload' => 'انقر فوق المربع للتحميل',
+    'Pay Through Cheque' => 'الدفع بشيك',
     
 
 
