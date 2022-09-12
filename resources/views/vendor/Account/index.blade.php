@@ -83,33 +83,33 @@
                                 @csrf
                                 <div class="row">
 
-                                    <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                    <div class="col-12 mb-3 signup_vendo">
                                         <h5 class="mb-0 heading-color">{{__('msg.payment')}}</h5>
                                     </div>
 
-                                    <div class="col-12 mb-3  signup_input_wraper">
+                                    <div class="col-12 mb-3">
                                         <input type="number" name="payment" value="" class="form-control"
                                             id="payment">
                                         @error('payment')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                    <div class="col-12 mb-3 signup_vendo">
                                         <h5 class="mb-0 heading-color">{{__('msg.Deduction')}}</h5>
                                     </div>
 
-                                    <div class="col-12 mb-3  signup_input_wraper">
+                                    <div class="col-12 mb-3">
                                         <input type="number" name="deduction" value="" class="form-control"
                                             id="deduction" readonly>
                                         @error('deduction')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                    <div class="col-12 mb-3 signup_vendo">
                                         <h5 class="mb-0 heading-color">{{__('msg.Received')}}</h5>
                                     </div>
 
-                                    <div class="col-12 mb-3  signup_input_wraper">
+                                    <div class="col-12 mb-3">
                                         <input type="number" name="receive" value="" class="form-control"
                                             id="receive" readonly>
                                         @error('receive')

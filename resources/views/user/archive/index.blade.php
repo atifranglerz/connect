@@ -31,7 +31,9 @@
                                                 class="fa fa-download" aria-hidden="true"></i></a>
                                         <img src="{{ asset($data->file) }}">
                                     </div>
+                                    <p class="">filename: {{ $data->file_name }}</p>
                                 </div>
+
                             @endif
                         @endforeach
                     @else
@@ -67,6 +69,8 @@
                                             <img src="{{ asset('public/assets/images/ppicon.png') }}" class="file-img">
                                         @endif
                                     </div>
+                                    <p class="">filename: {{ $data->file_name }}</p>
+
                                 </div>
                             @endif
                         @endforeach

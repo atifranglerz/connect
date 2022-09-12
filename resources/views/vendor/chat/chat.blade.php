@@ -72,7 +72,7 @@
                                             <img src="{{ asset($data->attachment) }}" width="100px">
                                         @endif
                                         @if ($data->vendor_file_status == 0)
-                                        <a class="position-absolute filedownload" id="{{ $data->id }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                        <a class="position-absolute filedownload" data-bs-toggle="modal" data-bs-target="#exampleModal" id="file{{$data->id}}"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                     </div>
                                     <p class="mb-0">{{ $data->filetext ?? '' }}</p>
@@ -99,7 +99,7 @@
                                     <div
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($data->vendor_file_status == 0)
-                                            <a class="position-absolute filedownload" id="{{ $data->id }}"
+                                            <a class="position-absolute filedownload" data-bs-toggle="modal" data-bs-target="#exampleModal" id="file{{$data->id}}"
                                                 download="file" title="image"><i
                                                     class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif

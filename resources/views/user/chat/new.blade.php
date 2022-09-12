@@ -25,7 +25,8 @@
                 <div
                     class="position-relative d-flex justify-content-center align-items-center img-download-block">
                     @if ($data->customer_file_status == 0)
-                        <a class="position-absolute filedownload" id="{{ $data->id }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+                        <a class="position-absolute filedownload" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" id="file{{$data->id}}"><i class="fa fa-download" aria-hidden="true"></i></a>
                     @endif
                     @if ($file[1] == 'docx')
                         <img src="{{ asset('public/assets/images/wordicon.png') }}" width="70px">

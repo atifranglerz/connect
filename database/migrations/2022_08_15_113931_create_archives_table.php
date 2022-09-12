@@ -22,6 +22,7 @@ class CreateArchivesTable extends Migration
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('file')->nullable();
             $table->string('type')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
         });
     }

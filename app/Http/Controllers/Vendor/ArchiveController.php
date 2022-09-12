@@ -12,19 +12,21 @@ class ArchiveController extends Controller
 {
     public function fileDownload(Request $request)
     {
-        $messasge = Chat::with('vendor', 'customer')->find($request->msg_id);
-        $messasge->vendor_file_status = '1';
-        $messasge->save();
+        $id = explode('file',$request->msg_id);
+        $messasge = Chat::with('vendor', 'customer')->find($id);
+        $messasge[0]->vendor_file_status = '1';
+        $messasge[0]->save();
 
         $archive = new Archive();
         $archive->vendor_id = Auth::id();
-        if ($messasge->vendor_sender_id == null) {
-            $archive->sender_name = $messasge->customer->name;
+        if ($messasge[0]->vendor_sender_id == null) {
+            $archive->sender_name = $messasge[0]->customer->name;
         } else {
-            $archive->sender_name = $messasge->vendor->name;
+            $archive->sender_name = $messasge[0]->vendor->name;
         }
-        $archive->file = $messasge->attachment;
+        $archive->file = $messasge[0]->attachment;
         $archive->type = 'image';
+        $archive->file_name = $request->file_name;
         $archive->save();
         return response()->json([
             'success' => 'Status updated successfully',

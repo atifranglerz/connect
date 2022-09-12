@@ -79,6 +79,43 @@
                 </form>
             </div>
         </div>
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="sec_main_heading text-center mb-0">move to Archive</h5>
+                        <a type="button" class="heading-color" data-bs-dismiss="modal"><span
+                                class="fa fa-times"></span></a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="garage_name">
+                            <form action="{{ route('vendor.withdraw_request') }}" method="post" id="submitform"
+                                class="my-2">
+                                @csrf
+                                <div class="row">
+
+                                    <input type="hidden" name="msg_id" value="" class="form-control" id="msg_id">
+                                    <div class="col-12 mb-3 signup_vendo">
+                                        <h5 class="mb-0 heading-color">file name</h5>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" name="file_name" value="" class="form-control"
+                                            id="file_name">
+                                        @error('file_name')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-primary moveArchive">Move</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
 
@@ -247,7 +284,13 @@
         // file status change and move to archive
         $(document).on('click', '.filedownload', function() {
             var msg_id = $(this).attr('id');
-            $(this).addClass('d-none');
+            $('#msg_id').val(msg_id);
+
+        });
+
+        $(document).on('click', '.moveArchive', function() {
+            var msg_id = $('#msg_id').val();
+            var file_name = $('#file_name').val();
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -257,10 +300,14 @@
                 url: "{{ route('vendor.archive.download') }}",
                 data: {
                     'msg_id': msg_id,
+                    'file_name': file_name,
                 },
                 success: function(response) {
                     // console.log(response);
-                    toastr.success("file move to archived",'success');
+                    $("#exampleModal").modal('hide');
+                    $("#" + msg_id).addClass('d-none');
+                    $('#file_name').val(' ');
+                    toastr.success("file move to archived", 'success');
 
                 }
             });

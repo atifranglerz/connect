@@ -37,7 +37,8 @@
                                         <img src="{{ asset($data->attachment) }}" width="100px">
                                     @endif
                                     @if ($data->vendor_file_status == 0)
-                                        <a class="position-absolute filedownload" id="{{ $data->id }}"><i
+                                        <a class="position-absolute filedownload" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" id="file{{$data->id}}"><i
                                                 class="fa fa-download" aria-hidden="true"></i></a>
                                     @endif
                                 </div>

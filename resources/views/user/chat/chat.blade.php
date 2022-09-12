@@ -13,9 +13,9 @@
                 <div class="name_of_contact">
                     <p class="mb-0" id="vendor">{{ $chated_user->name }}</p>
                     @if ($now > $gettime)
-                        <p class="mb-0 status">{{__('msg.offline')}}</p>
+                        <p class="mb-0 status">{{ __('msg.offline') }}</p>
                     @else
-                        <p class="mb-0 status">{{__('msg.online')}}</p>
+                        <p class="mb-0 status">{{ __('msg.online') }}</p>
                     @endif
                 </div>
             </div>
@@ -24,7 +24,8 @@
             <a href="#" id="chat_toggle"><i class="bi bi-three-dots-vertical"></i></a>
             <div class="submenue shadow " id="delet_message_toggle">
                 <ul>
-                    <li><a href="#" class="MobileContactToggler" id="MobileContactToggler">{{__('msg.Delete All Messages')}}</a>
+                    <li><a href="#" class="MobileContactToggler"
+                            id="MobileContactToggler">{{ __('msg.Delete All Messages') }}</a>
                     </li>
 
                 </ul>
@@ -60,22 +61,23 @@
                                         aria-hidden="true" style="right: 3px;top: 3px;font-size: 11px;cursor: pointer"
                                         id="{{ $data->id }}"></span>
                                     <div
-                                    dfgsdss
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($file[1] == 'docx')
                                             <img src="{{ asset('public/assets/images/wordicon.png') }}" width="70px">
                                         @elseif ($file[1] == 'pdf')
                                             <img src="{{ asset('public/assets/images/pdficon.png') }}" width="70px">
                                         @elseif ($file[1] == 'xlsx')
-                                            <img src="{{ asset('public/assets/images/excelicon.png') }}" width="70px">
+                                            <img src="{{ asset('public/assets/images/excelicon.png') }}"
+                                                width="70px">
                                         @elseif ($file[1] == 'pptx')
                                             <img src="{{ asset('public/assets/images/ppicon.png') }}" width="70px">
                                         @else
                                             <img src="{{ asset($data->attachment) }}" width="100px">
                                         @endif
                                         @if ($data->customer_file_status == 0)
-                                            <a class="position-absolute filedownload" 
-                                                id="{{ $data->id }}" ><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            <a class="position-absolute filedownload" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" id="file{{$data->id}}"><i
+                                                    class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                     </div>
                                     @if (isset($data->filetext))
@@ -104,14 +106,16 @@
                                     <div
                                         class="position-relative d-flex justify-content-center align-items-center img-download-block">
                                         @if ($data->customer_file_status == 0)
-                                            <a class="position-absolute filedownload" id="{{ $data->id }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            <a class="position-absolute filedownload" data-bs-toggle="modal" data-bs-target="#exampleModal" id="file{{$data->id}}"><i
+                                                    class="fa fa-download" aria-hidden="true"></i></a>
                                         @endif
                                         @if ($file[1] == 'docx')
                                             <img src="{{ asset('public/assets/images/wordicon.png') }}" width="70px">
                                         @elseif ($file[1] == 'pdf')
                                             <img src="{{ asset('public/assets/images/pdficon.png') }}" width="70px">
                                         @elseif ($file[1] == 'xlsx')
-                                            <img src="{{ asset('public/assets/images/excelicon.png') }}" width="70px">
+                                            <img src="{{ asset('public/assets/images/excelicon.png') }}"
+                                                width="70px">
                                         @elseif ($file[1] == 'pptx')
                                             <img src="{{ asset('public/assets/images/ppicon.png') }}" width="70px">
                                         @else
