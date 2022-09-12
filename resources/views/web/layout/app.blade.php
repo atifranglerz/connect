@@ -58,7 +58,7 @@
                             <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('car_service') }}">{{ __('msg.Garages & Services')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('used_cars') }}">{{ __('msg.Used Cars For Sale')}}</a>
+                            <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('used_cars') }}">{{ __('msg.Pre-Owned Cars For Sale')}}</a>
                         </li>
                         @if (Auth::guard('web')->check())
                             <li class="nav-item">

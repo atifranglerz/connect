@@ -5,7 +5,7 @@ return [
     'Register Your Garage' => 'Register Your Garage',
     'Login' => 'Login',
     'Logout' => 'Logout',
-    'Used Cars For Sale' => 'Used Cars For Sale',
+    'Pre-Owned Cars For Sale' => 'Pre-Owned Cars For Sale',
     'Request A Quote' => 'Request A Quote',
     'Profile' => 'Profile',
     'update_your_business_profile' => 'UPDATE YOUR BUSINESS PROFILE',
@@ -34,7 +34,7 @@ return [
     'LOOKING FOR' => 'LOOKING FOR',
     'Get Expert Car Service Providers To Get Your Car Repaired' => 'Get Expert Car Service Providers To Get Your Car Repaired',
     'VIEW ALL' => 'VIEW ALL',
-    'Find Used Cars For Sale Around You' => 'Find Used Cars For Sale Around You',
+    'Find Pre-Owned Cars For Sale Around You' => 'Find Pre-Owned Cars For Sale Around You',
     'TOP RATED VENDORS' => 'TOP RATED VENDORS',
     'project description' => 'Exclusively through Rapairmycar™ you can book a service at an official main dealer, for less than booking direct. Main dealers offer premium quality, and we want to help every driver experience this, no matter what car you drive. We work with many of the leading UAE Garages, offering drivers exclusive deals on their unsold workshop slots. This way, your car gets the quality of care it deserves and you get the best deal on your service. What’s more, you can get Quotes from the many authorize vendors. That’s why Rapairmycar™ is the perfect solution, for both dealers and drivers. Main dealerships are happy to work on cars of all ages, not just those in warranty - contrary to popular belief. Moreover once you get the quotes and finalized the your service provider you can share your Bills with your Insurance Company as well. From the Use Car For Sale Section you can buy Your Dream Car or you can up your Car for Sale.',
     'ALL SERVICES' => 'ALL SERVICES',
@@ -60,7 +60,7 @@ return [
     'Km' => 'Km',
     'CONTACT VIA MESSAGE' => 'CONTACT VIA MESSAGE',
     'CAR FOR SALE' => 'CAR FOR SALE',
-    'Search For Used Cars' => 'Search For Used Cars',
+    'Search For Pre-Owned Cars' => 'Search For Pre-Owned Cars',
     'Search For Your Next Car' => 'Search For Your Next Car',
     'Top Searches' => 'Top Searches',
     'Model' => 'Model',
@@ -75,7 +75,7 @@ return [
     'Select Country' => 'Select Country',
     'United Arab Emirates' => 'United Arab Emirates',
     'Select City' => 'Select City',
-    'Oops... Sorry, no used cars found!' => 'Oops... Sorry, no used cars found!',
+    'Oops... Sorry, no pre-owned cars found!' => 'Oops... Sorry, no pre-owned cars found!',
     'Find Some Popular Service Providers Based On Their Quality' => 'Find Some Popular Service Providers Based On Their Quality',
     'Oops... Sorry, no garages found!' => 'Oops... Sorry, no garages found!',
     'OPENING HOURS' => 'OPENING HOURS',
@@ -355,7 +355,7 @@ return [
     'Upload Cheque image' => 'Upload Cheque image',
     'Click the box to upload' => 'Click the box to upload',
     'Pay Through Cheque' => 'PAY THROUGH CHEQUE',
-    
+
 
 
     ]

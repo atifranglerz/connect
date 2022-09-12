@@ -114,8 +114,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
-                    <h4 class="sec_main_heading text-center">{{ __('msg.Used Cars For Sale')}}</h4>
-                    <p class="sec_main_para text-center">{{__('msg.Find Used Cars For Sale Around You')}}</p>
+                    <h4 class="sec_main_heading text-center">{{ __('msg.Pre-Owned Cars For Sale')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.Find Pre-Owned Cars For Sale Around You')}}</p>
 
                 </div>
             </div>
@@ -163,7 +163,7 @@
                 <div class="main_content_wraper about_connect_wraper">
                     <h4 class="sec_main_heading about_connect_heading mb-4">{{__('msg.Repair my Car')}}</h4>
                     <p class="about_connect_txt">{{__('msg.project description')}}</p>
-                    
+
                 </div>
             </div>
             <!-- <div class="col-lg-6">

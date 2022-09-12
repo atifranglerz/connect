@@ -513,7 +513,7 @@ nav{
     margin-top: 30px;
 }
 section.looking_for {
-    margin: 40px 0;
+    margin: 24px 0;
 }
 .view_all_btn_wrapper>.view_all_btn{
     font-size: var(--fs-16);
@@ -708,9 +708,6 @@ section.looking_for {
     text-shadow: 0 3px 6px #00000035;
 }
 /*................................... 2nd pages  garages........................................ */
-.looking_for.garages{
-    padding: 40px 0 54px 0 !important;
-}
 /*......................................3rd page all garages...................................*/
 .sec_main_para.allgarages{
     max-width: 510px;

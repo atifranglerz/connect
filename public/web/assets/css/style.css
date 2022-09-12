@@ -260,7 +260,7 @@ color: var(--black);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
 }
 .banner_btn__sub_wraper>img{
     width: 48px;
@@ -349,7 +349,7 @@ color: var(--black);
     border-radius: 25px;
     position: relative;
     overflow: hidden;
-    
+
 }
 .img_wraper>img{
     width: 100%;
@@ -399,7 +399,7 @@ color: var(--black);
     left: 0;
     color: var(--white);
     border:2px solid var(--orange);
-    border-radius: 4px; 
+    border-radius: 4px;
 }
 .view_all_btn_wrapper>.view_all_btn:hover{
     color: var(--white);
@@ -437,7 +437,7 @@ color: var(--black);
 }
 .card-title.date{
     font-size: var(--fs-12);
-    
+
 }
 .car_img_wrapper{
     width: 100%;
@@ -532,9 +532,6 @@ color: var(--black);
     margin-bottom: 5px;
 }
 /*................................... 2nd pages  garages........................................ */
-.looking_for.garages{
-    padding: 40px 0 54px 0 !important;
-}
 /*......................................3rd page all garages...................................*/
 .sec_main_para.allgarages{
     max-width: 510px;
@@ -864,7 +861,7 @@ width: 17px;
     background-color: var(--white);
     border-radius: 20px;
     z-index: -1;
-    
+
 }
 .slick-dots li button {
     width: 17px;
@@ -891,7 +888,7 @@ width: 17px;
     color: var(--orange);
 }
 .slick-dotted.slick-slider {
-     margin-bottom: unset !important; 
+     margin-bottom: unset !important;
 }
 .slick-dots {
     bottom: 25px !important;
@@ -1154,7 +1151,7 @@ footer{
 }
 .footer_link>h1.footer_contact_heading {
     margin-top: 20px;
-    
+
 }
 
 /*..............................image uploader css........................................>*/
