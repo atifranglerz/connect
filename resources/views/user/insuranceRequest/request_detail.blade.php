@@ -326,7 +326,7 @@
                                         </div>
                                     @else
                                         <a target="_blank" class="btn-secondary get_appointment"
-                                            href="{{ url('company/print-order-details', $data->id) }}">Preview</a>
+                                            href="{{ url('user/print-order-detail', $data->id) }}">Preview</a>
                                     @endif
                                 </div>
                             </div>

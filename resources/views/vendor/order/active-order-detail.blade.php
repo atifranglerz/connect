@@ -61,15 +61,15 @@
                             <div class="quote_detail_btn_wraper">
                                 <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
                                     <div class="pay_via_insurance_header_garages">
-                                        @if ($order->paid_by == 'company')
+                                        @if ($order->paid_by == 'insurance')
                                             @if ($insurancestatus->status == 0)
                                                 <p>{{ __('msg.Payment Is Pending') }}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
                                                 <p>{{ __('msg.Paid via Insurance') }}</p>
                                             @endif
-                                        @elseif ($order->paid_by == 'insurance')
-                                            <p>{{ __('msg.Paid via Insurance') }}</p>
+                                        @elseif ($order->paid_by == 'company')
+                                            <p>{{ __('msg.Order By Company') }}</p>
                                         @else
                                             <p>{{ __('msg.Paid By Customer') }}</p>
                                         @endif
@@ -85,11 +85,11 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class="quotereplies">{{ __('msg.Total') }}: {{ $order->total }}
                                         {{ __('msg.AED') }}</h5>
-                                    @if ($order->status != 'complete' && $order->paid_by != 'company')
+                                    @if ($order->status != 'complete' && $order->paid_by != 'insurance')
                                         <h5 class="quotereplies">{{ __('msg.Advance') }}: {{ $order->advance }}
                                             {{ __('msg.AED') }}</h5>
                                     @endif
-                                    @if ($order->status != 'complete' && $order->paid_by == 'company' && $insurancestatus->status == 1)
+                                    @if ($order->status != 'complete' && $order->paid_by == 'insurance' && $insurancestatus->status == 1)
                                         <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->total }}
                                             {{ __('msg.AED') }}</h5>
                                     @endif
@@ -280,7 +280,7 @@
                                 <input type="hidden" name="order_id" value="{{ $order->id }}">
                                 <input type="hidden" name="order_no" value="{{ $order->order_code }}">
                                 <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                @if ($order->paid_by == 'company' && $insurancestatus->status == 0)
+                                @if ($order->paid_by == 'insurance' && $insurancestatus->status == 0)
                                     <button
                                         class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
                                         type="submit" style="font-size: 14px;border-radius: 6px"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>

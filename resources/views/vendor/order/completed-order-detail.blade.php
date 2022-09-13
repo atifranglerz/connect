@@ -61,14 +61,14 @@
                             <div class="quote_detail_btn_wraper">
                                 <div class="d-flex align-items-center chat_view__detail allreplies ">
                                     <div class="pay_via_insurance_header_garages">
-                                        @if ($order->paid_by == 'company')
+                                        @if ($order->paid_by == 'insurance')
                                             @if ($insurancestatus->status == 0)
                                                 <p>{{ __('msg.Payment Is Pending') }}</p>
                                             @endif
                                             @if ($insurancestatus->status == 1)
                                                 <p>{{ __('msg.Paid via Insurance') }}</p>
                                             @endif
-                                        @elseif ($order->paid_by == 'insurance')
+                                        @elseif ($order->paid_by == 'company')
                                             <p>{{ __('msg.Paid via Insurance') }}</p>
                                         @else
                                             <p>{{ __('msg.Paid By Customer') }}</p>

@@ -23,14 +23,6 @@ class CreateOrdersTable extends Migration
             $table->string('customer_address')->nullable();
             $table->string('customer_postal_code')->nullable();
             $table->string('customer_city')->nullable();
-            $table->string('card_number')->nullable();
-            $table->string('cardholder_name')->nullable();
-            $table->string('expiry_date')->nullable();
-            $table->string('cvv')->nullable();
-            $table->integer('transaction_id')->nullable();
-            $table->string('payment_type')->nullable();
-            //$table->integer('tax_id')->nullable();
-            //$table->integer('subtotal')->default(0);
             $table->integer('total')->default(0);
             $table->integer('advance')->default(0);
             $table->enum('status',['pending','complete','cancelled']);

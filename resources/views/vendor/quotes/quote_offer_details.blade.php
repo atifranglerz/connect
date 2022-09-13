@@ -36,7 +36,7 @@
                         <table class="table table-bordered table-striped table-dark mb-0">
                             <thead>
                                 <tr>
-                                    <th>R{{__('msg.Registration No.')}}</th>
+                                    <th>{{__('msg.Registration No.')}}</th>
                                     <td>{{$data->userBid->registration_no}}</td>
                                     <th>{{__('msg.Total Mileage')}}</th>
                                     <td>{{$data->userBid->mileage}}</td>

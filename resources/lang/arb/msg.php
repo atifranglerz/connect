@@ -348,6 +348,7 @@ return [
     'withdrawn' => 'منسحب',
     'Go To Withdraw' => 'اذهب إلى الانسحاب',
     'payment' => 'دفع',
+    'Order By Company' => 'اطلب حسب الشركة',
     'PAY THROUGH CREDIT' => 'الدفع من خلال الائتمان',
     'Deduction' => 'المستقطع',
     'Received' => 'تلقى',

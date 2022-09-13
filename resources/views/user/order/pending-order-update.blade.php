@@ -40,10 +40,10 @@
                                     @endforeach
                                 </div>
                             </div>
-                            @if ($order->paid_by == 'company')
+                            @if ($order->paid_by == 'insurance')
                                 <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
                                     <div class="pay_via_insurance_header_garages">
-                                        @if ($order->paid_by == 'company')
+                                        @if ($order->paid_by == 'insurance')
                                             @if ($insurancestatus->status == 0)
                                                 <p>{{ __('msg.Payment Is Pending') }}</p>
                                             @endif
@@ -61,11 +61,11 @@
                                 </div>
                                 <h5 class=" text-sm-center">{{ __('msg.Total') }}: {{ $order->total }} {{ __('msg.AED') }}
                                 </h5>
-                                @if ($order->status != 'complete' && $order->paid_by != 'company')
+                                @if ($order->status != 'complete' && $order->paid_by != 'insurance')
                                     <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->advance }}
                                         {{ __('msg.AED') }}</h5>
                                 @endif
-                                @if ($order->status != 'complete' && ($order->paid_by == 'company' && $insurancestatus->status == 1))
+                                @if ($order->status != 'complete' && ($order->paid_by == 'insurance' && $insurancestatus->status == 1))
                                     <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->total }}
                                         {{ __('msg.AED') }}</h5>
                                 @endif
@@ -204,13 +204,13 @@
                                     class="btn btn-secondary block get_appointment">{{ __('msg.INVOICE') }}</a>
                             </div>
                             <div class="d-grid gap-2 mt-lg-3 ">
-                                @if ($order->paid_by == 'company')
+                                @if ($order->paid_by == 'insurance')
                                     <form enctype="multipart/form-data" method="post"
                                         action="{{ route('user.order.complete') }}" class="needs-validation" novalidate>
                                         @csrf
                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
                                         <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
-                                        @if ($order->paid_by == 'company')
+                                        @if ($order->paid_by == 'insurance')
                                             @if ($insurancestatus->status == 0)
                                                 <button class="btn btn-secondary block get_appointment disabled"
                                                     type="submt">{{ __('msg.CONFIRM TO COMPLETE') }}</button>

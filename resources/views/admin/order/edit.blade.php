@@ -66,7 +66,7 @@
                                             </div>
                                             <div class="col-md-3  col-lg-3 col-sm-3">
                                                 <h6>Address:</h6>
-                                                <span>{{ $order->userbid->user->address }}</span>
+                                                <span>{{ $order->customer_address }}</span>
                                             </div>
                                             <div class="col-md-3 d-flex  col-lg-3 col-sm-3" id="status">
                                                 <h6 class="dark-pink">Order Status</h6>
@@ -94,11 +94,11 @@
                                                 {{-- <h4 class="dark-pink" style="font-weight: bold">Subtotal: {{$order->subtotal}}</h4> --}}
                                                 {{-- <h4 class="dark-pink">Tax: {{$order->tax}}</h4> --}}
                                                
-                                                @if ($order->status != 'complete' && ($order->paid_by == 'company' && $insurancestatus->status == 1))
+                                                @if ($order->status != 'complete' && ($order->paid_by == 'insurance' && $insurancestatus->status == 1))
                                                 <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
                                                     {{ $order->total }}</h6>
                                                 @endif
-                                                @if ($order->status != 'complete' && $order->paid_by != 'company')
+                                                @if ($order->status != 'complete' && $order->paid_by != 'insurance')
                                                 <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
                                                     {{ $order->advance }}</h6>
                                                 @endif
@@ -116,7 +116,7 @@
                                             @endphp
                                             <div class="col-md-4 col-lg-4 col-sm-4">
                                                 @foreach ($images as $image) 
-                                                <a href="{{ url($image) }}">
+                                                <a target="_blank" href="{{ url($image) }}">
                                                 <img alt="image" src="{{ asset($image) }}"
                                                     class="header-logo" style="width: 100px" />
                                                     @endforeach

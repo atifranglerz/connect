@@ -51,9 +51,8 @@ class PaymentController extends Controller
         return view('user.payment.payment', compact('page_title', 'vendorbid', 'type'));
     }
 
-    public function payment_info(Request $request)
+    public function orderPlace(Request $request)
     {
-
         $amount = explode(" ", $request->amount);
 
         if ($request->type == "order") {
@@ -117,16 +116,14 @@ class PaymentController extends Controller
         } else {
             $amount = explode(" ", $request->amount);
             // get payment
-            if ($request->action == "through_credit") {
 
-                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-                // Stripe\Charge::create([
-                //     "amount" => $amount[0] * 100,
-                //     "currency" => "aed",
-                //     "source" => $request->stripeToken,
-                //     "description" => "payment from " . $request->name,
-                // ]);
-            }
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // Stripe\Charge::create([
+            //     "amount" => $amount[0] * 100,
+            //     "currency" => "aed",
+            //     "source" => $request->stripeToken,
+            //     "description" => "payment from " . $request->name,
+            // ]);
 
             $order = new Order();
             $order_no = mt_rand('1000', '100000');
@@ -136,32 +133,12 @@ class PaymentController extends Controller
             $order->garage_id = $request->garage_id;
             $order->total = $request->net_total;
             $order->advance = $amount[0];
-            $order->customer_name = $request->customer_name;
-            $order->customer_address = $request->customer_address;
-            $order->customer_postal_code = $request->customer_postal_code;
-            $order->customer_city = $request->customer_city;
-            $order->card_number = $request->card_number;
-            $order->cardholder_name = $request->cardholder_name;
-            $order->expiry_date = $request->expiry_date;
-            $order->cvv = $request->cvv;
-            $order->transaction_id = $request->transaction_id;
-            $order->payment_type = $request->payment_type;
+            $order->customer_name = Auth::user()->name;
+            $order->customer_address = Auth::user()->address;
+            $order->customer_postal_code = Auth::user()->post_box;
+            $order->customer_city = Auth::user()->city;
+            $order->paid_by = "customer";
 
-            if (Auth::user()->type == "user") {
-                $order->paid_by = "customer";
-            } else {
-                $order->paid_by = "insurance";
-            }
-            if ($request->action == "through_cheque") {
-                $request->validate([
-                    'cheque_image' => 'required',
-                ]);
-                if ($request->file('cheque_image')) {
-                    $name = time() . '.' . $request->file('cheque_image')->getClientOriginalExtension();
-                    $name = $request->file('cheque_image')->move('public/image/profile/', $name);
-                    $order['cheque_image'] = $name;
-                }
-            }
             $order->save();
 
             //after order confirm update quote status
@@ -214,7 +191,74 @@ class PaymentController extends Controller
 
     }
 
-    public function payment_insurance($id)
+    public function orderPlaceByCompany(Request $request)
+    {
+        $order = new Order();
+        $order_no = mt_rand('1000', '100000');
+        $order->order_code = $order_no;
+        $order->user_bid_id = $request->user_bid_id;
+        $order->vendor_bid_id = $request->vendor_bid_id;
+        $order->garage_id = $request->garage_id;
+        $order->total = $request->net_total;
+        // $order->advance = $amount[0];
+        $order->customer_name = Auth::user()->name;
+        $order->customer_address = Auth::user()->address;
+        $order->customer_postal_code = Auth::user()->post_box;
+        $order->customer_city = Auth::user()->city;
+        $order->paid_by = "company";
+
+        $order->save();
+
+        //after order confirm update quote status
+        $quote = UserBid::find($request->user_bid_id);
+        $quote->offer_status = "ordered";
+        $quote->save();
+
+        // notification content
+        $message['title'] = "Order Placement Completion";
+        $message['order_no'] = $order_no;
+        $message['order_id'] = $order->id;
+        $message['body1'] = "Your ";
+        $message['body2'] = "has been successfully placed. Your selected garage/ service provider will be starting the work soon. To stay updated on the status of your order please sign in to your account or stay tuned as we will communicate to you once the job is completed.";
+        $message['link1'] = url('user/order/summary', $order->id);
+        $message['type'] = "order";
+        $message['email'] = auth()->user()->email;
+        //mail notification to user
+        $Notification = new Notification($message);
+        dispatch($Notification);
+
+        // web  or mail notification to the vendor
+        $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
+        $vendor = Vendor::find($vendorbid->vendordetail->vendor_id);
+
+        $message['title'] = "Order Placement";
+        $message['order_no'] = $order_no;
+        $message['order_id'] = $order->id;
+        $message['body1'] = Auth::user()->name . " placed ";
+        $message['body2'] = "successfully to you.";
+        $message['link1'] = url('vendor/fullfillment', $order->id);
+        $message['type'] = "order";
+        $message['email'] = $vendor->email;
+
+        $gettime = strtotime($vendor->online_status) + 10;
+        $now = strtotime(Carbon::now());
+        if ($now > $gettime) {
+            $Notification = new Notification($message);
+            dispatch($Notification);
+        } else {
+            $notification = new webNotification();
+            $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
+            $notification->title = auth()->user()->name . " accept your quote and place Order #" . $order_no;
+            $notification->links = url('vendor/fullfillment', $order->id);
+            $notification->body = ' ';
+            $notification->save();
+        }
+
+        return redirect()->route('user.order.index')->with($this->data("Your Order palced Successfully", 'success'));
+
+    }
+
+    public function orderPlaceForInsurance($id)
     {
 
         $company = User::with('company')->find(Auth::id());
@@ -242,13 +286,7 @@ class PaymentController extends Controller
         $order->customer_address = Auth::user()->address;
         $order->customer_postal_code = Auth::user()->post_box;
         $order->customer_city = Auth::user()->city;
-        // $order->card_number = $request->card_number;
-        // $order->cardholder_name = $request->cardholder_name;
-        // $order->expiry_date = $request->expiry_date;
-        // $order->cvv = $request->cvv;
-        // $order->transaction_id = $request->transaction_id;
-        // $order->payment_type = $request->payment_type;
-        $order->paid_by = "company";
+        $order->paid_by = "insurance";
         $order->save();
 
         //after order confirm update quote status

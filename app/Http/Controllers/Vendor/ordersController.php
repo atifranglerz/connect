@@ -280,6 +280,7 @@ class ordersController extends Controller
             $q->where('status', '=', '1');
         }])->where('id', '=', $id)->first();
         // $data = VendorBid::where('id', $id)->with('part', 'vendordetail')->first();
+        return view('vendor.quotes.quote_offer_details',compact('data'));
         return view('user.quote.print_order_details', compact('data'));
     }
 

@@ -20,18 +20,14 @@
             $per = $per->percentage;
             $order = \App\Models\Order::where([['user_bid_id', $vendorbid->user_bid_id], ['vendor_bid_id', $vendorbid->id]])->first();
             
-            if ($user->type == 'user') {
-                if (isset($user->company[0]->name) && isset($vendor->company[0])) {
-                    foreach ($vendor->company as $company) {
-                        if ($user->company[0]->name == $company->name) {
-                            $status = 'yes';
-                            break;
-                        } else {
-                            $status = 'no';
-                        }
+            if (isset($user->company[0]->name) && isset($vendor->company[0])) {
+                foreach ($vendor->company as $company) {
+                    if ($user->company[0]->name == $company->name) {
+                        $status = 'yes';
+                        break;
+                    } else {
+                        $status = 'no';
                     }
-                } else {
-                    $status = 'no';
                 }
             } else {
                 $status = 'no';
@@ -138,12 +134,6 @@
                                                 <button class="btn btn-primary btn-lg btn-block"
                                                     type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                             </div>
-                                            @if ($user->type == 'company')
-                                                <div class="col-sm-5 mx-auto center" style="text-align: center">
-                                                    <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
-                                                </div>
-                                            @endif
                                         @else
                                             <div class="col-lg-5 col-sm-5">
                                                 <button class="btn btn-primary btn-lg btn-block"
@@ -168,11 +158,18 @@
                     </form>
                     <div class="mt-5">
                         @if ($type == 'order')
-                            <p style="text-align: center">"You've paid the {{ $per }}% of the total amount {{ $order->total }} in the first
-                                half to make the order in process, right
-                                now we are asking you the to pay the remaining dues to make the order as completed"</p>
+                            @if (Auth::user()->type == 'company')
+                                <p style="text-align: center">"You've paid the 100% of the total amount
+                                    {{ $order->total }} to make the order as completed"</p>
+                            @else
+                                <p style="text-align: center">"You've paid the {{ $per }}% of the total amount
+                                    {{ $order->total }} in the first
+                                    half to make the order in process, right
+                                    now we are asking you the to pay the remaining dues to make the order as completed"</p>
+                            @endif
                         @else
-                            <p style="text-align: center">"Right now you are going to pay {{ $per }}% of the total ammount
+                            <p style="text-align: center">"Right now you are going to pay {{ $per }}% of the
+                                total ammount
                                 {{ $vendorbid->net_total }}, the remaining dues will be asked to
                                 pay when the order get completed, thank you"</p>
                         @endif

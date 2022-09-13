@@ -34,10 +34,10 @@
                                     @endforeach
                                 </div>
                             </div>
-                            @if ($order->paid_by == 'company')
+                            @if ($order->paid_by == 'insurance')
                                 <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
                                     <div class="pay_via_insurance_header_garages">
-                                        @if ($order->paid_by == 'company')
+                                        @if ($order->paid_by == 'insurance')
                                             @if ($insurancestatus->status == 0)
                                                 <p>{{__('msg.Payment Is Pending')}}</p>
                                             @endif
@@ -54,10 +54,10 @@
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
                                 <h5 class=" text-sm-center">{{__('msg.Total')}}: {{ $order->total }} {{__('msg.AED')}}</h5>
-                                @if ($order->status != 'complete' && $order->paid_by != 'company')
+                                @if ($order->status != 'complete' && $order->paid_by != 'insurance')
                                     <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
                                 @endif
-                                @if ($order->status != 'complete' && $order->paid_by == 'company' && $insurancestatus->status == 1)
+                                @if ($order->status != 'complete' && $order->paid_by == 'insurance' && $insurancestatus->status == 1)
                                     <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->total }} {{ __('msg.AED') }}</h5>
                                 @endif
                                 <div class="completed_order_id">

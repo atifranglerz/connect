@@ -13,11 +13,11 @@
                 <div class=" banner_btn_inner_wrapper">
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon1.svg') }}">
-                        <a href="{{route('register')}}" class=" banner_btns">{{__('msg.Sign Up')}}</a>
+                        <a href="{{route('loginpage')}}" class=" banner_btns">{{__('msg.Sign Up')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon2.svg') }}">
-                        <a href="{{route('user.login')}}" class=" banner_btns">{{__('msg.Place an order')}}</a>
+                        <a href="{{url('user/quotecreate')}}" class=" banner_btns">{{__('msg.Place an order')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon3.svg') }}">

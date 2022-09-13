@@ -313,8 +313,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::post('payment_page', 'PaymentController@index')->name('payment_page');
-        Route::post('payment-info', 'PaymentController@payment_info')->name('payment-info');
-        Route::get('payment-insurance/{id}', 'PaymentController@payment_insurance')->name('payment-insurance');
+        Route::post('payment-info', 'PaymentController@orderPlace')->name('payment-info');
+        Route::post('order/place', 'PaymentController@orderPlaceByCompany')->name('order_place');
+        Route::get('payment-insurance/{id}', 'PaymentController@orderPlaceForInsurance')->name('payment-insurance');
         //payment stripe
         Route::get('stripe', 'PaymentController@stripe');
         Route::post('stripe', 'PaymentController@stripePost')->name('stripe.post');
@@ -375,7 +376,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('car/detail/{id}', 'RequestController@carDetail')->name('car-detail');
         Route::get('payments/{id}', 'RequestController@Payment')->name('payments');
         Route::post('pay/payment', 'RequestController@payPayment')->name('pay-payment');
-        Route::get('print-order-details/{id}', 'RequestController@printOrderDetails')->name('print-order-details');
+        Route::get('print-order-detail/{id}', 'RequestController@printOrderDetails')->name('print-order-detail');
 
     });
 });
