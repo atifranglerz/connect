@@ -21,6 +21,8 @@ return [
     'Privicy Policy' => 'سياسة الخصوصية',
     'News' => 'أخبار',
     'FAQ' => 'التعليمات',
+    'Required' => 'مطلوب',
+    'Optional' => 'اختياري',
     'CONTACT US' => 'اتصل بنا',
     'Sign Up' => 'اشتراك',
     'Place An Order' => 'ضع طلبية',

@@ -21,6 +21,8 @@ return [
     'Privicy Policy' => 'Privicy Policy',
     'News' => 'News',
     'FAQ' => 'FAQ',
+    'Required' => 'Required',
+    'Optional' => 'Optional',
     'CONTACT US' => 'CONTACT US',
     'Sign Up' => 'Sign Up',
     'REASON FOR CANCELING' => 'REASON FOR CANCELING',

@@ -342,15 +342,15 @@
                 maxFiles: 1,
             });
             $(".input-images-5>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your Picture </p><input type="file"   size="60" ></label>'
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your Picture ({{__('msg.Optional')}}) </p><input type="file"   size="60" ></label>'
             );
             $('.input-images-6').imageUploader();
             $(".input-images-6>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your ID</p><input type="file" size="60" ></label>'
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your ID ({{__('msg.Required')}})</p><input type="file" size="60" ></label>'
             );
             $('.input-images-7').imageUploader();
             $(".input-images-7>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Upload Your Trade License and ID </p><input type="file" size="60" ></label> '
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="assets/images/fileuploadicon.svg"></div><p class="mb-0">Trade License and ID ({{__('msg.Required')}}) </p><input type="file" size="60" ></label> '
             );
             $('.Upload_final_report').imageUploader({
                 extensions: ['.pdf', '.doc'],
@@ -364,15 +364,15 @@
                 maxFiles: 1,
             });
             $(".input-images-8>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Profile Picture </p><input name="profile_image" type="file" size="60" ></label> '
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Profile Picture ({{__('msg.Optional')}}) </p><input name="profile_image" type="file" size="60" ></label> '
             );
             $('.input-images-9').imageUploader();
             $(".input-images-9>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your ID</p><input name="id_card" type="file" size="60" ></label> '
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your ID ({{__('msg.Required')}})</p><input name="id_card" type="file" size="60" ></label> '
             );
             $('.input-images-10').imageUploader();
             $(".input-images-10>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Your Trade License and ID </p><input name="image_license" type="file" size="60" ></label>'
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Trade License and ID ({{__('msg.Required')}})</p><input name="image_license" type="file" size="60" ></label>'
             );
 
             $(document).on('click', '#menuToggle', function() {

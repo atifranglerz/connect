@@ -33,7 +33,7 @@ class AuthController extends Controller
     public function vendorRegister(Request $request)
     {
         $request->validate([
-            'profile_image' => 'required',
+            // 'profile_image' => 'required',
             "id_card" => 'required',
             'name' => ['required', 'string', 'max:255'],
             'garage_name' => 'required',
