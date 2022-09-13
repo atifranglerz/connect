@@ -17,15 +17,15 @@
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon2.svg') }}">
-                        <a href="{{url('user/quotecreate')}}" class=" banner_btns">{{__('msg.Place an order')}}</a>
+                        <a href="{{url('user/quotecreate')}}" class=" banner_btns">{{__('msg.Place An Order')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon3.svg') }}">
-                        <a href="" class=" banner_btns">{{__('msg.Vendors Realtime quotes')}}</a>
+                        <a class=" banner_btns">{{__('msg.Select Quote')}}</a>
                     </div>
                     <div class=" banner_btn__sub_wraper">
                         <img src="{{ asset('public/assets/images/bannericon4.svg') }}">
-                        <a href="{{route('vendorlist')}}" class=" banner_btns">{{__('msg.Select a Garage/Vendor')}}</a>
+                        <a class=" banner_btns">{{__('msg.Make Payment')}}</a>
                     </div>
                 </div>
                 <div class="divider mt-3 ">
@@ -43,9 +43,8 @@
                     </select>
                     <!-- <input class="typeahead form-control form-control me-lg-5 me-md-5 me-sm-2 mb-2 mb-sm-0 banner_select" type="text" autocomplete="off" placeholder="Input Garage Name" aria-label="Default select example" id="searchKeyword" name="keywords" maxlength="50"> -->
                     <select class="form-select form-control me-lg-2 me-md-2 mb-2 mb-sm-0 me-2 banner_select"
-                        aria-label="Default select example" name="garage" id="selGarFilter">
-                        <option selected disabled value="">{{__("msg.Select Category First")}}</option>
-
+                        aria-label="Default select example" name="garage" id="selGarFilter" disabled>
+                        <option selected disabled value="">{{__("msg.Select a Garage/Vendor")}}</option>
                     </select>
                     <button class="btn  search_btn" type="submit">{{__('msg.SEARCH')}}</button>
                 </form>
@@ -442,12 +441,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+    $(document).on('click', '#selCatFilter', function() {
+        if($(this).val()!==null) {
+            $('#selGarFilter').removeAttr('disabled');
+        }
+    });
 
     $(".category").on("change", function() {
         var val = $("#selCatFilter option:selected").val();
 
         $.ajax({
-            url: '{{URL::to(' / category - garage ')}}',
+            url: '{{URL::to('/category-garage')}}',
             type: 'GET',
             data: {
                 'val': val

@@ -382,9 +382,6 @@ nav{
     height: 10px;
     transform: rotate(45deg) translateX(-50%);
 }
-.banner_btn__sub_wraper>a:hover{
-    transform: scale(1.1);
-}
 .banner_btn_inner_wrapper{
     display: flex;
     align-items: center;

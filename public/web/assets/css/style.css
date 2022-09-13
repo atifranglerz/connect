@@ -291,9 +291,6 @@ color: var(--black);
     height: 10px;
     transform: rotate(45deg) translateX(-50%);
 }
-.banner_btn__sub_wraper>a:hover{
-    transform: scale(1.1);
-}
 .banner_btn_inner_wrapper{
     display: flex;
     align-items: center;
@@ -989,6 +986,7 @@ p.card-text.sing_up_card_txt{
 .btn-secondary{
     background-color: var(--black) !important;
     color: var(--white)!important;
+    min-width: fit-content;
     width: 122px;
     height: 45px;
     display: flex;
