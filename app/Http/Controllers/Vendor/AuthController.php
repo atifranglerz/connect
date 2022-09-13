@@ -61,6 +61,8 @@ class AuthController extends Controller
             $request->file('profile_image')->move('public/image/profile/', $doucments1);
             $file1 = 'public/image/profile/' . $doucments1;
             $vendor->image = $file1;
+        }else{
+            $vendor->image = "public/assets/images/avatar.jpg";
         }
         if ($request->file('id_card')) {
             $doucments2 = hexdec(uniqid()) . '.' . strtolower($request->file('id_card')->getClientOriginalExtension());

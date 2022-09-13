@@ -338,7 +338,9 @@ class HomepageController extends Controller
     }
     public function searchGarage()
     {
-
+        $data['company'] = Company::all();
+        $data['year'] = ModelYear::all();
+        $data['catagary'] = Category::all();
         $data['page_title'] = 'vendor detail';
         $data['garage'] = Garage::find($_GET['garage']);
         $data['services'] = Category::all();

@@ -31,7 +31,7 @@ class AuthController extends Controller
     public function userRegister(Request $request)
     {
         $request->validate([
-            'images' => 'required',
+            // 'images' => 'required',
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'country' => 'required',
@@ -51,6 +51,8 @@ class AuthController extends Controller
                 $name = $image->move('public/image/profile/', $name);
                 $user['image'] = $name;
             }
+        }else{
+            $user['image'] = "public/assets/images/avatar.jpg";
         }
         
         $user->name = $request->name;
@@ -120,7 +122,7 @@ class AuthController extends Controller
     public function companyRegister(Request $request)
     {
         $request->validate([
-          'profile_image' =>'required' ,
+        //   'profile_image' =>'required',
             "id_card" =>'required',
             'name' => ['required', 'string', 'max:255'],
             'company_name'=>'required',
@@ -143,6 +145,9 @@ class AuthController extends Controller
             $request->file('profile_image')->move('public/image/profile/', $doucments2);
             $file2 = 'public/image/profile/' . $doucments2;
             $company->image = $file2;
+        }else{
+            $company->image = "public/assets/images/avatar.jpg";
+
         }
         $company->name = $request->company_name;
         $company->city = $request->city;

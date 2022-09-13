@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-sm-5 mx-auto center" style="text-align: center">
                                     <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
+                                        data-bs-target="#checkAttachModel">{{ __('msg.Pay Through Cheque') }}</a>
 
                                 </div>
                             </div>
@@ -102,7 +102,8 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="checkAttachModel" tabindex="-1" aria-labelledby="checkAttachModelLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -146,63 +147,71 @@
     </section>
 @endsection
 @section('script')
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+        @error('cheque_image')
+            $(function() {
+                $('#checkAttachModel').modal('show');
+            });
+    </script>
+@enderror
 
-    <script type="text/javascript">
-        $(function() {
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
-            var $form = $(".require-validation");
+<script type="text/javascript">
+    $(function() {
 
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('d-none');
+        var $form = $(".require-validation");
 
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('d-none');
-                        e.preventDefault();
-                    }
-                });
+        $('form.require-validation').bind('submit', function(e) {
+            var $form = $(".require-validation"),
+                inputSelector = ['input[type=email]', 'input[type=password]',
+                    'input[type=text]', 'input[type=file]',
+                    'textarea'
+                ].join(', '),
+                $inputs = $form.find('.required').find(inputSelector),
+                $errorMessage = $form.find('div.error'),
+                valid = true;
+            $errorMessage.addClass('d-none');
 
-                if (!$form.data('cc-on-file')) {
+            $('.has-error').removeClass('has-error');
+            $inputs.each(function(i, el) {
+                var $input = $(el);
+                if ($input.val() === '') {
+                    $input.parent().addClass('has-error');
+                    $errorMessage.removeClass('d-none');
                     e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
                 }
-
             });
 
-            function stripeResponseHandler(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('hide')
-                        .find('.alert')
-                        .text(response.error.message);
-                } else {
-                    /* token contains id, last4, and card type */
-                    var token = response['id'];
-
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
-                }
+            if (!$form.data('cc-on-file')) {
+                e.preventDefault();
+                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val()
+                }, stripeResponseHandler);
             }
 
         });
-    </script>
+
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                $('.error')
+                    .removeClass('hide')
+                    .find('.alert')
+                    .text(response.error.message);
+            } else {
+                /* token contains id, last4, and card type */
+                var token = response['id'];
+
+                $form.find('input[type=text]').empty();
+                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                $form.get(0).submit();
+            }
+        }
+
+    });
+</script>
 @endsection

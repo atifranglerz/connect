@@ -25,7 +25,7 @@ class AccountController extends Controller
         $withdraw = WithdrawRequest::where('status', 1)->where('vendor_id', $auth_id)->sum('balance');
         $garage = Garage::where('vendor_id', $auth_id)->first();
         $pending = Order::where("status", "pending")->where("garage_id", $garage->id)->sum('advance');
-        $pending1 = Order::where("status", "pending")->where("garage_id", $garage->id)->Where('paid_by', 'company')->sum('total');
+        $pending1 = Order::where("status", "pending")->where("garage_id", $garage->id)->Where('paid_by', 'insurance')->sum('total');
         $pending = $pending + $pending1;
         return view('vendor.Account.index', compact('request', 'withdraw', 'pending'));
     }

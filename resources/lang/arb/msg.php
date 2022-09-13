@@ -348,6 +348,7 @@ return [
     'FINANCE' => 'المالية',
     'Account' => 'الحساب',
     'Total' => 'المجموع',
+    'Company Legal Name' => 'الاسم القانوني للشركة',
     'Pending Order' => 'طلب معلق',
     'Withdraw Request' => 'طلب سحب',
     'withdrawn' => 'منسحب',

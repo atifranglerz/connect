@@ -130,10 +130,6 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="row">
                                     <div class="col-6" style="padding-right: 4px">
-                                        {{--                                        <select class="form-select" name="billing_area" aria-label="Type of Service">--}}
-                                        {{--                                            <option selected>Area</option>--}}
-                                        {{--                                            <option value="1">2019</option>--}}
-                                        {{--                                        </select>--}}
                                         <input type="text" name="billing_area" value="{{ old('billing_area') }}"  class="form-control" placeholder="{{__('msg.Billing Area')}} ({{__('msg.Required')}})">
                                         @error('billing_area')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -141,10 +137,6 @@
                                     </div>
                                     <div class="col-6" style="padding-left: 4px">
                                         <input type="text"  name="billing_city" value="{{ old('billing_city') }}"  class="form-control" placeholder="{{__('msg.Billing City')}} ({{__('msg.Required')}})">
-                                        {{--                                        <select class="form-select" name="billing_city" aria-label="Type of Service">--}}
-                                        {{--                                            <option selected>City</option>--}}
-                                        {{--                                            <option value="1">2019</option>--}}
-                                        {{--                                        </select>--}}
                                         @error('billing_city')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror

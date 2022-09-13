@@ -68,7 +68,7 @@
                                 <select class="form-select form-control" name="company" aria-label="company">
                                     <option selected disabled value="">{{__('msg.Select Company')}}</option>
                                     @foreach ($company as $data)
-                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                    <option value="{{$data->id}}" @if(old('company')==$data->id) selected @endif>{{$data->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('company')

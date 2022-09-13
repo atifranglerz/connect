@@ -122,7 +122,7 @@
                                         @if ($user->type == 'company')
                                             <div class="col-sm-5 mx-auto center" style="text-align: center">
                                                 <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal">{{ __('msg.Pay Through Cheque') }}</a>
+                                                    data-bs-target="#checkAttachModel">{{ __('msg.Pay Through Cheque') }}</a>
                                             </div>
                                         @endif
                                     </div>
@@ -177,7 +177,7 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="checkAttachModel" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -233,6 +233,13 @@
     </section>
 @endsection
 @section('script')
+<script>
+    @error('cheque_image')
+        $(function() {
+            $('#checkAttachModel').modal('show');
+        });
+        @enderror
+</script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <script type="text/javascript">
