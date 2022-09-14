@@ -91,7 +91,7 @@
                                 <h5 class="mb-0 heading">{{__('msg.Legal Info')}}</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="trading_license" value="{{ old('trading_license') }}" class="form-control"  placeholder="{{__('msg.Trading License No.')}}">
+                                <input type="text" name="trading_license" value="{{ old('trading_license') }}" class="form-control"  placeholder="{{__('msg.Trading License No.')}} (Required)">
                                 @error('trading_license')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -157,6 +157,6 @@
             </div>
         </div>
     </section>
-  
+
 @endsection
 
