@@ -1375,6 +1375,19 @@ label.img_wraper_label>input[type="file"] {
     min-height: 100vh;
 }
 
+.file-title {
+    background: orange;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 1px;
+    padding: 4px 8px;
+    border-radius: 0 0 10px 10px;
+    font-size: 14px;
+    color: #FFF;
+    width: 90%;
+    text-align: center;
+    font-family: Inter,sans-serif!important;
+}
 
 /*footer style*/
 footer{

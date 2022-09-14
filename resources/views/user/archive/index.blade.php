@@ -24,14 +24,14 @@
                                         aria-hidden="true" style="left: 20px;top: 5px;font-size: 14px;cursor: pointer;background: #FFF;padding: 4px"
                                         id="{{ $data->id }}"></span>
                                     <p class="sender-name">{{ __('msg.Sended By:') }} {{ $data->sender_name }}</p>
-                                    <div class="p-2 d-flex justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard"
+                                    <div class="p-2 d-flex flex-column justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard"
                                         style="box-shadow: unset">
+                                        <p class="file-title">Title: {{ $data->file_name }}</p>
                                         <a class="position-absolute filedownload" download="{{ $file_name[2] }}"
                                             id="{{ $data->id }}" href="{{ asset($data->file) }}" title="image"><i
                                                 class="fa fa-download" aria-hidden="true"></i></a>
                                         <img src="{{ asset($data->file) }}">
                                     </div>
-                                    <p class="">filename: {{ $data->file_name }}</p>
                                 </div>
 
                             @endif
@@ -54,8 +54,9 @@
                                         aria-hidden="true" style="left: 20px;top: 5px;font-size: 14px;cursor: pointer;background: #FFF;padding: 4px"
                                         id="{{ $data->id }}"></span>
                                     <p class="sender-name">{{ __('msg.Sended By:') }} {{ $data->sender_name }}</p>
-                                    <div class="p-2 d-flex justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard"
+                                    <div class="p-2 d-flex flex-column justify-content-center align-items-center w-100 carAd_img_wraper doc_img customer_dashboard"
                                         style="box-shadow: unset">
+                                        <p class="file-title">Title: {{ $data->file_name }}</p>
                                         <a class="position-absolute filedownload" download="{{ $file_name[2] }}"
                                             id="{{ $data->id }}" href="{{ asset($data->file) }}" title="image"><i
                                                 class="fa fa-download" aria-hidden="true"></i></a>
@@ -69,8 +70,6 @@
                                             <img src="{{ asset('public/assets/images/ppicon.png') }}" class="file-img">
                                         @endif
                                     </div>
-                                    <p class="">filename: {{ $data->file_name }}</p>
-
                                 </div>
                             @endif
                         @endforeach
