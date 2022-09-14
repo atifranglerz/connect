@@ -1895,18 +1895,23 @@ padding-right: 35px;
 .chat_section{
     margin-left: 220px;
     width: 100%;
-    height:calc( 100vh - 15vh);
-    padding: 0 24px;
+    height:calc( 100vh - 14.1vh);
+    padding: 0;
     background-position: 100% 100%;
     background-repeat: no-repeat;
     background-size: 100%;
 }
+a#chat_toggle {
+    color: #FFF;
+    margin-right: 16px;
+}
 .inbox_contact.top_main{
     border-bottom:unset;
-
+    padding: 10px 16px;
 }
 .chat_top_name{
    border-bottom: 2px solid var(--gray);
+   background: #212529;
 }
 .inbox_contact.top_main>.name_of_contact>p{
     color: var(--orange);
