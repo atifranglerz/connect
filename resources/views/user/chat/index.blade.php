@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 @section('content')
     <section class="main_wraper d-flex"
-        style="background-image:url({{ asset('public/assets/images/repair-my-car-logos/chat_image.jpg') }});background-size: contain">
+        style="background-image: linear-gradient(0deg, rgb(0 0 0 / 30%),  rgb(0 0 0 / 30%)), url({{ asset('public/assets/images/repair-my-car-logos/chat_image.jpg') }});background-size: contain">
         <div class="chat_overlay d-none"></div>
         <div class="side_inbox">
             <div class="side_inbox_search_sec text-center">
@@ -272,7 +272,7 @@
                     $("#exampleModal").modal('hide');
                     $("#" + msg_id).addClass('d-none');
                     $('#file_name').val(' ');
-                    
+
                     toastr.success("file move to archived", 'success');
 
                 }

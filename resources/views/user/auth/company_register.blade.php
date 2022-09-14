@@ -44,7 +44,7 @@
                                 <h5 class="mb-0 heading">{{__('msg.Phone')}}</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="97142110800 ({{__('msg.Required')}})" onkeypress="if(this.value.length==11) return false">
+                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="971421108000 ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div style="position: relative">
-                                    <input type="text" name="billing_address" value="{{ old('address') }}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem">
+                                    <input type="text" name="billing_address" value="{{ old('billing_address') }}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem">
                                     <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
                                 </div>
                                 @error('billing_address')
