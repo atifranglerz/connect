@@ -154,7 +154,7 @@
                             </div>
 
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h5 class="mb-0 heading">{{__('msg.Add Number For Appointment')}}</h5>
+                                <h5 class="mb-0 heading">{{__('msg.Number For Appointment')}}</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="appointment_number" value="{{ old('appointment_number') }}" class="form-control" placeholder="971421108000 ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false">

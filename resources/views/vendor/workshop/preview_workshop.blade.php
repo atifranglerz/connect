@@ -42,8 +42,8 @@
 			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
 				<h4 class="store_addres mb-0">{{$preview_garage->garage_name}}</h4>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
-				<h4 class="store_addres mb-0">{{$preview_garage->city}},UAE</h4>
+			<div class="col-lg-3 col-md-6 col-sm-3 col-6">
+				<h5 class="store_addres">{{ ucfirst($preview_garage->city) }}, {{ ucfirst($preview_garage->country) }}</h5>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-6">
 				<h4 class="store_addres mb-0">{{$preview_garage->phone}}</h4>
@@ -57,18 +57,15 @@
 <section class="py-3">
 	<div class="container-lg container-fluid">
 		<div class="main_row d-flex align-items-center justify-content-between flex-wrap">
-			<div class="stor_add_show_wraper">
+			@foreach($preview_garage->garageCategory as $sevice)
 
-                @foreach($preview_garage->garageCategory as $sevice)
-				<div class="stor_add_show_wraper_innr">
-					<img src="{{asset($sevice->category->icon)}}">
+				<div class="stor_add_show_wraper">
+					<div class="stor_add_show_wraper_innr">
+						<img src="{{asset($sevice->category->icon)}}">
+					</div>
+					<h5 class="mb-0 ms-2 ">{{$sevice->category->name}}</h5>
 				</div>
-
-				<h5 class="mb-0 ms-2 ">{{$sevice->category->name}}</h5>
-			</div>
-            @endforeach
-
-
+			@endforeach
 		</div>
 
 	</div>
@@ -80,11 +77,6 @@
 				<div class="over_view_part">
 					<h5 class=" text-center mb-5">{{__('msg.OVERVIEW')}}</h5>
                     <p>{{$preview_garage->description}}</p>
-{{--					<p>We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.--}}
-{{--					</p>--}}
-{{--					<br>--}}
-{{--					<p> We service domestics and imports of every Suzuki model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote.</p>--}}
-
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-6 col-sm-6">
@@ -156,11 +148,26 @@
 				<div class="over_view_part timing_hours">
 					<h5 class=" text-center mb-5">{{__('msg.reviews')}}</h5>
 					<div class="owl-carousel carousel_se_01_carousel owl-theme">
-						<div class="item">
-							<p class="text-center reviews">{{__('msg.revies_data')}}</p>
-							<p class="testimonail_person_name text-center mb-1">{{__('msg.Hassan Ali')}}</p>
-							<p class="testimonail_person_rating text-center"><span>5.0</span></p>
-						</div>
+						@if (count($user_review) > 0)
+							@foreach ($user_review as $review)
+								<div class="item">
+									<p class="text-center reviews">"{{ $review->review }}"</p>
+									<p class="testimonail_person_name text-center mb-1 reviews">
+										{{ getUserNameById($review->user_id) }}</p>
+									<p class="testimonail_person_rating text-center reviews">
+										<span>{{ $review->rating }}</span>
+									</p>
+								</div>
+							@endforeach
+						@else
+							<div class="item">
+								<p class="text-center reviews">{{ __('msg.revies_data') }}</p>
+								<p class="testimonail_person_name text-center mb-1 reviews">{{ __('msg.Hassan Ali') }}
+								</p>
+								<p class="testimonail_person_rating text-center reviews"><span>5.0</span></p>
+							</div>
+						@endif
+
 					</div>
 				</div>
 				<div class="d-grid gap-2 mt-3">

@@ -75,6 +75,9 @@ $(function() {
     $('.offer-garage-services').select2({
         placeholder: 'Select The Services You Offering (Optional)',
     });
+    $('.garage-services-offer').select2({
+        placeholder: 'Select The Services You Offering (Required)',
+    });
     $('.garage-services').select2({
         placeholder: 'Select Services You Looking For',
     });

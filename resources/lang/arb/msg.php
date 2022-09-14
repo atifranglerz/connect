@@ -148,9 +148,11 @@ return [
     'password' => 'كلمه السر',
     'Confirm Password' => 'تأكيد كلمة المرور',
     'Already have an account?' => 'هل لديك حساب؟',
-    'Add Number For Appointment' => 'إضافة رقم للتعيين',
+    'Number For Appointment' => 'رقم للتعيين',
     'Select City' => 'اختر مدينة',
     'Dubai' => 'دبي',
+    'Your ID' => 'هويتك',
+    'Profile Picture' => 'الصوره الشخصيه',
     'Abu Dhabi' => 'أبو ظبي',
     'Sharjah' => 'الشارقة',
     'Ras Al Khaimah' => 'رأس الخيمة',
@@ -365,7 +367,8 @@ return [
     'Upload Cheque image' => 'تحميل صورة الشيك',
     'Click the box to upload' => 'انقر فوق المربع للتحميل',
     'Pay Through Cheque' => 'الدفع بشيك',
-
+    'garage_overview' => 'نحن نخدم المنازل والواردات من كل طراز سيارة. إذا كانت سيارتك تعاني من مشاكل ، فيرجى إحضارها إلينا للحصول على تشخيص صادق وعرض أسعار جدير بالثقة. نحن ميكانيكيون خبراء وقد بنينا أعمالهم على خدمة عملاء عالية الجودة.',
+    
 
 
     ]

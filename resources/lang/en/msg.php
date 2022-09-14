@@ -146,10 +146,12 @@ return [
     'Telephone No.' => 'Telephone No.',
     'Phone Number' => 'Phone Number',
     'password' => 'Password',
+    'Profile Picture' => 'Profile Picture',
     'Confirm Password' => 'Confirm Password',
     'Already have an account?' => 'Already have an account?',
-    'Add Number For Appointment' => 'Add Number For Appointment',
+    'Number For Appointment' => 'Number For Appointment',
     'Select City' => 'Select City',
+    'Your ID' => 'Your ID',
     'Dubai' => 'Dubai',
     'Abu Dhabi' => 'Abu Dhabi',
     'Sharjah' => 'Sharjah',
@@ -243,6 +245,7 @@ return [
     'ORDER COMPLETED' => 'ORDER COMPLETED',
     'View offer' => 'VIEW OFFER',
     'bids' => 'bids',
+    'Phone Number' => 'Phone Number',
     'Company Legal Name' => 'Company Legal Name',
     'MY OFFERED QUOTE' => 'MY OFFERED QUOTE',
     'See How You Responded To This Request' => 'See How You Responded To This Request',
@@ -350,7 +353,6 @@ return [
     'Withdraw Request' => 'Withdraw Request',
     'withdrawn' => 'withdrawn',
     'Go To Withdraw' => 'Go To Withdraw',
-    'payment' => 'Payment',
     'Order By Company' => 'Order By Company',
     'Deduction' => 'Deduction',
     'Received' => 'Received',
@@ -363,6 +365,7 @@ return [
     'Upload Cheque image' => 'Upload Cheque image',
     'Click the box to upload' => 'Click the box to upload',
     'Pay Through Cheque' => 'PAY THROUGH CHEQUE',
+    'garage_overview' => 'We service domestics and imports of every car model. If your vehicle is having problems, please bring it to us for an honest diagnosis and trustworthy quote. We are expert mechanics and have built their business on high-quality customer service.',
 
 
 
