@@ -74,7 +74,7 @@ class AuthController extends Controller
         if ($user) {
             $user->assignRole($role);
             Mail::to($user_email)->send(new Login($data));
-            return redirect()->route('user.login')->with($this->data("User Register Successfully", 'success'));
+            return redirect()->route('user.login')->with($this->data("You've Registered Successfully as a Customer!", 'success'));
         } else {
             return redirect()->back()->with($this->data("User Register Error", 'error'));
         }
@@ -188,7 +188,7 @@ class AuthController extends Controller
         if ($company) {
             $company->assignRole($role);
             Mail::to($company_email)->send(new Login($data));
-            return redirect()->route('user.companyLogin')->with($this->data("Company Register Successfully", 'success'));
+            return redirect()->route('user.companyLogin')->with($this->data("You've Registered Successfully as an Insurance Company", 'success'));
         } else {
             return redirect()->back()->with($this->data("Company Register Error", 'error'));
         }

@@ -157,8 +157,8 @@
                                 <h5 class="mb-0 heading">{{__('msg.Add Number For Appointment')}}</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="97142110800 ({{__('msg.Required')}})" onkeypress="if(this.value.length==11) return false">
-                                @error('phone')
+                                <input type="text" name="appointment_number" value="{{ old('appointment_number') }}" class="form-control" placeholder="97142110800 ({{__('msg.Required')}})" onkeypress="if(this.value.length==11) return false">
+                                @error('appointment_number')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
