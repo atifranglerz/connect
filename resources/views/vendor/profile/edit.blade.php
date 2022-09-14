@@ -13,24 +13,28 @@
                             enctype="multipart/form-data" class="pt-5">
                             @csrf
                             @method('put')
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h5 class="mb-0 heading-color">{{ __('msg.Profile Picture') }}</h5>
+                            </div>
                             <div class="col-12 mb-3  signup_input_wraper">
-                                {{-- <div class="input-images-5"> --}}
-                                {{-- </div> --}}
                                 <div id="profileImage">
                                 </div>
                             </div>
-
-                            <div class="col-12 mb-3  signup_input_wraper">
-                                {{-- <div class="input-images-6"> --}}
-                                {{-- </div> --}}
-                                <!-- <label class="img_wraper_label">
-                                                  <div class="file_icon_wraper">
-                                                    <img src="assets/images/fileuploadicon.svg">
-                                                  </div>
-                                                  <p class="mb-0">Upload Your ID</p>
-                                                  <input type="file" size="60" >
-                                                </label>  -->
+                            {{-- <div class="col-12 mb-3  signup_input_wraper">
+                                <div class="input-images-9"></div>
+                                @error('id_card')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div> --}}
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h5 class="mb-0 heading-color">{{ __('msg.Your ID') }}</h5>
                             </div>
+                            <div class="col-12 mb-3  signup_input_wraper">
+                                <div id="id_card">
+                                </div>
+                            </div>
+
+                            
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h5 class="mb-0 heading-color">{{ __('msg.Business Info') }}</h5>
                             </div>
@@ -42,17 +46,6 @@
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- <div class="col-12 mb-3 signup_input_wraper"> --}}
-                            {{-- <input type="text"  name="garage_name"class="form-control" id="inputgarageName" placeholder="Garage Legal Name"> --}}
-                            {{-- </div> --}}
-                            {{-- <div class="col-12 mb-3 signup_input_wraper"> --}}
-                            {{-- <select class="form-select" name="typeofservice" aria-label="Type of Service"> --}}
-                            {{-- <option selected>Business Category</option> --}}
-                            {{-- <option value="1">2019</option> --}}
-                            {{-- <option value="2">2020</option> --}}
-                            {{-- <option value="3">2021</option> --}}
-                            {{-- </select> --}}
-                            {{-- </div> --}}
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email" name="email" value="{{ $profile->email }}"class="form-control"
                                     id="inputEmail" placeholder="Email">
@@ -109,37 +102,62 @@
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="col-12 mb-3  signup_input_wraper">
+                                <div id="image_license">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h5 class="mb-0 heading">{{__('msg.Legal Info')}}</h5>
+                            </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" name="phone" value="{{ $profile->phone }}" class="form-control"
-                                    id="inputNumber" placeholder="{{ __('msg.Telephone No.') }}">
-                                @error('phone')
-                                    <div class="text-danger p-2">{{ $message }}</div>
+                                <input type="text" name="trading_license"  value="{{ $profile->trading_license }}" class="form-control"  placeholder="{{__('msg.Trading License No.')}} ({{__('msg.Required')}})">
+                                @error('trading_license')
+                                <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" value="{{ $profile->address }}" name="address" class="form-control"
-                                    placeholder="{{ __('msg.Address') }}">
-                                @error('address')
-                                    <div class="text-danger p-2">{{ $message }}</div>
+                                <input type="text" name="vat"  class="form-control" value="{{ $profile->vat }}" placeholder="{{__('msg.VAT Details')}} ({{__('msg.Required')}})">
+                                @error('vat')
+                                <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h5 class="mb-0 heading-color">Password</h5>
-                            </div> --}}
-                            {{-- <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" name="password" class="form-control" value="" id="inputNumber"
-                                    placeholder="Password">
-                                @error('password')
-                                    <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h5 class="mb-0 heading">{{__('msg.Billing Info')}}</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="password" name="conform_password" class="form-control" id="inputNumber"
-                                    value="" placeholder="Confirm Password">
-                                @error('conform_password')
-                                    <div class="text-danger p-2">{{ $message }}</div>
+                                <div class="row">
+                                    <div class="col-6" style="padding-right: 4px">
+                                        <input type="text" name="billing_area"  value="{{ $profile->billing_area }}" class="form-control" placeholder="{{__('msg.Billing Area')}} ({{__('msg.Required')}})">
+                                        @error('billing_area')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6" style="padding-left: 4px">
+                                        <input type="text"  name="billing_city"  value="{{ $profile->billing_city }}" class="form-control" placeholder="{{__('msg.Billing City')}} ({{__('msg.Required')}})">
+                                        @error('billing_city')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <div style="position: relative">
+                                    <input type="text" name="billing_address"  value="{{ $profile->billing_address }}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem">
+                                    <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
+                                </div>
+                                @error('billing_address')
+                                <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
-                            </div> --}}
+                            </div>
+                            <div class="col-12 mb-3 signup_vendor signup_input_wraper">
+                                <h5 class="mb-0 heading">{{__('msg.Number For Appointment')}}</h5>
+                            </div>
+                            <div class="col-12 mb-3 signup_input_wraper">
+                                <input type="text" name="appointment_number"  value="{{ $profile->appointment_number }}" class="form-control" placeholder="97142110800 ({{__('msg.Required')}})" onkeypress="if(this.value.length==11) return false">
+                                @error('appointment_number')
+                                <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="d-grid gap-2 mt-3 mb-4">
                                     <button class="btn btn-secondary block get_appointment"
@@ -163,6 +181,29 @@
             }, ];
             $('#profileImage').imageUploader({
                 preloaded: preloaded,
+                imagesInputName: 'profile_images',
+                maxFiles: 1,
+            });
+        });
+        $(function() {
+            let preloaded = [{
+                id: 1,
+                src: '{{ asset($profile->id_card) }}'
+            }, ];
+            $('#id_card').imageUploader({
+                preloaded: preloaded,
+                imagesInputName: 'id_card',
+                maxFiles: 1,
+            });
+        });
+        $(function() {
+            let preloaded = [{
+                id: 1,
+                src: '{{ asset($profile->image_license) }}'
+            }, ];
+            $('#image_license').imageUploader({
+                preloaded: preloaded,
+                imagesInputName: 'image_license',
                 maxFiles: 1,
             });
         });

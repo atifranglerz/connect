@@ -60,10 +60,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-3 col-6">
                     <h5 class="store_addres">{{ ucfirst($garage->city) }}, {{ ucfirst($garage->country) }}</h5>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                    @if (Auth::check())
-                        <h5 class="store_addres">{{ $garage->phone }}</h5>
-                    @endif
+                <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                    <h4 class="store_addres mb-0">{{$garage->phone}}</h4>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-3 col-6">
                     <h5 class="store_addres">
@@ -132,8 +130,10 @@
                     <div class="over_view_part">
                         <h5 class=" text-center mb-5 heading-color">{{ __('msg.OVERVIEW') }}</h5>
                         <p>{!! $garage->description !!}</p>
+                        @if (!isset($garage->description))
+                        <p>{{__('msg.garage_overview')}}</p>
+                        @endif
                         <br>
-
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -368,11 +368,7 @@
                     <div class="d-grid gap-2 mt-3">
 
                         @if (Auth::guard('web')->check())
-                            <!-- @if (session()->has('alert-garage-success'))
-    <div class="alert alert-success">
-                                    {{ session()->get('alert-garage-success') }}
-                                </div>
-    @endif -->
+                           
                             @if (session()->has('alert-error'))
                                 <div class="alert alert-danger">
                                     {{ session()->get('alert-error') }}

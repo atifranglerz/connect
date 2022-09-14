@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\vendor;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Country;
 use App\Models\Garage;
+use App\Models\Country;
 use App\Models\Vendor ;
-use App\Models\GarageCategory;
+use App\Models\Category;
+use App\Models\UserReview;
 use App\Models\GarageTiming;
 use Illuminate\Http\Request;
+use App\Models\GarageCategory;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class WorkshopController extends Controller
@@ -240,7 +241,9 @@ class WorkshopController extends Controller
             }
         }
         $preview_garage=Garage::find($garage->id);
-        return view('vendor.workshop.preview_workshop',compact('preview_garage'));
+        $user_review = UserReview::where('garage_id', $preview_garage->id)->get();
+
+        return view('vendor.workshop.preview_workshop',compact('preview_garage','user_review'));
         return $this->message($garage, 'vendor.dashboard', 'workshop Update Successfully', 'workshop not Update Error');
     }
 

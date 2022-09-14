@@ -32,6 +32,7 @@ class AuthController extends Controller
 
     public function vendorRegister(Request $request)
     {
+        // return $request;
         $request->validate([
             // 'profile_image' => 'required',
             "id_card" => 'required',
@@ -43,7 +44,7 @@ class AuthController extends Controller
             'city' => ['required', 'string'],
             'post_box' => 'required',
             // 'company'=>'required',
-            'phone' => 'required|digits:12',
+            // 'phone' => 'required|digits:12',
             'image_license' => 'required',
             'trading_license' => 'required',
             'vat' => 'required',
@@ -80,7 +81,7 @@ class AuthController extends Controller
 
         $vendor->name = $request->name;
         $vendor->email = $request->email;
-        $vendor->phone = $request->phone;
+        $vendor->phone = $request->appointment_number;
         $vendor->password = Hash::make($request->password);
         $vendor->country = $request->country;
         $vendor->city = $request->city;
@@ -91,7 +92,7 @@ class AuthController extends Controller
         $vendor->billing_area = $request->billing_area;
         $vendor->billing_city = $request->billing_city;
         $vendor->billing_address = $request->billing_address;
-        $vendor->garages_catagory = implode(', ', $request->garages_catagary);
+        $vendor->garages_catagory = implode(',', $request->garages_catagary);
         $vendor->trading_license = $request->trading_license;
         $vendor->save();
 
@@ -109,7 +110,7 @@ class AuthController extends Controller
         if ($vendor) {
             $vendor->assignRole($role);
             Mail::to($vendor_email)->send(new Login($data));
-            return redirect()->route('vendor.login')->with($this->data("Vendor Register Successfully", 'success'));
+            return redirect()->route('vendor.login')->with($this->data("You've Registered Successfully as a Vendor!", 'success'));
         } else {
             return redirect()->back()->with($this->data("Vendor Register Error", 'error'));
         }

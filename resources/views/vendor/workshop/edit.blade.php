@@ -45,13 +45,13 @@
                                          aria-labelledby="home-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="garage_name" class="form-control" value="{{$garage->garage_name}}">
+                                                <input type="text" name="garage_name" class="form-control" value="{{$garage->garage_name}}" placeholder="{{ __('msg.Workshop Name') }} ({{__('msg.Required')}})">
                                                 @error('garage_name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="address" class="form-control" value="{{$garage->address}}">
+                                                <input type="text" name="address" class="form-control" value="{{$garage->address}}" placeholder="{{ __('msg.Address') }} ({{__('msg.Required')}})">
                                                 @error('address')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -60,39 +60,49 @@
                                                 <input type="email" name="email" class="form-control" disabled value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="phone" class="form-control" value="{{$garage->phone}}">
+                                                <input type="text" name="phone" class="form-control" value="{{$garage->phone}}" placeholder="{{__('msg.Phone Number') }} ({{__('msg.Required')}})">
                                                 @error('phone')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="country" class="form-control" value="{{$garage->country}}">
+                                                <input type="text" name="country" class="form-control" value="{{$garage->country}}" readonly>
                                                 @error('country')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="city" class="form-control" value="{{$garage->city}}">
+                                                <select class="form-select form-control" name="city" aria-label="City">
+                                                    <option value="Dubai"
+                                                        @if ($garage->city == 'Dubai') selected @endif>
+                                                        {{ __('msg.Dubai') }}</option>
+                                                    <option value="Abu Dhabi"
+                                                        @if ($garage->city == 'Abu Dhabi') selected @endif>
+                                                        {{ __('msg.Abu Dhabi') }}</option>
+                                                    <option value="Sharjah"
+                                                        @if ($garage->city == 'Sharjah') selected @endif>
+                                                        {{ __('msg.Sharjah') }}</option>
+                                                    <option value="Ras Al Khaimah"
+                                                        @if ($garage->city == 'Ras Al Khaimah') selected @endif>
+                                                        {{ __('msg.Ras Al Khaimah') }}</option>
+                                                    <option value="Ajman"
+                                                        @if ($garage->city == 'Ajman') selected @endif>
+                                                        {{ __('msg.Ajman') }}</option>
+                                                </select>
                                                 @error('city')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="number" name="post_box" class="form-control" value="{{$garage->post_box}}">
+                                                <input type="number" name="post_box" class="form-control" value="{{$garage->post_box}}"  placeholder="{{ __('msg.P/O Box') }} ({{__('msg.Required')}})">
                                                 @error('post_box')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
 
-
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
                                                 <select class="form-select form-control offer-garage-services" name="category[]" multiple aria-label="Type of Service">
-{{--                                                    @php--}}
-
-{{--                                                        $selectedcategory=explode(',',$garage->vendor->garages_catagory);--}}
-{{--                                                        $categoryCounter=count($selectedcategory);--}}
-{{--                                                    @endphp--}}
                                                     @foreach($garage->garageCategory as $selectedCaategory)
                                                     @foreach($categories as $data)
                                                         <option value="{{$data->id}}" @if($data->id==$selectedCaategory->category_id) selected @endif>{{$data->name}}</option>
@@ -104,13 +114,13 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="trading_no" class="form-control" value="{{$garage->trading_no}}">
+                                                <input type="text" name="trading_no" class="form-control" value="{{$garage->trading_no}}" placeholder="{{ __('msg.Trading License No.') }} ({{__('msg.Required')}})">
                                                 @error('trading_no')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="vat" class="form-control" value="{{$garage->vat}}">
+                                                <input type="text" name="vat" class="form-control" value="{{$garage->vat}}" placeholder="{{ __('msg.VAT Details') }} ({{__('msg.Required')}})">
                                                 @error('vat')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -149,15 +159,8 @@
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-12 mb-3">
                                                 <div class="workshop-image">
+                                                    {{-- workshop image --}}
                                                 </div>
-                                                <!-- <label class="img_wraper_label">
-                                                  <div class="file_icon_wraper">
-                                                    <img src="assets/images/fileuploadicon.svg">
-                                                  </div>
-                                                  <p class="mb-0">Upload workshop image</p>
-                                                  <input type="file" size="60" >
-                                                </label> -->
-
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-floating">

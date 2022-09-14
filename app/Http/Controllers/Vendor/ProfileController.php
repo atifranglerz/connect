@@ -85,30 +85,50 @@ class ProfileController extends Controller
             'country' => 'required',
             'city' => 'required',
             'postbox' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            // 'password'=>'required',
-            //  'conform_password'=>'required',
+            'appointment_number' => 'required',
+            'billing_address' => 'required',
         ]);
+
         $vendor = Vendor::findOrFail($id);
-        if ($request->file('images')) {
+        if ($request->file('profile_images')) {
             $images = [];
-            foreach ($request->file('images') as $data) {
-                //dd($data);
+            foreach ($request->file('profile_images') as $data) {
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/profile/', $image);
                 $images[] = 'public/image/profile/' . $image;
             }
             $vendor->image = implode(",", $images);
         }
+        if ($request->file('id_card')) {
+            $images = [];
+            foreach ($request->file('id_card') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $vendor->id_card = implode(",", $images);
+        }
+        if ($request->file('image_license')) {
+            $images = [];
+            foreach ($request->file('image_license') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $vendor->image_license = implode(",", $images);
+        }
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->country = $request->country;
         $vendor->post_box = $request->postbox;
-        $vendor->phone = $request->phone;
+        $vendor->phone = $request->appointment_number;
         $vendor->city = $request->city;
-        $vendor->address = $request->address;
-        // $vendor->password = Hash::make($request->password);
+        $vendor->vat = $request->vat;
+        $vendor->billing_area = $request->billing_area;
+        $vendor->billing_city = $request->billing_city;
+        $vendor->billing_address = $request->billing_address;
+        $vendor->trading_license = $request->trading_license;
+        $vendor->appointment_number = $request->appointment_number;
         $vendor->update();
 
         if (isset($request->company)) {
