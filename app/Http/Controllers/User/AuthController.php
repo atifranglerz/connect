@@ -52,7 +52,7 @@ class AuthController extends Controller
                 $user['image'] = $name;
             }
         }else{
-            $user['image'] = "public/assets/images/avatar.jpg";
+            $user['image'] = "public/assets/images/1744022049828589.jpg";
         }
 
         $user->name = $request->name;
@@ -146,7 +146,7 @@ class AuthController extends Controller
             $file2 = 'public/image/profile/' . $doucments2;
             $company->image = $file2;
         }else{
-            $company->image = "public/assets/images/avatar.jpg";
+            $company->image = "public/assets/images/1744022049828589.jpg";
 
         }
         $company->name = $request->company_name;
