@@ -28,13 +28,13 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="{{__('msg.Phone Number')}} ({{__('msg.Required')}})">
+                                <input type="number" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="971421108000 ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="inputEmail" placeholder="{{__('msg.email')}} ({{__('msg.Required')}})">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="inputEmail" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})">
                                 @error('email')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
