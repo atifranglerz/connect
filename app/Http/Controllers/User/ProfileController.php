@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\userCompany;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class profileController extends Controller
@@ -21,46 +22,76 @@ class profileController extends Controller
     public function edit($id)
     {
         //$user = Auth::guard('web')->user();
-        $company = User::where('type','company')->get();
+        $company = User::where('type', 'company')->get();
 
         $page_title = 'User Profile Edit';
         $profile = user::findOrFail($id);
-        return view('user.profile.edit', compact('profile', 'page_title','company'));
+        return view('user.profile.edit', compact('profile', 'page_title', 'company'));
     }
 
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'phone'=>'required',
-            'city' =>'required',
+            'phone' => 'required',
+            'city' => 'required',
             'country' => 'required',
-            'post_box' =>'required',
+            'post_box' => 'required',
         ]);
-        $user =  user::findOrFail($id);
+        $user = user::findOrFail($id);
         if ($request->file('images')) {
             $images = [];
             foreach ($request->file('images') as $data) {
-                //dd($image);
                 $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/profile/', $image);
                 $images[] = 'public/image/profile/' . $image;
             }
             $user->image = implode(",", $images);
         }
-        $user->name = $request->name ;
-        $user->phone = $request->phone ;
-        $user->city = $request->city ;
-        $user->country = $request->country ;
-        $user->post_box = $request->post_box ;
+        if (Auth::user()->type == "company") {
+            $user->name = $request->company_name;
+        } else {
+            $user->name = $request->name;
+        }
+        $user->phone = $request->phone;
+        $user->city = $request->city;
+        $user->country = $request->country;
+        $user->post_box = $request->post_box;
         $user->update();
 
         if (isset($request->company)) {
             $company = DB::table('insurance_user')->where('user_id', Auth::id())->delete();
- 
-                $company = User::find($request->company);
-                $user->company()->attach($company);
+            $company = User::find($request->company);
+            $user->company()->attach($company);
+        }
 
+        if (Auth::user()->type == "company") {
+            $company = userCompany::where('company_id', $user->id)->first();
+            $company->owner_name = $request->name;
+            $company->billing_area = $request->billing_area;
+            $company->billing_city = $request->billing_city;
+            $company->billing_address = $request->billing_address;
+            $company->trading_license = $request->trading_license;
+
+            if ($request->file('id_card')) {
+                $images = [];
+                foreach ($request->file('id_card') as $data) {
+                    $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                    $data->move('public/image/profile/', $image);
+                    $images[] = 'public/image/profile/' . $image;
+                }
+                $company->id_card = implode(",", $images);
+            }
+            if ($request->file('image_license')) {
+                $images = [];
+                foreach ($request->file('image_license') as $data) {
+                    $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                    $data->move('public/image/profile/', $image);
+                    $images[] = 'public/image/profile/' . $image;
+                }
+                $company->image_license = implode(",", $images);
+            }
+            $company->update();
         }
         return $this->message($user, 'user.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
@@ -74,7 +105,7 @@ class profileController extends Controller
         $user = User::findOrFail($id);
         if (Hash::check($request->old_password, $user->password)) {
             $user->fill([
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
             ])->save();
 
             return redirect()->route('profile')->with($this->data("Update Password Successfully", 'success'));
@@ -83,7 +114,4 @@ class profileController extends Controller
         }
     }
 
-
-
-   
 }

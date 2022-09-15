@@ -154,6 +154,7 @@ return [
     'Select City' => 'Select City',
     'Your ID' => 'Your ID',
     'Dubai' => 'Dubai',
+    'update your profile' => 'UPDATE YOUR PROFILE',
     'Abu Dhabi' => 'Abu Dhabi',
     'Sharjah' => 'Sharjah',
     'Ras Al Khaimah' => 'Ras Al Khaimah',

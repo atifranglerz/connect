@@ -20,12 +20,6 @@
                                 <div id="profileImage">
                                 </div>
                             </div>
-                            {{-- <div class="col-12 mb-3  signup_input_wraper">
-                                <div class="input-images-9"></div>
-                                @error('id_card')
-                                <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div> --}}
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h5 class="mb-0 heading-color">{{ __('msg.Your ID') }}</h5>
                             </div>

@@ -152,6 +152,7 @@ return [
     'Number For Appointment' => 'رقم للتعيين',
     'Select City' => 'اختر مدينة',
     'Dubai' => 'دبي',
+    'update your profile' => 'تحديث ملفك الشخصي',
     'Your ID' => 'هويتك',
     'Profile Picture' => 'الصوره الشخصيه',
     'Abu Dhabi' => 'أبو ظبي',
