@@ -16,7 +16,7 @@
                 <div class="col-lg-8 col-md-11  mx-auto">
                     <div class="bid_form_wraper">
                         <div class="row">
-                            <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
+                            <div class="col-lg-8 mx-auto px-5 px-lg-1">
                                 <ul class="nav nav-tabs " id="myTab" role="tablist">
                                     <li class="nav-item nav_item_li vendor_creatworkoshop " role="presentation">
                                         <button class="nav-link active tab_btns" id="home-tab" data-bs-toggle="tab"
@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <input type="text" name="phone" value="{{ $authvendor->phone }}"
-                                                    class="form-control" placeholder="{{__('msg.Phone Number') }} ({{__('msg.Required')}})">
+                                                    class="form-control"  placeholder="971421108000 ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false">
                                                 @error('phone')
                                                     <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -110,7 +110,7 @@
                                                     <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            
+
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
 
@@ -184,14 +184,14 @@
                                             <div class="col-lg-12 mb-3">
                                                 <div class="input-images-4">
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" name="description" placeholder="Add information in details" id="floatingTextarea2"
+                                                    <textarea class="form-control" name="description" placeholder="Add information in details ({{__('msg.Optional')}})" id="floatingTextarea2"
                                                         style="height: 106px"></textarea>
                                                     <label
-                                                        for="floatingTextarea2">{{ __('msg.Add overview in detail') }}</label>
+                                                        for="floatingTextarea2">{{ __('msg.Add overview in detail') }}  ({{__('msg.Optional')}})</label>
                                                     @error('description')
                                                         <div class="text-danger p-2">{{ $message }}</div>
                                                     @enderror
@@ -207,7 +207,7 @@
                                     </div>
                                     <div class="tab-pane fade form-step" id="contact" role="tabpanel"
                                         aria-labelledby="contact-tab">
-
+                                        <h5 class="heading-color text-center mb-4">{{ __('msg.Timings') }} ({{__('msg.Optional')}})</h5>
                                         <div class="row mb-3 align-items-center justify-content-center">
                                             <label for="inputEmail3"
                                                 class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{ __('msg.Monday') }}</label>

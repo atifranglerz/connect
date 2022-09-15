@@ -64,7 +64,7 @@ class WorkshopController extends Controller
             'category' => 'required',
             'trading_no' => 'required',
             'vat' => 'required',
-            'description' => 'required',
+            // 'description' => 'required',
         ]);
         $garage = Garage::where('vendor_id', Auth::id())->first();
         if (empty($garage)) {

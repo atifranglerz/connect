@@ -243,7 +243,7 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    
+
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -300,26 +300,26 @@
             maxFiles:1,
             required: true
         });
-        $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload<b class="small">(Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
+        $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload<b class="small">(Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
 
         $('.input-images').imageUploader({
             extensions: ['.png', '.jpg'],
             maxFiles:5,
         });
-        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Car image <b class="small">(Format: png, jpg only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Car image <b class="small">(Format: png, jpg only)</b></p><input name="car_images[]" type="file" size="60"></label>');
         $('.input-images-2').imageUploader({
             extensions: ['.pdf'],
             mimes: ['application/pdf'],
             maxFiles:1,
         });
-        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><input type="file" name="files" size="60" ></label>   ');
+        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report</p><input type="file" name="files" size="60" ></label>   ');
         $('.input-images-3').imageUploader({
             extensions: ['.png', '.jpg'],
             maxFiles:5,
         });
-        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Add Registration Copy Image <b class="small">(Format: png, jpg only)</b></p><input type="file" name="doucment[]" size="60" ></label>   ');
+        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Add Registration Copy Image <b class="small">(Format: png, jpg only)</b></p><input type="file" name="doucment[]" size="60" ></label>   ');
         $('.image-uploader-edit').imageUploader();
-        $(".image-uploader-edit>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg')}}"></div><p class="mb-0">Upload Your Picture To Update</p><input type="file" name="profile" size="60" ></label>');
+        $(".image-uploader-edit>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your Picture To Update</p><input type="file" name="profile" size="60" ></label>');
         $(document).on('click', '#menuToggle', function () {
             $("#dashboardSidebarRightContent").toggleClass("toggled");
             $("#dashboardSidebar").toggleClass("sidebar-toggle");

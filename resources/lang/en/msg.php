@@ -13,6 +13,7 @@ return [
     'Edit your profile details' => 'Edit your profile details',
     'My Ads Listing' => 'My Ads Listing',
     'Repair my Car' => 'Repair my Car',
+    'Timings' => 'Timings',
     'LINKS' => 'LINKS',
     'CONNECT' => 'CONNECT',
     'Register your business' => 'Register your business',

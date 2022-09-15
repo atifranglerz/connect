@@ -1214,7 +1214,7 @@ label.img_wraper_label>input[type="file"] {
 p.request_quote_heading{
     font-size: var(--fs-12);
     font-weight: var(--fw-700);
-    margin-bottom: 90px !important;
+    margin-bottom: 35px !important;
     margin-top: 30px !important;
 }
 .divider_top_request_quote{
