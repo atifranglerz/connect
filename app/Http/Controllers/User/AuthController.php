@@ -54,7 +54,7 @@ class AuthController extends Controller
         }else{
             $user['image'] = "public/assets/images/avatar.jpg";
         }
-        
+
         $user->name = $request->name;
         $user->city = $request->city;
         $user->email = $request->email;
@@ -103,7 +103,7 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'type' => 'user'])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                return redirect()->route('user.dashboard')->with($this->data("Login Successfully", 'success'));
+                return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
             }
         }
         return redirect()->back()->with($this->data("User Email Or Password Invalid!", 'error'));
@@ -111,14 +111,14 @@ class AuthController extends Controller
     }
 
     // ----------------------------------Insuracne Company Login and Registration------------------------------------------------------
-    
-    
+
+
     public function companyRegisterForm()
     {
         $page_title = 'Company Register';
         return view('user.auth.company_register', compact('page_title'));
     }
-    
+
     public function companyRegister(Request $request)
     {
         $request->validate([
@@ -193,8 +193,8 @@ class AuthController extends Controller
             return redirect()->back()->with($this->data("Company Register Error", 'error'));
         }
     }
-    
-    
+
+
     public function companyLoginForm()
     {
         $page_title = 'Company Login';
@@ -215,7 +215,7 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'type' => 'company'])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                return redirect()->route('user.dashboard')->with($this->data("Login Successfully", 'success'));
+                return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
             }
         }
         return redirect()->back()->with($this->data("Company Email Or Password Invalid!", 'error'));
@@ -224,7 +224,7 @@ class AuthController extends Controller
     }
     // ---------------------------------- End Insuracne Company Login and Registration------------------------------------------------------
 
-   
+
     public function forgetPassword()
     {
         $page_title = 'Forget Password';
@@ -285,7 +285,7 @@ class AuthController extends Controller
             ->update(['password' => Hash::make($request->password)]);
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-       
+
         $user = User::where('email', $token->email)->first();
         if($user->type == "user"){
             return redirect()->route('user.login')->with($this->data("Password Update Successfully", 'success'));
@@ -299,9 +299,9 @@ class AuthController extends Controller
         $type = Auth::user()->type;
         $user = Auth::guard('web')->logout();
         if($type == "user"){
-            return redirect()->route('user.login')->with($this->data("Customer Logout Successfully", 'success'));
+            return redirect()->route('user.login')->with($this->data("You've Logout Successfully", 'success'));
         }else{
-            return redirect()->route('user.companyLogin')->with($this->data(" Company Logout Successfully", 'success'));
+            return redirect()->route('user.companyLogin')->with($this->data(" You've Logout Successfully", 'success'));
         }
 
     }

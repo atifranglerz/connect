@@ -140,7 +140,7 @@ class AuthController extends Controller
                 if (empty($garage)) {
                     return redirect()->route('vendor.workshop.index')->with($this->data("create Workshop first ", 'success'));
                 } else {
-                    return redirect()->route('vendor.dashboard')->with($this->data("Vendor Login Successfully", 'success'));
+                    return redirect()->route('vendor.dashboard')->with($this->data("You've Login Successfully", 'success'));
                 }
             } else {
                 return redirect()->back()->with($this->data("you have not this Role!", 'error'));
@@ -229,7 +229,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('vendor')->logout();
-        return redirect()->route('vendor.login')->with($this->data("Vendor Logout Successfully", "success"));
+        return redirect()->route('vendor.login')->with($this->data("You've Logout Successfully", "success"));
     }
 
     public function profile()
