@@ -96,7 +96,8 @@
 				</div>
 				<div class="d-grid gap-2 mt-3">
 					<button class="btn btn-primary get_appointment" type="button">{{__('msg.GET BOOKING')}}
-						<img src="assets/images/appoinmenticon.svg">
+
+						<img src="{{ asset('public/assets/images/appoinmenticon.svg') }}">
 					</button>
 				</div>
 			</div>
@@ -172,12 +173,12 @@
 				</div>
 				<div class="d-grid gap-2 mt-3">
 					<button class="btn btn-primary get_appointment" type="button">{{__('msg.ADD TO PREFERRED GARAGE')}}
-						<img src="assets/images/hearticoc.svg">
+						<img src="{{ asset('public/vendor/assets/images/hearticoc.svg') }}">
 					</button>
 				</div>
 				<div class="d-grid gap-2 mt-3">
 					<button class="btn btn-primary get_appointment" type="button">{{__('msg.CONTACT VIA MESSAGE')}}
-						<img src="assets/images/messageicon.svg">
+						<img src="{{ asset('public/vendor/assets/images/messageicon.svg') }}">
 					</button>
 				</div>
 			</div>

@@ -124,7 +124,9 @@ class WorkshopController extends Controller
                 }
             }
             $preview_garage=Garage::find($garage->id);
-            return view('vendor.workshop.preview_workshop',compact('preview_garage'));
+            $user_review = UserReview::where('garage_id', $preview_garage->id)->get();
+
+            return view('vendor.workshop.preview_workshop',compact('preview_garage','user_review'));
             return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
         } else {
 
