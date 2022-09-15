@@ -11,14 +11,14 @@
                         <form class="pt-5" action="{{route('vendor.login')}}" method="post" >
                             @csrf
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="inputEmail" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})">
                                 @error('email')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="position-relative d-flex align-items-center">
-                                    <input id="inputPassword" name="password" type="password" class="form-control pass" placeholder="Password">
+                                    <input id="inputPassword" name="password" type="password" class="form-control pass" placeholder="{{__('msg.password')}} ({{__('msg.Required')}})">
                                     <span toggle="#inputPassword" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
                                 </div>
                                 @error('password')

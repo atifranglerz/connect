@@ -12,7 +12,7 @@
                     <form method="POST" action="{{ route('vendor.reset_password') }}" class="pt-5">
                         @csrf
                         <div class="col-12 mb-3 signup_input_wraper">
-                            <input type="email" class="form-control" name="email" id="inputEmail" placeholder=" Enter Your Email">
+                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="inputEmail" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})">
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror

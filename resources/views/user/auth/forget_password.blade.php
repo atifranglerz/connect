@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('user.reset_password') }}" class="needs-validation pt-5" novalidate="">
                         @csrf
                         <div class="col-12 mb-3 signup_input_wraper">
-                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Enter Your Email">
+                            <input type="email" class="form-control" id="inputEmail" name="email" value="{{ old('email') }}" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})">
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
