@@ -52,15 +52,17 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                @include('locale/index')
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
                         <li class="nav-item">
                             <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('car_service') }}">{{ __('msg.Garages & Services')}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-lg-2 px-3 px-md-2" href="{{ route('used_cars') }}">{{ __('msg.Pre-Owned Cars For Sale')}}</a>
                         </li>
-                        @if (Auth::guard('web')->check())
+                        @if (!Auth::guard('vendor')->check())
                             <li class="nav-item">
                                 <a class="nav-link px-lg-2 px-3 px-md-2"
                                     href="@if (auth()->check()) {{ url('user/quotecreate') }}@else{{ url('user/login') }} @endif">{{ __('msg.Request A Quote')}}</a>
@@ -610,6 +612,43 @@
 
         });
     </script>
+        <script>
+            $('#flexSwitchCheckDefault').on('click', function() {
+                if ($(this).prop('checked') == true) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                            'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+                        url: "{{url('language/en')}}",
+                        data: {
+                            'id': 1
+                        },
+                        success: function(response) {
+                            window.location.reload();
+                            // console.log(response);
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                            'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+                        url: "{{url('language/arb')}}",
+                        data: {
+                            'id': 1
+                        },
+                        success: function(response) {
+                             window.location.reload();
+                            // console.log(response);
+                        }
+                    });
+                }
+            });
+        </script>
 </body>
 
 </html>
