@@ -1375,6 +1375,29 @@ label.img_wraper_label>input[type="file"] {
     min-height: 100vh;
 }
 
+.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left],
+.swal2-popup.swal2-toast .swal2-success .swal2-success-fix,
+.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right] {
+    display: none!important;
+}
+.swal2-popup.swal2-toast,
+.swal2-popup.swal2-toast .swal2-title {
+    color: #FFF!important;
+}
+.swal2-icon.swal2-error [class^=swal2-x-mark-line],
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    background-color: #FFF!important;
+}
+.swal2-icon-show {
+    border-color: #FFF!important;
+}
+.swal2-icon-success {
+    background: #51A351!important;
+}
+.swal2-icon-error {
+    background: #BD362F!important;
+}
+
 .file-title {
     background: orange;
     margin-bottom: 0;

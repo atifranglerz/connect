@@ -191,6 +191,22 @@
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -464,7 +480,7 @@
     });
 </script>
 <script>
-       
+
         setInterval(ajaxCall, 1000);
 
         function ajaxCall() {

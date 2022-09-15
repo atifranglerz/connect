@@ -227,6 +227,23 @@
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -284,7 +301,7 @@
             required: true
         });
         $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><img src="{{ asset('public/user/assets/images/fileuploadicon.svg') }}"></div><p class="mb-0">Upload<b class="small">(Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
-        
+
         $('.input-images').imageUploader({
             extensions: ['.png', '.jpg'],
             maxFiles:5,

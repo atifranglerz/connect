@@ -31,6 +31,38 @@
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
     <title>{{__('msg.Repair my Car')}}</title>
+    <style>
+        .form-switch .form-check-input {
+            background-image: url(https://ranglerz.pw/repairmycar/public/user/assets/images/orangesvg.svg);
+        }
+        .form-switch .form-check-input:checked {
+            background-image: url(https://ranglerz.pw/repairmycar/public/user/assets/images/toggler.svg);
+        }
+        .form-switch .form-check-input:focus {
+            background-image: url(https://ranglerz.pw/repairmycar/public/user/assets/images/toggler.svg);
+        }
+        header .form-switch.toggler_switch {
+            padding: 0;
+            position: absolute;
+            right: 8px;
+            top: 4px;
+            font-size: 14px;
+            width: 140px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin: 0!important;
+        }
+        header .lang_toggler>label.english, header .lang_toggler>label.arabi {
+            position: unset;
+        }
+        header .lang_toggler>label {
+            color: unset;
+        }
+        header input#flexSwitchCheckDefault {
+            margin-left: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,7 +84,6 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @include('locale/index')
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
@@ -104,6 +135,7 @@
                         @endif
                     </div>
                 </div>
+                @include('locale/index')
             </div>
         </nav>
     </header>
@@ -155,9 +187,8 @@
                             </a>
                         </div>
                         <h5 class="text-white footer_contact_heading">{{__('msg.CONTACT US')}}</h5>
-                        <p class="footer_address">+92 345 123 4678 </p>
-                        <p class="footer_address">abc@email.com </p>
-                        <p class="footer_address">1- Industrial Area, City</p>
+                        <p class="footer_address">+971 421108000</p>
+                        <p class="footer_address">repairmycar@info.com</p>
                     </div>
                 </div>
             </div>
@@ -199,6 +230,23 @@
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
