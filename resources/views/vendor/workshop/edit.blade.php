@@ -1,6 +1,10 @@
 @extends('vendor.layout.app')
 @section('content')
-
+<style>
+    .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
+        opacity: 0;
+    }
+</style>
     <section class="pb-5 login_content_wraper">
         <div class="container">
             <div class="row">
@@ -164,9 +168,10 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" name="description"
+                                                    <textarea class="form-control" name="description" placeholder="{{__('msg.Add information in details')}} ({{__('msg.Optional')}})"
                                                                id="floatingTextarea2" maxlength="880"
                                                               style="height: 106px">{{$garage->description}}</textarea>
+                                                    <label for="floatingTextarea2">{{ __('msg.Add overview in detail') }}  ({{__('msg.Optional')}})</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -179,8 +184,8 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade form-step" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <h5 class="heading-color text-center mb-4">{{ __('msg.Timings') }} ({{__('msg.Optional')}})</h5>
                                         @foreach($garage->garageTiming as $value)
-
                                             <div class="row mb-3 align-items-center justify-content-center">
                                                 <label for="inputEmail3"
                                                        class="col-lg-2 mb-3 col-md-2 col-sm-3 col-form-label activeDaylabel">{{$value->day}}</label>
@@ -249,6 +254,7 @@
                 preloaded: preloaded,
                 maxFiles:1,
             });
+            $(".workshop-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload workshop image ({{__('msg.Optional')}})</p><input type="file" name="image" name="file" size="60" ></label>');
         });
     </script>
 @endsection

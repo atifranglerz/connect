@@ -145,12 +145,15 @@ nav{
     padding: 12px;
     list-style-type: none;
     width: 280px;
-    height: 155px;
+    max-height: 155px;
     background-color: var(--white);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     overflow-y: scroll;
     position: relative;
+}
+.login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li:last-child {
+    border: none;
 }
 .login_sinup>.accoutntData>.notification_tooltip:after{
     position: absolute;
@@ -1202,8 +1205,8 @@ left: 55%;
     color: var(--orange) !important;
 }
 .form-check-input.wrk_day_chek{
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 10px;
 }
 .preferd_vendors_star {

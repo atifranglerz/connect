@@ -74,13 +74,13 @@
     </section>
     <section class="py-3">
         <div class="container-lg container-fluid">
-            <div class="main_row d-flex align-items-center justify-content-between flex-wrap">
+            <div class="main_row d-flex align-items-center justify-content-between flex-wrap" style="gap: 8px">
 				@foreach($preview_garage->garageCategory as $sevice)
 				<div class="stor_add_show_wraper">
 					<div class="stor_add_show_wraper_innr">
 						<img src="{{asset($sevice->category->icon)}}">
 					</div>
-					<h5 class="mb-0 ms-2 ">{{$sevice->category->name}}</h5>
+					<h6 class="mb-0 ms-2">{{$sevice->category->name}}</h6>
 				</div>
 			@endforeach
             </div>
@@ -355,7 +355,7 @@
                         @else
                             <a href="#" class="w-100 btn btn-primary get_appointment heart">
                                 {{__('msg.PREFERRED GARAGE')}} <img src="{{ asset('public/vendor/assets/images/hearticoc.svg') }}">
-                               
+
                             </a>
                         @endif
                     </div>
@@ -390,7 +390,7 @@
 						<a href="{{url('vendor/garage-finish')}}" class="btn btn-primary btn_anchhor d-block d-flex justify-content-center justify-content-center" >{{__('msg.FINISH GARAGE')}}</a>
 					</div>
 					</div>
-			
+
 				</div>
 			</div>
         </div>
