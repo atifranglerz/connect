@@ -28,6 +28,7 @@ class DashboardController extends Controller
             $overAllRatings = $rating/$totalReviews;
         }
         $order = Order::where('garage_id',$vendor_garage->id)->latest()->first();
+        
         $data['terms'] =  PrivacyPolicy::first();
         $data['policy'] = TermCondition::first();
 

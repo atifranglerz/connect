@@ -337,8 +337,12 @@
                                 </div>
                             </div>
                             <div class="mt-sm-4 mt-3 d-flex justify-content-center">
+                                @if (Auth::guard('vendor')->check())
+                                <a class="btn btn-primary get_appointment heart text-center" onclick="toastr.warning('You can\'t request a quote as a vendor!')">{{__('msg.QUOTE REQUEST')}}</a>
+                                @else
                                 <button class="btn btn-primary get_appointment heart text-center"
                                     type="submit">{{__('msg.QUOTE REQUEST')}}</button>
+                                @endif
                             </div>
                         </form>
                     </div>
@@ -399,7 +403,7 @@
                         @endif
                     </div>
                     <div class="d-grid gap-2 mt-3">
-                        <a href="{{ url('user/chat/' . $garage->vendor_id) }}"
+                        <a  @if (Auth::guard('vendor')->check()) onclick="toastr.warning('You can\'t communicate as a vendor!')" @else href="{{ url('user/chat/' . $garage->vendor_id) }}" @endif
                             class="w-100 btn btn-primary get_appointment heart">{{__('msg.CONTACT VIA MESSAGE')}}
                             <img src="{{ asset('public/vendor/assets/images/messageicon.svg') }}">
                         </a>

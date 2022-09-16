@@ -97,8 +97,8 @@ class HomepageController extends Controller
         $data['page_title'] = 'vendor detail';
         $data['garage'] = Garage::with('vendor')->find($id);
         $data['services'] = Category::all();
-        $data['user_wishlist'] = \App\Models\UserWishlist::where('user_id', auth()->id())->where('garage_id', $data['garage']->id)->first();
-        $data['user_review'] = \App\Models\UserReview::where('garage_id', $data['garage']->id)->get();
+        $data['user_wishlist'] = UserWishlist::where('user_id', auth()->id())->where('garage_id', $data['garage']->id)->first();
+        $data['user_review'] = UserReview::where('garage_id', $data['garage']->id)->get();
         $totalReviews = UserReview::where('garage_id', $data['garage']->id)->count();
         $rating = UserReview::where('garage_id', $data['garage']->id)->sum('rating');
         if ($totalReviews == 0 && $rating == 0) {
@@ -125,7 +125,7 @@ class HomepageController extends Controller
             'model_year_id' => 'required',
             'mileage' => 'required',
             'day' => 'required',
-            'doucment' => 'required',
+            'document' => 'required',
             'car_images' => 'required',
             'email' => 'required',
             'maker_name' => 'required',
@@ -143,7 +143,7 @@ class HomepageController extends Controller
             'model_year_id' => 'required',
             'mileage' => 'required',
             'day' => 'required',
-            'doucment' => 'required',
+            'document' => 'required',
             'car_images' => 'required',
             'email' => 'required',
             'maker_name' => 'required',
@@ -161,11 +161,10 @@ class HomepageController extends Controller
         }
 
         if (User::where('email', $request->email)->doesntExist()) {
-            return redirect()->route('loginpage')->with(['message' => 'Your given email is not Registered! Please inter valid email or Register first', 'alert' => 'error']);
+            return redirect()->back()->with(['message' => 'Your given email is not Registered! Please enter valid email or Register first', 'alert' => 'error']);
         } else {
             $user = User::where('email', $request->email)->first();
             $vendor = Garage::find($request->garage_id);
-
             $quote = new UserBid();
             $quote->user_id = $user->id;
             $quote->model = $request->model;
@@ -212,7 +211,7 @@ class HomepageController extends Controller
                 $registrationfiles->type = 'file';
                 $registrationfiles->save();
             }
-            // this is registration doucment
+            // this is registration document
             $accidentailfile = new UserBidImage();
             if ($request->file('document')) {
                 $files = [];
@@ -250,12 +249,12 @@ class HomepageController extends Controller
     public function addToPrefferedGarage(Request $request)
     {
         // dd($request);
-        $preferredgarageexist = \App\Models\UserWishlist::where('user_id', $request->user_id)->where('garage_id', $request->garage_id)->first();
+        $preferredgarageexist = UserWishlist::where('user_id', $request->user_id)->where('garage_id', $request->garage_id)->first();
         if ($preferredgarageexist) {
             $preferredgarageexist->delete();
             return redirect()->back()->with('alert-garage-success', 'Removed from Preffered Successfully');
         } else {
-            $preferred_garage = new \App\Models\UserWishlist();
+            $preferred_garage = new UserWishlist();
             $preferred_garage->user_id = $request->user_id;
             $preferred_garage->garage_id = $request->garage_id;
             $preferred_garage->save();
@@ -363,8 +362,8 @@ class HomepageController extends Controller
         $data['page_title'] = 'vendor detail';
         $data['garage'] = Garage::find($_GET['garage']);
         $data['services'] = Category::all();
-        $data['user_wishlist'] = \App\Models\UserWishlist::where('user_id', auth()->id())->where('garage_id', $data['garage']->id)->first();
-        $data['user_review'] = \App\Models\UserReview::where('garage_id', $data['garage']->id)->get();
+        $data['user_wishlist'] = UserWishlist::where('user_id', auth()->id())->where('garage_id', $data['garage']->id)->first();
+        $data['user_review'] = UserReview::where('garage_id', $data['garage']->id)->get();
         $totalReviews = UserReview::where('garage_id', $data['garage']->id)->count();
         $rating = UserReview::where('garage_id', $data['garage']->id)->sum('rating');
         if ($totalReviews == 0 && $rating == 0) {

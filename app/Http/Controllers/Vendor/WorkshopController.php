@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Models\Garage;
+use App\Models\Company;
 use App\Models\Country;
 use App\Models\Vendor ;
 use App\Models\Category;
+use App\Models\ModelYear;
 use App\Models\UserReview;
 use App\Models\GarageTiming;
 use Illuminate\Http\Request;
@@ -123,14 +125,20 @@ class WorkshopController extends Controller
                     ]);
                 }
             }
-            $preview_garage=Garage::find($garage->id);
-            $user_review = UserReview::where('garage_id', $preview_garage->id)->get();
+            // $preview_garage=Garage::find($garage->id);
+            // $user_review = UserReview::where('garage_id', $preview_garage->id)->get();
 
-            return view('vendor.workshop.preview_workshop',compact('preview_garage','user_review'));
+            $data['company'] = Company::all();
+            $data['year'] = ModelYear::all();
+            $data['catagary'] = Category::all();
+            $data['preview_garage']=Garage::find($garage->id);
+            $data['user_review'] = UserReview::where('garage_id', $garage->id)->get();
+
+            return view('vendor.workshop.preview_workshop',$data);
             return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
         } else {
 
-            return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'warning'));
+            return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'error'));
         }
 
     }
@@ -242,10 +250,19 @@ class WorkshopController extends Controller
                 ]);
             }
         }
-        $preview_garage=Garage::find($garage->id);
-        $user_review = UserReview::where('garage_id', $preview_garage->id)->get();
-
-        return view('vendor.workshop.preview_workshop',compact('preview_garage','user_review'));
+        $data['company'] = Company::all();
+        $data['year'] = ModelYear::all();
+        $data['catagary'] = Category::all();
+        $data['preview_garage']=Garage::find($garage->id);
+        $data['user_review'] = UserReview::where('garage_id', $garage->id)->get();
+        $totalReviews = UserReview::where('garage_id', $garage->id)->count();
+        $rating = UserReview::where('garage_id', $garage->id)->sum('rating');
+        if ($totalReviews == 0 && $rating == 0) {
+            $data['overAllRatings'] = 0;
+        } else {
+            $data['overAllRatings'] = $rating / $totalReviews;
+        }
+        return view('vendor.workshop.preview_workshop',$data);
         return $this->message($garage, 'vendor.dashboard', 'workshop Update Successfully', 'workshop not Update Error');
     }
 
