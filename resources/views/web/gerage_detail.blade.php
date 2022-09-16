@@ -3,9 +3,9 @@
     <?php $category = \App\Models\GarageCategory::where('garage_id', $garage->id)->pluck('category_id');
     $category_name = \App\Models\Category::whereIn('id', $category)->get();
     $garage = \App\Models\Garage::find($garage->id);
-    
+
     use Illuminate\Support\Facades\Auth;
-    
+
     ?>
     <section class="banner_section">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -26,7 +26,7 @@
                             <img src="{{ asset('public/assets/images/preferdicon.svg') }}">
                         @endif
                     </div>
-                    <img src="{{ asset($garage->image) }}" class="d-block w-100" alt="banner image">
+                    <img @if($value->image) src="{{asset($value->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
                     <div class="carousel-caption d-none d-md-block">
                     </div>
                 </div>
@@ -55,16 +55,16 @@
         <div class="container-lg container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                    <h5 class="store_addres">{{ ucfirst($garage->garage_name) }}</h5>
+                    <h6 class="store_addres">Garage Name: {{ ucfirst($garage->garage_name) }}</h6>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                    <h5 class="store_addres">{{ ucfirst($garage->city) }}, {{ ucfirst($garage->country) }}</h5>
+                    <h6 class="store_addres">Address: {{ ucfirst($garage->city) }}, {{ ucfirst($garage->country) }}</h6>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-                    <h4 class="store_addres mb-0">{{$garage->phone}}</h4>
+                    <h6 class="store_addres mb-0">Phone: {{$garage->phone}}</h6>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-3 col-6">
-                    <h5 class="store_addres">
+                    <h6 class="store_addres">Rating:
                         @if (round($overAllRatings) == '0')
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -103,7 +103,7 @@
                             <i class="fa-solid fa-star" style="color:black;"></i>
                         @endif
                         ({{ round($overAllRatings) }})
-                    </h5>
+                    </h6>
                 </div>
             </div>
         </div>
@@ -125,10 +125,10 @@
     </section>
     <section class=" py-lg-5 py-md-4 py-2">
         <div class="container-lg container-fluid">
-            <div class="row g-4">
+            <div class="row g-4 gx-0">
                 <div class="col-lg-8 col-md-6 col-sm-6">
                     <div class="over_view_part">
-                        <h5 class=" text-center mb-5 heading-color">{{ __('msg.OVERVIEW') }}</h5>
+                        <h5 class=" text-center mb-3 heading-color">{{ __('msg.OVERVIEW') }}</h5>
                         <p>{!! $garage->description !!}</p>
                         @if (!isset($garage->description))
                         <p>{{__('msg.garage_overview')}}</p>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="over_view_part timing_hours">
-                        <h5 class=" text-center mb-5 heading-color">{{ __('msg.OPENING HOURS') }}</h5>
+                        <h5 class=" text-center mb-3 heading-color">{{ __('msg.OPENING HOURS') }}</h5>
                         <?php $g_timing = \App\Models\GarageTiming::where('garage_id', $garage->id)->get(); ?>
                         @foreach ($g_timing as $timing)
                             <div class="timing_container">
@@ -162,21 +162,21 @@
                 </div>
 
             </div>
-            <div class="row g-4 mt-3" style="display:flex">
+            <div class="row g-4 gx-0 mt-3" style="display:flex">
                 <div class="col-lg-8 col-md-6 col-sm-6">
                     <div class="over_view_part">
-                        <h5 class=" text-center mb-5 heading-color">{{__('msg.contact vendor')}}</h5>
+                        <h5 class=" text-center mb-3 heading-color">{{__('msg.contact vendor')}}</h5>
                         @if (session()->has('alert-success'))
                             <div class="alert alert-success">
                                 {{ session()->get('alert-success') }}
                             </div>
                         @endif
-                        <form class="row g-3" method="post" action="{{ route('contact-vendor') }}"
+                        <form class="row gy-3 gx-0" method="post" action="{{ route('contact-vendor') }}"
                             enctype="multipart/form-data" class="needs-validation" novalidate>
                             @csrf
                             <input type="hidden" name="garage_id" value="{{ $garage->id }}">
-                            <div class="row g-lg-3 g-2">
-                                <div class="col-12">
+                            <div class="row gy-lg-3 gy-2 gx-0">
+                                <div class="col-12 px-2">
                                     <select name="looking_for" class="form-select form-control" id="lookingFor" required>
                                         <option value=""></option>
                                         <option value="I have Inspection Report & Looking for the Quotations"
@@ -186,16 +186,19 @@
                                         <option value="I know about what i'm looking for and requesting for the Quotations"
                                             @if (old('looking_for') == "I know about what i'm looking for and requesting for the Quotations") selected @endif>{{__("msg.I know about what i'm looking for and requesting for the Quotation")}}</option>
                                     </select>
+                                    @error('looking_for')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <input type="text" class="form-control" name="model"
-                                        value="{{ old('model') }}" placeholder="{{__('msg.Model')}}" aria-label="Car Milage"
+                                    value="{{ old('model') }}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage"
                                         required>
                                     @error('model')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <select class="form-select form-control company-name-field" name="company_id"
                                         aria-label="Type of Service" required>
                                         <option value=""></option>
@@ -209,30 +212,30 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <input type="text" class="form-control" value="{{ old('registration_no') }}"
-                                        name="registration_no" placeholder="{{__('msg.Registration No.')}}" aria-label="Car Milage"
+                                        name="registration_no" placeholder="{{__('msg.Registration No.')}} ({{__('msg.Required')}})" aria-label="Car Milage"
                                         required>
                                     @error('registration_no')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <input type="text" class="form-control" value="{{ old('Chasis_no') }}"
-                                        name="Chasis_no" placeholder="{{__('msg.Chasis No.')}}" aria-label="Car Milage" required>
+                                        name="Chasis_no" placeholder="{{__('msg.Chasis No.')}} ({{__('msg.Required')}})" aria-label="Car Milage" required>
                                     @error('Chasis_no')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <input type="text" class="form-control" name="color"
-                                        value="{{ old('color') }}" placeholder="{{__('msg.Color')}}" aria-label="Car Milage"
+                                        value="{{ old('color') }}" placeholder="{{__('msg.Color')}} ({{__('msg.Required')}})" aria-label="Car Milage"
                                         required>
                                     @error('color')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <select class="form-select form-control model-year-field" name="model_year_id"
                                         aria-label="Type of Service" required>
                                         <option value=""></option>
@@ -246,37 +249,37 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <input type="number" class="form-control" name="mileage"
-                                        value="{{ old('mileage') }}" placeholder="{{__('msg.Mileage e.g 40 Km')}}"
+                                        value="{{ old('mileage') }}" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})"
                                         aria-label="Car Milage" required>
                                     @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6 px-2">
                                     <input type="number" class="form-control" name="day"
-                                        value="{{ old('day') }}" placeholder="{{__('msg.Days e.g (7)')}}" aria-label="Day"
+                                        value="{{ old('day') }}" placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Required')}})" aria-label="Day"
                                         required>
                                     @error('day')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-12 services-dropdown-block">
+                                <div class="col-12 px-2 services-dropdown-block">
                                     <select class="form-select form-control garage-services" name="category[]" multiple
                                         aria-label="Type of Service" required>
                                         @foreach ($catagary as $data)
-                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                            <option value="{{ $data->id }}" {{ (collect(old('category'))->contains($data->id)) ? 'selected':'' }}>{{ $data->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 px-2">
                                     <textarea name="description1" placeholder="{{__('msg.Add information in details')}}" class="form-control" rows="5">{{ old('description1') }}</textarea>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 px-2">
                                     <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}} <small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-imagess"></div>
                                     @error('car_images')
@@ -296,35 +299,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-0 g-lg-3 g-2">
-                                <div>
+                            <div class="row mt-0 gy-lg-3 gy-2 gx-0">
+                                <div class="col-12 px-2">
                                     <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-imagess-3"></div>
                                     @error('doucment')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="row g-2">
+                                <div class="row gy-2 gx-0">
 
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-6 col-md-6 px-2">
                                         <input type="text" class="form-control"
                                             @if (isset(auth()->user()->name)) value="{{ auth()->user()->name }}" readonly @endif
-                                            name="maker_name" placeholder="{{__('msg.Name')}}" aria-label="Make" required>
+                                            name="maker_name" placeholder="{{__('msg.Name')}} ({{__('msg.Required')}})" aria-label="Make" required>
                                         @error('maker_name')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-6 col-md-6 px-2">
                                         <input type="email" class="form-control"
                                             @if (isset(auth()->user()->email)) value="{{ auth()->user()->email }}" readonly @endif
-                                            name="email" placeholder="{{__('msg.Email')}}" aria-label="Email" required>
+                                            name="email" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})" aria-label="Email" required>
                                         @error('email')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <input type="text" class="form-control" name="address" value=""
-                                            placeholder="{{__('msg.Address')}}" aria-label="Car Milage" required>
+                                    <div class="col-12 px-2">
+                                        <div style="position: relative">
+                                            <input type="text" name="address" value="{{ old('address') }}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem">
+                                            <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
+                                        </div>
                                         @error('address')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -332,8 +337,8 @@
 
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 mt-3">
-                                <button class="w-100 btn btn-primary get_appointment heart text-center"
+                            <div class="mt-sm-4 mt-3 d-flex justify-content-center">
+                                <button class="btn btn-primary get_appointment heart text-center"
                                     type="submit">{{__('msg.QUOTE REQUEST')}}</button>
                             </div>
                         </form>
@@ -341,7 +346,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 ">
                     <div class="over_view_part timing_hours">
-                        <h5 class="text-center mb-5 heading-color">{{ __('msg.reviews') }}</h5>
+                        <h5 class="text-center mb-3 heading-color">{{ __('msg.reviews') }}</h5>
                         <div class="owl-carousel carousel_se_01_carousel owl-theme">
                             @if (count($user_review) > 0)
                                 @foreach ($user_review as $review)
@@ -368,7 +373,7 @@
                     <div class="d-grid gap-2 mt-3">
 
                         @if (Auth::guard('web')->check())
-                           
+
                             @if (session()->has('alert-error'))
                                 <div class="alert alert-danger">
                                     {{ session()->get('alert-error') }}
@@ -405,8 +410,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="over_view_part timing_hours mape_wraper mt-4">
-                        <h5 class="text-center mb-5 heading-color">{{__()}}</h5>
+                    <div class="over_view_part timing_hours mape_wraper pt-3 mt-4">
+                        <h5 class="text-center mb-3 heading-color">{{__('msg.LOCATION')}}</h5>
                         <div class="responsive-map" id="map1">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889"

@@ -63,10 +63,10 @@ $(function() {
         placeholder: 'Select Your City (Required)',
     });
     $('.company-name-field').select2({
-        placeholder: 'Select Company',
+        placeholder: 'Select Company (Required)',
     });
     $('.model-year-field').select2({
-        placeholder: 'Select Year',
+        placeholder: 'Select Year (Required)',
     });
     /*Multiple select*/
     $('.insurance-company').select2({
@@ -79,7 +79,7 @@ $(function() {
         placeholder: 'Select The Services You Offering (Required)',
     });
     $('.garage-services').select2({
-        placeholder: 'Select Services You Looking For',
+        placeholder: 'Select Services You Looking For (Required)',
     });
     /*global Select2*/
 

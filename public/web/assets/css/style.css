@@ -695,15 +695,6 @@ color: var(--black);
     font-size: var(--fs-18);
     color: var(--darkgray);
 }
-.over_view_part{
-    background-color: var(--paginationbg);
-    border: 1px solid var(--black-mask);
-    padding: 30px 50px;
-    border-radius: 10px;
-}
-.over_view_part.timing_hours{
-    padding: 30px 35px;
-}
 .over_view_part>.heading {
     color: var(--orange);
     position: relative;

@@ -770,15 +770,6 @@ nav{
     font-size: var(--fs-18);
     color: var(--darkgray);
 }
-.over_view_part{
-    background-color: var(--paginationbg);
-    border: 1px solid var(--black-mask);
-    padding: 30px 50px;
-    border-radius: 10px;
-}
-.over_view_part.timing_hours{
-    padding: 30px 35px;
-}
 .over_view_part>.heading {
     color: var(--orange);
     position: relative;
@@ -1164,10 +1155,6 @@ p.card-text.sing_up_card_txt{
 }
 .signup_input_wraper.bidreq{
     padding: unset;
-}
-input.form-control,select.form-select{
-    border-radius: 7px;
-    height: 35px;
 }
 label.img_wraper_label{
     cursor: pointer;

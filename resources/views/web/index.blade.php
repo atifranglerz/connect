@@ -190,9 +190,7 @@
                 <a href="{{route('gerage_detail',$value->id)}}">
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
-                            <img @if($value->image) src="{{$value->image}}" @else
-                            src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car
-                            image">
+                            <img @if (isset($garage->image)) src="{{ asset($garage->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
                         </div>
                         <?php
                             $overAllRatings = 0.0;
