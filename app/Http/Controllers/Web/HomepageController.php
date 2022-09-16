@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Ads;
-use App\Models\Faq;
-use App\Models\News;
-use App\Models\User;
-use App\Models\About;
-use App\Models\Garage;
-use App\Models\Slider;
-use App\Models\Company;
-use App\Models\UserBid;
-use App\Models\Category;
-use App\Models\ModelYear;
-use App\Models\UserReview;
-use App\Models\VendorQuote;
-use App\Models\UserBidImage;
-use App\Models\UserWishlist;
-use Illuminate\Http\Request;
-use App\Models\ContactVendor;
-use App\Models\PrivacyPolicy;
-use App\Models\TermCondition;
-use App\Models\GarageCategory;
-use App\Models\UserBidCategory;
 use App\Http\Controllers\Controller;
+use App\Models\About;
+use App\Models\Ads;
+use App\Models\Category;
+use App\Models\Company;
+use App\Models\ContactVendor;
+use App\Models\Faq;
+use App\Models\Garage;
+use App\Models\GarageCategory;
+use App\Models\ModelYear;
+use App\Models\News;
+use App\Models\PrivacyPolicy;
+use App\Models\Slider;
+use App\Models\TermCondition;
+use App\Models\User;
+use App\Models\UserBid;
+use App\Models\UserBidCategory;
+use App\Models\UserBidImage;
+use App\Models\UserReview;
+use App\Models\UserWishlist;
+use App\Models\VendorQuote;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class HomepageController extends Controller
@@ -111,55 +111,86 @@ class HomepageController extends Controller
 
     public function contactVendor(Request $request)
     {
+        if (isset($request->looking_for)) {
+            if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
+                $request->validate([
+                    'car_images' => 'required',
+                    'looking_for' => 'required',
+                    'model' => 'required',
+                    'company_id' => 'required',
+                    'registration_no' => 'required',
+                    'Chasis_no' => 'required',
+                    'color' => 'required',
+                    'model_year_id' => 'required',
+                    'mileage' => 'required',
+                    'day' => 'required',
+                    'document' => 'required',
+                    'car_images' => 'required',
+                    'email' => 'required',
+                    'maker_name' => 'required',
+                    'address' => 'required',
+                ]);
+            }
+            if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
+                $request->validate([
+                    'files' => 'required',
+                    'category' => 'required',
+                    'car_images' => 'required',
+                    'looking_for' => 'required',
+                    'model' => 'required',
+                    'company_id' => 'required',
+                    'registration_no' => 'required',
+                    'Chasis_no' => 'required',
+                    'color' => 'required',
+                    'model_year_id' => 'required',
+                    'mileage' => 'required',
+                    'day' => 'required',
+                    'document' => 'required',
+                    'car_images' => 'required',
+                    'email' => 'required',
+                    'maker_name' => 'required',
+                    'address' => 'required',
+                ]);
+            }
+            if ($request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
+                $request->validate([
+                    'category' => 'required',
+                    'car_images' => 'required',
+                    'looking_for' => 'required',
+                    'model' => 'required',
+                    'company_id' => 'required',
+                    'registration_no' => 'required',
+                    'Chasis_no' => 'required',
+                    'color' => 'required',
+                    'model_year_id' => 'required',
+                    'mileage' => 'required',
+                    'day' => 'required',
+                    'document' => 'required',
+                    'car_images' => 'required',
+                    'email' => 'required',
+                    'maker_name' => 'required',
+                    'address' => 'required',
+                ]);
+            }
+        } else {
+            $request->validate([
+                'looking_for' => 'required',
+                'model' => 'required',
+                'company_id' => 'required',
+                'registration_no' => 'required',
+                'Chasis_no' => 'required',
+                'color' => 'required',
+                'model_year_id' => 'required',
+                'mileage' => 'required',
+                'day' => 'required',
+                'document' => 'required',
+                'car_images' => 'required',
+                'email' => 'required',
+                'maker_name' => 'required',
+                'address' => 'required',
+            ]);
 
-        if ($request->looking_for != "I don't know the Problem and Requesting for the Inspection") {
-            $request->validate([
-            'category' => 'required',
-            'car_images' => 'required',
-            'looking_for' => 'required',
-            'model' => 'required',
-            'company_id' => 'required',
-            'registration_no' => 'required',
-            'Chasis_no' => 'required',
-            'color' => 'required',
-            'model_year_id' => 'required',
-            'mileage' => 'required',
-            'day' => 'required',
-            'document' => 'required',
-            'car_images' => 'required',
-            'email' => 'required',
-            'maker_name' => 'required',
-            'address' => 'required',
-            ]);
         }
-        $request->validate([
-            'car_images' => 'required',
-            'looking_for' => 'required',
-            'model' => 'required',
-            'company_id' => 'required',
-            'registration_no' => 'required',
-            'Chasis_no' => 'required',
-            'color' => 'required',
-            'model_year_id' => 'required',
-            'mileage' => 'required',
-            'day' => 'required',
-            'document' => 'required',
-            'car_images' => 'required',
-            'email' => 'required',
-            'maker_name' => 'required',
-            'address' => 'required',
-        ]);
-        if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
-            $request->validate([
-                'files' => 'required',
-            ]);
-        }
-        if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations' || $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
-            $request->validate([
-                'category' => 'required',
-            ]);
-        }
-
         if (User::where('email', $request->email)->doesntExist()) {
             return redirect()->back()->with(['message' => 'Your given email is not Registered! Please enter valid email or Register first', 'alert' => 'error']);
         } else {
@@ -391,8 +422,8 @@ class HomepageController extends Controller
     public function faqnews()
     {
         $page_title = 'faq';
-        $data=Faq::all();
-        return view('web.faq', compact('page_title','data'));
+        $data = Faq::all();
+        return view('web.faq', compact('page_title', 'data'));
     }
     public function forget_pass()
     {
