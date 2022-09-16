@@ -430,6 +430,9 @@
             });
         });
         $(document).ready(function () {
+            $('input').change(function() {
+                $('input[accept=".pdf"] + .uploaded').find('img').attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
+            });
             $(".carousel_se_03_carousel").owlCarousel({
                 items: 3,
                 nav: false,
