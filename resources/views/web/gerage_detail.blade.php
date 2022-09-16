@@ -26,7 +26,7 @@
                             <img src="{{ asset('public/assets/images/preferdicon.svg') }}">
                         @endif
                     </div>
-                    <img @if($value->image) src="{{asset($value->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
+                    <img @if (isset($garage->image)) src="{{ asset($garage->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="d-block w-100" alt="banner image">
                     <div class="carousel-caption d-none d-md-block">
                     </div>
                 </div>
@@ -127,13 +127,12 @@
         <div class="container-lg container-fluid">
             <div class="row g-4 gx-0">
                 <div class="col-lg-8 col-md-6 col-sm-6">
-                    <div class="over_view_part">
+                    <div class="over_view_part h-100">
                         <h5 class=" text-center mb-3 heading-color">{{ __('msg.OVERVIEW') }}</h5>
-                        <p>{!! $garage->description !!}</p>
+                        <p class="mb-0">{!! $garage->description !!}</p>
                         @if (!isset($garage->description))
                         <p>{{__('msg.garage_overview')}}</p>
                         @endif
-                        <br>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -277,7 +276,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-lg-12 px-2">
-                                    <textarea name="description1" placeholder="{{__('msg.Add information in details')}}" class="form-control" rows="5">{{ old('description1') }}</textarea>
+                                    <textarea name="description1" placeholder="{{__('msg.Add information in details')}} ({{__('msg.Optional')}})" class="form-control" rows="5">{{ old('description1') }}</textarea>
                                 </div>
                                 <div class="col-lg-12 px-2">
                                     <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}} <small>({{__('msg.Click the box again to upload another')}})</small></b></label>
@@ -303,7 +302,7 @@
                                 <div class="col-12 px-2">
                                     <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-imagess-3"></div>
-                                    @error('doucment')
+                                    @error('document')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -443,7 +442,10 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-        $(document).ready(function() {
+        $(function() {
+            if($('div').hasClass('text-danger')) {
+                toastr.error("Failed! You've to fill the Required Fields");
+            }
             <?php if(session('alert-garage-success'))
                 {
             ?>

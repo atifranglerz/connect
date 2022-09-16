@@ -112,7 +112,26 @@ class HomepageController extends Controller
     public function contactVendor(Request $request)
     {
 
-        // return $request;
+        if ($request->looking_for != "I don't know the Problem and Requesting for the Inspection") {
+            $request->validate([
+            'category' => 'required',
+            'car_images' => 'required',
+            'looking_for' => 'required',
+            'model' => 'required',
+            'company_id' => 'required',
+            'registration_no' => 'required',
+            'Chasis_no' => 'required',
+            'color' => 'required',
+            'model_year_id' => 'required',
+            'mileage' => 'required',
+            'day' => 'required',
+            'doucment' => 'required',
+            'car_images' => 'required',
+            'email' => 'required',
+            'maker_name' => 'required',
+            'address' => 'required',
+            ]);
+        }
         $request->validate([
             'car_images' => 'required',
             'looking_for' => 'required',
@@ -195,9 +214,9 @@ class HomepageController extends Controller
             }
             // this is registration doucment
             $accidentailfile = new UserBidImage();
-            if ($request->file('doucment')) {
+            if ($request->file('document')) {
                 $files = [];
-                foreach ($request->file('doucment') as $data) {
+                foreach ($request->file('document') as $data) {
                     $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                     $data->move('public/image/add/', $doucments);
                     $files[] = 'public/image/add/' . $doucments;

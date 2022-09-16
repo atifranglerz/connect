@@ -165,7 +165,7 @@
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
                                                     <textarea class="form-control" name="description"
-                                                               id="floatingTextarea2"
+                                                               id="floatingTextarea2" maxlength="880"
                                                               style="height: 106px">{{$garage->description}}</textarea>
                                                 </div>
                                             </div>

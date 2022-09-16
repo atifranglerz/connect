@@ -188,7 +188,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" name="description" placeholder="Add information in details ({{__('msg.Optional')}})" id="floatingTextarea2"
+                                                    <textarea class="form-control" name="description" maxlength="880" placeholder="Add information in details ({{__('msg.Optional')}})" id="floatingTextarea2"
                                                         style="height: 106px"></textarea>
                                                     <label
                                                         for="floatingTextarea2">{{ __('msg.Add overview in detail') }}  ({{__('msg.Optional')}})</label>
