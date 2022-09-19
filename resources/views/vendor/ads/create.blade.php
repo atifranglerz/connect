@@ -23,53 +23,32 @@
                             <div class="row g-lg-3 g-2">
                                 <div class="col-lg-6 col-md-6 mb-3">
                                     <div class="input-images"></div>
-                                    <!-- <label class="img_wraper_label">
-                                          <div class="file_icon_wraper">
-                                            <img src="assets/images/fileuploadicon.svg">
-                                          </div>
-                                          <p class="mb-0">Upload Car image</p>
-                                          <input type="file" size="60" >
-                                        </label>-->
                                     @error('car_images')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-3">
-                                    <div class="input-images-3"></div>
-                                    <!-- <label class="img_wraper_label">
-                                          <div class="file_icon_wraper">
-                                            <img src="assets/images/fileuploadicon.svg">
-                                          </div>
-                                          <p class="mb-0">Upload Other Legal Documents</p>
-                                          <input type="file" size="60" >
-                                        </label> -->
-                                    @error('files')
+                                    <div class="input-images-3">
+                                        
+                                    </div>
+                                    @error('document')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}}"
+                                    <input type="text" name="model" value="{{old('model')}}" class="form-control" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})"
                                         aria-label="Model">
                                     @error('model')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                     <span class="text-danger" id="nameError"></span>
                                 </div>
-
-                                {{--                                    <div class="col-lg-6 col-md-6 col-sm-6">--}}
-                                {{--                                        <input type="text" name="company" class="form-control" placeholder="Make" aria-label="Make">--}}
-                                {{--                                        @error('company_id')--}}
-                                {{--                                        <div class="text-danger mt-2">{{ $message }}
-                            </div>--}}
-                            {{--                                        @enderror--}}
-                            {{--                                    </div>--}}
-
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <select class="form-select" name="company_id" aria-label="Type of Service">
-                                    <option value="" selected>{{__('msg.Company')}}</option>
+                                    <option value="" selected disabled>{{__('msg.Company')}} ({{__('msg.Required')}})</option>
                                     @foreach($company as $data)
-                                    <option value="{{$data->id }}">{{$data->company }}</option>
+                                    <option value="{{$data->id }}" {{old('company_id') == $data->id ? 'selected' : ''}}>{{$data->company }}</option>
                                     @endforeach
                                 </select>
                                 @error('company_id')
@@ -80,9 +59,9 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <select class="form-select" name="model_year_id" aria-label="Type of Service">
-                                    <option value="" selected>{{__('msg.Year')}}</option>
+                                    <option value="" selected disabled>{{__('msg.Year')}} ({{__('msg.Required')}})</option>
                                     @foreach($year as $data)
-                                    <option value="{{$data->id }}">{{$data->model_year }}</option>
+                                    <option value="{{$data->id }}" {{old('model_year_id') == $data->id ? 'selected' : ''}}>{{$data->model_year }}</option>
                                     @endforeach
                                 </select>
                                 @error('model_year_id')
@@ -92,7 +71,7 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <input type="number" name="price" class="form-control" placeholder="{{__('msg.Price')}}"
+                                <input type="number" name="price" value="{{old('price')}}" class="form-control" placeholder="{{__('msg.Price')}} ({{__('msg.Required')}})"
                                     aria-label="Price">
                                 @error('price')
                                 <div class="text-danger p-2">{{ $message }}</div>
@@ -100,7 +79,7 @@
                                 <span class="text-danger" id="priceError"></span>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <input type="text" name="color" class="form-control" placeholder="{{{__('msg.Color')}}}"
+                                <input type="text" name="color" value="{{old('color')}}" class="form-control" placeholder="{{{__('msg.Color')}}} ({{__('msg.Required')}})"
                                     aria-label="Color">
                                 @error('color')
                                 <div class="text-danger p-2">{{ $message }}</div>
@@ -108,7 +87,7 @@
                                 <span class="text-danger" id="colorError"></span>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <input type="text" name="engine" class="form-control" placeholder="{{__('msg.Engine')}}"
+                                <input type="text" name="engine" value="{{old('engine')}}" class="form-control" placeholder="{{__('msg.Engine')}} ({{__('msg.Required')}})"
                                     aria-label="Engine">
                                 @error('engine')
                                 <div class="text-danger p-2">{{ $message }}</div>
@@ -116,16 +95,16 @@
                                 <span class="text-danger" id="engineError"></span>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <input type="number" name="phone" class="form-control" placeholder="{{__('msg.Phone Number')}}"
-                                    aria-label="Price">
+                                <input type="number" name="phone" value="{{old('phone')}}" class="form-control" placeholder="{{__('msg.Phone Number')}} ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false"
+                                    aria-label="phone">
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                                 <span class="text-danger" id="phoneError"></span>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <input type="text" name="address" class="form-control" placeholder="{{__('msg.Address')}}"
-                                    aria-label="Price">
+                                <input type="text" name="address" value="{{old('address')}}" class="form-control" placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})"
+                                    aria-label="address">
                                 @error('address')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -142,7 +121,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <select class="form-select form-control" name="city" aria-label="City">
-                                    <option selected disabled value="">{{__('msg.Select City')}}</option>
+                                    <option selected disabled value="">{{__('msg.Select City')}} ({{__('msg.Required')}})</option>
                                     <option value="Dubai" @if(old('city')=='Dubai' ) selected @endif>{{__('msg.Dubai')}}</option>
                                     <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi' ) selected @endif>{{__('msg.Abu Dhabi')}}</option>
                                     <option value="Sharjah" @if(old('city')=='Sharjah' ) selected @endif>{{__('msg.Sharjah')}}
@@ -157,7 +136,7 @@
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <input type="number" name="mileage" class="form-control" placeholder="{{__('msg.mileage')}}"
+                                <input type="number" name="mileage" value="{{old('mileage')}}" class="form-control" placeholder="{{__('msg.mileage')}} ({{__('msg.Required')}})"
                                     aria-label="Price">
                                 @error('mileage')
                                 <div class="text-danger p-2">{{ $message }}</div>
@@ -166,9 +145,9 @@
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" name="description"
-                                        placeholder="Add Repairing Details" id="floatingTextarea2"
-                                        style="height: 100px"></textarea>
+                                    <textarea class="form-control" name="description" 
+                                        placeholder="" id="floatingTextarea2"
+                                        style="height: 100px">{{old('description')}}</textarea>
                                     <label for="floatingTextarea2">{{__('msg.Add information in details')}}</label>
                                 </div>
                                 @error('description')
@@ -190,103 +169,4 @@
     </div>
     </div>
 </section>
-@endsection
-@section('script')
-{{--<script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function () {
-            //alert("abc");
-            $('#upload').on('submit', function (e) {
-                e.preventDefault();
-                let formData = new FormData(this);
-                $.ajax({
-                    type: 'Post',
-                    url: '{{ url('vendor/ads') }}',
-data: formData,
-contentType: false,
-processData: false,
-success: (response) => {
-console.log(response.message);
-const Toast = Swal.mixin({
-toast: true,
-position: 'top-end',
-showConfirmButton: false,
-timer: 1000,
-timerProgressBar: true,
-didOpen: (toast) => {
-toast.addEventListener('mouseenter', Swal.stopTimer)
-toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
-Toast.fire({
-icon: response.status,
-title: response.message,
-});
-window.setTimeout(function(){location.reload()},1000)
-},
-error:function (response) {
-$('#nameError').text(response.responseJSON.errors.model);
-$('#companyError').text(response.responseJSON.errors.company_id);
-$('#model_year_Error').text(response.responseJSON.errors.model_year_id);
-$('#priceError').text(response.responseJSON.errors.price);
-$('#colorError').text(response.responseJSON.errors.color);
-$('#engineError').text(response.responseJSON.errors.engine);
-$('#phoneError').text(response.responseJSON.errors.phone);
-$('#AddressError').text(response.responseJSON.errors.address);
-$('#millageError').text(response.responseJSON.errors.mileage);
-}
-
-});
-});
-});
-$(document).ready(function () {
-//alert("abc");
-$('#upload').on('change', function (e) {
-e.preventDefault();
-let formData = new FormData(this);
-$.ajax({
-type: 'Post',
-url: '{{ url('vendor/ads') }}',
-data: formData,
-contentType: false,
-processData: false,
-success: (response) => {
-console.log(response.message);
-const Toast = Swal.mixin({
-toast: true,
-position: 'top-end',
-showConfirmButton: false,
-timer: 1000,
-timerProgressBar: true,
-didOpen: (toast) => {
-toast.addEventListener('mouseenter', Swal.stopTimer)
-toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
-Toast.fire({
-icon: response.status,
-title: response.message,
-});
-window.setTimeout(function(){location.reload()},1000)
-},
-error:function (response) {
-$('#nameError').text(response.responseJSON.errors.model);
-$('#companyError').text(response.responseJSON.errors.company_id);
-$('#model_year_Error').text(response.responseJSON.errors.model_year_id);
-$('#priceError').text(response.responseJSON.errors.price);
-$('#colorError').text(response.responseJSON.errors.color);
-$('#engineError').text(response.responseJSON.errors.engine);
-$('#phoneError').text(response.responseJSON.errors.phone);
-$('#AddressError').text(response.responseJSON.errors.address);
-$('#millageError').text(response.responseJSON.errors.mileage);
-}
-
-});
-});
-});
-</script>--}}
 @endsection

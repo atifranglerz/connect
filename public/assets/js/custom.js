@@ -60,7 +60,7 @@ $(function() {
         placeholder: 'Select Your Country',
     });
     $('select[name="city"]').select2({
-        placeholder: 'Select Your City (Required)',
+        // placeholder: 'Select Your City (Required)',
     });
     $('.company-name-field').select2({
         placeholder: 'Select Company (Required)',

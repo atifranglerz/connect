@@ -106,6 +106,8 @@ return [
     'Address' => 'تبوك',
     'Email' => 'البريد الإلكتروني',
     'Name' => 'اسم',
+    'Registration Copy Image' => 'صورة نسخة التسجيل',
+    'Upload Car image' => 'تحميل صورة السيارة',
     'QUOTE REQUEST' => 'طلب اقتباس',
     'LOCATION' => 'موقعك',
     'What are you looking for? (Required)' => 'عما تبحث؟ (مطلوب)',

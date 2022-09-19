@@ -154,6 +154,8 @@ return [
     'Select City' => 'Select City',
     'Your ID' => 'Your ID',
     'Dubai' => 'Dubai',
+    'Registration Copy Image' => 'Registration Copy Image',
+    'Upload Car image' => 'Upload Car image',
     'update your profile' => 'UPDATE YOUR PROFILE',
     'Abu Dhabi' => 'Abu Dhabi',
     'Sharjah' => 'Sharjah',

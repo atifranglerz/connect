@@ -48,7 +48,7 @@ class AdsController extends Controller
         $request->validate([
             'city' => 'required',
             'car_images' => 'required',
-            'files' => 'required',
+            'document' => 'required',
             'model' => 'required',
             'company_id' => 'required',
             'model_year_id' => 'required',
@@ -74,9 +74,9 @@ class AdsController extends Controller
             }*/
             $ads->images = implode(",", $images);
         }
-        if ($request->file('files')) {
+        if ($request->file('document')) {
             $files = [];
-            foreach ($request->file('files') as $data) {
+            foreach ($request->file('document') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
