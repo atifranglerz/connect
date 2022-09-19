@@ -22,6 +22,7 @@ return [
     'Privicy Policy' => 'Privicy Policy',
     'News' => 'News',
     'FAQ' => 'FAQ',
+    'Oops... Sorry, no used cars found!' => 'Oops... Sorry, no used cars found!',
     'Required' => 'Required',
     'Optional' => 'Optional',
     'CONTACT US' => 'CONTACT US',

@@ -12,7 +12,7 @@
             <div class="col-lg-8 mx-auto">
                 <div class="main_content_wraper">
                     <h4 class="sec_main_heading text-center">{{__('msg.CAR FOR SALE')}}</h4>
-                    <p class="sec_main_para allgarages text-center">{{__('msg.Search For Used Cars')}}</p>
+                    <p class="sec_main_para allgarages text-center">{{__('msg.Search For Pre-Owned Cars')}}</p>
                 </div>
             </div>
         </div>
@@ -126,15 +126,14 @@
                                         </div>
                                         <select class="form-select form-control" name="city" aria-label="City">
                                             <option selected disabled value="">{{__('msg.Select City')}}</option>
-                                            <option value="Dubai" @if(old('city')=='Dubai' ) selected @endif>Dubai
+                                            <option value="Dubai" @if(old('city')=='Dubai' ) selected @endif>{{__('msg.Dubai')}}
                                             </option>
-                                            <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi' ) selected @endif>Abu
-                                                Dhabi</option>
-                                            <option value="Sharjah" @if(old('city')=='Sharjah' ) selected @endif>Sharjah
+                                            <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi' ) selected @endif>{{__('msg.Abu Dhabi')}}</option>
+                                            <option value="Sharjah" @if(old('city')=='Sharjah' ) selected @endif>{{__('msg.Sharjah')}}
                                             </option>
                                             <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah' ) selected
-                                                @endif>Ras Al Khaimah</option>
-                                            <option value="Ajman" @if(old('city')=='Ajman' ) selected @endif>Ajman
+                                                @endif>{{__('msg.Ras Al Khaimah')}}</option>
+                                            <option value="Ajman" @if(old('city')=='Ajman' ) selected @endif>{{__('msg.Ajman')}}
                                             </option>
                                         </select>
                                         @error('city')
@@ -178,7 +177,7 @@
             </div>
             @endforeach
             @else
-            {{__('msg.Oops... Sorry, no used cars found!')}}
+            {{__('msg.Oops... Sorry, no pre-owned cars found!')}}
             @endif
         </div>
         <div class="row">

@@ -218,7 +218,7 @@
                         <h5 class=" text-center mb-5 heading-color">{{__('msg.DETAILS')}}</h5>
                         <div class="timing_container">
                             <p class="time_for_opning mb-0">{{__('msg.Engine')}}</p>
-                            <p class="time_for_opning mb-1">{{ $ad->engine }}</p>
+                            <p class="time_for_opning mb-1">{{ $ad->engine }} cc</p>
                         </div>
                         <div class="timing_container">
                             <p class="time_for_opning mb-1">{{__('msg.Color')}}</p>
