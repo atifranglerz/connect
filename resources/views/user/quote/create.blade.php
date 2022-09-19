@@ -277,6 +277,23 @@
 @endsection
 @section('script')
 <script>
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
 const nextBtns = document.querySelectorAll(".btn-secondary");
 // const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
@@ -331,6 +348,35 @@ $(function() {
             $('#requestForInspection').addClass('d-none');
             $('.get-quotes-block').removeClass('d-none');
         }
+    }
+    $('.next-tab-btn').on('click', function() {
+        var val = $('#lookingFor').val();
+        let valOne = "I have Inspection Report & Looking for the Quotations";
+        let valTwo = "I don't know the Problem and Requesting for the Inspection";
+        let valThree = "I know about what i'm looking for and requesting for the Quotations";
+        if (val == valTwo || val == valThree) {
+            if($('#profile').hasClass('active')) {
+                setTimeout(() => {
+                    $('#inspectionReport').removeClass('show active');
+                }, 50);
+                $('#fourthtab').addClass('show active');
+            }
+        }
+        setTimeout(() => {
+            if($('div[aria-labelledby="home-tab"]').hasClass('active')) {
+                $('#home-tab').addClass('active');
+            } else if ($('div[aria-labelledby="profile-tab"]').hasClass('active')) {
+                $('#profile-tab').addClass('active');
+            } else if ($('div[aria-labelledby="inspection-report-link"]').hasClass('active')) {
+                $('#inspection-report-link').addClass('active');
+            } else if ($('div[aria-labelledby="fourth-tab"]').hasClass('active')) {
+                $('#fourth-tab').addClass('active');
+            }
+        }, 50);
+    });
+
+    if($('div').hasClass('text-danger')) {
+        toastr.error("Failed! You've to fill the Required Fields");
     }
 });
 </script>
