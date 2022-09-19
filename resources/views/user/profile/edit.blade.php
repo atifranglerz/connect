@@ -62,7 +62,8 @@
                             @endif
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="number" class="form-control" id="inputNumber" name="phone"
-                                    placeholder="{{ __('msg.Phone Number') }}" value="{{ $profile->phone }}" onkeypress="if(this.value.length==12) return false">
+                                    placeholder="{{ __('msg.Phone Number') }}" value="{{ $profile->phone }}"
+                                    onkeypress="if(this.value.length==12) return false">
                                 @error('phone')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -99,6 +100,13 @@
                                 @enderror
                             </div>
                             @if (Auth::user()->type == 'user')
+                                <div class="col-12 mb-3  signup_input_wraper">
+                                    <input type="text" class="form-control" id="inputName" name="address"
+                                        placeholder="{{ __('msg.Address') }}" value="{{ $profile->address }}">
+                                    @error('address')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 <div class="col-12 mb-3 signup_input_wraper">
                                     <select class="form-select form-control insurance-company" name="company"
                                         aria-label="company" value="">
@@ -206,7 +214,7 @@
             $(function() {
                 let preloaded = [{
                     id: 1,
-                    src: '{{ asset($profile->insurance->id_card) }}'
+
                 }, ];
                 $('#id_card').imageUploader({
                     preloaded: preloaded,
@@ -217,7 +225,7 @@
             $(function() {
                 let preloaded = [{
                     id: 1,
-                    src: '{{ asset($profile->insurance->image_license) }}'
+
                 }, ];
                 $('#image_license').imageUploader({
                     preloaded: preloaded,
@@ -228,3 +236,5 @@
         }
     </script>
 @endsection
+{{-- src: '{{ asset($profile->insurance->id_card) }}'
+src: '{{ asset($profile->insurance->image_license) }}' --}}

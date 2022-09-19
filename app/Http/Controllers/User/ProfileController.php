@@ -50,7 +50,9 @@ class profileController extends Controller
         }
         if (Auth::user()->type == "company") {
             $user->name = $request->company_name;
+            $user->address = $request->billing_address;
         } else {
+            $user->address = $request->address;
             $user->name = $request->name;
         }
         $user->phone = $request->phone;

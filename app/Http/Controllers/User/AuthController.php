@@ -59,6 +59,7 @@ class AuthController extends Controller
         $user->city = $request->city;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->address = $request->address;
         $user->password = bcrypt($request->password);
         $user->country = $request->country;
         $user->city = $request->city;
@@ -153,6 +154,7 @@ class AuthController extends Controller
         $company->city = $request->city;
         $company->email = $request->email;
         $company->phone = $request->phone;
+        $company->address = $request->billing_address;
         $company->password = bcrypt($request->password);
         $company->country = $request->country;
         $company->city = $request->city;
