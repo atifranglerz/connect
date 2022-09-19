@@ -96,7 +96,9 @@ class ordersController extends Controller
             $notification->save();
         }
 
-        return redirect()->route('vendor.chat.index');
+        $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
+        $chatview = $request->id;
+        return view('vendor.chat.index', compact('customer','chatview'));
     }
 
 

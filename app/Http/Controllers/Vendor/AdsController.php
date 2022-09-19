@@ -118,7 +118,7 @@ class AdsController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return $this->message($ads, 'vendor.ads.index', 'Ads Create Successfully', 'Ads Create Error');
+        return $this->message($ads, 'vendor.ads.index', 'Ad Created Successfully', 'Ads Create Error');
     }
 
     /**
@@ -193,9 +193,9 @@ class AdsController extends Controller
         }
 
         //update car documents
-        if ($request->file('doucment')) {
+        if ($request->file('document')) {
             $files = [];
-            foreach ($request->file('doucment') as $data) {
+            foreach ($request->file('document') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
@@ -231,7 +231,7 @@ class AdsController extends Controller
         $ads->description = $request->description;
         $ads->vendor_id = Auth::id();
         $ads->update();
-        return $this->message($ads, 'vendor.ads.index', 'ad Update Successfully', '  Ad is not update Error');
+        return $this->message($ads, 'vendor.ads.index', 'Ad Updated Successfully', '  Ad is not update Error');
 
     }
 
@@ -245,6 +245,6 @@ class AdsController extends Controller
     {
         $ad = Ads::findOrFail($id);
         $ad->delete();
-        return $this->message($ad, 'vendor.ads.index', 'ad deleted Successfully', '  Ad is not delete Error');
+        return $this->message($ad, 'vendor.ads.index', 'Ad Deleted Successfully', '  Ad is not delete Error');
     }
 }

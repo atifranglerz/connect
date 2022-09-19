@@ -5,7 +5,7 @@
         <div class="chat_overlay d-none"></div>
         <div class="side_inbox">
             <div class="side_inbox_search_sec text-center">
-                <h5 class="inbox_nmae">{{__('msg.Inbox')}}</h5>
+                <h5 class="inbox_nmae">{{ __('msg.Inbox') }}</h5>
                 <form>
                     <div class="searchInput">
                         <input class="form-control me-2" id="search_input" placeholder="Search">
@@ -45,7 +45,7 @@
                                         <li><a href="#" class="chatted_delete d-block" id="{{ $data->customer->id }}">
                                                 <span class="fa fa-trash text-danger" aria-hidden="true"
                                                     style="margin-right: 8px"></span>
-                                                {{__('msg.delete')}}</a></li>
+                                                {{ __('msg.delete') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -79,8 +79,8 @@
                 </form>
             </div>
         </div>
-         <!-- Modal -->
-         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -175,7 +175,39 @@
             });
         });
 
-
+        $(document).ready(function() {
+            var chatview = '<?php echo $chatview; ?>'
+            var id = chatview;
+            if (id != null) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{ route('vendor.chat.favorite') }}",
+                    data: {
+                        'id': id
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#sendMessageForm').removeClass('d-none');
+                        $('#receiver_id').val(response.id);
+                        $('#receiver_id').val(response.id);
+                        $('#users').empty();
+                        $('#users').append(response.customer);
+                        $("#" + id).addClass('active');
+                        $('#append_msg').empty();
+                        $('#append_msg').append(response.message);
+                        $('#notify').html(response.unread);
+                        setTimeout(() => {
+                            $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
+                                .scrollHeight);
+                        }, 10);
+                    }
+                });
+            }
+        });
 
         $(document).ready(function() {
             $('form').on('submit', function(event) {

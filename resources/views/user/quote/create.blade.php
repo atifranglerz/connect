@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="model"
-                                                value="{{old('model')}}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage">
+                                                value="{{old('model')}}" placeholder="{{__('msg.Model')}}" aria-label="Car Milage">
                                             @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" value="{{old('registration_no')}}"
-                                                name="registration_no" placeholder="{{__('msg.Registration No.')}} ({{__('msg.Required')}})"
+                                                name="registration_no" placeholder="{{__('msg.Registration No.')}}"
                                                 aria-label="Car Milage">
                                             @error('registration_no')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -94,14 +94,14 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" value="{{old('Chasis_no')}}"
-                                                name="Chasis_no" placeholder="{{__('msg.Chasis No.')}} ({{__('msg.Required')}})" aria-label="Car Milage">
+                                                name="Chasis_no" placeholder="{{__('msg.Chasis No.')}}" aria-label="Car Milage">
                                             @error('Chasis_no')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="color"
-                                                value="{{old('color')}}" placeholder="{{__('msg.Color')}} ({{__('msg.Required')}})" aria-label="Car Milage">
+                                                value="{{old('color')}}" placeholder="{{__('msg.Color')}}" aria-label="Car Milage">
                                             @error('color')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -124,7 +124,7 @@
                                         </div> -->
                                         <div class="col-lg-6 col-md-6">
                                             <input type="number" class="form-control" name="mileage"
-                                                value="{{old('mileage')}}" placeholder="{{__("msg.Mileage e.g 40 Km")}} ({{__('msg.Required')}})"
+                                                value="{{old('mileage')}}" placeholder="{{__("msg.Mileage e.g 40 Km")}}"
                                                 aria-label="Car Milage" required>
                                             @error('mileage')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -132,7 +132,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="number" class="form-control" name="day" value="{{old('day')}}"
-                                                placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Required')}})" aria-label="Day" required>
+                                                placeholder="{{__('msg.Days e.g (7)')}}" aria-label="Day" required>
                                             @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -141,7 +141,7 @@
                                             <select class="form-select form-control garage-services" name="category[]"
                                                 multiple aria-label="Type of Service">
                                                 @foreach($catagary as $data)
-                                                <option value="{{$data->id }}" {{ (collect(old('category'))->contains($data->id)) ? 'selected':'' }}>{{$data->name}}</option>
+                                                <option value="{{$data->id }}">{{$data->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('category')
@@ -149,7 +149,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="description1" placeholder="{{__('msg.Add information in details')}} ({{__('msg.Optional')}})"
+                                            <textarea name="description1" placeholder="{{__('msg.Add information in details')}}"
                                                 class="form-control" rows="5">{{old('description1')}}</textarea>
                                         </div>
                                         <div class="col-lg-12">
@@ -194,7 +194,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="description2" placeholder="{{__('msg.Special Requirements')}} ({{__('msg.Optional')}})"
+                                            <textarea name="description2" placeholder="{{__('msg.Special Requirements')}}"
                                                 class="form-control" rows="5">{{old('description2')}}</textarea>
                                         </div>
                                         <div class="col-lg-12">
@@ -212,15 +212,12 @@
                                             <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                             <div class="input-images-3"></div>
                                             {{--input field name doucment--}}
-                                            @error('document')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
                                         </div>
                                         <div class="row g-2">
                                             <div class="col-lg-6 col-md-6">
                                                 <input type="text" class="form-control"
                                                     value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"
-                                                    name="maker_name" placeholder="Name" aria-label="Make" readonly required>
+                                                    name="maker_name" placeholder="Name" aria-label="Make" required>
                                                 @error('name')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror
@@ -234,14 +231,13 @@
                                         {{--</div>--}}
                                         <div class="col-lg-6 col-md-6">
                                             {{--<input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email">--}}
-                                            <input type="email" name="email" class="form-control" readonly
+                                            <input type="email" name="email" class="form-control" disabled
                                                 value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                         </div>
                                         <div class="col-lg-12 col-md-12">
-                                            <div style="position: relative">
-                                                <input type="text" name="address" value="{{ Auth::user()->address }}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem" readonly>
-                                                <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
-                                            </div>
+                                            <input type="text" class="form-control" name="address"
+                                                value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"
+                                                placeholder="{{__('msg.Address')}}" aria-label="Car Milage" required>
                                             @error('address')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror

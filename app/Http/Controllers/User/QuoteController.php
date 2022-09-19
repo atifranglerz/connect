@@ -37,28 +37,29 @@ class QuoteController extends Controller
 
     public function store(Request $request)
     {
-        if($request->action == "preferred_garage"){
+        if ($request->action == "preferred_garage") {
             $data = UserWishlist::where('user_id', Auth::id())->with('garage')->get();
-            if($data->isEmpty()){
+            if ($data->isEmpty()) {
                 return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
             }
         }
         if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
-        $request->validate([
-            'car_images' => 'required',
-            'looking_for' => 'required',
-            'model' => 'required',
-            'company_id' => 'required',
-            'model_year_id' => 'required',
-            'mileage' => 'required',
-            'day' => 'required',
-            'maker_name' => 'required',
-            'address' => 'required',
-            'registration_no' => 'required',
-            'Chasis_no' => 'required',
-            'color' => 'required',
-        ]);
-    }elseif ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
+            $request->validate([
+                'car_images' => 'required',
+                'document' => 'required',
+                'looking_for' => 'required',
+                'model' => 'required',
+                'company_id' => 'required',
+                'model_year_id' => 'required',
+                'mileage' => 'required',
+                'day' => 'required',
+                'maker_name' => 'required',
+                'address' => 'required',
+                'registration_no' => 'required',
+                'Chasis_no' => 'required',
+                'color' => 'required',
+            ]);
+        } elseif ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
             $request->validate([
                 'files' => 'required',
                 'category' => 'required',
@@ -74,8 +75,10 @@ class QuoteController extends Controller
                 'registration_no' => 'required',
                 'Chasis_no' => 'required',
                 'color' => 'required',
+                'document' => 'required',
+
             ]);
-        }elseif ( $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
+        } elseif ($request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
             $request->validate([
                 'category' => 'required',
                 'car_images' => 'required',
@@ -90,8 +93,10 @@ class QuoteController extends Controller
                 'registration_no' => 'required',
                 'Chasis_no' => 'required',
                 'color' => 'required',
+                'document' => 'required',
+
             ]);
-        }else{
+        } else {
             $request->validate([
                 'looking_for' => 'required',
             ]);
@@ -120,7 +125,7 @@ class QuoteController extends Controller
         //mail notification to the vendor
         $message['body1'] = auth()->user()->name;
         $message['link1'] = url('vendor/quotedetail', $quote->id);
-        
+
         // this is car image save
         $imagefiles = new UserBidImage();
         if ($request->file('car_images')) {
@@ -147,11 +152,11 @@ class QuoteController extends Controller
             $registrationfiles->type = 'file';
             $registrationfiles->save();
         }
-        // this is registration doucment
+        // this is registration document
         $accidentailfile = new UserBidImage();
-        if ($request->file('doucment')) {
+        if ($request->file('document')) {
             $files = [];
-            foreach ($request->file('doucment') as $data) {
+            foreach ($request->file('document') as $data) {
                 $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
                 $data->move('public/image/add/', $doucments);
                 $files[] = 'public/image/add/' . $doucments;
