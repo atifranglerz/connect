@@ -162,7 +162,7 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
                                             <button class="btn btn-secondary block get_appointment"
-                                                type="submit">{{ __('msg.NEXT') }}
+                                                type="submit">{{ __('msg.SUBMIT') }}
                                             </button>
                                         </div>
                                     </div>
