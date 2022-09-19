@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                         <div class="input-images-3"></div>
-                                        @error('doucment')
+                                        @error('document')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -108,8 +108,10 @@
                                         <span class="text-danger" id="phoneError"></span>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <input type="text" name="address" value="{{old('address')}}" class="form-control" placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})"
-                                            aria-label="address">
+                                        <div style="position: relative">
+                                            <input type="text" name="address" value="{{old('address')}}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem">
+                                            <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
+                                        </div>
                                         @error('address')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -141,7 +143,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <input type="number" name="mileage" value="{{old('mileage')}}" class="form-control" placeholder="{{__('msg.mileage')}} ({{__('msg.Required')}})"
+                                        <input type="number" name="mileage" value="{{old('mileage')}}" class="form-control" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})"
                                             aria-label="Price">
                                         @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -150,10 +152,10 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="description" 
-                                                placeholder="" id="floatingTextarea2"
+                                            <textarea class="form-control" name="description"
+                                                placeholder="{{__('msg.Add more details')}}" id="floatingTextarea2"
                                                 style="height: 100px">{{old('description')}}</textarea>
-                                            <label for="floatingTextarea2">{{__('msg.Add information in details')}}</label>
+                                            <label for="floatingTextarea2">{{__('msg.Add information in details')}} ({{__('msg.Optional')}})</label>
                                         </div>
                                         @error('description')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -175,4 +177,29 @@
             </div>
         </div>
     </section>
+@endsection
+@section('script')
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    $(function() {
+        if($('div').hasClass('text-danger')) {
+        toastr.error("Failed! You've to fill the Required Fields");
+        }
+    });
+</script>
 @endsection

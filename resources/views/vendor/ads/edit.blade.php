@@ -31,7 +31,7 @@
                                         $preImages[] = $obj;
                                     }
                                     $preImages = json_encode($preImages);
-                                    
+
                                     //update the documents images
                                     $docx = Explode(',', $ads->document_file);
                                     $preDocx = [];
@@ -53,13 +53,13 @@
                                     <div class="col-lg-6 col-md-6 mb-3">
                                         <div class="doc_images">
                                         </div>
-                                        @error('files')
+                                        @error('document')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}}"
+                                        <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})"
                                             value="{{ $ads->model }}" aria-label="Model">
                                         @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -95,35 +95,37 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="price" value="{{ $ads->price }}"
-                                            class="form-control" placeholder="{{__('msg.Price')}}" aria-label="Price">
+                                            class="form-control" placeholder="{{__('msg.Price')}} ({{__('msg.Required')}})" aria-label="Price">
                                         @error('price')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="color" value="{{ $ads->color }}"
-                                            class="form-control" placeholder="{{__('msg.Color')}}" aria-label="Color">
+                                            class="form-control" placeholder="{{__('msg.Color')}} ({{__('msg.Required')}})" aria-label="Color">
                                         @error('color')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="engine" value="{{ $ads->engine }}"
-                                            class="form-control" placeholder="{{__('msg.Engine')}}" aria-label="Engine">
+                                            class="form-control" placeholder="{{__('msg.Engine')}} ({{__('msg.Required')}})" aria-label="Engine">
                                         @error('engine')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="phone" value="{{ $ads->phone }}"
-                                            class="form-control" placeholder="{{__('msg.Phone Number')}}" aria-label="phone" onkeypress="if(this.value.length==12) return false">
+                                            class="form-control" placeholder="{{__('msg.Phone Number')}} ({{__('msg.Required')}})" aria-label="phone" onkeypress="if(this.value.length==12) return false">
                                         @error('phone')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="address" value="{{ $ads->address }}"
-                                            class="form-control" placeholder="{{__('msg.Address')}}" aria-label="Address">
+                                        <div style="position: relative">
+                                            <input type="text" name="address" value="{{ $ads->address }}" class="form-control" placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" aria-label="address" style="padding-right: 2rem">
+                                            <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
+                                        </div>
                                         @error('address')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -156,16 +158,17 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="mileage" class="form-control"
-                                            value="{{ $ads->mileage }}" placeholder="{{__('msg.Mileage e.g 40 Km')}}" aria-label="Car Milage">
+                                            value="{{ $ads->mileage }}" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})" aria-label="Car Milage">
                                         @error('mileage')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
-                                            <input class="form-control" name="description"
-                                                value="{{ $ads->description }}" valyuplaceholder="Add Repairing Details"
-                                                id="floatingTextarea2" style="height: 100px"></input>
+                                            <textarea class="form-control" name="description"
+                                            placeholder="{{__('msg.Add more details')}}" id="floatingTextarea2"
+                                            style="height: 100px">{{ $ads->description }}</textarea>
+                                            <label for="floatingTextarea2">{{__('msg.Add information in details')}} ({{__('msg.Optional')}})</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12">
@@ -192,7 +195,7 @@
                 preloaded: imagePre,
                 imagesInputName: 'car_images',
                 preloadedInputName: 'car_old',
-                maxFiles: 3,
+                maxFiles: 5,
             });
         });
         //update the documents images
@@ -200,10 +203,11 @@
             let preDocx = <?php echo $preDocx; ?>;
             $('.doc_images').imageUploader({
                 preloaded: preDocx,
-                imagesInputName: 'doucment',
+                imagesInputName: 'document',
                 preloadedInputName: 'doc_old',
-                maxFiles: 3,
+                maxFiles: 5,
             });
+            $(".doc_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpg only)</b></p><input type="file" name="document[]" size="60" ></label>');
         });
     </script>
 @endsection

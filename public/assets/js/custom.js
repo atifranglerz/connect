@@ -62,10 +62,13 @@ $(function() {
     $('select[name="city"]').select2({
         // placeholder: 'Select Your City (Required)',
     });
+    $('select[name="company_id"]').select2({
+        placeholder: 'Select Company (Required)',
+    });
     $('.company-name-field').select2({
         placeholder: 'Select Company (Required)',
     });
-    $('.model-year-field').select2({
+    $('.model-year-field, select[name="model_year_id"]').select2({
         placeholder: 'Select Year (Required)',
     });
     /*Multiple select*/
