@@ -143,7 +143,7 @@
         $(document).on('click', '.favorite', function() {
             var id = $(this).attr('id');
             $(".favorite").removeClass('active');
-            console.log(id);
+            // console.log(id);
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -170,6 +170,39 @@
                     }, 10);
                 }
             });
+        });
+
+        $(document).ready(function() {
+            var chatview = '<?php echo $chatview; ?>'
+            var id = chatview;
+            if (id != null) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{ route('user.chat.favorite') }}",
+                    data: {
+                        'id': id
+                    },
+                    success: function(response) {
+                        // console.log(response);
+                        $('#sendMessageForm').removeClass('d-none');
+                        $('#receiver_id').val(response.id);
+                        $('#users').empty();
+                        $('#users').append(response.vendors);
+                        $("#" + id).addClass('active');
+                        $('#append_msg').empty();
+                        $('#append_msg').append(response.message);
+                        $('#notify').html(response.unread);
+                        setTimeout(() => {
+                            $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
+                                .scrollHeight);
+                        }, 10);
+                    }
+                });
+            }
         });
 
 

@@ -199,7 +199,9 @@
 @section('script')
     <script>
         var role = '<?php echo auth()->user()->type; ?>'
-        // alert(role);
+        var id_card = '{{ isset($profile->insurance->id_card) ? asset($profile->insurance->id_card) : '' }}'
+        var image_license = '{{ isset($profile->insurance->id_card) ? asset($profile->insurance->image_license) : '' }}'
+
         $(function() {
             let preloaded = [{
                 id: 1,
@@ -214,7 +216,7 @@
             $(function() {
                 let preloaded = [{
                     id: 1,
-
+                    src: id_card
                 }, ];
                 $('#id_card').imageUploader({
                     preloaded: preloaded,
@@ -225,7 +227,7 @@
             $(function() {
                 let preloaded = [{
                     id: 1,
-
+                    src: image_license
                 }, ];
                 $('#image_license').imageUploader({
                     preloaded: preloaded,
@@ -236,5 +238,3 @@
         }
     </script>
 @endsection
-{{-- src: '{{ asset($profile->insurance->id_card) }}'
-src: '{{ asset($profile->insurance->image_license) }}' --}}

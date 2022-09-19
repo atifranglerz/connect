@@ -16,9 +16,9 @@ class ChatController extends Controller
 {
     public function index()
     {
-
+        $chatview = NULL;
         $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
-        return view('vendor.chat.index', compact('customer'));
+        return view('vendor.chat.index', compact('customer','chatview'));
     }
 
    //add in fevorit and go to chat page
@@ -37,7 +37,9 @@ class ChatController extends Controller
         $chatted->customer_online = $date;
         $chatted->save();
 
-        return redirect()->route('vendor.chat.index');
+        $customer = ChatFavorite::with('customer')->where([['vendor_id', Auth::id()], ['vendor_status', 0]])->orderBy('customer_online', 'DESC')->get();
+        $chatview = $id;
+        return view('vendor.chat.index', compact('customer','chatview'));
     }
 
     public function favorite(Request $request)

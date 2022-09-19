@@ -148,7 +148,7 @@
                                     <textarea class="form-control" name="description" 
                                         placeholder="" id="floatingTextarea2"
                                         style="height: 100px">{{old('description')}}</textarea>
-                                    <label for="floatingTextarea2">{{__('msg.Add information in details')}}</label>
+                                    <label for="floatingTextarea2">{{__('msg.Add information in details')}} ({{__('msg.Optional')}})</label>
                                 </div>
                                 @error('description')
                                 <div class="text-danger p-2">{{ $message }}</div>
