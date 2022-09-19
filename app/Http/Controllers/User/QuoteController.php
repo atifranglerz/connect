@@ -43,7 +43,7 @@ class QuoteController extends Controller
                 return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
             }
         }
-
+        if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
         $request->validate([
             'car_images' => 'required',
             'looking_for' => 'required',
@@ -58,15 +58,44 @@ class QuoteController extends Controller
             'Chasis_no' => 'required',
             'color' => 'required',
         ]);
-        if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
+    }elseif ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
             $request->validate([
                 'files' => 'required',
+                'category' => 'required',
+                'car_images' => 'required',
+                'looking_for' => 'required',
+                'model' => 'required',
+                'company_id' => 'required',
+                'model_year_id' => 'required',
+                'mileage' => 'required',
+                'day' => 'required',
+                'maker_name' => 'required',
+                'address' => 'required',
+                'registration_no' => 'required',
+                'Chasis_no' => 'required',
+                'color' => 'required',
             ]);
-        }
-        if ($request->looking_for == 'I have Inspection Report & Looking for the Quotations' || $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
+        }elseif ( $request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
             $request->validate([
                 'category' => 'required',
+                'car_images' => 'required',
+                'looking_for' => 'required',
+                'model' => 'required',
+                'company_id' => 'required',
+                'model_year_id' => 'required',
+                'mileage' => 'required',
+                'day' => 'required',
+                'maker_name' => 'required',
+                'address' => 'required',
+                'registration_no' => 'required',
+                'Chasis_no' => 'required',
+                'color' => 'required',
             ]);
+        }else{
+            $request->validate([
+                'looking_for' => 'required',
+            ]);
+
         }
         $quote = new UserBid();
         $quote->user_id = Auth::id();
