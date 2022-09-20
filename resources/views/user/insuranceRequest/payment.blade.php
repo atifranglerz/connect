@@ -1,5 +1,23 @@
 @extends('user.layout.app')
 @section('content')
+    <style>
+        .btn-primary {
+            width: 265px;
+            min-width: fit-content;
+            text-align: center;
+        }
+        .alert-danger {
+            margin-top: 10%;
+        }
+        @media (min-width: 992px) {
+            .col-lg-2 {
+                width: 5.666667%;
+            }
+            .col-lg-5 {
+                width: 46.666667%;
+            }
+        }
+    </style>
     <section class="pb-5 login_content_wraper">
         <div class="container-lg container-fluid">
             <div class="row">
@@ -11,19 +29,19 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-10 col-md-12 mx-auto">
+            <div class="row mx-0">
+                <div class="col-lg-9 col-md-12 mx-auto" style="background: #FFF;padding: 16px;border-radius: 8px">
                     <form role="form" action="{{ route('user.pay-payment') }}" method="POST" class="require-validation"
                         data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                         @csrf
+                        <div class=" billing_info">
+                            <h5 class="mb-3 text-center text-uppercase heading-color">{{ __('msg.Payment Info') }}</h5>
+                        </div>
                         <div class="row g-2">
                             <input type="hidden" name="vendor_bid_id" value="{{ $data->id }}">
                             <input type="hidden" name="action" value="through_credit">
 
                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                <div class=" billing_info">
-                                    <h5 class="heading-color">{{ __('msg.Payment Info') }}</h5>
-                                </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group required'>
                                         <input class='form-control' value="{{ $data->net_total }} {{ __('msg.AED') }}"
@@ -32,7 +50,7 @@
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group required'>
-                                        <input class='form-control' placeholder="{{ __('msg.Cardholder Name') }}"
+                                        <input class='form-control' placeholder="{{ __('msg.Cardholder Name') }} ({{ __('msg.Required') }})"
                                             size='4' type='text' name="name">
                                     </div>
                                 </div>
@@ -40,35 +58,30 @@
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group  required'>
                                         <input autocomplete='off' class='form-control card-number'
-                                            placeholder="{{ __('msg.Card Number') }}" name="card-number" size='20'
+                                            placeholder="{{ __('msg.Card Number') }} ({{ __('msg.Required') }})" name="card-number" size='20'
                                             type='text'>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 ">
-                                <div class="payment_divider">
-                                </div>
-
+                                <div class="payment_divider"></div>
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                <div class=" billing_info">
-                                    <h5 class="heading-color">{{ __('msg.Payment Info') }}</h5>
-                                </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group cvc required'>
                                         <input autocomplete='off' class='form-control card-cvc' name="card-cvc"
-                                            placeholder="CVV" size='4' type='text'>
+                                            placeholder="CVV ({{ __('msg.Required') }})" size='4' type='text'>
                                     </div>
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12  form-group expiration required'>
                                         <input class='form-control card-expiry-month' name="expiry-month"
-                                            placeholder="{{ __('msg.Expiry Date') }}" size='2' type='text'>
+                                            placeholder="{{ __('msg.Expiry Date') }} ({{ __('msg.Required') }})" size='2' type='text'>
                                     </div>
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group expiration required'>
-                                        <input class='form-control card-expiry-year' name="expiry-year" placeholder='YYYY'
+                                        <input class='form-control card-expiry-year' name="expiry-year" placeholder='YYYY ({{ __('msg.Required') }})'
                                             size='4' type='text'>
                                     </div>
                                 </div>
@@ -81,22 +94,17 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto d-flex">
-                                <div class="col-sm-5 mx-auto center" style="text-align: center">
-                                    <button class="btn btn-primary btn-lg btn-block"
-                                        type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
-
-                                </div>
-                                <div class="col-sm-5 mx-auto center" style="text-align: center">
-                                    <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                                        data-bs-target="#checkAttachModel">{{ __('msg.Pay Through Cheque') }}</a>
-
-                                </div>
+                            <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 30px">
+                                <button class="btn btn-primary btn-lg btn-block"
+                                    type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
+                                <h6 class="mb-0 heading-color">OR</h6>
+                                <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                                    data-bs-target="#checkAttachModel">{{ __('msg.Pay Through Cheque') }}</a>
                             </div>
                         </div>
                     </form>
                     <div class="mt-5">
-                        <p style="text-align: center">"Right now you are going to pay 100% of the total ammount
+                        <p class="mb-0" style="text-align: center">"Right now you are going to pay 100% of the total ammount
                             {{ $data->net_total }}, thank you"</p>
                     </div>
                 </div>
@@ -135,7 +143,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer justify-content-center">
                             <button class="btn btn-primary flterClass" id="submit"
                                 type="submit">{{ __('msg.SUBMIT') }}</button>
                         </div>

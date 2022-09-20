@@ -6,6 +6,9 @@
             min-width: fit-content;
             text-align: center;
         }
+        .alert-danger {
+            margin-top: 10%;
+        }
         @media (min-width: 992px) {
             .col-lg-2 {
                 width: 5.666667%;

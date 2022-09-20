@@ -851,8 +851,12 @@ section.looking_for {
     background-color: unset;
 }
 .pagination .page-item .page-link:hover {
+    color: var(--white);
     background-color: var(--orange);
     border-radius: 50px;
+}
+.pagination .page-item .page-link:focus {
+    box-shadow: none;
 }
 .pagination .page-item.active .page-link:hover {
     background-color: var(--orange);
