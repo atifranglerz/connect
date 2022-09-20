@@ -28,21 +28,13 @@ use Illuminate\Support\Facades\Artisan;
 
 class HomepageController extends Controller
 {
-
-    public function language()
-    {
-        config(['app.locale' => 'arb']);
-        $text = '<?php return ' . var_export(config('app'), true) . ';';
-        file_put_contents(config_path('app.php'), $text);
-        Artisan::call('cache:clear');
-    }
     public function index()
     {
         $data['page_title'] = "home";
         $data['services'] = Category::limit(8)->orderby('position', 'ASC')->get();
         $data['news'] = News::limit(4)->latest()->get();
-        $data['ads'] = Ads::limit(8)->latest()->get();
-        $data['garage'] = Garage::limit(8)->latest()->get();
+        $data['ads'] = Ads::limit(4)->latest()->get();
+        $data['garage'] = Garage::limit(4)->latest()->get();
         $data['slider'] = Slider::all();
         $data['all_services'] = Category::latest()->get();
 
@@ -68,7 +60,7 @@ class HomepageController extends Controller
         $data['page_title'] = 'vendors by service';
         $data['id'] = $id;
         $garage_category = GarageCategory::where('category_id', $id)->distinct()->pluck('garage_id');
-        $data['garages'] = Garage::whereIn('id', $garage_category)->get();
+        $data['garages'] = Garage::whereIn('id', $garage_category)->paginate(8);
 
         return view('web.vendorlistbyservice', $data);
     }
@@ -84,7 +76,7 @@ class HomepageController extends Controller
     public function allvendor()
     {
         $data['page_title'] = 'vendors list';
-        $data['garages'] = Garage::all();
+        $data['garages'] = Garage::latest()->paginate(8);
         return view('web.vendorlist', $data);
     }
 
@@ -309,7 +301,7 @@ class HomepageController extends Controller
     public function usedcars()
     {
         $data['page_title'] = 'used cars';
-        $data['ads'] = Ads::orderBy('id', 'desc')->get();
+        $data['ads'] = Ads::orderBy('id', 'desc')->paginate(8);
         $data['company'] = Company::all();
         $data['year'] = ModelYear::all();
         return view('web.used_cars', $data);
@@ -324,33 +316,33 @@ class HomepageController extends Controller
 
         if (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->paginate(8);
         } elseif (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->orwhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
         } elseif (isset($request->priceFrom) && isset($request->priceTo)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->get();
+            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->paginate(8);
         } elseif (isset($request->company_id) && isset($request->city)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->get();
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->paginate(8);
         } elseif (isset($request->company_id)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
         } elseif (isset($request->city)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->get();
+            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->paginate(8);
         } else {
             $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->where('city', $request->city)->with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->get();
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
         }
         //end felter
 
@@ -375,12 +367,12 @@ class HomepageController extends Controller
         if ($garage_category) {
             $data['garages'] = Garage::where(function ($q) use ($search) {
                 $q->where('garage_name', 'Like', '%' . $search . '%');
-            })->whereIn('id', $garage_category)->distinct()->get();
+            })->whereIn('id', $garage_category)->distinct()->paginate(8);
             return view('web.vendorlistbyservice', $data);
         } else {
             $data['garages'] = Garage::where(function ($q) use ($search) {
                 $q->where('garage_name', 'Like', '%' . $search . '%');
-            })->get();
+            })->paginate(8);
 
             return view('web.vendorlistbyservice', $data);
         }
@@ -408,7 +400,7 @@ class HomepageController extends Controller
     public function news()
     {
         $data['page_title'] = 'latest news';
-        $data['news'] = News::all();
+        $data['news'] = News::paginate(8);
         return view('web.news', $data);
     }
 

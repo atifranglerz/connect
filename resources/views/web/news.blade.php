@@ -29,18 +29,13 @@
                 </div>
                 @endforeach
             </div>
-
-
-
-
         </div>
-        <!-- <div class="row">
-          <div class="col-lg-5 mx-auto">
-            <div class="text-center view_all_btn_wrapper">
-              <a href="#" class="view_all_btn">view all</a>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <nav aria-label="..." class="d-flex align-items-center justify-content-center">
+                    <span class="mt-4">{!! $news->links() !!}</span>
+                </nav>
             </div>
-          </div>
-        </div> -->
         </div>
     </section>
 @endsection

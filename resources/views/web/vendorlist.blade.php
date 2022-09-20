@@ -12,9 +12,10 @@
 
                     <div class="main_content_wraper">
 
-                        <h4 class="sec_main_heading text-center">{{__('msg.ALL GARAGES')}}</h4>
+                        <h4 class="sec_main_heading text-center">{{ __('msg.ALL GARAGES') }}</h4>
 
-                        <p class="sec_main_para allgarages text-center">{{__('msg.Search popular service providers based on their service quality')}}</p>
+                        <p class="sec_main_para allgarages text-center">
+                            {{ __('msg.Search popular service providers based on their service quality') }}</p>
 
                     </div>
 
@@ -32,13 +33,15 @@
 
                         <div class="input-group mb-3 search_garages_wraper">
 
-                            <input type="text" class="form-control search_garages" placeholder="{{__('msg.Search For Your Favorite Garages (Type Here)')}}" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="text" class="form-control search_garages"
+                                placeholder="{{ __('msg.Search For Your Favorite Garages (Type Here)') }}"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
 
-                            <button class="btn search" type="button" id="button-addon2">{{__('msg.SEARCH')}}</button>
+                            <button class="btn search" type="button" id="button-addon2">{{ __('msg.SEARCH') }}</button>
 
                             <div class="srearch_icon_wraper">
 
-                                <img src="{{asset('public/assets/images/searchicon.')}}svg">
+                                <img src="{{ asset('public/assets/images/searchicon.') }}svg">
 
                             </div>
 
@@ -48,7 +51,7 @@
 
                                 <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
-                                    <img src="{{asset('public/assets/images/slideicon.s')}}vg">
+                                    <img src="{{ asset('public/assets/images/slideicon.s') }}vg">
 
                                 </a>
 
@@ -70,84 +73,85 @@
 
             <div class="row g-3">
 
-                @if(count($garages) > 0)
+                @if (count($garages) > 0)
+                    @foreach ($garages as $value)
+                        <div class="col-lg-3 col-md-4 col-sm-4">
 
-                    @foreach($garages as $value)
+                            <a href="{{ route('gerage_detail', $value->id) }}">
 
-                <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="card card_vendors shadow">
 
-                    <a href="{{route('gerage_detail',$value->id)}}">
+                                    <div class="car_img_wrapper all_garages">
 
-                        <div class="card card_vendors shadow" >
+                                        <img @if ($value->image && $value->image != null) src="{{ asset($value->image) }}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif
+                                            class="card-img-top" alt="Car image">
 
-                            <div class="car_img_wrapper all_garages">
+                                        {{-- <div class="promoted_vendors"> --}}
 
-                                <img @if($value->image && $value->image != null) src="{{asset($value->image)}}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif class="card-img-top" alt="Car image">
+                                        {{-- <p>PREFERRED VENDOR</p> --}}
 
-{{--                                <div class="promoted_vendors">--}}
+                                        {{-- <i class="fa-solid fa-star"></i> --}}
 
-{{--                                    <p>PREFERRED VENDOR</p>--}}
-
-{{--                                    <i class="fa-solid fa-star"></i>--}}
-
-{{--                                </div>--}}
-
-                            </div>
-
-
-
-                            <div class="card-body p-sm-2">
-
-                                <h6 class="block-head-txt text-center">{{$value->garage_name}}</h6>
-
-                                <h5 class="card-title text-center allgarages_card_title"><span>@if(isset($overAllRatings))?{{$overAllRatings}}:'0'@endif</span></h5>
-
-                                <div class="card_icons d-flex justify-content-center align-items-center">
-
-                                    <div class="icon_wrpaer">
-
-                                        <img src="{{asset('public/assets/images/iconrp.svg')}}">
+                                        {{-- </div> --}}
 
                                     </div>
 
-                                    <div class="icon_wrpaer">
 
-                                        <img src="{{asset('public/assets/images/iconrp2.svg')}}">
 
-                                    </div>
+                                    <div class="card-body p-sm-2">
 
-                                    <div class="icon_wrpaer">
+                                        <h6 class="block-head-txt text-center">{{ $value->garage_name }}</h6>
 
-                                        <img src="{{asset('public/assets/images/iconrp3.svg')}}">
+                                        <h5 class="card-title text-center allgarages_card_title"><span>
+                                                @if (isset($overAllRatings))
+                                                    ?{{ $overAllRatings }}:'0'
+                                                @endif
+                                            </span></h5>
 
-                                    </div>
+                                        <div class="card_icons d-flex justify-content-center align-items-center">
 
-                                    <div class="icon_wrpaer">
+                                            <div class="icon_wrpaer">
 
-                                        <img src="{{asset('public/assets/images/iconrp4.svg')}}">
+                                                <img src="{{ asset('public/assets/images/iconrp.svg') }}">
 
-                                    </div>
+                                            </div>
 
-                                    <div class="icon_wrpaer">
+                                            <div class="icon_wrpaer">
 
-                                        <img src="{{asset('public/assets/images/iconrp5.svg')}}">
+                                                <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
+
+                                            </div>
+
+                                            <div class="icon_wrpaer">
+
+                                                <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
+
+                                            </div>
+
+                                            <div class="icon_wrpaer">
+
+                                                <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
+
+                                            </div>
+
+                                            <div class="icon_wrpaer">
+
+                                                <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
+
+                                            </div>
+
+                                        </div>
 
                                     </div>
 
                                 </div>
 
-                            </div>
+                            </a>
 
                         </div>
-
-                    </a>
-
-                </div>
-
                     @endforeach
-
                 @else
-                <p>{{__('msg.Oops... Sorry, no garages found related to this category service!')}}</p>
+                    <p>{{ __('msg.Oops... Sorry, no garages found related to this category service!') }}</p>
                 @endif
 
 
@@ -155,65 +159,11 @@
             </div>
 
             <div class="row">
-
                 <div class="col-lg-8 mx-auto text-center">
-
-                    <!-- <div class="paginator js-paginator"></div> -->
-
-
-
                     <nav aria-label="..." class="d-flex align-items-center justify-content-center">
-
-                        <ul  class="pagination">
-
-                            <li class="page-item disabled">
-
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-chevron-left"></i></a>
-
-                            </li>
-
-                            <li class="page-item active">
-
-                                <a class="page-link" href="#">1</a>
-
-                            </li>
-
-                            <li class="page-item " aria-current="page">
-
-                                <a class="page-link" href="#">2</a>
-
-                            </li>
-
-                            <li class="page-item">
-
-                                <a class="page-link" href="#">3</a>
-
-                            </li>
-
-                            <li class="page-item">
-
-                                <a class="page-link" href="#">4</a>
-
-                            </li>
-
-                            <li class="page-item">
-
-                                <a class="page-link" href="#">
-
-                                    <i class="fa-solid fa-chevron-right"></i>
-
-                                </a>
-
-                            </li>
-
-                        </ul>
-
+                        <span class="mt-4">{!! $garages->links() !!}</span>
                     </nav>
-
-
-
                 </div>
-
             </div>
 
         </div>
@@ -221,4 +171,3 @@
     </section>
 
 @endsection
-
