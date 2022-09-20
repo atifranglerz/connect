@@ -10,7 +10,7 @@
     left: -62px;
 }
     .inbox_contact.top_main>.name_of_contact>p {
-    
+
     font-size: var(--fs-14);
 }
    .side_inbox {
@@ -29,7 +29,7 @@
     }*/
     .main_wraper{
             flex-direction: column;
-    } 
+    }
     .contact_img {
     width: 35px;
     height: 35px;
@@ -433,7 +433,7 @@ label.img_wraper_label.skip{
 .increase_budge {
     align-items: flex-start;
         justify-content: space-around;
-    
+
 }
 .form-check .form-check-input.checkbook{
     margin-left: unset;
@@ -469,7 +469,7 @@ label.img_wraper_label.skip{
 
 
 /*.chat_section {
-    margin-left: unset; 
+    margin-left: unset;
     display: none;
 }
 .side_inbox {
@@ -726,7 +726,7 @@ p.reviews {
 }
 .all_quote_card.dashboard_card.top_dashboard>h3{
     font-size: var(--fs-16);
-} 
+}
 .quote_card_heading>h3 {
     font-size: var(--fs-16);
 }
@@ -889,7 +889,7 @@ p.reviews {
 .increase_budge {
     align-items: flex-start;
         justify-content: space-around;
-    
+
 }
 .form-check .form-check-input.checkbook{
     margin-left: unset;
@@ -924,7 +924,7 @@ p.reviews {
 
 }
 @media (min-width: 992px) and (max-width: 1024px){
-   
+
     .image-uploader .uploaded .uploaded-image {
     width: calc(32% - 0.4rem) !important;
     padding-bottom: calc(32% - 0.4rem)!important;
@@ -973,9 +973,6 @@ p.reviews {
     }
     .card_icons.respons_qoute{
         margin-top: unset;
-    }
-    .payment_divider:after {
-        height: 298px;
     }
     .conform_order_H3 {
         font-size: var(--fs-20);

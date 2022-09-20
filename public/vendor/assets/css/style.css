@@ -642,42 +642,6 @@ nav{
     outline: 0;
     box-shadow: 0 0 0 0 var(--orang-mask);
 }
-/*pagination*/
-.pagination{
-    align-items: center;
-    justify-content: center;
-}
-.pagination .page-item{
-    margin: 0 12px;
-}
-.pagination .page-item .page-link{
-    background-color: var(--paginationbg);
-    border: 1px solid var(--dark-border);
-    font-size: var(--fs-15);
-    border-radius: 6px;
-    font-weight: 700;
-}.pagination .page-item:first-child>a,.pagination .page-item:last-child>a{
-    border: unset;
-    background-color: unset;
-}
-.pagination .page-item:first-child>a:hover{
-    background-color: unset;
-}
-.pagination .page-item .page-link:hover {
-    background-color: var(--orange);
-    border-radius: 6px;
-}
-.pagination .page-item.active .page-link:hover {
-    background-color: var(--orange);
-    color: var(--white);
-}
-.pagination .page-item.active .page-link {
-    color: var(--black);
-    background-color: var(--orange);
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: var(--fs-15);
-}
 /*...................................car for sale page.................................*/
 .card-title.price{
     color: var(--orange);

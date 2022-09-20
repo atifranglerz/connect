@@ -832,12 +832,18 @@ section.looking_for {
     margin: 0 12px;
 }
 .pagination .page-item .page-link{
+    color: var(--orange);
     background-color: var(--paginationbg);
     border: 1px solid var(--dark-border);
     font-size: var(--fs-15);
-    border-radius: 6px;
-    font-weight: 700;
-}.pagination .page-item:first-child>a,.pagination .page-item:last-child>a{
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination .page-item:first-child>a,.pagination .page-item:last-child>a{
     border: unset;
     background-color: unset;
 }
@@ -846,18 +852,16 @@ section.looking_for {
 }
 .pagination .page-item .page-link:hover {
     background-color: var(--orange);
-    border-radius: 6px;
+    border-radius: 50px;
 }
 .pagination .page-item.active .page-link:hover {
     background-color: var(--orange);
     color: var(--white);
 }
 .pagination .page-item.active .page-link {
-    color: var(--black);
+    font-family: sans-serif!important;
+    color: #FFFF;
     background-color: var(--orange);
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: var(--fs-15);
 }
 /*...................................car for sale page.................................*/
 .card-title.price{

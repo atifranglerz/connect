@@ -54,7 +54,7 @@
                 $amount = round(($vendorbid->net_total * $per) / 100);
             }
             ?>
-            <div class="row">
+            <div class="row mx-0">
                 <div class="col-lg-9 col-md-12 mx-auto" style="background: #FFF;padding: 16px;border-radius: 8px">
                     <form role="form" action="{{ route('user.payment-info') }}" method="POST" class="require-validation"
                         data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
@@ -65,7 +65,7 @@
                         <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
                         <input type="hidden" name="action" value="through_credit">
                         <div class=" billing_info">
-                            <h5 class="text-center heading-color">{{ __('msg.Payment Info') }}</h5>
+                            <h5 class="mb-3 text-center text-uppercase heading-color">{{ __('msg.Payment Info') }}</h5>
                         </div>
                         <div class="row g-2">
                             <div class="col-lg-5 col-md-5 col-sm-5">
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group required'>
-                                        <input class='form-control' placeholder="{{ __('msg.Cardholder Name') }}"
+                                        <input class='form-control' placeholder="{{ __('msg.Cardholder Name') }} ({{ __('msg.Required') }})"
                                             size='4' type='text' name="name">
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group  required'>
                                         <input autocomplete='off' class='form-control card-number'
-                                            placeholder="{{ __('msg.Card Number') }}" name="card-number" size='20'
+                                            placeholder="{{ __('msg.Card Number') }} ({{ __('msg.Required') }})" name="card-number" size='20'
                                             type='text'>
                                     </div>
                                 </div>
@@ -99,18 +99,18 @@
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group cvc required'>
                                         <input autocomplete='off' class='form-control card-cvc' name="card-cvc"
-                                            placeholder="CVV" size='4' type='text'>
+                                            placeholder="CVV ({{ __('msg.Required') }})" size='4' type='text'>
                                     </div>
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12  form-group expiration required'>
                                         <input class='form-control card-expiry-month' name="expiry-month"
-                                            placeholder="{{ __('msg.Expiry Date') }}" size='2' type='text'>
+                                            placeholder="{{ __('msg.Expiry Date') }} ({{ __('msg.Required') }})" size='2' type='text'>
                                     </div>
                                 </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group expiration required'>
-                                        <input class='form-control card-expiry-year' name="expiry-year" placeholder='YYYY'
+                                        <input class='form-control card-expiry-year' name="expiry-year" placeholder='YYYY ({{ __('msg.Required') }})'
                                             size='4' type='text'>
                                     </div>
                                 </div>
@@ -221,7 +221,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer justify-content-center">
                             <button class="btn btn-primary flterClass" id="submit"
                                 type="submit">{{ __('msg.SUBMIT') }}</button>
                         </div>

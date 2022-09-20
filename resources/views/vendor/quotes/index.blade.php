@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 @endif
-                <span>{!! $user_all_bid->links() !!}</span>
+                {!! $user_all_bid->links() !!}
             </div>
         </div>
     </section>
