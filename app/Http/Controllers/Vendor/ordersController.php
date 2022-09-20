@@ -24,7 +24,7 @@ class ordersController extends Controller
     {
         $page_title = "All Order";
         $garage = Garage::where('vendor_id', auth()->id())->first();
-        $orders = Order::where('garage_id', $garage->id)->orderBy('id','desc')->get();
+        $orders = Order::where('garage_id', $garage->id)->orderBy('id','desc')->paginate(3);
 
         return view('vendor.order.orders', compact('page_title', 'orders'));
     }
@@ -86,7 +86,6 @@ class ordersController extends Controller
         if ($now > $gettime) {
             $Notification = new Notification($message);
             dispatch($Notification);
-            // Mail::to($user->email)->send(new AboutOrder($message));
         } else {
             $notification = new webNotification();
             $notification->customer_id = $request->id;
@@ -260,7 +259,6 @@ class ordersController extends Controller
         if ($now > $gettime) {
             $Notification = new Notification($message);
             dispatch($Notification);
-            // Mail::to($user->email)->send(new AboutOrder($message));
         } else {
             $notification = new webNotification();
             $notification->customer_id = $request->user_id;
@@ -281,9 +279,8 @@ class ordersController extends Controller
         $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
             $q->where('status', '=', '1');
         }])->where('id', '=', $id)->first();
-        // $data = VendorBid::where('id', $id)->with('part', 'vendordetail')->first();
         return view('vendor.quotes.quote_offer_details',compact('data'));
-        return view('user.quote.print_order_details', compact('data'));
+
     }
 
 

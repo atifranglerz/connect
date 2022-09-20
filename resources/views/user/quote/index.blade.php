@@ -56,6 +56,7 @@
                 </div>
             </div>
             @endif
+            <span >{!! $user_bid->links() !!}</span>
         </div>
     </div>
 </section>

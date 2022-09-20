@@ -24,7 +24,7 @@ class OrderController extends Controller
     {
         $page_title = "Active Order";
         $userbidid = UserBid::where('user_id', auth()->id())->pluck('id');
-        $orders = Order::whereIn('user_bid_id', $userbidid)->orderBy('id', 'desc')->get();
+        $orders = Order::whereIn('user_bid_id', $userbidid)->orderBy('id', 'desc')->paginate(3);
 
         return view('user.order.index', compact('page_title', 'orders'));
     }

@@ -22,7 +22,7 @@ class QuoteController extends Controller
     public function index()
     {
         $data['page_title'] = 'quote/index ';
-        $data['user_bid'] = UserBid::where([['user_id', Auth::id()], ['offer_status', '!=', 'ordered']])->get();
+        $data['user_bid'] = UserBid::where([['user_id', Auth::id()], ['offer_status', '!=', 'ordered']])->orderBy('id','desc')->paginate(3);
         return view('user.quote.index', $data);
     }
 

@@ -25,11 +25,9 @@ class QuotesController extends Controller
         $data['page_title'] = 'index ';
         $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->orderBy('id','DESC')->get();
-        $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
-
+        })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->orderBy('id','DESC')->get();
+        })->orderBy('id','DESC')->paginate(3);
         return view('vendor.quotes.index', $data);
     }
     public function requestedInspections()
@@ -37,11 +35,10 @@ class QuotesController extends Controller
 
         $data['page_title'] = 'Requested Inspections';
         $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid', function ($q) {
-            $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection");
-        })->get();
-        $data['user_all_bids'] = VendorQuote::where('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
-            $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection");
-        })->get();
+            $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
+        })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
+            $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
+        })->orderBy('id','DESC')->paginate(3);
 
         return view('vendor.quotes.index', $data);
     }
