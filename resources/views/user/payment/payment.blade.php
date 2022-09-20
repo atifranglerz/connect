@@ -1,5 +1,20 @@
 @extends('user.layout.app')
 @section('content')
+    <style>
+        .btn-primary {
+            width: 265px;
+            min-width: fit-content;
+            text-align: center;
+        }
+        @media (min-width: 992px) {
+            .col-lg-2 {
+                width: 5.666667%;
+            }
+            .col-lg-5 {
+                width: 46.666667%;
+            }
+        }
+    </style>
     <section class="pb-5 login_content_wraper">
         <div class="container-lg container-fluid">
             <div class="row">
@@ -19,7 +34,7 @@
                 ->first();
             $per = $per->percentage;
             $order = \App\Models\Order::where([['user_bid_id', $vendorbid->user_bid_id], ['vendor_bid_id', $vendorbid->id]])->first();
-            
+
             if (isset($user->company[0]->name) && isset($vendor->company[0])) {
                 foreach ($vendor->company as $company) {
                     if ($user->company[0]->name == $company->name) {
@@ -32,7 +47,7 @@
             } else {
                 $status = 'no';
             }
-            
+
             if ($type == 'order') {
                 $amount = $order->total - $order->advance;
             } else {
@@ -40,7 +55,7 @@
             }
             ?>
             <div class="row">
-                <div class="col-lg-10 col-md-12 mx-auto">
+                <div class="col-lg-9 col-md-12 mx-auto" style="background: #FFF;padding: 16px;border-radius: 8px">
                     <form role="form" action="{{ route('user.payment-info') }}" method="POST" class="require-validation"
                         data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                         @csrf
@@ -49,11 +64,11 @@
                         <input type="hidden" name="garage_id" value="{{ $vendorbid->garage_id }}">
                         <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
                         <input type="hidden" name="action" value="through_credit">
+                        <div class=" billing_info">
+                            <h5 class="text-center heading-color">{{ __('msg.Payment Info') }}</h5>
+                        </div>
                         <div class="row g-2">
                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                <div class=" billing_info">
-                                    <h5 class="heading-color">{{ __('msg.Payment Info') }}</h5>
-                                </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group required'>
                                         <input class='form-control' value="{{ $amount }} {{ __('msg.AED') }}"
@@ -81,9 +96,6 @@
 
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                <div class=" billing_info">
-                                    <h5 class="heading-color">{{ __('msg.Payment Info') }}</h5>
-                                </div>
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group cvc required'>
                                         <input autocomplete='off' class='form-control card-cvc' name="card-cvc"
@@ -111,23 +123,20 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-xl-8 col-lg-10 col-sm-10 mx-auto">
+                            <div>
                                 @if ($type == 'order')
-                                    <div @if ($user->type == 'company') class="d-flex" @endif>
-                                        <input type="hidden" name="type" value="order">
-                                        <div class="col-sm-5 mx-auto center" style="text-align: center">
+                                    <div @if ($user->type == 'company') class="d-flex justify-content-center align-items-center" style="gap: 30px" @endif>
+                                            <input type="hidden" name="type" value="order">
                                             <button class="btn btn-primary btn-lg btn-block"
                                                 type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
-                                        </div>
                                         @if ($user->type == 'company')
-                                            <div class="col-sm-5 mx-auto center" style="text-align: center">
-                                                <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                                                    data-bs-target="#checkAttachModel">{{ __('msg.Pay Through Cheque') }}</a>
-                                            </div>
+                                            <h6 class="mb-0 heading-color">OR</h6>
+                                            <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                                                data-bs-target="#checkAttachModel" style="font-size: 14px">{{ __('msg.Pay Through Cheque') }}</a>
                                         @endif
                                     </div>
                                 @else
-                                    <div class="row">
+                                    <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 30px">
                                         <input type="hidden" name="type" value="quote">
                                         @if ($status == 'no')
                                             <div class="col-sm-5 mx-auto center" style="text-align: center">
@@ -135,21 +144,12 @@
                                                     type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                             </div>
                                         @else
-                                            <div class="col-lg-5 col-sm-5">
-                                                <button class="btn btn-primary btn-lg btn-block"
-                                                    type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-2">
-                                                <div>
-                                                    {{-- <h5 class="conform_order_H3 text-center">{{ __('msg.OR') }}</h5> --}}
-                                                </div>
-
-                                            </div>
-                                            <div class="col-lg-5 col-sm-5">
-                                                <a href="{{ route('user.payment-insurance', $vendorbid->id) }}"
-                                                    class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                                    type="button">{{ __('msg.PAY VIA INSURANCE COMPANY') }}</a>
-                                            </div>
+                                            <button class="btn btn-primary btn-lg btn-block"
+                                                type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
+                                            <h6 class="mb-0 heading-color">OR</h6>
+                                            <a href="{{ route('user.payment-insurance', $vendorbid->id) }}"
+                                                class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
+                                                type="button" style="font-size: 14px">{{ __('msg.PAY VIA INSURANCE COMPANY') }}</a>
                                         @endif
                                     </div>
                                 @endif
@@ -159,16 +159,16 @@
                     <div class="mt-5">
                         @if ($type == 'order')
                             @if (Auth::user()->type == 'company')
-                                <p style="text-align: center">"You've paid the 100% of the total amount
+                                <p class="mb-0" style="text-align: center">"You've paid the 100% of the total amount
                                     {{ $order->total }} to make the order as completed"</p>
                             @else
-                                <p style="text-align: center">"You've paid the {{ $per }}% of the total amount
+                                <p class="mb-0" style="text-align: center">"You've paid the {{ $per }}% of the total amount
                                     {{ $order->total }} in the first
                                     half to make the order in process, right
                                     now we are asking you the to pay the remaining dues to make the order as completed"</p>
                             @endif
                         @else
-                            <p style="text-align: center">"Right now you are going to pay {{ $per }}% of the
+                            <p class="mb-0" style="text-align: center">"Right now you are going to pay {{ $per }}% of the
                                 total ammount
                                 {{ $vendorbid->net_total }}, the remaining dues will be asked to
                                 pay when the order get completed, thank you"</p>

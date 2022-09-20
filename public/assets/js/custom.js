@@ -43,14 +43,14 @@ $(function() {
         $(this).children('span').toggleClass('d-inline-block d-none');
     });
 
-    $('#datepicker').datepicker({
-        minDate: 0,
-        dateFormat: 'DD, d MM, yy',
-        beforeShowDay: $.datepicker.noWeekends,
-        onSelect: function(dateText) {
-            $('#datepicker2').datepicker("setDate", $(this).datepicker("getDate"));
-        }
-    });
+    // $('#datepicker').datepicker({
+    //     minDate: 0,
+    //     dateFormat: 'DD, d MM, yy',
+    //     beforeShowDay: $.datepicker.noWeekends,
+    //     onSelect: function(dateText) {
+    //         $('#datepicker2').datepicker("setDate", $(this).datepicker("getDate"));
+    //     }
+    // });
 });
 
 $(function() {
@@ -86,7 +86,7 @@ $(function() {
     });
     /*global Select2*/
 
-    $("#datepicker2").datepicker();
+    // $("#datepicker2").datepicker();
 });
 
 $(".vendor_carousel").owlCarousel({ margin: 10, autoplay: !0, nav: !0, autoplayTimeout: 3e3, autoplayHoverPause: !0, responsive: { 0: { items: 1 }, 500: { items: 1, stagePadding: 10 }, 700: { items: 2 }, 1000: { items: 3 } } });

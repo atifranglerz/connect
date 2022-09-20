@@ -248,7 +248,7 @@
             <?php
             $documents = \App\Models\UserBidImage::where('user_bid_id', $data->id)
                 ->where('type', 'file')
-                ->get();
+                ->first();
 
             ?>
             @if ($data->looking_for == 'I have Inspection Report & Looking for the Quotations')
@@ -256,159 +256,54 @@
                     <div class="col-lg-12">
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <h5 class="active_order_req">{{__('msg.Police /Accident /Inspection Report')}}</h5>
-                            <div class="owl-carousel carousel_se_03_carousel owl-theme mt-4">
-                                @if (count($documents) == 0)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset('public/assets/images/no-file.png') }}">
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset('public/assets/images/no-file.png') }}">
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset('public/assets/images/no-file.png') }}">
-                                        </div>
-                                    </div>
-                                @elseif(count($documents) == 1)
-                                    @foreach ($documents as $image)
-                                        <?php $pathinfo = pathinfo($image->car_image);
+                            <div class="owl-theme mt-4">
+
+
+                                @if(isset($documents->car_image))
+
+                                        <?php $pathinfo = pathinfo($documents->car_image);
                                         $supported_ext = ['docx', 'xlsx', 'pdf'];
-                                        $src_file_name = $image->car_image;
+                                        $src_file_name = $documents->car_image;
                                         $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
                                         <div class="item">
                                             <div class="carAd_img_wraper doc_img customer_dashboard">
                                                 @if ($ext == 'docx')
                                                     <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
+                                                        href="{{ url($documents->car_image) }}">
                                                         <img src="{{ asset('public/assets/images/wordicon.png') }}"
                                                             style="height: 100%;">
                                                     </a>
                                                 @elseif($ext == 'doc')
                                                     <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
+                                                        href="{{ url($documents->car_image) }}">
                                                         <img src="{{ asset('public/assets/images/wordicon.png') }}"
                                                             style="height: 100%;">
                                                     </a>
                                                 @elseif($ext == 'xlsx')
                                                     <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
+                                                        href="{{ url($documents->car_image) }}">
                                                         <img src="{{ asset('public/assets/images/excelicon.png') }}"
                                                             style="height: 100%;">
                                                     </a>
                                                 @elseif($ext == 'pdf')
                                                     <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
+                                                        href="{{ url($documents->car_image) }}">
                                                         <img src="{{ asset('public/assets/images/pdficon.png') }}"
                                                             style="height: 100%;">
                                                     </a>
                                                 @else
-                                                    <img src="{{ asset($image->car_image) }}">
+                                                    <img src="{{ asset($documents->car_image) }}">
                                                 @endif
 
 
                                             </div>
                                         </div>
+                                        @else
                                         <div class="item">
                                             <div class="carAd_img_wraper doc_img customer_dashboard">
                                                 <img src="{{ asset('public/assets/images/no-file.png') }}">
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                                <img src="{{ asset('public/assets/images/no-file.png') }}">
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @elseif(count($documents) == 2)
-                                    @foreach ($documents as $image)
-                                        <?php $pathinfo = pathinfo($image->car_image);
-                                        $supported_ext = ['docx', 'xlsx', 'pdf'];
-                                        $src_file_name = $image->car_image;
-                                        $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
-                                        <div class="item">
-                                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                                @if ($ext == 'docx')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/wordicon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @elseif($ext == 'doc')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/wordicon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @elseif($ext == 'xlsx')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/excelicon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @elseif($ext == 'pdf')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/pdficon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @else
-                                                    <img src="{{ asset($image->car_image) }}">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                                <img src="{{ asset('public/assets/images/no-file.png') }}">
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    @foreach ($documents as $image)
-                                        <?php $pathinfo = pathinfo($image->car_image);
-                                        $supported_ext = ['docx', 'xlsx', 'pdf'];
-                                        $src_file_name = $image->car_image;
-                                        $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
-                                        <div class="item">
-                                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                                @if ($ext == 'docx')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/wordicon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @elseif($ext == 'doc')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/wordicon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @elseif($ext == 'xlsx')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/excelicon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @elseif($ext == 'pdf')
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                        <img src="{{ asset('public/assets/images/pdficon.png') }}"
-                                                            style="height: 100%;">
-                                                    </a>
-                                                @else
-                                                    <img src="{{ asset($image->car_image) }}">
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                            </div>
-                                        </div>
-                                    @endforeach
                                 @endif
                             </div>
 
@@ -557,10 +452,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="mt-3 mb-4 text-center heading-color">(Important: Kindly Fill the above Fields First !)</h5>
+                                        </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{__('msg.Estimate Total')}}</h6>
                                             <input type="number" name="price" class="form-control amountTotal"
-                                                placeholder="{{__('msg.AED Price')}}">
+                                                placeholder="{{__('msg.AED Price')}}" readonly>
                                             @error('price')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -578,7 +476,7 @@
                                             <?php $garage = \App\Models\Garage::where('vendor_id', auth()->id())->first(); ?>
                                             <input type="hidden" name="garage_id" value="{{ $garage->id }}">
                                             <input type="number" name="vat" class="form-control vatPercent"
-                                                placeholder="{{__('msg.AED Price')}}">
+                                                placeholder="{{__('msg.AED Price')}}" readonly>
                                             @error('vat')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -586,27 +484,27 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{__('msg.Net Total')}}</h6>
                                             <input type="number" name="net_total" class="form-control netTotal"
-                                                placeholder="{{__('msg.AED Price')}}">
+                                                placeholder="{{__('msg.AED Price')}}" readonly>
                                             @error('net_total')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{__('msg.Time Frame')}}</h6>
-                                            <input type="text" name="time" class="form-control"
-                                                placeholder="{{__('msg.Estimated Time')}}">
+                                            <input type="text" name="time" class="form-control" value="{{ old('time') }}"
+                                                placeholder="{{__('msg.Estimated Time')}} ({{__('msg.Required')}})">
                                             @error('time')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 col-md-12 mb-3">
                                             <div class="form-floating">
-                                                <textarea class="form-control" name="description" placeholder="Add information in details" id="floatingTextarea2"
-                                                    style="height: 106px"></textarea>
+                                                <textarea class="form-control" name="description" placeholder="({{__('msg.Add information in details')}}) ({{__('msg.Required')}})" id="floatingTextarea2"
+                                                    style="height: 106px">{{ old('description') }}</textarea>
                                                 @error('description')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
-                                                <label for="floatingTextarea2">{{__('msg.Add Repairing Details')}}</label>
+                                                <label for="floatingTextarea2">{{__('msg.Add Repairing Details')}} ({{__('msg.Required')}})</label>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
@@ -832,7 +730,28 @@
 @endsection
 @section('script')
     <script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
         $(function() {
+            if($('span').hasClass('text-danger')) {
+                toastr.error("Failed! You've to fill the Required Fields");
+            }
+
             /*tooltip*/
             $('[data-toggle="tooltip"]').tooltip({
                 trigger: 'hover'
