@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendor;
 use App\Models\User;
 use App\Models\vendor;
 use Illuminate\Http\Request;
+use App\Models\PaymentPercentage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -66,7 +67,9 @@ class ProfileController extends Controller
     {
         $company = User::where('type','company')->get();
         $profile = Vendor::with('company')->findOrFail($id);
-        return view('vendor.profile.edit', compact('profile', 'company'));
+        $vat = PaymentPercentage::select('percentage')->where('type','vat')->first();
+
+        return view('vendor.profile.edit', compact('profile', 'company','vat'));
 
     }
 
@@ -123,10 +126,12 @@ class ProfileController extends Controller
         $vendor->post_box = $request->postbox;
         $vendor->phone = $request->appointment_number;
         $vendor->city = $request->city;
-        $vendor->vat = $request->vat;
+        $vat = explode(' ', $request->vat);
+        $vendor->vat = (int) filter_var($vat[0], FILTER_SANITIZE_NUMBER_INT);
         $vendor->billing_area = $request->billing_area;
         $vendor->billing_city = $request->billing_city;
         $vendor->billing_address = $request->billing_address;
+        $vendor->address = $request->billing_address;
         $vendor->trading_license = $request->trading_license;
         $vendor->appointment_number = $request->appointment_number;
         $vendor->update();

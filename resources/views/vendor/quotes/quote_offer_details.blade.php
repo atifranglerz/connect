@@ -8,7 +8,7 @@
                     <h5 class="sec_main_heading text-center">{{$data->vendordetail->garage_name}} {{__('msg.GARAGE')}}</h4>
                     <p class="sec_main_para text-center">{{$data->vendordetail->address}} {{__('msg.P/O Box')}} {{$data->vendordetail->post_box}}</p>
                     <p class="sec_main_para text-center"><b>{{__('msg.Tel')}}: </b><span>{{$data->vendordetail->phone}}</span></p>
-                    <p class="sec_main_para text-center"><b>{{__('msg.Email')}}: </b><span>{{$data->vendordetail->vendor->email}}</span></p>
+                    <p class=" text-center"><b>{{__('msg.Email')}}: </b><span>{{$data->vendordetail->vendor->email}}</span></p>
                     <h5 class="sec_main_heading text-center my-3">{{__('msg.JOB ESTIMATE')}}</h4>
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-striped table-dark mb-0">
@@ -30,7 +30,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <h6 class="mt-3">{{__('msg.vendor_detail')}}:</h4>
+                    <h6 class="mt-3">{{__('msg.vendor_detail')}}</h4>
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-striped table-dark mb-0">
                             <thead>
@@ -207,7 +207,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <b class="col-6">{{__('msg.vat')}} 5%</b>
+                                <b class="col-6">{{__('msg.vat')}} {{Auth::user()->vat}}%</b>
                                 <div class="col-6 text-xl-right">
                                     <span>{{$data->vat}}</span>
                                 </div>
