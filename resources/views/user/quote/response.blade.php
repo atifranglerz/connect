@@ -104,6 +104,7 @@
                     </div>
                 </div>
             @endif
+            <span >{!! $data->links() !!}</span>
         </div>
     </div>
 </section>

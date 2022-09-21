@@ -218,13 +218,13 @@ class QuoteController extends Controller
 
     public function reply($id)
     {
-        $data = \App\Models\VendorBid::with('vendordetail')->where('user_bid_id', '=', $id)->get();
+        $data = VendorBid::with('vendordetail')->where('user_bid_id', '=', $id)->paginate(1);
         $page_title = 'Qoute Response';
         return view('user.quote.response', compact('page_title', 'data'));
     }
     public function vendorResponse($id)
     {
-        $data = \App\Models\VendorBid::with('vendordetail')->where('id', '=', $id)->first();
+        $data = VendorBid::with('vendordetail')->where('id', '=', $id)->first();
         $page_title = 'vendor response ';
         return view('user.quote.vendor_reply', compact('page_title', 'data'));
     }
