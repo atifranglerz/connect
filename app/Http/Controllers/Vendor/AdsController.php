@@ -20,7 +20,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::where('vendor_id', auth()->id())->with('company', 'modelYear')->paginate(1);
+        $ads = Ads::where('vendor_id', auth()->id())->with('company', 'modelYear')->orderBy('id','desc')->paginate(1);
         return view('vendor.ads.index', compact('ads'));
     }
 
