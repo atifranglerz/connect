@@ -284,6 +284,7 @@ return [
     'Garage Owner' => 'Garage Owner',
     'Garage Number' => 'Garage Number',
     'Kindly Fill the above Fields First' => 'Kindly Fill the above Fields First',
+    'Important' => 'Important',
     'Phone' => 'Phone',
     'id' => 'ID',
     'Date' => 'Date',

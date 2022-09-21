@@ -282,6 +282,7 @@ return [
     'Garage Owner' => 'صاحب الجراج',
     'Garage Number' => 'رقم الجراج',
     'Kindly Fill the above Fields First' => 'يرجى تعبئة الحقول أعلاه أولاً',
+    'Important' => 'مهم',
     'id' => 'هوية شخصية',
     'Date' => 'تاريخ',
     'Services Detail' => 'تفاصيل الخدمات',
