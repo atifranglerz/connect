@@ -156,7 +156,6 @@ class VendorController extends Controller
      */
     public function delete($id)
     {
-        // dd('usman');
         $vendor = Vendor::findOrFail($id);
         if ($vendor->hasRole('vendor')) {
             $vendor->delete();
