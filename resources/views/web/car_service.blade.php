@@ -24,6 +24,13 @@
             </div>
             @endforeach
         </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <nav aria-label="..." class="d-flex align-items-center justify-content-center">
+                    <span class="mt-4">{!! $services->links() !!}</span>
+                </nav>
+            </div>
+        </div>
     </div>
 </section>
 @endsection

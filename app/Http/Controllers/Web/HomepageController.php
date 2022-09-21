@@ -50,7 +50,7 @@ class HomepageController extends Controller
     public function carService()
     {
         $data['page_title'] = "carservice Page";
-        $data['services'] = Category::orderby('position', 'ASC')->get();
+        $data['services'] = Category::orderby('position', 'ASC')->paginate(8);
 
         return view('web.car_service', $data);
     }
