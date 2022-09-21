@@ -1732,6 +1732,7 @@ ul.sidebar_navcigation>li>a>img{
 }
 .quote_detail_btn_wraper>.vendor_replies_dtl{
     color: var(--orange);
+    text-transform: capitalize;
 }
 .card_icons>.icon_wrpaer.vendor_qoute_dtl{
     background-color:  var(--black);
@@ -2071,8 +2072,7 @@ a#chat_toggle {
 }
 .pay_via_insurance_header_garages{
     background-color: var(--black);
-    width: 100px;
-    height: 45px;
+    height: 40px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -2086,6 +2086,8 @@ a#chat_toggle {
 }
 .pay_via_insurance_header_garages>i{
     color: var(--white);
+    margin-left: 8px;
+    font-size: 12px;
 }
 .img-download-block + p {
     margin-top: 10px;

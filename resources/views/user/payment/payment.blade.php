@@ -108,7 +108,7 @@
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12  form-group expiration required'>
                                         <input class='form-control card-expiry-month' name="expiry-month"
-                                            placeholder="{{ __('msg.Expiry Date') }} ({{ __('msg.Required') }})" size='2' type='text'>
+                                            placeholder="{{ __('msg.Expiry Month') }} ({{ __('msg.Required') }})" size='2' type='text'>
                                     </div>
                                 </div>
                                 <div class="inpu_wraper mb-3">
@@ -128,7 +128,7 @@
                         <div class="row mt-5">
                             <div>
                                 @if ($type == 'order')
-                                    <div @if ($user->type == 'company') class="d-flex justify-content-center align-items-center" style="gap: 30px" @endif>
+                                    <div class="d-flex justify-content-center align-items-center" style="gap: 30px">
                                             <input type="hidden" name="type" value="order">
                                             <button class="btn btn-primary btn-lg btn-block"
                                                 type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
