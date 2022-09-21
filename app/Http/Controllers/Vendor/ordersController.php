@@ -24,7 +24,7 @@ class ordersController extends Controller
     {
         $page_title = "All Order";
         $garage = Garage::where('vendor_id', auth()->id())->first();
-        $orders = Order::where('garage_id', $garage->id)->orderBy('id','desc')->paginate(3);
+        $orders = Order::where('garage_id', $garage->id)->orderBy('id','desc')->paginate(5);
 
         return view('vendor.order.orders', compact('page_title', 'orders'));
     }

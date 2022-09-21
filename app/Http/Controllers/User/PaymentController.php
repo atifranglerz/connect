@@ -59,13 +59,13 @@ class PaymentController extends Controller
             // get payment
             if ($request->action == "through_credit") {
 
-                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-                // Stripe\Charge::create([
-                //     "amount" => $amount[0] * 100,
-                //     "currency" => "aed",
-                //     "source" => $request->stripeToken,
-                //     "description" => "payment from " .$request->name,
-                // ]);
+                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                Stripe\Charge::create([
+                    "amount" => $amount[0] * 100,
+                    "currency" => "aed",
+                    "source" => $request->stripeToken,
+                    "description" => "payment from " .$request->name,
+                ]);
             }
             $order = Order::where([['user_bid_id', $request->user_bid_id], ['vendor_bid_id', $request->vendor_bid_id]])->first();
             $order->status = "complete";
@@ -117,13 +117,13 @@ class PaymentController extends Controller
             $amount = explode(" ", $request->amount);
             // get payment
 
-            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            // Stripe\Charge::create([
-            //     "amount" => $amount[0] * 100,
-            //     "currency" => "aed",
-            //     "source" => $request->stripeToken,
-            //     "description" => "payment from " . $request->name,
-            // ]);
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\Charge::create([
+                "amount" => $amount[0] * 100,
+                "currency" => "aed",
+                "source" => $request->stripeToken,
+                "description" => "payment from " . $request->name,
+            ]);
 
             $order = new Order();
             $order_no = mt_rand('1000', '100000');

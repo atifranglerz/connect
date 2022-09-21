@@ -27,7 +27,7 @@ class QuotesController extends Controller
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
         })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->orderBy('id','DESC')->paginate(3);
+        })->orderBy('id','DESC')->paginate(5);
         return view('vendor.quotes.index', $data);
     }
     public function requestedInspections()
@@ -38,7 +38,7 @@ class QuotesController extends Controller
             $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
         })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->orderBy('id','DESC')->paginate(3);
+        })->orderBy('id','DESC')->paginate(5);
 
         return view('vendor.quotes.index', $data);
     }

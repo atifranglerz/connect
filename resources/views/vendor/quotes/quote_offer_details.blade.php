@@ -7,8 +7,8 @@
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5 white-background-box">
                     <h5 class="sec_main_heading text-center">{{$data->vendordetail->garage_name}} {{__('msg.GARAGE')}}</h4>
                     <p class="sec_main_para text-center">{{$data->vendordetail->address}} {{__('msg.P/O Box')}} {{$data->vendordetail->post_box}}</p>
-                    <p class="sec_main_para text-center"><b>{{__('msg.Tel')}} : </b><span>{{$data->vendordetail->phone}}</span>, <b>{{__('msg.Fax')}} : </b><span>3881433</span></p>
-                    <p class="sec_main_para text-center"><b>{{__('msg.Email')}} : </b><span>{{$data->vendordetail->vendor->email}}</span></p>
+                    <p class="sec_main_para text-center"><b>{{__('msg.Tel')}}: </b><span>{{$data->vendordetail->phone}}</span></p>
+                    <p class="sec_main_para text-center"><b>{{__('msg.Email')}}: </b><span>{{$data->vendordetail->vendor->email}}</span></p>
                     <h5 class="sec_main_heading text-center my-3">{{__('msg.JOB ESTIMATE')}}</h4>
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-striped table-dark mb-0">
@@ -23,15 +23,14 @@
                             <tbody>
                                 <tr>
                                     <th>{{__('msg.Phone')}}</th>
-                                    <td>{{$data->vendordetail->vendor->phone}}</td>
-                                    <th>{{__('msg.Fax')}} :</th>
+                                    <td colspan="2">{{$data->vendordetail->vendor->phone}}</td>
                                     <th>{{__('msg.Date')}}</th>
                                     <td>{{ \Carbon\Carbon::parse($data->created)->format('d-M-Y')}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <h6 class="mt-3">{{__('msg.vendor_detail')}} :</h4>
+                    <h6 class="mt-3">{{__('msg.vendor_detail')}}:</h4>
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-striped table-dark mb-0">
                             <thead>
@@ -46,7 +45,7 @@
                                 <tr>
                                     <th>{{__('msg.Car Make')}}</th>
                                     <td>{{$data->userBid->company->company}}</td>
-                                    <th>Color</th>
+                                    <th>{{__('msg.Color')}}</th>
                                     <td>{{$data->userBid->color}}</td>
                                 </tr>
                                 <tr>
@@ -100,7 +99,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <th>{{__('msg.Services')}} : </th>
+                                    <th>{{__('msg.Services')}}: </th>
                                     <td><span>{{$total}}</span>.00</td>
                                 </tr>
                             </tbody>
@@ -146,13 +145,13 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <th>Spares : </th>
+                                    <th>{{__('msg.Spares')}}: </th>
                                     <td><span>{{$total}}</span>.00</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <h6 class="mt-3">{{__('msg.Others')}} :</h4>
+                    <h6 class="mt-3">{{__('msg.Others')}}:</h4>
                     <div class="table-responsive bg-white">
                         <table class="table table-bordered table-striped table-dark mb-0">
                             <thead>
@@ -193,7 +192,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <th>{{__('msg.Others')}} : </th>
+                                    <th>{{__('msg.Others')}}: </th>
                                     <td><span>{{$total}}</span>.00</td>
                                 </tr>
                             </tbody>
