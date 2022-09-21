@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-2">
+            <div class="row mx-0 mb-3">
                 @if (count($data) > 0)
                     @foreach ($data as $value)
                         <?php

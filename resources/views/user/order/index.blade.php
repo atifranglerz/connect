@@ -21,7 +21,7 @@
                             $img1 = Explode(',', $img->car_image);
                             $company = \App\Models\Company::where('id', $userbidid->company_id)->first();
                         ?>
-                        <div class="col-lg-11 col-md-12  mx-auto">
+                        <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
                             <div class="all_quote_card ">
                                 <div class="car_inner_imagg ">
                                     <img src="{{ asset($img1[0]) }}">
@@ -53,7 +53,7 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="col-lg-11 col-md-12  mx-auto">
+                    <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
                         <div class="all_quote_card ">
 
                             <div class=" w-100  quote_detail_wraper">
