@@ -1996,7 +1996,7 @@ padding-right: 35px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 135px;
+    max-width: 115px;
 }
 .main_contact{
     overflow-y: scroll;
@@ -2007,17 +2007,13 @@ padding-right: 35px;
     scrollbar-width: none !important;
     /* for Firefox */
 }
-a#chat_toggle {
-    color: #FFF;
-    margin-right: 16px;
-}
 .main_contact::-webkit-scrollbar {
   display: none;
 }
 .chat_section{
     margin-left: 220px;
     width: 100%;
-    height:calc( 100vh - 14.1vh);
+    height:calc( 100vh - 15.1vh);
     padding: 0;
     background-position: 100% 100%;
     background-repeat: no-repeat;
@@ -2132,7 +2128,7 @@ p#userNotify {
 }
 .cahtting_messages{
     overflow-y: auto;
-    height:calc( 100vh - 38vh);
+    height:calc( 100vh - 43vh);
 }
 .cahtting_messages::-webkit-scrollbar {
   display: none;

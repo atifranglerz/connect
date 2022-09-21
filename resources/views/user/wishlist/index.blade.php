@@ -27,7 +27,7 @@
                                         </h5>
                                         <p class="mb-0">{{ $wishlist->city }}, {{ $wishlist->country }}</p>
                                         <p>{{ $wishlist->phone }}</p>
-                                        <div class="card_icons d-flex justify-content-center align-items-center">
+                                        <div class="mt-2 card_icons d-flex justify-content-center align-items-center">
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $wishlist->id)->pluck('category_id');
                                             $category_name = \App\Models\Category::whereIn('id', $category)->get();
                                             ?>
@@ -53,8 +53,8 @@
                                                 method="POST" style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="chat_icon" type="submit" style="margin-right: 8px;">
-                                                    <i class="fa-solid fa-trash"></i>
+                                                <button class="chat_icon" type="submit" style="margin-right: 8px;background: none;border: none">
+                                                    <i class="fa-solid fa-trash text-danger"></i>
                                                 </button>
                                             </form>
                                             <a href="{{ route('gerage_detail', $wishlist->id) }}" class="btn-secondary">{{__('msg.view_details')}}</a>

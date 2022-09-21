@@ -1268,7 +1268,12 @@ p.card-text.sing_up_card_txt{
     position: relative;
     z-index: 0;
 }
-
+a#chat_toggle {
+    color: #FFF;
+}
+.chat_top_name a#chat_toggle {
+    margin-right: 16px;
+}
 .btn-secondary:before{
     background-color: var(--orange);
     content: "";
