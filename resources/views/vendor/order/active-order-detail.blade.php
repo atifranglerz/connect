@@ -133,7 +133,7 @@
             <div class="row mx-0">
                 <div class="col-lg-12">
                     <div class="all_quote_card vendor_rply_dtlL _text mt-4">
-                        <h5 class="heading-color text-center mb-3">{{ __('msg.CAR IMAGES') }}</h5>
+                        <h5 class="heading-color mb-3">{{ __('msg.CAR IMAGES') }}</h5>
                         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
                             @if ($userbidimage && count($userbidimage) == 0)
                                 <div class="item">
@@ -273,7 +273,7 @@
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class="heading-color text-center mb-3">{{ __('msg.REPAIR DETAILS') }}</h5>
+                            <h5 class="heading-color mb-3">{{ __('msg.REPAIR DETAILS') }}</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description2 }}</p>
