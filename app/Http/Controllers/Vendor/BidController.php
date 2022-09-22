@@ -11,8 +11,9 @@ class BidController extends Controller
 {
     
    public function getBids(){
+      return Auth::user()->id;
     if(isset(Auth::user()->garage->id)){
-        $data=VendorBid::where('garage_id',Auth::user()->garage->id)->with('userBid')->get();
+        $data=VendorBid::where('garage_id',Auth::user()->garage->id)->with('userBid')->paginate(5);
         }else{
           $data=[];
          }

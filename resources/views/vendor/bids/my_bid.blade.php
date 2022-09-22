@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                    <h4 class="sec_main_heading text-center mb-0">MY BIDS</h4>
-                    <p class="sec_main_para text-center">See to what quotes you have submitted your bids</p>
+                    <h4 class="sec_main_heading text-center mb-0">{{__('msg.My Bids')}}</h4>
+                    <p class="sec_main_para text-center">{{__('msg.See to what quotes you have submitted your bids')}}</p>
                 </div>
             </div>
         </div>
@@ -46,20 +46,22 @@
                 <div class="all_quote_card  replies_allquot h-100">
                     <div class=" w-100  quote_detail_wraper replies my_bids">
                         <div class="quote_info">
-                            <h5 class="d-flex align-items-center active_quote nowrape">My Quote</h5>
+                            <h5 class="d-flex align-items-center active_quote nowrape">{{__('msg.My Quote')}}</h5>
                             <div class="quote_detail_btn_wraper">
-                                <h5 class="quotereplies">AED {{$bid->price}}</h5>
+                                <h5 class="quotereplies">{{__('msg.AED')}} {{$bid->price}}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <a href="{{url('vendor/bid-details',$bid->id)}}" class="btn btn-secondary">View Details</a>
+                        <a href="{{ route('vendor.view-offer', $bid->id) }}"" class="btn btn-secondary">{{__('msg.View offer')}}</a>
                     </div>
 
                 </div>
             </div>
             @empty
             @endforelse
+            <span >{!! $data->links() !!}</span>
+
         </div>
     </div>
 </section>
