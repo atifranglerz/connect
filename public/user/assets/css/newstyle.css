@@ -229,7 +229,6 @@ $black : #000;
         max-width: 140px;
     }
     .footer_link>ul>li>a {
-        font-size: var(--fs-17);
         line-height: var(--line-height-35);
     }
     .footer_link>h1 {
