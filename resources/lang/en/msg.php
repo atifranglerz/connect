@@ -65,6 +65,8 @@ return [
     'Registered On' => 'Registered On',
     'Total Mileage' => 'Total Mileage',
     'Km' => 'Km',
+    'Submit Fund' => 'Submit Fund',
+    'Add Extra Budget' => 'Add Extra Budget',
     'ACCEPT RESOLUTION' => 'ACCEPT RESOLUTION',
     'REJECT RESOLUTION' => 'REJECT RESOLUTION',
     'CONTACT VIA MESSAGE' => 'CONTACT VIA MESSAGE',

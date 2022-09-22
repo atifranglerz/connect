@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.FINAL INVOICE')}}</h4>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.Add Extra Budget')}}</h4>
                         <p class="sec_main_para text-center">{{ __('msg.See How You Responded To This Request') }}</p>
                     </div>
                 </div>
@@ -413,7 +413,7 @@
                                                     <div class="d-grid gap-2 mt-3 mb-4">
                                                         <button class="btn btn-secondary block get_appointment"
                                                             id="btnSubmit"
-                                                            type="submit">{{ __('msg.SUBMIT QUOTE') }}</button>
+                                                            type="submit">{{ __('msg.Submit Fund') }}</button>
                                                     </div>
 
                                                 </div>
@@ -422,7 +422,7 @@
                                                     <div class="d-grid gap-2 mt-3 mb-4">
                                                         <button class="btn btn-secondary block get_appointment"
                                                             data-bs-toggle="modal" data-bs-target="#previewBidDetails"
-                                                            type="button">{{ __('msg.PREVIEW QUOTE') }}</button>
+                                                            type="button">{{ __('msg.Preview') }}</button>
                                                     </div>
                                                 </div>
                                             </div>
