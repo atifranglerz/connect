@@ -43,7 +43,11 @@ class UserReviewController extends Controller
             $review->garage_id  = $request->garage_id;
             $review->order_id  = $request->order_id;
             $review->save();
-            return back()->with($this->data("Thanks for submit your review", 'success'));
+            session_start();
+            $_SESSION["msg"] = "Thanks for submit your review";
+            $_SESSION["alert"] = "success";
+            return redirect()->back();
+            // return back()->with($this->data("Thanks for submit your review", 'success'));
             // return $this->message($review, 'user.order.index', 'Thanks for submit your review', 'Failed to submit review');
     }
 

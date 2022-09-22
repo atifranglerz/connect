@@ -184,7 +184,11 @@ class HomepageController extends Controller
 
         }
         if (User::where('email', $request->email)->doesntExist()) {
-            return redirect()->back()->with(['message' => 'Your given email is not Registered! Please enter valid email or Register first', 'alert' => 'error']);
+            session_start();
+            $_SESSION["msg"] = "Your given email is not Registered! Please enter valid email or Register first";
+            $_SESSION["alert"] = "error";
+            return redirect()->back();
+            // return redirect()->back()->with(['message' => 'Your given email is not Registered! Please enter valid email or Register first', 'alert' => 'error']);
         } else {
             $user = User::where('email', $request->email)->first();
             $vendor = Garage::find($request->garage_id);
@@ -263,7 +267,11 @@ class HomepageController extends Controller
             $vendor_quote->user_bit_id = $quote->id;
             $vendor_quote->vendor_id = $vendor->vendor_id;
             $vendor_quote->save();
-            return redirect()->back()->with(['message' => 'Your Qoute has been submitted successfully', 'alert' => 'success']);
+            session_start();
+            $_SESSION["msg"] = "Your Quote has been submitted successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->back();
+            // return redirect()->back()->with(['message' => 'Your Qoute has been submitted successfully', 'alert' => 'success']);
 
         }
 

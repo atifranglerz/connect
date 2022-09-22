@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\User;
 
-use Carbon\Carbon;
-use App\Mail\Login;
-use App\Models\User;
-use App\Models\Country;
-use App\Models\userCompany;
-use App\Mail\ForgetPassword;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Mail\ForgetPassword;
+use App\Mail\Login;
+use App\Models\Country;
+use App\Models\User;
+use App\Models\userCompany;
+use Carbon\Carbon;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Auth\Notifications\ResetPassword;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -23,7 +23,7 @@ class AuthController extends Controller
     {
         $page_title = 'User Register';
 
-        $data['company'] = User::where('type','company')->get();
+        $data['company'] = User::where('type', 'company')->get();
         $data['countries'] = Country::all();
         return view('user.auth.register', $data, compact('page_title'));
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
                 $name = $image->move('public/image/profile/', $name);
                 $user['image'] = $name;
             }
-        }else{
+        } else {
             $user['image'] = "public/assets/images/1744022049828589.jpg";
         }
 
@@ -75,12 +75,16 @@ class AuthController extends Controller
         if ($user) {
             $user->assignRole($role);
             Mail::to($user_email)->send(new Login($data));
-            return redirect()->route('user.login')->with($this->data("You've Registered Successfully as a Customer!", 'success'));
+
+            session_start();
+            $_SESSION["msg"] = "You've Registered Successfully as a Customer!";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.login');
+            // return redirect()->route('user.login')->with($this->data("You've Registered Successfully as a Customer!", 'success'));
         } else {
             return redirect()->back()->with($this->data("User Register Error", 'error'));
         }
     }
-
 
     public function login()
     {
@@ -98,21 +102,32 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
         if (isset($user) && $user->action == 0) {
-            return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
+            session_start();
+            $_SESSION["msg"] = "Your Account has been Deactivate by Admin";
+            $_SESSION["alert"] = "error";
+            return redirect()->back();
+            // return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
         }
 
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'type' => 'user'])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
+                session_start();
+                $_SESSION["msg"] = "You've Login Successfully";
+                $_SESSION["alert"] = "success";
+                return redirect()->route('user.dashboard');
+                // return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
             }
         }
-        return redirect()->back()->with($this->data("User Email Or Password Invalid!", 'error'));
+        session_start();
+        $_SESSION["msg"] = "User Email Or Password Invalid!";
+        $_SESSION["alert"] = "error";
+        return redirect()->back();
+        // return redirect()->back()->with($this->data("User Email Or Password Invalid!", 'error'));
 
     }
 
     // ----------------------------------Insuracne Company Login and Registration------------------------------------------------------
-
 
     public function companyRegisterForm()
     {
@@ -123,20 +138,20 @@ class AuthController extends Controller
     public function companyRegister(Request $request)
     {
         $request->validate([
-        //   'profile_image' =>'required',
-            "id_card" =>'required',
+            //   'profile_image' =>'required',
+            "id_card" => 'required',
             'name' => ['required', 'string', 'max:255'],
-            'company_name'=>'required',
-            'email' => ['required','string', 'email', 'max:255', 'unique:users'],
-            'country'=>['required','string'],
-            'city'=> ['required','string'],
-            'post_box'=>'required',
+            'company_name' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'post_box' => 'required',
             'phone' => 'required|digits:12',
-            'image_license'=>'required',
-            'trading_license'=>'required',
-            'billing_area'=>'required',
-            'billing_city'=>'required',
-            'billing_address'=>'required',
+            'image_license' => 'required',
+            'trading_license' => 'required',
+            'billing_area' => 'required',
+            'billing_city' => 'required',
+            'billing_address' => 'required',
         ]);
         $role = Role::where('name', 'user')->first();
         $company = new User();
@@ -146,7 +161,7 @@ class AuthController extends Controller
             $request->file('profile_image')->move('public/image/profile/', $doucments2);
             $file2 = 'public/image/profile/' . $doucments2;
             $company->image = $file2;
-        }else{
+        } else {
             $company->image = "public/assets/images/1744022049828589.jpg";
 
         }
@@ -168,19 +183,19 @@ class AuthController extends Controller
         $userCompany->billing_area = $request->billing_area;
         $userCompany->billing_city = $request->billing_city;
         $userCompany->billing_address = $request->billing_address;
-        $userCompany->trading_license=$request->trading_license;
+        $userCompany->trading_license = $request->trading_license;
 
         if ($request->file('id_card')) {
             $doucments2 = hexdec(uniqid()) . '.' . strtolower($request->file('id_card')->getClientOriginalExtension());
             $request->file('id_card')->move('public/image/profile/', $doucments2);
             $file2 = 'public/image/profile/' . $doucments2;
-            $userCompany->id_card = $file2 ;
+            $userCompany->id_card = $file2;
         }
         if ($request->file('image_license')) {
             $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
             $request->file('image_license')->move('public/image/profile/', $doucments3);
             $file3 = 'public/image/profile/' . $doucments3;
-            $userCompany->image_license= $file3 ;
+            $userCompany->image_license = $file3;
         }
         $userCompany->save();
 
@@ -190,12 +205,16 @@ class AuthController extends Controller
         if ($company) {
             $company->assignRole($role);
             Mail::to($company_email)->send(new Login($data));
-            return redirect()->route('user.companyLogin')->with($this->data("You've Registered Successfully as an Insurance Company", 'success'));
+
+            session_start();
+            $_SESSION["msg"] = "You've Registered Successfully as an Insurance Company";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.companyLogin');
+            // return redirect()->route('user.companyLogin')->with($this->data("You've Registered Successfully as an Insurance Company", 'success'));
         } else {
             return redirect()->back()->with($this->data("Company Register Error", 'error'));
         }
     }
-
 
     public function companyLoginForm()
     {
@@ -209,23 +228,33 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-         $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
         if (isset($user) && $user->action == 0) {
-            return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
+            session_start();
+            $_SESSION["msg"] = "Your Account has been Deactivate by Admin!";
+            $_SESSION["alert"] = "error";
+            return redirect()->back();
+            // return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
         }
 
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'type' => 'company'])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
+                session_start();
+                $_SESSION["msg"] = "You've Login Successfully";
+                $_SESSION["alert"] = "success";
+                return redirect()->route('user.dashboard');
+                // return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
             }
         }
-        return redirect()->back()->with($this->data("Company Email Or Password Invalid!", 'error'));
-
+        session_start();
+        $_SESSION["msg"] = "Company Email Or Password Invalid!";
+        $_SESSION["alert"] = "error";
+        return redirect()->back();
+        // return redirect()->back()->with($this->data("Company Email Or Password Invalid!", 'error'));
 
     }
     // ---------------------------------- End Insuracne Company Login and Registration------------------------------------------------------
-
 
     public function forgetPassword()
     {
@@ -249,11 +278,17 @@ class AuthController extends Controller
                 'token' => $data['token'],
                 'created_at' => Carbon::now(),
             ]);
-            return redirect()->back()->with($this->data("Forget Password Email Send Successfully.", 'success'));
-            // Mail::to($request->email)->send(new ResetPassword($details));
+            session_start();
+            $_SESSION["msg"] = "Forget Password Email Send Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->back();
         } catch (\Swift_TransportException $e) {
             if ($e->getMessage()) {
-                return redirect()->back()->with($this->data("Forget Password Email Send Error.", 'error'));
+                session_start();
+                $_SESSION["msg"] = "Forget Password Email Send Error";
+                $_SESSION["alert"] = "error";
+                return redirect()->back();
+                // return redirect()->back()->with($this->data("Forget Password Email Send Error.", 'error'));
             }
         }
     }
@@ -268,7 +303,11 @@ class AuthController extends Controller
         if ($token_confirm) {
             return view('user.auth.password_change', compact('token'));
         } else {
-            return $this->message($token_confirm, 'user.forget_password', 'Token Match Successfully,', 'Token Dose Match Error,');
+            session_start();
+            $_SESSION["msg"] = "Token Dose Match Error";
+            $_SESSION["alert"] = "error";
+            return redirect()->route('user.forget_password');
+            // return $this->message($token_confirm, 'user.forget_password', 'Token Match Successfully,', 'Token Dose Match Error,');
         }
 
     }
@@ -287,12 +326,19 @@ class AuthController extends Controller
             ->update(['password' => Hash::make($request->password)]);
         DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-
         $user = User::where('email', $token->email)->first();
-        if($user->type == "user"){
-            return redirect()->route('user.login')->with($this->data("Password Update Successfully", 'success'));
-        }else{
-            return redirect()->route('user.companyLogin')->with($this->data("Password Update Successfully", 'success'));
+        if ($user->type == "user") {
+            session_start();
+            $_SESSION["msg"] = "Password Update Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.login');
+            // return redirect()->route('user.login')->with($this->data("Password Update Successfully", 'success'));
+        } else {
+            session_start();
+            $_SESSION["msg"] = "Password Update Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.companyLogin');
+            // return redirect()->route('user.companyLogin')->with($this->data("Password Update Successfully", 'success'));
         }
     }
 
@@ -300,10 +346,18 @@ class AuthController extends Controller
     {
         $type = Auth::user()->type;
         $user = Auth::guard('web')->logout();
-        if($type == "user"){
-            return redirect()->route('user.login')->with($this->data("You've Logout Successfully", 'success'));
-        }else{
-            return redirect()->route('user.companyLogin')->with($this->data(" You've Logout Successfully", 'success'));
+        if ($type == "user") {
+            session_start();
+            $_SESSION["msg"] = "You've Logout Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.login');
+            // return redirect()->route('user.login')->with($this->data("You've Logout Successfully", 'success'));
+        } else {
+            session_start();
+            $_SESSION["msg"] = "You've Logout Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.companyLogin');
+            // return redirect()->route('user.companyLogin')->with($this->data(" You've Logout Successfully", 'success'));
         }
 
     }

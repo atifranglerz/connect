@@ -134,6 +134,10 @@ class RequestController extends Controller
             $notification->body = ' ';
             $notification->save();
         }
-        return redirect()->route('user.insurance-index')->with($this->data("payment Successfully paid and Request is Approved", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Payment Successfully paid and Request is Approved";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.insurance-index');
+        // return redirect()->route('user.insurance-index')->with($this->data("payment Successfully paid and Request is Approved", 'success'));
     }
 }

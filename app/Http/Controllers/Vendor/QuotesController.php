@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Notification;
 use App\Models\Garage;
 use App\Models\Part;
 use App\Models\User;
@@ -11,10 +12,8 @@ use App\Models\VendorBid;
 use App\Models\VendorBidStatus;
 use App\Models\VendorQuote;
 use App\Models\webNotification;
-use Illuminate\Http\Request;
-use App\Jobs\Notification;
 use Carbon\Carbon;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuotesController extends Controller
@@ -27,7 +26,7 @@ class QuotesController extends Controller
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
         })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->orderBy('id','DESC')->paginate(5);
+        })->orderBy('id', 'DESC')->paginate(5);
         return view('vendor.quotes.index', $data);
     }
     public function requestedInspections()
@@ -38,7 +37,7 @@ class QuotesController extends Controller
             $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
         })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
-        })->orderBy('id','DESC')->paginate(5);
+        })->orderBy('id', 'DESC')->paginate(5);
 
         return view('vendor.quotes.index', $data);
     }
@@ -163,9 +162,18 @@ class QuotesController extends Controller
                 $notification->body = '.';
                 $notification->save();
             }
-            return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
+
+            session_start();
+            $_SESSION["msg"] = "Successfully responded on bid";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('vendor.quoteindex');
+            // return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
         } else {
-            return redirect()->back()->with(['message' => 'You are already bided on this quote', 'alert' => 'error']);
+            session_start();
+            $_SESSION["msg"] = "You are already bided on this quote";
+            $_SESSION["alert"] = "error";
+            return redirect()->back();
+            // return redirect()->back()->with(['message' => 'You are already bided on this quote', 'alert' => 'error']);
 
         }
     }

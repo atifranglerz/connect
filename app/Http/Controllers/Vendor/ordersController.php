@@ -235,7 +235,12 @@ class ordersController extends Controller
             $notification->save();
         }
 
-        return redirect()->route('vendor.fullfillment', $order->id)->with($this->data("Extra budget Request send Successfully", 'success'));
+        session_start();
+        $_SESSION["msg"] ="Extra budget Request send Successfully, we will inform you after other party response";
+        $_SESSION["alert"] ="success";
+        return redirect()->route('vendor.fullfillment', $order->id);
+
+        // return redirect()->route('vendor.fullfillment', $order->id)->with($this->data("Extra budget Request send Successfully", 'success'));
 
     }
 
@@ -248,7 +253,7 @@ class ordersController extends Controller
         $message['order_no'] = $request->order_no;
         $message['order_id'] = $request->order_id;
         $message['body1'] = "We are pleased to inform you that your ";
-        $message['body2'] = " has been successfully completed. Your selected garage" .$garage->garage_name.  "has posted the final invoice. Kindly sign in to check your order and complete the payment by the releasing the funds.";
+        $message['body2'] = " has been successfully completed. Your selected garage" .$garage->garage_name.  " order marked as completed. Kindly sign in to check your order and complete the payment by the releasing the funds.";
         $message['link1'] = url('user/order/summary', $request->order_id);
         $message['type'] = "order";
         $user = User::find($request->user_id);
@@ -268,7 +273,12 @@ class ordersController extends Controller
             $notification->save();
         }
 
-        return redirect()->back()->with($this->data("Order Reminder send to customer and final Invoice", 'success'));
+        session_start();
+        $_SESSION["msg"] ="Reminder of Order Completion has been Sended";
+        $_SESSION["alert"] ="success";
+        return redirect()->back();
+
+        // return redirect()->back()->with($this->data("Order Reminder send to customer and final Invoice", 'success'));
 
     }
 

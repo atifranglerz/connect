@@ -326,7 +326,7 @@
                                     </div>
                                     <div class="col-12 px-2">
                                         <div style="position: relative">
-                                            <input type="text" name="address" value="{{ Auth::user()->address }}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem" readonly>
+                                            <input type="text" name="address" @if (Auth::check()) value="{{ Auth::user()->address }}" readonly @endif  class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem" >
                                             <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
                                         </div>
                                         @error('address')

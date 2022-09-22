@@ -143,10 +143,19 @@ class WorkshopController extends Controller
             }
 
             return view('vendor.workshop.preview_workshop', $data);
-            return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
+
+            session_start();
+            $_SESSION["msg"] = "Workshop Create Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('vendor.dashboard');
+            // return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
         } else {
 
-            return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'error'));
+            session_start();
+            $_SESSION["msg"] = "Workshop Already Created";
+            $_SESSION["alert"] = "error";
+            return redirect()->route('vendor.dashboard');
+            // return redirect()->route('vendor.dashboard')->with($this->data('Workshop Already Create', 'error'));
         }
 
     }
@@ -272,7 +281,13 @@ class WorkshopController extends Controller
             $data['overAllRatings'] = $rating / $totalReviews;
         }
         return view('vendor.workshop.preview_workshop', $data);
-        return $this->message($garage, 'vendor.dashboard', 'workshop Update Successfully', 'workshop not Update Error');
+
+        session_start();
+        $_SESSION["msg"] = "Workshop Updated Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('vendor.dashboard');
+
+        // return $this->message($garage, 'vendor.dashboard', 'workshop Update Successfully', 'workshop not Update Error');
     }
 
     /**
@@ -288,6 +303,11 @@ class WorkshopController extends Controller
     public function finish()
     {
         $garage = Garage::where('vendor_id', auth()->id())->first();
-        return $this->message($garage, 'vendor.dashboard', 'workshop Saved Successfully', 'workshop not Create Error');
+
+        session_start();
+        $_SESSION["msg"] = "Workshop Updated Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('vendor.dashboard');
+        // return $this->message($garage, 'vendor.dashboard', 'workshop Saved Successfully', 'workshop not Create Error');
     }
 }

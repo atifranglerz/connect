@@ -65,7 +65,12 @@ class AccountController extends Controller
         $account->bank_name = $request->bank_name;
         $account->iban = $request->iban;
         $account->save();
-        return redirect()->route('vendor.acount.index')->with($this->data("Your Finance detail has been added", 'success'));
+
+        session_start();
+        $_SESSION["msg"] = "Your Finance detail has been added";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('vendor.acount.index');
+        // return redirect()->route('vendor.acount.index')->with($this->data("Your Finance detail has been added", 'success'));
     }
 
     /**
@@ -81,7 +86,12 @@ class AccountController extends Controller
         }
         $account = Account::where('vendor_id', Auth::guard('vendor')->user()->id)->first();
         if (empty($account)) {
-            return redirect()->route('vendor.acount.create')->with($this->data("Please Add Your Finance Detail First!", 'error'));
+
+            session_start();
+            $_SESSION["msg"] = "Please Add Your Finance Detail First!";
+            $_SESSION["alert"] = "error";
+            return redirect()->route('vendor.acount.create');
+            // return redirect()->route('vendor.acount.create')->with($this->data("Please Add Your Finance Detail First!", 'error'));
         }
         $vendor = Vendor::find(Auth::guard('vendor')->user()->id);
 
@@ -96,7 +106,12 @@ class AccountController extends Controller
         $data->save();
         $vendor->balance = $vendor->balance - $request->payment;
         $vendor->save();
-        return redirect()->route('vendor.acount.index')->with($this->data("Your withdrawl request has been submitted", 'success'));
+
+        session_start();
+        $_SESSION["msg"] = "Your withdrawl request has been submitted";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('vendor.acount.index');
+        // return redirect()->route('vendor.acount.index')->with($this->data("Your withdrawl request has been submitted", 'success'));
 
     }
 

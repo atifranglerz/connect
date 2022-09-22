@@ -259,35 +259,47 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-        @if (Session()->has('message'))
-            var type = "{{ Session::get('alert') }}";
-            switch (type) {
-                case 'info':
-                    Toast.fire({
-                        icon: 'info',
-                        title: '{{ Session::get('message') }}'
-                    })
-                    break;
-                case 'success':
-                    Toast.fire({
-                        icon: 'success',
-                        title: '{{ Session::get('message') }}'
-                    })
-                    break;
-                case 'warning':
-                    Toast.fire({
-                        icon: 'warning',
-                        title: '{{ Session::get('message') }}'
-                    })
-                    break;
-                case 'error':
-                    Toast.fire({
-                        icon: 'error',
-                        title: '{{ Session::get('message') }}'
-                    })
-                    break;
-            }
-        @endif
+        @php
+     session_start();   
+     @endphp
+    
+        @if (isset($_SESSION["msg"]))
+ 
+  
+    var type = "{{ $_SESSION["alert"] }}";
+    switch (type) {
+        case'info':
+            Toast.fire({
+                icon: 'info',
+                title: '{{ $_SESSION["msg"] }}'
+            })
+            break;
+        case 'success':
+            Toast.fire({
+                icon: 'success',
+                title: '{{ $_SESSION["msg"] }}'
+            })
+            break;
+        case 'warning':
+            Toast.fire({
+                icon: 'warning',
+                title: '{{ $_SESSION["msg"] }}'
+            })
+            break;
+        case'error':
+            Toast.fire({
+                icon: 'error',
+                title: '{{ $_SESSION["msg"] }}'
+            })
+            break;
+    }
+
+
+    @endif
+    @php
+    unset($_SESSION['alert']);
+    unset($_SESSION['msg']);
+    @endphp
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

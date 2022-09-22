@@ -118,7 +118,12 @@ class AdsController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return $this->message($ads, 'vendor.ads.index', 'Ad Created Successfully', 'Ads Create Error');
+        session_start();
+        $_SESSION["msg"] ="Ad Created Successfully";
+        $_SESSION["alert"] ="success";
+        return redirect()->route('vendor.ads.index',compact('ads'));
+
+        // return $this->message($ads, 'vendor.ads.index', 'Ad Created Successfully', 'Ads Create Error');
     }
 
     /**
@@ -231,7 +236,13 @@ class AdsController extends Controller
         $ads->description = $request->description;
         $ads->vendor_id = Auth::id();
         $ads->update();
-        return $this->message($ads, 'vendor.ads.index', 'Ad Updated Successfully', '  Ad is not update Error');
+
+        session_start();
+        $_SESSION["msg"] ="Ad Updated Successfully";
+        $_SESSION["alert"] ="success";
+        return redirect()->route('vendor.ads.index',compact('ads'));
+
+        // return $this->message($ads, 'vendor.ads.index', 'Ad Updated Successfully', '  Ad is not update Error');
 
     }
 
@@ -245,6 +256,12 @@ class AdsController extends Controller
     {
         $ad = Ads::findOrFail($id);
         $ad->delete();
-        return $this->message($ad, 'vendor.ads.index', 'Ad Deleted Successfully', '  Ad is not delete Error');
+
+        session_start();
+        $_SESSION["msg"] ="Ad Deleted Successfully";
+        $_SESSION["alert"] ="success";
+        return redirect()->route('vendor.ads.index');
+
+        // return $this->message($ad, 'vendor.ads.index', 'Ad Deleted Successfully', '  Ad is not delete Error');
     }
 }

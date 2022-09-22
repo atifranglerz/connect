@@ -40,7 +40,11 @@ class QuoteController extends Controller
         if ($request->action == "preferred_garage") {
             $data = UserWishlist::where('user_id', Auth::id())->with('garage')->get();
             if ($data->isEmpty()) {
-                return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
+                session_start();
+                $_SESSION["msg"] = "Sorry you can't Quote because you've not any prefferred garage";
+                $_SESSION["alert"] = "error";
+                return redirect()->back();
+                // return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
             }
         }
         if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
@@ -210,9 +214,17 @@ class QuoteController extends Controller
         }
         if ($request->action == 'all_garage') {
 
-            return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
+            session_start();
+            $_SESSION["msg"] = "Quotation has been sent to all the Garages";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.quoteindex');
+            // return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
         } else {
-            return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Preffered Garages', 'Quotation has not been sent to all the Preffered Garages');
+            session_start();
+            $_SESSION["msg"] = "Quotation has been sent to all the Preffered Garages";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.quoteindex');
+            // return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Preffered Garages', 'Quotation has not been sent to all the Preffered Garages');
         }
     }
 

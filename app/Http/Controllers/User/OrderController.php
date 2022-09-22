@@ -89,7 +89,11 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return redirect()->route('user.order.show', $order->id)->with($this->data("Extra budget Request Accepted Successfully", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Extra budget Request Accepted Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.show', $order->id);
+        // return redirect()->route('user.order.show', $order->id)->with($this->data("Extra budget Request Accepted Successfully", 'success'));
 
     }
 
@@ -117,7 +121,11 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return redirect()->route('user.order.show', $order->id)->with($this->data("Extra budget Request Rejected Successfully", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Extra budget Request Rejected Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.show', $order->id);
+        // return redirect()->route('user.order.show', $order->id)->with($this->data("Extra budget Request Rejected Successfully", 'success'));
     }
 
     public function summary($id)
@@ -152,7 +160,11 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return redirect()->route('user.order.summary', $request->order_id)->with($this->data("Your Order Cancelled Successfully", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Your Order Cancelled Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.summary', $request->order_id);
+        // return redirect()->route('user.order.summary', $request->order_id)->with($this->data("Your Order Cancelled Successfully", 'success'));
     }
 
     public function pendingOrderUpdate()
@@ -193,7 +205,11 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        return redirect()->route('user.order.index')->with($this->data("Order Successfully marked as Completed", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Order Successfully marked as Completed";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.index');
+        // return redirect()->route('user.order.index')->with($this->data("Order Successfully marked as Completed", 'success'));
 
 
     }

@@ -59,13 +59,13 @@ class PaymentController extends Controller
             // get payment
             if ($request->action == "through_credit") {
 
-                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-                Stripe\Charge::create([
-                    "amount" => $amount[0] * 100,
-                    "currency" => "aed",
-                    "source" => $request->stripeToken,
-                    "description" => "payment from " .$request->name,
-                ]);
+                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                // Stripe\Charge::create([
+                //     "amount" => $amount[0] * 100,
+                //     "currency" => "aed",
+                //     "source" => $request->stripeToken,
+                //     "description" => "payment from " .$request->name,
+                // ]);
             }
             $order = Order::where([['user_bid_id', $request->user_bid_id], ['vendor_bid_id', $request->vendor_bid_id]])->first();
             $order->status = "complete";
@@ -111,19 +111,23 @@ class PaymentController extends Controller
             $notification->body = ' ';
             $notification->save();
 
-            return redirect()->route('user.order.index')->with($this->data("Order Completed and Payment Successfully Added", 'success'));
+            session_start();
+            $_SESSION["msg"] = "Order Completed and Payment Successfully Added";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.order.index');
+            // return redirect()->route('user.order.index')->with($this->data("Order Completed and Payment Successfully Added", 'success'));
 
         } else {
             $amount = explode(" ", $request->amount);
             // get payment
 
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create([
-                "amount" => $amount[0] * 100,
-                "currency" => "aed",
-                "source" => $request->stripeToken,
-                "description" => "payment from " . $request->name,
-            ]);
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // Stripe\Charge::create([
+            //     "amount" => $amount[0] * 100,
+            //     "currency" => "aed",
+            //     "source" => $request->stripeToken,
+            //     "description" => "payment from " . $request->name,
+            // ]);
 
             $order = new Order();
             $order_no = mt_rand('1000', '100000');
@@ -187,7 +191,11 @@ class PaymentController extends Controller
             }
         }
 
-        return redirect()->route('user.order.index')->with($this->data("Order palced and Payment Successfully Added", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Order palced and Payment Successfully Added";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.index');
+        // return redirect()->route('user.order.index')->with($this->data("Order palced and Payment Successfully Added", 'success'));
 
     }
 
@@ -254,7 +262,11 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-        return redirect()->route('user.order.index')->with($this->data("Your Order palced Successfully", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Your Order palced Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.index');
+        // return redirect()->route('user.order.index')->with($this->data("Your Order palced Successfully", 'success'));
 
     }
 
@@ -359,6 +371,10 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-        return redirect()->route('user.order.index')->with($this->data("Your order placed and payment request send to Insurance Company Successfully", 'success'));
+        session_start();
+        $_SESSION["msg"] = "Your order placed and payment request send to Insurance Company Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.order.index');
+        // return redirect()->route('user.order.index')->with($this->data("Your order placed and payment request send to Insurance Company Successfully", 'success'));
     }
 }

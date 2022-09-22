@@ -95,7 +95,11 @@ class profileController extends Controller
             }
             $company->update();
         }
-        return $this->message($user, 'user.profile.index', 'profile Update Successfully', '  profile is not update Error');
+        session_start();
+        $_SESSION["msg"] = "Profile Updated Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('user.profile.index');
+        // return $this->message($user, 'user.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 
     public function updatePassword(Request $request, $id)
@@ -110,7 +114,10 @@ class profileController extends Controller
                 'password' => Hash::make($request->password),
             ])->save();
 
-            return redirect()->route('profile')->with($this->data("Update Password Successfully", 'success'));
+            session_start();
+            $_SESSION["msg"] = "Update Password Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('profile');
         } else {
             return redirect()->back()->with($this->data("Update Password Error", 'error'));
         }
