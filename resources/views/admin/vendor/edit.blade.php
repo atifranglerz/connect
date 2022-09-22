@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form method="post" action="{{ route('admin.vendor.update', ['vendor' => $vendor->id]) }}">
+                            <form method="post" action="{{ route('admin.vendor.update', ['vendor' => $vendor->id]) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-header">
@@ -15,8 +15,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label>Your Name</label>
-                                            <input type="text" class="form-control" required="" name="name"
+                                            <label>Name</label>
+                                            <input type="text" class="form-control"  name="name"
                                                 value="{{ old('name', $vendor->name) }}">
                                             @error('name')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" required="" name="email"
+                                            <input type="email" class="form-control"  name="email"
                                                 autocomplete="off" readonly value="{{ old('email', $vendor->email) }}">
                                             @error('email')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -123,30 +123,45 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="city_id" class="form-label">City</label>
-                                            <select class="form-control selectric category" multiple="" name="city_id"
-                                                required>
-                                                <option selected disabled value="">{{__('msg.Select City')}}</option>
-                                                <option value="Dubai" @if ($vendor->city == 'Dubai') selected @endif @if(old('city')=='Dubai') selected @endif>{{__('msg.Dubai')}}></option>
-                                                <option value="Abu Dhabi" @if ($vendor->city == 'Abu Dhabi') selected @endif @if(old('city')=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
-                                                <option value="Sharjah"  @if ($vendor->city == 'Sharjah') selected @endif @if(old('city')=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
-                                                <option value="Ras Al Khaimah" @if ($vendor->city == 'Ras Al Khaimah') selected @endif @if(old('city')=='Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
-                                                <option value="Ajman" @if ($vendor->city == 'Ajman') selected @endif @if(old('city')=='Ajman') selected @endif>{{__('msg.Ajman')}}</option>
+                                            <label for="city" class="form-label">City</label>
+                                            <select class="form-control selectric category" multiple="" name="city"
+                                                 >
+                                                <option selected disabled value="">{{ __('msg.Select City') }}
+                                                </option>
+                                                <option value="Dubai" @if ($vendor->city == 'Dubai') selected @endif
+                                                    @if (old('city') == 'Dubai') selected @endif>
+                                                    {{ __('msg.Dubai') }}></option>
+                                                <option value="Abu Dhabi" @if ($vendor->city == 'Abu Dhabi') selected @endif
+                                                    @if (old('city') == 'Abu Dhabi') selected @endif>
+                                                    {{ __('msg.Abu Dhabi') }}</option>
+                                                <option value="Sharjah" @if ($vendor->city == 'Sharjah') selected @endif
+                                                    @if (old('city') == 'Sharjah') selected @endif>
+                                                    {{ __('msg.Sharjah') }}</option>
+                                                <option value="Ras Al Khaimah"
+                                                    @if ($vendor->city == 'Ras Al Khaimah') selected @endif
+                                                    @if (old('city') == 'Ras Al Khaimah') selected @endif>
+                                                    {{ __('msg.Ras Al Khaimah') }}</option>
+                                                <option value="Ajman" @if ($vendor->city == 'Ajman') selected @endif
+                                                    @if (old('city') == 'Ajman') selected @endif>
+                                                    {{ __('msg.Ajman') }}</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="garages_catagory" class="form-label">Garages Catagory</label>
-                                            <select class="form-control selectric category" multiple=""
-                                                name="garages_catagory[]" required>
-                                                @foreach ($category as $data)
+                                            <label for="garages_catagory" class="form-label">Insurance Company</label>
+                                            <select class="form-select form-control insurance-company" name="company[]"
+                                                aria-label="company" value="" multiple="multiple">
+                                                @foreach ($company as $data)
                                                     <option value="{{ $data->id }}"
-                                                        @foreach ($garage->garageCategory as $data2)
-                                                            @if ($data2->category_id == $data->id) selected @endif @endforeach>
-                                                        {{ $data->name }}
-                                                    </option>
+                                                        @if (isset($vendor->company[0])) @foreach ($vendor->company as $company)
+                                            @if ($company->name == $data->name)
+                                            selected @endif
+                                                        @endforeach
+                                                @endif>
+
+                                                {{ $data->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
+                                            @error('company')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -155,7 +170,7 @@
                                         <div class="form-group col-6">
                                             <label for="garages_catagory" class="form-label">Garages Catagory</label>
                                             <select class="form-control selectric category" multiple=""
-                                                name="garages_catagory[]" required>
+                                                name="garages_catagory[]"  >
                                                 {{-- @foreach ($category as $data)
                                                     <option value="{{ $data->id }}"
                                                         @foreach ($garage->garageCategory as $data2)
@@ -170,7 +185,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>ID Card Image</label>
-                                            <input type="file" name="id_card" class="form-control">
+                                            <input type="file" name="id_card[]" class="form-control">
                                             @error('id_card')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -183,7 +198,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Image License</label>
-                                            <input type="file" name="image_license" class="form-control">
+                                            <input type="file" name="image_license[]" class="form-control">
                                             @error('image_license')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -194,7 +209,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Profile Image</label>
-                                            <input type="file" name="image" class="form-control">
+                                            <input type="file" name="image[]" class="form-control">
                                             @error('image')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror

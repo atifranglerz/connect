@@ -108,7 +108,6 @@ class InsuranceCompanyController extends Controller
         } else {
             return redirect()->back()->with($this->data("Update Insurance Company Password Error", 'error'));
         }
-
     }
 
     public function activate($id)
@@ -122,7 +121,6 @@ class InsuranceCompanyController extends Controller
         } else {
             return redirect()->back()->with($this->data("Insurance Company Activate Error", 'error'));
         }
-
     }
 
     public function deactivate($id)
@@ -148,6 +146,5 @@ class InsuranceCompanyController extends Controller
         $company = User::findOrFail($id);
         $company->delete();
         return $this->message($company, 'admin.insurance-company', 'Insurance Company Deleted successfully', 'Insurance Company Delete Error');
-
     }
 }

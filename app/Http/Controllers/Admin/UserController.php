@@ -88,6 +88,16 @@ class UserController extends Controller
         $user->name = $request->name;
         //$user->email = $request->email;
         $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->post_box = $request->post_box;
+        $user->city = $request->city;
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('images'), $filename);
+            $user['image'] = 'public/images/' . $filename;
+        }
         $user->save();
         return $this->message($user, 'admin.user.index', 'User Update Successfully', 'User Update Error');
     }
