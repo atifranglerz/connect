@@ -28,7 +28,7 @@
                                 </div>
                             </div>
 
-                            
+
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h5 class="mb-0 heading-color">{{ __('msg.Business Info') }}</h5>
                             </div>

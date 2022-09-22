@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
@@ -65,9 +67,10 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        $vendor = Vendor::findOrFail($id);
+        $company = User::where('type','company')->get();
+        $vendor = Vendor::with('company')->findOrFail($id);
         $page_title = 'Vendor';
-        return view('admin.vendor.edit', compact('vendor', 'page_title'));
+        return view('admin.vendor.edit', compact('vendor', 'page_title','company'));
     }
 
     /**
@@ -80,15 +83,81 @@ class VendorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            //'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => 'required',
+            // "id_card" => 'required',
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'garage_name' => 'required',
+            // 'garages_catagary' => 'required',
+            // 'email' => ['required', 'string', 'email', 'max:255'],
+            // 'country' => ['required', 'string'],
+            // 'city' => ['required', 'string'],
+            // 'post_box' => 'required',
+            // 'company'=>'required',
+            // 'phone' => 'required|digits:12',
+            // 'image_license' => 'required',
+            // 'trading_license' => 'required',
+            // 'vat' => 'required',
+            // 'billing_area' => 'required',
+            // 'billing_city' => 'required',
+            // 'billing_address' => 'required',
+            // 'appointment_number' => 'required',
         ]);
+        // $vendor = Vendor::findOrFail($id);
+        // $vendor->name = $request->name;
+        // //$vendor->email = $request->email;
+        // $vendor->phone = $request->phone;
+        // $vendor->save();
         $vendor = Vendor::findOrFail($id);
+        if ($request->file('image')) {
+            $images = [];
+            foreach ($request->file('image') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $vendor->image = implode(",", $images);
+        }
+        if ($request->file('id_card')) {
+            $images = [];
+            foreach ($request->file('id_card') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $vendor->id_card = implode(",", $images);
+        }
+        if ($request->file('image_license')) {
+            $images = [];
+            foreach ($request->file('image_license') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $vendor->image_license = implode(",", $images);
+        }
         $vendor->name = $request->name;
-        //$vendor->email = $request->email;
+        $vendor->email = $request->email;
+        $vendor->country = $request->country;
+        $vendor->post_box = $request->post_box;
+        $vendor->address = $request->address;
         $vendor->phone = $request->phone;
-        $vendor->save();
+        $vendor->city = $request->city;
+        $vendor->vat = $request->vat;
+        $vendor->billing_area = $request->billing_area;
+        $vendor->billing_city = $request->billing_city;
+        $vendor->billing_address = $request->billing_address;
+        $vendor->trading_license = $request->trading_license;
+        $vendor->appointment_number = $request->appointment_number;
+        $vendor->update();
+
+        if (isset($request->company)) {
+
+            $company = DB::table('insurance_vendor')->where('vendor_id', $vendor->id)->delete();
+
+            foreach($request->company as $id) {
+                $company = User::find($id);
+                $vendor->company()->attach($company);
+            }
+        }
         return $this->message($vendor, 'admin.vendor.index', 'Vendor Update Successfully', 'Vendor Update Error');
     }
 
