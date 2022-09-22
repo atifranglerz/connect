@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <a href="{{ route('vendor.view-offer', $bid->id) }}"" class="btn btn-secondary">{{__('msg.View offer')}}</a>
+                        <a href="{{ route('vendor.view-offer', $bid->user_bid_id) }}" class="btn btn-secondary">{{__('msg.View offer')}}</a>
                     </div>
 
                 </div>
