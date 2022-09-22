@@ -248,6 +248,8 @@ return [
     'Paid By Customer' => 'Paid By Customer',
     'view invoice' => 'view invoice',
     'Budget' => 'Budget',
+    'Follow Us' => 'Follow Us',
+    'Payment Methods' => 'Payment Methods',
     'Requirements' => 'Requirements',
     'REPAIR DETAILS' => 'Repair Details',
     'ADD FUNDS' => 'ADD FUNDS',

@@ -143,35 +143,28 @@
     <footer class="py-5">
         <div class="container-lg container-fluid">
             <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-5">
+                <div class="col-lg-4">
                     <div class="footer_link">
                         <h5 class="text-white main-heading">{{__('msg.LINKS')}}</h5>
-                        <ul>
-                            <li><a href="{{ route('register') }}"><span class="fa fa-briefcase me-2 me-md-1"
-                                        style="margin-right: 8px"></span>{{__('msg.Register your business')}}</a></li>
+                        <ul class="text-capitalize">
                             <li><a href="{{ route('about') }}"><span class="fa fa-info-circle me-2 me-md-1"
-                                        style="margin-right: 8px"></span>{{__('msg.About Us')}}</a></li>
+                                style="margin-right: 8px"></span>{{__('msg.About Us')}}</a></li>
+                            <li><a href="{{ route('vendor.register') }}"><span class="fa fa-briefcase me-2 me-md-1"
+                                        style="margin-right: 8px"></span>{{__('msg.Register your business')}}</a></li>
                             <li><a href="{{ route('term') }}"><span class="fa fa-pencil-square"
                                         style="margin-right: 8px"></span>{{__('msg.Terms & Conditions')}}</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-3 col-sm-3">
-                    <div class="footer_link">
-                        <h5 class="text-white main-heading">{{__('msg.LINKS')}}</h5>
-                        <ul>
-                            <li><a href="{{ route('privacy_policy') }}"><span class="fa fa-lock"
-                                        style="margin-right: 8px"></span>{{__('msg.Privicy Policy')}}</a></li>
                             <li><a href="{{ route('news') }}"><span class="fa fa-newspaper"
-                                        style="margin-right: 8px" aria-hidden="true"></span>{{__('msg.News')}}</a></li>
+                                style="margin-right: 8px" aria-hidden="true"></span>{{__('msg.News')}}</a></li>
                             <li><a href="{{ route('faq') }}"><span class="fa fa-question-circle"
                                         style="margin-right: 8px" aria-hidden="true"></span>{{__('msg.FAQ')}}</a></li>
+                            <li><a href="{{ route('privacy_policy') }}"><span class="fa fa-lock"
+                                style="margin-right: 8px"></span>{{__('msg.Privicy Policy')}}</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-4">
+                <div class="mt-lg-0 mt-sm-4 mt-0 col-lg-4">
                     <div class="footer_link">
-                        <h5 class="text-white main-heading">{{__('msg.Repair my Car')}}</h5>
+                        <h5 class="text-white main-heading">{{__('msg.Follow Us')}}</h5>
                         <div class="social_icons mb-3">
                             <a href="#">
                                 <img src="{{ asset('public/assets/images/facbook.svg') }}">
@@ -186,9 +179,19 @@
                                 <img src="{{ asset('public/assets/images/youtube.svg') }}">
                             </a>
                         </div>
-                        <h5 class="text-white footer_contact_heading">{{__('msg.CONTACT US')}}</h5>
-                        <p class="footer_address">+971 421108000</p>
-                        <p class="footer_address">repairmycar@info.com</p>
+                        <h5 class="mt-sm-4 mt-3 text-white main-heading">{{__('msg.Payment Methods')}}</h5>
+                        <img src="{{ asset('public/assets/images/payment-methods.jpg') }}" alt="payment-methods">
+                    </div>
+                </div>
+                <div class="mt-lg-0 mt-sm-4 mt-0 col-lg-4">
+                    <div class="footer_link">
+                        <h5 class="text-white main-heading">{{__('msg.CONTACT US')}}</h5>
+                        <p class="mb-0 footer_address"><b>Company Name :</b> Macros FZ LLC ( Repairmycarserivce is a brand wholly owned by Macros FZLLC)</p>
+                        <p class="mb-0 footer_address"><b>Office Address :</b> HD47A, First Floor, In5 Tech, Dubai Internet City- Dubai, UAE</p>
+                        <p class="mb-0 footer_address"><b>Country :</b> UAE</p>
+                        <p class="mb-0 footer_address"><b>P.O Box No :</b> 121161, Dubai-UAE</p>
+                        <p class="mb-0 footer_address"><b>Contact Number :</b> +971 56 928 9928</p>
+                        <p class="mb-0 footer_address"><b>Email Address :</b> info@macrosonline.ae</p>
                     </div>
                 </div>
             </div>
@@ -260,12 +263,12 @@
             }
         })
         @php
-     session_start();   
+     session_start();
      @endphp
-    
+
         @if (isset($_SESSION["msg"]))
- 
-  
+
+
     var type = "{{ $_SESSION["alert"] }}";
     switch (type) {
         case'info':
