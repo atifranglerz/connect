@@ -22,7 +22,7 @@
             </div>
                 <div class="chat_toggle_button">
                     <a href="#" id="chat_toggle"><span class="bi bi-three-dots-vertical text-white"></span></a>
-                    <div class="submenue shadow " id="delet_message_toggle">
+                    <div class="submenue shadow d-none" id="delet_message_toggle">
                         <ul>
                             <li><a href="#" class="chatted_delete d-block" id="{{$data->customer->id}}">
                                     <span class="fa fa-trash text-danger" aria-hidden="true"

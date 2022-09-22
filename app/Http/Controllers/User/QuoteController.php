@@ -218,24 +218,25 @@ class QuoteController extends Controller
 
     public function reply($id)
     {
-        $data = \App\Models\VendorBid::with('vendordetail')->where('user_bid_id', '=', $id)->get();
+        $data = VendorBid::with('vendordetail')->where('user_bid_id', '=', $id)->paginate(1);
         $page_title = 'Qoute Response';
         return view('user.quote.response', compact('page_title', 'data'));
     }
     public function vendorResponse($id)
     {
-        $data = \App\Models\VendorBid::with('vendordetail')->where('id', '=', $id)->first();
+        $data = VendorBid::with('vendordetail')->where('id', '=', $id)->first();
         $page_title = 'vendor response ';
         return view('user.quote.vendor_reply', compact('page_title', 'data'));
     }
     public function printOrderDetails($id)
     {
+        $page_title = "Invoice";
         $value = 0;
         $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
             $q->where('status', '=', '1');
         }])->where('id', '=', $id)->first();
         // $data = VendorBid::where('id', $id)->with('part', 'vendordetail')->first();
-        return view('user.quote.print_order_details', compact('data'));
+        return view('user.quote.print_order_details', compact('data','page_title'));
     }
 
 }

@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="row g-3 g-lg-4">
+        <div class="row mx-0 g-3 g-lg-4">
             @forelse($data as $bid)
             <div class="col-lg-6 col-md-6 col-sm-6 col-10  mx-auto">
                 <div class="all_quote_card replies_allquot h-100 ">
@@ -19,7 +19,7 @@
                           $user = \App\Models\UserBid::find($bid->user_bid_id);
                           $img = \App\Models\UserBidImage::where('user_bid_id',$bid->userBid->id)->where('type','image')->oldest()->first();
                           $img1=Explode(",",$img->car_image);
-                       
+
                        ?>
                         <img src="{{asset($img1[0])}}">
 

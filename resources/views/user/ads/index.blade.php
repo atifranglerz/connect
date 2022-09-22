@@ -56,6 +56,8 @@
                     </div>
                 </div>
             @endif
+            <span >{!! $ads->links() !!}</span>
+
         </div>
     </div>
 </section>

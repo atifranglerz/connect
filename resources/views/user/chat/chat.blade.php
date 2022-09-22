@@ -11,7 +11,7 @@
                     <img src="{{ asset($chated_user->image) }}">
                 </div>
                 <div class="name_of_contact">
-                    <p class="mb-0" id="vendor">{{ $chated_user->name }}</p>
+                    <p class="mb-0" id="vendor" style="overflow: initial">{{ $chated_user->name }}</p>
                     @if ($now > $gettime)
                         <p class="mb-0 status">{{ __('msg.offline') }}</p>
                     @else
@@ -22,12 +22,11 @@
         </a>
         <div class="chat_toggle_button">
             <a href="#" id="chat_toggle"><i class="bi bi-three-dots-vertical"></i></a>
-            <div class="submenue shadow " id="delet_message_toggle">
+            <div class="submenue shadow d-none" id="delet_message_toggle">
                 <ul>
                     <li><a href="#" class="MobileContactToggler"
                             id="MobileContactToggler">{{ __('msg.Delete All Messages') }}</a>
                     </li>
-
                 </ul>
             </div>
         </div>

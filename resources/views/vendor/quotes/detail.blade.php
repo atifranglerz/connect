@@ -453,7 +453,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <h5 class="mt-3 mb-4 text-center heading-color">(Important: Kindly Fill the above Fields First !)</h5>
+                                            <h5 class="mt-3 mb-4 text-center heading-color">({{__('msg.Kindly Fill the above Fields First')}} !)</h5>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{__('msg.Estimate Total')}}</h6>
@@ -464,7 +464,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                            <h6 class="heading-color">{{__('msg.vat')}} 5%</h6>
+                                            <h6 class="heading-color">{{__('msg.vat')}} {{Auth::user()->vat}}%</h6>
                                             <input type="hidden" name="bid_id" value="{{ $data->id }}">
                                             @error('bid_id')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -1007,7 +1007,7 @@
             var amountTotal = parseInt($('.amountTotal').val());
 
             //The percent that we want to get.
-            var percentToGet = 5;
+            var percentToGet = {{Auth::user()->vat}};
 
             //Calculate the percent.
             var percentCal = (percentToGet / 100) * amountTotal;

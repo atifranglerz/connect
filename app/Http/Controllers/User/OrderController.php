@@ -46,11 +46,12 @@ class OrderController extends Controller
     public function invoce($id)
     {
         // return $id;
+        $page_title = "Invoice";
         $value = 0;
         $data = VendorBid::with(['vendordetail', 'part' => function ($q) use ($value) {
             $q->where('status', '=', '0');
         }])->where('id', '=', $id)->first();
-        return view('user.order.invoice', compact('data'));
+        return view('user.order.invoice', compact('data','page_title'));
     }
 
     public function acceptResolution($id)

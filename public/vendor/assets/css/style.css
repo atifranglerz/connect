@@ -1831,7 +1831,7 @@ padding-right: 35px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 135px;
+    max-width: 115px;
 }
 .main_contact{
     overflow-y: scroll;
@@ -1848,15 +1848,11 @@ padding-right: 35px;
 .chat_section{
     margin-left: 220px;
     width: 100%;
-    height:calc( 100vh - 14.1vh);
+    height:calc( 100vh - 15.1vh);
     padding: 0;
     background-position: 100% 100%;
     background-repeat: no-repeat;
     background-size: 100%;
-}
-a#chat_toggle {
-    color: #FFF;
-    margin-right: 16px;
 }
 .inbox_contact.top_main{
     border-bottom:unset;
@@ -1947,7 +1943,7 @@ p#userNotify {
 }
 .cahtting_messages{
     overflow-y: scroll;
-    height:calc( 100vh - 40vh);
+    height:calc( 100vh - 43vh);
 }
 .cahtting_messages::-webkit-scrollbar {
   display: none;
@@ -2067,24 +2063,6 @@ p.milage{
 }
 p.milage>span{
     color: var(--darkgray);
-}
-.pay_via_insurance_header_garages{
-    background-color: var(--black);
-    width: 100px;
-    height: 45px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 8px;
-}
-.pay_via_insurance_header_garages>p{
-        font-size: 12px;
-    color: var(--white);
-    margin-bottom: 0;
-}
-.pay_via_insurance_header_garages>i{
-        color: var(--white);
 }
 .offer_quote_heading{
     font-size: var(--fs-24);

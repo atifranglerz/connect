@@ -119,7 +119,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" name="vat" value="{{ old('vat') }}" class="form-control"  placeholder="{{__('msg.VAT Details')}} ({{__('msg.Required')}})">
+                                <input type="text" name="vat" value="{{ $vat->percentage}}% VAT" class="form-control"  placeholder="{{__('msg.VAT Details')}} ({{__('msg.Required')}})" readonly>
                                 @error('vat')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror

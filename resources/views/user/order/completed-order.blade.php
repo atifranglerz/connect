@@ -11,7 +11,7 @@
                         $garage = \App\Models\Garage::where('id', $order->garage_id)->first();
                         $vendor = \App\Models\Vendor::where('id', $garage->vendor_id)->first();
                         $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
-                        
+
                         ?>
                         <div class="car_inner_imagg vendor_rply_dtl ">
                             <img
@@ -53,27 +53,27 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center">{{__('msg.Total')}}: {{ $order->total }} {{__('msg.AED')}}</h5>
+                                <h5 class="text-sm-center"><span class="h5 heading-color">{{__('msg.Total')}}:</span> {{ $order->total }} {{__('msg.AED')}}</h5>
                                 @if ($order->status != 'complete' && $order->paid_by != 'insurance')
-                                    <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->advance }} {{ __('msg.AED') }}</h5>
+                                    <h5 class="text-sm-center"><span class="h5 heading-color">{{__('msg.Advance')}}:</span> {{ $order->advance }} {{ __('msg.AED') }}</h5>
                                 @endif
                                 @if ($order->status != 'complete' && $order->paid_by == 'insurance' && $insurancestatus->status == 1)
-                                    <h5 class=" text-sm-center">{{__('msg.Advance')}}: {{ $order->total }} {{ __('msg.AED') }}</h5>
+                                    <h5 class="text-sm-center"><span class="h5 heading-color">{{__('msg.Advance')}}:</span> {{ $order->total }} {{ __('msg.AED') }}</h5>
                                 @endif
                                 <div class="completed_order_id">
-                                    <p>{{__('msg.Order Id:')}} <span>#{{ $order->order_code }}</span></p>
+                                    <h5><span class="h5 heading-color">{{__('msg.Order Id:')}}</span> #{{ $order->order_code }}</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row  mt-5">
+            <div class="row mx-0 mt-3">
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
+                            <h5 class="heading-color text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
                         </div>
 
                         <?php $vendor_bid = \App\Models\VendorBid::where('garage_id', $order->garage_id)
@@ -85,12 +85,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row  mt-5">
+            <div class="row mx-0 mt-3">
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">{{__('msg.CAR DETAILS')}}</h5>
+                            <h5 class="heading-color text-center mb-5">{{__('msg.CAR DETAILS')}}</h5>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 mx-auto">
@@ -138,7 +138,7 @@
             @if ($order->status == 'pending')
                 <div class="row">
                     <div class="col-xl-5 col-lg-6  col-md-10 col-sm-12 mx-auto">
-                        <div class="row mt-5 mb-4 g-3">
+                        <div class="row mt-3 mb-4 g-3">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="d-grid gap-2 mt-lg-3 ">
                                     <a href="{{ route('user.order.cancel.view', $order->id) }}"
@@ -158,12 +158,12 @@
                     </div>
                 </div>
                 @if ($review_prev)
-                    <div class="row  mt-5">
+                    <div class="row mx-0 mt-3">
                         <div class="col-lg-12">
 
                             <div class="all_quote_card  vendor_rply_dtlL _text">
                                 <div class="over_view_part carad_data vendor_detail">
-                                    <h5 class=" text-center mb-4">{{__('msg.YOUR REVIEW')}}</h5>
+                                    <h5 class="heading-color text-center mb-4">{{__('msg.YOUR REVIEW')}}</h5>
                                 </div>
                                 <div class="d-flex align-items-center rating-stars">
                                     <div class="rating-group">
@@ -434,7 +434,7 @@
                                     </div>
                                 </div>
                                 <div class="review_text d-flex justify-content-center align-items-center">
-                                    <p>{{ $review_prev->review }}</p>
+                                    <p class="my-0">{{ $review_prev->review }}</p>
                                 </div>
                             </div>
                         </div>
@@ -443,12 +443,12 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="over_view_part carad_data vendor_detail Leave_review">
-                                <h5 class=" text-center mb-2 mt-5">{{__('msg.REVIEW WORKSHOP')}}</h5>
+                                <h5 class="heading-color text-center mb-2 mt-3">{{__('msg.REVIEW WORKSHOP')}}</h5>
                             </div>
 
                         </div>
                     </div>
-                    <div class="row  mt-5">
+                    <div class="row mx-0 mt-3">
                         <div class="col-lg-12">
                             <div class="all_quote_card  vendor_rply_dtlL _text">
                                 <div class="row">
@@ -457,7 +457,7 @@
                                             @csrf
                                             <input type="hidden" name="order_id" value="{{ $order->id }}">
                                             <input type="hidden" name="garage_id" value="{{ $order->garage_id }}">
-                                            <div class="row mt-1 g-3">
+                                            <div class="row g-3">
                                                 <div class="col-lg-12 col-md-8 mx-auto">
                                                     <div class="d-flex align-items-center rating-stars">
                                                         <div class="rating-group">
@@ -547,11 +547,11 @@
                 @endif
             @elseif($order->status == 'complete')
                 @if ($review_prev)
-                    <div class="row  mt-5">
+                    <div class="row mx-0 mt-3">
                         <div class="col-lg-12">
                             <div class="all_quote_card  vendor_rply_dtlL _text">
                                 <div class="over_view_part carad_data vendor_detail">
-                                    <h5 class=" text-center mb-4">YOUR REVIEW</h5>
+                                    <h5 class="heading-color text-center mb-4">{{__('msg.YOUR REVIEW')}}</h5>
                                 </div>
                                 <div class="d-flex align-items-center rating-stars">
                                     <div class="rating-group">
@@ -822,19 +822,19 @@
                                     </div>
                                 </div>
                                 <div class="review_text d-flex justify-content-center align-items-center">
-                                    <p>{{ $review_prev->review ?? '' }}</p>
+                                    <p class="my-0">{{ $review_prev->review ?? '' }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endif
             @else
-                <div class="row  mt-5">
+                <div class="row mx-0 mt-3">
                     <div class="col-lg-12">
 
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h5 class=" text-center mb-5">ORDER CANCEL REASON</h5>
+                                <h5 class="heading-color text-center mb-5">ORDER CANCEL REASON</h5>
                             </div>
                             <div class="vendor__rply__dttl">
                                 <p>{{ $order->reason }}</p>

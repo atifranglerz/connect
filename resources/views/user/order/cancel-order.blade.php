@@ -35,20 +35,20 @@
                             <div class="quote_detail_btn_wraper">
                                 <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{$order->status}}</h5>
                             </div>
-                            <h5 class=" text-sm-center">{{__('msg.AED')}} {{$order->total}}</h5>
+                            <h5 class="text-sm-center"><span class="h5 heading-color">{{__('msg.Total')}}:</span> {{$order->total}} {{__('msg.AED')}}</h5>
                             <div class="completed_order_id">
-                                <p>{{__('msg.Order Id:')}} <span>#{{$order->order_code}}</span></p>
+                                <h5><span class="h5 heading-color">{{__('msg.Order Id:')}}</span> #{{ $order->order_code }}</h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row  mt-5">
+        <div class="row mx-0 mt-3">
             <div class="col-lg-12">
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="over_view_part carad_data vendor_detail">
-                        <h5 class=" text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
+                        <h5 class="heading-color text-center mb-5">{{__('msg.REPAIR DETAILS')}}</h5>
                     </div>
                     <?php $vendor_bid = \App\Models\VendorBid::where('garage_id',$order->garage_id)->where('user_bid_id',$order->user_bid_id)->first();?>
                     <div class="vendor__rply__dttl">
@@ -57,12 +57,12 @@
                 </div>
             </div>
         </div>
-        <div class="row  mt-5">
+        <div class="row mx-0 mt-3">
             <div class="col-lg-12">
 
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="over_view_part carad_data vendor_detail">
-                        <h5 class=" text-center mb-5">{{__('msg.CAR DETAILS')}}</h5>
+                        <h5 class="heading-color text-center mb-5">{{__('msg.CAR DETAILS')}}</h5>
                     </div>
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
@@ -110,12 +110,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="over_view_part carad_data vendor_detail Leave_review">
-                    <h5 class=" text-center mb-2 mt-5">{{__('msg.REASON FOR CANCELING')}}</h5>
+                    <h5 class="heading-color text-center mb-2 mt-4">{{__('msg.REASON FOR CANCELING')}}</h5>
                 </div>
 
             </div>
         </div>
-        <div class="row  mt-5">
+        <div class="row mx-0 mt-3">
             <div class="col-lg-12">
 
                 <div class="all_quote_card  vendor_rply_dtlL _text">

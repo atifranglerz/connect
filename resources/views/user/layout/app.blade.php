@@ -375,11 +375,8 @@
         $(document).on('click', '#Logout_Profile', function() {
             $('#TopProfile').toggle();
         });
-
-
         $(document).on('click', '#chat_toggle', function () {
-
-            $(this).siblings(".submenue").toggle();
+            $(this).siblings(".submenue").toggleClass('d-none d-block');
         });
         window.addEventListener('click', function(e){
             if (document.getElementById('chat_toggle').contains(e.target)){
@@ -395,8 +392,7 @@
 
 
         $(document).on('click', '#del_toggle', function () {
-
-            $(this).siblings(".submenue").toggle();
+            $(this).siblings(".submenue").toggleClass('d-none d-block');
         });
         window.addEventListener('click', function(e){
             if (document.getElementById('del_toggle').contains(e.target)){
@@ -412,12 +408,10 @@
 
         $("#search_input").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $(".main_contact>a>.inbox_contact").filter(function() {
+            $(".main_contact .inbox_contact").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-
-
 
       // code for message send
       $(document).on('click', '#sendMsg', function() {

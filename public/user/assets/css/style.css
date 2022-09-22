@@ -1732,6 +1732,7 @@ ul.sidebar_navcigation>li>a>img{
 }
 .quote_detail_btn_wraper>.vendor_replies_dtl{
     color: var(--orange);
+    text-transform: capitalize;
 }
 .card_icons>.icon_wrpaer.vendor_qoute_dtl{
     background-color:  var(--black);
@@ -1995,7 +1996,7 @@ padding-right: 35px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 135px;
+    max-width: 115px;
 }
 .main_contact{
     overflow-y: scroll;
@@ -2006,17 +2007,13 @@ padding-right: 35px;
     scrollbar-width: none !important;
     /* for Firefox */
 }
-a#chat_toggle {
-    color: #FFF;
-    margin-right: 16px;
-}
 .main_contact::-webkit-scrollbar {
   display: none;
 }
 .chat_section{
     margin-left: 220px;
     width: 100%;
-    height:calc( 100vh - 14.1vh);
+    height:calc( 100vh - 15.1vh);
     padding: 0;
     background-position: 100% 100%;
     background-repeat: no-repeat;
@@ -2071,8 +2068,7 @@ a#chat_toggle {
 }
 .pay_via_insurance_header_garages{
     background-color: var(--black);
-    width: 100px;
-    height: 45px;
+    height: 40px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -2086,6 +2082,8 @@ a#chat_toggle {
 }
 .pay_via_insurance_header_garages>i{
     color: var(--white);
+    margin-left: 8px;
+    font-size: 12px;
 }
 .img-download-block + p {
     margin-top: 10px;
@@ -2130,7 +2128,7 @@ p#userNotify {
 }
 .cahtting_messages{
     overflow-y: auto;
-    height:calc( 100vh - 38vh);
+    height:calc( 100vh - 43vh);
 }
 .cahtting_messages::-webkit-scrollbar {
   display: none;

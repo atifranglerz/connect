@@ -115,7 +115,7 @@
                                                 <!-- multiple name="animals" id="animals" class="filter-multi-select" -->
 
                                                 <select class="form-select form-control garage-services-offer"
-                                                    name="category[]" multiple aria-label="Type of Service" placeholder="dfaf">
+                                                    name="category[]" multiple aria-label="Type of Service" placeholder="">
                                                     @foreach ($categories as $data1)
                                                         {{-- <option value="{{$data1->id}}"  @if (in_array($data1->name, explode(',', $authvendor->garages_catagory))) selected @endif>{{$data1->name }}</option> --}}
                                                         <option value="{{$data1->id}}"  {{ (collect(explode(',', $authvendor->garages_catagory))->contains($data1->name)) ? 'selected':'' }}>{{$data1->name }}</option>
@@ -135,8 +135,8 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="text" name="vat" value="{{ $authvendor->vat }}"
-                                                    class="form-control" placeholder="{{ __('msg.VAT Details') }} ({{__('msg.Required')}})">
+                                                <input type="text" name="vat" value="{{ $authvendor->vat }}% VAT"
+                                                    class="form-control" placeholder="{{ __('msg.VAT Details') }} ({{__('msg.Required')}})" readonly>
                                                 @error('vat')
                                                     <div class="text-danger p-2">{{ $message }}</div>
                                                 @enderror

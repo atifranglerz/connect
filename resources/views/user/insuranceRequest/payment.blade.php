@@ -76,7 +76,7 @@
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12  form-group expiration required'>
                                         <input class='form-control card-expiry-month' name="expiry-month"
-                                            placeholder="{{ __('msg.Expiry Date') }} ({{ __('msg.Required') }})" size='2' type='text'>
+                                            placeholder="{{ __('msg.Expiry Month') }} ({{ __('msg.Required') }})" size='2' type='text'>
                                     </div>
                                 </div>
                                 <div class="inpu_wraper mb-3">

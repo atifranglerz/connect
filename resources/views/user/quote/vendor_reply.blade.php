@@ -303,7 +303,7 @@
                                         placeholder="AED Price" readonly>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                    <h6 class="heading-color">{{ __('msg.vat') }} 5%</h6>
+                                    <h6 class="heading-color">{{ __('msg.vat') }} {{$garage->vendor->vat}}%</h6>
                                     <input type="number" value="{{ $data->vat }}" class="form-control"
                                         placeholder="AED Price" readonly>
                                 </div>

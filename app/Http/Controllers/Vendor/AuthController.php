@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use App\Http\Controllers\Controller;
-use App\Mail\ForgetPassword;
-use App\Mail\Login;
-use App\Models\Category;
-use App\Models\Country;
-use App\Models\Garage;
-use App\Models\User;
-use App\Models\Vendor;
 use Carbon\Carbon;
+use App\Mail\Login;
+use App\Models\User;
+use App\Models\Garage;
+use App\Models\Vendor;
+use App\Models\Country;
+use App\Models\Category;
+use App\Mail\ForgetPassword;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\PaymentPercentage;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -27,11 +28,13 @@ class AuthController extends Controller
         $data['page_title'] = 'Vendor Register';
         $data['countries'] = Country::all();
         $data['categories'] = Category::all();
+        $data['vat'] = PaymentPercentage::select('percentage')->where('type','vat')->first();
         return view('vendor.auth.register', $data);
     }
 
     public function vendorRegister(Request $request)
     {
+        
         // return $request;
         $request->validate([
             // 'profile_image' => 'required',
@@ -88,7 +91,8 @@ class AuthController extends Controller
         $vendor->post_box = $request->post_box;
         $vendor->appointment_number = $request->appointment_number;
         $vendor->garage_name = $request->garage_name;
-        $vendor->vat = $request->vat;
+        $vat = explode(' ', $request->vat);
+        $vendor->vat = (int) filter_var($vat[0], FILTER_SANITIZE_NUMBER_INT);
         $vendor->billing_area = $request->billing_area;
         $vendor->billing_city = $request->billing_city;
         $vendor->billing_address = $request->billing_address;
@@ -138,7 +142,7 @@ class AuthController extends Controller
             if ($vendor_role) {
                 $garage = Garage::where('vendor_id', Auth::guard('vendor')->id())->first();
                 if (empty($garage)) {
-                    return redirect()->route('vendor.workshop.index')->with($this->data("create Workshop first ", 'success'));
+                    return redirect()->route('vendor.workshop.index')->with($this->data("Create Workshop first ", 'success'));
                 } else {
                     return redirect()->route('vendor.dashboard')->with($this->data("You've Login Successfully", 'success'));
                 }
