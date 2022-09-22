@@ -307,6 +307,8 @@ return [
     'Customer Dashboard' => 'لوحة تحكم العميل',
     'Preferred Garages' => 'الجراجات المفضلة',
     'View your profile' => 'عرض ملف التعريف الخاص بك',
+    'Follow Us' => 'تابعنا',
+    'Payment Methods' => 'طرق الدفع',
     'No Orders has been added !' => 'لم يتم إضافة أي طلبات!',
     'No Quote has been added !' => 'لم يتم إضافة اقتباس!',
     'Engine e.g 1400 cc' => 'محرك مثل 1400 سم مكعب',
