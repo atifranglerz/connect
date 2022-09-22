@@ -1376,7 +1376,7 @@ ul.sidebar_navcigation>li>a>img{
 .profile_name_box{
     background-color: var(--black);
     color: var(--bs-light);
-    height: 40px;
+    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1571,9 +1571,6 @@ ul.sidebar_navcigation>li>a>img{
 .quote_detail_btn_wraper>.vendor_replies_dtl{
     color: var(--orange);
 }
-.card_icons>.icon_wrpaer.vendor_qoute_dtl{
-    background-color:  var(--black);
-}
 .car_inner_imagg.vendor_rply_dtl{
     width: 150px;
     height: 150px;
@@ -1715,7 +1712,7 @@ ul.sidebar_navcigation>li>a>img{
 }
 .btn-secondary.edit_del_btns,.btn-primary.edit_del_btns{
     width: 100px;
-    height: 40px;
+    min-height: 40px;
     text-align: left;
     align-items: center;
     display: flex;

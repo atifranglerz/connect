@@ -60,10 +60,9 @@
                         </div>
                         <div class=" w-100  quote_detail_wraper">
                             <div class="quote_info">
-                                <h4 class="d-flex align-items-center active_quote rply_dtl heading-color">
-                                    {{ $garage->garage_name }}</h4>
-                                <p class="mb-0 rply__dtl">{{ $data->vendordetail->name }}</p>
-                                <p class="rply__dtl">{{ $data->vendordetail->phone }}</p>
+                                <h5 class="active_quote rply_dtl heading-color"><span class="h5 mb-0 heading-color">{{ __('msg.Garage') }}:</span> {{ $garage->garage_name }}</h5>
+                                <span class="small h6 d-block mb-0 rply__dtl"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span> {{ $data->vendordetail->name }}</span>
+                                <span class="small h6 d-block mb-0 rply__dtl"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span> {{ $data->vendordetail->phone }}</span>
                                 <div class="card_icons respons_qoute d-flex align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id', $data->garage_id)->pluck('category_id');
                                     $category_name = \App\Models\Category::whereIn('id', $category)->get();

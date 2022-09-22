@@ -20,9 +20,9 @@
                         </div>
                         <div class=" w-100  quote_detail_wraper">
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote">{{ $garage->garage_name }}</h5>
-                                <p class="mb-0">{{ $vendor->name }}</p>
-                                <p>{{ $vendor->phone }}</p>
+                                <h5 class="active_quote"><span class="h5 mb-0 heading-color">{{ __('msg.Garage') }}:</span> {{ $garage->garage_name }}</h5>
+                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span> {{ $vendor->name }}</span>
+                                <span class="small h6 d-block"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span> {{ $vendor->phone }}</span>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id', $garage->id)->pluck('category_id');
                                     $category_name = \App\Models\Category::whereIn('id', $category)->get();
