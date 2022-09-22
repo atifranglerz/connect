@@ -5,7 +5,7 @@
     ?>
     <section class="caradDetailBabnner py-5">
         <div class="container">
-            <h4 class="text-center mb-4 heading-color">{{ __('msg.CAR IMAGES') }}</h4>
+            <h4 class="text-center text-uppercase mb-4 heading-color">{{ __('msg.CAR IMAGES') }}</h4>
             <div class="owl-carousel carousel_se_02_carousel owl-theme" id="carImages">
                 @if (count($images) == 0)
                     <a href="{{ asset('public/assets/images/no-preview.png') }}">
