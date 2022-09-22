@@ -1269,6 +1269,12 @@ width: 17px;
     margin-left: 8px;
     font-size: 12px;
 }
+.view-invoice {
+    text-transform: uppercase;
+    border: 1px solid;
+    padding: 6px;
+    border-radius: 8px;
+}
 p.card-text.sing_up_card_txt{
     font-size: var(--fs-15) !important;
     color: var(--darkgray)!important;

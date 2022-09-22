@@ -36,8 +36,7 @@
                                     </div>
                                     <div class="quote_detail_btn_wraper">
                                         <div class="quote_detail_btn_wraper">
-                                            <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}
-                                            </h5>
+                                            <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                         </div>
                                         <h5 class=" text-sm-center">{{ __('msg.AED') }} {{ $order->total }}</h5>
                                         <div class="d-flex align-items-center chat_view__detail">

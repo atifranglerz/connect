@@ -1579,7 +1579,7 @@ ul.sidebar_navcigation>li>a>img{
     justify-content: space-between;*/
     border-radius: 10px;
     border: 1px solid var(--light-border);
-    padding: 24px 40px;
+    padding: 24px 30px;
 }
 .quote_card_heading,.all_quote_card{
     display: flex;

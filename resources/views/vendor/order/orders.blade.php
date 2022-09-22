@@ -29,13 +29,15 @@
                                     <div class="quote_info">
                                         <h5 class="d-flex align-items-center active_quote">{{ $company->company }}
                                             ({{ $userbidid->model }})
-                                            <span class="order_id">{{ $order->status }}</span>
                                         </h5>
                                         <p class="mb-0">{{ $userbidid->car_owner_name }}</p>
                                         <p class="mb-0">{{ $user->phone }}</p>
                                         <p>{{ $userbidid->phone }}</p>
                                     </div>
                                     <div class="quote_detail_btn_wraper">
+                                        <div class="quote_detail_btn_wraper">
+                                            <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
+                                        </div>
                                         <h5 class=" text-sm-center">{{ __('msg.AED') }} {{ $order->total }}</h5>
                                         <div class="d-flex align-items-center chat_view__detail">
                                             <form action="{{ route('vendor.queryChat') }}" method="POST"

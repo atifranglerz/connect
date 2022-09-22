@@ -1429,7 +1429,7 @@ ul.sidebar_navcigation>li>a>img{
     justify-content: space-between;*/
     border-radius: 10px;
     border: 1px solid var(--light-border);
-    padding: 24px 40px;
+    padding: 24px 30px;
 }
 .quote_card_heading,.all_quote_card{
     display: flex;
@@ -1570,6 +1570,7 @@ ul.sidebar_navcigation>li>a>img{
 }
 .quote_detail_btn_wraper>.vendor_replies_dtl{
     color: var(--orange);
+    text-transform: capitalize;
 }
 .car_inner_imagg.vendor_rply_dtl{
     width: 150px;

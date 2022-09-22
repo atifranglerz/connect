@@ -13,34 +13,49 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-2">
-                <div class="col-lg-6 col-md-12 col-sm-12 col-11  mx-auto">
-                    <div class="all_quote_card replies_allquot ">
+            <div class="row mx-0">
+                <div class="col-sm-6 mb-sm-0 mb-3">
+                    <div class="all_quote_card replies_allquot h-100">
                         <?php
                         $userbidid = \App\Models\UserBid::where('id', $order->user_bid_id)->first();
                         $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
                         $company = \App\Models\Company::where('id', $userbidid->company_id)->first();
+                        $user = \App\Models\User::find($userbidid->user_id);
                         $userbidimage = \App\Models\UserBidImage::where([['user_bid_id', $order->userbid->id], ['type', 'image']])->first();
                         $userbidimage = explode(',', $userbidimage->car_image);
                         // $userbidimage = \App\Models\UserBidImage::where('user_bid_id', $userbidid->id)->get();
                         $user = \App\Models\User::find($order->userbid->user_id);
                         // dd($user);
                         ?>
-                        <div class=" w-100  quote_detail_wraper replies ">
+                        <div class="w-100 quote_detail_wraper replies" style="padding-left: 0">
                             <div class="quote_info">
                                 <h5 class="d-flex align-items-center active_quote nowrape ">{{ $company->company }}
                                     ({{ $userbidid->model }})</h5>
-                                <p class="mb-0">{{ $userbidid->car_owner_name }}</p>
-
-                                <p class="mb-0">{{ $user->phone }}</p>
-                                <p class="milage">{{ __('msg.mileage') }}
-                                    <span>{{ $userbidid->mileage }}{{ __('msg.Km') }}</span>
-                                </p>
+                                @if ($user->type == 'company')
+                                    <span class="small h6 d-block mb-0"><span
+                                            class="small h6 mb-0 heading-color">{{ __('msg.Company Name') }}:</span>
+                                        {{ $userbidid->car_owner_name }}</span>
+                                    <span class="small h6 d-block mb-0"><span
+                                            class="small h6 mb-0 heading-color">{{ __('msg.Company Number') }}:</span>
+                                        {{ $user->phone }}</span>
+                                @else
+                                    <span class="small h6 d-block mb-0"><span
+                                            class="small h6 mb-0 heading-color">{{ __('msg.Customer Name') }}:</span>
+                                        {{ $userbidid->car_owner_name }}</span>
+                                    <span class="small h6 d-block mb-0"><span
+                                            class="small h6 mb-0 heading-color">{{ __('msg.Customer Number') }}:</span>
+                                        {{ $user->phone }}</span>
+                                @endif
+                                <span class="small h6 d-block mb-0 milage"><span
+                                        class="small h6 mb-0 text-capitalize heading-color">{{ __('msg.mileage') }}:</span>
+                                    {{ $userbidid->mileage }}{{ __('msg.Km') }}</span>
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h5 class="vendor_order_id">{{ __('msg.Order Id:') }} #{{ $order->order_code }}</h5>
+                                <h5 class="vendor_order_id"><span
+                                        class="h5 mb-0 heading-color">{{ __('msg.Order Id:') }}</span>
+                                    #{{ $order->order_code }}</h5>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h5 class="">{{ $order->vendorbid->time }} {{ __('msg.Days') }}</h5>
+                                    <h5>{{ $order->vendorbid->time }} {{ __('msg.Days') }}</h5>
                                     <form action="{{ route('vendor.queryChat') }}" method="POST"
                                         class="chat_view__detail">
                                         @csrf
@@ -55,9 +70,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-11  mx-auto">
+                <div class="col-sm-6">
                     <div class="all_quote_card  replies_allquot h-100">
-                        <div class=" w-100  quote_detail_wraper replies payviainsu">
+                        <div class="w-100  quote_detail_wraper replies payviainsu" style="padding-left: 0">
                             <div class="quote_detail_btn_wraper">
                                 <div class="d-flex align-items-center chat_view__detail allreplies mb-4">
                                     <div class="pay_via_insurance_header_garages">
@@ -77,20 +92,26 @@
                                     </div>
 
                                 </div>
-                                <a
-                                    href="{{ url('vendor/print-order-details', $order->vendor_bid_id) }}">{{ __('msg.view invoice') }}</a>
+                                <a href="{{ url('vendor/print-order-details', $order->vendor_bid_id) }}"
+                                    class="view-invoice">{{ __('msg.view invoice') }}</a>
                             </div>
                             <div class="quote_info">
                                 <h5 class="d-flex align-items-center active_quote nowrape"> {{ __('msg.Budget') }}</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h5 class="quotereplies">{{ __('msg.Total') }}: {{ $order->total }}
+                                    <h5 class="quotereplies"><span
+                                            class="h5 mb-0 heading-color">{{ __('msg.Total') }}:</span>
+                                        {{ $order->total }}
                                         {{ __('msg.AED') }}</h5>
                                     @if ($order->status != 'complete' && $order->paid_by != 'insurance')
-                                        <h5 class="quotereplies">{{ __('msg.Advance') }}: {{ $order->advance }}
+                                        <h5 class="quotereplies"><span
+                                                class="h5 mb-0 heading-color">{{ __('msg.Advance') }}:</span>
+                                            {{ $order->advance }}
                                             {{ __('msg.AED') }}</h5>
                                     @endif
                                     @if ($order->status != 'complete' && $order->paid_by == 'insurance' && $insurancestatus->status == 1)
-                                        <h5 class=" text-sm-center">{{ __('msg.Advance') }}: {{ $order->total }}
+                                        <h5 class=" text-sm-center"><span
+                                                class="h5 mb-0 heading-color">{{ __('msg.Advance') }}:</span>
+                                            {{ $order->total }}
                                             {{ __('msg.AED') }}</h5>
                                     @endif
                                 </div>
@@ -99,22 +120,21 @@
                     </div>
                 </div>
             </div>
-            <div class="row  mt-5">
+            <div class="row mx-0 mt-4">
                 <div class="col-lg-12">
-
-                    <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
+                    <div class="all_quote_card  vendor_rply_dtlL _text">
                         <h5 class="active_order_req">{{ __('msg.Requirements') }}</h5>
-
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description1 }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row  ">
+            <div class="row mx-0">
                 <div class="col-lg-12">
-                    <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5">
+                    <div class="all_quote_card vendor_rply_dtlL _text mt-4">
+                        <h5 class="heading-color text-center mb-3">{{ __('msg.CAR IMAGES') }}</h5>
+                        <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
                             @if ($userbidimage && count($userbidimage) == 0)
                                 <div class="item">
                                     <div class="carAd_img_wraper doc_img customer_dashboard">
@@ -181,7 +201,7 @@
                 </div>
             </div>
             {{-- <div class="all_quote_card  vendor_rply_dtlL _text">
-                <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5 owl-loaded owl-drag">
+                <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3 owl-loaded owl-drag">
                     <div class="owl-stage-outer">
                         <div class="owl-stage"
                             style="transform: translate3d(-1488px, 0px, 0px); transition: all 0s ease 0s; width: 5656px;">
@@ -248,12 +268,12 @@
                     </div>
                 </div>
             </div> --}}
-            <div class="row  mt-5">
+            <div class="row mx-0 mt-4">
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">{{ __('msg.REPAIR DETAILS') }}</h5>
+                            <h5 class="heading-color text-center mb-3">{{ __('msg.REPAIR DETAILS') }}</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description2 }}</p>
@@ -262,44 +282,40 @@
                 </div>
             </div>
             @if ($order->status == 'pending')
-                <div class="row">
-                    <div class="col-xl-10 col-lg-6  col-md-10 col-sm-10 mx-auto">
-                        <div class="mt-3 mb-4 g-3" style="
-                        display: grid;
-                        grid-template-columns: 37% 40%;
-                        align-items: center;
-                        justify-content: center;
-                        column-gap: 15px;
-                    ">
-                            <a href="{{ route('vendor.addfund', $order->user_bid_id) }}"
-                                class="btn btn-secondary block get_appointment" type="button" style="height: 100%">
-                                {{ __('msg.ADD FUNDS') }}
-                            </a>
-                            <form action="{{ route('vendor.completeInovoice') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                <input type="hidden" name="order_no" value="{{ $order->order_code }}">
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                @if ($order->paid_by == 'insurance' && $insurancestatus->status == 0)
-                                    <button
-                                        class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
-                                        type="submit" style="font-size: 14px;border-radius: 6px"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
-                                @else
-                                    <button
-                                        class="btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                        type="submit" style="font-size: 14px;border-radius: 6px"> {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
-                                @endif
-                            </form>
-                        </div>
+                <div class="row mt-sm-5 mt-3 mx-auto col-xl-9 col-md-10" style="row-gap: 12px">
+                    <div class="col-sm-6">
+                        <a href="{{ route('vendor.addfund', $order->user_bid_id) }}"
+                            class="btn btn-secondary block get_appointment" type="button" style="height: 100%">
+                            {{ __('msg.ADD FUNDS') }}
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <form action="{{ route('vendor.completeInovoice') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="order_id" value="{{ $order->id }}">
+                            <input type="hidden" name="order_no" value="{{ $order->order_code }}">
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            @if ($order->paid_by == 'insurance' && $insurancestatus->status == 0)
+                                <button
+                                    class="w-100 btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
+                                    type="submit" style="font-size: 14px;border-radius: 6px">
+                                    {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
+                            @else
+                                <button
+                                    class="w-100 btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
+                                    type="submit" style="font-size: 14px;border-radius: 6px">
+                                    {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
+                            @endif
+                        </form>
                     </div>
                 </div>
             @else
-                <div class="row  mt-5">
+                <div class="row mx-0 mt-4">
                     <div class="col-lg-12">
 
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h5 class=" text-center mb-5">ORDER CANCEL REASON</h5>
+                                <h5 class=" text-center mb-3">ORDER CANCEL REASON</h5>
                             </div>
                             <div class="vendor__rply__dttl">
                                 <p>{{ $order->reason }}</p>
