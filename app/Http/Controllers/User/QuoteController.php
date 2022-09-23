@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendNotification;
+use App\Http\Requests\QuouteRequest;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Garage;
@@ -35,7 +36,7 @@ class QuoteController extends Controller
         return view('user.quote.create', compact('page_title', 'catagary', 'company', 'year'));
     }
 
-    public function store(Request $request)
+    public function store(QuouteRequest $request)
     {
         if ($request->action == "preferred_garage") {
             $data = UserWishlist::where('user_id', Auth::id())->with('garage')->get();
@@ -47,65 +48,65 @@ class QuoteController extends Controller
                 // return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
             }
         }
-        if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
-            $request->validate([
-                'car_images' => 'required',
-                'document' => 'required',
-                'looking_for' => 'required',
-                'model' => 'required',
-                'company_id' => 'required',
-                'model_year_id' => 'required',
-                'mileage' => 'required',
-                'day' => 'required',
-                'maker_name' => 'required',
-                'address' => 'required',
-                'registration_no' => 'required',
-                'Chasis_no' => 'required',
-                'color' => 'required',
-            ]);
-        } elseif ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
-            $request->validate([
-                'files' => 'required',
-                'category' => 'required',
-                'car_images' => 'required',
-                'looking_for' => 'required',
-                'model' => 'required',
-                'company_id' => 'required',
-                'model_year_id' => 'required',
-                'mileage' => 'required',
-                'day' => 'required',
-                'maker_name' => 'required',
-                'address' => 'required',
-                'registration_no' => 'required',
-                'Chasis_no' => 'required',
-                'color' => 'required',
-                'document' => 'required',
+        // if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
+        //     $request->validate([
+        //         'car_images' => 'required',
+        //         'document' => 'required',
+        //         'looking_for' => 'required',
+        //         'model' => 'required',
+        //         'company_id' => 'required',
+        //         'model_year_id' => 'required',
+        //         'mileage' => 'required',
+        //         'day' => 'required',
+        //         'maker_name' => 'required',
+        //         'address' => 'required',
+        //         'registration_no' => 'required',
+        //         'Chasis_no' => 'required',
+        //         'color' => 'required',
+        //     ]);
+        // } elseif ($request->looking_for == 'I have Inspection Report & Looking for the Quotations') {
+        //     $request->validate([
+        //         'files' => 'required',
+        //         'category' => 'required',
+        //         'car_images' => 'required',
+        //         'looking_for' => 'required',
+        //         'model' => 'required',
+        //         'company_id' => 'required',
+        //         'model_year_id' => 'required',
+        //         'mileage' => 'required',
+        //         'day' => 'required',
+        //         'maker_name' => 'required',
+        //         'address' => 'required',
+        //         'registration_no' => 'required',
+        //         'Chasis_no' => 'required',
+        //         'color' => 'required',
+        //         'document' => 'required',
 
-            ]);
-        } elseif ($request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
-            $request->validate([
-                'category' => 'required',
-                'car_images' => 'required',
-                'looking_for' => 'required',
-                'model' => 'required',
-                'company_id' => 'required',
-                'model_year_id' => 'required',
-                'mileage' => 'required',
-                'day' => 'required',
-                'maker_name' => 'required',
-                'address' => 'required',
-                'registration_no' => 'required',
-                'Chasis_no' => 'required',
-                'color' => 'required',
-                'document' => 'required',
+        //     ]);
+        // } elseif ($request->looking_for == "I know about what i'm looking for and requesting for the Quotations") {
+        //     $request->validate([
+        //         'category' => 'required',
+        //         'car_images' => 'required',
+        //         'looking_for' => 'required',
+        //         'model' => 'required',
+        //         'company_id' => 'required',
+        //         'model_year_id' => 'required',
+        //         'mileage' => 'required',
+        //         'day' => 'required',
+        //         'maker_name' => 'required',
+        //         'address' => 'required',
+        //         'registration_no' => 'required',
+        //         'Chasis_no' => 'required',
+        //         'color' => 'required',
+        //         'document' => 'required',
 
-            ]);
-        } else {
-            $request->validate([
-                'looking_for' => 'required',
-            ]);
+        //     ]);
+        // } else {
+        //     $request->validate([
+        //         'looking_for' => 'required',
+        //     ]);
 
-        }
+        // }
         $quote = new UserBid();
         $quote->user_id = Auth::id();
         $quote->model = $request->model;
