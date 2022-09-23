@@ -171,9 +171,6 @@ nav{
     border-bottom: 1px solid var(--gray);
     position: relative;
 }
-.login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li:nth-child(2) {
-    border-bottom: 0;
-}
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a{
     font-size: var(--fs-12);
     color: var(--orange);
@@ -181,8 +178,7 @@ nav{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 204px;
-
+    max-width: 225px;
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a>i{
     color: var(--white);
@@ -715,7 +711,7 @@ nav{
     border: 1px solid var(--orange);
     height: 45px;
     font-size: var(--fs-14);
-    border-radius: 10px;
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;

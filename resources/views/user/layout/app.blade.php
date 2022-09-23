@@ -257,12 +257,12 @@
         }
     })
     @php
-     session_start();   
+     session_start();
      @endphp
-    
+
         @if (isset($_SESSION["msg"]))
- 
-  
+
+
     var type = "{{ $_SESSION["alert"] }}";
     switch (type) {
         case'info':
@@ -312,7 +312,7 @@
             maxFiles:1,
             required: true
         });
-        $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload<b class="small">(Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
+        $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload<b class="small"> ({{__('msg.Required')}}) (Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
 
         $('.input-images').imageUploader({
             extensions: ['.png', '.jpg'],

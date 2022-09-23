@@ -184,8 +184,7 @@ nav{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 204px;
-
+    max-width: 225px;
 }
 .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list>li>a>i{
     color: var(--white);

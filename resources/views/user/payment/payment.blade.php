@@ -197,7 +197,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 mb-3">
                                             <label
-                                                class="mb-2 heading-color"><b>{{ __('msg.Upload Cheque image') }}<small>({{ __('msg.Click the box to upload') }})</small></b></label>
+                                                class="mb-2 heading-color"><b>{{ __('msg.Upload Cheque image') }}<small> ({{ __('msg.Click the box to upload') }})</small></b></label>
                                             <div class="cheque-image">
                                                 {{-- input field name  check_image --}}
 
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-primary flterClass" id="submit"
+                            <button class="btn btn-primary flterClass disabled" id="submit"
                                 type="submit">{{ __('msg.SUBMIT') }}</button>
                         </div>
                         </form>
@@ -247,6 +247,13 @@
 
     <script type="text/javascript">
         $(function() {
+            setInterval(() => {
+                if(!$('input[name="images[]"]').val()=="") {
+                    $('.flterClass').removeClass('disabled');
+                } else {
+                    $('.flterClass').addClass('disabled');
+                }
+            }, 500);
 
             var $form = $(".require-validation");
 

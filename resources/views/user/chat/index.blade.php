@@ -69,7 +69,7 @@
                         <input type="hidden" @if (isset($id)) value="{{ $id }}" @endif
                             name="receiver_id" id="receiver_id">
                         <textarea class="form-control enterKey" name="body" id="typeMsg" placeholder="Say Somthing"></textarea>
-                        <button type="submit" class="btn btn-primary" id="sendMsg">{{ __('msg.send') }}</button>
+                        <button type="submit" class="btn btn-primary" id="sendMsg">{{ __('msg.Send') }}</button>
                         <div class="file_input_messages">
                             <input type="file" id="attachment" name="attachment" onchange="loadFile(event)"
                                 class="messages_file">
@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="text" name="file_name" value="" class="form-control"
-                                            id="file_name" required>
+                                            id="file_name" placeholder="{{__('msg.File Name')}} ({{__('msg.Required')}})" required>
                                         @error('file_name')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-primary moveArchive">Move</a>
+                        <a href="#" class="btn btn-primary moveArchive disabled" style="min-height: unset">{{__('msg.Move')}}</a>
                     </div>
                     </form>
                 </div>
@@ -120,6 +120,16 @@
 
 @section('script')
     <script>
+        $(function() {
+            $(document).on('keyup', '#file_name', function() {
+                if(!$(this).val()=="") {
+                    $('.moveArchive').removeClass('disabled');
+                } else {
+                    $('.moveArchive').addClass('disabled');
+                }
+            });
+        });
+
         //show selected file
         var loadFile = function(event) {
             $('#showImage').removeClass('d-none');
@@ -138,7 +148,6 @@
                 image.src = URL.createObjectURL(event.target.files[0]);
             }
         };
-
 
         $(document).on('click', '.favorite', function() {
             var id = $(this).attr('id');
@@ -205,7 +214,6 @@
             }
         });
 
-
         $(document).ready(function() {
             $('form').on('submit', function(event) {
                 let c_id = $('#receiver_id').val();
@@ -232,7 +240,6 @@
             });
         });
 
-
         setInterval(ajaxC, 10000);
 
         function ajaxC() {
@@ -255,7 +262,6 @@
                 }
             });
         }
-
 
         $(document).on('click', '.MobileContactToggler', function() {
 
@@ -312,7 +318,6 @@
             });
         });
 
-
         $(document).on('click', '.delete', function() {
             var msg_id = $(this).attr('id');
             let id = $('#receiver_id').val();
@@ -339,8 +344,6 @@
                 }
             });
         });
-
-
 
         $(document).on('click', '.chatted_delete', function() {
             var id = $(this).attr('id');
