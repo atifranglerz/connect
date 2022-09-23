@@ -5,13 +5,13 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">Downloaded Images & Files</h4>
+                        <h4 class="sec_main_heading text-center mb-0">{{__('msg.DOWNLOADED IMAGES & FILES')}}</h4>
                     </div>
                 </div>
             </div>
             <div class="bg-white px-2 py-3 mx-3" style="border-radius: 10px">
                 <div class="row mx-0">
-                    <h5 class="mb-3 heading-color">Images</h5>
+                    <h5 class="mb-3 heading-color">{{__('msg.Images')}}</h5>
                     @if ($attachment->count() > 0)
                         @foreach ($attachment as $data)
                             <?php
@@ -37,11 +37,11 @@
                             @endif
                         @endforeach
                     @else
-                        <p>There is no image</p>
+                        <p>{{__('msg.There is no image')}}</p>
                     @endif
                 </div>
                 <div class="row mx-0">
-                    <h5 class="mb-3 heading-color">Files</h5>
+                    <h5 class="mb-3 heading-color">{{__('msg.Files')}}</h5>
                     @if ($attachment->count() > 0)
                         @foreach ($attachment as $data)
                             <?php
@@ -74,7 +74,7 @@
                             @endif
                         @endforeach
                     @else
-                        <p>There is no file</p>
+                        <p>{{__('msg.There is no file')}}</p>
                     @endif
                 </div>
             </div>

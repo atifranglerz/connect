@@ -83,7 +83,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="sec_main_heading text-center mb-0">move to Archive</h5>
+                        <h5 class="sec_main_heading text-center mb-0">{{__('msg.Move to Archive')}}</h5>
                         <a type="button" class="heading-color" data-bs-dismiss="modal"><span
                                 class="fa fa-times"></span></a>
                     </div>
@@ -96,11 +96,11 @@
 
                                     <input type="hidden" name="msg_id" value="" class="form-control" id="msg_id">
                                     <div class="col-12 mb-3 signup_vendo">
-                                        <h5 class="mb-0 heading-color">file name</h5>
+                                        <h5 class="mb-0 heading-color">{{__('msg.File Name')}}</h5>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="text" name="file_name" value="" class="form-control"
-                                            id="file_name">
+                                            id="file_name" required>
                                         @error('file_name')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
