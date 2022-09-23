@@ -213,6 +213,9 @@
                                             <div class="input-images-3"></div>
                                             {{--input field name doucment--}}
                                         </div>
+                                        @error('document')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
                                         <div class="row g-2">
                                             <div class="col-lg-6 col-md-6">
                                                 <input type="text" class="form-control"
