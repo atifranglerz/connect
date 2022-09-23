@@ -45,6 +45,12 @@ class Controller extends BaseController
 
     function sendError($error_message, $code = 400)
     {
-        return Response::json(['status' => $code, 'message' => $error_message], $code)->setStatusCode($code, $error_message);
+        session_start();
+        $_SESSION["val"]=array();
+        $_SESSION["val"]=$error_message;
+       
+      return;
     }
+
+    
 }

@@ -29,8 +29,8 @@ class DashboardController extends Controller
         }
         $order = Order::where('garage_id',$vendor_garage->id)->latest()->first();
         
-        $data['terms'] =  PrivacyPolicy::first();
-        $data['policy'] = TermCondition::first();
+        $data['policy'] =  PrivacyPolicy::first();
+        $data['terms'] = TermCondition::first();
 
         /*$dateFrom = Carbon::now()->subDays(30);
         $dateTo = Carbon::now();

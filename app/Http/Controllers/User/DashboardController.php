@@ -31,8 +31,8 @@ class DashboardController extends Controller
         }else{
             $order='';
         }
-        $data['terms'] =  PrivacyPolicy::first();
-        $data['policy'] = TermCondition::first();
+        $data['policy'] =  PrivacyPolicy::first();
+        $data['terms'] = TermCondition::first();
 
         return view('user.index', compact('page_title','user_bid','userbidid','vendor_bid','order','data'));
     }
