@@ -377,10 +377,6 @@ $(function() {
             }
         }, 50);
     });
-
-    if($('div').hasClass('text-danger')) {
-        toastr.error("Failed! You've to fill the Required Fields");
-    }
 });
 </script>
 @endsection

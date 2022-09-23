@@ -416,9 +416,6 @@
             "hideMethod": "fadeOut"
         }
         $(function() {
-            if($('div').hasClass('text-danger')) {
-                toastr.error("Failed! You've to fill the Required Fields");
-            }
             <?php if(session('alert-garage-success'))
                 {
             ?>
