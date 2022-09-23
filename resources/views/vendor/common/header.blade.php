@@ -68,7 +68,7 @@
                             <ul class="notification_list shadow">
                                 <li><a href="{{route('vendor.profile.index')}}">{{__('msg.Profile')}}</a>
                                 </li>
-                                <li><a href=""
+                                <li style="border-bottom: none"><a href=""
                                         onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">{{__('msg.Logout')}}<span
                                             class="fas fa-sign-out-alt"></span></a></li>
                                 <form id="frm-logout" action="{{ route('vendor.logout') }}" method="POST"

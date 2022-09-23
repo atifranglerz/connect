@@ -191,7 +191,7 @@
                         <p class="mb-0 footer_address"><b>Country :</b> UAE</p>
                         <p class="mb-0 footer_address"><b>P.O Box No :</b> 121161, Dubai-UAE</p>
                         <p class="mb-0 footer_address"><b>Contact Number :</b> +971 56 928 9928</p>
-                        <p class="mb-0 footer_address"><b>Email Address :</b> info@macrosonline.ae</p>
+                        <p class="mb-0 footer_address"><b>Email Address :</b> <a href="mailto:info@macrosonline.ae" class="text-white" style="text-decoration: underline">info@macrosonline.ae</a></p>
                     </div>
                 </div>
             </div>
