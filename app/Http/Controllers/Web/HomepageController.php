@@ -39,7 +39,7 @@ class HomepageController extends Controller
         $data['garage'] = $garage->filter(function($product){
             return $product->garagereview->avg('rating')>3;
         })->take(3);
-        dd($data['garage']);
+        // dd($data['garage']);   
 
  //     $review = Garage::get();
     //     foreach ($review as $count) {
