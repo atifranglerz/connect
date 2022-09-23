@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Garage;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,9 +69,10 @@ class VendorController extends Controller
     public function edit($id)
     {
         $company = User::where('type','company')->get();
+        $garage=Garage::all();
         $vendor = Vendor::with('company')->findOrFail($id);
         $page_title = 'Vendor';
-        return view('admin.vendor.edit', compact('vendor', 'page_title','company'));
+        return view('admin.vendor.edit', compact('vendor', 'page_title','company','garage'));
     }
 
     /**
@@ -84,22 +86,22 @@ class VendorController extends Controller
     {
         $request->validate([
             // "id_card" => 'required',
-            // 'name' => ['required', 'string', 'max:255'],
+            'name' => 'required',
             // 'garage_name' => 'required',
             // 'garages_catagary' => 'required',
-            // 'email' => ['required', 'string', 'email', 'max:255'],
-            // 'country' => ['required', 'string'],
-            // 'city' => ['required', 'string'],
-            // 'post_box' => 'required',
-            // 'company'=>'required',
-            // 'phone' => 'required|digits:12',
+            // 'email' => 'required',
+            // 'country' => 'required',
+            'city' => 'required',
+            'post_box' => 'required',
+            'company'=>'required',
+            'phone' => 'required',
             // 'image_license' => 'required',
-            // 'trading_license' => 'required',
-            // 'vat' => 'required',
-            // 'billing_area' => 'required',
-            // 'billing_city' => 'required',
+            'trading_license' => 'required',
+            'vat' => 'required',
+            'billing_area' => 'required',
+            'billing_city' => 'required',
             // 'billing_address' => 'required',
-            // 'appointment_number' => 'required',
+            'appointment_number' => 'required',
         ]);
         // $vendor = Vendor::findOrFail($id);
         // $vendor->name = $request->name;

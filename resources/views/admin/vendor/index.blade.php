@@ -19,7 +19,7 @@
                                                 <th class="text-center">#</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Country</th>
+                                                {{-- <th>Country</th> --}}
                                                 <th>City</th>
                                                 <th>Address</th>
                                                 <th>Post Box</th>
@@ -31,7 +31,7 @@
                                                 <th>Billing Area</th>
                                                 <th>Billing City</th>
                                                 <th>Billing Address</th>
-                                                <th>Online Status</th>
+                                                {{-- <th>Online Status</th> --}}
                                                 <th>License Image</th>
                                                 <th>ID Card</th>
                                                 <th>Image</th>
@@ -47,7 +47,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $vendor->name }}</td>
                                                     <td>{{ $vendor->email }}</td>
-                                                    <td>{{ $vendor->country }}</td>
+                                                    {{-- <td>{{ $vendor->country }}</td> --}}
                                                     <td>{{ $vendor->city }}</td>
                                                     <td>{{ $vendor->address }}</td>
                                                     <td>{{ $vendor->post_box }}</td>
@@ -59,7 +59,7 @@
                                                     <td>{{ $vendor->billing_area }}</td>
                                                     <td>{{ $vendor->billing_city }}</td>
                                                     <td>{{ $vendor->billing_address }}</td>
-                                                    <td>{{ $vendor->online_status }}</td>
+                                                    {{-- <td>{{ $vendor->online_status }}</td> --}}
                                                     <td><img alt="image"
                                                             @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                             style="height: 50px;width:50px"></td>

@@ -26,6 +26,13 @@
                                             <th>Garage Name</th>
                                             <th>Category</th>
                                             <th>Owner Name</th>
+                                            <th>Trading No:</th>
+                                            <th>Vat</th>
+                                            <th>Phone</th>
+                                            <th>Description</th>
+                                            <th>Address</th>
+                                            <th>Post Box</th>
+                                            <th>Image</th>
                                             <th>City</th>
                                             <th>Country</th>
                                             <th>Action</th>
@@ -43,6 +50,15 @@
                                                     @endforeach
                                                 </td>
                                                 <td>{{ (isset($data->vendor)) ? $data->vendor->name : 'Null' }}</td>
+                                                <td>{{$data->trading_no}}</td>
+                                                <td>{{$data->vat}}</td>
+                                                <td>{{$data->phone}}</td>
+                                                <td>{{$data->description}}</td>
+                                                <td>{{$data->address}}</td>
+                                                <td>{{$data->post_box}}</td>
+                                                <td><img alt="image"
+                                                    @if (isset($data->image)) src="{{ asset('/' . $data->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                    style="height:50px;width:50px"></td>
                                                 <td>{{ (isset($data->city)) ? $data->city : 'Null' }}</td>
                                                 <td>{{ (isset($data->country)) ? $data->country : 'Null' }}</td>
                                                 <td>

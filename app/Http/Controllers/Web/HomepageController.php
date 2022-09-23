@@ -37,10 +37,21 @@ class HomepageController extends Controller
 
         $garage = Garage::with('garagereview')->get();
         $data['garage'] = $garage->filter(function($product){
-            return $product->garagereview->avg('rating')  >3;
-        });
+            return $product->garagereview->avg('rating')>3;
+        })->take(3);
+        // dd($data['garage']);   
+
+ //     $review = Garage::get();
+    //     foreach ($review as $count) {
+    //         $garages[] = UserReview::where('garage_id', $count->id)->count();
+    //     }
+    //     // dd($garages);
+    //     for ($i = 0; $i < count($garages); $i++){
+
+    // }
         // return $data['garage'];
-        
+
+
         $data['slider'] = Slider::all();
         $data['all_services'] = Category::latest()->get();
 

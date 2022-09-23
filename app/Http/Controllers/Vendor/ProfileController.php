@@ -139,7 +139,7 @@ class ProfileController extends Controller
         if (isset($request->company)) {
 
             $company = DB::table('insurance_vendor')->where('vendor_id', Auth::guard('vendor')->id())->delete();
-           
+
             foreach($request->company as $id) {
                 $company = User::find($id);
                 $vendor->company()->attach($company);

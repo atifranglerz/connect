@@ -105,17 +105,33 @@ class GarageController extends Controller
      */
     public function update(GarageRequest $request, Garage $garage)
     {
+        $request->validate([
+            'garage_name' => ['required', 'string', 'max:255'],
+            'trading_no' => 'required',
+            'vat' => 'required',
+            'phone' => 'required',
+            'city' => 'required',
+            'post_box' => 'required',
+            'address' => 'required',
+        ]);
         if ($request->file('image')) {
             $image = $request->file('image');
             $image_name = hexdec(uniqid()) . '.' . strtolower($image->getClientOriginalExtension());
             $image->move('public/image/garage/', $image_name);
             $image = 'public/image/garage/' . $image_name;
-            if ($request->old_image !== null) {
-                unlink($request->old_image);
-            }
+            // if ($request->old_image !== null) {
+            //     unlink($request->old_image);
+            // }
         } else {
             $image = $request->old_image;
         }
+        // if ($request->hasfile('image')) {
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension(); // getting image extension
+        //     $filename = time() . '.' . $extension;
+        //     $file->move(public_path('images'), $filename);
+        //     $company['image'] = 'public/images/' . $filename;
+        // }
         $garage_id = $garage->id;
         $data = $request->only(['vendor_id', 'garage_name', 'trading_no', 'vat', 'phone', 'address', 'country', 'city', 'post_box', 'image', 'description']);
         $data['image'] = $image ?? '';

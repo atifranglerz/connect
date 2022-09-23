@@ -6,7 +6,8 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form method="post" action="{{ route('admin.vendor.update', ['vendor' => $vendor->id]) }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('admin.vendor.update', ['vendor' => $vendor->id]) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-header">
@@ -16,7 +17,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Name</label>
-                                            <input type="text" class="form-control"  name="name"
+                                            <input type="text" class="form-control" name="name"
                                                 value="{{ old('name', $vendor->name) }}">
                                             @error('name')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -24,8 +25,8 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Email</label>
-                                            <input type="email" class="form-control"  name="email"
-                                                autocomplete="off" readonly value="{{ old('email', $vendor->email) }}">
+                                            <input type="email" class="form-control" name="email" autocomplete="off"
+                                                readonly value="{{ old('email', $vendor->email) }}">
                                             @error('email')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
@@ -115,7 +116,7 @@
                                         <div class="form-group col-md-6">
                                             <label>Online Status</label>
                                             <input type="text" class="form-control" name="online_status"
-                                                value="{{ old('online_status', $vendor->online_status) }}">
+                                                value="{{ old('online_status', $vendor->online_status) }}"readonly>
                                             @error('online_status')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
@@ -124,13 +125,12 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="city" class="form-label">City</label>
-                                            <select class="form-control selectric category" multiple="" name="city"
-                                                 >
+                                            <select class="form-control selectric category" name="city">
                                                 <option selected disabled value="">{{ __('msg.Select City') }}
                                                 </option>
                                                 <option value="Dubai" @if ($vendor->city == 'Dubai') selected @endif
                                                     @if (old('city') == 'Dubai') selected @endif>
-                                                    {{ __('msg.Dubai') }}></option>
+                                                    {{ __('msg.Dubai') }}</option>
                                                 <option value="Abu Dhabi" @if ($vendor->city == 'Abu Dhabi') selected @endif
                                                     @if (old('city') == 'Abu Dhabi') selected @endif>
                                                     {{ __('msg.Abu Dhabi') }}</option>
@@ -147,41 +147,53 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="garages_catagory" class="form-label">Insurance Company</label>
-                                            <select class="form-select form-control insurance-company" name="company[]"
-                                                aria-label="company" value="" multiple="multiple">
+                                            <label for="city" class="form-label">Insurance Company</label>
+                                            <select class="form-control selectric category" name="company[]"
+                                                multiple="multiple">
                                                 @foreach ($company as $data)
                                                     <option value="{{ $data->id }}"
                                                         @if (isset($vendor->company[0])) @foreach ($vendor->company as $company)
-                                            @if ($company->name == $data->name)
-                                            selected @endif
+                                                    @if ($company->name == $data->name)
+                                                    selected @endif
                                                         @endforeach
                                                 @endif>
 
                                                 {{ $data->name }}</option>
                                                 @endforeach
+
                                             </select>
                                             @error('company')
-                                                <div class="text-danger p-2">{{ $message }}</div>
+                                                <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-6">
+                                        {{-- <div class="form-group col-6">
                                             <label for="garages_catagory" class="form-label">Garages Catagory</label>
                                             <select class="form-control selectric category" multiple=""
-                                                name="garages_catagory[]"  >
-                                                {{-- @foreach ($category as $data)
+                                                name="garages_catagory[]">
+                                                @foreach ($garage as $data)
                                                     <option value="{{ $data->id }}"
                                                         @foreach ($garage->garageCategory as $data2)
                                                             @if ($data2->category_id == $data->id) selected @endif @endforeach>
                                                         {{ $data->name }}
                                                     </option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                             @error('category_id')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
+                                        </div> --}}
+                                        <div class="form-group col-md-6">
+                                            <label>Profile Image</label>
+                                            <input type="file" name="image[]" class="form-control">
+                                            @error('image')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            <div><img alt="image"
+                                                    @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                    style="height: 100px;width:100px">
+                                            </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>ID Card Image</label>
@@ -207,7 +219,7 @@
                                                     style="height: 100px;width:100px">
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        {{-- <div class="form-group col-md-6">
                                             <label>Profile Image</label>
                                             <input type="file" name="image[]" class="form-control">
                                             @error('image')
@@ -217,7 +229,7 @@
                                                     @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                     style="height: 100px;width:100px">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                 </div>

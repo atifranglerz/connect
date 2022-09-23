@@ -79,7 +79,7 @@ class InsuranceCompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // dd($request->all());
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             //'email' => ['required', 'string', 'email', 'max:255'],
@@ -87,8 +87,18 @@ class InsuranceCompanyController extends Controller
         ]);
         $company = User::findOrFail($id);
         $company->name = $request->name;
-        //$company->email = $request->email;
+        //$user->email = $request->email;
         $company->phone = $request->phone;
+        $company->address = $request->address;
+        $company->post_box = $request->post_box;
+        $company->city = $request->city;
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('images'), $filename);
+            $company['image'] = 'public/images/' . $filename;
+        }
         $company->save();
         return $this->message($company, 'admin.insurance-company', 'Company Update Successfully', 'Company Update Error');
     }
