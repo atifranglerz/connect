@@ -287,7 +287,7 @@
         </div>
         <div class="row g-3">
             <div class="col-lg-3 col-md-4 col-sm-4">
-                <a href="{{route('vendorlist')}}">
+                <a>
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/lambo-banner.jpg') }}" class="card-img-top"
@@ -318,7 +318,7 @@
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-4">
-                <a href="{{route('vendorlist')}}">
+                <a>
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/rolls-royce-banner.jpg') }}" class="card-img-top"
@@ -348,7 +348,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4">
-                <a href="{{route('vendorlist')}}">
+                <a>
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/mclaren-banner.jpg') }}" class="card-img-top"
@@ -378,7 +378,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4">
-                <a href="{{route('vendorlist')}}">
+                <a>
                     <div class="card card_vendors shadow">
                         <div class="car_img_wrapper">
                             <img src="{{ asset('public/assets/images/porche.jpg') }}" class="card-img-top"
