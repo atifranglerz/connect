@@ -2,7 +2,7 @@
 @section('content')
     <section class="about_connect looking_for lates_news_main">
         <div class="container-lg container-fluid">
-            <div class="row">
+            <div class="row mx-0">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
                         <h4 class="sec_main_heading text-center">{{__('msg.latest_news')}}</h4>
@@ -12,7 +12,7 @@
             </div>
 
 
-            <div class="row g-3">
+            <div class="row mx-0 g-3">
                 @foreach($news as $value)
                 <div class="col-lg-3 col-md-4 col-sm-4">
                     <a href="{{route('news_detail',$value->id)}}">
@@ -30,7 +30,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="row">
+        <div class="row mx-0">
             <div class="col-lg-8 mx-auto text-center">
                 <nav aria-label="..." class="d-flex align-items-center justify-content-center">
                     <span class="mt-4">{!! $news->links() !!}</span>

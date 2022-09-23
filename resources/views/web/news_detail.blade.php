@@ -20,10 +20,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="main_content_wraper mt-5">
-                    <h1 class="sec_main_heading new_detal_heaading mb-lg-5 mb-3 ">{{$news->title}} </h1>
+                    <h5 class="sec_main_heading new_detal_heaading mb-lg-5 mb-3 ">{{$news->title}}</h5>
                     <p class="sec_main_para news_detail_paragraph">{!! $news->description !!}</p>
                     <br>
-
                 </div>
             </div>
         </div>
