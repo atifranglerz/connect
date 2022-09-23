@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="model"
-                                                value="{{old('model')}}" placeholder="{{__('msg.Model')}}" aria-label="Car Milage">
+                                                value="{{old('model')}}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage">
                                             @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" value="{{old('registration_no')}}"
-                                                name="registration_no" placeholder="{{__('msg.Registration No.')}}"
+                                                name="registration_no" placeholder="{{__('msg.Registration No.')}} ({{__('msg.Required')}})"
                                                 aria-label="Car Milage">
                                             @error('registration_no')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -94,14 +94,14 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" value="{{old('Chasis_no')}}"
-                                                name="Chasis_no" placeholder="{{__('msg.Chasis No.')}}" aria-label="Car Milage">
+                                                name="Chasis_no" placeholder="{{__('msg.Chasis No.')}} ({{__('msg.Required')}})" aria-label="Car Milage">
                                             @error('Chasis_no')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="text" class="form-control" name="color"
-                                                value="{{old('color')}}" placeholder="{{__('msg.Color')}}" aria-label="Car Milage">
+                                                value="{{old('color')}}" placeholder="{{__('msg.Color')}} ({{__('msg.Required')}})" aria-label="Car Milage">
                                             @error('color')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -124,7 +124,7 @@
                                         </div> -->
                                         <div class="col-lg-6 col-md-6">
                                             <input type="number" class="form-control" name="mileage"
-                                                value="{{old('mileage')}}" placeholder="{{__("msg.Mileage e.g 40 Km")}}"
+                                                value="{{old('mileage')}}" placeholder="{{__("msg.Mileage e.g 40 Km")}} ({{__('msg.Required')}})"
                                                 aria-label="Car Milage" required>
                                             @error('mileage')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -132,7 +132,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <input type="number" class="form-control" name="day" value="{{old('day')}}"
-                                                placeholder="{{__('msg.Days e.g (7)')}}" aria-label="Day" required>
+                                                placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Required')}})" aria-label="Day" required>
                                             @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -149,7 +149,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="description1" placeholder="{{__('msg.Add information in details')}}"
+                                            <textarea name="description1" placeholder="{{__('msg.Add information in details')}} ({{__('msg.Optional')}})"
                                                 class="form-control" rows="5">{{old('description1')}}</textarea>
                                         </div>
                                         <div class="col-lg-12">
@@ -194,7 +194,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="description2" placeholder="{{__('msg.Special Requirements')}}"
+                                            <textarea name="description2" placeholder="{{__('msg.Special Requirements')}} ({{__('msg.Optional')}})"
                                                 class="form-control" rows="5">{{old('description2')}}</textarea>
                                         </div>
                                         <div class="col-lg-12">

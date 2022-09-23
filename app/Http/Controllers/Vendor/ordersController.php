@@ -235,7 +235,7 @@ class ordersController extends Controller
             $notification->save();
         }
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] ="Extra budget Request send Successfully, we will inform you after other party response";
         $_SESSION["alert"] ="success";
         return redirect()->route('vendor.fullfillment', $order->id);
@@ -273,7 +273,7 @@ class ordersController extends Controller
             $notification->save();
         }
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] ="Reminder of Order Completion has been Sended";
         $_SESSION["alert"] ="success";
         return redirect()->back();

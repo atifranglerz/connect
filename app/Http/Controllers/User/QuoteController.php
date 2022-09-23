@@ -41,7 +41,7 @@ class QuoteController extends Controller
         if ($request->action == "preferred_garage") {
             $data = UserWishlist::where('user_id', Auth::id())->with('garage')->get();
             if ($data->isEmpty()) {
-                session_start();
+                // session_start();
                 $_SESSION["msg"] = "Sorry you can't Quote because you've not any prefferred garage";
                 $_SESSION["alert"] = "error";
                 return redirect()->back();
@@ -215,13 +215,13 @@ class QuoteController extends Controller
         }
         if ($request->action == 'all_garage') {
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Quotation has been sent to all the Garages";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.quoteindex');
             // return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
         } else {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Quotation has been sent to all the Preffered Garages";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.quoteindex');

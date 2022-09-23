@@ -45,12 +45,12 @@ class Controller extends BaseController
 
     function sendError($error_message, $code = 400)
     {
-        session_start();
+        // session_start();
         $_SESSION["val"]=array();
         $_SESSION["val"]=$error_message;
-       
+
       return;
     }
 
-    
+
 }

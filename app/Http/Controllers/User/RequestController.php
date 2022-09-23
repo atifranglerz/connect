@@ -51,7 +51,7 @@ class RequestController extends Controller
 
     public function payPayment(Request $request)
     {
-        
+
         if ($request->action == "through_credit") {
             $amount = explode(" ", $request->amount);
 
@@ -134,7 +134,7 @@ class RequestController extends Controller
             $notification->body = ' ';
             $notification->save();
         }
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Payment Successfully paid and Request is Approved";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.insurance-index');

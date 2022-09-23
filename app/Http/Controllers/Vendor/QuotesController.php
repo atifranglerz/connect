@@ -163,13 +163,13 @@ class QuotesController extends Controller
                 $notification->save();
             }
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Successfully responded on bid";
             $_SESSION["alert"] = "success";
             return redirect()->route('vendor.quoteindex');
             // return $this->message($data, 'vendor.quoteindex', 'Successfully responded on bid ', '  Error');
         } else {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "You are already bided on this quote";
             $_SESSION["alert"] = "error";
             return redirect()->back();

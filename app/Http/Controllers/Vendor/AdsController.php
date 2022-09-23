@@ -68,11 +68,11 @@ class AdsController extends Controller
         $page_title = 'Ad index';
        $my=$_SESSION["val"];
         return view('vendor.ads.create', compact('company', 'year', 'page_title','my'));
-           
-            
+
+
         }
 
-       
+
 
 
         // $request->validate([
@@ -148,7 +148,7 @@ class AdsController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] ="Ad Created Successfully";
         $_SESSION["alert"] ="success";
         return redirect()->route('vendor.ads.index',compact('ads'));
@@ -267,7 +267,7 @@ class AdsController extends Controller
         $ads->vendor_id = Auth::id();
         $ads->update();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] ="Ad Updated Successfully";
         $_SESSION["alert"] ="success";
         return redirect()->route('vendor.ads.index',compact('ads'));
@@ -287,7 +287,7 @@ class AdsController extends Controller
         $ad = Ads::findOrFail($id);
         $ad->delete();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] ="Ad Deleted Successfully";
         $_SESSION["alert"] ="success";
         return redirect()->route('vendor.ads.index');

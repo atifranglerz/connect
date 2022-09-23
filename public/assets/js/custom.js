@@ -23,7 +23,7 @@ $(function() {
     if($('div').hasClass('text-danger')) {
         toastr.error("Failed! You've to fill the Required Fields");
     }
-    
+
     /*chatbox*/
     $(document).on("click", ".inbox_contact", function() {
         setTimeout(() => {

@@ -76,7 +76,7 @@ class AuthController extends Controller
             $user->assignRole($role);
             Mail::to($user_email)->send(new Login($data));
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "You've Registered Successfully as a Customer!";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.login');
@@ -102,7 +102,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
         if (isset($user) && $user->action == 0) {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Your Account has been Deactivate by Admin";
             $_SESSION["alert"] = "error";
             return redirect()->back();
@@ -112,14 +112,14 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'type' => 'user'])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                session_start();
+                // session_start();
                 $_SESSION["msg"] = "You've Login Successfully";
                 $_SESSION["alert"] = "success";
                 return redirect()->route('user.dashboard');
                 // return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
             }
         }
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "User Email Or Password Invalid!";
         $_SESSION["alert"] = "error";
         return redirect()->back();
@@ -206,7 +206,7 @@ class AuthController extends Controller
             $company->assignRole($role);
             Mail::to($company_email)->send(new Login($data));
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "You've Registered Successfully as an Insurance Company";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');
@@ -230,7 +230,7 @@ class AuthController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         if (isset($user) && $user->action == 0) {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Your Account has been Deactivate by Admin!";
             $_SESSION["alert"] = "error";
             return redirect()->back();
@@ -240,14 +240,14 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'type' => 'company'])) {
             $user_role = Auth::guard('web')->user()->hasRole('user');
             if ($user_role) {
-                session_start();
+                // session_start();
                 $_SESSION["msg"] = "You've Login Successfully";
                 $_SESSION["alert"] = "success";
                 return redirect()->route('user.dashboard');
                 // return redirect()->route('user.dashboard')->with($this->data("You've Login Successfully", 'success'));
             }
         }
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Company Email Or Password Invalid!";
         $_SESSION["alert"] = "error";
         return redirect()->back();
@@ -278,13 +278,13 @@ class AuthController extends Controller
                 'token' => $data['token'],
                 'created_at' => Carbon::now(),
             ]);
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Forget Password Email Send Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->back();
         } catch (\Swift_TransportException $e) {
             if ($e->getMessage()) {
-                session_start();
+                // session_start();
                 $_SESSION["msg"] = "Forget Password Email Send Error";
                 $_SESSION["alert"] = "error";
                 return redirect()->back();
@@ -303,7 +303,7 @@ class AuthController extends Controller
         if ($token_confirm) {
             return view('user.auth.password_change', compact('token'));
         } else {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Token Dose Match Error";
             $_SESSION["alert"] = "error";
             return redirect()->route('user.forget_password');
@@ -328,13 +328,13 @@ class AuthController extends Controller
 
         $user = User::where('email', $token->email)->first();
         if ($user->type == "user") {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Password Update Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.login');
             // return redirect()->route('user.login')->with($this->data("Password Update Successfully", 'success'));
         } else {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Password Update Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');
@@ -347,13 +347,13 @@ class AuthController extends Controller
         $type = Auth::user()->type;
         $user = Auth::guard('web')->logout();
         if ($type == "user") {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "You've Logout Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.login');
             // return redirect()->route('user.login')->with($this->data("You've Logout Successfully", 'success'));
         } else {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "You've Logout Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');

@@ -66,7 +66,7 @@ class AccountController extends Controller
         $account->iban = $request->iban;
         $account->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Your Finance detail has been added";
         $_SESSION["alert"] = "success";
         return redirect()->route('vendor.acount.index');
@@ -87,7 +87,7 @@ class AccountController extends Controller
         $account = Account::where('vendor_id', Auth::guard('vendor')->user()->id)->first();
         if (empty($account)) {
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Please Add Your Finance Detail First!";
             $_SESSION["alert"] = "error";
             return redirect()->route('vendor.acount.create');
@@ -107,7 +107,7 @@ class AccountController extends Controller
         $vendor->balance = $vendor->balance - $request->payment;
         $vendor->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Your withdrawl request has been submitted";
         $_SESSION["alert"] = "success";
         return redirect()->route('vendor.acount.index');

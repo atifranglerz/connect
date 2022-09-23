@@ -145,7 +145,7 @@ class ProfileController extends Controller
                 $vendor->company()->attach($company);
             }
         }
-        session_start();
+        // session_start();
         $_SESSION["msg"] ="Profile Updated Successfully";
         $_SESSION["alert"] ="success";
         return redirect()->route('vendor.profile.index',compact('vendor'));

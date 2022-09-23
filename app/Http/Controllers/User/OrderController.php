@@ -89,7 +89,7 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Extra budget Request Accepted Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.show', $order->id);
@@ -121,7 +121,7 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Extra budget Request Rejected Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.show', $order->id);
@@ -160,7 +160,7 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Your Order Cancelled Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.summary', $request->order_id);
@@ -205,7 +205,7 @@ class OrderController extends Controller
         $notification->body = ' ';
         $notification->save();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Order Successfully marked as Completed";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');

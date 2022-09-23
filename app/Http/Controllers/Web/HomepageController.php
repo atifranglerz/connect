@@ -39,7 +39,7 @@ class HomepageController extends Controller
         $data['garage'] = $garage->filter(function($product){
             return $product->garagereview->avg('rating')>3;
         })->take(3);
-        // dd($data['garage']);   
+        // dd($data['garage']);
 
  //     $review = Garage::get();
     //     foreach ($review as $count) {
@@ -201,7 +201,7 @@ class HomepageController extends Controller
 
         }
         if (User::where('email', $request->email)->doesntExist()) {
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Your given email is not Registered! Please enter valid email or Register first";
             $_SESSION["alert"] = "error";
             return redirect()->back();
@@ -284,7 +284,7 @@ class HomepageController extends Controller
             $vendor_quote->user_bit_id = $quote->id;
             $vendor_quote->vendor_id = $vendor->vendor_id;
             $vendor_quote->save();
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Your Quote has been submitted successfully";
             $_SESSION["alert"] = "success";
             return redirect()->back();

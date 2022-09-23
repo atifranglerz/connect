@@ -111,7 +111,7 @@ class PaymentController extends Controller
             $notification->body = ' ';
             $notification->save();
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Order Completed and Payment Successfully Added";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.order.index');
@@ -191,7 +191,7 @@ class PaymentController extends Controller
             }
         }
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Order palced and Payment Successfully Added";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
@@ -262,7 +262,7 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Your Order palced Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
@@ -371,7 +371,7 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Your order placed and payment request send to Insurance Company Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');

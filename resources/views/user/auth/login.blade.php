@@ -13,7 +13,7 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email" class="form-control" id="inputEmail"  name="email" value="{{ old('email') }}" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})">
                                 @error('email')
-                                 <span class="text-danger">{{ $message }}</span>
+                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
@@ -22,7 +22,7 @@
                                     <span toggle="#inputPassword" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
                                 </div>
                                 @error('password')
-                                  <span class="text-danger">{{ $message }}</span>
+                                  <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 

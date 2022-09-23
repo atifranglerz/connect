@@ -95,7 +95,7 @@ class profileController extends Controller
             }
             $company->update();
         }
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Profile Updated Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.profile.index');
@@ -114,7 +114,7 @@ class profileController extends Controller
                 'password' => Hash::make($request->password),
             ])->save();
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Update Password Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('profile');

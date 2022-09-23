@@ -144,14 +144,14 @@ class WorkshopController extends Controller
 
             return view('vendor.workshop.preview_workshop', $data);
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Workshop Create Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('vendor.dashboard');
             // return $this->message($garage, 'vendor.dashboard', 'workshop Create Successfully', 'workshop not Create Error');
         } else {
 
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Workshop Already Created";
             $_SESSION["alert"] = "error";
             return redirect()->route('vendor.dashboard');
@@ -282,7 +282,7 @@ class WorkshopController extends Controller
         }
         return view('vendor.workshop.preview_workshop', $data);
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Workshop Updated Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('vendor.dashboard');
@@ -304,7 +304,7 @@ class WorkshopController extends Controller
     {
         $garage = Garage::where('vendor_id', auth()->id())->first();
 
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Workshop Saved Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('vendor.dashboard');

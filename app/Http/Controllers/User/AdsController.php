@@ -116,7 +116,7 @@ class AdsController extends Controller
         $notification->links = url('user/ads');
         $notification->body = ' ';
         $notification->save();
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Ad Created Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.ads.index');
@@ -234,7 +234,7 @@ class AdsController extends Controller
         $ads->description = $request->description;
         $ads->user_id = Auth::id();
         $ads->update();
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Ad Updated Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.ads.index');
@@ -252,7 +252,7 @@ class AdsController extends Controller
     {
         $ad = Ads::findOrFail($id);
         $ad->delete();
-        session_start();
+        // session_start();
         $_SESSION["msg"] = "Ad Deleted Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.ads.index');

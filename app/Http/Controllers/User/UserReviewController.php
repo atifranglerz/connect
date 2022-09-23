@@ -43,7 +43,7 @@ class UserReviewController extends Controller
             $review->garage_id  = $request->garage_id;
             $review->order_id  = $request->order_id;
             $review->save();
-            session_start();
+            // session_start();
             $_SESSION["msg"] = "Thanks for submit your review";
             $_SESSION["alert"] = "success";
             return redirect()->back();
