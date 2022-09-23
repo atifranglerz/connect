@@ -6,7 +6,8 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form method="post" action="{{ route('admin.user.update', ['user' => $user->id]) }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('admin.user.update', ['user' => $user->id]) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-header">
