@@ -18,8 +18,9 @@
                                 @if (Auth::user()->type == 'company')
                                     <a href="#" data-id="{{ $data->id }}"
                                         class="btn btn-secondary block get_appointment d-flex justify-content-center align-items-center placeOrder">{{ __('msg.ACCEPT QUOTE') }}</a>
-                                    <form enctype="multipart/form-data" method="post" action="{{ url('user/order/place') }}"
-                                        class="needs-validation" id="order_form{{ $data->id }}" novalidate>
+                                    <form enctype="multipart/form-data" method="post"
+                                        action="{{ url('user/order/place') }}" class="needs-validation"
+                                        id="order_form{{ $data->id }}" novalidate>
                                         @csrf
                                         <input type="hidden" name="user_bid_id" value="{{ $data->user_bid_id }}">
                                         <input type="hidden" name="vendor_bid_id" value="{{ $data->id }}">
@@ -60,20 +61,24 @@
                         </div>
                         <div class=" w-100  quote_detail_wraper">
                             <div class="quote_info">
-                                <h5 class="active_quote rply_dtl heading-color"><span class="h5 mb-0 heading-color">{{ __('msg.Garage') }}:</span> {{ $garage->garage_name }}</h5>
-                                <span class="small h6 d-block mb-0 rply__dtl"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span> {{ $data->vendordetail->name }}</span>
-                                <span class="small h6 d-block mb-0 rply__dtl"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span> {{ $data->vendordetail->phone }}</span>
+                                <h5 class="active_quote rply_dtl heading-color"><span
+                                        class="h5 mb-0 heading-color">{{ __('msg.Garage') }}:</span>
+                                    {{ $garage->garage_name }}</h5>
+                                <span class="small h6 d-block mb-0 rply__dtl"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span>
+                                    {{ $data->vendordetail->name }}</span>
+                                <span class="small h6 d-block mb-0 rply__dtl"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span>
+                                    {{ $data->vendordetail->phone }}</span>
                                 <div class="card_icons respons_qoute d-flex align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id', $data->garage_id)->pluck('category_id');
                                     $category_name = \App\Models\Category::whereIn('id', $category)->get();
                                     ?>
-                                    @foreach ($category_name as $catname)
-                                        <div class="icon_wrpaer vendor_qoute_dtl">
-                                            <img src="{{ asset($catname->icon) }}">
+                                    @for ($i = 0; $i <= 5; $i++)
+                                        <div class="icon_wrpaer">
+                                            <img src="{{ asset($category_name[$i]->icon) }}">
                                         </div>
-                                    @endforeach
-
-
+                                    @endfor
                                 </div>
                             </div>
                             <div class="quote_detail_btn_wraper">
@@ -302,7 +307,7 @@
                                         placeholder="AED Price" readonly>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
-                                    <h6 class="heading-color">{{ __('msg.vat') }} {{$garage->vendor->vat}}%</h6>
+                                    <h6 class="heading-color">{{ __('msg.vat') }} {{ $garage->vendor->vat }}%</h6>
                                     <input type="number" value="{{ $data->vat }}" class="form-control"
                                         placeholder="AED Price" readonly>
                                 </div>

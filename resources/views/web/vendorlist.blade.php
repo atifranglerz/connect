@@ -108,39 +108,16 @@
                                                 @endif
                                             </span></h5>
 
-                                        <div class="card_icons d-flex justify-content-center align-items-center">
-
-                                            <div class="icon_wrpaer">
-
-                                                <img src="{{ asset('public/assets/images/iconrp.svg') }}">
-
+                                            <div class="card_icons d-flex justify-content-center align-items-center">
+                                                <?php $category = \App\Models\GarageCategory::where('garage_id', $value->id)->pluck('category_id');
+                                                $category_name = \App\Models\Category::whereIn('id', $category)->get();
+                                                ?>
+                                                @for ($i=0; $i<=5; $i++)
+                                                <div class="icon_wrpaer">
+                                                    <img src="{{ asset($category_name[$i]->icon) }}">
+                                                </div>
+                                                @endfor
                                             </div>
-
-                                            <div class="icon_wrpaer">
-
-                                                <img src="{{ asset('public/assets/images/iconrp2.svg') }}">
-
-                                            </div>
-
-                                            <div class="icon_wrpaer">
-
-                                                <img src="{{ asset('public/assets/images/iconrp3.svg') }}">
-
-                                            </div>
-
-                                            <div class="icon_wrpaer">
-
-                                                <img src="{{ asset('public/assets/images/iconrp4.svg') }}">
-
-                                            </div>
-
-                                            <div class="icon_wrpaer">
-
-                                                <img src="{{ asset('public/assets/images/iconrp5.svg') }}">
-
-                                            </div>
-
-                                        </div>
 
                                     </div>
 

@@ -64,11 +64,11 @@
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $value->id)->pluck('category_id');
                                             $category_name = \App\Models\Category::whereIn('id', $category)->get();
                                             ?>
-                                            @foreach ($category_name as $catname)
-                                                <div class="icon_wrpaer">
-                                                    <img src="{{ asset($catname->icon) }}">
-                                                </div>
-                                            @endforeach
+                                                           @for ($i=0; $i<=5; $i++)
+                                                           <div class="icon_wrpaer">
+                                                               <img src="{{ asset($category_name[$i]->icon) }}">
+                                                           </div>
+                                                           @endfor
                                         </div>
                                     </div>
                                 </div>

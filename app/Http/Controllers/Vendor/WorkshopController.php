@@ -305,7 +305,7 @@ class WorkshopController extends Controller
         $garage = Garage::where('vendor_id', auth()->id())->first();
 
         session_start();
-        $_SESSION["msg"] = "Workshop Updated Successfully";
+        $_SESSION["msg"] = "Workshop Saved Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('vendor.dashboard');
         // return $this->message($garage, 'vendor.dashboard', 'workshop Saved Successfully', 'workshop not Create Error');
