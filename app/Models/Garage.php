@@ -34,6 +34,10 @@ class Garage extends Model
     {
         return $this->hasMany(VendorBid::class, 'garage_id', 'id');
     }
+    public function garagereview()
+    {
+        return $this->hasMany(UserReview::class, 'garage_id', 'id');
+    }
 
 
 }

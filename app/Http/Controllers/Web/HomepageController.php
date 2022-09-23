@@ -34,7 +34,13 @@ class HomepageController extends Controller
         $data['services'] = Category::limit(8)->orderby('position', 'ASC')->get();
         $data['news'] = News::limit(4)->latest()->get();
         $data['ads'] = Ads::limit(4)->latest()->get();
-        $data['garage'] = Garage::limit(4)->latest()->get();
+
+        $garage = Garage::with('garagereview')->get();
+        $data['garage'] = $garage->filter(function($product){
+            return $product->garagereview->avg('rating')  >3;
+        });
+        // return $data['garage'];
+        
         $data['slider'] = Slider::all();
         $data['all_services'] = Category::latest()->get();
 
