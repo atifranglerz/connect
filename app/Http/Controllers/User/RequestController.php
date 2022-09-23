@@ -21,7 +21,7 @@ class RequestController extends Controller
     {
 
         $page_title = 'index ';
-        $insurance = InsuranceRequest::with('customer', 'bid')->where('company_id', Auth::id())->orderBy('id', 'desc')->get();
+        $insurance = InsuranceRequest::with('customer', 'bid')->where('company_id', Auth::id())->orderBy('id', 'desc')->paginate(5);
         return view('user.insuranceRequest.index', compact('insurance', 'page_title'));
     }
 

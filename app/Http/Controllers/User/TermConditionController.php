@@ -16,8 +16,8 @@ class TermConditionController extends Controller
      */
     public function index()
     {
-        $data['terms'] =  PrivacyPolicy::first();
-        $data['policy'] = TermCondition::first();
+        $data['policy'] =  PrivacyPolicy::first();
+        $data['terms'] = TermCondition::first();
         return view('user.termCondition.index',compact('data'));
         
     }

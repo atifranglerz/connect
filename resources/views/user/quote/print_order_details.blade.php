@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="row">
                                     <b class="col-6">{{ __('msg.vat') }}
-                                        {{ ($data->vat * 100) / $grand_total }}%</b>
+                                        {{ $data->vendordetail->vat }}%</b>
                                     <div class="col-6 text-xl-right">
                                         <span>{{ $data->vat }}</span>
                                     </div>

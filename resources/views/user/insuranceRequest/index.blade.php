@@ -40,10 +40,11 @@
                                     <div>
                                         @if ($value->status == 0)
                                             <div class="heading-color" style="border: 2px solid;border-radius: 50px;padding: 6px 16px">
-                                                {{ ucwords('Pending') }}</div>
+                                                {{ __('msg.Pending') }}</div>
+                                                
                                         @else
-                                            <div class="heading-color" style="border: 2px solid;border-radius: 50px;padding: 6px 16px">
-                                                {{ ucwords('Approved') }}</div>
+                                            <div class="heading-color" style="border: 2px solid;border-radius: 50px;padding: 6px 16px">                          
+                                                {{ __('msg.Approved') }}</div>
                                         @endif
                                     </div>
                                     <div class="quote_detail_btn_wraper">
@@ -62,12 +63,14 @@
                         <div class="all_quote_card ">
                             <div class=" w-100  quote_detail_wraper">
                                 <div class="quote_info">
-                                    <p class="mb-0">No Request has been received !</p>
+                                    <p class="mb-0">{{__('msg.No Request has been received')}} !</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endif
+            <span >{!! $insurance->links() !!}</span>
+
             </div>
         </div>
     </section>
