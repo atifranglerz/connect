@@ -2,28 +2,34 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
-use App\Models\About;
+use Carbon\Carbon;
 use App\Models\Ads;
-use App\Models\Category;
-use App\Models\Company;
-use App\Models\ContactVendor;
 use App\Models\Faq;
-use App\Models\Garage;
-use App\Models\GarageCategory;
-use App\Models\ModelYear;
 use App\Models\News;
-use App\Models\PrivacyPolicy;
-use App\Models\Slider;
-use App\Models\TermCondition;
 use App\Models\User;
+use App\Models\About;
+use App\Models\Garage;
+use App\Models\Slider;
+use App\Models\Vendor;
+use App\Models\Company;
 use App\Models\UserBid;
-use App\Models\UserBidCategory;
-use App\Models\UserBidImage;
+use App\Models\Category;
+use App\Models\ModelYear;
+use App\Jobs\Notification;
 use App\Models\UserReview;
-use App\Models\UserWishlist;
 use App\Models\VendorQuote;
+use App\Models\UserBidImage;
+use App\Models\UserWishlist;
 use Illuminate\Http\Request;
+use App\Models\ContactVendor;
+use App\Models\PrivacyPolicy;
+use App\Models\TermCondition;
+use App\Models\GarageCategory;
+use App\Models\UserBidCategory;
+use App\Models\webNotification;
+use App\Mail\SendPrefferedGarage;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 
 class HomepageController extends Controller
@@ -37,7 +43,7 @@ class HomepageController extends Controller
 
         $garage = Garage::with('garagereview')->get();
         $data['garage'] = $garage->filter(function($product){
-            return $product->garagereview->avg('rating')>3;
+            return $product->garagereview->avg('rating')>0;
         })->take(3);
         // dd($data['garage']);
 
@@ -284,6 +290,25 @@ class HomepageController extends Controller
             $vendor_quote->user_bit_id = $quote->id;
             $vendor_quote->vendor_id = $vendor->vendor_id;
             $vendor_quote->save();
+
+            $vendor = Vendor::find($vendor->vendor_id);
+
+            $message['body1'] = auth()->user()->name;
+            $message['link1'] = url('vendor/quotedetail', $quote->id);
+    
+            $gettime = strtotime($vendor->online_status) + 10;
+            $now = strtotime(Carbon::now());
+            if ($now > $gettime) {
+                Mail::to($vendor->email)->send(new SendPrefferedGarage($message));
+
+            } else {
+                $notification = new webNotification();
+                $notification->vendor_id = $vendor->id;
+                $notification->title = auth()->user()->name . " request a quote to you, Hurry up and put your bid on Quote";
+                $notification->links = url('vendor/quotedetail', $quote->id);
+                $notification->body = ' ';
+                $notification->save();
+            }
             // session_start();
             $_SESSION["msg"] = "Your Quote has been submitted successfully";
             $_SESSION["alert"] = "success";

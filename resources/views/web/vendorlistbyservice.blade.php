@@ -63,12 +63,16 @@
                                         <div class="card_icons d-flex justify-content-center align-items-center">
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $value->id)->pluck('category_id');
                                             $category_name = \App\Models\Category::whereIn('id', $category)->get();
+                                            $count = $category->count();
+                                                if ($count > 5) {
+                                                    $count = 5;
+                                                }
                                             ?>
-                                                           @for ($i=0; $i<=5; $i++)
-                                                           <div class="icon_wrpaer">
-                                                               <img src="{{ asset($category_name[$i]->icon) }}">
-                                                           </div>
-                                                           @endfor
+                                            @for ($i = 0; $i < $count; $i++)
+                                                <div class="icon_wrpaer">
+                                                    <img src="{{ asset($category_name[$i]->icon) }}">
+                                                </div>
+                                            @endfor
                                         </div>
                                     </div>
                                 </div>

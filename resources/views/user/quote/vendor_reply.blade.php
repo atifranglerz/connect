@@ -66,15 +66,20 @@
                                     {{ $garage->garage_name }}</h5>
                                 <span class="small h6 d-block mb-0 rply__dtl"><span
                                         class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span>
-                                    {{ $data->vendordetail->name }}</span>
+                                    {{ $garage->vendor->name }}</span>
                                 <span class="small h6 d-block mb-0 rply__dtl"><span
                                         class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span>
-                                    {{ $data->vendordetail->phone }}</span>
+                                    {{ $garage->vendor->phone }}</span>
                                 <div class="card_icons respons_qoute d-flex align-items-center">
-                                    <?php $category = \App\Models\GarageCategory::where('garage_id', $data->garage_id)->pluck('category_id');
-                                    $category_name = \App\Models\Category::whereIn('id', $category)->get();
+                                    <?php
+                                        $category = \App\Models\GarageCategory::where('garage_id', $data->garage_id)->pluck('category_id');
+                                        $category_name = \App\Models\Category::whereIn('id', $category)->get();
+                                        $count = $category->count();
+                                        if ($count > 5) {
+                                            $count = 5;
+                                        }
                                     ?>
-                                    @for ($i = 0; $i <= 5; $i++)
+                                    @for ($i = 0; $i < $count; $i++)
                                         <div class="icon_wrpaer">
                                             <img src="{{ asset($category_name[$i]->icon) }}">
                                         </div>

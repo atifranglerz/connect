@@ -16,9 +16,10 @@ class SendPrefferedGarage extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    protected $message;
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -28,6 +29,8 @@ class SendPrefferedGarage extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.SendPrefferedGarage');
+        $message = $this->message;
+
+        return $this->markdown('emails.SendPrefferedGarage')->with('message', $message);
     }
 }
