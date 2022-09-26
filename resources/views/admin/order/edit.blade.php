@@ -35,7 +35,7 @@
     </style>
    @php
    $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
-   
+
 @endphp
     <div class="main-content">
         <section class="section">
@@ -93,7 +93,7 @@
                                             <div class="col-md-8  col-lg-8 col-sm-8">
                                                 {{-- <h4 class="dark-pink" style="font-weight: bold">Subtotal: {{$order->subtotal}}</h4> --}}
                                                 {{-- <h4 class="dark-pink">Tax: {{$order->tax}}</h4> --}}
-                                               
+
                                                 @if ($order->status != 'complete' && ($order->paid_by == 'insurance' && $insurancestatus->status == 1))
                                                 <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
                                                     {{ $order->total }}</h6>
@@ -111,14 +111,14 @@
                                             </div>
                                             @if (isset($order->cheque_image))
                                             @php
-                                        
+
                                                 $images = explode(',',$order->cheque_image)
                                             @endphp
                                             <div class="col-md-4 col-lg-4 col-sm-4">
-                                                @foreach ($images as $image) 
+                                                @foreach ($images as $image)
                                                 <a target="_blank" href="{{ url($image) }}">
                                                 <img alt="image" src="{{ asset($image) }}"
-                                                    class="header-logo" style="width: 100px" />
+                                                    class="header-logo" style="width: 100px" /></a>
                                                     @endforeach
                                                 </div>
                                             @endif

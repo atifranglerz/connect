@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <form method="post" action="{{ route('admin.user.updatePassword', ['user' => $user->id]) }}">
@@ -143,7 +143,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
     </div>
