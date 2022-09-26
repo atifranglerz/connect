@@ -219,6 +219,14 @@
                                                     style="height: 100px;width:100px">
                                             </div>
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Billing Address</label>
+                                            <input type="text" class="form-control" name="billing_address"
+                                                value="{{ old('billing_address', $vendor->billing_address) }}">
+                                            @error('billing_address')
+                                                <div class="text-danger mt-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                         {{-- <div class="form-group col-md-6">
                                             <label>Profile Image</label>
                                             <input type="file" name="image[]" class="form-control">
@@ -240,7 +248,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <form method="post"
@@ -281,7 +289,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
     </div>

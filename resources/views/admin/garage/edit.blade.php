@@ -77,7 +77,7 @@
                                         <div class="form-group col-6">
                                             <label for="vat">VAT</label>
                                             <input type="text" class="form-control" name="vat" placeholder="VAT"
-                                                value="{{ old('vat', $garage->vat) }}">
+                                                value="{{ old('vat', $garage->vat) }}" readonly>
                                             @error('vat')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror

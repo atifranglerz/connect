@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Garage;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -51,6 +54,10 @@ class DashboardController extends Controller
 
         // Admin  //
 
-        return view('admin.index', compact('page_title', 'monthlyRevenue', 'previousMonthlyRevenue', 'monthlyAdmin', 'previousMonthlyAdmin', 'monthlyOrder', 'previousMonthlyOrder'));
+        $customer=User::where('type','user')->get();
+        $vendor=Vendor::where('type','vendor')->get();
+        $garage=Garage::all();
+        $company=User::where('type','company')->get();
+        return view('admin.index', compact('customer','vendor','garage','company','page_title', 'monthlyRevenue', 'previousMonthlyRevenue', 'monthlyAdmin', 'previousMonthlyAdmin', 'monthlyOrder', 'previousMonthlyOrder'));
     }
 }
