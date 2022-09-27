@@ -267,7 +267,7 @@ class ordersController extends Controller
         } else {
             $notification = new webNotification();
             $notification->customer_id = $request->user_id;
-            $notification->title = "Your Order has been Completed successfully #" . $request->order_no;
+            $notification->title = "Your Order has been Completed successfully, kindly marked to completed #" . $request->order_no;
             $notification->links = url('user/order/summary', $request->order_id);
             $notification->body = ' ';
             $notification->save();

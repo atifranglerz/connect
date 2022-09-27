@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/vendor/assets/image-uploader/dist/image-uploader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
-    <title>Vendor Panel</title>
+    <title>Vendor Panel|{{$page_title ?? ""}}</title>
     <style>
         /* width */
         .login_sinup>.accoutntData>.notification_tooltip>ul.notification_list::-webkit-scrollbar,.form_sending_wraper>textarea::-webkit-scrollbar,ul.sidebar_navcigation::-webkit-scrollbar {
