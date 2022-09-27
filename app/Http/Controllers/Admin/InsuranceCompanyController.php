@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\userCompany;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class InsuranceCompanyController extends Controller
@@ -16,7 +17,7 @@ class InsuranceCompanyController extends Controller
      */
     public function index()
     {
-        $company = User::with('roles')
+        $company = User::with('roles','insurance')
             ->whereHas('roles', function ($q) {
                 $q->Where('name', 'user');
             })->where('type', 'company')
@@ -65,7 +66,7 @@ class InsuranceCompanyController extends Controller
      */
     public function edit($id)
     {
-        $company = User::findOrFail($id);
+        $company = User::with('insurance')->findOrFail($id);
         $page_title = 'company';
         return view('admin.insuranceCompany.edit', compact('company', 'page_title'));
     }
@@ -79,11 +80,15 @@ class InsuranceCompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             //'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => 'required',
+            'owner_name'=>'required',
+            'trading_license'=>'required',
+            'billing_area'=>'required',
+            'billing_city'=>'required',
+            'billing_address'=>'required',
         ]);
         $company = User::findOrFail($id);
         $company->name = $request->name;
@@ -100,6 +105,31 @@ class InsuranceCompanyController extends Controller
             $company['image'] = 'public/images/' . $filename;
         }
         $company->save();
+        $user_company=userCompany::where('company_id',$company->id)->first();
+        if ($request->file('id_card')) {
+            $images = [];
+            foreach ($request->file('id_card') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $user_company->id_card = implode(",", $images);
+        }
+        if ($request->file('image_license')) {
+            $images = [];
+            foreach ($request->file('image_license') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/profile/', $image);
+                $images[] = 'public/image/profile/' . $image;
+            }
+            $user_company->image_license = implode(",", $images);
+        }
+        $user_company->owner_name=$request->owner_name;
+        $user_company->trading_license=$request->trading_license;
+        $user_company->billing_area=$request->billing_area;
+        $user_company->billing_city=$request->billing_city;
+        $user_company->billing_address=$request->billing_address;
+        $user_company->save();
         return $this->message($company, 'admin.insurance-company', 'Company Update Successfully', 'Company Update Error');
     }
 

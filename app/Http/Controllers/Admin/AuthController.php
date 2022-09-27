@@ -163,16 +163,18 @@ class AuthController extends Controller
 
     public function updatePassword(Request $request, $id)
     {
-        //dd($request,$id);
         $request->validate([
             'old_password' => 'required',
             'password' => 'required|string|min:6|confirmed',
         ]);
         $admin = Admin::findOrFail($id);
         if (Hash::check($request->old_password, $admin->password)) {
-            $admin->fill([
+            // $admin->fill([
+            //     'password' => Hash::make($request->password)
+            // ])->save();
+            Admin::where('id', $admin->id)->update([
                 'password' => Hash::make($request->password)
-            ])->save();
+            ]);
             return $this->message($admin, 'admin.profile', 'Admin Profile Password Update Successfully', 'Profile Update Error');
         } else {
             return redirect()->back()->with($this->data("Update Password Error", 'error'));

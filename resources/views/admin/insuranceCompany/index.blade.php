@@ -26,6 +26,13 @@
                                                 <th>City</th>
                                                 <th>Address</th>
                                                 <th>Post Box</th>
+                                                <th>ID Card</th>
+                                                <th>Image License</th>
+                                                <th>Owner Name</th>
+                                                <th>Trading License</th>
+                                                <th>Billing Area</th>
+                                                <th>Billing City</th>
+                                                <th>Billing Address</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -45,6 +52,17 @@
                                                     <td>{{ $company->city }}</td>
                                                     <td>{{ $company->address }}</td>
                                                     <td>{{ $company->post_box }}</td>
+                                                    <td><img alt="image"
+                                                            @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                            style="height: 50px;width:50px"></td>
+                                                    <td><img alt="image"
+                                                            @if ($company->insurance->image_license) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                            style="height: 50px;width:50px"></td>
+                                                    <td>{{ $company->insurance->owner_name }}</td>
+                                                    <td>{{ $company->insurance->trading_license }}</td>
+                                                    <td>{{ $company->insurance->billing_area }}</td>
+                                                    <td>{{ $company->insurance->billing_city }}</td>
+                                                    <td>{{ $company->insurance->billing_address }}</td>
                                                     <td>
                                                         @if ($company->action == 1)
                                                             <div class="badge badge-success badge-shadow">Activate</div>

@@ -87,7 +87,7 @@ class VendorController extends Controller
         $request->validate([
             // "id_card" => 'required',
             'name' => 'required',
-            // 'garage_name' => 'required',
+            'garage_name' => 'required',
             // 'garages_catagary' => 'required',
             // 'email' => 'required',
             // 'country' => 'required',
@@ -100,7 +100,7 @@ class VendorController extends Controller
             'vat' => 'required',
             'billing_area' => 'required',
             'billing_city' => 'required',
-            // 'billing_address' => 'required',
+            'billing_address' => 'required',
             'appointment_number' => 'required',
         ]);
         // $vendor = Vendor::findOrFail($id);
