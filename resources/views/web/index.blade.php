@@ -136,7 +136,7 @@
                                         <h6 class="card-title block-head-txt">{{ $value->model }}</h6>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="card-title price mb-0 ">{{ __('msg.Price') }} :{{ __('msg.AED') }}
+                                        <h5 class="card-title price mb-0 ">{{ __('msg.Price') }}: {{ __('msg.AED') }}
                                             {{ $value->price }}</h5>
                                         <h5 class="card-title location mb-0 ">{{ $value->city }}</h5>
                                     </div>
@@ -216,7 +216,7 @@
                                             if ($count > 5) {
                                                 $count = 5;
                                             }
-                                           
+
                                             ?>
                                             @for ($i = 0; $i < $count; $i++)
                                                 <div class="icon_wrpaer">

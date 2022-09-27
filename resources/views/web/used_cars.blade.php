@@ -179,7 +179,7 @@
                                             <!-- <h5 class="card-title">{{ modelYear($value->model_year_id) }}</h5> -->
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <h5 class="card-title price mb-0 ">{{ __('msg.Price') }} :
+                                            <h5 class="card-title price mb-0 ">{{ __('msg.Price') }}:
                                                 {{ $value->price }}</h5>
                                             <h5 class="card-title location mb-0 ">{{ $value->city }}</h5>
                                         </div>
