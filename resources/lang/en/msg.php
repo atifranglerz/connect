@@ -339,7 +339,7 @@ return [
     'Time Frame Offered' => 'Time Frame Offered',
     'Quantity' => 'Quantity',
     'Preview' => 'Preview',
-    'CAR DETAILS' => 'CAR DETAILS',
+    'CAR DETAILS' => 'Car Details',
     'Days' => 'Days',
     'SELF PAYMENTS' => 'SELF PAYMENTS',
     'Choose and add your payment details below' => 'Choose and add your payment details below',

@@ -18,25 +18,24 @@
             $userbidimage = explode(',', $userbidimage->car_image);
             //     $review_prev = \App\Models\UserReview::where('user_id', $user->id)->where('garage_id', $order->garage_id)->first();
             $review_prev = \App\Models\UserReview::where('order_id', $order->id)->first();
-            
-            ?>
-            <div class="row g-2">
-                <div class="col-lg-5 col-md-12 col-11  mx-auto">
-                    <div class="all_quote_card replies_allquot ">
-                        <div class=" w-100  quote_detail_wraper replies ">
-                            <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape ">{{ __('msg.CAR DETAILS') }}</h5>
-                                <p class="mb-0">{{ $order->customer_name }}</p>
 
-                                <p class="mb-0">{{ $user->phone }}</p>
-                                <p class="milage">{{ __('msg.mileage') }} <span>{{ $order->userbid->mileage }}km</span></p>
+            ?>
+            <div class="row mx-0">
+                <div class="col-sm-6 mx-auto">
+                    <div class="all_quote_card replies_allquot">
+                        <div class=" w-100  quote_detail_wraper replies">
+                            <div class="quote_info">
+                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Customer Name') }}:</span> {{ $order->customer_name }}</span>
+                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Customer Number') }}:</span> {{ $user->phone }}</span>
+                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Car Make') }}:</span> {{ $company->company }}</span>
+                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Model Year') }}:</span> {{ $modelYear->model_year }}</span>
+                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Total Mileage') }}:</span> {{ $order->userbid->mileage }}km</span>
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h5 class="vendor_order_id">{{ __('msg.Order Id:') }} #{{ $order->order_code }}</h5>
-                                <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h5 class="">{{ $order->vendorbid->time }} {{ __('msg.Days') }}</h5>
+                                <div class="chat_view__detail qoute_replies vendor_order">
+                                    <span class="h5 d-block mb-0"><span class="h5 mb-0 heading-color">{{ __('msg.Time Frame') }}:</span> {{ $order->vendorbid->time }} {{ __('msg.Days') }}</span>
                                     <a href="{{ url('vendor/chat/' . $user->id) }}"
-                                        class="justify-content-center chat_icon">
+                                        class="justify-content-center chat_icon" style="margin: 10px 0 0 auto">
                                         <i class="fa-solid fa-message"></i>
                                     </a>
                                 </div>
@@ -44,18 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-11  mx-auto">
-                    <div class="all_quote_card replies_allquot h-100 ">
-                        <div class=" w-100  quote_detail_wraper replies ">
-                            <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape  ">{{ $company->company }}</h5>
-                                <p class="mb-0">{{ $modelYear->model_year }}</p>
-                                <p class="mb-0">{{ $company->company }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-11  mx-auto">
+                <div class="col-sm-6 mx-auto">
                     <div class="all_quote_card  replies_allquot h-100">
                         <div class=" w-100  quote_detail_wraper replies payviainsu">
                             <div class="quote_detail_btn_wraper">
@@ -79,19 +67,21 @@
                                 </div>
                             </div>
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape"> {{ __('msg.Budget') }}</h5>
                                 <div class="quote_detail_btn_wraper">
-                                    <h5 class="quotereplies">{{ __('msg.AED') }} {{ $order->total }}</h5>
+                                    <h5 class="text-sm-center"><span class="h5 heading-color">{{__('msg.Total')}}:</span> {{ $order->total }} {{__('msg.AED')}}</h5>
+                                    <div class="completed_order_id">
+                                        <h5><span class="h5 heading-color">{{__('msg.Order Id:')}}</span> #{{ $order->order_code }}</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row  mt-5">
+            <div class="row mx-0 mt-4">
                 <div class="col-lg-12">
-                    <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <h5 class="active_order_req">{{ __('msg.Requirements') }}</h5>
+                    <div class="all_quote_card  vendor_rply_dtlL _text mb-4">
+                        <h5 class="active_order_req text-center">{{ __('msg.Requirements') }}</h5>
 
                         <div class="vendor__rply__dttl">
                             <p>{{ $order->vendorbid->description }}</p>
@@ -99,10 +89,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row  ">
+            <div class="row  mx-0">
                 <div class="col-lg-12">
-                    <div class="all_quote_card  vendor_rply_dtlL _text mb-5">
-                        <div class="owl-carousel carousel_se_03_carousel owl-theme mt-5">
+                    <div class="all_quote_card  vendor_rply_dtlL _text mb-4">
+                        <h5 class="text-center mb-3 heading-color">{{ __('msg.CAR IMAGES') }}</h5>
+                        <div class="owl-carousel carousel_se_03_carousel owl-theme">
                             @if ($userbidimage && count($userbidimage) == 0)
                                 <div class="item">
                                     <div class="carAd_img_wraper doc_img customer_dashboard">
@@ -168,12 +159,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row  ">
+            <div class="row  mx-0">
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class=" text-center mb-5">{{ __('msg.REPAIR DETAILS') }}</h5>
+                            <h5 class="mb-5 text-center heading-color">{{ __('msg.REPAIR DETAILS') }}</h5>
                         </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $order->vendorbid->description }}</p>
@@ -182,11 +173,11 @@
                 </div>
             </div>
             @if (isset($review_prev))
-                <div class="row  mt-5">
+                <div class="row mx-0 mt-4">
                     <div class="col-lg-12">
                         <div class="all_quote_card  vendor_rply_dtlL _text">
                             <div class="over_view_part carad_data vendor_detail">
-                                <h5 class=" text-center mb-4">{{ __('msg.YOUR REVIEW') }}</h5>
+                                <h5 class="text-center mb-4">{{ __('msg.YOUR REVIEW') }}</h5>
                             </div>
                             <div class="d-flex align-items-center rating-stars">
                                 <div class="rating-group">
