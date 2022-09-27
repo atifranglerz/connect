@@ -46,7 +46,7 @@
                             aria-label="Default select example" name="garage" id="selGarFilter" disabled>
                             <option selected disabled value="">{{ __('msg.Select a Garage/Vendor') }}</option>
                         </select>
-                        <button class="btn  search_btn" type="submit">{{ __('msg.SEARCH') }}</button>
+                        <button class="btn search_btn disabled" type="submit" style="opacity: 1">{{ __('msg.SEARCH') }}</button>
                     </form>
                 </div>
             </div>
@@ -450,6 +450,7 @@
             $(document).on('click', '#selCatFilter', function() {
                 if ($(this).val() !== null) {
                     $('#selGarFilter').removeAttr('disabled');
+                    $('.search_btn').removeClass('disabled');
                 }
             });
 

@@ -2185,6 +2185,10 @@ input.messages_file[type=file]::-webkit-file-upload-button {
     h5 {
         font-size: 18px!important;
     }
+    .banner_btn__sub_wraper>a {
+        width: 115px;
+        height: 40px;
+    }
 }
 @media (min-width: 576px) {
     .carAd_img_wraper>img.file-img {
@@ -2207,5 +2211,16 @@ input.messages_file[type=file]::-webkit-file-upload-button {
     }
     .quote_info>p {
         padding-right: 0;
+    }
+    .banner_btn__sub_wraper>img {
+        width: 24px;
+        height: 24px;
+    }
+    .banner_btn__sub_wraper>a {
+        width: 100px;
+        height: 30px;
+    }
+    .banner_btn_main_wraper {
+        max-width: 255px;
     }
 }
