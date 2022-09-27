@@ -52,21 +52,21 @@
                                         {{-- <i class="fa-solid fa-star"></i> --}}
                                         {{-- </div> --}}
                                     </div>
-
+                                    @php
+                                        $rating = \App\Models\UserReview::where('garage_id', $value->id)->avg('rating');
+                                    @endphp
                                     <div class="card-body p-sm-2">
                                         <h6 class="block-head-txt text-center">{{ $value->garage_name }}</h6>
-                                        <h5 class="card-title text-center allgarages_card_title"><span>
-                                                @if (isset($overAllRatings))
-                                                    ?{{ $overAllRatings }}:''
-                                                @endif
-                                            </span></h5>
+                                        <h5 class="card-title text-center allgarages_card_title">
+                                            <span>@if ($rating > 0) {{ $rating }}@else 0.0 @endif </span>
+                                        </h5>
                                         <div class="card_icons d-flex justify-content-center align-items-center">
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $value->id)->pluck('category_id');
                                             $category_name = \App\Models\Category::whereIn('id', $category)->get();
-                                            $count = $category->count();
-                                                if ($count > 5) {
-                                                    $count = 5;
-                                                }
+                                            $count = $category_name->count();
+                                            if ($count > 5) {
+                                                $count = 5;
+                                            }
                                             ?>
                                             @for ($i = 0; $i < $count; $i++)
                                                 <div class="icon_wrpaer">

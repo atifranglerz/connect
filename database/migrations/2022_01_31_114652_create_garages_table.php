@@ -26,6 +26,7 @@ class CreateGaragesTable extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->integer('post_box')->nullable();
+            $table->string('rating')->default(0);
             $table->timestamps();
         });
     }

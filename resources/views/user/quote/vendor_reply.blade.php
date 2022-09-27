@@ -74,7 +74,7 @@
                                     <?php
                                         $category = \App\Models\GarageCategory::where('garage_id', $data->garage_id)->pluck('category_id');
                                         $category_name = \App\Models\Category::whereIn('id', $category)->get();
-                                        $count = $category->count();
+                                        $count = $category_name->count();
                                         if ($count > 5) {
                                             $count = 5;
                                         }

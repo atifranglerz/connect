@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <select class="form-select form-control" name="city" aria-label="City">
-                                    <option selected disabled value="">{{__('msg.Select City')}}</option>
+                                    <option selected disabled value="">{{__('msg.Select City')}} ({{__('msg.Required')}})</option>
                                     <option value="Dubai" @if(old('city')=='Dubai') selected @endif>{{__('msg.Dubai')}}</option>
                                     <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
                                     <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>

@@ -40,24 +40,7 @@ class HomepageController extends Controller
         $data['services'] = Category::limit(8)->orderby('position', 'ASC')->get();
         $data['news'] = News::limit(4)->latest()->get();
         $data['ads'] = Ads::limit(4)->latest()->get();
-
-        $garage = Garage::with('garagereview')->get();
-        $data['garage'] = $garage->filter(function($product){
-            return $product->garagereview->avg('rating')>0;
-        })->take(3);
-        // dd($data['garage']);
-
- //     $review = Garage::get();
-    //     foreach ($review as $count) {
-    //         $garages[] = UserReview::where('garage_id', $count->id)->count();
-    //     }
-    //     // dd($garages);
-    //     for ($i = 0; $i < count($garages); $i++){
-
-    // }
-        // return $data['garage'];
-
-
+        $data['garage'] = Garage::orderBy('rating','desc')->limit(4)->get();
         $data['slider'] = Slider::all();
         $data['all_services'] = Category::latest()->get();
 
@@ -99,7 +82,8 @@ class HomepageController extends Controller
     public function allvendor()
     {
         $data['page_title'] = 'vendors list';
-        $data['garages'] = Garage::latest()->paginate(8);
+        $data['garages'] = Garage::orderBy('rating','desc')->limit(8)->paginate(8);
+
         return view('web.vendorlist', $data);
     }
 

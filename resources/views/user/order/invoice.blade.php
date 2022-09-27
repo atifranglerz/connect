@@ -215,15 +215,15 @@
                                 </div>
                                 <div class="row">
                                     <b class="col-6">{{ __('msg.vat') }}
-                                        {{ ($data->vat * 100) / $grand_total }}%</b>
+                                        {{ $data->vendordetail->vat }}%</b>
                                     <div class="col-6 text-xl-right">
-                                        <span>{{ $data->vat }}</span>
+                                        <span>{{ ($grand_total*$data->vendordetail->vat)/100 }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <b class="col-6">{{ __('msg.Net Total') }}</b>
                                     <div class="col-6 text-xl-right">
-                                        <span>{{ $grand_total + $data->vat }}</span>
+                                        <span>{{ $grand_total + (($grand_total*$data->vendordetail->vat)/100) }}</span>
                                     </div>
                                 </div>
                             </div>

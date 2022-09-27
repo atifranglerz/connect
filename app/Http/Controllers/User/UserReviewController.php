@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Garage;
 use App\Models\UserReview;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserReviewController extends Controller
 {
@@ -43,6 +44,13 @@ class UserReviewController extends Controller
             $review->garage_id  = $request->garage_id;
             $review->order_id  = $request->order_id;
             $review->save();
+
+            $rating = UserReview::where('garage_id',$request->garage_id)->avg('rating');
+            $garage = Garage::find($request->garage_id);
+            $garage->update([
+                'rating' => $rating
+            ]);
+           
             // session_start();
             $_SESSION["msg"] = "Thanks for submit your review";
             $_SESSION["alert"] = "success";

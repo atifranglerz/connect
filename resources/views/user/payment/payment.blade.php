@@ -168,11 +168,11 @@
                                 <p class="mb-0" style="text-align: center">"You've paid the {{ $per }}% of the total amount
                                     {{ $order->total }} in the first
                                     half to make the order in process, right
-                                    now we are asking you the to pay the remaining dues to make the order as completed"</p>
+                                    now we are asking you to pay the remaining dues to make the order as completed"</p>
                             @endif
                         @else
                             <p class="mb-0" style="text-align: center">"Right now you are going to pay {{ $per }}% of the
-                                total ammount
+                                total amount
                                 {{ $vendorbid->net_total }}, the remaining dues will be asked to
                                 pay when the order get completed, thank you"</p>
                         @endif
