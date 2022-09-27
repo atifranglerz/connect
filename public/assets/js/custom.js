@@ -81,7 +81,7 @@ $(function() {
         placeholder: 'Select Your Country',
     });
     $('select[name="city"]').select2({
-        // placeholder: 'Select Your City (Required)',
+        placeholder: 'Select City (Required)',
     });
     $('select[name="company_id"]').select2({
         placeholder: 'Select Company (Required)',
