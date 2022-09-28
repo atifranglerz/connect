@@ -1450,7 +1450,10 @@ label.img_wraper_label>input[type="file"] {
     text-align: center;
     font-family: Inter,sans-serif!important;
 }
-
+.accordion-button p, .accordion-button p strong {
+    margin-bottom: 0;
+    font-family: Inter,sans-serif!important;
+}
 /*footer style*/
 footer{
     background-color: var(--orange);
