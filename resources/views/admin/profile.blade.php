@@ -7,13 +7,17 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form method="post" action="{{ route('admin.profile.update', $admin->id) }}">
+                            <form method="post" action="{{ route('admin.profile.update', $admin->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-header">
                                     <h4>Edit Profile</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row"></div>
+                                    <div class="form-group">
+                                        <label>Profile Image</label>
+                                        <input type="file" class="form-control"  accept=".jpg,png" required="" name="image" value="{{ old('image', $admin->image) }}">
+                                    </div>
                                     <div class="form-group">
                                         <label>Your Name</label>
                                         <input type="text" class="form-control" required="" name="name" value="{{ old('name', $admin->name) }}">
@@ -40,7 +44,7 @@
                                     </div>--}}
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary" type="submit">Update User</button>
+                                    <button class="btn btn-primary" type="submit">Update Profile</button>
                                 </div>
                             </form>
                         </div>

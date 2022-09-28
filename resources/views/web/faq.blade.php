@@ -18,12 +18,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{$content->id}}" aria-expanded="true" aria-controls="collapseOne">
-                                 {{$content->question}}
+                                 {!! $content->question !!}
                                 </button>
                             </h2>
                             <div id="collapseOne{{$content->id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <p> {{$content->answer}}</p>
+                                    <p> {!! $content->answer !!}</p>
                                 </div>
                             </div>
                         </div>

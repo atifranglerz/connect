@@ -157,6 +157,14 @@ class AuthController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
+        // return $request;
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move('public/image/profile/', $filename);
+            $admin->image = 'public/image/profile/' . $filename;
+        }
         $admin->update();
         return $this->message($admin, 'admin.profile', 'Admin Profile Update Successfully', 'Admin Profile Error');
     }

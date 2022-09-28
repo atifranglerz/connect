@@ -31,8 +31,8 @@
                                                 @foreach ($data as $content)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $content->question }}</td>
-                                                        <td>{{ $content->answer }}</td>
+                                                        <td>{!! $content->question !!}</td>
+                                                        <td>{!! $content->answer !!}</td>
                                                         <td><a href="{{ url('/admin/edit-faq/'.$content->id) }}" class="btn btn-primary"><i data-feather="edit"></i></a>
                                                             <a>
                                                                 {{-- <i class="fas fa-trash text-danger glyphicon glyphicon-trash"
