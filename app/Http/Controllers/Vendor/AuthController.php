@@ -96,6 +96,7 @@ class AuthController extends Controller
         $vendor->billing_area = $request->billing_area;
         $vendor->billing_city = $request->billing_city;
         $vendor->billing_address = $request->billing_address;
+        $vendor->address = $request->billing_address;
         $vendor->garages_catagory = implode(',', $request->garages_catagary);
         $vendor->trading_license = $request->trading_license;
         $vendor->save();

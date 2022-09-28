@@ -17,20 +17,22 @@
                 <div class="col-sm-6 mb-sm-0 mb-3">
                     <div class="all_quote_card replies_allquot h-100">
                         <?php
+                        $modelYear = \App\Models\ModelYear::find($order->userbid->model_year_id);
                         $userbidid = \App\Models\UserBid::where('id', $order->user_bid_id)->first();
                         $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
                         $company = \App\Models\Company::where('id', $userbidid->company_id)->first();
                         $user = \App\Models\User::find($userbidid->user_id);
                         $userbidimage = \App\Models\UserBidImage::where([['user_bid_id', $order->userbid->id], ['type', 'image']])->first();
                         $userbidimage = explode(',', $userbidimage->car_image);
-                        // $userbidimage = \App\Models\UserBidImage::where('user_bid_id', $userbidid->id)->get();
                         $user = \App\Models\User::find($order->userbid->user_id);
-                        // dd($user);
+                        $userbidcateg = \App\Models\UserBidCategory::where('user_bid_id', $order->user_bid_id)->pluck('category_id');
+                        $userbidcategories = \App\Models\Category::whereIn('id', $userbidcateg)->get();
+                        $documents = \App\Models\UserBidImage::where('user_bid_id', $order->userbid->id)
+                            ->where('type', 'file')
+                            ->first();
                         ?>
                         <div class="w-100 quote_detail_wraper replies" style="padding-left: 0">
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape ">{{ $company->company }}
-                                    ({{ $userbidid->model }})</h5>
                                 @if ($user->type == 'company')
                                     <span class="small h6 d-block mb-0"><span
                                             class="small h6 mb-0 heading-color">{{ __('msg.Company Name') }}:</span>
@@ -46,16 +48,25 @@
                                             class="small h6 mb-0 heading-color">{{ __('msg.Customer Number') }}:</span>
                                         {{ $user->phone }}</span>
                                 @endif
-                                <span class="small h6 d-block mb-0 milage"><span
-                                        class="small h6 mb-0 text-capitalize heading-color">{{ __('msg.mileage') }}:</span>
-                                    {{ $userbidid->mileage }}{{ __('msg.Km') }}</span>
+                                <span class="small h6 d-block mb-0"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Car Make') }}:</span>
+                                    {{ $company->company }}</span>
+                                <span class="small h6 d-block mb-0"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Model Year') }}:</span>
+                                    {{ $modelYear->model_year }}</span>
+                                <span class="small h6 d-block mb-0"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Model') }} :</span>
+                                    {{ getModelByUserBid($order->user_bid_id) }}</span>
+                                <span class="small h6 d-block mb-0"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Total Mileage') }}:</span>
+                                    {{ $order->userbid->mileage }}km</span>
+
                             </div>
                             <div class="quote_detail_btn_wraper replies">
-                                <h5 class="vendor_order_id"><span
-                                        class="h5 mb-0 heading-color">{{ __('msg.Order Id:') }}</span>
-                                    #{{ $order->order_code }}</h5>
+                                <span class="h5 d-block mb-0"><span
+                                        class="h5 mb-0 heading-color">{{ __('msg.Time Frame') }}:</span>
+                                    {{ $order->vendorbid->time }} {{ __('msg.Days') }}</span>
                                 <div class="d-flex chat_view__detail qoute_replies vendor_order ">
-                                    <h5>{{ $order->vendorbid->time }} {{ __('msg.Days') }}</h5>
                                     <form action="{{ route('vendor.queryChat') }}" method="POST"
                                         class="chat_view__detail">
                                         @csrf
@@ -96,7 +107,6 @@
                                     class="view-invoice">{{ __('msg.view invoice') }}</a>
                             </div>
                             <div class="quote_info">
-                                <h5 class="d-flex align-items-center active_quote nowrape"> {{ __('msg.Budget') }}</h5>
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class="quotereplies"><span
                                             class="h5 mb-0 heading-color">{{ __('msg.Total') }}:</span>
@@ -114,26 +124,41 @@
                                             {{ $order->total }}
                                             {{ __('msg.AED') }}</h5>
                                     @endif
+                                    <div class="completed_order_id">
+                                        <h5><span class="h5 heading-color">{{ __('msg.Order Id:') }}</span>
+                                            #{{ $order->order_code }}</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mx-0 mt-4">
+            <div class="row mx-0 mt-3">
                 <div class="col-lg-12">
-                    <div class="all_quote_card  vendor_rply_dtlL _text">
-                        <h5 class="active_order_req">{{ __('msg.Requirements') }}</h5>
+                    <div class="all_quote_card  vendor_rply_dtlL _text mb-3">
+                        <h5 class="active_order_req text-center">{{ __('msg.Requirements') }}</h5>
+                        <div class="over_view_part carad_data vendor_detail">
+                            @if (isset($documents))
+                                <h6 class="heading-color float-left mb-0">{{ __('msg.Type of Service') }}</h6>
+                                <p>
+                                    @foreach ($userbidcategories as $userbidcategory)
+                                        {{ $userbidcategory->name }},
+                                    @endforeach
+                                </p>
+                            @endif
+                            <h6 class="heading-color float-left mb-0">{{ __('msg.DETAILS') }}</h6>
+                        </div>
                         <div class="vendor__rply__dttl">
                             <p>{{ $userbidid->description1 }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mx-0">
+            <div class="row mx-0 mb-3">
                 <div class="col-lg-12">
                     <div class="all_quote_card vendor_rply_dtlL _text mt-4">
-                        <h5 class="heading-color mb-3">{{ __('msg.CAR IMAGES') }}</h5>
+                        <h5 class="heading-color text-center mb-3">{{ __('msg.CAR IMAGES') }}</h5>
                         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
                             @if ($userbidimage && count($userbidimage) == 0)
                                 <div class="item">
@@ -200,83 +225,151 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="all_quote_card  vendor_rply_dtlL _text">
-                <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3 owl-loaded owl-drag">
-                    <div class="owl-stage-outer">
-                        <div class="owl-stage"
-                            style="transform: translate3d(-1488px, 0px, 0px); transition: all 0s ease 0s; width: 5656px;">
-                            @foreach ($userbidimage as $image)
-                                <?php $pathinfo = pathinfo($image->car_image);
-                                $supported_ext = ['docx', 'xlsx', 'pdf'];
-                                $src_file_name = $image->car_image;
-                                $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
-
-                                <div class="owl-item cloned" style="width: 297.667px;">
+            <?php
+            $register_images = \App\Models\UserBidImage::where('user_bid_id', $order->userbid->id)
+                ->where('type', 'registerImage')
+                ->first();
+            $register_images = Explode(',', $register_images->car_image);
+            ?>
+            <div class="row  mx-0">
+                <div class="col-lg-12">
+                    <div class="all_quote_card  vendor_rply_dtlL _text">
+                        <h5 class="text-center mb-3 heading-color">{{ __('msg.Registration Copy Images') }} </h5>
+                        <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
+                            @if ($register_images && count($register_images) == 0)
+                                <div class="item">
+                                    <div class="carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                            @elseif($register_images && count($register_images) == 1)
+                                @foreach ($register_images as $image)
                                     <div class="item">
-                                        <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
+                                        <div class="carAd_img_wraper doc_img customer_dashboard">
+                                            <img src="{{ asset($image) }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <div class="item">
+                                    <div class="carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                            @elseif($register_images && count($register_images) == 2)
+                                @foreach ($register_images as $image)
+                                    <div class="item">
+                                        <div class="carAd_img_wraper doc_img customer_dashboard">
+                                            <img src="{{ asset($image) }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <div class="item">
+                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
+                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                    </div>
+                                </div>
+                            @else
+                                @foreach ($register_images as $image)
+                                    <div class="item">
+                                        <div class="carAd_img_wraper doc_img customer_dashboard">
+                                            <img src="{{ asset($image) }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @if (isset($documents))
+                <div class="row mx-0 my-3">
+                    <div class="col-lg-12">
+                        <div class="all_quote_card  vendor_rply_dtlL _text">
+                            <h5 class="active_order_req text-center">{{ __('msg.Police /Accident /Inspection Report') }}
+                            </h5>
+                            <div class="owl-theme mt-4">
+
+
+                                @if (isset($documents->car_image))
+                                    <?php $pathinfo = pathinfo($documents->car_image);
+                                    $supported_ext = ['docx', 'xlsx', 'pdf'];
+                                    $src_file_name = $documents->car_image;
+                                    $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
+                                    <div class="item">
+                                        <div class="carAd_img_wraper doc_img customer_dashboard">
                                             @if ($ext == 'docx')
                                                 <a class="text-decoration-none text-reset"
-                                                    href="{{ url($image->car_image) }}">
+                                                    href="{{ url($documents->car_image) }}">
                                                     <img src="{{ asset('public/assets/images/wordicon.png') }}"
                                                         style="height: 100%;">
                                                 </a>
                                             @elseif($ext == 'doc')
                                                 <a class="text-decoration-none text-reset"
-                                                    href="{{ url($image->car_image) }}">
+                                                    href="{{ url($documents->car_image) }}">
                                                     <img src="{{ asset('public/assets/images/wordicon.png') }}"
                                                         style="height: 100%;">
                                                 </a>
                                             @elseif($ext == 'xlsx')
                                                 <a class="text-decoration-none text-reset"
-                                                    href="{{ url($image->car_image) }}">
+                                                    href="{{ url($documents->car_image) }}">
                                                     <img src="{{ asset('public/assets/images/excelicon.png') }}"
                                                         style="height: 100%;">
-                                                    <a class="text-decoration-none text-reset"
-                                                        href="{{ url($image->car_image) }}">
-                                                    @elseif($ext == 'pdf')
-                                                        <a class="text-decoration-none text-reset"
-                                                            href="{{ url($image->car_image) }}">
-                                                            <img src="{{ asset('public/assets/images/pdficon.png') }}"
-                                                                style="height: 100%;">
-                                                        </a>
-                                                    @else
-                                                        <img src="{{ asset($image->car_image) }}">
+                                                </a>
+                                            @elseif($ext == 'pdf')
+                                                <a class="text-decoration-none text-reset"
+                                                    href="{{ url($documents->car_image) }}">
+                                                    <img src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                        style="height: 100%;">
+                                                </a>
+                                            @else
+                                                <img src="{{ asset($documents->car_image) }}">
                                             @endif
+
+
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @else
+                                    <div class="item">
+                                        <div class="carAd_img_wraper doc_img customer_dashboard">
+                                            <img src="{{ asset('public/assets/images/no-file.png') }}">
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <div class="owl-nav disabled">
-                        <button type="button" role="presentation" class="owl-prev">
-                            <span aria-label="Previous">‹</span>
-                        </button>
-                        <button type="button" role="presentation" class="owl-next"><span
-                                aria-label="Next">›</span></button>
-                    </div>
-                    <div class="owl-dots">
-                        <button role="button" class="owl-dot active">
-                            <span></span>
-                        </button>
-                        <button role="button" class="owl-dot">
-                            <span></span>
-                        </button>
-                        <button role="button" class="owl-dot">
-                            <span></span>
-                        </button>
-                    </div>
                 </div>
-            </div> --}}
+            @endif
             <div class="row mx-0 mt-4">
                 <div class="col-lg-12">
 
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <div class="over_view_part carad_data vendor_detail">
-                            <h5 class="heading-color mb-3">{{ __('msg.REPAIR DETAILS') }}</h5>
+                            <h5 class="heading-color text-center mb-3">{{ __('msg.REPAIR DETAILS') }}</h5>
                         </div>
                         <div class="vendor__rply__dttl">
-                            <p>{{ $userbidid->description2 }}</p>
+                            <p>{{ $order->vendorbid->description }}</p>
                         </div>
                     </div>
                 </div>
