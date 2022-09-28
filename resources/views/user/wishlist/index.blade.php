@@ -30,12 +30,16 @@
                                         <div class="mt-2 card_icons d-flex justify-content-center align-items-center">
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $wishlist->id)->pluck('category_id');
                                             $category_name = \App\Models\Category::whereIn('id', $category)->get();
+                                            $count = $category_name->count();
+                                                    if($count>5){
+                                                        $count = 5;
+                                                    }
                                             ?>
-                                            @foreach ($category_name as $catname)
-                                                <div class="icon_wrpaer">
-                                                    <img src="{{ asset($catname->icon) }}">
-                                                </div>
-                                            @endforeach
+                                             @for ($i = 0; $i < $count; $i++)
+                                             <div class="icon_wrpaer">
+                                                 <img src="{{ asset($category_name[$i]->icon) }}">
+                                             </div>
+                                         @endfor
                                         </div>
                                     </div>
                                     <div class="quote_detail_btn_wraper">
