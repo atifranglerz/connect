@@ -1638,3 +1638,38 @@ body span.select2-selection.select2-selection--single {
 .text-justify {
     text-align: justify!important;
 }
+.address-field.is-valid, .address-field.is-invalid {
+    padding-right: 3rem;
+    background-position: right calc(1.7em + 0.1875rem) center;
+}
+.image-uploader + .error {
+    margin-top: 4px;
+}
+select.form-control.is-invalid, .was-validated select.form-control:invalid,
+select.form-control.is-valid, .was-validated select.form-control:valid {
+    background-position: right calc(1.375em + .1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(2.75em + 0.375rem);
+}
+select.form-control.is-valid, .was-validated select.form-control:valid {
+    border-color: #198754;
+}
+.select2-search__field.is-valid {
+    border-color: #198754 !important;
+    padding-right: calc(1.5em + .75rem) !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right calc(.375em + .1875rem) center !important;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem) !important;
+}
+.select2-container--default .select2-selection.is-valid {
+    border-color: #198754 !important;
+}
+.select2-container--default .select2-selection.is-invalid {
+    border-color: #dc3545 !important;
+}
+.form-check-input.is-valid  .form-check-label, .was-validated .form-check-input:valid  .form-check-label {
+    color: unset;
+}
+.custom-control-input.is-valid  .custom-control-label, .was-validated .custom-control-input:valid  .custom-control-label {
+    color: unset;
+}
