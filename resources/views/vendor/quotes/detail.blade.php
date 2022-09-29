@@ -320,7 +320,7 @@
             <div class="row mt-5">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text">
-                        <form action="{{ route('vendor.bidresponse') }}" method="post">
+                        <form name="bidAdd" action="{{ route('vendor.bidresponse') }}" method="post">
                             @csrf
                             <div class="row ">
                                 <div class="col-lg-9 mx-auto">
@@ -497,9 +497,9 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-12 col-md-12 mb-3">
+                                        <div class="col-lg-12 col-md-12 mb-3 form-group">
                                             <div class="form-floating">
-                                                <textarea class="form-control" name="description" placeholder="({{__('msg.Add information in details')}}) ({{__('msg.Required')}})" id="floatingTextarea2"
+                                                <textarea class="form-control description" name="description" placeholder="({{__('msg.Add information in details')}}) ({{__('msg.Required')}})" id="floatingTextarea2"
                                                     style="height: 106px">{{ old('description') }}</textarea>
                                                 @error('description')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -729,6 +729,7 @@
     </div>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script>
         toastr.options = {
             "closeButton": true,
@@ -746,7 +747,88 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-
+        $(function() {
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+            var validator = $("form[name='bidAdd']").validate({
+                ignore: [],
+                onfocusout: function (element) {
+                    var $element = $(element);
+                    if ($element.hasClass('select2-search__field')) {
+                        $element2 = $element.closest('.form-group').find('select');
+                        if (!$element2.prop('required') && $element2.val() == '') {
+                            $element.removeClass('is-valid');
+                        } else {
+                            this.element($element2)
+                        }
+                    } else if (!$element.prop('required') && ($element.val() == '' || $element.val() == null)) {
+                        $element.removeClass('is-valid');
+                    } else {
+                        this.element(element)
+                    }
+                },
+                onkeyup: function (element) {
+                    var $element = $(element);
+                    if ($element.hasClass('select2-search__field')) {
+                        $element.closest('.form-group').find('select').valid();
+                    } else {
+                        $element.valid();
+                    }
+                },
+                rules: {
+                    price: "required",
+                    vat: "required",
+                    net_total: "required",
+                    time: "required",
+                    description: "required",
+                },
+                messages: {
+                    // business_type: "Please select your business type",
+                },
+                errorClass: 'is-invalid error',
+                validClass: 'is-valid',
+                highlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    if (elem.hasClass("select2-hidden-accessible")) {
+                        elem.closest('.form-group').find('input').addClass(errorClass);
+                        elem.closest('.form-group').find('input').removeClass(validClass);
+                        elem.closest('.form-group').find('span.select2-selection').addClass(errorClass);
+                        elem.closest('.form-group').find('span.select2-selection').removeClass(validClass);
+                    } else {
+                        elem.addClass(errorClass);
+                    }
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    if (elem.hasClass("select2-hidden-accessible")) {
+                        elem.closest('.form-group').find('input').addClass(validClass);
+                        elem.closest('.form-group').find('input').removeClass(errorClass);
+                        elem.closest('.form-group').find('span.select2-selection').removeClass(errorClass);
+                        elem.closest('.form-group').find('span.select2-selection').addClass(validClass);
+                    } else {
+                        elem.removeClass(errorClass);
+                        elem.addClass(validClass);
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var elem = $(element);
+                    console.log(elem);
+                    if (elem.hasClass("select2-hidden-accessible")) {
+                        var element2 = elem.closest('.form-group').find('.select2-container');
+                        error.insertAfter(element2);
+                    } else if (elem.hasClass("description")) {
+                        console.log('true');
+                        var element2 = elem.closest('.form-group').find('.form-floating');
+                        error.insertAfter(element2);
+                    } else if (elem.hasClass('inteltel')) {
+                        var element2 = elem.closest('.iti');
+                        error.insertAfter(element2);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
         $(function() {
             if($('span').hasClass('text-danger')) {
                 toastr.error("Failed! You've to fill the Required Fields");
