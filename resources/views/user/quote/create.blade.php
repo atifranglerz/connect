@@ -339,7 +339,8 @@
                 mileage: "required",
                 day: "required",
                 "category[]": "required",
-                "images[]": "required",
+                "car_images[]": "required",
+                "files": "required",
                 "document[]": "required"
             },
             messages: {

@@ -1673,3 +1673,6 @@ select.form-control.is-valid, .was-validated select.form-control:valid {
 .custom-control-input.is-valid  .custom-control-label, .was-validated .custom-control-input:valid  .custom-control-label {
     color: unset;
 }
+.is-invalid.error {
+    color: #dc3545!important;
+}
