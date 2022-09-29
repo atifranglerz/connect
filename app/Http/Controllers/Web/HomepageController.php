@@ -173,6 +173,7 @@ class HomepageController extends Controller
             }
         } else {
             $request->validate([
+                'category' => 'required',
                 'looking_for' => 'required',
                 'model' => 'required',
                 'company_id' => 'required',
