@@ -46,49 +46,20 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'city' => 'required',
-                'car_images' => 'required',
-                'document' => 'required',
-                'model' => 'required',
-                'company_id' => 'required',
-                'model_year_id' => 'required',
-                'price' => 'required',
-                'color' => 'required',
-                'engine' => 'required',
-                'phone' => 'required',
-                'address' => 'required',
-                'mileage' => 'required',
+            'car_images' => 'required',
+            'document' => 'required',
+            'model' => 'required',
+            'company_id' => 'required',
+            'model_year_id' => 'required',
+            'price' => 'required',
+            'color' => 'required',
+            'engine' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'mileage' => 'required',
         ]);
-        if ($validator->fails()) {
-             $this->sendError($validator->errors());
-             $company = Company::all();
-        $year = ModelYear::all();
-        $page_title = 'Ad index';
-       $my=$_SESSION["val"];
-        return view('vendor.ads.create', compact('company', 'year', 'page_title','my'));
-
-
-        }
-
-
-
-
-        // $request->validate([
-        //     'city' => 'required',
-        //     'car_images' => 'required',
-        //     'document' => 'required',
-        //     'model' => 'required',
-        //     'company_id' => 'required',
-        //     'model_year_id' => 'required',
-        //     'price' => 'required',
-        //     'color' => 'required',
-        //     'engine' => 'required',
-        //     'phone' => 'required',
-        //     'address' => 'required',
-        //     'mileage' => 'required',
-        // ]);
         $ads = new Ads();
         if ($request->file('car_images')) {
             $images = [];

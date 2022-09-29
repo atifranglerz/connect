@@ -1,9 +1,5 @@
 @extends('vendor.layout.app')
 @section('content')
-@php
-    $tr=json_decode($my);
-@endphp
-@dd($tr->city[0]);
 <section class="pb-5 login_content_wraper" style="background-image:url(public/assets/images/gradiantbg.jpg);">
     <div class="container">
         <div class="row">
