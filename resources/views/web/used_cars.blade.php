@@ -52,14 +52,14 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Price From') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Price From') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
                                             <input type="text" name="priceFrom" class="form-control"
                                                 placeholder="{{ __('msg.AED') }}" aria-label="Model">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-sm-0 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Price To') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Price To') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
                                             <input type="text" name="priceTo" class="form-control"
                                                 placeholder="{{ __('msg.AED') }}" aria-label="Model">
@@ -67,9 +67,9 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Model From') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Model From') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
-                                            <select class="form-select form-control model-year-field" name="modelFrom"
+                                            <select class="form-select form-control model-year-field-1" name="modelFrom"
                                                 aria-label="Type of Service">
                                                 <option value=""></option>
                                                 @foreach ($year as $data)
@@ -80,9 +80,9 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Model To') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Model To') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
-                                            <select class="form-select form-control model-year-field" name="modelTo"
+                                            <select class="form-select form-control model-year-field-1" name="modelTo"
                                                 aria-label="Type of Service">
                                                 <option value=""></option>
                                                 @foreach ($year as $data)
@@ -93,9 +93,9 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Car Maker') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Car Maker') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
-                                            <select class="form-select form-control company-name-field" name="company_id"
+                                            <select class="form-select form-control company-name-field-1" name="company_id"
                                                 aria-label="Type of Service">
                                                 <option value=""></option>
                                                 @foreach ($company as $data)
@@ -105,14 +105,14 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading text-capitalize">{{ __('msg.mileage') }}</h6>
+                                                <h6 class="mb-0 heading text-capitalize">{{ __('msg.mileage') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
                                             <input type="text" name="milage" class="form-control"
                                                 placeholder="{{ __('msg.Mileage e.g 40 Km') }}" aria-label="Model">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Country') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Country') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
                                             <select class="form-select form-control" name="country" aria-label="Country"
                                                 disabled>
@@ -126,9 +126,9 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.City') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.City') }} ({{ __('msg.Optional') }})</h6>
                                             </div>
-                                            <select class="form-select form-control" name="city" aria-label="City">
+                                            <select class="form-select form-control select-city" name="city" aria-label="City">
                                                 <option selected disabled value="">{{ __('msg.Select City') }}
                                                 </option>
                                                 <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>
@@ -203,4 +203,19 @@
     </section>
 
 
+@endsection
+@section('script')
+<script>
+    $(function() {
+        $('.model-year-field-1').select2({
+            placeholder: 'Select Year',
+        });
+        $('.company-name-field-1').select2({
+            placeholder: 'Select Company',
+        });
+        $('.select-city').select2({
+            placeholder: 'Select City',
+        });
+    });
+</script>
 @endsection
