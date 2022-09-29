@@ -82,7 +82,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request;
         $request->validate([
             'name' => 'required',
             'email' => 'required',
