@@ -1567,6 +1567,7 @@ input.form-control,select.form-select{
     border-radius: 7px;
     height: 38px;
     font-size: 14px;
+    border-width: 2px;
 }
 input.form-control[type=number]::-webkit-inner-spin-button,
 input.form-control[type=number]::-webkit-outer-spin-button {

@@ -73,8 +73,9 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 form-group">
                                             <select class="form-select form-control company-name-field"
-                                                name="company_id" aria-label="Type of Service">
-                                                <option value=""></option>
+                                                name="company_id" aria-label="Type of Service" required>
+                                                <option value="" selected disabled>{{ __('msg.Select Company') }}
+                                                    ({{ __('msg.Required') }})</option>
                                                 @foreach($company as $data)
                                                 <option value="{{$data->id }}" @if(old('company_id')==$data->id)
                                                     selected @endif>{{$data->company }}</option>
@@ -109,7 +110,8 @@
                                         <div class="col-lg-6 col-md-6 form-group">
                                             <select class="form-select form-control model-year-field"
                                                 name="model_year_id" aria-label="Type of Service" required>
-                                                <option value=""></option>
+                                                <option value="" selected disabled>{{ __('msg.Model Year') }}
+                                                    ({{ __('msg.Required') }})</option>
                                                 @foreach($year as $data)
                                                 <option value="{{$data->id }}" @if(old('model_year_id')==$data->id)
                                                     selected @endif>{{$data->model_year }}</option>
@@ -139,7 +141,7 @@
                                         </div>
                                         <div class="col-12 form-group services-dropdown-block">
                                             <select class="form-select form-control garage-services" name="category[]"
-                                                multiple aria-label="Type of Service">
+                                                multiple required aria-label="Type of Service">
                                                 @foreach($catagary as $data)
                                                 <option value="{{$data->id }}">{{$data->name}}</option>
                                                 @endforeach

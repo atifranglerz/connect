@@ -220,12 +220,12 @@
         }
     })
     @php
-     session_start();   
+    //  session_start();   
      @endphp
-    
+
         @if (isset($_SESSION["msg"]))
- 
-  
+
+
     var type = "{{ $_SESSION["alert"] }}";
     switch (type) {
         case'info':

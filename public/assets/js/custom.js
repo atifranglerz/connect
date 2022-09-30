@@ -77,21 +77,21 @@ $(function() {
 $(function() {
     /*global Select2*/
     /*single select*/
-    $('select[name="country"]').select2({
-        placeholder: 'Select Your Country',
-    });
-    $('select[name="city"]').select2({
-        placeholder: 'Select City (Required)',
-    });
-    $('select[name="company_id"]').select2({
-        placeholder: 'Select Company (Required)',
-    });
-    $('.company-name-field').select2({
-        placeholder: 'Select Company (Required)',
-    });
-    $('.model-year-field, select[name="model_year_id"]').select2({
-        placeholder: 'Select Year (Required)',
-    });
+    // $('select[name="country"]').select2({
+    //     placeholder: 'Select Your Country',
+    // });
+    // $('select[name="city"]').select2({
+    //     placeholder: 'Select City (Required)',
+    // });
+    // $('select[name="company_id"]').select2({
+    //     placeholder: 'Select Company (Required)',
+    // });
+    // $('.company-name-field').select2({
+    //     placeholder: 'Select Company (Required)',
+    // });
+    // $('.model-year-field, select[name="model_year_id"]').select2({
+    //     placeholder: 'Select Year (Required)',
+    // });
     /*Multiple select*/
     $('.insurance-company').select2({
         placeholder: 'Select Insurance Company (Optional)',
