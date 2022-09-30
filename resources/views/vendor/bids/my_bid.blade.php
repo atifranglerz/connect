@@ -48,7 +48,7 @@
                         <div class="quote_info">
                             <h5 class="d-flex align-items-center active_quote nowrape">{{__('msg.My Quote')}}</h5>
                             <div class="quote_detail_btn_wraper">
-                                <h5 class="quotereplies">{{__('msg.AED')}} {{$bid->price}}</h5>
+                                <h5 class="quotereplies">{{__('msg.AED')}} {{$bid->net_total}}</h5>
                             </div>
                         </div>
                     </div>

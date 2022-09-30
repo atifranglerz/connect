@@ -12,7 +12,7 @@
 
                     <div class="main_content_wraper">
 
-                        <h4 class="sec_main_heading text-center">{{ __('msg.ALL GARAGES') }}</h4>
+                        <h4 class="sec_main_heading text-center">{{ __('msg.TOP RATED VENDORS') }}</h4>
 
                         <p class="sec_main_para allgarages text-center">
                             {{ __('msg.Search popular service providers based on their service quality') }}</p>

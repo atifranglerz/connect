@@ -146,6 +146,8 @@ class ProfileController extends Controller
                 $company = User::find($id);
                 $vendor->company()->attach($company);
             }
+        }else{
+            $company = DB::table('insurance_vendor')->where('vendor_id', Auth::guard('vendor')->id())->delete();
         }
         // session_start();
         $_SESSION["msg"] ="Profile Updated Successfully";

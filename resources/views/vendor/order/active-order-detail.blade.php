@@ -392,12 +392,12 @@
                                 <button
                                     class="w-100 btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center disabled"
                                     type="submit" style="font-size: 14px;border-radius: 6px">
-                                    {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
+                                    {{ __('msg.MARK AS COMPLETE') }} </button>
                             @else
                                 <button
                                     class="w-100 btn text-center px-5 btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
                                     type="submit" style="font-size: 14px;border-radius: 6px">
-                                    {{ __('msg.SEND FINAL INVOICE TO CUSTOMER') }} </button>
+                                    {{ __('msg.MARK AS COMPLETE') }} </button>
                             @endif
                         </form>
                     </div>
