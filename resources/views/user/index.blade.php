@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-10 col-md-11 col-sm-11  mx-auto">
                     <div class="quote_card_heading  mb-lg-4 mb-2 mt-lg-5 mt-3">
-                        <h5>{{__('msg.All Quotes')}}</h5>
+                        <h5 class="text-uppercase">{{__('msg.All Quotes')}}</h5>
                         <a href="{{route('user.quoteindex')}}">{{__('msg.VIEW ALL')}}</a>
                     </div>
                     @if($user_bid)

@@ -3,8 +3,6 @@
         <div class="sidebar-brand">
 
             <a href="{{ route('admin.dashboard') }}"> <img alt="image" src="{{ asset('public/assets/images/repair-my-car-logos/repairmycarlogo.png')}}" class="header-logo"/>
-{{--                <span--}}
-{{--                    class="logo-name">Connect</span>--}}
             </a>
         </div>
         <ul class="sidebar-menu">
@@ -50,6 +48,13 @@
                     <i data-feather="shopping-cart"></i><span>Orders</span></a>
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link " href="{{ route('admin.order.index') }}">Orders</a></li>
+                </ul>
+            </li>
+            <li class="dropdown @if (request()->routeIs('admin.ads.index', 'admin.ads.create', 'admin.ads.edit', 'admin.ads.show')) active @endif">
+                <a href="#" class="menu-toggle nav-link has-dropdown">
+                    <i data-feather="award"></i><span>Car Ads</span></a>
+                <ul class="dropdown-menu">
+                    <li class=""><a class="nav-link " href="{{ route('admin.ads.index') }}">Ads</a></li>
                 </ul>
             </li>
             <li class="dropdown @if (request()->routeIs('news.index', 'news.create', 'news.edit', 'news.show')) active @endif">

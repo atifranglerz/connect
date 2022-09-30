@@ -52,17 +52,17 @@
 
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Price') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Price From') }}</h6>
                                             </div>
                                             <input type="text" name="priceFrom" class="form-control"
-                                                placeholder="{{ __('msg.From') }}" aria-label="Model">
+                                                placeholder="{{ __('msg.AED') }}" aria-label="Model">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-sm-0 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.Price') }}</h6>
+                                                <h6 class="mb-0 heading">{{ __('msg.Price To') }}</h6>
                                             </div>
                                             <input type="text" name="priceTo" class="form-control"
-                                                placeholder="{{ __('msg.To') }}" aria-label="Model">
+                                                placeholder="{{ __('msg.AED') }}" aria-label="Model">
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 mt-2">
                                             <div class="col-12 mb-2 signup_vendor ">
-                                                <h6 class="mb-0 heading">{{ __('msg.mileage') }}</h6>
+                                                <h6 class="mb-0 heading text-capitalize">{{ __('msg.mileage') }}</h6>
                                             </div>
                                             <input type="text" name="milage" class="form-control"
                                                 placeholder="{{ __('msg.Mileage e.g 40 Km') }}" aria-label="Model">

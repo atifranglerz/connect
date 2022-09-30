@@ -14,6 +14,8 @@ return [
     'My Ads Listing' => 'قائمة إعلاناتي',
     'Repair my Car' => 'أصلح سيارتي',
     'LINKS' => 'الروابط',
+    'Price To' => 'السعر الى',
+    'Price From' => 'السعر يبدأ من',
     'CONNECT' => 'الاتصال',
     'Register your business' => 'سجل عملك',
     'About Us' => 'معلومات عنا',

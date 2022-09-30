@@ -114,6 +114,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::group(['middleware' => ['auth:admin', 'role:admin']], function () {
         /* Dashboard */
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        /* Car Ads */
+        Route::resource('ads', 'AdsController');
         /* Update Profile */
         Route::get('profile', 'AuthController@profile')->name('profile');
         Route::post('update-profile/{id}', 'AuthController@updateProfile')->name('profile.update');
