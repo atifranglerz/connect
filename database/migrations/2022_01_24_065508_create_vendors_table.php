@@ -31,7 +31,7 @@ class CreateVendorsTable extends Migration
             $table->double('latitude')->nullable();
             $table->text('image')->nullable();
             $table->text('id_card')->nullable();
-            $table->string('appointment_number');
+            $table->string('appointment_number')->nullable();
             $table->string('garage_name')->nullable();
             $table->string('garages_catagory')->nullable();
             $table->string('trading_license')->nullable();

@@ -22,7 +22,6 @@ class PermissionSeeder extends Seeder
         $admin = Permission::create(['name' => 'super_admin', 'guard_name' => 'admin']);
         $vendor = Permission::create(['name' => 'vendor', 'guard_name' => 'vendor']);
         $user = Permission::create(['name' => 'customer', 'guard_name' => 'web']);
-        $company = Permission::create(['name' => 'company', 'guard_name' => 'company']);
 
         // create roles and assign existing permissions
         /* Super Admin */
@@ -36,10 +35,6 @@ class PermissionSeeder extends Seeder
         /* Customer */
         $role3 = Role::create(['name' => 'user', 'guard_name' => 'web']);
         $role3->givePermissionTo($user);
-
-        /* Customer */
-        $role4 = Role::create(['name' => 'company', 'guard_name' => 'company']);
-        $role4->givePermissionTo($company);
 
 
         // create demo users
@@ -73,14 +68,6 @@ class PermissionSeeder extends Seeder
             'phone' => '0934893802938409',
             'password' => Hash::make(12345678),
         ]);
-        $user->assignRole($role3);
-
-        $user = \App\Models\InsuranceCompany::create([
-            'name' => 'company',
-            'email' => 'company@gmail.com',
-            'phone' => '0934893802938409',
-            'password' => Hash::make(12345678),
-        ]);
-        $user->assignRole($role4);
+       
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\PaymentPercentage;
+use Illuminate\Database\Seeder;
 
-class Percentage extends Seeder
+class PercentageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -30,4 +30,5 @@ class Percentage extends Seeder
             'percentage' => '5',
         ]);
     }
+    
 }
