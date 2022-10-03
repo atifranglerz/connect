@@ -1619,6 +1619,9 @@ body span.select2-selection.select2-selection--single {
     .text-md-right {
         text-align: right!important;
     }
+    .main #dashboardSidebar {
+        z-index: 5555;
+    }
 }
 @media (max-width: 767px) {
     .text-sm-right {

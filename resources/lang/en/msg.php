@@ -19,7 +19,7 @@ return [
     'Register your business' => 'Register your business',
     'About Us' => 'About Us',
     'Terms & Conditions' => 'Terms & Conditions',
-    'Privicy Policy' => 'Privicy Policy',
+    'Privicy Policy' => 'Privacy Policy',
     'News' => 'News',
     'FAQ' => 'FAQ',
     'Price To' => 'Price To',
