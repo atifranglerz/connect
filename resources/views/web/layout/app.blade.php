@@ -263,7 +263,7 @@
             }
         })
         @php
-     session_start();
+    //  session_start();
      @endphp
 
         @if (isset($_SESSION["msg"]))
