@@ -219,10 +219,15 @@
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
+    @php
+<<<<<<< HEAD
+    //  session_start();
+=======
+    //  session_start();
+>>>>>>> 68bf09dcc2e83a38f7eed83e2c3e47cd7b3480a9
+     @endphp
 
-
-
-    @if (isset($_SESSION["msg"]))
+        @if (isset($_SESSION["msg"]))
 
 
     var type = "{{ $_SESSION["alert"] }}";
