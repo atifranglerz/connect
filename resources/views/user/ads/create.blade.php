@@ -35,18 +35,8 @@
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                        <input type="text" name="model" value="{{ old('model') }}"
-                                            class="form-control"
-                                            placeholder="{{ __('msg.Model') }} ({{ __('msg.Required') }})"
-                                            aria-label="Model" required>
-                                        @error('model')
-                                            <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                        <span class="text-danger" id="nameError"></span>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                         <select class="form-select" name="company_id" aria-label="Type of Service" required>
-                                            <option value="" selected disabled>{{ __('msg.Select Company') }}
+                                            <option value="" selected disabled>{{ __('msg.Manufacturer/Brand') }}
                                                 ({{ __('msg.Required') }})</option>
                                             @foreach ($company as $data)
                                                 <option value="{{ $data->id }}"
@@ -58,6 +48,17 @@
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                         <span class="text-danger" id="companyError"></span>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                        <input type="text" name="model" value="{{ old('model') }}"
+                                            class="form-control"
+                                            placeholder="{{ __('msg.Model') }} ({{ __('msg.Required') }})"
+                                            aria-label="Model" required>
+                                        @error('model')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                        <span class="text-danger" id="nameError"></span>
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 form-group">

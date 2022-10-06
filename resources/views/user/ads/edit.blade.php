@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-lg-8 mx-auto px-5 px-lg-1 ">
                             </div>
-                            <form action="{{ route('user.ads.update', $ads->id) }}" method="post"
+                            <form name="sellCar" action="{{ route('user.ads.update', $ads->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
@@ -58,16 +58,10 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})"
-                                            value="{{ $ads->model }}" aria-label="Model">
-                                        @error('model')
-                                            <div class="text-danger p-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <select class="form-select" name="company_id" aria-label="Type of Service">
+                                            <option value="" disabled>{{ __('msg.Manufacturer/Brand') }}
+                                                ({{ __('msg.Required') }})</option>
                                             <option value="{{ $ads->company_id }}" selected>{{ $ads->company->company }}
                                             </option>
                                             @foreach ($company as $data)
@@ -79,8 +73,19 @@
                                         @enderror
                                         <span class="text-danger" id="companyError"></span>
                                     </div>
+
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})"
+                                            value="{{ $ads->model }}" aria-label="Model">
+                                        @error('model')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <select class="form-select" name="model_year_id" aria-label="Type of Service">
+                                            <option value="" disabled>{{ __('msg.Model Year') }}
+                                                ({{ __('msg.Required') }})</option>
                                             <option value="{{ $ads->model_year_id }}" selected>
                                                 {{ $ads->modelYear->model_year }}
                                             </option>
@@ -116,7 +121,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="phone" value="{{ $ads->phone }}"
-                                            class="form-control" placeholder="{{__('msg.Phone Number')}} ({{__('msg.Required')}})" aria-label="phone" onkeypress="if(this.value.length==12) return false">
+                                            class="form-control" placeholder="+971 XXXXXXXX ({{__('msg.Required')}})" aria-label="phone">
                                         @error('phone')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -194,9 +199,10 @@
                 preloaded: imagePre,
                 imagesInputName: 'car_images',
                 preloadedInputName: 'car_old',
+                extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 maxFiles: 5,
             });
-            $(".car_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Format: png, jpg only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+            $(".car_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
         });
         //update the documents images
         $(function() {
@@ -205,9 +211,11 @@
                 preloaded: preDocx,
                 imagesInputName: 'doucment',
                 preloadedInputName: 'doc_old',
+                extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+                mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
                 maxFiles: 5,
             });
-            $(".doc_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpg only)</b></p><input type="file" name="document[]" size="60" ></label>');
+            $(".doc_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
         });
     </script>
 @endsection

@@ -54,6 +54,7 @@ return [
     'Search For Your Favorite Garages (Type Here)' => 'ابحث عن كراجاتك المفضلة (اكتب هنا)',
     'CAR IMAGES' => 'صور السيارة',
     'Company' => 'شركة',
+    'Manufacturer/Brand' => 'الصانع / العلامة التجارية',
     'Insurance Company' => 'شركة تأمين',
     'Country' => 'دولة',
     'City' => 'مدينة',

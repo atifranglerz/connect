@@ -55,6 +55,7 @@ return [
     'Search For Your Favorite Garages (Type Here)' => 'Search For Your Favorite Garages (Type Here)',
     'CAR IMAGES' => 'Car Images',
     'Company' => 'Company',
+    'Manufacturer/Brand' => 'Manufacturer/Brand',
     'Insurance Company' => 'Insurance Company',
     'Country' => 'Country',
     'City' => 'City',

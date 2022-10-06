@@ -65,16 +65,9 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-6 col-md-6 form-group">
-                                            <input type="text" class="form-control" name="model"
-                                                value="{{old('model')}}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage">
-                                            @error('model')
-                                            <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 form-group">
                                             <select class="form-select form-control company-name-field"
                                                 name="company_id" aria-label="Type of Service" required>
-                                                <option value="" selected disabled>{{ __('msg.Select Company') }}
+                                                <option value="" selected disabled>{{ __('msg.Manufacturer/Brand') }}
                                                     ({{ __('msg.Required') }})</option>
                                                 @foreach($company as $data)
                                                 <option value="{{$data->id }}" @if(old('company_id')==$data->id)
@@ -82,6 +75,13 @@
                                                 @endforeach
                                             </select>
                                             @error('company_id')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 form-group">
+                                            <input type="text" class="form-control" name="model"
+                                                value="{{old('model')}}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage">
+                                            @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -166,7 +166,7 @@
                                     aria-labelledby="profile-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3 form-group">
-                                            <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small>({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                            <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
                                             <div class="input-images">
                                                 {{--input field name  car_images --}}
 
@@ -211,7 +211,7 @@
                                     aria-labelledby="fourth-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="row g-2 col-lg-12 mb-3 form-group">
-                                            <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small>({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                            <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
                                             <div class="input-images-3"></div>
                                             {{--input field name doucment--}}
                                         </div>
