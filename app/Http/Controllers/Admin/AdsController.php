@@ -20,7 +20,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::with('company', 'modelYear')->orderBy('id','desc')->get();
+        $ads = Ads::with('company', 'modelYear','user','vendor')->orderBy('id','desc')->get();
         return view('admin.ads.index',compact('ads'));
     }
 

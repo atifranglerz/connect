@@ -146,7 +146,7 @@
                 <ul class="dropdown-menu">
                     {{-- <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a></li> --}}
                     <li><a href="{{ route('admin.about.index') }}" class="nav-link">About Us</a></li>
-                    <li><a href="{{ route('admin.contact.index') }}" class="nav-link">Contact Us</a></li>
+                    {{-- <li><a href="{{ route('admin.contact.index') }}" class="nav-link">Contact Us</a></li> --}}
                     <li class=""><a class="nav-link " href="{{ url('/admin/faqs') }}">Faq</a></li>
                     <li><a href="{{ route('admin.term.index') }}" class="nav-link">Terms & Condition</a></li>
                     <li><a class="nav-link" href="{{ route('admin.privacyPolicy.index') }}">Privacy Policy</a></li>
