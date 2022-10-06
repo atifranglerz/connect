@@ -120,7 +120,7 @@
                 <a href="#" class="menu-toggle nav-link has-dropdown">
                     <i data-feather="users"></i><span>Payment Percentage</span></a>
                 <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link " href="{{ url('/admin/percentage') }}">Payment Payment</a></li>
+                    <li class=""><a class="nav-link " href="{{ url('/admin/percentage') }}">Percentage</a></li>
                 </ul>
             </li>
             {{-- <li class="dropdown @if (request()->routeIs('admin.withdraw.index')) active @endif">
