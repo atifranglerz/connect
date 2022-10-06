@@ -21,7 +21,10 @@ class GarageController extends Controller
      */
     public function index()
     {
-        $garages = Garage::all();
+        $garagess =Garage::with('garageCategory')->get();
+    $garages = $garagess->filter(function ($item) {
+        return $item->garageCategory->take(5);
+    });
         $page_title = 'Garages';
         return view('admin.garage.index', compact('garages', 'page_title'));
     }
@@ -59,7 +62,7 @@ class GarageController extends Controller
         //dd($request->category_id);
         foreach ($request->category_id as $category) {
             GarageCategory::create([
-                'garage_id' => $garage->id ,
+                'garage_id' => $garage->id,
                 'category_id' => $category
             ]);
         }
@@ -161,5 +164,4 @@ class GarageController extends Controller
         Garage::destroy($id);
         return redirect()->route('admin.garage.index')->with($this->data("Garage deleted successfyully", 'success'));
     }
-
 }

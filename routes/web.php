@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
@@ -12,8 +15,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ModelYearController;
 use App\Http\Controllers\Admin\PercentageController;
 use App\Http\Controllers\Admin\InsuranceCompanyController;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         /* Car Ads */
         Route::resource('ads', 'AdsController');
+        Route::any('approved-request-ad/{id}', [AdsController::class, 'approvedRequest']);
+        Route::post('reject-request-ad/{id}', [AdsController::class, 'rejectRequest']);
+        Route::any('delete-ads/{id}',[AdsController::class, 'deleteAds']);
         /* Update Profile */
         Route::get('profile', 'AuthController@profile')->name('profile');
         Route::post('update-profile/{id}', 'AuthController@updateProfile')->name('profile.update');
@@ -168,7 +172,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('slider/edit/{id}', [SliderController::class, 'edit']);
         Route::post('slider/update/{id}', [SliderController::class, 'update']);
         Route::any('slider/destroy/{id}', [SliderController::class, 'destroy']);
-
+        // approved-request-ad/
         /* All About Route */
         Route::get('about', 'AboutController@index')->name('about.index');
         Route::get('about/edit/{id}', 'AboutController@edit')->name('about.edit');

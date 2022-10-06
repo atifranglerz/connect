@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Ads;
+use App\Models\Company;
+use App\Models\ModelYear;
 use Illuminate\Http\Request;
+use App\Mail\SendApprovedMail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdsController extends Controller
 {
@@ -48,9 +53,11 @@ class AdsController extends Controller
      */
     public function show($id)
     {
-        $ad = Ads::with('company', 'modelYear')->find($id);
-        return view('admin.ads.show',compact('ad'));
-        
+        $ads = Ads::with('company', 'modelYear')->find($id);
+        $company = Company::all();
+        $year = ModelYear::all();
+        return view('admin.ads.edit',compact('ads','company','year'));
+
     }
 
     /**
@@ -74,7 +81,39 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd('usman');
+        $request->validate([
+            'model' => 'required',
+            'company_id' => 'required',
+            'model_year_id' => 'required',
+            'price' => 'required',
+            'color' => 'required',
+            'engine' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'mileage' => 'required',
+        ]);
+        $ads = Ads::find($id);
+        $ads->model = $request->model;
+        $ads->company_id = $request->company_id;
+        $ads->model_year_id = $request->model_year_id;
+        $ads->price = $request->price;
+        $ads->color = $request->color;
+        $ads->engine = $request->engine;
+        $ads->phone = $request->phone;
+        $ads->address = $request->address;
+        $ads->mileage = $request->mileage;
+        $ads->city = $request->city;
+        $ads->country = $request->country;
+        $ads->description = $request->description;
+        // $ads->user_id = Auth::id();
+        $ads->update();
+        // session_start();
+        // $_SESSION["msg"] = "Ad Updated Successfully";
+        // $_SESSION["alert"] = "success";
+        // return redirect()->route('user.ads.index');
+        return $this->message($ads, 'admin.ads.index', 'Ad Updated Successfully', '  Ad is not update Error');
+
     }
 
     /**
@@ -83,13 +122,25 @@ class AdsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteAds($id)
     {
-       dd('asdfs');
         $ad = Ads::find($id);
         $ad->delete();
-        return redirect()->back();
+        return redirect()->back()->with($this->data("Ads delete successfully", 'success'));
 
-        
+
+    }
+    public function approvedRequest($id){
+        $data=Ads::with('user')->find($id);
+        $data->status='Approved';
+        $data->save();
+        Mail::to($data->user->email)->send(new SendApprovedMail($data));
+        return redirect()->back()->with($this->data("Update status successfully", 'success'));
+    }
+    public function rejectRequest($id){
+        $data=Ads::with('user')->find($id);
+        $data->status='Rejected';
+        $data->save();
+        return redirect()->back()->with($this->data("Update status successfully", 'success'));
     }
 }

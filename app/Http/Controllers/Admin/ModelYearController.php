@@ -74,12 +74,15 @@ class ModelYearController extends Controller
      * @param ModelYear $modelYear
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, ModelYear $modelYear)
+    public function update(Request $request,$id)
     {
+
         $request->validate([
-            'year' => 'required',
+            'model_year' => 'required',
         ]);
-        $modelYear = $modelYear->update($request->all());
+        $modelYear=ModelYear::find($id);
+        $modelYear->model_year=$request->model_year;
+        $modelYear->save();
         return $this->message($modelYear, 'admin.model_year.index', 'Model year Update Successfully', 'Model year Update Error');
     }
 

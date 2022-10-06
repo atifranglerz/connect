@@ -16,7 +16,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Model Year</label>
-                                        <input type="number" class="form-control" name="year" value="{{ $modelYear->model_year }}">
+                                        <input type="number" class="form-control" name="model_year" value="{{ $modelYear->model_year }}">
                                         @error('model_year')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
