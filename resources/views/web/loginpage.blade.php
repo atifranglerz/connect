@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper pt-5">
-                        <h4 class="sec_main_heading text-center">{{__('msg.Sign Up')}}</h4>
-                        <p class="sec_main_para text-center">{{__('msg.Choose your role to signup')}}</p>
+                        <h4 class="sec_main_heading text-center">{{__('msg.Sign In')}}</h4>
+                        <p class="sec_main_para text-center">{{__('msg.Choose your role to sign in')}}</p>
                     </div>
                 </div>
             </div>

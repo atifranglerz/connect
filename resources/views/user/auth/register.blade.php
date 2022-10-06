@@ -84,12 +84,12 @@
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-12 mb-3 signup_input_wraper">
+                            {{-- <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}" placeholder="{{__('msg.P/O Box')}} ({{__('msg.Required')}})">
                                 @error('post_box')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="position-relative d-flex align-items-center">
                                     <input id="inputPass" name="password" type="password" class="form-control" placeholder="{{__('msg.password')}} ({{__('msg.Required')}})">
