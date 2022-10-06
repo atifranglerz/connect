@@ -1643,6 +1643,10 @@ body span.select2-selection.select2-selection--single {
     text-align: justify!important;
 }
 .address-field.is-valid, .address-field.is-invalid {
+    padding-right: 3rem!important;
+    background-position: right calc(1.7em + 0.1875rem) center;
+}
+.pass-holder .form-control.is-valid, .pass-holder .form-control.is-invalid {
     padding-right: 3rem;
     background-position: right calc(1.7em + 0.1875rem) center;
 }

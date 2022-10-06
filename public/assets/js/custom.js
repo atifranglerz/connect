@@ -107,7 +107,7 @@ $(function() {
     //     placeholder: 'Select Year (Required)',
     // });
     /*Multiple select*/
-    $('.insurance-company').select2({
+    $('.insurance-company-multiple').select2({
         placeholder: 'Select Insurance Company (Optional)',
     });
     $('.offer-garage-services').select2({
