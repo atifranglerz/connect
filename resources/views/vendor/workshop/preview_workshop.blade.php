@@ -74,7 +74,7 @@
     </section>
     <section class="py-3">
         <div class="container-lg container-fluid">
-            <div class="main_row d-flex align-items-center justify-content-between flex-wrap" style="gap: 8px">
+            <div class="main_row d-grid align-items-center justify-content-between flex-wrap services-section">
 				@foreach($preview_garage->garageCategory as $sevice)
 				<div class="stor_add_show_wraper">
 					<div class="stor_add_show_wraper_innr">

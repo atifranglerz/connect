@@ -17,7 +17,7 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <div class="position-relative d-flex align-items-center">
+                                <div class="position-relative d-flex align-items-center pass-holder">
                                     <input id="inputPassword" name="password" type="password" class="form-control pass" placeholder="{{__('msg.password')}} ({{__('msg.Required')}})" required>
                                     <span toggle="#inputPassword" class="fa fa-fw fa-eye preview-eye-icon toggle-password"></span>
                                 </div>
@@ -109,7 +109,7 @@
                     var elem = $(element);
                     console.log(elem);
                     if (elem.hasClass('pass')) {
-                        var element2 = elem.closest('.position-relative');
+                        var element2 = elem.closest('.pass-holder');
                         error.insertAfter(element2);
                     } else {
                         error.insertAfter(element);
