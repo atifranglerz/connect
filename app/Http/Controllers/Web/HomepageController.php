@@ -475,6 +475,13 @@ class HomepageController extends Controller
         $page_title = 'login choice';
         return view('web.loginpage', compact('page_title'));
     }
+
+    public function registerchoice()
+    {
+
+        $page_title = 'register choice';
+        return view('web.registerpage', compact('page_title'));
+    }
     public function about()
     {
         $page_title = 'about';

@@ -73,6 +73,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('category-garage', 'HomepageController@categoryGarage');
     Route::get('register', 'HomepageController@register')->name('register');
     Route::get('loginpage', 'HomepageController@loginchoice')->name('loginpage');
+    Route::get('registerpage', 'HomepageController@registerchoice')->name('registerpage');
     Route::get('used_cars', 'HomepageController@usedcars')->name('used_cars');
     Route::post('search-used-car', 'HomepageController@searchCar')->name('search-used-car');
     Route::get('car-detail/{id}', 'HomepageController@carDetail')->name('car_detail');
@@ -329,7 +330,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         //chatting
         //  Route::get('chat/index', 'chatcontroller@index')->name('chat.index');
         Route::get('chat/{id}', 'ChatController@chat')->name('chat');
+        Route::get('customerChat/{id}', 'ChatController@customerChat')->name('customerChat');
         Route::post('chat/favorite', 'ChatController@favorite')->name('chat.favorite');
+        Route::post('chat/favoriteUser', 'ChatController@favoriteUser')->name('chat.favoriteUser');
         Route::post('chat/chatSend', 'ChatController@store')->name('chatSend');
         Route::post('chat/delete', 'ChatController@delete')->name('chat.delete');
         Route::post('chat/alldelete', 'ChatController@alldelete')->name('chat.all_delete');

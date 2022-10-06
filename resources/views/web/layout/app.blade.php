@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
-    <title>{{__('msg.Repair my Car')}}</title>
+    <title>{{__('msg.Repair my Car')}}|{{$page_title}}</title>
     <style>
         .form-switch .form-check-input {
             background-image: url(https://ranglerz.pw/repairmycar/public/user/assets/images/orangesvg.svg);
@@ -128,8 +128,8 @@
                             @endif
                         @else
                             <div class="login_sinup">
-                                <a href="{{ route('vendor.register') }}"> <i
-                                        class="fa fa-briefcase me-2 me-md-1"></i>{{ __('msg.Register Your Garage')}}</a>
+                                <a href="{{ route('registerpage') }}"> <i
+                                        class="fa fa-briefcase me-2 me-md-1"></i>{{ __('msg.register')}}</a>
                                 <a href="{{ route('loginpage') }}" class="login ms-lg-2">{{ __('msg.Login')}}</a>
                             </div>
                         @endif
