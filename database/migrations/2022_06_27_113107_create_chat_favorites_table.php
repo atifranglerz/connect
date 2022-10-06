@@ -15,10 +15,14 @@ class CreateChatFavoritesTable extends Migration
     {
         Schema::create('chat_favorites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vendor_id');
+            $table->unsignedBigInteger('vendor_id')->nullable();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('vendor_chat')->nullable();
+            $table->foreign('vendor_chat')->references('id')->on('vendors')->onDelete('cascade');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('customer_chat')->nullable();
+            $table->foreign('customer_chat')->references('id')->on('users')->onDelete('cascade');
             $table->string('vendor_online')->nullable();
             $table->string('customer_online')->nullable();
             $table->string('vendor_status')->default(0);
