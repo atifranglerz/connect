@@ -294,6 +294,38 @@
                 }
             }
         });
+
+        setInterval(() => {
+            /*Car Image*/
+            if(!$('input[name="car_images[]"]').val()=="") {
+                $('label[for="car_images[]"]').empty().hide();
+                $('input[name="car_images[]"]').removeClass('is-invalid error').addClass('is-valid');
+            } else {
+                $('label[for="car_images[]"]').text("This field is required.").show();
+                $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+            }
+            if ($('.uploaded .uploaded-image').length==0) {
+                $('label[for="car_images[]"]').text("This field is required.").show();
+                $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+                $('input[name="car_images[]"]').val('');
+            }
+            /*Car Image*/
+
+            /*Registration Copy Image*/
+            if(!$('input[name="document[]"]').val()=="") {
+                $('label[for="document[]"]').empty().hide();
+                $('input[name="document[]"]').removeClass('is-invalid error').addClass('is-valid');
+            } else {
+                $('label[for="document[]"]').text("This field is required.").show();
+                $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+            }
+            if ($('input[name="document[]"]').closest('.image-uploader').find('.uploaded .uploaded-image').length==0) {
+                $('label[for="document[]"]').text("This field is required.").show();
+                $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+                $('input[name="document[]"]').val('');
+            }
+            /*Registration Copy Image*/
+        }, 500);
     });
 
 </script>

@@ -24,17 +24,17 @@
                                 <li class="nav-item nav_item_li" role="presentation">
                                     <button class="nav-link tab_btns" id="profile-tab" data-bs-toggle="tab"
                                         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
-                                        aria-selected="false"></button>
+                                        aria-selected="false" disabled></button>
                                 </li>
                                 <li class="nav-item nav_item_li d-none" role="presentation">
                                     <button class="nav-link tab_btns" id="inspection-report-link" data-bs-toggle="tab"
                                         data-bs-target="#inspectionReport" type="button" role="tab"
-                                        aria-controls="inspectionReport" aria-selected="false"></button>
+                                        aria-controls="inspectionReport" aria-selected="false" disabled></button>
                                 </li>
                                 <li class="nav-item nav_item_li" role="presentation">
                                     <button class="nav-link tab_btns " id="fourth-tab" data-bs-toggle="tab"
                                         data-bs-target="#fourthtab" type="button" role="tab" aria-controls="contact"
-                                        aria-selected="false"></button>
+                                        aria-selected="false" disabled></button>
                                 </li>
                             </ul>
                             <div class="col-lg-9 mx-auto">
@@ -50,7 +50,7 @@
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-12 form-group">
                                             <select name="looking_for" class="form-select form-control" id="lookingFor">
-                                                <option value=""></option>
+                                                <option value="" selected disabled>{{__('msg.What are you looking for? (Required)')}}</option>
                                                 <option value="I have Inspection Report & Looking for the Quotations"
                                                     @if(old('looking_for')=='I have Inspection Report & Looking for the Quotations'
                                                     ) selected @endif>{{__("msg.I have Inspection Report & Looking for the Quotation")}}</option>
@@ -390,6 +390,22 @@
                 }
             }
         });
+        $('.next-tab-btn').on('click', function() {
+            if(!$("form[name='requestQuote'] .active .form-control, form[name='requestQuote'] .active input").valid()) {
+                setTimeout(() => {
+                    var navbarHeight = $('.navbar').innerHeight();
+                    $('html,body').animate({
+                            scrollTop: $('.error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeight)},
+                        'slow');
+                }, 500);
+                if($('input.error:first, select.error:first').closest('.tab-pane').hasClass('show')) {
+                    // alert("Enter the missing data");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        });
     });
 
 const nextBtns = document.querySelectorAll(".btn-secondary");
@@ -417,13 +433,16 @@ function updateFormSteps() {
 }
 
 $(function() {
-    $('#lookingFor').select2({
-        placeholder: "{{__('msg.What are you looking for? (Required)')}}",
-    });
+    // $('#lookingFor').select2({
+    //     placeholder: "{{__('msg.What are you looking for? (Required)')}}",
+    // });
     lookingFor();
-    $('#lookingFor').on('select2:select', function() {
+    $('#lookingFor').change(function() {
         lookingFor();
     });
+    // $('#lookingFor').on('select2:select', function() {
+    //     lookingFor();
+    // });
 
     function lookingFor() {
         var val = $('#lookingFor').val();
@@ -453,7 +472,7 @@ $(function() {
         let valTwo = "I don't know the Problem and Requesting for the Inspection";
         let valThree = "I know about what i'm looking for and requesting for the Quotations";
         if (val == valTwo || val == valThree) {
-            if($('#profile').hasClass('active')) {
+            if($('#profile').hasClass('active') && $('.uploaded .uploaded-image').length==1) {
                 setTimeout(() => {
                     $('#inspectionReport').removeClass('show active');
                 }, 50);
@@ -464,14 +483,61 @@ $(function() {
             if($('div[aria-labelledby="home-tab"]').hasClass('active')) {
                 $('#home-tab').addClass('active');
             } else if ($('div[aria-labelledby="profile-tab"]').hasClass('active')) {
-                $('#profile-tab').addClass('active');
+                $('#profile-tab').addClass('active').removeAttr('disabled');
             } else if ($('div[aria-labelledby="inspection-report-link"]').hasClass('active')) {
-                $('#inspection-report-link').addClass('active');
+                $('#inspection-report-link').addClass('active').removeAttr('disabled');
             } else if ($('div[aria-labelledby="fourth-tab"]').hasClass('active')) {
-                $('#fourth-tab').addClass('active');
+                $('#fourth-tab').addClass('active').removeAttr('disabled');
             }
         }, 50);
     });
+
+    setInterval(() => {
+        /*Car Image*/
+        if(!$('input[name="car_images[]"]').val()=="") {
+            $('label[for="car_images[]"]').empty().hide();
+            $('input[name="car_images[]"]').removeClass('is-invalid error').addClass('is-valid');
+        } else {
+            $('label[for="car_images[]"]').text("This field is required.").show();
+            $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+        }
+        if ($('.uploaded .uploaded-image').length==0) {
+            $('label[for="car_images[]"]').text("This field is required.").show();
+            $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+            $('input[name="car_images[]"]').val('');
+        }
+        /*Car Image*/
+
+        /*Upload Police/Accident/Inspection Report*/
+        if(!$('input[name="files"]').val()=="") {
+            $('label[for="files"]').empty().hide();
+            $('input[name="files"]').removeClass('is-invalid error').addClass('is-valid');
+        } else {
+            $('label[for="files"]').text("This field is required.").show();
+            $('input[name="files"]').removeClass('is-valid').addClass('is-invalid error');
+        }
+        if ($('input[name="files"]').closest('.image-uploader').find('.uploaded .uploaded-image').length==0) {
+            $('label[for="files"]').text("This field is required.").show();
+            $('input[name="files"]').removeClass('is-valid').addClass('is-invalid error');
+            $('input[name="files"]').val('');
+        }
+        /*Upload Police/Accident/Inspection Report*/
+
+        /*Registration Copy Image*/
+        if(!$('input[name="document[]"]').val()=="") {
+            $('label[for="document[]"]').empty().hide();
+            $('input[name="document[]"]').removeClass('is-invalid error').addClass('is-valid');
+        } else {
+            $('label[for="document[]"]').text("This field is required.").show();
+            $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+        }
+        if ($('input[name="document[]"]').closest('.image-uploader').find('.uploaded .uploaded-image').length==0) {
+            $('label[for="document[]"]').text("This field is required.").show();
+            $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+            $('input[name="document[]"]').val('');
+        }
+        /*Registration Copy Image*/
+    }, 500);
 });
 </script>
 @endsection

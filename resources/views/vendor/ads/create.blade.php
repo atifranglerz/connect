@@ -38,14 +38,14 @@
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                     <input type="text" name="model" value="{{old('model')}}" class="form-control" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})"
-                                        aria-label="Model">
+                                        aria-label="Model" required>
                                     @error('model')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                     <span class="text-danger" id="nameError"></span>
                                 </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                <select class="form-select" name="company_id" aria-label="Type of Service">
+                                <select class="form-select" name="company_id" aria-label="Type of Service" required>
                                     <option value="" selected disabled>{{__('msg.Company')}} ({{__('msg.Required')}})</option>
                                     @foreach($company as $data)
                                     <option value="{{$data->id }}" {{old('company_id') == $data->id ? 'selected' : ''}}>{{$data->company }}</option>
@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                <select class="form-select" name="model_year_id" aria-label="Type of Service">
+                                <select class="form-select" name="model_year_id" aria-label="Type of Service" required>
                                     <option value="" selected disabled>{{__('msg.Year')}} ({{__('msg.Required')}})</option>
                                     @foreach($year as $data)
                                     <option value="{{$data->id }}" {{old('model_year_id') == $data->id ? 'selected' : ''}}>{{$data->model_year }}</option>
@@ -72,7 +72,7 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                 <input type="number" name="price" value="{{old('price')}}" class="form-control" placeholder="{{__('msg.Price')}} ({{__('msg.Required')}})"
-                                    aria-label="Price">
+                                    aria-label="Price" required>
                                 @error('price')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                 <input type="text" name="color" value="{{old('color')}}" class="form-control" placeholder="{{{__('msg.Color')}}} ({{__('msg.Required')}})"
-                                    aria-label="Color">
+                                    aria-label="Color" required>
                                 @error('color')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -88,15 +88,15 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                 <input type="text" name="engine" value="{{old('engine')}}" class="form-control" placeholder="{{__('msg.Engine')}} ({{__('msg.Required')}})"
-                                    aria-label="Engine">
+                                    aria-label="Engine" required>
                                 @error('engine')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                                 <span class="text-danger" id="engineError"></span>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                <input type="number" name="phone" value="{{old('phone')}}" class="form-control" placeholder="{{__('msg.Phone Number')}} ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false"
-                                    aria-label="phone">
+                                <input type="number" name="phone" value="{{old('phone')}}" class="form-control" placeholder="+971 XXXXXXXX ({{__('msg.Required')}})" onkeypress="if(this.value.length==12) return false"
+                                    aria-label="phone" required>
                                 @error('phone')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                 <div style="position: relative">
-                                    <input type="text" name="address" value="{{old('address')}}" class="form-control"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem">
+                                    <input type="text" name="address" value="{{old('address')}}" class="form-control address-field"  placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" style="padding-right: 2rem" required>
                                     <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
                                 </div>
                                 @error('address')
@@ -122,7 +122,7 @@
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                <select class="form-select form-control" name="city" aria-label="City">
+                                <select class="form-select form-control" name="city" aria-label="City" required>
                                     <option selected disabled value="">{{__('msg.Select City')}} ({{__('msg.Required')}})</option>
                                     <option value="Dubai" @if(old('city')=='Dubai' ) selected @endif>{{__('msg.Dubai')}}</option>
                                     <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi' ) selected @endif>{{__('msg.Abu Dhabi')}}</option>
@@ -139,7 +139,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                 <input type="number" name="mileage" value="{{old('mileage')}}" class="form-control" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})"
-                                    aria-label="Price">
+                                    aria-label="Price" required>
                                 @error('mileage')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
@@ -194,6 +194,12 @@
     $(function() {
         // Initialize form validation on the registration form.
         // It has the name attribute "registration"
+        jQuery.validator.addMethod("phoneUE", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+            phone_number.match(/^(?:\+?971-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
+        }, "Please specify a valid phone number");
+
         var validator = $("form[name='sellCar']").validate({
             ignore: [],
             onfocusout: function (element) {
@@ -231,7 +237,10 @@
                 engine: "required",
                 model_year_id: "required",
                 "document[]": "required",
-                'phone': "required"
+                phone: {
+                    phoneUE: true,
+                    required: true
+                }
             },
             messages: {
                 // business_type: "Please select your business type",
@@ -278,6 +287,38 @@
                 }
             }
         });
+
+        setInterval(() => {
+            /*Car Image*/
+            if(!$('input[name="car_images[]"]').val()=="") {
+                $('label[for="car_images[]"]').empty().hide();
+                $('input[name="car_images[]"]').removeClass('is-invalid error').addClass('is-valid');
+            } else {
+                $('label[for="car_images[]"]').text("This field is required.").show();
+                $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+            }
+            if ($('.uploaded .uploaded-image').length==0) {
+                $('label[for="car_images[]"]').text("This field is required.").show();
+                $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+                $('input[name="car_images[]"]').val('');
+            }
+            /*Car Image*/
+
+            /*Registration Copy Image*/
+            if(!$('input[name="document[]"]').val()=="") {
+                $('label[for="document[]"]').empty().hide();
+                $('input[name="document[]"]').removeClass('is-invalid error').addClass('is-valid');
+            } else {
+                $('label[for="document[]"]').text("This field is required.").show();
+                $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+            }
+            if ($('input[name="document[]"]').closest('.image-uploader').find('.uploaded .uploaded-image').length==0) {
+                $('label[for="document[]"]').text("This field is required.").show();
+                $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+                $('input[name="document[]"]').val('');
+            }
+            /*Registration Copy Image*/
+        }, 500);
     });
 </script>
 @endsection
