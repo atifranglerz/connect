@@ -122,14 +122,14 @@
                                 </div>
                             @endif
 
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control" id="inputNumber" name="post_box"
-                                    placeholder="{{ __('msg.P/O Box') }}" value="{{ $profile->post_box }}">
-                                @error('post_box')
-                                    <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
                             @if (Auth::user()->type == 'company')
+                                <div class="col-12 mb-3 signup_input_wraper">
+                                    <input type="number" class="form-control" id="inputNumber" name="post_box"
+                                        placeholder="{{ __('msg.P/O Box') }}" value="{{ $profile->post_box }}">
+                                    @error('post_box')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                     <h5 class="mb-0 heading">{{ __('msg.Legal Info') }}</h5>
                                 </div>

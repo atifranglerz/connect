@@ -14,6 +14,10 @@ class ChatFavorite extends Model
     {
         return $this->belongsTo(User::class, 'customer_id', 'id');
     }
+    public function customerchat()
+    {
+        return $this->belongsTo(User::class, 'customer_chat', 'id');
+    }
     public function vendor()
     {
         return $this->belongsTo(Vendor::class, 'vendor_id', 'id');

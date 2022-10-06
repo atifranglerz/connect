@@ -36,11 +36,9 @@ class AuthController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'country' => 'required',
             'city' => 'required',
-            'post_box' => 'required',
             'address' => 'required',
             'phone' => 'required|digits:12',
             'password' => 'required|confirmed',
-            // 'company' => 'required',
         ]);
         $role = Role::where('name', 'user')->first();
         $user = new User();
@@ -63,7 +61,6 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->country = $request->country;
         $user->city = $request->city;
-        $user->post_box = $request->post_box;
         $user->save();
 
         $company = User::find($request->company);

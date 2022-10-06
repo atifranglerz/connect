@@ -73,10 +73,10 @@
 .lg-toolbar .lg-icon {
     font-family: 'lg'!important;
 }
-.favorite + .inbox_contact {
+.chatted + .inbox_contact {
     padding: 8px 8px;
 }
-.favorite.active + .inbox_contact {
+.chatted.active + .inbox_contact {
     background-color: #2778c455;
 }
 .fa.fa-eye, .fa.fa-eye-slash {
@@ -1619,6 +1619,9 @@ body span.select2-selection.select2-selection--single {
     .text-md-right {
         text-align: right!important;
     }
+    .main #dashboardSidebar {
+        z-index: 5555;
+    }
 }
 @media (max-width: 767px) {
     .text-sm-right {
@@ -1640,6 +1643,10 @@ body span.select2-selection.select2-selection--single {
     text-align: justify!important;
 }
 .address-field.is-valid, .address-field.is-invalid {
+    padding-right: 3rem!important;
+    background-position: right calc(1.7em + 0.1875rem) center;
+}
+.pass-holder .form-control.is-valid, .pass-holder .form-control.is-invalid {
     padding-right: 3rem;
     background-position: right calc(1.7em + 0.1875rem) center;
 }

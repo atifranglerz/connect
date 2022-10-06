@@ -36,7 +36,6 @@ class profileController extends Controller
             'phone' => 'required',
             'city' => 'required',
             'country' => 'required',
-            'post_box' => 'required',
         ]);
         $user = user::findOrFail($id);
         if ($request->file('images')) {
@@ -51,6 +50,8 @@ class profileController extends Controller
         if (Auth::user()->type == "company") {
             $user->name = $request->company_name;
             $user->address = $request->billing_address;
+            $user->post_box = $request->post_box;
+
         } else {
             $user->address = $request->address;
             $user->name = $request->name;
@@ -58,7 +59,6 @@ class profileController extends Controller
         $user->phone = $request->phone;
         $user->city = $request->city;
         $user->country = $request->country;
-        $user->post_box = $request->post_box;
         $user->update();
 
         if (isset($request->company)) {
