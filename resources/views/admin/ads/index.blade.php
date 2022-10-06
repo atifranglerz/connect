@@ -29,8 +29,8 @@
                                                 <th>Color</th>
                                                 <th>status</th>
                                                 <th>Action</th>
-                                                <th>Approved</th>
-                                                <th>Rejected</th>
+                                                {{-- <th>Approved</th>
+                                                <th>Rejected</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -43,16 +43,17 @@
                                                     <td>
                                                         <img src="{{ asset($image[0]) }}" alt="" width="80px">
                                                     </td>
-                                                    <td>{{$ad->user->name}}</td>
+                                                    <td></td>
+                                                    {{-- <td>@if (isset($ad->user[0])) {{$ad->user->name}} @else{{$ad->vendor->name}} @endif</td> --}}
                                                     <td>{{ $ad->model }}</td>
                                                     <td>{{ $ad->company->company }}</td>
                                                     <td>{{ $ad->modelYear->model_year }}</td>
                                                     <td>{{ $ad->price }}</td>
                                                     <td>{{ $ad->city }}</td>
-                                                    <td>{{$ad->country}}</td>
-                                                    <td>{{$ad->mileage}}</td>
-                                                    <td>{{$ad->color}}</td>
-                                                    <td>{{$ad->status}}</td>
+                                                    <td>{{ $ad->country }}</td>
+                                                    <td>{{ $ad->mileage }}</td>
+                                                    <td>{{ $ad->color }}</td>
+                                                    <td>{{ $ad->status }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.ads.show', $ad->id) }}"
                                                             class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +110,7 @@
                                                         </form>
 
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         @if ($ad->status == 'Pending')
                                                             <a><button class="btn btn-primary glyphicon glyphicon-check"
                                                                     data-toggle="tooltip" data-placement="top"
@@ -127,7 +128,8 @@
                                                     </td>
                                                     <td>
                                                         @if ($ad->status == 'Pending')
-                                                            <a><button class="btn btn-danger glyphicon glyphicon-update-status"
+                                                            <a><button
+                                                                    class="btn btn-danger glyphicon glyphicon-update-status"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Rejected"
                                                                     data-id="{{ $ad->id }}">Rejected</button></a>
@@ -140,7 +142,7 @@
                                                             <b class="text-danger">Rejected</b>
                                                         @else
                                                         @endif
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @empty
                                                 <tr>

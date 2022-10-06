@@ -159,10 +159,6 @@ class PaymentController extends Controller
             $message['link1'] = url('user/order/summary', $order->id);
             $message['type'] = "order";
             $message['email'] = auth()->user()->email;
-            $message['invoice'] = "quote";
-            $message['paid'] = $amount[0];
-            $message[1] = VendorBid::with('vendordetail', 'part')->find($request->vendor_bid_id);
-
             //mail notification to user
             $Notification = new Notification($message);
             dispatch($Notification);

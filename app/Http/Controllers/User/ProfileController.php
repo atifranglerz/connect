@@ -21,7 +21,6 @@ class profileController extends Controller
 
     public function edit($id)
     {
-        //$user = Auth::guard('web')->user();
         $company = User::where('type', 'company')->get();
 
         $page_title = 'User Profile Edit';
@@ -95,11 +94,9 @@ class profileController extends Controller
             }
             $company->update();
         }
-        // session_start();
         $_SESSION["msg"] = "Profile Updated Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.profile.index');
-        // return $this->message($user, 'user.profile.index', 'profile Update Successfully', '  profile is not update Error');
     }
 
     public function updatePassword(Request $request, $id)
@@ -114,7 +111,6 @@ class profileController extends Controller
                 'password' => Hash::make($request->password),
             ])->save();
 
-            // session_start();
             $_SESSION["msg"] = "Update Password Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('profile');

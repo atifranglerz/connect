@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
-    <title>{{__('msg.Repair my Car')}}|{{$page_title ?? ''}} </title>
+    <title>{{__('msg.Repair my Car')}}|{{$page_title}}</title>
     <style>
         .form-switch .form-check-input {
             background-image: url(https://ranglerz.pw/repairmycar/public/user/assets/images/orangesvg.svg);
@@ -262,8 +262,11 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+        @php
+    //  session_start();
+     @endphp
 
-    @if (isset($_SESSION["msg"]))
+        @if (isset($_SESSION["msg"]))
 
 
     var type = "{{ $_SESSION["alert"] }}";

@@ -149,11 +149,9 @@ class ProfileController extends Controller
         }else{
             $company = DB::table('insurance_vendor')->where('vendor_id', Auth::guard('vendor')->id())->delete();
         }
-        // session_start();
         $_SESSION["msg"] ="Profile Updated Successfully";
         $_SESSION["alert"] ="success";
         return redirect()->route('vendor.profile.index',compact('vendor'));
-        // return $this->message($vendor, 'vendor.profile.index', 'Profile Update Successfully', 'Profile is not update Error');
     }
 
     /**

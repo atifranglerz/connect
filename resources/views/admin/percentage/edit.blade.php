@@ -19,7 +19,7 @@
                                         <input type="text" class="form-control" required="" name="type" value="{{$data->type}}" readOnly>
                                     </div>
                                     <div class="form-group">
-                                        <label>Percentage %</label>
+                                        <label>Percentage % (First-Half Payment)</label>
                                         <input type="number" class="form-control" required="" name="percentage" value="{{$data->percentage}}">
                                     </div>
 

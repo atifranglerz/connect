@@ -27,6 +27,7 @@ class CreateAdsTable extends Migration
             $table->string('address')->nullable();
             $table->integer('mileage')->nullable();
             $table->text('description')->nullable();
+            $table->string('status')->default('Pending');
             $table->foreignId('vendor_id')->unsigned()->nullable()->constrained('vendors')->onDelete('cascade');
             $table->foreignId('user_id')->unsigned()->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();

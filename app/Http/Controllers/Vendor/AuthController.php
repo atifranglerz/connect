@@ -47,7 +47,6 @@ class AuthController extends Controller
             'city' => ['required', 'string'],
             'post_box' => 'required',
             // 'company'=>'required',
-            // 'phone' => 'required|digits:12',
             'image_license' => 'required',
             'trading_license' => 'required',
             'vat' => 'required',
@@ -116,11 +115,9 @@ class AuthController extends Controller
             $vendor->assignRole($role);
             Mail::to($vendor_email)->send(new Login($data));
 
-            // session_start();
             $_SESSION["msg"] = "You've Registered Successfully as a Vendor!";
             $_SESSION["alert"] = "success";
             return redirect()->route('vendor.login');
-            // return redirect()->route('vendor.login')->with($this->data("You've Registered Successfully as a Vendor!", 'success'));
         } else {
             return redirect()->back()->with($this->data("Vendor Register Error", 'error'));
         }
@@ -142,11 +139,9 @@ class AuthController extends Controller
         $vendor = Vendor::where('email', $request->email)->first();
         if (isset($vendor) && $vendor->action == 0) {
 
-            // session_start();
             $_SESSION["msg"] = "Your Account has been Deactivate by Admin!";
             $_SESSION["alert"] = "error";
             return redirect()->back();
-            // return redirect()->back()->with($this->data("Your Account has been Deactivate by Admin!", 'error'));
         }
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
@@ -154,12 +149,10 @@ class AuthController extends Controller
                 $garage = Garage::where('vendor_id', Auth::guard('vendor')->id())->first();
                 if (empty($garage)) {
 
-                    // session_start();
                     $_SESSION["msg"] = "Create Workshop first";
                     $_SESSION["alert"] = "success";
                     return redirect()->route('vendor.workshop.index');
                 } else {
-                    // session_start();
                     $_SESSION["msg"] = "You've Login Successfully";
                     $_SESSION["alert"] = "success";
                     return redirect()->route('vendor.dashboard');
@@ -168,7 +161,6 @@ class AuthController extends Controller
                 return redirect()->back()->with($this->data("you have not this Role!", 'error'));
             }
         } else {
-            // session_start();
             $_SESSION["msg"] = "Your Email Or Password Invalid!";
             $_SESSION["alert"] = "error";
             return redirect()->back();
@@ -203,22 +195,18 @@ class AuthController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-            // session_start();
             $_SESSION["msg"] = "Forgot Password Email Send Successfully.";
             $_SESSION["alert"] = "success";
             return redirect()->back();
-            // return redirect()->back()->with($this->data("Forget Password Email Send Successfully.", 'success'));
 
             // Mail::to($request->email)->send(new ResetPassword($details));
         } catch (\Swift_TransportException $e) {
             if ($e->getMessage()) {
                 dd($e->getMessage());
             }
-            // session_start();
             $_SESSION["msg"] = "Forget Password Email Send Error!";
             $_SESSION["alert"] = "error";
             return redirect()->back();
-            // return redirect()->back()->with($this->data("Forget Password Email Send Error.", 'error'));
         }
     }
 
@@ -233,11 +221,9 @@ class AuthController extends Controller
             return view('vendor.auth.password_change', compact('token'));
         } else {
 
-            // session_start();
             $_SESSION["msg"] = "Token Not Match. Please Try Again";
             $_SESSION["alert"] = "error";
             return redirect()->route('vendor.forget_password');
-            // return redirect()->route('vendor.forget_password')->with($this->data('Token Not Match. Please Try Again', 'error'));
         }
 
     }
@@ -268,11 +254,9 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('vendor')->logout();
-        // session_start();
         $_SESSION["msg"] = "You've Logout Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('vendor.login');
-        // return redirect()->route('vendor.login')->with($this->data("You've Logout Successfully", "success"));
     }
 
     public function profile()
@@ -295,7 +279,6 @@ class AuthController extends Controller
         $vendor->phone = $request->phone;
         $vendor->update();
         if ($vendor) {
-            // session_start();
             $_SESSION["msg"] = "Profile Update Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->back();
@@ -315,17 +298,13 @@ class AuthController extends Controller
             $vendor->fill([
                 'password' => Hash::make($request->password),
             ])->save();
-            // session_start();
             $_SESSION["msg"] = "Update Password Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('profile');
-            // return redirect()->route('profile')->with($this->data("Update Password Successfully", 'success'));
         } else {
-            // session_start();
             $_SESSION["msg"] = "Update Password Error";
             $_SESSION["alert"] = "error";
             return redirect()->back();
-            // return redirect()->back()->with($this->data("Update Password Error", 'error'));
         }
     }
 
