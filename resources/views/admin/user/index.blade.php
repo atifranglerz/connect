@@ -25,7 +25,7 @@
                                                 <th>Country</th>
                                                 <th>City</th>
                                                 <th>Address</th>
-                                                <th>Post Box</th>
+                                                {{-- <th>Post Box</th> --}}
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -48,7 +48,7 @@
                                                     <td>{{ $user->country }}</td>
                                                     <td>{{ $user->city }}</td>
                                                     <td>{{ $user->address }}</td>
-                                                    <td>{{ $user->post_box }}</td>
+                                                    {{-- <td>{{ $user->post_box }}</td> --}}
                                                     <td>
                                                         @if ($user->action == 1)
                                                             <div class="badge badge-success badge-shadow">Activate</div>

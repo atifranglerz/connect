@@ -15,7 +15,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>All Garages</h4>
-                                <a href="{{ route('admin.garage.create') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New</a>
+                                {{-- <a href="{{ route('admin.garage.create') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New</a> --}}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -45,6 +45,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $data->garage_name }}</td>
                                                 <td>
+
                                                     @foreach($data->garageCategory as $category)
                                                         {{ $category->category->name }},
                                                     @endforeach

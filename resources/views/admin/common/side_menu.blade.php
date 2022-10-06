@@ -132,9 +132,10 @@
             </li> --}}
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
-                    <i data-feather="users"></i><span>Faq</span></a>
+                    <i data-feather="users"></i><span>Home Banner Slides</span></a>
                 <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link " href="{{ url('/admin/faqs') }}">Faq</a></li>
+                    {{-- <li class=""><a class="nav-link " href="{{ url('/admin/faqs') }}">Faq</a></li> --}}
+                    <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a></li>
                 </ul>
             </li>
             <li class="menu-header">Pages</li>
@@ -143,9 +144,10 @@
             'admin.privacyPolicy.edit')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file"></i><span>Pages</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a></li>
+                    {{-- <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a></li> --}}
                     <li><a href="{{ route('admin.about.index') }}" class="nav-link">About Us</a></li>
                     <li><a href="{{ route('admin.contact.index') }}" class="nav-link">Contact Us</a></li>
+                    <li class=""><a class="nav-link " href="{{ url('/admin/faqs') }}">Faq</a></li>
                     <li><a href="{{ route('admin.term.index') }}" class="nav-link">Terms & Condition</a></li>
                     <li><a class="nav-link" href="{{ route('admin.privacyPolicy.index') }}">Privacy Policy</a></li>
                 </ul>

@@ -43,10 +43,10 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" name="address"
-                                                value="{{ old('address', $company->address) }}">
-                                            @error('address')
+                                            <label>Owner Name</label>
+                                            <input type="text" class="form-control" name="owner_name"
+                                                value="{{ old('owner_name', $company->insurance->owner_name) }}">
+                                            @error('owner_name')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -121,10 +121,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Owner Name</label>
-                                            <input type="text" class="form-control" name="owner_name"
-                                                value="{{ old('owner_name', $company->insurance->owner_name) }}">
-                                            @error('owner_name')
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" name="address"
+                                                value="{{ old('address', $company->address) }}">
+                                            @error('address')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
