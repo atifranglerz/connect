@@ -70,7 +70,7 @@
     </section>
     <section class="py-3">
         <div class="container-lg container-fluid">
-            <div class="main_row d-flex align-items-center justify-content-between flex-wrap">
+            <div class="main_row d-grid align-items-center justify-content-between flex-wrap services-section">
                 <div class="stor_add_show_wraper">
                     <div class="stor_add_show_wraper_innr">
                         <img src="{{ asset('public/assets/images/slidecaricon.svg')}}">

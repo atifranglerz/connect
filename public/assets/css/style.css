@@ -910,7 +910,6 @@ section.looking_for {
 .stor_add_show_wraper{
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 .stor_add_show_wraper>h3{
     font-size: var(--fs-18);
@@ -1610,6 +1609,13 @@ body span.select2-selection.select2-selection--single {
 .login_content_wraper {
     background-image: url(../images/gradiantbg.jpg)!important;
 }
+
+.services-section {
+    row-gap: 10%;
+    column-gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
 @media (max-width: 1199x) {
     .text-lg-right {
         text-align: right!important;
@@ -1624,6 +1630,11 @@ body span.select2-selection.select2-selection--single {
     }
 }
 @media (max-width: 767px) {
+    .services-section {
+        row-gap: 0;
+        column-gap: 16px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
     .text-sm-right {
         text-align: right!important;
     }
@@ -1632,6 +1643,9 @@ body span.select2-selection.select2-selection--single {
     }
 }
 @media (max-width: 575px) {
+    .services-section {
+        grid-template-columns: 1fr 1fr;
+    }
     .quote_info>p {
         padding-right: 0;
     }
