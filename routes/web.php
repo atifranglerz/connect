@@ -326,6 +326,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         //payment stripe
         Route::get('stripe', 'PaymentController@stripe');
         Route::post('stripe', 'PaymentController@stripePost')->name('stripe.post');
+        Route::get('orderdetail', 'ArchiveController@order');
         //profile
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');

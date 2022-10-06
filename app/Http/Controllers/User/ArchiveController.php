@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\Archive;
 use App\Models\Chat;
+use App\Models\Archive;
+use App\Mail\AboutOrder;
+use App\Models\VendorBid;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ArchiveController extends Controller
 {
@@ -46,6 +49,27 @@ class ArchiveController extends Controller
         return response()->json([
             'success' => 'file deleted successfully',
         ]);
+    }
+
+
+    public function order()
+    {
+
+        $message['title'] = "Order Placement Completion";
+        $message['order_no'] = 456464;
+        $message['order_id'] = 5;
+        $message['body1'] = "Your ";
+        $message['body2'] = "has been successfully placed. Your selected garage/ service provider will be starting the work soon. To stay updated on the status of your order please sign in to your account or stay tuned as we will communicate to you once the job is completed.";
+        $message['link1'] = url('user/order/summary', 5);
+        $message['type'] = "order";
+        $message['invoice'] = "quote";
+        $message['paid'] = 136;
+        $message['email'] = auth()->user()->email;
+        
+        $message[1] = VendorBid::with('vendordetail', 'part')->find(65);
+
+        Mail::to('amirshehzad16752@gmail.com')->send(new AboutOrder($message));
+        return 'successfully';
     }
 
 
