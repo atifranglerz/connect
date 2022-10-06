@@ -20,6 +20,20 @@ toastr.options = {
 }
 
 $(function() {
+    setTimeout(() => {
+        $('input:file').change(function(){
+            for(var i=0; i< this.files.length; i++){
+                var file = this.files[i];
+                name = file.name.toLowerCase();
+                MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                size = file.size;
+                type = file.type;
+            }
+            if(type==="application/pdf") {
+                $('.uploaded-image:last-child img').attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
+            }
+        });
+    }, 500);
     if($('div').hasClass('text-danger')) {
         toastr.error("Failed! You've to fill the Required Fields");
     }

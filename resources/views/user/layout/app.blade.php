@@ -315,10 +315,10 @@
         $(".cheque-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload<b class="small"> ({{__('msg.Required')}}) (Format: png, jpg only)</b></p><input name="cheque_image" type="file" size="60"></label>');
 
         $('.input-images').imageUploader({
-            extensions: ['.png', '.jpg'],
+            extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
             maxFiles:5,
         });
-        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Format: png, jpg only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
         $('.input-images-2').imageUploader({
             extensions: ['.pdf'],
             mimes: ['application/pdf'],
@@ -326,10 +326,11 @@
         });
         $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Required')}})</p><input type="file" name="files" size="60" ></label>   ');
         $('.input-images-3').imageUploader({
-            extensions: ['.png', '.jpg'],
+            extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+            mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
             maxFiles:5,
         });
-        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpg only)</b></p><input type="file" name="document[]" size="60" ></label>   ');
+        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>   ');
         $('.image-uploader-edit').imageUploader();
         $(".image-uploader-edit>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your Picture To Update</p><input type="file" name="profile" size="60" ></label>');
         $(document).on('click', '#menuToggle', function () {
@@ -541,115 +542,110 @@
     });
 </script>
 <script>
-        setInterval(ajaxCall, 1000);
-            function ajaxCall() {
-                var id = $('.favorite.active').attr('id');
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    url: "{{ route('user.online.status') }}",
-                    data: {
-                        'id': id
-                    },
-                    success: function(response) {
-                        // console.log(response);
-                        $('#notify').html(response.msg);
-                        $('.cahtting_messages').append(response.message);
-                        if(response.data!=''){
-                            setTimeout(() => {
-                                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
-                            }, 100);
-                        }
+    setInterval(ajaxCall, 1000);
+        function ajaxCall() {
+            var id = $('.chatted.active').attr('id');
+            var userType = $('.chatted.active').attr('value');
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('user.online.status') }}",
+                data: {
+                    'id': id,
+                    'userType': userType
+                },
+                success: function(response) {
+                    $('#notify').html(response.msg);
+                    $('.cahtting_messages').append(response.message);
+                    if(response.data!=''){
+                        setTimeout(() => {
+                            $(".cahtting_messages").scrollTop($(".cahtting_messages")[0].scrollHeight);
+                        }, 100);
                     }
-                });
-            }
-
-        setInterval(ajaxC, 10000);
-            function ajaxC() {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    url: "{{ route('user.notification') }}",
-                    data: {
-                        'id': 1
-                    },
-                    success: function(response) {
-                        // console.log(response);
-                        $('#notfication').html(response.unread);
-                        $('#notification_tolltip').empty();
-                        $('#notification_tolltip').append(response.notification);
-                    }
-                });
-            }
-
-
-            $(document).on('click', '.notification', function() {
-                var id = $(this).attr('id');
-                console.log(id);
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    url: "{{ route('user.status.notification') }}",
-                    data: {
-                        'id': id
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        $('#notfication').html(response.unread);
-                        $('#notification_tolltip').empty();
-                        $('#notification_tolltip').append(response.notification);
-                    }
-                });
+                }
             });
-    </script>
-    <script>
-        $('#flexSwitchCheckDefault').on('click', function() {
-            if ($(this).prop('checked') == true) {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    url: "{{url('language/en')}}",
-                    data: {
-                        'id': 1
-                    },
-                    success: function(response) {
-                        window.location.reload();
-                        // console.log(response);
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    url: "{{url('language/arb')}}",
-                    data: {
-                        'id': 1
-                    },
-                    success: function(response) {
-                         window.location.reload();
-                        // console.log(response);
-                    }
-                });
-            }
+        }
+
+    setInterval(ajaxC, 1000);
+        function ajaxC() {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('user.notification') }}",
+                data: {
+                    'id': 1
+                },
+                success: function(response) {
+                    $('#notfication').html(response.unread);
+                    $('#notification_tolltip').empty();
+                    $('#notification_tolltip').append(response.notification);
+                }
+            });
+        }
+
+
+        $(document).on('click', '.notification', function() {
+            var id = $(this).attr('id');
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('user.status.notification') }}",
+                data: {
+                    'id': id
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('#notfication').html(response.unread);
+                    $('#notification_tolltip').empty();
+                    $('#notification_tolltip').append(response.notification);
+                }
+            });
         });
-    </script>
-
-
-
+</script>
+<script>
+    $('#flexSwitchCheckDefault').on('click', function() {
+        if ($(this).prop('checked') == true) {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{url('language/en')}}",
+                data: {
+                    'id': 1
+                },
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        } else {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{url('language/arb')}}",
+                data: {
+                    'id': 1
+                },
+                success: function(response) {
+                     window.location.reload();
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
