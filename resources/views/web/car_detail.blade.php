@@ -239,7 +239,11 @@
                     </div>
                     <div class="d-grid gap-2 mt-3">
                         @if (Auth::guard('web')->check())
-                            <a @if (isset($ad->vendor_id)) href="{{ url('user/chat/' . $ad->vendor_id) }}" @else onclick="user()" href="#" @endif
+                            <a @if (isset($ad->vendor_id)) href="{{ url('user/chat/' . $ad->vendor_id) }}" @else @if ($ad->user_id == Auth::guard('web')->id())
+                                onclick="customer()"
+                            @else
+                            href="{{ url('user/customerChat/' . $ad->user_id) }}"
+                            @endif @endif
                                 class="btn btn-primary get_appointment">{{__('msg.CONTACT VIA MESSAGE')}}
                                 <img src="{{ asset('public/assets/images/messageicon.svg') }}">
                             </a>
@@ -297,8 +301,8 @@
             toastr.warning('Please login first');
         }
 
-        function user() {
-            toastr.warning('You can not communicate to other Customer');
+        function customer() {
+            toastr.warning("You can't communicate to Your self");
         }
 
         function vendor() {

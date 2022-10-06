@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             TermSeeder::class,
             privacyPolicySeeder::class,
-            Percentage::class,
+            PercentageSeeder::class,
         ]);
     }
 }

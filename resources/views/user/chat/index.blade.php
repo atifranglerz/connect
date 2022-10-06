@@ -15,42 +15,124 @@
             </div>
             <div id="users" class="main_contact mt-3">
                 @foreach ($vendors as $data)
-                    <a href="#" class="favorite d-flex align-items-center" id="{{ $data->vendor->id }}">
-                        <?php
-                        $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['vendor_sender_id', $data->vendor_id], ['seen', 0]])->count('seen');
-                        $vendor = \App\Models\Vendor::where('id', $data->vendor->id)->first();
-                        $gettime = strtotime($vendor->online_status) + 8;
-                        $now = strtotime(Carbon\Carbon::now());
-                        ?>
-                        <div class="inbox_contact justify-content-between">
-                            <div class="position-relative contact_img">
-                                <p id="userNotify">{{ $unread }}</p>
-                                <img src="{{ asset($data->vendor->image) }}">
-                                @if ($now < $gettime)
-                                    <h1 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
-                                        class="online-offline-dot">.</h1>
-                                @else
-                                    <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
-                                        class="online-offline-dot">.</h1>
-                                @endif
-                            </div>
-                            <div class="name_of_contact">
-                                <p class="mb-0">{{ $data->vendor->name }}</p>
-                            </div>
-                            <div class="chat_toggle_button">
-                                <a href="#" id="del_toggle"><span
-                                        class="bi bi-three-dots-vertical text-white"></span></a>
-                                <div class="submenue shadow d-none" id="delet_user_toggle">
-                                    <ul>
-                                        <li><a href="#" class="chatted_delete d-block" id="{{ $data->vendor->id }}">
-                                                <span class="fa fa-trash text-danger" aria-hidden="true"
-                                                    style="margin-right: 8px"></span>
-                                                {{ __('msg.delete') }}</a></li>
-                                    </ul>
+                    @if (isset($data->vendor_id))
+                        <a href="#" class="favorite chatted d-flex align-items-center" id="{{ $data->vendor->id }}">
+                            <?php
+                            $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['vendor_sender_id', $data->vendor_id], ['seen', 0]])->count('seen');
+                            $vendor = \App\Models\Vendor::where('id', $data->vendor->id)->first();
+                            $gettime = strtotime($vendor->online_status) + 8;
+                            $now = strtotime(Carbon\Carbon::now());
+                            ?>
+                            <div class="inbox_contact justify-content-between">
+                                <div class="position-relative contact_img">
+                                    <p id="userNotify">{{ $unread }}</p>
+                                    <img src="{{ asset($data->vendor->image) }}">
+                                    @if ($now < $gettime)
+                                        <h1 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
+                                            class="online-offline-dot">.</h1>
+                                    @else
+                                        <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
+                                            class="online-offline-dot">.</h1>
+                                    @endif
+                                </div>
+                                <div class="name_of_contact">
+                                    <p class="mb-0">{{ $data->vendor->name }}</p>
+                                </div>
+                                <div class="chat_toggle_button">
+                                    <a href="#" id="del_toggle"><span
+                                            class="bi bi-three-dots-vertical text-white"></span></a>
+                                    <div class="submenue shadow d-none" id="delet_user_toggle">
+                                        <ul>
+                                            <li><a href="#" class="chatted_delete d-block" value="vendor"
+                                                    id="{{ $data->vendor->id }}"> <span class="fa fa-trash text-danger"
+                                                        aria-hidden="true" style="margin-right: 8px"></span>
+                                                    {{ __('msg.delete') }}</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @else
+                        @if ($data->customer_id == Auth::guard('web')->id())
+                            <a href="#" class="favoriteUser chatted d-flex align-items-center"
+                                id="{{ $data->customerchat->id }}">
+                                <?php
+                                $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['customer_sender_id', $data->customer_chat], ['seen', 0]])->count('seen');
+                                $vendor = \App\Models\User::where('id', $data->customerchat->id)->first();
+                                $gettime = strtotime($vendor->online_status) + 8;
+                                $now = strtotime(Carbon\Carbon::now());
+                                ?>
+                                <div class="inbox_contact justify-content-between">
+                                    <div class="position-relative contact_img">
+                                        <p id="userNotify">{{ $unread }}</p>
+                                        <img src="{{ asset($data->customerchat->image) }}">
+                                        @if ($now < $gettime)
+                                            <h1 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
+                                                class="online-offline-dot">.</h1>
+                                        @else
+                                            <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
+                                                class="online-offline-dot">.</h1>
+                                        @endif
+                                    </div>
+                                    <div class="name_of_contact">
+                                        <p class="mb-0">{{ $data->customerchat->name }}</p>
+                                    </div>
+                                    <div class="chat_toggle_button">
+                                        <a href="#" id="del_toggle"><span
+                                                class="bi bi-three-dots-vertical text-white"></span></a>
+                                        <div class="submenue shadow d-none" id="delet_user_toggle">
+                                            <ul>
+                                                <li><a href="#" class="chatted_delete d-block" value="customer"
+                                                        id="{{ $data->customerchat->id }}"> <span
+                                                            class="fa fa-trash text-danger" aria-hidden="true"
+                                                            style="margin-right: 8px"></span> {{ __('msg.delete') }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @else
+                            <a href="#" class="favoriteUser chatted d-flex align-items-center"
+                                id="{{ $data->customer->id }}">
+                                <?php
+                                $unread = \App\Models\Chat::where([['customer_receiver_id', auth()->user()->id], ['customer_sender_id', $data->customer_id], ['seen', 0]])->count('seen');
+                                $vendor = \App\Models\User::where('id', $data->customer->id)->first();
+                                $gettime = strtotime($vendor->online_status) + 8;
+                                $now = strtotime(Carbon\Carbon::now());
+                                ?>
+                                <div class="inbox_contact justify-content-between">
+                                    <div class="position-relative contact_img">
+                                        <p id="userNotify">{{ $unread }}</p>
+                                        <img src="{{ asset($data->customer->image) }}">
+                                        @if ($now < $gettime)
+                                            <h1 style="color: rgb(17, 243, 17); font-size: 100px;position: absolute;right: -3px;top: 0"
+                                                class="online-offline-dot">.</h1>
+                                        @else
+                                            <h1 style="color:white; font-size: 100px;position: absolute;right: -3px;top: 0"
+                                                class="online-offline-dot">.</h1>
+                                        @endif
+                                    </div>
+                                    <div class="name_of_contact">
+                                        <p class="mb-0">{{ $data->customer->name }}</p>
+                                    </div>
+                                    <div class="chat_toggle_button">
+                                        <a href="#" id="del_toggle"><span
+                                                class="bi bi-three-dots-vertical text-white"></span></a>
+                                        <div class="submenue shadow d-none" id="delet_user_toggle">
+                                            <ul>
+                                                <li><a href="#" class="chatted_delete d-block" value="customer"
+                                                        id="{{ $data->customer->id }}"> <span
+                                                            class="fa fa-trash text-danger" aria-hidden="true"
+                                                            style="margin-right: 8px"></span> {{ __('msg.delete') }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -66,6 +148,8 @@
                 <form enctype="multipart/form-data" id="chatForm">
                     @csrf
                     <div class="form-floating d-flex align-items-center form_sending_wraper">
+                        <input type="hidden" name="type"
+                            @if (isset($type)) value="{{ $type }}" @endif id="chattype">
                         <input type="hidden" @if (isset($id)) value="{{ $id }}" @endif
                             name="receiver_id" id="receiver_id">
                         <textarea class="form-control enterKey" name="body" id="typeMsg" placeholder="Say Somthing"></textarea>
@@ -79,11 +163,12 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="sec_main_heading text-center mb-0">{{__('msg.Move to Archive')}}</h5>
+                        <h5 class="sec_main_heading text-center mb-0">{{ __('msg.Move to Archive') }}</h5>
                         <a type="button" class="heading-color" data-bs-dismiss="modal"><span
                                 class="fa fa-times"></span></a>
                     </div>
@@ -94,13 +179,15 @@
                                 @csrf
                                 <div class="row">
 
-                                    <input type="hidden" name="msg_id" value="" class="form-control" id="msg_id">
+                                    <input type="hidden" name="msg_id" value="" class="form-control"
+                                        id="msg_id">
                                     <div class="col-12 mb-3 signup_vendo">
-                                        <h5 class="mb-0 heading-color">{{__('msg.File Name')}}</h5>
+                                        <h5 class="mb-0 heading-color">{{ __('msg.File Name') }}</h5>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="text" name="file_name" value="" class="form-control"
-                                            id="file_name" placeholder="{{__('msg.File Name')}} ({{__('msg.Required')}})" required>
+                                            id="file_name"
+                                            placeholder="{{ __('msg.File Name') }} ({{ __('msg.Required') }})" required>
                                         @error('file_name')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -109,7 +196,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-primary moveArchive disabled" style="min-height: unset">{{__('msg.Move')}}</a>
+                        <a href="#" class="btn btn-primary moveArchive disabled"
+                            style="min-height: unset">{{ __('msg.Move') }}</a>
                     </div>
                     </form>
                 </div>
@@ -122,7 +210,7 @@
     <script>
         $(function() {
             $(document).on('keyup', '#file_name', function() {
-                if(!$(this).val()=="") {
+                if (!$(this).val() == "") {
                     $('.moveArchive').removeClass('disabled');
                 } else {
                     $('.moveArchive').addClass('disabled');
@@ -151,8 +239,7 @@
 
         $(document).on('click', '.favorite', function() {
             var id = $(this).attr('id');
-            $(".favorite").removeClass('active');
-            // console.log(id);
+            $(".chatted").removeClass('active');
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -164,11 +251,44 @@
                     'id': id
                 },
                 success: function(response) {
-                    // console.log(response);
+                    console.log(response);
                     $('#sendMessageForm').removeClass('d-none');
                     $('#receiver_id').val(response.id);
+                    $('#chattype').val(response.type);
                     $('#users').empty();
                     $('#users').append(response.vendors);
+                    $("#" + response.id).addClass('active');
+                    $("#" + id).addClass('active');
+                    $('#append_msg').empty();
+                    $('#append_msg').append(response.message);
+                    $('#notify').html(response.unread);
+                    setTimeout(() => {
+                        $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
+                            .scrollHeight);
+                    }, 10);
+                }
+            });
+        });
+        $(document).on('click', '.favoriteUser', function() {
+            var id = $(this).attr('id');
+            $(".chatted").removeClass('active');
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('user.chat.favoriteUser') }}",
+                data: {
+                    'id': id
+                },
+                success: function(response) {
+                    $('#sendMessageForm').removeClass('d-none');
+                    $('#receiver_id').val(response.id);
+                    $('#chattype').val(response.type);
+                    $('#users').empty();
+                    $('#users').append(response.vendors);
+                    $("#" + response.id).addClass('active');
                     $("#" + id).addClass('active');
                     $('#append_msg').empty();
                     $('#append_msg').append(response.message);
@@ -183,34 +303,64 @@
 
         $(document).ready(function() {
             var chatview = '<?php echo $chatview; ?>'
+            var type = '<?php echo $type; ?>'
             var id = chatview;
             if (id != null) {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    url: "{{ route('user.chat.favorite') }}",
-                    data: {
-                        'id': id
-                    },
-                    success: function(response) {
-                        // console.log(response);
-                        $('#sendMessageForm').removeClass('d-none');
-                        $('#receiver_id').val(response.id);
-                        $('#users').empty();
-                        $('#users').append(response.vendors);
-                        $("#" + id).addClass('active');
-                        $('#append_msg').empty();
-                        $('#append_msg').append(response.message);
-                        $('#notify').html(response.unread);
-                        setTimeout(() => {
-                            $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
-                                .scrollHeight);
-                        }, 10);
-                    }
-                });
+                if (type == 'vendor') {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                            'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+                        url: "{{ route('user.chat.favorite') }}",
+                        data: {
+                            'id': id
+                        },
+                        success: function(response) {
+                            $('#sendMessageForm').removeClass('d-none');
+                            $('#receiver_id').val(response.id);
+                            $('#chattype').val(response.type);
+                            $('#users').empty();
+                            $('#users').append(response.vendors);
+                            $("#" + id).addClass('active');
+                            $('#append_msg').empty();
+                            $('#append_msg').append(response.message);
+                            $('#notify').html(response.unread);
+                            setTimeout(() => {
+                                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
+                                    .scrollHeight);
+                            }, 10);
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                            'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+                        url: "{{ route('user.chat.favoriteUser') }}",
+                        data: {
+                            'id': id
+                        },
+                        success: function(response) {
+                            $('#sendMessageForm').removeClass('d-none');
+                            $('#receiver_id').val(response.id);
+                            $('#chattype').val(response.type);
+                            $('#users').empty();
+                            $('#users').append(response.vendors);
+                            $("#" + id).addClass('active');
+                            $('#append_msg').empty();
+                            $('#append_msg').append(response.message);
+                            $('#notify').html(response.unread);
+                            setTimeout(() => {
+                                $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
+                                    .scrollHeight);
+                            }, 10);
+                        }
+                    });
+                }
             }
         });
 
@@ -224,11 +374,8 @@
                     data: new FormData(this),
                     async: false,
                     success: function(response) {
-                        console.log(response);
-                        $('#users').empty();
                         $("#typeMsg").val("");
                         $("#attachment").val("");
-                        $('#users').append(response.vendors);
                         $("#" + c_id).addClass('active');
                         $('#append_msg').empty();
                         $('#append_msg').append(response.message);
@@ -240,10 +387,10 @@
             });
         });
 
-        setInterval(ajaxC, 10000);
+        setInterval(ajaxC, 5000);
 
         function ajaxC() {
-            var id = $('.favorite.active').attr('id');
+            var id = $('.chatted.active').attr('id');
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -255,7 +402,6 @@
                     'id': id
                 },
                 success: function(response) {
-                    console.log(response);
                     $('#users').empty();
                     $('#users').append(response.vendors);
                     $("#" + id).addClass('active');
@@ -264,9 +410,8 @@
         }
 
         $(document).on('click', '.MobileContactToggler', function() {
-
+            var userType = $('.chatted.active').attr('value');
             let id = $('#receiver_id').val();
-            console.log(id);
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -275,10 +420,10 @@
                 },
                 url: "{{ route('user.chat.all_delete') }}",
                 data: {
-                    'id': id
+                    'id': id,
+                    'userType': userType
                 },
                 success: function(response) {
-                    console.log(response);
                     $('#append_msg').empty();
                     $('#append_msg').append(response.message);
                 }
@@ -307,7 +452,6 @@
                     'file_name': file_name,
                 },
                 success: function(response) {
-                    // console.log(response);
                     $("#exampleModal").modal('hide');
                     $("#" + msg_id).addClass('d-none');
                     $('#file_name').val(' ');
@@ -321,6 +465,7 @@
         $(document).on('click', '.delete', function() {
             var msg_id = $(this).attr('id');
             let id = $('#receiver_id').val();
+            var userType = $('.chatted.active').attr('value');
 
             $.ajax({
                 type: "POST",
@@ -331,23 +476,18 @@
                 url: "{{ route('user.chat.delete') }}",
                 data: {
                     'msg_id': msg_id,
+                    'userType': userType,
                     'id': id
                 },
                 success: function(response) {
-                    console.log(response);
-                    $('#append_msg').empty();
-                    $('#append_msg').append(response.message);
-                    setTimeout(() => {
-                        $(".cahtting_messages").scrollTop($(".cahtting_messages")[0]
-                            .scrollHeight);
-                    }, 10);
+                    $("#" + msg_id + "delete").addClass('d-none');
                 }
             });
         });
 
         $(document).on('click', '.chatted_delete', function() {
             var id = $(this).attr('id');
-            console.log(id);
+            var userType = $(this).attr('value');
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -356,7 +496,8 @@
                 },
                 url: "{{ route('user.chat.chatted_delete') }}",
                 data: {
-                    'id': id
+                    'id': id,
+                    'userType': userType
                 },
                 success: function(response) {
                     console.log(response);

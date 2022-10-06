@@ -1,6 +1,6 @@
 <div>
     @foreach($customer as $data)
-    <a href="#" class="favorite d-flex align-items-center" id="{{$data->customer->id}}">
+    <a href="#" class="favorite chatted d-flex align-items-center" id="{{$data->customer->id}}">
         <?php
             $unread = \App\Models\Chat::where([['vendor_receiver_id',auth()->user()->id],['customer_sender_id',$data->customer_id],['seen',0]])->count('seen');
             $user = \App\Models\User::where('id',$data->customer->id)->first();
