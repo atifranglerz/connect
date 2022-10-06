@@ -30,7 +30,7 @@ $(function() {
                 type = file.type;
             }
             if(type==="application/pdf") {
-                $('.uploaded-image:last-child img').attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
+                $('input[accept=".pdf,.jpeg,.jpg,.png,.PNG,.heic"] + .uploaded .uploaded-image:last-child img').attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
             }
         });
     }, 500);
