@@ -21,16 +21,14 @@
                                                 <th>Owner Name</th>
                                                 <th>Model</th>
                                                 <th>Company</th>
-                                                <th>year</th>
+                                                <th>Year</th>
                                                 <th>Price</th>
                                                 <th>City</th>
                                                 <th>Country</th>
                                                 <th>Mileage</th>
                                                 <th>Color</th>
-                                                <th>status</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
-                                                {{-- <th>Approved</th>
-                                                <th>Rejected</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -43,8 +41,11 @@
                                                     <td>
                                                         <img src="{{ asset($image[0]) }}" alt="" width="80px">
                                                     </td>
-                                                    <td></td>
-                                                    {{-- <td>@if (isset($ad->user[0])) {{$ad->user->name}} @else{{$ad->vendor->name}} @endif</td> --}}
+                                                    <td>
+                                                        @if (isset($ad->user_id))
+                                                            {{ $ad->user->name }} @else{{ $ad->vendor->name }}
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $ad->model }}</td>
                                                     <td>{{ $ad->company->company }}</td>
                                                     <td>{{ $ad->modelYear->model_year }}</td>
@@ -53,96 +54,18 @@
                                                     <td>{{ $ad->country }}</td>
                                                     <td>{{ $ad->mileage }}</td>
                                                     <td>{{ $ad->color }}</td>
-                                                    <td>{{ $ad->status }}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.ads.show', $ad->id) }}"
-                                                            class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                width="24" height="24" viewBox="0 0 24 24"
-                                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-edit">
-                                                                <path
-                                                                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
-                                                                </path>
-                                                                <path
-                                                                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
-                                                                </path>
-                                                            </svg></a>
-                                                        {{-- <a href="{{ route('admin.ads.edit',$ad->id) }}"
-                                                            class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                width="24" height="24" viewBox="0 0 24 24"
-                                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-edit">
-                                                                <path
-                                                                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
-                                                                </path>
-                                                                <path
-                                                                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
-                                                                </path>
-                                                            </svg>
-                                                        </a> --}}
-
-                                                        <a>
-                                                            {{-- <i class="fas fa-trash text-danger glyphicon glyphicon-trash"
-                                                                   data-toggle="tooltip" data-placement="top" title="delete"
-                                                                 data-id="{{ $content->id }}"></i> --}}
-                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                data-id="{{ $ad->id }}"
-                                                                class="fas fa-trash text-danger glyphicon glyphicon-trash"
-                                                                width="24" height="24" viewBox="0 0 24 24"
-                                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-trash-2">
-                                                                <polyline points="3 6 5 6 21 6"></polyline>
-                                                                <path
-                                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                                </path>
-                                                                <line x1="10" y1="11" x2="10"
-                                                                    y2="17"></line>
-                                                                <line x1="14" y1="11" x2="14"
-                                                                    y2="17"></line>
-                                                            </svg>
-                                                        </a>
-                                                        <form id="del_form{{ $ad->id }}" {{-- action="{{ route('admin.ads.destroy', $ad->id ) }}" --}}
+                                                        <div class="badge badge-shadow @if ($ad->status=='Pending') badge-warning @elseif ($ad->status=='Approved') badge-success @else badge-danger @endif">@if ($ad->status=='Pending') Pending @elseif ($ad->status=='Approved') Approved @else Rejected @endif</div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ url('admin/status-request-ad/' . $ad->id) }}" class="btn @if ($ad->status=='Pending') btn-warning @elseif ($ad->status=='Approved') btn-success @else btn-danger @endif"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-toggle-left"> <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle @if ($ad->status == 'Approved') cx="16" @else cx="8" @endif  cy="12" r="3"> </circle> </svg></a>
+                                                        <a href="{{ route('admin.ads.show', $ad->id) }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"> <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"> </path> <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"> </path></svg></a>
+                                                        <a><svg xmlns="http://www.w3.org/2000/svg" data-id="{{ $ad->id }}" class="fas fa-trash text-danger glyphicon glyphicon-trash" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"> <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"> </path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg></a>
+                                                        <form id="del_form{{ $ad->id }}"
                                                             action="{{ url('admin/delete-ads/' . $ad->id) }}">
                                                             @csrf
                                                         </form>
-
                                                     </td>
-                                                    {{-- <td>
-                                                        @if ($ad->status == 'Pending')
-                                                            <a><button class="btn btn-primary glyphicon glyphicon-check"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Approval"
-                                                                    data-id="{{ $ad->id }}">Approved</button></a>
-                                                            <form id="approve_form{{ $ad->id }}"
-                                                                action="{{ url('admin/approved-request-ad/' . $ad->id) }}"
-                                                                method="get">
-                                                                @csrf
-                                                            </form>
-                                                        @elseif($ad->status == 'Approved')
-                                                            <b class="text-success">Approved</b>
-                                                        @else
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($ad->status == 'Pending')
-                                                            <a><button
-                                                                    class="btn btn-danger glyphicon glyphicon-update-status"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Rejected"
-                                                                    data-id="{{ $ad->id }}">Rejected</button></a>
-                                                            <form id="dell_form{{ $ad->id }}"
-                                                                action="{{ url('admin/reject-request-ad/' . $ad->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                            </form>
-                                                        @elseif($ad->status == 'Rejected')
-                                                            <b class="text-danger">Rejected</b>
-                                                        @else
-                                                        @endif
-                                                    </td> --}}
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -178,35 +101,35 @@
             });
         });
 
-        $(document).on('click', '.glyphicon-check', function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to approved it!",
-                icon: 'success',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Approved it!'
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('approve_form' + $(this).data('id')).submit();
-                }
-            });
-        });
-        $(document).on('click', '.glyphicon-update-status', function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to reject this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, reject it!'
-            }).then((result) => {
-                if (result.value) {
-                    document.getElementById('dell_form' + $(this).data('id')).submit();
-                }
-            });
-        });
+        // $(document).on('click', '.glyphicon-check', function() {
+        //     Swal.fire({
+        //         title: 'Are you sure?',
+        //         text: "You want to approved it!",
+        //         icon: 'success',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Yes, Approved it!'
+        //     }).then((result) => {
+        //         if (result.value) {
+        //             document.getElementById('approve_form' + $(this).data('id')).submit();
+        //         }
+        //     });
+        // });
+        // $(document).on('click', '.glyphicon-update-status', function() {
+        //     Swal.fire({
+        //         title: 'Are you sure?',
+        //         text: "You won't be able to reject this!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Yes, reject it!'
+        //     }).then((result) => {
+        //         if (result.value) {
+        //             document.getElementById('dell_form' + $(this).data('id')).submit();
+        //         }
+        //     });
+        // });
     </script>
 @endsection

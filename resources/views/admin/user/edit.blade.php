@@ -11,7 +11,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="card-header">
-                                    <h4>Edit User</h4>
+                                    <h4>Edit Customer</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -52,21 +52,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label>Post Box</label>
-                                            <input type="number" class="form-control" name="post_box"
-                                                value="{{ old('post_box', $user->post_box) }}">
-                                            @error('post_box')
+                                            <label>Country</label>
+                                            <input type="text" class="form-control" name="country" disabled
+                                                value="United Arab Emirates">
+                                            @error('country')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="city" class="form-label">City</label>
-                                            <select class="form-control selectric category" multiple="" name="city">
+                                            <select class="form-control selectric category" name="city">
                                                 <option selected disabled value="">{{ __('msg.Select City') }}
                                                 </option>
                                                 <option value="Dubai" @if ($user->city == 'Dubai') selected @endif
                                                     @if (old('city') == 'Dubai') selected @endif>
-                                                    {{ __('msg.Dubai') }}></option>
+                                                    {{ __('msg.Dubai') }}</option>
                                                 <option value="Abu Dhabi" @if ($user->city == 'Abu Dhabi') selected @endif
                                                     @if (old('city') == 'Abu Dhabi') selected @endif>
                                                     {{ __('msg.Abu Dhabi') }}</option>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary" type="submit">Update User</button>
+                                    <button class="btn btn-primary" type="submit">Update Customer</button>
                                 </div>
                             </form>
                         </div>

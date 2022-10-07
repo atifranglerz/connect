@@ -17,19 +17,17 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
+                                                <th>Company Name</th>
+                                                <th>Owner Name</th>
                                                 <th>Image</th>
-                                                <th>Role</th>
+                                                <th>Email</th>
                                                 <th>Phone</th>
-                                                <th>Country</th>
                                                 <th>City</th>
                                                 <th>Address</th>
                                                 <th>Post Box</th>
                                                 <th>ID Card</th>
-                                                <th>Image License</th>
-                                                <th>Owner Name</th>
                                                 <th>Trading License</th>
+                                                <th>License Number</th>
                                                 <th>Billing Area</th>
                                                 <th>Billing City</th>
                                                 <th>Billing Address</th>
@@ -42,23 +40,32 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $company->name }}</td>
+                                                    <td>{{ $company->insurance->owner_name }}</td>
+                                                    <td>
+                                                        <a target="_black" href="{{ asset($company->image) }}">
+                                                            <img alt="image"
+                                                                @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                                style="height: 50px;width:50px"></a>
+                                                    </td>
                                                     <td>{{ $company->email }}</td>
-                                                    <td><img alt="image"
-                                                            @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                            style="height: 50px;width:50px"></td>
-                                                    <td>{{ $company->type }}</td>
                                                     <td>{{ $company->phone }}</td>
-                                                    <td>{{ $company->country }}</td>
                                                     <td>{{ $company->city }}</td>
                                                     <td>{{ $company->address }}</td>
                                                     <td>{{ $company->post_box }}</td>
-                                                    <td><img alt="image"
-                                                            @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                            style="height: 50px;width:50px"></td>
-                                                    <td><img alt="image"
-                                                            @if ($company->insurance->image_license) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                            style="height: 50px;width:50px"></td>
-                                                    <td>{{ $company->insurance->owner_name }}</td>
+                                                    <td>
+                                                        <a target="_black"
+                                                            href="{{ asset($company->insurance->id_card) }}">
+                                                            <img alt="image"
+                                                                @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                                style="height: 50px;width:50px"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_black"
+                                                            href="{{ asset($company->insurance->image_license) }}">
+                                                            <img alt="image"
+                                                                @if ($company->insurance->image_license) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                                style="height: 50px;width:50px"></a>
+                                                    </td>
                                                     <td>{{ $company->insurance->trading_license }}</td>
                                                     <td>{{ $company->insurance->billing_area }}</td>
                                                     <td>{{ $company->insurance->billing_city }}</td>
@@ -99,7 +106,7 @@
                                                                 </svg></a>
                                                         @else
                                                             <a href="{{ route('admin.insurance-company.deactivate', ['id' => $company->id]) }}"
-                                                                class="btn btn-primary">
+                                                                class="btn btn-success">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
                                                                     stroke="currentColor" stroke-width="2"

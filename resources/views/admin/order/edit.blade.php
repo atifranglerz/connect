@@ -53,38 +53,34 @@
                                     <div id="print_of_order">
                                         <div class="row d-flex">
                                             <div class="col-md-3 col-lg-3 col-sm-3">
-                                                <h4 class="dark-pink">{{ ucwords($order->userbid->user->name) }}</h4>
-                                                {{-- <ul>
-                                                    @foreach ($order->orderProducts as $product)
-                                                        <li>{{$product->product->name}} X {{$product->qty}}</li>
-                                                    @endforeach
-                                                </ul> --}}
+                                                <h6 class="dark-pink">Customer Name</h6>
+                                                <span class="dark-pink">{{ ucwords($order->userbid->user->name) }}</span>
                                             </div>
                                             <div class="col-md-3  col-lg-3 col-sm-3">
-                                                <h6 class="dark-pink">Contact: </h6>
+                                                <h6 class="dark-pink">Contact</h6>
                                                 <span>{{ $order->userbid->user->phone }}</span>
                                             </div>
                                             <div class="col-md-3  col-lg-3 col-sm-3">
-                                                <h6>Address:</h6>
+                                                <h6>Address</h6>
                                                 <span>{{ $order->customer_address }}</span>
                                             </div>
-                                            <div class="col-md-3 d-flex  col-lg-3 col-sm-3" id="status">
+                                            <div class="col-md-3   col-lg-3 col-sm-3" id="status">
                                                 <h6 class="dark-pink">Order Status</h6>
                                                 @if ($order->status == 'pending')
                                                     <span class="badge badge-warning"
-                                                        style="height:40%;margin-top: 4px;font-size: 11px;">Pending</span>
+                                                        style="height:45%;margin-top: 4px;font-size: 11px;">Pending</span>
                                                 @elseif($order->status == 'processing')
                                                     <span class="badge badge-warning"
-                                                        style="height:40%;margin-top: 4px;font-size: 11px;">Processing</span>
+                                                        style="height:45%;margin-top: 4px;font-size: 11px;">Processing</span>
                                                 @elseif($order->status == 'shipped')
                                                     <span class="badge badge-warning"
-                                                        style="height:40%;margin-top: 4px;font-size: 11px;">Shipped</span>
+                                                        style="height:45%;margin-top: 4px;font-size: 11px;">Shipped</span>
                                                 @elseif($order->status == 'complete')
                                                     <span class="badge badge-success"
-                                                        style="height:40%;margin-top: 4px;font-size: 11px;">Completed</span>
+                                                        style="height:45%;margin-top: 4px;font-size: 11px;">Completed</span>
                                                 @elseif($order->status == 'cancelled')
                                                     <span class="badge badge-danger"
-                                                        style="height:40%;margin-top: 4px;font-size: 11px;">Cancelled</span>
+                                                        style="height:45%;margin-top: 4px;font-size: 11px;">Cancelled</span>
                                                 @else<span>Not Found</span>
                                                 @endif
                                             </div>

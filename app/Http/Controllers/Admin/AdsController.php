@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Mail\SendApprovedMail;
 use App\Models\Ads;
 use App\Models\Company;
 use App\Models\ModelYear;
 use Illuminate\Http\Request;
-use App\Mail\SendApprovedMail;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class AdsController extends Controller
@@ -20,8 +19,8 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::with('company', 'modelYear','user','vendor')->orderBy('id','desc')->get();
-        return view('admin.ads.index',compact('ads'));
+        $ads = Ads::with('company', 'modelYear', 'user', 'vendor')->orderBy('id', 'desc')->get();
+        return view('admin.ads.index', compact('ads'));
     }
 
     /**
@@ -56,7 +55,7 @@ class AdsController extends Controller
         $ads = Ads::with('company', 'modelYear')->find($id);
         $company = Company::all();
         $year = ModelYear::all();
-        return view('admin.ads.edit',compact('ads','company','year'));
+        return view('admin.ads.edit', compact('ads', 'company', 'year'));
 
     }
 
@@ -106,13 +105,8 @@ class AdsController extends Controller
         $ads->city = $request->city;
         $ads->country = $request->country;
         $ads->description = $request->description;
-        // $ads->user_id = Auth::id();
         $ads->update();
-        // session_start();
-        // $_SESSION["msg"] = "Ad Updated Successfully";
-        // $_SESSION["alert"] = "success";
-        // return redirect()->route('user.ads.index');
-        return $this->message($ads, 'admin.ads.index', 'Ad Updated Successfully', '  Ad is not update Error');
+        return $this->message($ads, 'admin.ads.index', 'Ad Successfully Updated', '  Ad is not update Error');
 
     }
 
@@ -126,21 +120,32 @@ class AdsController extends Controller
     {
         $ad = Ads::find($id);
         $ad->delete();
-        return redirect()->back()->with($this->data("Ads delete successfully", 'success'));
+        return redirect()->back()->with($this->data("Ads Successfully Deleted", 'success'));
 
+    }
 
+    public function statusAds($id)
+    {
+        $ad = Ads::with('user')->find($id);
+        if ($ad->status == 'Pending') {
+            $ad->status = 'Approved';
+        } elseif ($ad->status == 'Approved') {
+            $ad->status = 'Rejected';
+        } else {
+            $ad->status = 'Approved';
+        }
+        $ad->save();
+
+        if ($ad->status == 'Approved') {
+            if (isset($ad->user_id)) {
+                $email = $ad->user->email;
+            } else {
+                $email = $ad->vendor->email;
+            }
+            $data = $ad;
+            Mail::to($email)->send(new SendApprovedMail($data));
+        }
+        return redirect()->back()->with($this->data("Status Successfully Updated", 'success'));
     }
-    public function approvedRequest($id){
-        $data=Ads::with('user')->find($id);
-        $data->status='Approved';
-        $data->save();
-        Mail::to($data->user->email)->send(new SendApprovedMail($data));
-        return redirect()->back()->with($this->data("Update status successfully", 'success'));
-    }
-    public function rejectRequest($id){
-        $data=Ads::with('user')->find($id);
-        $data->status='Rejected';
-        $data->save();
-        return redirect()->back()->with($this->data("Update status successfully", 'success'));
-    }
+   
 }

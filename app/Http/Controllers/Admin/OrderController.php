@@ -78,25 +78,9 @@ class OrderController extends Controller
         $order->save();
         return redirect()->route('admin.order.index')->with($this->data("Order status updated successfyully", 'success'));
     }
-    // ->with($this->message('Order Update','success')
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    // public function destroy($id)
-    // {
-    //     $order = Order::findOrFail($id);
-    //     OrderProduct::where('order_id', $id)->delete();
-    //     $order->delete();
 
-    //     if ($order) {
-    //         return redirect()->route('order.index')->with($this->message('Order Delete Successfully', 'success'));
-    //     } else {
-    //         return redirect()->back()->with($this->message('Order Delete Error', 'error'));
-    //     }
-    // }
+
+    
     public function delete($id)
     {
         Order::destroy($id);

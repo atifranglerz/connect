@@ -17,24 +17,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="vendor_id">Owner</label>
-                                            <select id="vendor_id" class="form-control" name="vendor_id" required>
-                                                <option value="{{ $garage->vendor_id }}">{{ $garage->vendor->name }}
-                                                </option>
-                                                @foreach ($vendor as $data)
-                                                    <option value="{{ $data->id }}">{{ $data->name }},
-                                                        ({{ $data->email ? $data->email : $data->phone }})
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('vendor_id')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="name">WorkShop Name</label>
+                                            <label for="name">Garage Name</label>
                                             <input type="text" class="form-control" id="name" name="garage_name"
                                                 placeholder="WorkShop Name"
                                                 value="{{ old('garage_name', $garage->garage_name) }}">
@@ -42,13 +25,18 @@
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        {{-- @foreach ($category as $data)
-                                        @foreach ($garage->garageCategory as $data2)
-                                            @dd($data2->category_id == $data->id)
-                                        @endforeach
-                                        @endforeach --}}
                                         <div class="form-group col-6">
-                                            <label for="category_id" class="form-label">Category</label>
+                                            <label for="vendor_id">Owner Name</label>
+                                            <input type="text" class="form-control" id="vendor_id" name="vendor_id"
+                                                value="{{ $garage->vendor->name}}" readonly>
+                                            @error('vendor_id')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="category_id" class="form-label">Service Category</label>
                                             <select class="form-control selectric category" multiple=""
                                                 name="category_id[]" required>
                                                 @foreach ($category as $data)
@@ -63,10 +51,18 @@
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="form-group col-6">
+                                            <label for="post_box">P/O Box</label>
+                                            <input type="number" class="form-control" id="post_box" name="post_box"
+                                                placeholder="P/O Box" value="{{ old('post_box', $garage->post_box) }}">
+                                            @error('post_box')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="trading_no">Trading No</label>
+                                            <label for="trading_no">Trading Number</label>
                                             <input type="text" class="form-control" id="trading_no" name="trading_no"
                                                 placeholder="Treading No"
                                                 value="{{ old('trading_no', $garage->trading_no) }}">
@@ -75,12 +71,45 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="vat">VAT</label>
+                                            <label for="vat">VAT %</label>
                                             <input type="text" class="form-control" name="vat" placeholder="VAT"
                                                 value="{{ old('vat', $garage->vat) }}" readonly>
                                             @error('vat')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="country">Country</label>
+                                            <input type="text" class="form-control" id="country" name="country"
+                                                placeholder="Country" value="{{ old('country', $garage->country) }}" readonly>
+                                            @error('country')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="city" class="form-label">City</label>
+                                            <select class="form-control selectric category" name="city">
+                                                <option selected disabled value="">{{ __('msg.Select City') }}
+                                                </option>
+                                                <option value="Dubai" @if ($garage->city == 'Dubai') selected @endif
+                                                    @if (old('city') == 'Dubai') selected @endif>
+                                                    {{ __('msg.Dubai') }}</option>
+                                                <option value="Abu Dhabi" @if ($garage->city == 'Abu Dhabi') selected @endif
+                                                    @if (old('city') == 'Abu Dhabi') selected @endif>
+                                                    {{ __('msg.Abu Dhabi') }}</option>
+                                                <option value="Sharjah" @if ($garage->city == 'Sharjah') selected @endif
+                                                    @if (old('city') == 'Sharjah') selected @endif>
+                                                    {{ __('msg.Sharjah') }}</option>
+                                                <option value="Ras Al Khaimah"
+                                                    @if ($garage->city == 'Ras Al Khaimah') selected @endif
+                                                    @if (old('city') == 'Ras Al Khaimah') selected @endif>
+                                                    {{ __('msg.Ras Al Khaimah') }}</option>
+                                                <option value="Ajman" @if ($garage->city == 'Ajman') selected @endif
+                                                    @if (old('city') == 'Ajman') selected @endif>
+                                                    {{ __('msg.Ajman') }}</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -97,34 +126,6 @@
                                             <input type="text" class="form-control" name="address" placeholder="Address"
                                                 value="{{ old('address', $garage->address) }}">
                                             @error('address')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="country">Country</label>
-                                            <input type="text" class="form-control" id="country" name="country"
-                                                placeholder="Country" value="{{ old('country', $garage->country) }}">
-                                            @error('country')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="city">City</label>
-                                            <input type="text" class="form-control" name="city" placeholder="City"
-                                                value="{{ old('city', $garage->city) }}">
-                                            @error('city')
-                                                <div class="text-danger p-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="post_box">P/O Box</label>
-                                            <input type="number" class="form-control" id="post_box" name="post_box"
-                                                placeholder="P/O Box" value="{{ old('post_box', $garage->post_box) }}">
-                                            @error('post_box')
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -154,7 +155,7 @@
                                     <input type="hidden" name="old_image" value="{{ $garage->image }}">
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary mr-1" type="submit">Update WorkShop</button>
+                                    <button class="btn btn-primary mr-1" type="submit">Update Garage</button>
                                 </div>
                             </form>
                         </div>

@@ -18,25 +18,21 @@
                                             <tr>
                                                 <th class="text-center">#</th>
                                                 <th>Name</th>
+                                                <th>Image</th>
+                                                <th>Garage Name</th>
                                                 <th>Email</th>
-                                                {{-- <th>Country</th> --}}
+                                                <th>Phone</th>
                                                 <th>City</th>
                                                 <th>Address</th>
                                                 <th>Post Box</th>
                                                 <th>Appointment Number</th>
-                                                <th>Garage Name</th>
-                                                <th>Garages Category</th>
+                                                <th>ID Card</th>
                                                 <th>Trading License</th>
+                                                <th>License Number</th>
                                                 <th>Vat</th>
                                                 <th>Billing Area</th>
                                                 <th>Billing City</th>
                                                 <th>Billing Address</th>
-                                                {{-- <th>Online Status</th> --}}
-                                                <th>License Image</th>
-                                                <th>ID Card</th>
-                                                <th>Image</th>
-                                                <th>Role</th>
-                                                <th>Phone</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -46,36 +42,28 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $vendor->name }}</td>
+                                                    <td>
+                                                        <a target="_black" href="{{asset($vendor->image)}}"><img alt="image" @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                    </td>
+                                                    <td>{{ $vendor->garage_name }}</td>
                                                     <td>{{ $vendor->email }}</td>
-                                                    {{-- <td>{{ $vendor->country }}</td> --}}
+                                                    <td>{{ $vendor->phone }}</td>
                                                     <td>{{ $vendor->city }}</td>
                                                     <td>{{ $vendor->address }}</td>
                                                     <td>{{ $vendor->post_box }}</td>
                                                     <td>{{ $vendor->appointment_number }}</td>
-                                                    <td>{{ $vendor->garage_name }}</td>
-                                                    <td>{{ $vendor->garages_catagory }}</td>
+                                                    <td>
+                                                        <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                    </td>
                                                     <td>{{ $vendor->trading_license }}</td>
-                                                    <td>{{ $vendor->vat }}</td>
+                                                    <td>{{ $vendor->vat }}%</td>
                                                     <td>{{ $vendor->billing_area }}</td>
                                                     <td>{{ $vendor->billing_city }}</td>
                                                     <td>{{ $vendor->billing_address }}</td>
-                                                    {{-- <td>{{ $vendor->online_status }}</td> --}}
-                                                    <td><img alt="image"
-                                                            @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                            style="height: 50px;width:50px"></td>
-                                                            {{-- <td><img  src="{{asset($vendor->image)}}" style="height:50px; width:50px;"></td> --}}
-                                                    <td><img alt="image"
-                                                            @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                            style="height: 50px;width:50px"></td>
-                                                    <td><img alt="image"
-                                                            @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                            style="height: 50px;width:50px"></td>
-                                                    <td>
-                                                        @foreach ($vendor->roles as $role)
-                                                            {{ $role->name }}
-                                                        @endforeach
-                                                    </td>
-                                                    <td>{{ $vendor->phone }}</td>
+
                                                     <td>
                                                         @if ($vendor->action == 1)
                                                             <div class="badge badge-success badge-shadow">Activate</div>
@@ -107,12 +95,12 @@
                                                                     class="feather feather-toggle-right">
                                                                     <rect x="1" y="5" width="22"
                                                                         height="14" rx="7" ry="7"></rect>
-                                                                    <circle cx="16" cy="12" r="3">
+                                                                    <circle cx="8" cy="12" r="3">
                                                                     </circle>
                                                                 </svg></a>
                                                         @else
                                                             <a href="{{ route('admin.vendor.deactivate', ['vendor' => $vendor->id]) }}"
-                                                                class="btn btn-primary">
+                                                                class="btn btn-success">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
                                                                     stroke="currentColor" stroke-width="2"
@@ -120,20 +108,11 @@
                                                                     class="feather feather-toggle-left">
                                                                     <rect x="1" y="5" width="22"
                                                                         height="14" rx="7" ry="7"></rect>
-                                                                    <circle cx="8" cy="12" r="3">
+                                                                    <circle cx="16" cy="12" r="3">
                                                                     </circle>
                                                                 </svg></a>
                                                         @endif
-                                                        {{-- <button class="btn btn-primary glyphicon glyphicon-trash" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
-                                                        <form id="del_form{{ $vendor->id }}" action="{{ route('admin.vendor.destroy', $vendor->id ) }}" method="POST" style="display: inline-block">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                             <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
-                                                        </form> --}}
                                                         <a>
-                                                            {{-- <i class="fas fa-trash text-danger glyphicon glyphicon-trash"
-                                                               data-toggle="tooltip" data-placement="top" title="delete"
-                                                             data-id="{{ $content->id }}"></i> --}}
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 data-id="{{ $vendor->id }}"
                                                                 class="fas fa-trash text-danger glyphicon glyphicon-trash"

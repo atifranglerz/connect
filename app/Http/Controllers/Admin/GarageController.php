@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GarageRequest;
-use App\Models\Area;
 use App\Models\Category;
-use App\Models\City;
 use App\Models\Garage;
 use App\Models\GarageCategory;
 use App\Models\Vendor;
@@ -21,10 +19,9 @@ class GarageController extends Controller
      */
     public function index()
     {
-        $garagess =Garage::with('garageCategory')->get();
-    $garages = $garagess->filter(function ($item) {
-        return $item->garageCategory->take(5);
-    });
+
+        $garages = Garage::all();
+        $garages->each(function ($c) {$c->load(['garageCategory' => function ($q) {$q->limit(5);}]);});
         $page_title = 'Garages';
         return view('admin.garage.index', compact('garages', 'page_title'));
     }
@@ -63,7 +60,7 @@ class GarageController extends Controller
         foreach ($request->category_id as $category) {
             GarageCategory::create([
                 'garage_id' => $garage->id,
-                'category_id' => $category
+                'category_id' => $category,
             ]);
         }
         return $this->message($garage, 'admin.garage.index', 'Garage Create Successfully', 'Garage Create Error');
@@ -89,14 +86,13 @@ class GarageController extends Controller
     public function edit(Garage $garage)
     {
         $page_title = 'Edit Garage';
-        $vendor = Vendor::all();
         $category = Category::all();
         $garage_category1 = GarageCategory::where('garage_id', $garage->id)->get();
         $garage_category = [];
         foreach ($garage_category1 as $data) {
             $garage_category[] = $data->id;
         }
-        return view('admin.garage.edit', compact('page_title', 'vendor', 'category', 'garage', 'garage_category'));
+        return view('admin.garage.edit', compact('page_title', 'category', 'garage', 'garage_category'));
     }
 
     /**
@@ -122,21 +118,11 @@ class GarageController extends Controller
             $image_name = hexdec(uniqid()) . '.' . strtolower($image->getClientOriginalExtension());
             $image->move('public/image/garage/', $image_name);
             $image = 'public/image/garage/' . $image_name;
-            // if ($request->old_image !== null) {
-            //     unlink($request->old_image);
-            // }
         } else {
             $image = $request->old_image;
         }
-        // if ($request->hasfile('image')) {
-        //     $file = $request->file('image');
-        //     $extension = $file->getClientOriginalExtension(); // getting image extension
-        //     $filename = time() . '.' . $extension;
-        //     $file->move(public_path('images'), $filename);
-        //     $company['image'] = 'public/images/' . $filename;
-        // }
         $garage_id = $garage->id;
-        $data = $request->only(['vendor_id', 'garage_name', 'trading_no', 'vat', 'phone', 'address', 'country', 'city', 'post_box', 'image', 'description']);
+        $data = $request->only(['garage_name', 'trading_no', 'vat', 'phone', 'address', 'country', 'city', 'post_box', 'image', 'description']);
         $data['image'] = $image ?? '';
         $garage = $garage->update($data);
         $data['image'] = $image ?? '';
