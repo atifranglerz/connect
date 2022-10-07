@@ -1015,7 +1015,7 @@ section.looking_for {
 .btn.get_appointment{
     position: relative;
 }
-.btn.get_appointment>img{
+.btn.get_appointment img{
     position: absolute;
     right: 10px;
     top: 50%;
@@ -1616,12 +1616,23 @@ body span.select2-selection.select2-selection--single {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-@media (max-width: 1199x) {
+#privTermsPolicyModal .modal-body {
+    height: 69.6vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 1199px) {
+    #privTermsPolicyModal .modal-body {
+        height: 68vh;
+    }
     .text-lg-right {
         text-align: right!important;
     }
 }
 @media (max-width: 991px) {
+    #privTermsPolicyModal .modal-body {
+        height: 65vh;
+    }
     .text-md-right {
         text-align: right!important;
     }
@@ -1643,6 +1654,9 @@ body span.select2-selection.select2-selection--single {
     }
 }
 @media (max-width: 575px) {
+    #privTermsPolicyModal .modal-body {
+        height: 72vh;
+    }
     .services-section {
         grid-template-columns: 1fr 1fr;
     }

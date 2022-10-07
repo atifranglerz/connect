@@ -83,7 +83,7 @@ $(function() {
     /*related to workshop tabs*/
 
     $(".get_appointment").hover(function() {
-        $(this).children('span').toggleClass('d-inline-block d-none');
+        $(this).children('span').toggleClass('d-block d-none');
     });
 
     // $('#datepicker').datepicker({

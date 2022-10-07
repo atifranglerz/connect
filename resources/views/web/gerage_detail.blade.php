@@ -152,10 +152,10 @@
                         @endforeach
                     </div>
                     <div class="d-grid gap-2 mt-3">
-                        <button class="btn btn-primary get_appointment byCall heart" type="button">
-                            <span class="d-inline-block">{{ __('msg.GET BOOKING') }}</span>
-                            <span class="d-none">{{ $garage->phone }}</span>
-                            <img src="{{ asset('public/assets/images/appoinmenticon.svg') }}">
+                        <button class="d-block btn btn-primary get_appointment byCall heart" type="button">
+                            <span class="d-block h-100"><a href="tel: {{ $garage->phone }}" class="text-white h-100 d-flex align-items-center justify-content-center">{{ __('msg.GET BOOKING') }}</a></span>
+                            <span class="d-none h-100"><a href="tel: {{ $garage->phone }}" class="text-white h-100 d-flex align-items-center justify-content-center">{{ $garage->phone }}</a></span>
+                            <a href="tel: {{ $garage->phone }}"><img src="{{ asset('public/assets/images/appoinmenticon.svg') }}"></a>
                         </button>
                     </div>
                 </div>
