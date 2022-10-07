@@ -17,20 +17,22 @@
                                         <label>Service Name</label>
                                         <input type="text" class="form-control" name="name" required>
                                         @error('name')
-                                            <div class="text-danger p-2">{{ $message }}</div>
+                                        <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <label>Service Image</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="validatedCustomFile"
-                                            accept="image/*" name="image">
+                                        accept="image/*" name="image">
                                         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                                         @error('image')
-                                            <div class="text-danger p-2">{{ $message }}</div>
+                                        <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-
+                                    
                                 </div>
                                 <div class="card-body">
+                                    <label>Service Icon</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="validatedCustomIcon"
                                             accept="image/*" name="icon">

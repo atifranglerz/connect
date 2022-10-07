@@ -31,6 +31,11 @@
                                         </p>
                                         <p>{{ __('msg.Engine') }} : {{ $data->engine }} CC</p>
                                     </div>
+                                    <div>
+                                        <div class="heading-color"
+                                            style="border: 2px solid;border-radius: 50px;padding: 6px 16px">
+                                            {{ $data->status }}</div>
+                                    </div>
                                     <div class="quote_detail_btn_wraper">
                                         <h5 class=" text-sm-center">{{ __('msg.AED') }} {{ $data->price }}</h5>
                                         <div class="d-flex  align-items-center chat_view__detail">
@@ -53,7 +58,7 @@
                         <p class="mb-0">{{ __('msg.Oops... No Ads Found related to this vendor!') }}</p>
                     </div>
                 @endif
-            <span >{!! $ads->links() !!}</span>
+                <span>{!! $ads->links() !!}</span>
 
             </div>
         </div>

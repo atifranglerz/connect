@@ -39,7 +39,7 @@ class HomepageController extends Controller
         $data['page_title'] = "home";
         $data['services'] = Category::limit(8)->orderby('position', 'ASC')->get();
         $data['news'] = News::limit(4)->latest()->get();
-        $data['ads'] = Ads::limit(4)->latest()->get();
+        $data['ads'] = Ads::limit(4)->latest()->where('status','Approved')->get();
         $data['garage'] = Garage::orderBy('rating','desc')->limit(4)->get();
         $data['slider'] = Slider::all();
         $data['all_services'] = Category::latest()->get();
@@ -336,7 +336,7 @@ class HomepageController extends Controller
     public function usedcars()
     {
         $data['page_title'] = 'used cars';
-        $data['ads'] = Ads::orderBy('id', 'desc')->paginate(8);
+        $data['ads'] = Ads::orderBy('id', 'desc')->where('status','Approved')->paginate(8);
         $data['company'] = Company::all();
         $data['year'] = ModelYear::all();
         return view('web.used_cars', $data);
@@ -351,33 +351,33 @@ class HomepageController extends Controller
 
         if (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->where('status','Approved')->paginate(8);
         } elseif (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->orwhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('status','Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->where('status','Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
         } elseif (isset($request->priceFrom) && isset($request->priceTo)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->where('status','Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('status','Approved')->paginate(8);
         } elseif (isset($request->company_id) && isset($request->city)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->where('status','Approved')->paginate(8);
         } elseif (isset($request->company_id)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
         } elseif (isset($request->city)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->where('status','Approved')->paginate(8);
         } else {
             $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->where('city', $request->city)->with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
         }
         //end felter
 
@@ -388,7 +388,7 @@ class HomepageController extends Controller
     public function carDetail($id)
     {
         $data['page_title'] = 'used car';
-        $data['ad'] = Ads::find($id);
+        $data['ad'] = Ads::where('status','Approved')->find($id);
 
         return view('web.car_detail', $data);
     }

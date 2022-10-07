@@ -118,9 +118,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         /* Car Ads */
         Route::resource('ads', 'AdsController');
-        Route::any('approved-request-ad/{id}', [AdsController::class, 'approvedRequest']);
-        Route::post('reject-request-ad/{id}', [AdsController::class, 'rejectRequest']);
-        Route::any('delete-ads/{id}',[AdsController::class, 'deleteAds']);
+        Route::any('status-request-ad/{id}', 'AdsController@statusAds');
+        Route::any('delete-ads/{id}','AdsController@deleteAds');
         /* Update Profile */
         Route::get('profile', 'AuthController@profile')->name('profile');
         Route::post('update-profile/{id}', 'AuthController@updateProfile')->name('profile.update');

@@ -47,7 +47,7 @@
                                     @endif
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary mr-1" type="submit">Update Category</button>
+                                    <button class="btn btn-primary mr-1" type="submit">Update Service</button>
                                 </div>
                             </form>
                         </div>

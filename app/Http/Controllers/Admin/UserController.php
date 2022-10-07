@@ -84,7 +84,6 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            'post_box' => 'required',
             'city' => 'required',
         ]);
         $user = User::findOrFail($id);
@@ -92,7 +91,6 @@ class UserController extends Controller
         //$user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->post_box = $request->post_box;
         $user->city = $request->city;
         if ($request->hasfile('image')) {
             $file = $request->file('image');

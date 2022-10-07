@@ -17,28 +17,10 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label>Name</label>
+                                            <label>Company Name</label>
                                             <input type="text" class="form-control" required="" name="name"
                                                 value="{{ old('name', $company->name) }}">
                                             @error('name')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label>Email</label>
-                                            <input type="email" class="form-control" required="" name="email"
-                                                autocomplete="off" readonly value="{{ old('email', $company->email) }}">
-                                            @error('email')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label>Phone</label>
-                                            <input type="number" class="form-control" name="phone"
-                                                value="{{ old('phone', $company->phone) }}">
-                                            @error('phone')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -50,19 +32,31 @@
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label>Post Box</label>
-                                            <input type="number" class="form-control" name="post_box"
-                                                value="{{ old('post_box', $company->post_box) }}">
-                                            @error('post_box')
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" required="" name="email"
+                                                autocomplete="off" readonly value="{{ old('email', $company->email) }}">
+                                            @error('email')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Phone</label>
+                                            <input type="number" class="form-control" name="phone"
+                                                value="{{ old('phone', $company->phone) }}">
+                                            @error('phone')
+                                                <div class="text-danger mt-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group col-6">
                                             <label for="city" class="form-label">City</label>
-                                            <select class="form-control selectric category" multiple="" name="city">
+                                            <select class="form-control selectric category" name="city">
                                                 <option selected disabled value="">{{ __('msg.Select City') }}
                                                 </option>
                                                 <option value="Dubai" @if ($company->city == 'Dubai') selected @endif
@@ -83,7 +77,19 @@
                                                     {{ __('msg.Ajman') }}</option>
                                             </select>
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" name="address"
+                                                value="{{ old('address', $company->address) }}">
+                                            @error('address')
+                                                <div class="text-danger mt-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
+                                    @php
+                                        $ext = explode('.', $company->insurance->id_card);
+                                        $ext1 = explode('.', $company->insurance->image_license);
+                                    @endphp
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Image</label>
@@ -91,7 +97,8 @@
                                             @error('image')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            <div><img alt="image"
+                                            <div>
+                                                <img alt="image"
                                                     @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                     style="height: 100px;width:100px">
                                             </div>
@@ -102,29 +109,50 @@
                                             @error('id_card')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            <div><img alt="image"
-                                                    @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                    style="height: 100px;width:100px">
+                                            <div>
+
+                                                @if ($ext[1] == 'pdf')
+                                                    <a target="_black" href="{{ asset($company->insurance->id_card) }}"><img
+                                                            alt="image"
+                                                            src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                            style="height: 100px;width:100px"></a>
+                                                @else
+                                                    <a target="_black" href="{{ asset($company->insurance->id_card) }}"><img
+                                                            alt="image"
+                                                            @if ($company->id_card) src="{{ asset('/' . $company->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                            style="height: 100px;width:100px"></a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label>Image License</label>
+                                            <label>Trading License</label>
                                             <input type="file" name="image_license[]" class="form-control">
                                             @error('image_license')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            <div><img alt="image"
-                                                    @if ($company->insurance->image_license) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                    style="height: 100px;width:100px">
+                                            <div>
+                                                @if ($ext1[1] == 'pdf')
+                                                    <a target="_black"
+                                                        href="{{ asset($company->insurance->image_license) }}"><img
+                                                            alt="image"
+                                                            src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                            style="height: 100px;width:100px"></a>
+                                                @else
+                                                    <a target="_black"
+                                                        href="{{ asset($company->insurance->image_license) }}"><img
+                                                            alt="image"
+                                                            @if (isset($company->image_license)) src="{{ asset('/' . $company->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                            style="height: 100px;width:100px"></a>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" name="address"
-                                                value="{{ old('address', $company->address) }}">
-                                            @error('address')
+                                            <label>License Number</label>
+                                            <input type="text" class="form-control" name="trading_license"
+                                                value="{{ old('trading_license', $company->insurance->trading_license) }}">
+                                            @error('trading_license')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -157,10 +185,10 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Trading License</label>
-                                            <input type="text" class="form-control" name="trading_license"
-                                                value="{{ old('trading_license', $company->insurance->trading_license) }}">
-                                            @error('trading_license')
+                                            <label>Post Box</label>
+                                            <input type="number" class="form-control" name="post_box"
+                                                value="{{ old('post_box', $company->post_box) }}">
+                                            @error('post_box')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>

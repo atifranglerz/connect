@@ -19,8 +19,8 @@
                                             <th class="text-center">#</th>
                                             <th>Order Id</th>
                                             <th>Customer Name</th>
-                                            <th>Store Name</th>
-                                            <th>Total</th>
+                                            <th>Garage Name</th>
+                                            <th>Total Price</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>

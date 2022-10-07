@@ -85,17 +85,11 @@ class VendorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            // "id_card" => 'required',
             'name' => 'required',
             'garage_name' => 'required',
-            // 'garages_catagary' => 'required',
-            // 'email' => 'required',
-            // 'country' => 'required',
-            'city' => 'required',
             'post_box' => 'required',
             'company'=>'required',
             'phone' => 'required',
-            // 'image_license' => 'required',
             'trading_license' => 'required',
             'vat' => 'required',
             'billing_area' => 'required',
@@ -103,11 +97,6 @@ class VendorController extends Controller
             'billing_address' => 'required',
             'appointment_number' => 'required',
         ]);
-        // $vendor = Vendor::findOrFail($id);
-        // $vendor->name = $request->name;
-        // //$vendor->email = $request->email;
-        // $vendor->phone = $request->phone;
-        // $vendor->save();
         $vendor = Vendor::findOrFail($id);
         if ($request->file('image')) {
             $images = [];

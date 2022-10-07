@@ -256,9 +256,6 @@
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-    @php
-    //  session_start();
-     @endphp
 
         @if (isset($_SESSION["msg"]))
 
