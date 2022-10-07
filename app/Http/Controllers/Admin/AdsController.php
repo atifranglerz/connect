@@ -80,7 +80,6 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd('usman');
         $request->validate([
             'model' => 'required',
             'company_id' => 'required',
@@ -106,6 +105,26 @@ class AdsController extends Controller
         $ads->country = $request->country;
         $ads->description = $request->description;
         $ads->update();
+        if ($request->file('car_images')) {
+            $images = [];
+            foreach ($request->file('car_images') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
+            }
+            $ads->images = implode(",", $images);
+        }
+        //update car documents
+        if ($request->file('document')) {
+            $files = [];
+            foreach ($request->file('document') as $data) {
+                $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
+            }
+            $ads->document_file = implode(",", $files);
+        }
+        $ads->save();
         return $this->message($ads, 'admin.ads.index', 'Ad Successfully Updated', '  Ad is not update Error');
 
     }
@@ -147,5 +166,5 @@ class AdsController extends Controller
         }
         return redirect()->back()->with($this->data("Status Successfully Updated", 'success'));
     }
-   
+
 }
