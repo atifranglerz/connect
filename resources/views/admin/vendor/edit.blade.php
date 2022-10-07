@@ -168,6 +168,10 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @php
+                                        $ext = explode('.', $vendor->id_card);
+                                        $ext1 = explode('.', $vendor->image_license);
+                                    @endphp
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Profile Image</label>
@@ -176,7 +180,7 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                             <div><img alt="image"
-                                                    @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                    @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                     style="height: 100px;width:100px">
                                             </div>
                                         </div>
@@ -186,9 +190,12 @@
                                             @error('id_card')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            <div><img alt="image"
-                                                    @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                    style="height: 100px;width:100px">
+                                            <div>
+                                                @if ($ext[1] == 'pdf')
+                                                    <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 100px;width:100px"></a>
+                                                @else
+                                                    <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 100px;width:100px"></a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -199,9 +206,12 @@
                                             @error('image_license')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            <div><img alt="image"
-                                                    @if ($vendor->image_license) src="{{ asset('/' . $vendor->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                    style="height: 100px;width:100px">
+                                            <div>
+                                                @if ($ext1[1] == 'pdf')
+                                                    <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 100px;width:100px"></a>
+                                                @else
+                                                    <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 100px;width:100px"></a>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">

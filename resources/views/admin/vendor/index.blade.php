@@ -52,18 +52,29 @@
                                                     <td>{{ $vendor->address }}</td>
                                                     <td>{{ $vendor->post_box }}</td>
                                                     <td>{{ $vendor->appointment_number }}</td>
+                                                        @php
+                                                           $ext = explode('.', $vendor->id_card);
+                                                           $ext1 = explode('.', $vendor->image_license);
+                                                        @endphp
                                                     <td>
-                                                        <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                        @if ($ext[1] == 'pdf')
+                                                        <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
+                                                        @else
+                                                        <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                        @if ($ext1[1] == 'pdf')
+                                                            <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
+                                                        @else
+                                                            <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
+                                                        @endif
                                                     </td>
                                                     <td>{{ $vendor->trading_license }}</td>
                                                     <td>{{ $vendor->vat }}%</td>
                                                     <td>{{ $vendor->billing_area }}</td>
                                                     <td>{{ $vendor->billing_city }}</td>
                                                     <td>{{ $vendor->billing_address }}</td>
-
                                                     <td>
                                                         @if ($vendor->action == 1)
                                                             <div class="badge badge-success badge-shadow">Activate</div>

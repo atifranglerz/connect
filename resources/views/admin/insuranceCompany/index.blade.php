@@ -52,19 +52,39 @@
                                                     <td>{{ $company->city }}</td>
                                                     <td>{{ $company->address }}</td>
                                                     <td>{{ $company->post_box }}</td>
+                                                    @php
+                                                        $ext = explode('.', $company->insurance->id_card);
+                                                        $ext1 = explode('.', $company->insurance->image_license);
+                                                    @endphp
                                                     <td>
-                                                        <a target="_black"
-                                                            href="{{ asset($company->insurance->id_card) }}">
-                                                            <img alt="image"
-                                                                @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                                style="height: 50px;width:50px"></a>
+                                                        @if ($ext[1] == 'pdf')
+                                                            <a target="_black"
+                                                                href="{{ asset($company->insurance->id_card) }}"><img
+                                                                    alt="image"
+                                                                    src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                                    style="height: 50px;width:50px"></a>
+                                                        @else
+                                                            <a target="_black"
+                                                                href="{{ asset($company->insurance->id_card) }}"><img
+                                                                    alt="image"
+                                                                    @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                                    style="height: 50px;width:50px"></a>
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        <a target="_black"
-                                                            href="{{ asset($company->insurance->image_license) }}">
-                                                            <img alt="image"
-                                                                @if ($company->insurance->image_license) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
-                                                                style="height: 50px;width:50px"></a>
+                                                        @if ($ext1[1] == 'pdf')
+                                                            <a target="_black"
+                                                                href="{{ asset($company->insurance->image_license) }}"><img
+                                                                    alt="image"
+                                                                    src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                                    style="height: 50px;width:50px"></a>
+                                                        @else
+                                                            <a target="_black"
+                                                                href="{{ asset($company->insurance->image_license) }}"><img
+                                                                    alt="image"
+                                                                    @if (isset($company->insurance->image_license)) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                                    style="height: 50px;width:50px"></a>
+                                                        @endif
                                                     </td>
                                                     <td>{{ $company->insurance->trading_license }}</td>
                                                     <td>{{ $company->insurance->billing_area }}</td>
@@ -118,15 +138,7 @@
                                                                     </circle>
                                                                 </svg></a>
                                                         @endif
-                                                        {{-- <form action="{{ route('admin.insurance-company.destroy', $company->id ) }}" method="POST" style="display: inline-block">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
-                                                        </form> --}}
                                                         <a>
-                                                            {{-- <i class="fas fa-trash text-danger glyphicon glyphicon-trash"
-                                                               data-toggle="tooltip" data-placement="top" title="delete"
-                                                             data-id="{{ $content->id }}"></i> --}}
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 data-id="{{ $company->id }}"
                                                                 class="fas fa-trash text-danger glyphicon glyphicon-trash"
