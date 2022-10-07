@@ -33,7 +33,15 @@ $(function() {
                 $('input[accept=".pdf,.jpeg,.jpg,.png,.PNG,.heic"] + .uploaded .uploaded-image:last-child img').attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
             }
         });
+
+        $('.uploaded-image img').each(function() {
+            var fileExtension = $(this).attr('src').split('.').pop();
+            if(fileExtension == 'pdf') {
+                $(this).attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
+            }
+        });
     }, 500);
+
     if($('div').hasClass('text-danger')) {
         toastr.error("Failed! You've to fill the Required Fields");
     }
