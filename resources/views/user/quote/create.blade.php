@@ -251,7 +251,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 col-md-12">
-                                            <select class="form-select form-control" name="qoute_condition" required>
+                                            <select class="form-select form-control" name="qoute_range" required>
                                                 <option value="" selected disabled>{{__('msg.Select Garages Range')}}</option>
                                                 <option value="all">All</option>
                                                 <option value="5">Top 5</option>

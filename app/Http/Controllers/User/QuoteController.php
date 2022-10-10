@@ -129,6 +129,7 @@ class QuoteController extends Controller
         $message['body1'] = auth()->user()->name;
         $message['link1'] = url('vendor/quotedetail', $quote->id);
         $message['type'] = $request->action;
+        $message['qoute_range'] = $request->qoute_range;
 
         // this is car image save
         $imagefiles = new UserBidImage();
@@ -181,7 +182,7 @@ class QuoteController extends Controller
 
         if ($request->action == 'all_garage') {
 
-            if ($request->qoute_condition == 5) {
+            if ($request->qoute_range == 5) {
                 $garage = Garage::orderBy('rating', 'desc')->limit(1)->get();
                 foreach ($garage as $data) {
                     $object = new VendorQuote;
@@ -190,7 +191,7 @@ class QuoteController extends Controller
                     $object->vendor_id = $data->vendor_id;
                     $object->save();
                 }
-            } elseif ($request->qoute_condition == 10) {
+            } elseif ($request->qoute_range == 10) {
                 $garage = Garage::orderBy('rating', 'desc')->limit(2)->get();
                 foreach ($garage as $data) {
                     $object = new VendorQuote;
@@ -217,9 +218,9 @@ class QuoteController extends Controller
                 array_push($garageIds, $list_item->garage->id);
             }
 
-            if ($request->qoute_condition == 5) {
+            if ($request->qoute_range == 5) {
                 $garage = Garage::whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(1)->get();
-            } elseif ($request->qoute_condition == 10) {
+            } elseif ($request->qoute_range == 10) {
 
                 $garage = Garage::whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(2)->get();
             } else {
