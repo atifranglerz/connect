@@ -287,7 +287,6 @@
                     } else {
                         $element.valid();
                         var email = element.value;
-                        console.log(element.value);
                         
                         $.ajax({
                             type: "POST",

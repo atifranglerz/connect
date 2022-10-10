@@ -43,7 +43,8 @@
                                     required>
                                 @error('email')
                                     <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
+                                    @enderror
+                                    <div id="email-validation" class="d-none" style="color:red">this email  has been already taken</div>
                             </div>
 
                             <div class="col-12 mb-3 signup_input_wraper">
@@ -196,7 +197,12 @@
                                 'email': email
                             },
                             success: function(response) {
-                                console.log(response.data);
+                                // console.log(response.data);
+                                if(response.data == "exists"){
+                                    $('#email-validation').removeClass('d-none');
+                                }else{
+                                    $('#email-validation').addClass('d-none');
+                                }
 
                             }
                         });
