@@ -37,14 +37,13 @@ class QuoteController extends Controller
 
     public function store(Request $request)
     {
+        // return $request;
         if ($request->action == "preferred_garage") {
             $data = UserWishlist::where('user_id', Auth::id())->with('garage')->get();
             if ($data->isEmpty()) {
-                // session_start();
                 $_SESSION["msg"] = "Sorry you can't Quote because you've not any prefferred garage";
                 $_SESSION["alert"] = "error";
                 return redirect()->back();
-                // return redirect()->back()->with($this->data("Sorry you can't Quote because you've not any prefferred garage", 'error'));
             }
         }
         if ($request->looking_for == "I don't know the Problem and Requesting for the Inspection") {
@@ -178,58 +177,76 @@ class QuoteController extends Controller
                 $user->category_id = $data;
                 $user->save();
             }
-            if ($request->action == 'all_garage') {
-
-                $vendor_quote = new VendorQuote;
-                $vendor_quote->user_id = Auth()->user()->id;
-                $vendor_quote->user_bit_id = $quote->id;
-                $vendor_quote->save();
-                $SendNotification = new SendNotification($message);
-                dispatch($SendNotification);
-
-            } else {
-
-                $id = Auth()->user()->id;
-                $data = UserWishlist::where('user_id', $id)->with('garage')->get();
-                foreach ($data as $list_item) {
-                    $object = new VendorQuote;
-                    $object->user_id = Auth()->user()->id;
-                    $object->user_bit_id = $quote->id;
-                    $object->vendor_id = $list_item->garage->vendor_id;
-                    $object->save();
-                    $SendNotification = new SendNotification($message);
-                    dispatch($SendNotification);
-
-                }
-
-            }
-
-        } else {
-            if ($request->action == 'all_garage') {
-
-                $vendor_quote = new VendorQuote;
-                $vendor_quote->user_id = Auth()->user()->id;
-                $vendor_quote->user_bit_id = $quote->id;
-                $vendor_quote->save();
-                $SendNotification = new SendNotification($message);
-                dispatch($SendNotification);
-            }
         }
 
         if ($request->action == 'all_garage') {
 
-            // session_start();
+            if ($request->qoute_condition == 5) {
+                $garage = Garage::orderBy('rating', 'desc')->limit(1)->get();
+                foreach ($garage as $data) {
+                    $object = new VendorQuote;
+                    $object->user_id = Auth()->user()->id;
+                    $object->user_bit_id = $quote->id;
+                    $object->vendor_id = $data->vendor_id;
+                    $object->save();
+                }
+            } elseif ($request->qoute_condition == 10) {
+                $garage = Garage::orderBy('rating', 'desc')->limit(2)->get();
+                foreach ($garage as $data) {
+                    $object = new VendorQuote;
+                    $object->user_id = Auth()->user()->id;
+                    $object->user_bit_id = $quote->id;
+                    $object->vendor_id = $data->vendor_id;
+                    $object->save();
+                }
+            } else {
+                $vendor_quote = new VendorQuote;
+                $vendor_quote->user_id = Auth()->user()->id;
+                $vendor_quote->user_bit_id = $quote->id;
+                $vendor_quote->save();
+            }
+
+            $SendNotification = new SendNotification($message);
+            dispatch($SendNotification);
+
+        } else {
+            $id = Auth()->user()->id;
+            $garageIds = [];
+            $data = UserWishlist::where('user_id', $id)->with('garage')->get();
+            foreach ($data as $list_item) {
+                array_push($garageIds, $list_item->garage->id);
+            }
+
+            if ($request->qoute_condition == 5) {
+                $garage = Garage::whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(1)->get();
+            } elseif ($request->qoute_condition == 10) {
+
+                $garage = Garage::whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(2)->get();
+            } else {
+                $garage = Garage::whereIn('id', $garageIds)->get();
+            }
+            foreach ($garage as $data) {
+                $object = new VendorQuote;
+                $object->user_id = Auth()->user()->id;
+                $object->user_bit_id = $quote->id;
+                $object->vendor_id = $data->vendor_id;
+                $object->save();
+                $SendNotification = new SendNotification($message);
+                dispatch($SendNotification);
+
+            }
+        }
+
+        if ($request->action == 'all_garage') {
             $_SESSION["msg"] = "Quotation has been sent to all the Garages";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.quoteindex');
-            // return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Garages', 'Quotation has not been sent to all the Garages');
         } else {
-            // session_start();
             $_SESSION["msg"] = "Quotation has been sent to all the Preffered Garages";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.quoteindex');
-            // return $this->message($quote, 'user.quoteindex', 'Quotation has been sent to all the Preffered Garages', 'Quotation has not been sent to all the Preffered Garages');
         }
+
     }
 
     public function reply($id)

@@ -250,10 +250,18 @@
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <select class="form-select form-control" name="qoute_condition" required>
+                                                <option value="" selected disabled>{{__('msg.Select Garages Range')}}</option>
+                                                <option value="all">All</option>
+                                                <option value="5">Top 5</option>
+                                                <option value="10">Top 10</option>
+                                            </select>
+                                        </div>
                                         <div class="col-lg-6 col-md-12 get-quotes-block">
                                             <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
                                                 <button class="btn btn-secondary block get_appointment" name="action"
-                                                    value="all_garage" type="submit">{{__('msg.GET QUOTES FROM ALL GARAGES')}}</button>
+                                                    value="all_garage" type="submit">{{__('msg.GET QUOTES FROM GARAGES')}}</button>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12 get-quotes-block">
