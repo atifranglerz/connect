@@ -54,6 +54,7 @@
                                 @error('email')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
+                                <div id="email-validation" class="d-none" style="color:red">This email  has been already taken!</div>
                             </div>
 
                             <div class="col-12 mb-3 signup_input_wraper">
@@ -184,24 +185,36 @@
                     }
                 } else if (!$element.prop('required') && ($element.val() == '' || $element.val() == null)) {
                     $element.removeClass('is-valid');
+                } else if ($element.attr('type')=="email") {
+                    // alert('s');
+                    var email = element.value;
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                            'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+                        url: "{{ route('user.user-email-validation') }}",
+                        data: {
+                            'email': email
+                        },
+                        success: function(response) {
+                            // console.log(response.data);
+                            if(response.data == "exists") {
+                                $('#email-validation').removeClass('d-none');
+                                if(!$element.hasClass('d-none')) {
+                                    $element.removeClass('is-valid').addClass('is-invalid error');
+                                }
+                            } else {
+                                $('#email-validation').addClass('d-none');
+                                if($element.hasClass('d-none')) {
+                                    $element.removeClass('is-invalid error').addClass('is-valid');
+                                }
+                            }
+                        }
+                    });
                 } else {
                     this.element(element)
-
-                    var email = element.value;
-                        $.ajax({
-                            type: "POST",
-                            dataType: "json",
-                            headers: {
-                                'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            url: "{{ route('user.company-email-validation') }}",
-                            data: {
-                                'email': email
-                            },
-                            success: function(response) {
-                                console.log(response.data);
-                            }
-                        });
                 }
             },
             onkeyup: function (element) {
@@ -297,7 +310,7 @@
                 }
             }
         });
-        
+
         setInterval(() => {
             /*Upload Your ID*/
             if(!$('input[name="id_card"]').val()=="") {
