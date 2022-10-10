@@ -28,6 +28,21 @@ class AuthController extends Controller
         return view('user.auth.register', $data, compact('page_title'));
     }
 
+    public function emailvalidate(Request $request)
+    {
+        if (User::where('email', $request->email)->exists()) {
+            $data = 'exists';
+        } else {
+            $data = 'not exist';
+        }
+
+        return response()->json([
+            'success' => 'successfully validate',
+            'data' => $data,
+        ]);
+    }
+
+
     public function userRegister(Request $request)
     {
         $request->validate([
@@ -123,6 +138,22 @@ class AuthController extends Controller
         $page_title = 'Company Register';
         return view('user.auth.company_register', compact('page_title'));
     }
+
+
+    public function emailvalidate1(Request $request)
+    {
+        if (User::where('email', $request->email)->exists()) {
+            $data = 'exists';
+        } else {
+            $data = 'not exist';
+        }
+
+        return response()->json([
+            'success' => 'successfully validate',
+            'data' => $data,
+        ]);
+    }
+
 
     public function companyRegister(Request $request)
     {

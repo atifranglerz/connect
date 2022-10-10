@@ -32,6 +32,21 @@ class AuthController extends Controller
         return view('vendor.auth.register', $data);
     }
 
+
+    public function emailvalidate(Request $request)
+    {
+        if (Vendor::where('email', $request->email)->exists()) {
+            $data = 'exists';
+        } else {
+            $data = 'not exist';
+        }
+
+        return response()->json([
+            'success' => 'successfully validate',
+            'data' => $data,
+        ]);
+    }
+
     public function vendorRegister(Request $request)
     {
 

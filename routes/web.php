@@ -223,6 +223,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
     Route::get('register_garage_view', 'GarageController@registerGarage')->name('register_garage_view');
     Route::post('login', 'AuthController@vendorLogin')->name('login');
     Route::post('register', 'AuthController@vendorRegister')->name('register');
+    Route::post('vendor/validation', 'AuthController@emailvalidate')->name('email-validation');
     Route::post('terms_condition', 'AuthController@terms')->name('terms_condition');
     //Route::post('create_ads/index','AdsController@store')->name('create_ads/index');
 
@@ -305,6 +306,8 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::post('companyLogin', 'AuthController@companyLogin')->name('companyLogin');
     Route::get('companyRegister', 'AuthController@companyRegisterForm')->name('companyRegister');
     Route::post('companyRegister', 'AuthController@companyRegister')->name('companyRegister');
+    Route::post('customer/validation', 'AuthController@emailvalidate')->name('user-email-validation');
+    Route::post('company/validation', 'AuthController@emailvalidate1')->name('company-email-validation');
     /*Route::get('facebook', 'AuthController@facebookRedirect')->name('facebook');
     Route::get('facebook/callback', 'AuthController@loginWithFacebook');
     Route::get('google', 'AuthController@redirectToGoogle')->name('google');

@@ -186,6 +186,22 @@
                     $element.removeClass('is-valid');
                 } else {
                     this.element(element)
+
+                    var email = element.value;
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            headers: {
+                                'X-CSRF-Token': '{{ csrf_token() }}',
+                            },
+                            url: "{{ route('user.company-email-validation') }}",
+                            data: {
+                                'email': email
+                            },
+                            success: function(response) {
+                                console.log(response.data);
+                            }
+                        });
                 }
             },
             onkeyup: function (element) {
