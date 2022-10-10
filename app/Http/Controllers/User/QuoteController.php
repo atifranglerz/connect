@@ -232,10 +232,11 @@ class QuoteController extends Controller
                 $object->user_bit_id = $quote->id;
                 $object->vendor_id = $data->vendor_id;
                 $object->save();
-                $SendNotification = new SendNotification($message);
-                dispatch($SendNotification);
-
             }
+            
+            $SendNotification = new SendNotification($message);
+            dispatch($SendNotification);
+
         }
 
         if ($request->action == 'all_garage') {
