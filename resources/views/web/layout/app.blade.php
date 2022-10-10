@@ -313,9 +313,10 @@
                 $('.input-images-signup').imageUploader({
                     extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                     maxFiles: 1,
+                    maxSize: 2097152, // 3 MB
                 });
                 $(".input-images-signup>.image-uploader>.upload-text").append(
-                    '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Profile Picture ({{__('msg.Optional')}}) </br><b class="small">(Format: png, jpeg, heic only)</b></p><input type="file" size="60" ></label> '
+                    '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Profile Picture ({{__('msg.Optional')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input type="file" size="60" ></label> '
                 );
             });
         })(jQuery);
@@ -426,25 +427,28 @@
             $('.input-images-8').imageUploader({
                 extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 maxFiles: 1,
+                maxSize: 2097152, // 3 MB
             });
             $(".input-images-8>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Profile Picture ({{__('msg.Optional')}}) </br><b class="small">(Format: png, jpeg, heic only)</b></p><input name="profile_image" type="file" size="60" ></label> '
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Profile Picture ({{__('msg.Optional')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input name="profile_image" type="file" size="60" ></label> '
             );
             $('.input-images-9').imageUploader({
                 extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
                 maxFiles: 1,
+                maxSize: 2097152, // 3 MB
             });
             $(".input-images-9>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your ID ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input name="id_card" type="file" size="60" ></label> '
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your ID ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input name="id_card" type="file" size="60" ></label> '
             );
             $('.input-images-10').imageUploader({
                 extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
                 maxFiles: 1,
+                maxSize: 2097152, // 3 MB
             });
             $(".input-images-10>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Trade License and ID ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input name="image_license" type="file" size="60" ></label>'
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Trade License and ID ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input name="image_license" type="file" size="60" ></label>'
             );
 
             $(document).on('click', '#menuToggle', function() {
@@ -581,9 +585,10 @@
             $('.input-imagess-3').imageUploader({
                 extensions: ['.png', '.jpg'],
                 maxFiles: 5,
+                maxSize: 2097152, // 3 MB
             });
             $(".input-imagess-3>.image-uploader>.upload-text").append(
-                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Add Registration Copy Image ({{__('msg.Required')}}) <b class="small">(Format: png, jpg only)</b></p><input type="file" name="document[]" size="60" ></label>   '
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Add Registration Copy Image ({{__('msg.Required')}}) <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpg only)</b></p><input type="file" name="document[]" size="60" ></label>'
             );
 
         });

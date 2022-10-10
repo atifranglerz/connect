@@ -10,15 +10,15 @@
                             <p class="sec_main_para text-center mb-0">{{__('msg.Fill Up your details to Create New Account')}}</p>
                         </div>
 
-                        <form name="signUpForm" method="post" action="{{route('user.companyRegister')}}" enctype="multipart/form-data" class="pt-5">
+                        <form name="signUpForm" method="post" action="{{route('user.companyRegister')}}" enctype="multipart/form-data" class="pt-4">
                             @csrf
-                            <div class="col-12 mb-3  signup_input_wraper form-group">
+                            <div class="col-12 mb-3 signup_input_wraper form-group">
                                 <div class="input-images-8"></div>
                                 @error('profile_image')
                                 <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-12 mb-3  signup_input_wraper form-group">
+                            <div class="col-12 mb-3 signup_input_wraper form-group">
                                 <div class="input-images-9"></div>
                                 @error('id_card')
                                 <div class="text-danger p-2">{{ $message }}</div>

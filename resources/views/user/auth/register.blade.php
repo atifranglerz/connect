@@ -12,9 +12,9 @@
                         </div>
 
                         <form name="signUpForm" method="post" action="{{ route('user.register') }}"
-                            enctype="multipart/form-data" class="pt-5">
+                            enctype="multipart/form-data" class="pt-4">
                             @csrf
-                            <div class="col-12 mb-3  signup_input_wraper">
+                            <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="input-images-signup"></div>
                                 <label class="img_wraper_label">
                                     <input type="file" name="image" size="60">
@@ -23,7 +23,7 @@
                                     @enderror
                                 </label>
                             </div>
-                            <div class="col-12 mb-3  signup_input_wraper">
+                            <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                     id="inputName" placeholder="{{ __('msg.Name') }} ({{ __('msg.Required') }})" required>
                                 @error('name')

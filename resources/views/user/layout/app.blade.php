@@ -314,20 +314,23 @@
         $('.input-images').imageUploader({
             extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
             maxFiles:5,
+            maxSize: 2097152, // 3 MB
         });
-        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
         $('.input-images-2').imageUploader({
-            extensions: ['.pdf'],
-            mimes: ['application/pdf'],
+            extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+            mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
             maxFiles:1,
+            maxSize: 2097152, // 3 MB
         });
-        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Required')}})</p><input type="file" name="files" size="60" ></label>   ');
+        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="files" size="60" ></label>   ');
         $('.input-images-3').imageUploader({
             extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
             mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
             maxFiles:5,
+            maxSize: 2097152, // 3 MB
         });
-        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>   ');
+        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
         $('.image-uploader-edit').imageUploader();
         $(".image-uploader-edit>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your Picture To Update</p><input type="file" name="profile" size="60" ></label>');
         $(document).on('click', '#menuToggle', function () {

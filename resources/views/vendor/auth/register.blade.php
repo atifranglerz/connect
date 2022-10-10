@@ -18,16 +18,16 @@
                                 {{ __('msg.Fill Up your details to Create New Account') }}</p>
                         </div>
                         <form name="signUpForm" action="{{ route('vendor.register') }}" enctype="multipart/form-data"
-                            method="post" class="pt-5">
+                            method="post" class="pt-4">
                             @csrf
-                            <div class="col-12 mb-3  signup_input_wraper form-group">
+                            <div class="col-12 mb-3 signup_input_wraper form-group">
                                 <div class="input-images-8"></div>
                                 @error('profile_image')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="col-12 mb-3  signup_input_wraper form-group">
+                            <div class="col-12 mb-3 signup_input_wraper form-group">
                                 <div class="input-images-9"></div>
                                 @error('id_card')
                                     <div class="text-danger p-2">{{ $message }}</div>
@@ -257,6 +257,10 @@
         $(function() {
             // Initialize form validation on the registration form.
             // It has the name attribute "registration"
+            $.validator.addMethod('filesize', function (value, element, param) {
+                return this.optional(element) || (element.files[0].size <= param * 1000000)
+            }, 'File size must be less than {0} MB');
+
             jQuery.validator.addMethod("phoneUE", function(phone_number, element) {
                 phone_number = phone_number.replace(/\s+/g, "");
                 return this.optional(element) || phone_number.length > 9 &&
