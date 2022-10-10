@@ -200,7 +200,7 @@
                                             <div class="col-lg-12">
                                                 <div class="d-grid gap-2 mt-3 mb-4">
                                                     <button class="btn btn-secondary block get_appointment next-tab-btn"
-                                                        type="button">{{ __('msg.News') }}</button>
+                                                        type="button">{{ __('msg.NEXT') }}</button>
                                                 </div>
                                             </div>
                                         </div>
