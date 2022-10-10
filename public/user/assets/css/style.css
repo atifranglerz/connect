@@ -1458,9 +1458,8 @@ ul.sidebar_navcigation>li>a.active{
     color: var(--white);
 }
 ul.sidebar_navcigation>li>a>img{
-    width: 22px;
-    height: 22px;
     margin-right: 8px;
+    margin-bottom: 4px;
 }
 .soignou_plus_language_wraper{
     position: absolute;

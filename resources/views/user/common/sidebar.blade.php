@@ -10,32 +10,32 @@
     <div class="sidebar_navigation">
         <ul class="sidebar_navcigation">
             <li><a href="{{ route('user.dashboard') }}"><img
-                        src="{{ asset('public/user/assets/images/dashomeicon.svg') }}">
+                        src="{{ asset('public/assets/images/home.png') }}">
                     <span>{{ __('msg.Home') }}</span></a></li>
             <li><a href="{{ route('user.chat.index') }}"><img
-                        src="{{ asset('public/user/assets/images/dashinboxicon.svg') }}"><span>{{ __('msg.Inbox') }}</span></a>
+                        src="{{ asset('public/assets/images/inbox.png') }}"><span>{{ __('msg.Inbox') }}</span></a>
             </li>
             <li><a href="{{ route('user.quoteindex') }}"><img
-                        src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>{{ __('msg.All Quotes') }}</span></a>
+                        src="{{ asset('public/assets/images/all-quotes.png') }}"><span>{{ __('msg.All Quotes') }}</span></a>
             </li>
             @if (Auth::user()->type == 'company')
                 <li><a href="{{ route('user.insurance-index') }}"><img
-                            src="{{ asset('public/user/assets/images/dashallqouticon.svg') }}"><span>{{__('msg.Insurance Request')}}</span></a></li>
+                            src="{{ asset('public/assets/images/inspections.png') }}"><span>{{__('msg.Insurance Request')}}</span></a></li>
             @endif
             <li><a href="{{ route('user.wishlist.index') }}"><img
-                        src="{{ asset('public/user/assets/images/dashhearticon.svg') }}"><span>{{ __('msg.Preferred Garages') }}</span></a>
+                        src="{{ asset('public/assets/images/preferred.png') }}"><span>{{ __('msg.Preferred Garages') }}</span></a>
             </li>
             <li><a href="{{ route('user.archive') }}"><img
-                        src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Archived') }}</span></a>
+                        src="{{ asset('public/assets/images/archived.png') }}"><span>{{ __('msg.Archived') }}</span></a>
             </li>
             {{-- <li><a href="{{ route('user.payment.index') }}"><img src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>Payment Via Insurance</span></a></li> --}}
             @if (Auth::user()->type == 'user')
                 <li><a href="{{ route('user.ads.create') }}"><img
-                            src="{{ asset('public/user/assets/images/dashsellcaricon.svg') }}"><span>{{ __('msg.Sell Your Car') }}</span></a>
+                            src="{{ asset('public/assets/images/sell-car.png') }}"><span>{{ __('msg.Sell Your Car') }}</span></a>
                 </li>
             @endif
             <li><a href="{{ route('user.term_condition') }}"><img
-                        src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Terms & Conditions (Agreed)') }}</span></a>
+                        src="{{ asset('public/assets/images/T-&-C.png') }}"><span>{{ __('msg.Terms & Conditions (Agreed)') }}</span></a>
             </li>
         </ul>
     </div>

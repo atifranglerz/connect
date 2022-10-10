@@ -17,41 +17,41 @@
         <ul class="sidebar_navcigation">
             <li>
                 <a href="{{ route('vendor.dashboard') }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashomeicon.svg') }}">
+                        src="{{ asset('public/assets/images/home.png') }}">
                     <span>{{ __('msg.Home') }}</span></a>
             </li>
             <li>
                 <a href="{{ route('vendor.chat.index') }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashinboxicon.svg') }}"><span>{{ __('msg.Inbox') }}</span></a>
+                        src="{{ asset('public/assets/images/inbox.png') }}"><span>{{ __('msg.Inbox') }}</span></a>
             </li>
             <li>
                 <a href="{{ route('vendor.quoteindex') }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashhearticon.svg') }}"><span>{{ __('msg.All Quotes') }}</span></a>
+                        src="{{ asset('public/assets/images/all-quotes.png') }}"><span>{{ __('msg.All Quotes') }}</span></a>
 
             </li>
             <li>
                 <a href="{{ url('vendor/requested-inspections') }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Requested Inspections') }}</span></a>
+                        src="{{ asset('public/assets/images/inspections.png') }}"><span>{{ __('msg.Requested Inspections') }}</span></a>
             </li>
             <li>
                 <a href="{{ route('vendor.all-active-order') }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashallqouticon.svg') }}"><span>{{ __('msg.Active Orders') }}</span></a>
+                        src="{{ asset('public/assets/images/active-orders.png') }}"><span>{{ __('msg.Active Orders') }}</span></a>
             </li>
             <li><a href="{{ route('vendor.archive') }}"><img
-                        src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Archived') }}</span></a>
+                        src="{{ asset('public/assets/images/archived.png') }}"><span>{{ __('msg.Archived') }}</span></a>
             </li>
 
             <li>
                 <a href="{{ route('vendor.workshop.edit', Auth::id()) }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Edit Workshop') }}</span></a>
+                        src="{{ asset('public/assets/images/workshop.png') }}"><span>{{ __('msg.Edit Workshop') }}</span></a>
             </li>
             <li>
                 <a href="{{ route('vendor.ads.create') }}"><img
-                        src="{{ asset('public/vendor/assets/images/dashsellcaricon.svg') }}"><span>{{ __('msg.Sell Your Car') }}</span></a>
+                        src="{{ asset('public/assets/images/sell-car.png') }}"><span>{{ __('msg.Sell Your Car') }}</span></a>
             </li>
 
             <li><a href="{{ route('vendor.term_condition') }}"><img
-                        src="{{ asset('public/user/assets/images/dashpaymenticon.svg') }}"><span>{{ __('msg.Terms & Conditions (Agreed)') }}</span></a>
+                        src="{{ asset('public/assets/images/T-&-C.png') }}"><span>{{ __('msg.Terms & Conditions (Agreed)') }}</span></a>
             </li>
 
 
