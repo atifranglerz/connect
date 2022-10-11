@@ -121,15 +121,14 @@
                 <div class="all_quote_card  vendor_rply_dtlL _text">
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
-                            <form action="{{route('user.order.cancel')}}" method="POST">
+                            <form name="cancelOrder" action="{{route('user.order.cancel')}}" method="POST">
                                 @csrf
                                 <div class="row mt-1 g-3">
                                     <input type="hidden" name="order_id" value="{{$order->id}}">
                                     <div class="col-lg-12 col-md-8 col-sm-10 mx-auto">
                                         <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Add Repairing Details"
-                                                id="floatingTextarea2" name="reason" style="height: 177px">
-                                            </textarea>
+                                            <textarea class="form-control description" id="floatingTextarea2" name="reason" style="height: 177px" required></textarea>
+                                            <label for="floatingTextarea2">{{__('msg.REASON FOR CANCELING')}} ({{__('msg.Required')}})</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-8 col-sm-10 mx-auto">
@@ -149,4 +148,95 @@
     </div>
     </div>
 </section>
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script>
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        var validator = $("form[name='cancelOrder']").validate({
+            ignore: [],
+            onfocusout: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element2 = $element.closest('.form-group').find('select');
+                    if (!$element2.prop('required') && $element2.val() == '') {
+                        $element.removeClass('is-valid');
+                    } else {
+                        this.element($element2)
+                    }
+                } else if (!$element.prop('required') && ($element.val() == '' || $element.val() == null)) {
+                    $element.removeClass('is-valid');
+                } else {
+                    this.element(element)
+                }
+            },
+            onkeyup: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element.closest('.form-group').find('select').valid();
+                } else {
+                    $element.valid();
+                }
+            },
+            rules: {
+                // looking_for: "required",
+                // model: "required",
+                // company_id: "required",
+                // registration_no: "required",
+                // Chasis_no: "required",
+                // color: "required",
+                // model_year_id: "required",
+                // mileage: "required",
+                // day: "required",
+                // "category[]": "required",
+                // "car_images[]": "required",
+                // "document[]": "required"
+            },
+            messages: {
+                // business_type: "Please select your business type",
+            },
+            errorClass: 'is-invalid error',
+            validClass: 'is-valid',
+            highlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(errorClass);
+                    elem.closest('.form-group').find('input').removeClass(validClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(validClass);
+                } else {
+                    elem.addClass(errorClass);
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(validClass);
+                    elem.closest('.form-group').find('input').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(validClass);
+                } else {
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
+                }
+            },
+            errorPlacement: function (error, element) {
+                var elem = $(element);
+                console.log(elem);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    var element2 = elem.closest('.form-group').find('.select2-container');
+                    error.insertAfter(element2);
+                } else if (elem.closest('.form-group').find('div').hasClass('image-uploader')) {
+                    var element2 = elem.closest('.form-group').find('.image-uploader');
+                    error.insertAfter(element2);
+                } else if (elem.hasClass('description')) {
+                    var element2 = elem.closest('.form-floating');
+                    error.insertAfter(element2);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+    </script>
 @endsection

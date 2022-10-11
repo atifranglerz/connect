@@ -128,7 +128,7 @@
             <div class="row g-4 gx-0">
                 <div class="col-lg-8 col-md-6 col-sm-6">
                     <div class="over_view_part h-100">
-                        <h5 class=" text-center mb-3 heading-color">{{$garage->garage_name }}</h5>
+                        <h5 class=" text-center text-uppercase mb-3 heading-color">{{$garage->garage_name }}</h5>
                         <p class="mb-0">{!! $garage->description !!}</p>
                         @if (!isset($garage->description))
                         <p>{{__('msg.garage_overview')}}</p>
