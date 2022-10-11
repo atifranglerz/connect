@@ -365,9 +365,9 @@
                             @else
                                 <div class="item">
                                     <p class="text-center reviews">{{ __('msg.revies_data') }}</p>
-                                    <p class="testimonail_person_name text-center mb-1 reviews">{{ __('msg.Hassan Ali') }}
+                                    <p class="testimonail_person_name text-center mb-1 reviews">{{ __('msg.Sheikh Al Nasir') }}
                                     </p>
-                                    <p class="testimonail_person_rating text-center reviews"><span>5.0</span></p>
+                                    <p class="testimonail_person_rating text-center reviews"><span>0.0</span></p>
                                 </div>
                             @endif
 
