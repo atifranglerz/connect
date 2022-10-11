@@ -8,10 +8,9 @@
                     <div class="main_content_wraper">
                         <p class="sec_main_para text-center mb-0">Fill Up your details to Recover Your Password !</p>
                     </div>
-
-                    <form method="POST" action="{{ route('vendor.reset_password') }}" class="pt-5">
+                    <form name="sendEmail" method="POST" action="{{ route('vendor.reset_password') }}" class="pt-4">
                         @csrf
-                        <div class="col-12 mb-3 signup_input_wraper">
+                        <div class="col-12 mb-3 form-group signup_input_wraper">
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="inputEmail" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})">
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
@@ -29,4 +28,32 @@
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script>
+        $(function() {
+            // Initialize form validation on the registration form.
+            // It has the name attribute "registration"
+            $("form[name='sendEmail']").validate({
+                onkeyup: function (element) {
+                    var $element = $(element);
+                    $element.valid();
+                },
+                rules: {
+                    email: {
+                        required: true
+                    },
+                },
+                messages: {
+                    email: {
+                        required: "Email is required",
+                        email: "Please enter a valid email"
+                    },
+                },
+                errorClass: 'is-invalid error',
+                validClass: 'is-valid'
+            });
+        });
+    </script>
 @endsection
