@@ -262,8 +262,9 @@ class AuthController extends Controller
         $vendor = Vendor::where('email', $token->email)
             ->update(['password' => Hash::make($request->password)]);
         //DB::table('password_resets')->where(['email' => $request->email])->delete();
-
-        return $this->message($vendor, 'vendor.login', 'success', 'error');
+        $_SESSION["msg"] = "Password Updated Successfuly!";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('vendor.login');
     }
 
     public function logout(Request $request)
