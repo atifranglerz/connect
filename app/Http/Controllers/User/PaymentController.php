@@ -192,7 +192,7 @@ class PaymentController extends Controller
         }
 
         session_start();
-        $_SESSION["msg"] = "Order palced and Payment Successfully Added";
+        $_SESSION["msg"] = "Order placed and Payment Successfully Added";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
         // return redirect()->route('user.order.index')->with($this->data("Order palced and Payment Successfully Added", 'success'));

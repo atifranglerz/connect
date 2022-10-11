@@ -52,7 +52,7 @@ class UserReviewController extends Controller
             ]);
            
             // session_start();
-            $_SESSION["msg"] = "Thanks for submit your review";
+            $_SESSION["msg"] = "Thanks for submitting your review";
             $_SESSION["alert"] = "success";
             return redirect()->back();
             // return back()->with($this->data("Thanks for submit your review", 'success'));

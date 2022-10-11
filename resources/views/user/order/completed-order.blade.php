@@ -169,7 +169,7 @@
                                 <div class="d-grid gap-2 mt-lg-3 ">
                                     <a href="{{ route('user.order.show', $order->id) }}"
                                         class="btn btn-secondary block get_appointment"
-                                        type="button">{{ __('msg.MARK AS COMPLETE') }}
+                                        type="button">{{ __('msg.Proceed') }}
                                     </a>
                                 </div>
                             </div>
