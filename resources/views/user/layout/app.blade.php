@@ -323,7 +323,7 @@
             maxFiles:1,
             maxSize: 2097152, // 3 MB
         });
-        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="files" size="60" ></label>   ');
+        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Optional')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="files" size="60" ></label>   ');
         $('.input-images-3').imageUploader({
             extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
             mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],

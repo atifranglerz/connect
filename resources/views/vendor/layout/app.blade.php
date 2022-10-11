@@ -267,16 +267,21 @@
 
     /*scrolling banner*/
     $(document).ready(function(){
-        $('.input-images').imageUploader();
-        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}})</br><b class="small">(Format: png, jpeg, heic only)</b></p><input type="file" name="car_images[]" size="60" ></label>  ');
+        $('.input-images').imageUploader({
+            extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+            maxFiles:5,
+            maxSize: 2097152, // 3 MB
+        });
+        $(".input-images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}})</br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input type="file" name="car_images[]" size="60" ></label>');
         $('.input-images-2').imageUploader();
-        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Required')}})</p><a href="#" class="skip">Skip</a><input type="file" name="file" size="60" ></label>   ');
+        $(".input-images-2>.image-uploader>.upload-text").append('<label class="img_wraper_label skip"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Police/Accident/Inspection Report ({{__('msg.Optional')}})</p><a href="#" class="skip">Skip</a><input type="file" name="file" size="60" ></label>');
         $('.input-images-3').imageUploader({
             extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
             mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
             maxFiles:5,
+            maxSize: 2097152, // 3 MB
         });
-        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
+        $(".input-images-3>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
         $('.input-images-4').imageUploader();
         $(".input-images-4>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload workshop image ({{__('msg.Optional')}})</p><input type="file" name="image" name="file" size="60" ></label>');
         $('.input-images-5').imageUploader({

@@ -324,7 +324,7 @@
                             @csrf
                             <div class="row ">
                                 <div class="col-lg-9 mx-auto">
-                                    <h6 class="heading-color">{{__("msg.Services/Labor Details")}} <sup
+                                    <h6 class="heading-color">{{__("msg.Services/Labor Details")}} ({{__('msg.Required')}}) <sup
                                             class="fa fa-question label-fa-question" data-toggle="tooltip"
                                             data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
@@ -333,7 +333,7 @@
                                         <div class="mb-3 row content-block-row serDetail1">
                                             <div class="col-sm-4">
                                                 <input type="text" name="service_name[]"
-                                                    class="form-control particular-item" placeholder="{{__('msg.Particular')}}" />
+                                                    class="form-control particular-item" placeholder="{{__('msg.Particular')}}" required />
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="input-group">
@@ -352,12 +352,12 @@
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="services_rate[]" class="form-control item-rate"
-                                                    placeholder="{{__('msg.Rate')}}" />
+                                                    placeholder="{{__('msg.Rate')}}" required />
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="services_amount[]" class="form-control item-amount"
-                                                    placeholder="{{__('msg.Amount')}}" />
+                                                    placeholder="{{__('msg.Amount')}}" required />
                                             </div>
                                             <div class="col-sm-2 d-flex flex-wrap">
                                                 <button
@@ -368,7 +368,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="heading-color">{{__('msg.Spares Details')}} <sup class="fa fa-question label-fa-question"
+                                    <h6 class="heading-color">{{__('msg.Spares Details')}} ({{__('msg.Optional')}}) <sup class="fa fa-question label-fa-question"
                                             data-toggle="tooltip" data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
                                     </h6>
@@ -410,7 +410,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="heading-color">{{__('msg.Others')}} <sup class="fa fa-question label-fa-question"
+                                    <h6 class="heading-color">{{__('msg.Others')}} ({{__('msg.Optional')}}) <sup class="fa fa-question label-fa-question"
                                             data-toggle="tooltip" data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
                                     </h6>
@@ -492,7 +492,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{__('msg.Time Frame')}}</h6>
                                             <input type="text" name="time" class="form-control" value="{{ old('time') }}"
-                                                placeholder="{{__('msg.Estimated Time')}} ({{__('msg.Required')}})">
+                                                placeholder="{{__('msg.Estimated Time')}} ({{__('msg.Required')}})" required>
                                             @error('time')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -500,7 +500,7 @@
                                         <div class="col-lg-12 col-md-12 mb-3 form-group">
                                             <div class="form-floating">
                                                 <textarea class="form-control description" name="description" placeholder="({{__('msg.Add information in details')}}) ({{__('msg.Required')}})" id="floatingTextarea2"
-                                                    style="height: 106px">{{ old('description') }}</textarea>
+                                                    style="height: 106px" required>{{ old('description') }}</textarea>
                                                 @error('description')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -1105,5 +1105,92 @@
             $('.netTotal').text(netTotal);
         }
         /*Amount Total, Vat, Net Total Calculations*/
+
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        var validator = $("form[name='bidAdd']").validate({
+            ignore: [],
+            onfocusout: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element2 = $element.closest('.form-group').find('select');
+                    if (!$element2.prop('required') && $element2.val() == '') {
+                        $element.removeClass('is-valid');
+                    } else {
+                        this.element($element2)
+                    }
+                } else if (!$element.prop('required') && ($element.val() == '' || $element.val() == null)) {
+                    $element.removeClass('is-valid');
+                } else {
+                    this.element(element)
+                }
+            },
+            onkeyup: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element.closest('.form-group').find('select').valid();
+                } else {
+                    $element.valid();
+                }
+            },
+            rules: {
+                // looking_for: "required",
+                // model: "required",
+                // company_id: "required",
+                // registration_no: "required",
+                // Chasis_no: "required",
+                // color: "required",
+                // model_year_id: "required",
+                // mileage: "required",
+                // day: "required",
+                // "category[]": "required",
+                // "car_images[]": "required",
+                // "document[]": "required"
+            },
+            messages: {
+                // business_type: "Please select your business type",
+            },
+            errorClass: 'is-invalid error',
+            validClass: 'is-valid',
+            highlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(errorClass);
+                    elem.closest('.form-group').find('input').removeClass(validClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(validClass);
+                } else {
+                    elem.addClass(errorClass);
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(validClass);
+                    elem.closest('.form-group').find('input').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(validClass);
+                } else {
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
+                }
+            },
+            errorPlacement: function (error, element) {
+                var elem = $(element);
+                console.log(elem);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    var element2 = elem.closest('.form-group').find('.select2-container');
+                    error.insertAfter(element2);
+                } else if (elem.closest('.form-group').find('div').hasClass('image-uploader')) {
+                    var element2 = elem.closest('.form-group').find('.image-uploader');
+                    error.insertAfter(element2);
+                } else if (elem.hasClass('description')) {
+                    var element2 = elem.closest('.form-floating');
+                    error.insertAfter(element2);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
     </script>
 @endsection

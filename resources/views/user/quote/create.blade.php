@@ -166,7 +166,7 @@
                                     aria-labelledby="profile-tab">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3 form-group">
-                                            <label class="heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                            <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
                                             <div class="input-images">
                                                 {{--input field name  car_images --}}
 
@@ -187,7 +187,7 @@
                                     aria-labelledby="inspection-report-link">
                                     <div class="row g-lg-3 g-2">
                                         <div class="col-lg-12 mb-3 form-group">
-                                            <label class="heading-color"><b>{{__('msg.Upload Document')}} <small>({{__('msg.Upload Up to 1 PDF/Image')}})</small></b></label>
+                                            <label class="mb-2 heading-color"><b>{{__('msg.Upload Document')}} <small>({{__('msg.Upload Up to 1 PDF/Image')}})</small></b></label>
                                             <div class="input-images-2">
                                                 {{--input field name files--}}
                                             </div>
@@ -350,7 +350,6 @@
                 day: "required",
                 "category[]": "required",
                 "car_images[]": "required",
-                "files": "required",
                 "document[]": "required"
             },
             messages: {

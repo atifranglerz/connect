@@ -22,15 +22,15 @@
                             @csrf
                             <div class="row g-lg-3 g-2">
                                 <div class="col-lg-6 col-md-6 col-sm-6 form-group mb-3">
+                                    <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-images"></div>
                                     @error('car_images')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 form-group mb-3">
-                                    <div class="input-images-3">
-
-                                    </div>
+                                    <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                    <div class="input-images-3"></div>
                                     @error('document')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror

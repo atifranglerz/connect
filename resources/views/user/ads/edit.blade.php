@@ -44,6 +44,7 @@
                                         $preDocx = json_encode($preDocx);
                                     ?>
                                     <div class="col-lg-6 col-md-6 mb-3">
+                                        <label class="heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
                                         <div class="car_images">
                                         </div>
                                         @error('car_images')
@@ -51,6 +52,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-3">
+                                        <label class="heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
                                         <div class="doc_images">
                                         </div>
                                         @error('files')
@@ -201,8 +203,9 @@
                 preloadedInputName: 'car_old',
                 extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 maxFiles: 5,
+                maxSize: 2097152, // 3 MB
             });
-            $(".car_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+            $(".car_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
         });
         //update the documents images
         $(function() {
@@ -214,8 +217,9 @@
                 extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
                 maxFiles: 5,
+                maxSize: 2097152, // 3 MB
             });
-            $(".doc_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
+            $(".doc_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
         });
     </script>
 @endsection
