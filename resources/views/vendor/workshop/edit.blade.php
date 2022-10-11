@@ -252,9 +252,11 @@
             ];
             $('.workshop-image').imageUploader({
                 preloaded: preloaded,
+                extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 maxFiles:1,
+                maxSize: 2097152, // 3 MB
             });
-            $(".workshop-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload workshop image ({{__('msg.Optional')}})</p><input type="file" name="image" name="file" size="60" ></label>');
+            $(".workshop-image>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0 text-capitalize">Upload workshop image ({{__('msg.Optional')}})</br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input type="file" name="image" name="file" size="60" ></label>');
         });
     </script>
 @endsection

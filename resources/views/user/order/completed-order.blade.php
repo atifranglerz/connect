@@ -11,7 +11,7 @@
                         $garage = \App\Models\Garage::where('id', $order->garage_id)->first();
                         $vendor = \App\Models\Vendor::where('id', $garage->vendor_id)->first();
                         $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
-                        
+
                         ?>
                         <div class="car_inner_imagg vendor_rply_dtl ">
                             <img
@@ -168,7 +168,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="d-grid gap-2 mt-lg-3 ">
                                     <a href="{{ route('user.order.show', $order->id) }}"
-                                        class="btn btn-secondary block get_appointment"
+                                        class="btn btn-secondary text-uppercase block get_appointment"
                                         type="button">{{ __('msg.Proceed') }}
                                     </a>
                                 </div>

@@ -10,7 +10,7 @@
                             <p class="sec_main_para text-center mb-0">{{ __('msg.Edit your profile details') }}</p>
                         </div>
 
-                        <form class="pt-5" action="{{ route('user.profile.post', $profile->id) }}" method="post"
+                        <form class="pt-4" action="{{ route('user.profile.post', $profile->id) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
@@ -62,7 +62,7 @@
                             @endif
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="number" class="form-control" id="inputNumber" name="phone"
-                                    placeholder="{{ __('msg.Phone Number') }}" value="{{ $profile->phone }}"
+                                    placeholder="+971 XXXXXXXX ({{__('msg.Required')}})" value="{{ $profile->phone }}"
                                     onkeypress="if(this.value.length==12) return false">
                                 @error('phone')
                                     <div class="text-danger p-2">{{ $message }}</div>
@@ -209,8 +209,11 @@
             }, ];
             $('#profileImage').imageUploader({
                 preloaded: preloaded,
+                extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
                 maxFiles: 1,
+                maxSize: 2097152, // 3 MB
             });
+            $("#profileImage>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Profile Picture ({{__('msg.Required')}}) </br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input name="profile_image" type="file" size="60"></label>');
         });
         if (role === 'company') {
             $(function() {
@@ -221,8 +224,14 @@
                 $('#id_card').imageUploader({
                     preloaded: preloaded,
                     imagesInputName: 'id_card',
+                    extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+                    mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
                     maxFiles: 1,
+                    maxSize: 2097152, // 3 MB
                 });
+                $("#id_card>.image-uploader>.upload-text").append(
+                    '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your ID ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input name="id_card" type="file" size="60" ></label> '
+                );
             });
             $(function() {
                 let preloaded = [{
@@ -232,8 +241,14 @@
                 $('#image_license').imageUploader({
                     preloaded: preloaded,
                     imagesInputName: 'image_license',
+                    extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+                    mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
                     maxFiles: 1,
+                    maxSize: 2097152, // 3 MB
                 });
+                $("#image_license>.image-uploader>.upload-text").append(
+                    '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">Upload Your ID ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input name="id_card" type="file" size="60" ></label> '
+                );
             });
         }
     </script>

@@ -63,7 +63,7 @@ return [
     'LEGAL DOCS' => 'LEGAL DOCS',
     'CAR INFORMATION' => 'CAR INFORMATION',
     'OVERVIEW' => 'OVERVIEW',
-    'DETAILS' => 'DETAILS',
+    'DETAILS' => 'Details',
     'Engine' => 'Engine',
     'Color' => 'Color',
     'Registered On' => 'Registered On',
