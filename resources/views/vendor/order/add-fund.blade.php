@@ -216,7 +216,7 @@
                             @csrf
                             <div class="row ">
                                 <div class="col-lg-9 mx-auto">
-                                    <h6 class="heading-color">{{ __('msg.Services/Labor Details') }} ({{__('msg.Required')}}) <sup
+                                    <h6 class="heading-color">{{ __('msg.Services/Labor Details') }} ({{__('msg.Optional')}}) <sup
                                             class="fa fa-question label-fa-question" data-toggle="tooltip"
                                             data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
@@ -226,7 +226,7 @@
                                             <div class="col-sm-4">
                                                 <input type="text" name="service_name[]"
                                                     class="form-control particular-item"
-                                                    placeholder="{{ __('msg.Particular') }}" required />
+                                                    placeholder="{{ __('msg.Particular') }}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="input-group">
@@ -245,12 +245,12 @@
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="services_rate[]" class="form-control item-rate"
-                                                    placeholder="{{ __('msg.Rate') }}" required />
+                                                    placeholder="{{ __('msg.Rate') }}" />
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="number" min="1" value=''
                                                     name="services_amount[]" class="form-control item-amount"
-                                                    placeholder="{{ __('msg.Amount') }}" required />
+                                                    placeholder="{{ __('msg.Amount') }}" />
                                             </div>
                                             <div class="col-sm-2 d-flex flex-wrap">
                                                 <button
