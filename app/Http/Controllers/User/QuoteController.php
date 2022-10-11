@@ -130,6 +130,7 @@ class QuoteController extends Controller
         $message['link1'] = url('vendor/quotedetail', $quote->id);
         $message['type'] = $request->action;
         $message['qoute_range'] = $request->qoute_range;
+        $message['auth'] = Auth::id();
 
         // this is car image save
         $imagefiles = new UserBidImage();
