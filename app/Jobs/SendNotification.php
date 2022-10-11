@@ -55,7 +55,7 @@ class SendNotification implements ShouldQueue
                 } else {
                     $notification = new webNotification();
                     $notification->vendor_id = $data->vendor->id;
-                    $notification->title = $this->message['body1'] . " placd a new quote to you and other vendors";
+                    $notification->title = $this->message['body1'] . " Quotation placed against you and other vendors";
                     $notification->links = $this->message['link1'];
                     $notification->body = ' ';
                     $notification->save();
@@ -89,7 +89,7 @@ class SendNotification implements ShouldQueue
                 } else {
                     $notification = new webNotification();
                     $notification->vendor_id = $data->vendor->id;
-                    $notification->title = $this->message['body1'] . " placd a new quote to you and other preferred vendors";
+                    $notification->title = $this->message['body1'] . " Quotation placed against you and other preferred vendors";
                     $notification->links = $this->message['link1'];
                     $notification->body = ' ';
                     $notification->save();
