@@ -20,6 +20,8 @@ use Stripe;
 class PaymentController extends Controller
 {
 
+    /*----------payment method for testing------------------*/
+
     public function stripe()
     {
         return view('user.payment.stripe');
@@ -42,6 +44,11 @@ class PaymentController extends Controller
 
         return redirect()->back();
     }
+
+    /*---------- end payment method for testing------------------*/
+
+
+
 
     public function index(Request $request)
     {
@@ -111,12 +118,9 @@ class PaymentController extends Controller
             $notification->body = ' ';
             $notification->save();
 
-            // session_start();
             $_SESSION["msg"] = "Order Completed and Payment Successfully Added";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.order.index');
-            // return redirect()->route('user.order.index')->with($this->data("Order Completed and Payment Successfully Added", 'success'));
-
         } else {
             $amount = explode(" ", $request->amount);
             // get payment
@@ -142,7 +146,6 @@ class PaymentController extends Controller
             $order->customer_postal_code = Auth::user()->post_box;
             $order->customer_city = Auth::user()->city;
             $order->paid_by = "customer";
-
             $order->save();
 
             //after order confirm update quote status
@@ -191,12 +194,9 @@ class PaymentController extends Controller
             }
         }
 
-        session_start();
         $_SESSION["msg"] = "Order placed and Payment Successfully Added";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
-        // return redirect()->route('user.order.index')->with($this->data("Order palced and Payment Successfully Added", 'success'));
-
     }
 
     public function orderPlaceByCompany(Request $request)
@@ -214,7 +214,6 @@ class PaymentController extends Controller
         $order->customer_postal_code = Auth::user()->post_box;
         $order->customer_city = Auth::user()->city;
         $order->paid_by = "company";
-
         $order->save();
 
         //after order confirm update quote status
@@ -262,12 +261,9 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-        session_start();
         $_SESSION["msg"] = "Your Order placed Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
-        // return redirect()->route('user.order.index')->with($this->data("Your Order palced Successfully", 'success'));
-
     }
 
     public function orderPlaceForInsurance($id)
@@ -371,10 +367,8 @@ class PaymentController extends Controller
             $notification->save();
         }
 
-        session_start();
         $_SESSION["msg"] = "Your order placed and payment request send to Insurance Company Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
-        // return redirect()->route('user.order.index')->with($this->data("Your order placed and payment request send to Insurance Company Successfully", 'success'));
     }
 }
