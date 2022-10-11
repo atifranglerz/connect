@@ -53,7 +53,7 @@
                                                     <td>{{ $data->post_box }}</td>
                                                     <td>{{ $data->trading_no }}</td>
                                                     <td>{{ $data->vat }}%</td>
-                                                    <td>{!! $data->description !!}</td>
+                                                    <td>{!!  substr_replace($data->description, " read more...", 20) !!}</td>
                                                     <td>
                                                         <a href="{{ route('admin.garage.edit', ['garage' => $data->id]) }}"
                                                             class="btn btn-primary">
