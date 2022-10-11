@@ -170,14 +170,14 @@
                                 {{ session()->get('alert-success') }}
                             </div>
                         @endif
-                        <form class="row gy-3 gx-0" method="post" action="{{ route('contact-vendor') }}"
+                        <form name="requestQuote" class="row gy-3 gx-0" method="post" action="{{ route('contact-vendor') }}"
                             enctype="multipart/form-data" class="needs-validation" novalidate>
                             @csrf
                             <input type="hidden" name="garage_id" value="{{ $garage->id }}">
                             <div class="row gy-lg-3 gy-2 gx-0">
                                 <div class="col-12 px-2">
                                     <select name="looking_for" class="form-select form-control" id="lookingFor" required>
-                                        <option value=""></option>
+                                        <option value="" selected disabled>{{__('msg.What are you looking for? (Required)')}}</option>
                                         <option value="I have Inspection Report & Looking for the Quotations"
                                             @if (old('looking_for') == 'I have Inspection Report & Looking for the Quotations') selected @endif>{{__('msg.I have Inspection Report & Looking for the Quotation')}}</option>
                                         <option value="I don't know the Problem and Requesting for the Inspection"
@@ -189,18 +189,11 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
-                                    <input type="text" class="form-control" name="model"
-                                    value="{{ old('model') }}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage"
-                                        required>
-                                    @error('model')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <select class="form-select form-control company-name-field" name="company_id"
                                         aria-label="Type of Service" required>
-                                        <option value=""></option>
+                                        <option value="" selected disabled>{{ __('msg.Manufacturer/Brand') }}
+                                            ({{ __('msg.Required') }})</option>
                                         @foreach ($company as $data)
                                             <option value="{{ $data->id }}"
                                                 @if (old('company_id') == $data->id) selected @endif>{{ $data->company }}
@@ -211,7 +204,15 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
+                                    <input type="text" class="form-control" name="model"
+                                    value="{{ old('model') }}" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})" aria-label="Car Milage"
+                                        required>
+                                    @error('model')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <input type="text" class="form-control" value="{{ old('registration_no') }}"
                                         name="registration_no" placeholder="{{__('msg.Registration No.')}} ({{__('msg.Required')}})" aria-label="Car Milage"
                                         required>
@@ -219,14 +220,14 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <input type="text" class="form-control" value="{{ old('Chasis_no') }}"
                                         name="Chasis_no" placeholder="{{__('msg.Chasis No.')}} ({{__('msg.Required')}})" aria-label="Car Milage" required>
                                     @error('Chasis_no')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <input type="text" class="form-control" name="color"
                                         value="{{ old('color') }}" placeholder="{{__('msg.Color')}} ({{__('msg.Required')}})" aria-label="Car Milage"
                                         required>
@@ -234,10 +235,11 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <select class="form-select form-control model-year-field" name="model_year_id"
                                         aria-label="Type of Service" required>
-                                        <option value=""></option>
+                                        <option value="" selected disabled>{{ __('msg.Model Year') }}
+                                            ({{ __('msg.Required') }})</option>
                                         @foreach ($year as $data)
                                             <option value="{{ $data->id }}"
                                                 @if (old('model_year_id') == $data->id) selected @endif>{{ $data->model_year }}
@@ -248,7 +250,7 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <input type="number" class="form-control" name="mileage"
                                         value="{{ old('mileage') }}" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})"
                                         aria-label="Car Milage" required>
@@ -256,7 +258,7 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6 col-md-6 px-2">
+                                <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <input type="number" class="form-control" name="day"
                                         value="{{ old('day') }}" placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Required')}})" aria-label="Day"
                                         required>
@@ -264,7 +266,7 @@
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-12 px-2 services-dropdown-block">
+                                <div class="col-12 px-2 form-group services-dropdown-block">
                                     <select class="form-select form-control garage-services" name="category[]" multiple
                                         aria-label="Type of Service" required>
                                         @foreach ($catagary as $data)
@@ -278,7 +280,7 @@
                                 <div class="col-lg-12 px-2">
                                     <textarea name="description1" placeholder="{{__('msg.Add information in details')}} ({{__('msg.Optional')}})" class="form-control" rows="5">{{ old('description1') }}</textarea>
                                 </div>
-                                <div class="col-lg-12 px-2">
+                                <div class="col-lg-12 px-2 form-group">
                                     <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}} <small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-imagess"></div>
                                     @error('car_images')
@@ -286,21 +288,21 @@
                                     @enderror
                                 </div>
                                 <div class="police-inspection-report">
-                                    <div class="col-lg-12 mb-3">
+                                    <div class="col-lg-12 mb-3 form-group">
                                         <label class="mb-2 heading-color"><b>{{__('msg.Upload Document')}} <small>({{__('msg.Upload Up to 1 PDF')}})</small></b></label>
-                                        <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'></div>
+                                        <div class="input-imagess-2"></div>
                                         @error('files')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 mb-3">
+                                    <div class="col-lg-12">
                                         <textarea name="description2" placeholder="Special Requirements" class="form-control" rows="5">{{ old('description2') }}</textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-0 gy-lg-3 gy-2 gx-0">
-                                <div class="col-12 px-2">
-                                    <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small>({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                <div class="col-12 px-2 form-group">
+                                    <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}} <small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-imagess-3"></div>
                                     @error('document')
                                         <div class="text-danger p-2">{{ $message }}</div>
@@ -308,7 +310,7 @@
                                 </div>
                                 <div class="row gy-2 gx-0">
 
-                                    <div class="col-lg-6 col-md-6 px-2">
+                                    <div class="col-lg-6 col-md-6 px-2 form-group">
                                         <input type="text" class="form-control"
                                             @if (isset(auth()->user()->name)) value="{{ auth()->user()->name }}" readonly @endif
                                             name="maker_name" placeholder="{{__('msg.Name')}} ({{__('msg.Required')}})" aria-label="Make" required>
@@ -316,7 +318,7 @@
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6 col-md-6 px-2">
+                                    <div class="col-lg-6 col-md-6 px-2 form-group">
                                         <input type="email" class="form-control"
                                             @if (isset(auth()->user()->email)) value="{{ auth()->user()->email }}" readonly @endif
                                             name="email" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})" aria-label="Email" required>
@@ -429,6 +431,7 @@
 
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script>
         toastr.options = {
             "closeButton": true,
@@ -446,6 +449,92 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        var validator = $("form[name='requestQuote']").validate({
+            ignore: [],
+            onfocusout: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element2 = $element.closest('.form-group').find('select');
+                    if (!$element2.prop('required') && $element2.val() == '') {
+                        $element.removeClass('is-valid');
+                    } else {
+                        this.element($element2)
+                    }
+                } else if (!$element.prop('required') && ($element.val() == '' || $element.val() == null)) {
+                    $element.removeClass('is-valid');
+                } else {
+                    this.element(element)
+                }
+            },
+            onkeyup: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element.closest('.form-group').find('select').valid();
+                } else {
+                    $element.valid();
+                }
+            },
+            rules: {
+                looking_for: "required",
+                model: "required",
+                company_id: "required",
+                registration_no: "required",
+                Chasis_no: "required",
+                color: "required",
+                model_year_id: "required",
+                mileage: "required",
+                day: "required",
+                // "category[]": "required",
+                "car_images[]": "required",
+                "document[]": "required"
+            },
+            messages: {
+                // business_type: "Please select your business type",
+            },
+            errorClass: 'is-invalid error',
+            validClass: 'is-valid',
+            highlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(errorClass);
+                    elem.closest('.form-group').find('input').removeClass(validClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(validClass);
+                } else {
+                    elem.addClass(errorClass);
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(validClass);
+                    elem.closest('.form-group').find('input').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(validClass);
+                } else {
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
+                }
+            },
+            errorPlacement: function (error, element) {
+                var elem = $(element);
+                console.log(elem);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    var element2 = elem.closest('.form-group').find('.select2-container');
+                    error.insertAfter(element2);
+                } else if (elem.closest('.form-group').find('div').hasClass('image-uploader')) {
+                    var element2 = elem.closest('.form-group').find('.image-uploader');
+                    error.insertAfter(element2);
+                } else if (elem.hasClass('inteltel')) {
+                    var element2 = elem.closest('.iti');
+                    error.insertAfter(element2);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
         $(function() {
             <?php if(session('alert-garage-success'))
                 {
@@ -455,18 +544,17 @@
                 }
             ?>
         });
-
-
-
-
         $(function() {
-            $('#lookingFor').select2({
-                placeholder: "{{__('msg.What are you looking for? (Required)')}}",
-            });
+            // $('#lookingFor').select2({
+            //     placeholder: "{{__('msg.What are you looking for? (Required)')}}",
+            // });
             lookingFor();
-            $('#lookingFor').on('select2:select', function() {
+            $('#lookingFor').change(function() {
                 lookingFor();
             });
+            // $('#lookingFor').on('select2:select', function() {
+            //     lookingFor();
+            // });
 
             function lookingFor() {
                 var val = $('#lookingFor').val();
@@ -478,11 +566,15 @@
                     $('.police-inspection-report').removeClass('d-none');
                     $('#requestForInspection').addClass('d-none');
                     $('.get-quotes-block').removeClass('d-none');
+                    $('.garage-services').prop('required', true);
                 } else if (val == valTwo) {
                     $('.services-dropdown-block').addClass('d-none');
                     $('.police-inspection-report').addClass('d-none');
                     $('#requestForInspection').removeClass('d-none');
                     $('.get-quotes-block').addClass('d-none');
+                    $('.garage-services').prop('required', false);
+                } else if (val == valThree) {
+                    $('.garage-services').prop('required', false);
                 } else {
                     $('.police-inspection-report').addClass('d-none');
                     $('.services-dropdown-block').removeClass('d-none');
@@ -490,6 +582,53 @@
                     $('.get-quotes-block').removeClass('d-none');
                 }
             }
+
+            setInterval(() => {
+                /*Car Image*/
+                if(!$('input[name="car_images[]"]').val()=="") {
+                    $('label[for="car_images[]"]').empty().hide();
+                    $('input[name="car_images[]"]').removeClass('is-invalid error').addClass('is-valid');
+                } else {
+                    $('label[for="car_images[]"]').text("This field is required.").show();
+                    $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+                }
+                if ($('.uploaded .uploaded-image').length==0) {
+                    $('label[for="car_images[]"]').text("This field is required.").show();
+                    $('input[name="car_images[]"]').removeClass('is-valid').addClass('is-invalid error');
+                    $('input[name="car_images[]"]').val('');
+                }
+                /*Car Image*/
+
+                /*Upload Police/Accident/Inspection Report*/
+                if(!$('input[name="files"]').val()=="") {
+                    $('label[for="files"]').empty().hide();
+                    $('input[name="files"]').removeClass('is-invalid error').addClass('is-valid');
+                } else {
+                    $('label[for="files"]').text("This field is required.").show();
+                    $('input[name="files"]').removeClass('is-valid').addClass('is-invalid error');
+                }
+                if ($('input[name="files"]').closest('.image-uploader').find('.uploaded .uploaded-image').length==0) {
+                    $('label[for="files"]').text("This field is required.").show();
+                    $('input[name="files"]').removeClass('is-valid').addClass('is-invalid error');
+                    $('input[name="files"]').val('');
+                }
+                /*Upload Police/Accident/Inspection Report*/
+
+                /*Registration Copy Image*/
+                if(!$('input[name="document[]"]').val()=="") {
+                    $('label[for="document[]"]').empty().hide();
+                    $('input[name="document[]"]').removeClass('is-invalid error').addClass('is-valid');
+                } else {
+                    $('label[for="document[]"]').text("This field is required.").show();
+                    $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+                }
+                if ($('input[name="document[]"]').closest('.image-uploader').find('.uploaded .uploaded-image').length==0) {
+                    $('label[for="document[]"]').text("This field is required.").show();
+                    $('input[name="document[]"]').removeClass('is-valid').addClass('is-invalid error');
+                    $('input[name="document[]"]').val('');
+                }
+                /*Registration Copy Image*/
+            }, 500);
         });
     </script>
 

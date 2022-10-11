@@ -141,7 +141,7 @@
                                         </div>
                                         <div class="col-12 form-group services-dropdown-block">
                                             <select class="form-select form-control garage-services" name="category[]"
-                                                multiple required aria-label="Type of Service">
+                                                multiple required aria-label="Type of Service" required>
                                                 @foreach($catagary as $data)
                                                 <option value="{{$data->id }}">{{$data->name}}</option>
                                                 @endforeach
@@ -348,7 +348,7 @@
                 model_year_id: "required",
                 mileage: "required",
                 day: "required",
-                "category[]": "required",
+                // "category[]": "required",
                 "car_images[]": "required",
                 "document[]": "required"
             },
@@ -461,12 +461,16 @@ $(function() {
             $('#inspection-report-link').closest('li').removeClass('d-none');
             $('#requestForInspection').addClass('d-none');
             $('.get-quotes-block').removeClass('d-none');
+            $('.garage-services').prop('required', true);
         } else if (val == valTwo) {
             $('.services-dropdown-block').addClass('d-none');
             $('#inspection-report-link').closest('li').addClass('d-none');
             $('#requestForInspection').removeClass('d-none');
             $('.get-quotes-block').addClass('d-none');
-        } else {
+            $('.garage-services').prop('required', false);
+        } else if (val == valThree) {
+            $('.garage-services').prop('required', false);
+        }  else {
             $('#inspection-report-link').closest('li').addClass('d-none');
             $('.services-dropdown-block').removeClass('d-none');
             $('#requestForInspection').addClass('d-none');
