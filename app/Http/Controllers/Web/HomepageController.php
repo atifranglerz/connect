@@ -77,8 +77,13 @@ class HomepageController extends Controller
             })->get();
             return view('web.append_servicesGarage', $data);
         } else {
-            $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->get();
-            return view('web.append_TopGarage', $data);
+            $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(8);
+
+            if(isset($request->val)){
+                return view('web.append_TopGarage1', $data);
+            }else{
+                return view('web.append_TopGarage', $data);
+            }
         }
     }
     public function allvendor()
@@ -99,7 +104,7 @@ class HomepageController extends Controller
         //     $query->where('id',$search);
         // })->get();
 
-        $data['garages'] = Category::where('id', $search)->with('categoryGarage')->get();
+        $data['garages'] = Category::where('id', $search)->with('garage')->get();
 
         return $data;
         return view('web.vendorlist', $data);

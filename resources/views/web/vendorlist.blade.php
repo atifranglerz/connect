@@ -35,7 +35,8 @@
 
                             <input type="text" class="form-control search_garages"
                                 placeholder="{{ __('msg.Search For Your Favorite Garages (Type Here)') }}"
-                                aria-label="Recipient's username" aria-describedby="button-addon2" style="padding-right: 16px">
+                                aria-label="Recipient's username" aria-describedby="button-addon2"
+                                style="padding-right: 16px">
 
                             {{-- <button class="btn search" type="button" id="button-addon2">{{ __('msg.SEARCH') }}</button> --}}
 
@@ -125,15 +126,15 @@
 
 
 
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <nav aria-label="..." class="d-flex align-items-center justify-content-center">
-                        <span class="mt-4">{!! $garages->links() !!}</span>
-                    </nav>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <nav aria-label="..." class="d-flex align-items-center justify-content-center">
+                            <span id="paginate" class="mt-4">{!! $garages->links() !!}</span>
+                        </nav>
+                    </div>
                 </div>
             </div>
+
 
         </div>
         <!-- Modal -->
@@ -149,16 +150,16 @@
                         </div>
                         <div class="modal-body">
                             <select class="w-100 form-select form-control garage-services" name="category[]" multiple
-                            aria-label="Type of Service" required>
-                            @foreach ($catagary as $data)
-                                <option value="{{ $data->id }}">{{ $data->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">{{ __('msg.SEARCH') }}</button>
-                            </div>
+                                aria-label="Type of Service" required>
+                                @foreach ($catagary as $data)
+                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">{{ __('msg.SEARCH') }}</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -169,18 +170,20 @@
         $(document).ready(function() {
             $(".search_garages").on("keyup", function() {
                 var val = $('.search_garages').val();
-                $.ajax({
-                    url: '{{ URL::to('/service-garage') }}',
-                    type: 'GET',
-                    data: {
-                        'val': val,
-                    },
-                    success: function(response) {
-                        $(".appendGarage").empty();
-                        $(".appendGarage").append(response);
+                if (val != '') {
+                    $.ajax({
+                        url: '{{ URL::to('/service-garage') }}',
+                        type: 'GET',
+                        data: {
+                            'val': val,
+                        },
+                        success: function(response) {
+                            $(".appendGarage").empty();
+                            $(".appendGarage").append(response);
 
-                    }
-                });
+                        }
+                    });
+                }
             });
 
 
