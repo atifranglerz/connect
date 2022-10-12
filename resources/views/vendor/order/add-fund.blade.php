@@ -117,7 +117,7 @@
                 ->where('type', 'registerImage')
                 ->first();
             $car_images = Explode(',', $car_images->car_image);
-            
+
             ?>
             <div class="row mt-5">
                 <div class="col-lg-12">
@@ -212,11 +212,11 @@
             <div class="row mt-5">
                 <div class="col-lg-12">
                     <div class="all_quote_card  vendor_rply_dtlL _text">
-                        <form action="{{ route('vendor.finalFund') }}" method="post">
+                        <form name="addFunds" action="{{ route('vendor.finalFund') }}" method="post">
                             @csrf
                             <div class="row ">
                                 <div class="col-lg-9 mx-auto">
-                                    <h6 class="heading-color">{{ __('msg.Services/Labor Details') }} <sup
+                                    <h6 class="heading-color">{{ __('msg.Services/Labor Details') }} ({{__('msg.Optional')}}) <sup
                                             class="fa fa-question label-fa-question" data-toggle="tooltip"
                                             data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
@@ -261,7 +261,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="heading-color">{{ __('msg.Spares Details') }} <sup
+                                    <h6 class="heading-color">{{ __('msg.Spares Details') }} ({{__('msg.Optional')}}) <sup
                                             class="fa fa-question label-fa-question" data-toggle="tooltip"
                                             data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
@@ -305,7 +305,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="heading-color">{{ __('msg.Others') }} <sup
+                                    <h6 class="heading-color">{{ __('msg.Others') }} ({{__('msg.Optional')}}) <sup
                                             class="fa fa-question label-fa-question" data-toggle="tooltip"
                                             data-placement="top"
                                             title=' "+" Sign will be used for Addition and "-" Sign will used be for Subtraction'></sup>
@@ -357,7 +357,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{ __('msg.Estimate Total') }}</h6>
                                             <input type="number" name="price" class="form-control amountTotal"
-                                                placeholder="{{ __('msg.AED Price') }}" readonly>
+                                                placeholder="{{ __('msg.AED Price') }} ({{ __('msg.Required') }})" readonly required>
                                             @error('price')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -375,7 +375,7 @@
                                             <?php $garage = \App\Models\Garage::where('vendor_id', auth()->id())->first(); ?>
                                             <input type="hidden" name="garage_id" value="{{ $garage->id }}">
                                             <input type="number" name="vat" class="form-control vatPercent"
-                                                placeholder="{{ __('msg.AED Price') }}" readonly>
+                                                placeholder="{{ __('msg.AED Price') }} ({{ __('msg.Required') }})" readonly required>
                                             @error('vat')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -383,7 +383,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{ __('msg.Net Total') }}</h6>
                                             <input type="number" name="net_total" class="form-control netTotal"
-                                                placeholder="{{ __('msg.AED Price') }}" readonly>
+                                                placeholder="{{ __('msg.AED Price') }} ({{ __('msg.Required') }})" readonly required>
                                             @error('net_total')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -392,16 +392,16 @@
                                             <h6 class="heading-color">{{ __('msg.Time Frame') }}</h6>
                                             <input type="text" name="time" class="form-control"
                                                 value="{{ old('time') }}"
-                                                placeholder="{{ __('msg.Estimated Time') }} ({{ __('msg.Required') }})">
+                                                placeholder="{{ __('msg.Estimated Time') }} ({{ __('msg.Required') }})" required>
                                             @error('time')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-12 col-md-12 mb-3">
                                             <div class="form-floating">
-                                                <textarea class="form-control" name="description"
+                                                <textarea class="form-control description" name="description"
                                                     placeholder="({{ __('msg.Add information in details') }}) ({{ __('msg.Required') }})" id="floatingTextarea2"
-                                                    style="height: 106px">{{ old('description') }}</textarea>
+                                                    style="height: 106px" required>{{ old('description') }}</textarea>
                                                 @error('description')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -631,6 +631,7 @@
     </div>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script>
         $(function() {
             /*tooltip*/
@@ -904,5 +905,92 @@
             $('.netTotal').text(netTotal);
         }
         /*Amount Total, Vat, Net Total Calculations*/
+
+                // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        var validator = $("form[name='addFunds']").validate({
+            ignore: [],
+            onfocusout: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element2 = $element.closest('.form-group').find('select');
+                    if (!$element2.prop('required') && $element2.val() == '') {
+                        $element.removeClass('is-valid');
+                    } else {
+                        this.element($element2)
+                    }
+                } else if (!$element.prop('required') && ($element.val() == '' || $element.val() == null)) {
+                    $element.removeClass('is-valid');
+                } else {
+                    this.element(element)
+                }
+            },
+            onkeyup: function (element) {
+                var $element = $(element);
+                if ($element.hasClass('select2-search__field')) {
+                    $element.closest('.form-group').find('select').valid();
+                } else {
+                    $element.valid();
+                }
+            },
+            rules: {
+                // looking_for: "required",
+                // model: "required",
+                // company_id: "required",
+                // registration_no: "required",
+                // Chasis_no: "required",
+                // color: "required",
+                // model_year_id: "required",
+                // mileage: "required",
+                // day: "required",
+                // "category[]": "required",
+                // "car_images[]": "required",
+                // "document[]": "required"
+            },
+            messages: {
+                // business_type: "Please select your business type",
+            },
+            errorClass: 'is-invalid error',
+            validClass: 'is-valid',
+            highlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(errorClass);
+                    elem.closest('.form-group').find('input').removeClass(validClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(validClass);
+                } else {
+                    elem.addClass(errorClass);
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    elem.closest('.form-group').find('input').addClass(validClass);
+                    elem.closest('.form-group').find('input').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').removeClass(errorClass);
+                    elem.closest('.form-group').find('span.select2-selection').addClass(validClass);
+                } else {
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
+                }
+            },
+            errorPlacement: function (error, element) {
+                var elem = $(element);
+                console.log(elem);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    var element2 = elem.closest('.form-group').find('.select2-container');
+                    error.insertAfter(element2);
+                } else if (elem.closest('.form-group').find('div').hasClass('image-uploader')) {
+                    var element2 = elem.closest('.form-group').find('.image-uploader');
+                    error.insertAfter(element2);
+                } else if (elem.hasClass('description')) {
+                    var element2 = elem.closest('.form-floating');
+                    error.insertAfter(element2);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
     </script>
 @endsection

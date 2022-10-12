@@ -157,7 +157,7 @@ class QuotesController extends Controller
             } else {
                 $notification = new webNotification();
                 $notification->customer_id = $qoute->user_id;
-                $notification->title = auth()->user()->name . " " . "place a bid on your Quote";
+                $notification->title = auth()->user()->name . " " . "placed a bid on your Quote";
                 $notification->links = route('user.vendorReply', $data->id);
                 $notification->body = '.';
                 $notification->save();

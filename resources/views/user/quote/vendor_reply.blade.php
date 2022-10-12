@@ -362,7 +362,7 @@
                                     $userbidcategories = \App\Models\Category::whereIn('id', $userbidcateg)->get(); ?>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="d-grid gap-2 ">
-                                            <button class="btn text-center btn-primary get_quot block get_appointment"
+                                            <button title=" @foreach ($userbidcategories as $userbidcategory) {{ $userbidcategory->name }}, @endforeach" class="text-truncate btn text-center btn-primary get_quot block get_appointment"
                                                 type="button">{{ __('msg.Type of Service') }} : @foreach ($userbidcategories as $userbidcategory)
                                                     {{ $userbidcategory->name }},
                                                 @endforeach

@@ -1535,6 +1535,11 @@ footer{
 .upload-text>.iui-cloud-upload,.upload-text>span{
     display: none !important;
 }
+.input-group .qty {
+    padding: 0!important;
+    background-image: none!important;
+    text-align: center;
+}
 .image-uploader{
     border: 1px solid #d9d9d9!important;
     padding: 6px 8px;

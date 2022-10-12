@@ -25,7 +25,7 @@
 
             <div class="row">
 
-                <div class="col-lg-10 mx-auto">
+                <div class="col-lg-8 mx-auto">
 
                     <form class="mb-5 mt-3">
 
@@ -35,9 +35,9 @@
 
                             <input type="text" class="form-control search_garages"
                                 placeholder="{{ __('msg.Search For Your Favorite Garages (Type Here)') }}"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                                aria-label="Recipient's username" aria-describedby="button-addon2" style="padding-right: 16px">
 
-                            <button class="btn search" type="button" id="button-addon2">{{ __('msg.SEARCH') }}</button>
+                            {{-- <button class="btn search" type="button" id="button-addon2">{{ __('msg.SEARCH') }}</button> --}}
 
                             <div class="srearch_icon_wraper">
 
@@ -47,17 +47,16 @@
 
 
 
-                            <div class="slide_icon_wraper">
+                            {{-- <div class="slide_icon_wraper">
 
-                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
+                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
                                     <img src="{{ asset('public/assets/images/slideicon.s') }}vg">
 
                                 </a>
 
 
 
-                            </div>
+                            </div> --}}
 
 
 
@@ -71,7 +70,7 @@
 
             </div>
 
-            <div class="row g-3">
+            <div class="row g-3 appendGarage">
 
                 @if (count($garages) > 0)
                     @foreach ($garages as $value)
@@ -85,15 +84,6 @@
 
                                         <img @if ($value->image && $value->image != null) src="{{ asset($value->image) }}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif
                                             class="card-img-top" alt="Car image">
-
-                                        {{-- <div class="promoted_vendors"> --}}
-
-                                        {{-- <p>PREFERRED VENDOR</p> --}}
-
-                                        {{-- <i class="fa-solid fa-star"></i> --}}
-
-                                        {{-- </div> --}}
-
                                     </div>
 
 
@@ -101,11 +91,8 @@
                                     <div class="card-body p-sm-2">
 
                                         <h6 class="block-head-txt text-center">{{ $value->garage_name }}</h6>
-                                        @php
-                                            $rating = \App\Models\UserReview::where('garage_id', $value->id)->avg('rating');
-                                        @endphp
                                         <h5 class="card-title text-center allgarages_card_title">
-                                            <span>@if ($rating > 0) {{ $rating }}@else 0.0 @endif </span>
+                                            <span>{{ $value->rating }}</span>
                                         </h5>
 
                                         <div class="card_icons d-flex justify-content-center align-items-center">
@@ -149,7 +136,54 @@
             </div>
 
         </div>
-
+        <!-- Modal -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <form class="w-100" action="{{ route('topGarage') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="modal-title" id="exampleModalLabel">{{ __('msg.Top Searches') }}</h6>
+                            <a type="button" class="heading-color" data-bs-dismiss="modal"><span
+                                    class="fa fa-times"></span></a>
+                        </div>
+                        <div class="modal-body">
+                            <select class="w-100 form-select form-control garage-services" name="category[]" multiple
+                            aria-label="Type of Service" required>
+                            @foreach ($catagary as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">{{ __('msg.SEARCH') }}</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".search_garages").on("keyup", function() {
+                var val = $('.search_garages').val();
+                $.ajax({
+                    url: '{{ URL::to('/service-garage') }}',
+                    type: 'GET',
+                    data: {
+                        'val': val,
+                    },
+                    success: function(response) {
+                        $(".appendGarage").empty();
+                        $(".appendGarage").append(response);
+
+                    }
+                });
+            });
+
+
+        });
+    </script>
 @endsection

@@ -134,14 +134,14 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 form-group">
                                             <input type="number" class="form-control" name="day" value="{{old('day')}}"
-                                                placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Required')}})" aria-label="Day" required>
+                                                placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Optional')}})" aria-label="Day">
                                             @error('day')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-12 form-group services-dropdown-block">
                                             <select class="form-select form-control garage-services" name="category[]"
-                                                multiple required aria-label="Type of Service">
+                                                multiple required aria-label="Type of Service" required>
                                                 @foreach($catagary as $data)
                                                 <option value="{{$data->id }}">{{$data->name}}</option>
                                                 @endforeach
@@ -347,8 +347,6 @@
                 color: "required",
                 model_year_id: "required",
                 mileage: "required",
-                day: "required",
-                "category[]": "required",
                 "car_images[]": "required",
                 "document[]": "required"
             },
@@ -405,7 +403,7 @@
                             scrollTop: $('.error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeight)},
                         'slow');
                 }, 500);
-                if($('input.error:first, select.error:first').closest('.tab-pane').hasClass('show')) {
+                if($('input.error:first, select.error:first, .select2-selection.error:first').closest('.tab-pane').hasClass('show')) {
                     // alert("Enter the missing data");
                     return false;
                 } else {
@@ -461,12 +459,16 @@ $(function() {
             $('#inspection-report-link').closest('li').removeClass('d-none');
             $('#requestForInspection').addClass('d-none');
             $('.get-quotes-block').removeClass('d-none');
+            $('.garage-services').prop('required', true);
         } else if (val == valTwo) {
             $('.services-dropdown-block').addClass('d-none');
             $('#inspection-report-link').closest('li').addClass('d-none');
             $('#requestForInspection').removeClass('d-none');
             $('.get-quotes-block').addClass('d-none');
-        } else {
+            $('.garage-services').prop('required', false);
+        } else if (val == valThree) {
+            $('.garage-services').prop('required', false);
+        }  else {
             $('#inspection-report-link').closest('li').addClass('d-none');
             $('.services-dropdown-block').removeClass('d-none');
             $('#requestForInspection').addClass('d-none');

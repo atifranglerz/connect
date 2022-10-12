@@ -334,11 +334,11 @@ class AuthController extends Controller
 
         $user = User::where('email', $token->email)->first();
         if ($user->type == "user") {
-            $_SESSION["msg"] = "Password Update Successfully";
+            $_SESSION["msg"] = "Password Updated Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.login');
         } else {
-            $_SESSION["msg"] = "Password Update Successfully";
+            $_SESSION["msg"] = "Password Updated Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');
         }

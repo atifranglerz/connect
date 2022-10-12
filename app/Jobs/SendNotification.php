@@ -3,11 +3,12 @@
 namespace App\Jobs;
 
 use Mail;
+use Carbon\Carbon;
 use App\Models\Garage;
 use App\Models\Vendor;
 use App\Models\UserWishlist;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Auth;
+use App\Models\webNotification;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -41,12 +42,24 @@ class SendNotification implements ShouldQueue
                 $garage = Garage::with('vendor')->orderBy('rating', 'desc')->limit(5)->get();
             } elseif ($this->message['qoute_range'] == '10') {
                 $garage = Garage::with('vendor')->orderBy('rating', 'desc')->limit(10)->get();
-            }else{
+            } else {
                 $garage = Garage::with('vendor')->get();
             }
             foreach ($garage as $data) {
-                $email = new \App\Mail\SendNotification($this->message);
-                Mail::to($data->vendor->email)->send($email);
+
+                $gettime = strtotime($data->vendor->online_status) + 10;
+                $now = strtotime(Carbon::now());
+                if ($now > $gettime) {
+                    $email = new \App\Mail\SendNotification($this->message);
+                    Mail::to($data->vendor->email)->send($email);
+                } else {
+                    $notification = new webNotification();
+                    $notification->vendor_id = $data->vendor->id;
+                    $notification->title = $this->message['body1'] . " Quotation placed against you and other vendors";
+                    $notification->links = $this->message['link1'];
+                    $notification->body = ' ';
+                    $notification->save();
+                }
             }
         }
 
@@ -59,7 +72,7 @@ class SendNotification implements ShouldQueue
                 array_push($garageIds, $list_item->garage->id);
             }
             if ($this->message['qoute_range'] == '5') {
-                $garage = Garage::with('vendor')->whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(1)->get();
+                $garage = Garage::with('vendor')->whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(5)->get();
             } elseif ($this->message['qoute_range'] == '10') {
 
                 $garage = Garage::with('vendor')->whereIn('id', $garageIds)->orderBy('rating', 'desc')->limit(10)->get();
@@ -68,9 +81,19 @@ class SendNotification implements ShouldQueue
             }
             foreach ($garage as $data) {
 
-                $email = new \App\Mail\SendNotification($this->message);
-                Mail::to($data->vendor->email)->send($email);
-
+                $gettime = strtotime($data->vendor->online_status) + 10;
+                $now = strtotime(Carbon::now());
+                if ($now > $gettime) {
+                    $email = new \App\Mail\SendNotification($this->message);
+                    Mail::to($data->vendor->email)->send($email);
+                } else {
+                    $notification = new webNotification();
+                    $notification->vendor_id = $data->vendor->id;
+                    $notification->title = $this->message['body1'] . " Quotation placed against you and other preferred vendors";
+                    $notification->links = $this->message['link1'];
+                    $notification->body = ' ';
+                    $notification->save();
+                }
             }
         }
     }

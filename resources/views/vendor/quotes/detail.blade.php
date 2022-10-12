@@ -57,7 +57,7 @@
                                 <tr>
 
 
-                                    <td>{{ $data->day }}</td>
+                                    <td>{{ isset($data->day) ? $data->day : '-' }}</td>
                                     <td>
                                         @forelse($data->services as $services)
                                             @if ($loop->iteration == 1)

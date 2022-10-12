@@ -122,7 +122,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="phone" value="{{ $ads->phone }}"
+                                        <input type="number" name="phone" value="{{ $ads->phone }}"
                                             class="form-control" placeholder="+971 XXXXXXXX ({{__('msg.Required')}})" aria-label="phone" onkeypress="if(this.value.length==12) return false">
                                         @error('phone')
                                             <div class="text-danger p-2">{{ $message }}</div>

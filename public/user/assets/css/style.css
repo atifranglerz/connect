@@ -1115,9 +1115,6 @@ p.card-text.sing_up_card_txt{
 .btn-secondary.block{
     width: 100%;
 }
-.signup_input_wraper{
-    padding: 0 50px;
-}
 .signup_input_wraper.bidreq{
     padding: unset;
 }
