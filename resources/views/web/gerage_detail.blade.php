@@ -260,8 +260,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 px-2 form-group">
                                     <input type="number" class="form-control" name="day"
-                                        value="{{ old('day') }}" placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Required')}})" aria-label="Day"
-                                        required>
+                                        value="{{ old('day') }}" placeholder="{{__('msg.Days e.g (7)')}} ({{__('msg.Optional')}})" aria-label="Day">
                                     @error('day')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                     @enderror
@@ -485,8 +484,6 @@
                 color: "required",
                 model_year_id: "required",
                 mileage: "required",
-                day: "required",
-                // "category[]": "required",
                 "car_images[]": "required",
                 "document[]": "required"
             },
