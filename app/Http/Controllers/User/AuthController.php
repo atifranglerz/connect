@@ -77,7 +77,6 @@ class AuthController extends Controller
         $user->country = $request->country;
         $user->city = $request->city;
         $user->save();
-
         $company = User::find($request->company);
         $user->company()->attach($company);
 

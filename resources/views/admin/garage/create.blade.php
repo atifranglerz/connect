@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="vat">VAT</label>
-                                            <input type="text" class="form-control" name="vat" placeholder="Vat" value="{{ old('vat') }}">
+                                            <input type="text" class="form-control" name="vat" placeholder="Vat" value="{{$vat->percentage}}" readonly>
                                             @error('vat')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
@@ -81,7 +81,7 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="country">Country</label>
-                                            <input type="text" class="form-control" id="country" name="country" placeholder="Country" value="{{ old('country') }}">
+                                            <input type="text" class="form-control" id="country" name="country" placeholder="Country" value="{{ old('country') }} United Arab Emirates" readonly>
                                             @error('country')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror

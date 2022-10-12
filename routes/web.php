@@ -116,6 +116,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::group(['middleware' => ['auth:admin', 'role:admin']], function () {
         /* Dashboard */
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        /*Customer/User*/
+        Route::get('add-user', 'UserController@show')->name('addUser');
+        Route::post('add-user', 'UserController@create')->name('add');
+        /*Vendor*/
+        Route::get('add-vendor', 'VendorController@show')->name('addVendor');
+        Route::post('add-vendor', 'VendorController@create')->name('add');
+
+        /*Insurance Company*/
+        Route::get('add-company', 'InsuranceCompanyController@show')->name('addCompany');
+        Route::post('add-company','InsuranceCompanyController@create')->name('add');
         /* Car Ads */
         Route::resource('ads', 'AdsController');
         Route::any('status-request-ad/{id}', 'AdsController@statusAds');

@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Garage;
 use App\Models\Vendor;
+use App\Models\Category;
+use App\Mail\Registration;
 use Illuminate\Http\Request;
+use App\Models\PaymentPercentage;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class VendorController extends Controller
 {
@@ -33,9 +38,98 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            // 'profile_image' => 'required',
+            "id_card" => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'garage_name' => 'required',
+            'garages_catagary' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'post_box' => 'required',
+            // 'company'=>'required',
+            'image_license' => 'required',
+            'trading_license' => 'required',
+            'vat' => 'required',
+            'billing_area' => 'required',
+            'billing_city' => 'required',
+            'billing_address' => 'required',
+            'appointment_number' => 'required',
+        ]);
+
+        $role = Role::where('name', 'vendor')->first();
+
+        $vendor = new Vendor();
+        if ($request->file('profile_image')) {
+            $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('profile_image')->getClientOriginalExtension());
+            $request->file('profile_image')->move('public/image/profile/', $doucments1);
+            $file1 = 'public/image/profile/' . $doucments1;
+            $vendor->image = $file1;
+        }else{
+            $vendor->image = "public/assets/images/1744022049828589.jpg";
+        }
+        if ($request->file('id_card')) {
+            $doucments2 = hexdec(uniqid()) . '.' . strtolower($request->file('id_card')->getClientOriginalExtension());
+            $request->file('id_card')->move('public/image/profile/', $doucments2);
+            $file2 = 'public/image/profile/' . $doucments2;
+            $vendor->id_card = $file2;
+        }
+        if ($request->file('image_license')) {
+            $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
+            $request->file('image_license')->move('public/image/profile/', $doucments3);
+            $file3 = 'public/image/profile/' . $doucments3;
+            $vendor->image_license = $file3;
+
+        }
+
+        $vendor->name = $request->name;
+        $vendor->email = $request->email;
+        $vendor->phone = $request->appointment_number;
+        // $vendor->password = Hash::make($request->password);
+        $vendor->country = $request->country;
+        $vendor->city = $request->city;
+        $vendor->post_box = $request->post_box;
+        $vendor->appointment_number = $request->appointment_number;
+        $vendor->garage_name = $request->garage_name;
+        $vat = explode(' ', $request->vat);
+        $vendor->vat = (int) filter_var($vat[0], FILTER_SANITIZE_NUMBER_INT);
+        $vendor->billing_area = $request->billing_area;
+        $vendor->billing_city = $request->billing_city;
+        $vendor->billing_address = $request->billing_address;
+        $vendor->address = $request->billing_address;
+        $vendor->garages_catagory = implode(',', $request->garages_catagary);
+        $vendor->trading_license = $request->trading_license;
+        $vendor->type='vendor';
+        $vendor->save();
+
+        if (isset($request->company)) {
+            foreach ($request->company as $id) {
+                $company = User::find($id);
+                $vendor->company()->attach($company);
+            }
+        }
+
+        $vendor_email = $request->email;
+        $data['name'] = $vendor->name;
+        $data['email'] = $vendor->email;
+        $data['type'] = $vendor->type;
+        $data['id'] = $vendor->id;
+        $data['link'] = url('vendor/login');
+
+        if ($vendor) {
+            $vendor->assignRole($role);
+            Mail::to($vendor_email)->send(new Registration($data));
+
+            $_SESSION["msg"] = "You've Registered Successfully as a Vendor!";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('admin.vendor.index');
+        } else {
+            return redirect()->back()->with($this->data("Vendor Register Error", 'error'));
+        }
+
     }
 
     /**
@@ -55,9 +149,12 @@ class VendorController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $categories=Category::all();
+        $vat=PaymentPercentage::where('type','vat')->first();
+        $company=User::where('type','company')->get();
+        return view('admin.vendor.create',compact('company','categories','vat'));
     }
 
     /**

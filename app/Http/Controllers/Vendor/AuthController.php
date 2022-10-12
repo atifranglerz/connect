@@ -93,7 +93,6 @@ class AuthController extends Controller
             $request->file('image_license')->move('public/image/profile/', $doucments3);
             $file3 = 'public/image/profile/' . $doucments3;
             $vendor->image_license = $file3;
-
         }
 
         $vendor->name = $request->name;

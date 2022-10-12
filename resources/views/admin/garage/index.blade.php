@@ -9,7 +9,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>All Garages</h4>
-                                {{-- <a href="{{ route('admin.garage.create') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New</a> --}}
+                                <a href="{{ route('admin.garage.create') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

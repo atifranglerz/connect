@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Garage;
+use App\Models\Vendor;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Models\GarageCategory;
+use App\Models\PaymentPercentage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GarageRequest;
-use App\Models\Category;
-use App\Models\Garage;
-use App\Models\GarageCategory;
-use App\Models\Vendor;
-use Illuminate\Http\Request;
 
 class GarageController extends Controller
 {
@@ -34,9 +35,10 @@ class GarageController extends Controller
     public function create()
     {
         $page_title = 'Create Garage';
-        $vendor = Vendor::all();
+        $vendor = Vendor::doesntHave('garage')->get();
         $category = Category::all();
-        return view('admin.garage.create', compact('page_title', 'vendor', 'category'));
+        $vat=PaymentPercentage::where('type','vat')->first();
+        return view('admin.garage.create', compact('page_title', 'vendor', 'category','vat'));
     }
 
     /**

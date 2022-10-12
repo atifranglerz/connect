@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Mail\Login;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\Registration;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -30,9 +34,54 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            // 'images' => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'country' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+        $role = Role::where('name', 'user')->first();
+        $user = new User();
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('images'), $filename);
+            $user['image'] = 'public/images/' . $filename;
+        } else {
+            $user['image'] = "public/assets/images/1744022049828589.jpg";
+        }
+        $user->name = $request->name;
+        $user->city = $request->city;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->country = $request->country;
+        $user->city = $request->city;
+        $user->type='user';
+        $user->save();
+        $company = User::find($request->company);
+        $user->company()->attach($company);
+        $user_email = $user->email;
+        $data['name'] = $user->name;
+        $data['email'] = $user->email;
+        $data['type'] = $user->type;
+        $data['id'] = $user->id;
+        $data['link'] = url('user/login');
+        if ($user) {
+            $user->assignRole($role);
+            Mail::to($user_email)->send(new Registration($data));
+            $_SESSION["msg"] = "You've Registered Successfully as a Customer!";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('admin.user.index');
+        } else {
+            return redirect()->back()->with($this->data("User Register Error", 'error'));
+        }
     }
 
     /**
@@ -52,9 +101,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $company=User::where('type','company')->get();
+        return view('admin.user.create',compact('company'));
     }
 
     /**

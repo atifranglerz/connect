@@ -110,6 +110,9 @@
                                                     @if (old('city') == 'Ajman') selected @endif>
                                                     {{ __('msg.Ajman') }}</option>
                                             </select>
+                                            @error('city')
+                                            <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="row">

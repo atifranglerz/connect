@@ -8,9 +8,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header">
                                 <h4>All Vendors List</h4>
+                                <a href="{{ url('admin/add-vendor') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New Vendor</a>
                             </div>
+                            {{-- <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4>All Vendors List</h4>
+                            </div> --}}
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
