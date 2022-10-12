@@ -88,6 +88,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('search_service', 'HomepageController@searchService')->name('search_service');
     Route::get('service-garage', 'HomepageController@serviceGarage')->name('service-garage');
     Route::get('search-garage', 'HomepageController@searchGarage')->name('search-garage');
+    Route::post('topGarage', 'HomepageController@topGarage')->name('topGarage');
     Route::get('news', 'HomepageController@news')->name('news');
     Route::get('faq', 'HomepageController@faqnews')->name('faq');
     Route::get('news_detail/{id}', 'HomepageController@newsDetail')->name('news_detail');

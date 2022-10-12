@@ -2,35 +2,33 @@
 
 namespace App\Http\Controllers\Web;
 
-use Carbon\Carbon;
-use App\Models\Ads;
-use App\Models\Faq;
-use App\Models\News;
-use App\Models\User;
-use App\Models\About;
-use App\Models\Garage;
-use App\Models\Slider;
-use App\Models\Vendor;
-use App\Models\Company;
-use App\Models\UserBid;
-use App\Models\Category;
-use App\Models\ModelYear;
-use App\Jobs\Notification;
-use App\Models\UserReview;
-use App\Models\VendorQuote;
-use App\Models\UserBidImage;
-use App\Models\UserWishlist;
-use Illuminate\Http\Request;
-use App\Models\ContactVendor;
-use App\Models\PrivacyPolicy;
-use App\Models\TermCondition;
-use App\Models\GarageCategory;
-use App\Models\UserBidCategory;
-use App\Models\webNotification;
-use App\Mail\SendPrefferedGarage;
 use App\Http\Controllers\Controller;
+use App\Mail\SendPrefferedGarage;
+use App\Models\About;
+use App\Models\Ads;
+use App\Models\Category;
+use App\Models\Company;
+use App\Models\ContactVendor;
+use App\Models\Faq;
+use App\Models\Garage;
+use App\Models\GarageCategory;
+use App\Models\ModelYear;
+use App\Models\News;
+use App\Models\PrivacyPolicy;
+use App\Models\Slider;
+use App\Models\TermCondition;
+use App\Models\User;
+use App\Models\UserBid;
+use App\Models\UserBidCategory;
+use App\Models\UserBidImage;
+use App\Models\UserReview;
+use App\Models\UserWishlist;
+use App\Models\Vendor;
+use App\Models\VendorQuote;
+use App\Models\webNotification;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Artisan;
 
 class HomepageController extends Controller
 {
@@ -39,8 +37,8 @@ class HomepageController extends Controller
         $data['page_title'] = "home";
         $data['services'] = Category::limit(8)->orderby('position', 'ASC')->get();
         $data['news'] = News::limit(4)->latest()->get();
-        $data['ads'] = Ads::limit(4)->latest()->where('status','Approved')->get();
-        $data['garage'] = Garage::orderBy('rating','desc')->limit(4)->get();
+        $data['ads'] = Ads::limit(4)->latest()->where('status', 'Approved')->get();
+        $data['garage'] = Garage::orderBy('rating', 'desc')->limit(4)->get();
         $data['slider'] = Slider::all();
         $data['all_services'] = Category::latest()->get();
 
@@ -73,17 +71,37 @@ class HomepageController extends Controller
     public function serviceGarage(Request $request)
     {
         $search = $request->val;
-        $data['garages'] = GarageCategory::where('category_id', $request->service)->with('garage')->whereHas('garage', function ($query) use ($search) {
-            $query->where('garage_name', 'LIKE', "%$search%");
-        })->get();
-
-        return view('web.append_servicesGarage', $data);
+        if (isset($request->service)) {
+            $data['garages'] = GarageCategory::where('category_id', $request->service)->with('garage')->whereHas('garage', function ($query) use ($search) {
+                $query->where('garage_name', 'LIKE', "%$search%");
+            })->get();
+            return view('web.append_servicesGarage', $data);
+        } else {
+            $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->get();
+            return view('web.append_TopGarage', $data);
+        }
     }
     public function allvendor()
     {
+        $data['catagary'] = Category::all();
         $data['page_title'] = 'vendors list';
-        $data['garages'] = Garage::orderBy('rating','desc')->limit(8)->paginate(8);
+        $data['garages'] = Garage::orderBy('rating', 'desc')->limit(8)->paginate(8);
 
+        return view('web.vendorlist', $data);
+    }
+
+    public function topGarage(Request $request)
+    {
+        $search = 57;
+        // $data['catagary'] = Category::all();
+        // $data['page_title'] = 'vendors list';
+        // $data['garages'] = Garage::with('garageCategory')->whereHas('garageCategory', function ($query) use ($search) {
+        //     $query->where('id',$search);
+        // })->get();
+
+        $data['garages'] = Category::where('id', $search)->with('categoryGarage')->get();
+
+        return $data;
         return view('web.vendorlist', $data);
     }
 
@@ -192,11 +210,9 @@ class HomepageController extends Controller
 
         }
         if (User::where('email', $request->email)->doesntExist()) {
-            // session_start();
             $_SESSION["msg"] = "Your given email is not Registered! Please enter valid email or Register first";
             $_SESSION["alert"] = "error";
             return redirect()->back();
-            // return redirect()->back()->with(['message' => 'Your given email is not Registered! Please enter valid email or Register first', 'alert' => 'error']);
         } else {
             $user = User::where('email', $request->email)->first();
             $vendor = Garage::find($request->garage_id);
@@ -280,7 +296,7 @@ class HomepageController extends Controller
 
             $message['body1'] = auth()->user()->name;
             $message['link1'] = url('vendor/quotedetail', $quote->id);
-    
+
             $gettime = strtotime($vendor->online_status) + 10;
             $now = strtotime(Carbon::now());
             if ($now > $gettime) {
@@ -294,12 +310,9 @@ class HomepageController extends Controller
                 $notification->body = ' ';
                 $notification->save();
             }
-            // session_start();
             $_SESSION["msg"] = "Your Quote has been submitted successfully";
             $_SESSION["alert"] = "success";
             return redirect()->back();
-            // return redirect()->back()->with(['message' => 'Your Qoute has been submitted successfully', 'alert' => 'success']);
-
         }
 
     }
@@ -336,7 +349,7 @@ class HomepageController extends Controller
     public function usedcars()
     {
         $data['page_title'] = 'used cars';
-        $data['ads'] = Ads::orderBy('id', 'desc')->where('status','Approved')->paginate(8);
+        $data['ads'] = Ads::orderBy('id', 'desc')->where('status', 'Approved')->paginate(8);
         $data['company'] = Company::all();
         $data['year'] = ModelYear::all();
         return view('web.used_cars', $data);
@@ -351,33 +364,33 @@ class HomepageController extends Controller
 
         if (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->priceFrom) && isset($request->priceTo) && isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->orwhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->city)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('city', $request->city)->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo) && isset($request->company_id)) {
             $data['ads'] = Ads::with('modelYear', 'company')->WhereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->orWhereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->priceFrom) && isset($request->priceTo)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->where('status','Approved')->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->whereBetween('price', [$request->priceFrom, $request->priceTo])->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->modelFrom) && isset($request->modelTo)) {
             $data['ads'] = Ads::with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->company_id) && isset($request->city)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->where('status','Approved')->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('city', $request->city)->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->company_id)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status', 'Approved')->paginate(8);
         } elseif (isset($request->city)) {
-            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->where('status','Approved')->paginate(8);
+            $data['ads'] = Ads::with('modelYear', 'company')->where('city', $request->city)->where('status', 'Approved')->paginate(8);
         } else {
             $data['ads'] = Ads::whereBetween('price', [$request->priceFrom, $request->priceTo])->where('city', $request->city)->with('modelYear', 'company')->whereHas('modelYear', function ($query) use ($search) {
-                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status','Approved')->paginate(8);
+                $query->whereBetween('model_year', [$search[0], $search[1]]);})->whereHas('company', function ($query) use ($search1) {$query->where('company', $search1);})->where('status', 'Approved')->paginate(8);
         }
         //end felter
 
@@ -388,7 +401,7 @@ class HomepageController extends Controller
     public function carDetail($id)
     {
         $data['page_title'] = 'used car';
-        $data['ad'] = Ads::where('status','Approved')->find($id);
+        $data['ad'] = Ads::where('status', 'Approved')->find($id);
 
         return view('web.car_detail', $data);
     }

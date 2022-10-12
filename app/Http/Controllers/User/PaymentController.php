@@ -187,7 +187,7 @@ class PaymentController extends Controller
             } else {
                 $notification = new webNotification();
                 $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
-                $notification->title = auth()->user()->name . " accept your quote and place Order #" . $order_no;
+                $notification->title = auth()->user()->name . " accepted your quote and placed an Order #" . $order_no;
                 $notification->links = url('vendor/fullfillment', $order->id);
                 $notification->body = ' ';
                 $notification->save();
@@ -255,7 +255,7 @@ class PaymentController extends Controller
         } else {
             $notification = new webNotification();
             $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
-            $notification->title = auth()->user()->name . " accept your quote and place Order #" . $order_no;
+            $notification->title = auth()->user()->name . " accepted your quote and placed an Order #" . $order_no;
             $notification->links = url('vendor/fullfillment', $order->id);
             $notification->body = ' ';
             $notification->save();
@@ -336,7 +336,7 @@ class PaymentController extends Controller
         } else {
             $notification = new webNotification();
             $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
-            $notification->title = auth()->user()->name . " accept your quote and place Order #" . $order_no . " payment will pay insurance company";
+            $notification->title = auth()->user()->name . " accepted your quote and placed an Order #" . $order_no . " payment will be paid by insurance company";
             $notification->links = url('vendor/fullfillment', $order->id);
             $notification->body = ' ';
             $notification->save();
@@ -361,13 +361,13 @@ class PaymentController extends Controller
         } else {
             $notification = new webNotification();
             $notification->customer_id = $company_id;
-            $notification->title = auth()->user()->name . " request for car insurance and place Order #" . $order_no;
+            $notification->title = auth()->user()->name . " requested for car insurance , Order no #" . $order_no;
             $notification->links = url('user/car/detail', $vendor_bid_id);
             $notification->body = ' ';
             $notification->save();
         }
 
-        $_SESSION["msg"] = "Your order placed and payment request send to Insurance Company Successfully";
+        $_SESSION["msg"] = "Your order is placed and payment request sended to Insurance Company Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.order.index');
     }
