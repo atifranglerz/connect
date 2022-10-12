@@ -405,7 +405,7 @@
                             scrollTop: $('.error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeight)},
                         'slow');
                 }, 500);
-                if($('input.error:first, select.error:first').closest('.tab-pane').hasClass('show')) {
+                if($('input.error:first, select.error:first, .select2-selection.error:first').closest('.tab-pane').hasClass('show')) {
                     // alert("Enter the missing data");
                     return false;
                 } else {
