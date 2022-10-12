@@ -357,7 +357,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{ __('msg.Estimate Total') }}</h6>
                                             <input type="number" name="price" class="form-control amountTotal"
-                                                placeholder="{{ __('msg.AED Price') }}" readonly required>
+                                                placeholder="{{ __('msg.AED Price') }} ({{ __('msg.Required') }})" readonly required>
                                             @error('price')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -375,7 +375,7 @@
                                             <?php $garage = \App\Models\Garage::where('vendor_id', auth()->id())->first(); ?>
                                             <input type="hidden" name="garage_id" value="{{ $garage->id }}">
                                             <input type="number" name="vat" class="form-control vatPercent"
-                                                placeholder="{{ __('msg.AED Price') }}" readonly required>
+                                                placeholder="{{ __('msg.AED Price') }} ({{ __('msg.Required') }})" readonly required>
                                             @error('vat')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -383,7 +383,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <h6 class="heading-color">{{ __('msg.Net Total') }}</h6>
                                             <input type="number" name="net_total" class="form-control netTotal"
-                                                placeholder="{{ __('msg.AED Price') }}" readonly required>
+                                                placeholder="{{ __('msg.AED Price') }} ({{ __('msg.Required') }})" readonly required>
                                             @error('net_total')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
