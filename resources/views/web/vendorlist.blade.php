@@ -172,7 +172,7 @@
                 var val = $('.search_garages').val();
                 if (val != '') {
                     $.ajax({
-                        url: '{{ URL::to('/service-garage') }}',
+                        url: '{{ URL::to('/topGarage') }}',
                         type: 'GET',
                         data: {
                             'val': val,

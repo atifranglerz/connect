@@ -71,45 +71,32 @@ class HomepageController extends Controller
     }
     public function serviceGarage(Request $request)
     {
-        $data['catagary'] = Category::all();
-
         $search = $request->val;
-        if (isset($request->service)) {
-            $data['garages'] = GarageCategory::where('category_id', $request->service)->with('garage')->whereHas('garage', function ($query) use ($search) {
-                $query->where('garage_name', 'LIKE', "%$search%");
-            })->get();
-            return view('web.append_servicesGarage', $data);
-        } else {
-            $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(8);
+        $data['garages'] = GarageCategory::where('category_id', $request->service)->with('garage')->whereHas('garage', function ($query) use ($search) {
+            $query->where('garage_name', 'LIKE', "%$search%");
+        })->get();
+        return view('web.append_servicesGarage', $data);
+    }
 
-            if (isset($request->val)) {
-                return view('web.append_TopGarage', $data);
-            } else {
-                return view('web.vendorlist', $data);
-            }
+    public function topGarage(Request $request)
+    {
+        $data['catagary'] = Category::all();
+        $search = $request->val;
+        $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(1);
+
+        if (isset($request->val)) {
+            return view('web.append_TopGarage', $data);
+        } else {
+            return view('web.vendorlist', $data);
         }
     }
+
     public function allvendor()
     {
         $data['catagary'] = Category::all();
         $data['page_title'] = 'vendors list';
         $data['garages'] = Garage::orderBy('rating', 'desc')->limit(8)->paginate(8);
 
-        return view('web.vendorlist', $data);
-    }
-
-    public function topGarage(Request $request)
-    {
-        $search = 57;
-        // $data['catagary'] = Category::all();
-        // $data['page_title'] = 'vendors list';
-        // $data['garages'] = Garage::with('garageCategory')->whereHas('garageCategory', function ($query) use ($search) {
-        //     $query->where('id',$search);
-        // })->get();
-
-        $data['garages'] = Category::where('id', $search)->with('garage')->get();
-
-        return $data;
         return view('web.vendorlist', $data);
     }
 
