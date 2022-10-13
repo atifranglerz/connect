@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Mail\Login;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Mail\Rejection;
 use App\Mail\Registration;
+use App\Mail\AccountStatus;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +25,7 @@ class UserController extends Controller
         $users = User::with('roles')
             ->whereHas('roles', function ($q) {
                 $q->Where('name', 'user');
-            })->where('type','user')
+            })->where('type', 'user')
             ->get();
         $page_title = 'Customer';
         return view("admin.user.index", compact('users', 'page_title'));
@@ -63,7 +65,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->country = $request->country;
         $user->city = $request->city;
-        $user->type='user';
+        $user->type = 'user';
         $user->save();
         $company = User::find($request->company);
         $user->company()->attach($company);
@@ -103,8 +105,8 @@ class UserController extends Controller
      */
     public function show()
     {
-        $company=User::where('type','company')->get();
-        return view('admin.user.create',compact('company'));
+        $company = User::where('type', 'company')->get();
+        return view('admin.user.create', compact('company'));
     }
 
     /**
@@ -177,22 +179,34 @@ class UserController extends Controller
             $user->fill([
                 'action' => 1,
             ])->save();
+            $data['reason'] = 'Congratulation! Your account is activated.';
+            Mail::to($user->email)->send(new AccountStatus($data));
             return redirect()->route('admin.user.index')->with($this->data("User Activate Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("User Activate Error", 'error'));
         }
     }
 
-    public function deactivate($id)
+    public function deactivate(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($request->user_id);
         if ($user->action == 1) {
             $user->fill([
                 'action' => 0,
             ])->save();
-            return redirect()->route('admin.user.index')->with($this->data("User DeActivate Successfully", 'success'));
+
+            $data['reason'] = $request->comment_val;
+            Mail::to($user->email)->send(new AccountStatus($data));
+            return response()->json([
+                'success' => 'Rejection Message send successfully',
+            ]);
+            //     return redirect()->route('admin.user.index')->with($this->data("User DeActivate Successfully", 'success'));
+            // } else {
+            //     return redirect()->back()->with($this->data("User DeActivate Error", 'error'));
         } else {
-            return redirect()->back()->with($this->data("User DeActivate Error", 'error'));
+            return response()->json([
+                'success' => 'Not Found',
+            ]);
         }
     }
 
