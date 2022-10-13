@@ -70,6 +70,8 @@ class HomepageController extends Controller
     }
     public function serviceGarage(Request $request)
     {
+        $data['catagary'] = Category::all();
+
         $search = $request->val;
         if (isset($request->service)) {
             $data['garages'] = GarageCategory::where('category_id', $request->service)->with('garage')->whereHas('garage', function ($query) use ($search) {
@@ -80,9 +82,9 @@ class HomepageController extends Controller
             $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(8);
 
             if(isset($request->val)){
-                return view('web.append_TopGarage1', $data);
-            }else{
                 return view('web.append_TopGarage', $data);
+            }else{
+                return view('web.vendorlist', $data);
             }
         }
     }
