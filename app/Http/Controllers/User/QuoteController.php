@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\SendNotification;
-use App\Models\Category;
-use App\Models\Company;
 use App\Models\Garage;
-use App\Models\ModelYear;
+use App\Models\Company;
 use App\Models\UserBid;
-use App\Models\UserBidCategory;
-use App\Models\UserBidImage;
-use App\Models\UserWishlist;
+use App\Models\CarModel;
+use App\Models\Category;
+use App\Models\ModelYear;
 use App\Models\VendorBid;
 use App\Models\VendorQuote;
+use App\Models\UserBidImage;
+use App\Models\UserWishlist;
 use Illuminate\Http\Request;
+use App\Jobs\SendNotification;
+use App\Models\UserBidCategory;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class QuoteController extends Controller
@@ -29,10 +30,21 @@ class QuoteController extends Controller
     public function create()
     {
         $company = Company::all();
+        $model = CarModel::all();
         $year = ModelYear::all();
         $catagary = Category::all();
         $page_title = 'Request Quote';
-        return view('user.quote.create', compact('page_title', 'catagary', 'company', 'year'));
+        return view('user.quote.create', compact('page_title', 'catagary', 'company', 'year','model'));
+    }
+
+    public function company(Request $request)
+    {
+        $model = CarModel::whereCompany_id($request->id)->get();
+        $data = view('user.quote.append_model')->with(['model' => $model])->render();
+        return response()->json([
+            'success' => 'successfully',
+            'data' => $data,
+        ]);
     }
 
     public function store(Request $request)
