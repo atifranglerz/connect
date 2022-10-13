@@ -222,6 +222,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
          Route::any('delete-vendor/{id}', [VendorController::class, 'delete']);
          Route::any('delete-insurance/{id}', [InsuranceCompanyController::class, 'delete']);
          Route::any('delete-user/{id}', [UserController::class, 'delete']);
+         Route::post('deactivate-user', [UserController::class, 'deactivate']);
+         Route::post('deactivate-vendor',[VendorController::class,'deactivate']);
+         Route::post('deactivate-company',[InsuranceCompanyController::class,'deactivate']);
          Route::any('delete-model-year/{id}', [ModelYearController::class, 'delete']);
          Route::any('delete-slider/{id}', [SliderController::class, 'delete']);
         });
