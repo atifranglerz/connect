@@ -36,20 +36,19 @@
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                 <h5 class="mb-0 heading">{{ __('msg.Business Info') }}</h5>
                             </div>
-
-                            <div class="col-12 mb-3  signup_input_wraper form-group">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                    id="inputName" placeholder="{{ __('msg.Owner Name') }} ({{ __('msg.Required') }})"
-                                    required>
-                                @error('name')
-                                    <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="garage_name" class="form-control"
                                     value="{{ old('garage_name') }}" id="inputgarageName"
-                                    placeholder="{{ __('msg.Garage Legal Name') }} ({{ __('msg.Required') }})" required>
+                                    placeholder="{{ __('msg.Workshop Name') }} ({{ __('msg.Required') }})" required>
                                 @error('garage_name')
+                                    <div class="text-danger p-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12 mb-3  signup_input_wraper form-group">
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
+                                    id="inputName" placeholder="{{ __('msg.Business Owners Name') }} ({{ __('msg.Required') }})"
+                                    required>
+                                @error('name')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -137,7 +136,7 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="trading_license" value="{{ old('trading_license') }}"
                                     class="form-control"
-                                    placeholder="{{ __('msg.Trading License No.') }} ({{ __('msg.Required') }})" required>
+                                    placeholder="{{ __('msg.Trade License No.') }} ({{ __('msg.Required') }})" required>
                                 @error('trading_license')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
