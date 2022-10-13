@@ -198,7 +198,7 @@ class UserController extends Controller
             $data['reason'] = $request->comment_val;
             Mail::to($user->email)->send(new AccountStatus($data));
             return response()->json([
-                'success' => 'Rejection Message send successfully',
+                'success' => 'Rejection message send successfully',
             ]);
             //     return redirect()->route('admin.user.index')->with($this->data("User DeActivate Successfully", 'success'));
             // } else {

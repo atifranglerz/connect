@@ -140,12 +140,24 @@
 @endsection
 @section('script')
     <script>
+        $('#edit_comment').on('keyup', function() {
+            if($(this).val()!="") {
+                $('.update_student').removeClass('a-disabled');
+            } else {
+                $('.update_student').addClass('a-disabled');
+            }
+        });
+
         function editCustomer(user_id, comment_val) {
             $('#editStudentModal').modal('show');
             $('#edit_stud_id').val(user_id);
             $('#edit_comment').val(comment_val);
         }
         $('.update_student').on('click', function() {
+            $(this).find('.spinner-border-sm').removeClass('d-none');
+
+
+
             let user_id = $('#edit_stud_id').val();
             let edit_comment = $('#edit_comment').val();
 
@@ -160,6 +172,7 @@
                 success: function(response) {
                     if (response.success) {
                         $('#editStudentModal').modal('hide');
+                        // alert('usman');
                         toastr.success(response.success);
                         window.location.reload();
                     }

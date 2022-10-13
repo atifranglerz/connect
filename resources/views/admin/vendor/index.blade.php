@@ -171,6 +171,13 @@
 @endsection
 @section('script')
 <script>
+      $('#edit_comment').on('keyup', function() {
+            if($(this).val()!="") {
+                $('.update_student').removeClass('a-disabled');
+            } else {
+                $('.update_student').addClass('a-disabled');
+            }
+        });
     function editVendor(user_id, comment_val) {
         $('#editStudentModal').modal('show');
         $('#edit_stud_id').val(user_id);
@@ -191,8 +198,8 @@
             success: function(response) {
                 if (response.success) {
                     $('#editStudentModal').modal('hide');
-                    window.location.reload();
                     toastr.success(response.success);
+                    window.location.reload();
                 }
             }
         });

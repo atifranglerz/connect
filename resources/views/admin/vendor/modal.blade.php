@@ -21,7 +21,7 @@
                                 placeholder="Reason For Rejection">
                         </div>
                     </div>
-                    <a class="btn btn-primary update_student mt-2 btn-bg text-white">Send</a>
+                    <a class="btn btn-primary update_student mt-2 btn-bg text-white a-disabled" style="cursor: pointer" disabled>Send <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span></a>
                 </form>
             </div>
             <div class="modal-footer">
