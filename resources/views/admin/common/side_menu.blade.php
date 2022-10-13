@@ -26,11 +26,13 @@
                 'admin.childcategory.create',
                 'admin.childcategory.edit',
                 'admin.childcategory.show',
-                 'admin.ads.index',
-                 'admin.insurance-company',
-                 'admin.vendor.index',
-                 'admin.category.index',
-                )) active @endif">
+                'admin.order.index',
+                'admin.order.create',
+                'admin.order.edit',
+                'admin.ads.index',
+                'admin.insurance-company',
+                'admin.vendor.index',
+                'admin.category.index')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
                     <i data-feather="tag"></i><span>Master List</span></a>
                 <ul class="dropdown-menu">
@@ -41,6 +43,7 @@
                             Company</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.vendor.index') }}">Vendors</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.category.index') }}">Services</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.order.index') }}">Orders</a></li>
                 </ul>
             </li>
             <li class="dropdown @if (request()->routeIs(
@@ -74,8 +77,10 @@
                                 <a href="#" class="menu-toggle nav-link has-dropdown">
                                     <i data-feather="tag"></i><span>Pages</span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a></li>
-                                    <li class=""><a class="nav-link " href="{{ route('admin.news.index') }}">News</a></li>
+                                    <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a>
+                                    </li>
+                                    <li class=""><a class="nav-link "
+                                            href="{{ route('admin.news.index') }}">News</a></li>
                                     <li><a href="{{ route('admin.about.index') }}" class="nav-link">About Us</a></li>
                                     {{-- <li><a href="{{ route('admin.contact.index') }}" class="nav-link">Contact Us</a></li> --}}
                                     <li class=""><a class="nav-link " href="{{ url('/admin/faqs') }}">Faq</a>
@@ -99,8 +104,10 @@
                     <i data-feather="tag"></i><span>Car Setup</span></a>
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link " href="#">Cars Model</a></li>
-                    <li class=""><a class="nav-link " href="{{ route('admin.company.index') }}">Cars Manufacture/Brand</a></li>
-                    <li class=""><a class="nav-link " href="{{ route('admin.model_year.index') }}">Cars Year</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.company.index') }}">Cars
+                            Manufacture/Brand</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.model_year.index') }}">Cars Year</a>
+                    </li>
                 </ul>
             </li>
             <li class="dropdown @if (request()->routeIs(
@@ -114,9 +121,17 @@
                     {{-- <li class=""><a class="nav-link " href="{{ route('admin.company.index') }}">Car Company Name</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.brand.index') }}">Brands</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.model_year.index') }}">Model Year</a></li> --}}
-                    <li class=""><a class="nav-link " href="{{ url('/admin/percentage') }}">Payment Percentage</a></li>
+                    <li class=""><a class="nav-link " href="{{ url('/admin/percentage') }}">Payment and Vat</a>
+                    </li>
                 </ul>
             </li>
+            {{-- <li class="dropdown @if (request()->routeIs('admin.order.index', 'admin.order.create', 'admin.order.edit')) active @endif">
+                <a href="#" class="menu-toggle nav-link has-dropdown">
+                    <i data-feather="shopping-cart"></i><span>Orders</span></a>
+                <ul class="dropdown-menu">
+                    <li class=""><a class="nav-link " href="{{ route('admin.order.index') }}">Orders</a></li>
+                </ul>
+            </li> --}}
         </ul>
     </aside>
 </div>

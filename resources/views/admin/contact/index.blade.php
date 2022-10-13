@@ -11,7 +11,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-responsive" id="table-1">
+                                    <table class="table table-striped table-responsive table-bordered" id="table-1">
                                         <thead class="mb-2">
                                         <tr>
                                             <th>Contact Us</th>

@@ -34,7 +34,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped" id="table-1">
+                                    <table class="table table-striped table-bordered" id="table_one">
                                         <thead>
                                         <tr>
                                             <th class="text-center">#</th>
@@ -105,6 +105,11 @@
                 }
             });
         });
+</script>
+<script>
+    $(function() {
+       $("#table_one").DataTable();
+    });
 </script>
 @endsection
 

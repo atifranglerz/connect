@@ -11,7 +11,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-responsive" id="table-1">
+                                    <table class="table table-striped table-responsive table-bordered" id="table_one">
                                         <thead class="mb-2">
                                         <tr>
                                             <th>Term & Condition</th>
@@ -35,4 +35,11 @@
             </div>
         </section>
     </div>
+@endsection
+@section('script')
+<script>
+    $(function() {
+       $("#table_one").DataTable();
+    });
+</script>
 @endsection
