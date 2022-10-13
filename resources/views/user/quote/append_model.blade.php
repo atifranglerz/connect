@@ -7,3 +7,6 @@
             {{ $data->car_model }}</option>
     @endforeach
 </select>
+@error('model')
+    <div class="text-danger p-2">{{ $message }}</div>
+@enderror

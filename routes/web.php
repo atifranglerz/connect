@@ -96,6 +96,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('term_condition', 'HomepageController@term')->name('term');
     Route::get('about', 'HomepageController@about')->name('about');
     Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
+    Route::post('company/model', 'HomepageController@company')->name('company-model');
+
 
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
@@ -295,6 +297,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('my-bids', 'BidController@getBids')->name('my-bids');
         Route::get('bid-details/{id}', 'BidController@bidDetails')->name('bid-details');
         Route::resource('ads', 'AdsController');
+        Route::post('company/model', 'AdsController@company')->name('company-model');
+
         Route::resource('used_car', 'UsedCarController');
         Route::get('garage-finish', 'WorkshopController@finish');
         Route::resource('workshop', 'WorkshopController');

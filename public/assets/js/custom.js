@@ -20,6 +20,18 @@ toastr.options = {
 }
 
 $(function() {
+    /*Animate loader off screen*/
+    $("#pgLoader").fadeOut("slow");
+
+    $('button[type="submit"]').on('click', function() {
+        setTimeout(() => {
+            if($('label.is-invalid.error').text()=="" && $(this).text()!='delete') {
+                $(this).addClass('text-center');
+                $(this).text('').append('Please Wait! Submittion in Process<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+            }
+        }, 300);
+    });
+
     setTimeout(() => {
         $('input:file').change(function(){
             for(var i=0; i< this.files.length; i++){

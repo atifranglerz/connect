@@ -349,9 +349,6 @@
             });
 
             $(document).ready(function() {
-                /*Animate loader off screen*/
-                $("#pgLoader").fadeOut("slow");
-
                 $(".carousel_se_02_carousel").owlCarousel({
                     items: 3,
                     nav: false,

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\Notification;
 use App\Models\Ads;
 use App\Models\Company;
+use App\Models\CarModel;
 use App\Models\ModelYear;
-use App\Models\webNotification;
+use App\Jobs\Notification;
 use Illuminate\Http\Request;
+use App\Models\webNotification;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,12 +31,26 @@ class AdsController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+
+    public function company(Request $request)
+    {
+        $model = CarModel::whereCompany_id($request->id)->get();
+        $data = view('user.quote.append_model')->with(['model' => $model])->render();
+        return response()->json([
+            'success' => 'successfully',
+            'data' => $data,
+        ]);
+    }
+
+
+    
     public function create()
     {
         $company = Company::all();
+        $model = CarModel::all();
         $year = ModelYear::all();
         $page_title = 'Ad index';
-        return view('vendor.ads.create', compact('company', 'year', 'page_title'));
+        return view('vendor.ads.create', compact('company', 'year', 'page_title','model'));
     }
 
     /**
@@ -148,8 +163,9 @@ class AdsController extends Controller
     {
         $ads = Ads::findOrFail($id);
         $company = Company::all();
+        $model = CarModel::all();
         $year = ModelYear::all();
-        return view('vendor.ads.edit', compact('ads', 'company', 'year'));
+        return view('vendor.ads.edit', compact('ads', 'company', 'year','model'));
     }
 
     /**

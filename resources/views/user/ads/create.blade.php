@@ -37,7 +37,7 @@
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                        <select class="form-select" name="company_id" aria-label="Type of Service" required>
+                                        <select class="form-select" name="company_id" aria-label="Type of Service" id="company" required>
                                             <option value="" selected disabled>{{ __('msg.Manufacturer/Brand') }}
                                                 ({{ __('msg.Required') }})</option>
                                             @foreach ($company as $data)
@@ -52,11 +52,17 @@
                                         <span class="text-danger" id="companyError"></span>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                        <input type="text" name="model" value="{{ old('model') }}"
-                                            class="form-control"
-                                            placeholder="{{ __('msg.Model') }} ({{ __('msg.Required') }})"
-                                            aria-label="Model" required>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 form-group" id="car_model">
+                                        <select class="form-select form-control company-name-field" name="model" aria-label="car model" required>
+                                            <option value="" selected disabled>
+                                                {{ __('msg.Model') }}
+                                                ({{ __('msg.Required') }})</option>
+                                            @foreach ($model as $data)
+                                                <option value="{{ $data->car_model }}"
+                                                    @if (old('company_id') == $data->car_model) selected @endif>
+                                                    {{ $data->car_model }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -184,6 +190,27 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script>
+ $(function() {
+        $("#company").change(function() {
+            var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+                url: "{{ route('user.company-model') }}",
+                data: {
+                    'id': id
+                },
+                success: function(response) {
+                    $('#car_model').empty();
+                    $('#car_model').append(response.data);
+                }
+            });
+        });
+    });
+
     toastr.options = {
         "closeButton": true,
         "newestOnTop": false,

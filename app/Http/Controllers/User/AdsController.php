@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\Notification;
 use App\Models\Ads;
 use App\Models\Company;
+use App\Models\CarModel;
 use App\Models\ModelYear;
-use App\Models\webNotification;
+use App\Jobs\Notification;
 use Illuminate\Http\Request;
+use App\Models\webNotification;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AdsController extends Controller
@@ -32,9 +33,10 @@ class AdsController extends Controller
     public function create()
     {
         $company = Company::all();
+        $model = CarModel::all();
         $year = ModelYear::all();
         $page_title = 'Ad index';
-        return view('user.ads.create', compact('company', 'year', 'page_title'));
+        return view('user.ads.create', compact('company', 'year','model','page_title'));
     }
 
     /**
@@ -143,10 +145,10 @@ class AdsController extends Controller
     public function edit($id)
     {
         $ads = Ads::findOrFail($id);
-        //dd($ads);
+        $model = CarModel::all();
         $company = Company::all();
         $year = ModelYear::all();
-        return view('user.ads.edit', compact('ads', 'company', 'year'));
+        return view('user.ads.edit', compact('ads', 'company', 'year','model'));
     }
 
     /**
