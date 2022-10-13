@@ -368,17 +368,20 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('logout', 'AuthController@logout')->name('logout');
         Route::resource('chat', 'ChatController');
         Route::resource('ads', 'AdsController');
+        /* Quote */
         Route::get('quoteindex', 'QuoteController@index')->name('quoteindex');
-
         Route::get('quotecreate', 'QuoteController@create')->name('quotecreate');
         Route::post('quotestore', 'QuoteController@store')->name('quotestore');
         Route::get('response/{id}', 'QuoteController@reply')->name('response');
         Route::get('print-order-details/{id}', 'QuoteController@printOrderDetails')->name('print-order-details');
         Route::get('vendorReply/{id}', 'QuoteController@vendorResponse')->name('vendorReply');
+        Route::post('company/model', 'QuoteController@company')->name('company-model');
+        /* Resourse */
         Route::resource('user_review', 'UserReviewController');
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
+        /* Order */
         Route::get('order/summary/{id}', 'OrderController@summary')->name('order.summary');
         Route::get('order/invoce/{id}', 'OrderController@invoce')->name('order.invoce');
         Route::get('order/cancel/view/{id}', 'OrderController@cancelView')->name('order.cancel.view');
