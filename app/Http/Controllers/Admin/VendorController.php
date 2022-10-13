@@ -7,6 +7,7 @@ use App\Models\Garage;
 use App\Models\Vendor;
 use App\Models\Category;
 use App\Mail\Registration;
+use App\Mail\AccountStatus;
 use Illuminate\Http\Request;
 use App\Models\PaymentPercentage;
 use Illuminate\Support\Facades\DB;
@@ -279,6 +280,8 @@ class VendorController extends Controller
                 $vendor->fill([
                     'action' => 1,
                 ])->save();
+            $data['reason']='Congratulation! Your account is activated.';
+             Mail::to($vendor->email)->send(new AccountStatus($data));
                 return redirect()->route('admin.vendor.index')->with($this->data("Vendor Activate Successfully", 'success'));
             } else {
                 return redirect()->back()->with($this->data("Vendor Activate Error", 'error'));
@@ -288,21 +291,35 @@ class VendorController extends Controller
         }
     }
 
-    public function deactivate($id)
+    public function deactivate(Request $request)
     {
-        $vendor = Vendor::findOrFail($id);
+        $vendor = Vendor::find($request->user_id);
         if ($vendor->hasRole('vendor')) {
             if ($vendor->action == 1) {
                 $vendor->fill([
                     'action' => 0,
                 ])->save();
-                return redirect()->route('admin.vendor.index')->with($this->data("Vendor DeActivate Successfully", 'success'));
-            } else {
-                return redirect()->back()->with($this->data("Vendor DeActivate Error", 'error'));
+                $data['reason']=$request->comment_val;
+                Mail::to($vendor->email)->send(new AccountStatus($data));
+                $message ='Rejection message send successfully!';
+                return response()->json([
+
+                    'success' => 'Rejection Message send successfully',
+                    'message'=>$message,
+                ]);
+            }else{
+                return response()->json([
+                    'success' => 'DeActivate Error',
+                ]);
             }
-        } else {
-            return redirect()->back()->with($this->data('You do not have the required authorization!', 'error'));
         }
+        //         return redirect()->route('admin.vendor.index')->with($this->data("Vendor DeActivate Successfully", 'success'));
+        //     } else {
+        //         return redirect()->back()->with($this->data("Vendor DeActivate Error", 'error'));
+        //     }
+        // } else {
+        //     return redirect()->back()->with($this->data('You do not have the required authorization!', 'error'));
+        // }
     }
 
     /**

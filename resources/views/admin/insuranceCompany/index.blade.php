@@ -129,7 +129,7 @@
                                                                     </circle>
                                                                 </svg></a>
                                                         @else
-                                                            <a href="{{ route('admin.insurance-company.deactivate', ['id' => $company->id]) }}"
+                                                            <a href="#" data-toggle="modal"onclick="editCompany('{{ $company->id }}')"
                                                                 class="btn btn-success">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
@@ -182,8 +182,44 @@
             </div>
         </section>
     </div>
+    @include('admin.insuranceCompany.modal')
 @endsection
 @section('script')
+<script>
+      $('#edit_comment').on('keyup', function() {
+            if($(this).val()!="") {
+                $('.update_student').removeClass('a-disabled');
+            } else {
+                $('.update_student').addClass('a-disabled');
+            }
+        });
+    function editCompany(user_id, comment_val) {
+        $('#editStudentModal').modal('show');
+        $('#edit_stud_id').val(user_id);
+        $('#edit_comment').val(comment_val);
+    }
+    $('.update_student').on('click', function() {
+        let user_id = $('#edit_stud_id').val();
+        let edit_comment = $('#edit_comment').val();
+
+        $.ajax({
+            type: "POST",
+            url: '{{ url('admin/deactivate-company') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                user_id: user_id,
+                comment_val: edit_comment,
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#editStudentModal').modal('hide');
+                    toastr.success(response.success);
+                    window.location.reload();
+                }
+            }
+        });
+    });
+</script>
     <script>
         $(document).on('click', '.glyphicon-trash', function() {
             Swal.fire({

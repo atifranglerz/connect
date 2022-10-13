@@ -4,4 +4,8 @@
     border-color: #dadfe5;
 }
 
+.a-disabled {
+    pointer-events: none;
+}
+
 /*# sourceMappingURL=custom.css.map */

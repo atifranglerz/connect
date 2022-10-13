@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('public/admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/admin/assets/fonts/fontawesome5.15.4/css/all.css') }}">
     <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/web/assets/favicon/favicon.ico') }}' />
-
+    <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
 @yield('style')
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('public/admin/assets/css/style.css') }}">
@@ -91,6 +91,7 @@
 <script src="{{ asset('public/admin/assets/bundles/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('public/admin/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('public/admin/assets/bundles/cleave-js/dist/cleave.min.js') }}"></script>
+<script src="{{asset('public/assets/toastr/js/toastr.min.js')}}"></script>
 <!-- Advanced Form JS Library -->
 <script src="{{ asset('public/admin/assets/bundles/cleave-js/dist/addons/cleave-phone.us.js') }}"></script>
 <script src="{{ asset('public/admin/assets/bundles/jquery-pwstrength/jquery.pwstrength.min.js') }}"></script>
@@ -111,6 +112,22 @@
 <!-- Sweet Alert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+      toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

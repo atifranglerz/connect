@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Mail\Registration;
+use App\Mail\AccountStatus;
 use App\Models\userCompany;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -231,23 +232,38 @@ class InsuranceCompanyController extends Controller
             $company->fill([
                 'action' => 1,
             ])->save();
+            $data['reason']='Congratulation! Your account is activated.';
+             Mail::to($company->email)->send(new AccountStatus($data));
             return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company Activate Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("Insurance Company Activate Error", 'error'));
         }
     }
 
-    public function deactivate($id)
+    public function deactivate(Request $request)
     {
-        $company = User::findOrFail($id);
+        $company = User::find($request->user_id);
         if ($company->action == 1) {
             $company->fill([
                 'action' => 0,
             ])->save();
-            return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company DeActivate Successfully", 'success'));
-        } else {
-            return redirect()->back()->with($this->data("Insurance Company DeActivate Error", 'error'));
+            $data['reason']=$request->comment_val;
+            Mail::to($company->email)->send(new AccountStatus($data));
+            $message ='Rejection message send successfully!';
+            return response()->json([
+
+                'success' => 'Rejection Message send successfully',
+                'message'=>$message,
+            ]);
+        }else{
+            return response()->json([
+                'success' => 'DeActivate Error',
+            ]);
         }
+        //     return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company DeActivate Successfully", 'success'));
+        // } else {
+        //     return redirect()->back()->with($this->data("Insurance Company DeActivate Error", 'error'));
+        // }
     }
     /**
      * Remove the specified resource from storage.

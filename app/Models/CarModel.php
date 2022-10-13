@@ -11,7 +11,7 @@ class CarModel extends Model
     protected $fillable = [
         'car_model'
     ];
-    public function companies()
+    public function company()
     {
         return $this->belongsto(Company::class,'company_id');
     }
