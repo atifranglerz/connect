@@ -1,20 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\Admin\AdsController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\GarageController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\VendorController;
-use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ModelYearController;
-use App\Http\Controllers\Admin\PercentageController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\GarageController;
 use App\Http\Controllers\Admin\InsuranceCompanyController;
+use App\Http\Controllers\Admin\ModelYearController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PercentageController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VendorController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,7 +97,6 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
     Route::post('company/model', 'HomepageController@company')->name('company-model');
 
-
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('/', function () {
@@ -128,11 +126,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
         /*Insurance Company*/
         Route::get('add-company', 'InsuranceCompanyController@show')->name('addCompany');
-        Route::post('add-company','InsuranceCompanyController@create')->name('add');
+        Route::post('add-company', 'InsuranceCompanyController@create')->name('add');
         /* Car Ads */
         Route::resource('ads', 'AdsController');
         Route::any('status-request-ad/{id}', 'AdsController@statusAds');
-        Route::any('delete-ads/{id}','AdsController@deleteAds');
+        Route::any('delete-ads/{id}', 'AdsController@deleteAds');
         /* Update Profile */
         Route::get('profile', 'AuthController@profile')->name('profile');
         Route::post('update-profile/{id}', 'AuthController@updateProfile')->name('profile.update');
@@ -216,17 +214,27 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::post('update-faq/{id}', [FaqController::class, 'update_faq']);
         Route::any('delete-faq/{id}', [FaqController::class, 'delete_faq']);
 
-         Route::any('delete-category/{id}', [CategoryController::class, 'delete']);
-         Route::any('delete-company/{id}', [CompanyController::class, 'delete']);
-         Route::any('delete-garage/{id}', [GarageController::class, 'delete']);
-         Route::any('delete-order/{id}', [OrderController::class, 'delete']);
-         Route::any('delete-news/{id}', [NewsController::class, 'delete']);
-         Route::any('delete-vendor/{id}', [VendorController::class, 'delete']);
-         Route::any('delete-insurance/{id}', [InsuranceCompanyController::class, 'delete']);
-         Route::any('delete-user/{id}', [UserController::class, 'delete']);
-         Route::any('delete-model-year/{id}', [ModelYearController::class, 'delete']);
-         Route::any('delete-slider/{id}', [SliderController::class, 'delete']);
-        });
+        Route::any('delete-category/{id}', [CategoryController::class, 'delete']);
+        Route::any('delete-company/{id}', [CompanyController::class, 'delete']);
+        Route::any('delete-garage/{id}', [GarageController::class, 'delete']);
+        Route::any('delete-order/{id}', [OrderController::class, 'delete']);
+        Route::any('delete-news/{id}', [NewsController::class, 'delete']);
+        Route::any('delete-vendor/{id}', [VendorController::class, 'delete']);
+        Route::any('delete-insurance/{id}', [InsuranceCompanyController::class, 'delete']);
+        Route::any('delete-user/{id}', [UserController::class, 'delete']);
+        Route::any('delete-model-year/{id}', [ModelYearController::class, 'delete']);
+        Route::any('delete-slider/{id}', [SliderController::class, 'delete']);
+
+        /*----------Car Model of Car Brands---------------*/
+        Route::get('car-model', 'CarModelController@CarModel')->name('car-model');
+        Route::post('store-model', 'CarModelController@store')->name('store-model');
+        Route::get('edit-model/{id}', 'CarModelController@edit')->name('edit-model');
+        Route::post('update-model/{id}', 'CarModelController@update')->name('update-model');
+        Route::get('view-model/{id}', 'CarModelController@view')->name('view-model');
+        Route::any('delete-models/{id}', 'CarModelController@delete')->name('delete-models');
+        Route::any('delete-model/{id}', 'CarModelController@deleteModel')->name('delete-model');
+
+    });
 });
 
 Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'], function () {
@@ -399,7 +407,6 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::post('archive/download', 'ArchiveController@fileDownload')->name('archive.download');
         Route::post('archive/delete', 'ArchiveController@fileDelete')->name('archive.delete');
 
-
         //company insurance panel links
         Route::get('insurance-index', 'RequestController@index')->name('insurance-index');
         Route::get('car/detail/{id}', 'RequestController@carDetail')->name('car-detail');
@@ -409,4 +416,3 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
 
     });
 });
-

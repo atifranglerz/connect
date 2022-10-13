@@ -106,6 +106,7 @@
                     <li class=""><a class="nav-link " href="#">Cars Model</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.company.index') }}">Cars
                             Manufacture/Brand</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.car-model') }}">Brand Model</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.model_year.index') }}">Cars Year</a>
                     </li>
                 </ul>
