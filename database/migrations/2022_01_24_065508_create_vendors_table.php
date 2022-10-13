@@ -20,7 +20,7 @@ class CreateVendorsTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->nullable();
             $table->string('password');
-            $table->string('action')->default('1');
+            $table->string('action')->default('0');
             $table->string('facebook_social_id')->nullable();
             $table->string('google_social_id')->nullable();
             $table->string('country')->nullable();
