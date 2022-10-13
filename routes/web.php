@@ -222,6 +222,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::any('delete-vendor/{id}', [VendorController::class, 'delete']);
         Route::any('delete-insurance/{id}', [InsuranceCompanyController::class, 'delete']);
         Route::any('delete-user/{id}', [UserController::class, 'delete']);
+        Route::post('deactivate-user', [UserController::class, 'deactivate']);
+        Route::post('deactivate-vendor', [VendorController::class, 'deactivate']);
+        Route::post('deactivate-company', [InsuranceCompanyController::class, 'deactivate']);
         Route::any('delete-model-year/{id}', [ModelYearController::class, 'delete']);
         Route::any('delete-slider/{id}', [SliderController::class, 'delete']);
 
@@ -235,20 +238,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::any('delete-model/{id}', 'CarModelController@deleteModel')->name('delete-model');
 
     });
-        //  Route::any('delete-category/{id}', [CategoryController::class, 'delete']);
-        //  Route::any('delete-company/{id}', [CompanyController::class, 'delete']);
-        //  Route::any('delete-garage/{id}', [GarageController::class, 'delete']);
-        //  Route::any('delete-order/{id}', [OrderController::class, 'delete']);
-        //  Route::any('delete-news/{id}', [NewsController::class, 'delete']);
-        //  Route::any('delete-vendor/{id}', [VendorController::class, 'delete']);
-        //  Route::any('delete-insurance/{id}', [InsuranceCompanyController::class, 'delete']);
-        //  Route::any('delete-user/{id}', [UserController::class, 'delete']);
-        //  Route::post('deactivate-user', [UserController::class, 'deactivate']);
-        //  Route::post('deactivate-vendor',[VendorController::class,'deactivate']);
-        //  Route::post('deactivate-company',[InsuranceCompanyController::class,'deactivate']);
-        //  Route::any('delete-model-year/{id}', [ModelYearController::class, 'delete']);
-        //  Route::any('delete-slider/{id}', [SliderController::class, 'delete']);
-        // });
+
 });
 
 Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'], function () {
