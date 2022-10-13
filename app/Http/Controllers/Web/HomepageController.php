@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendPrefferedGarage;
 use App\Models\About;
 use App\Models\Ads;
+use App\Models\CarModel;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\ContactVendor;
@@ -81,9 +82,9 @@ class HomepageController extends Controller
         } else {
             $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(8);
 
-            if(isset($request->val)){
+            if (isset($request->val)) {
                 return view('web.append_TopGarage', $data);
-            }else{
+            } else {
                 return view('web.vendorlist', $data);
             }
         }
@@ -115,6 +116,7 @@ class HomepageController extends Controller
     public function vendorDetails($id)
     {
         $data['company'] = Company::all();
+        $data['model'] = CarModel::all();
         $data['year'] = ModelYear::all();
         $data['catagary'] = Category::all();
         // $data['page_title'] = 'Request Quote';
@@ -133,6 +135,16 @@ class HomepageController extends Controller
         return view('web.gerage_detail', $data);
     }
 
+    public function company(Request $request)
+    {
+        $model = CarModel::whereCompany_id($request->id)->get();
+        $data = view('user.quote.append_model')->with(['model' => $model])->render();
+        return response()->json([
+            'success' => 'successfully',
+            'data' => $data,
+        ]);
+    }
+
     public function contactVendor(Request $request)
     {
         if (isset($request->looking_for)) {
@@ -147,7 +159,6 @@ class HomepageController extends Controller
                     'color' => 'required',
                     'model_year_id' => 'required',
                     'mileage' => 'required',
-                    'day' => 'required',
                     'document' => 'required',
                     'car_images' => 'required',
                     'email' => 'required',
@@ -168,7 +179,6 @@ class HomepageController extends Controller
                     'color' => 'required',
                     'model_year_id' => 'required',
                     'mileage' => 'required',
-                    'day' => 'required',
                     'document' => 'required',
                     'car_images' => 'required',
                     'email' => 'required',
@@ -188,7 +198,6 @@ class HomepageController extends Controller
                     'color' => 'required',
                     'model_year_id' => 'required',
                     'mileage' => 'required',
-                    'day' => 'required',
                     'document' => 'required',
                     'car_images' => 'required',
                     'email' => 'required',
@@ -207,7 +216,6 @@ class HomepageController extends Controller
                 'color' => 'required',
                 'model_year_id' => 'required',
                 'mileage' => 'required',
-                'day' => 'required',
                 'document' => 'required',
                 'car_images' => 'required',
                 'email' => 'required',

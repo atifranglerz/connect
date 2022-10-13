@@ -31,7 +31,7 @@
                                         $preImages[] = $obj;
                                     }
                                     $preImages = json_encode($preImages);
-
+                                    
                                     //update the documents images
                                     $docx = Explode(',', $ads->document_file);
                                     $preDocx = [];
@@ -44,7 +44,8 @@
                                     $preDocx = json_encode($preDocx);
                                     ?>
                                     <div class="col-lg-6 col-md-6 mb-3">
-                                        <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                        <label class="mb-2 heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                                    ({{ __('msg.Click the box again to upload another') }})</small></b></label>
                                         <div class="car_images">
                                         </div>
                                         @error('car_images')
@@ -52,7 +53,8 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 mb-3">
-                                        <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}}<small> ({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                        <label class="mb-2 heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                                    ({{ __('msg.Click the box again to upload another') }})</small></b></label>
                                         <div class="doc_images">
                                         </div>
                                         @error('document')
@@ -61,7 +63,8 @@
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <select class="form-select" name="company_id" aria-label="Type of Service">
+                                        <select class="form-select" name="company_id" id="company"
+                                            aria-label="Type of Service">
                                             <option value="" disabled>{{ __('msg.Manufacturer/Brand') }}
                                                 ({{ __('msg.Required') }})</option>
                                             <option value="{{ $ads->company_id }}" selected>{{ $ads->company->company }}
@@ -76,9 +79,13 @@
                                         <span class="text-danger" id="companyError"></span>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="model" class="form-control" placeholder="{{__('msg.Model')}} ({{__('msg.Required')}})"
-                                            value="{{ $ads->model }}" aria-label="Model">
+                                    <div class="col-lg-6 col-md-6" id="car_model">
+                                        <select class="form-select form-control company-name-field" name="model" aria-label="car model" required>
+                                            <option value="" selected disabled>{{ __('msg.Model') }}({{ __('msg.Required') }})</option>
+                                            @foreach ($model as $data)
+                                                <option value="{{ $data->car_model }}"@if ($ads->model == $data->car_model) selected @endif>{{ $data->car_model }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('model')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
@@ -102,46 +109,58 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="price" value="{{ $ads->price }}"
-                                            class="form-control" placeholder="{{__('msg.Price')}} ({{__('msg.Required')}})" aria-label="Price">
+                                            class="form-control"
+                                            placeholder="{{ __('msg.Price') }} ({{ __('msg.Required') }})"
+                                            aria-label="Price">
                                         @error('price')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="color" value="{{ $ads->color }}"
-                                            class="form-control" placeholder="{{__('msg.Color')}} ({{__('msg.Required')}})" aria-label="Color">
+                                            class="form-control"
+                                            placeholder="{{ __('msg.Color') }} ({{ __('msg.Required') }})"
+                                            aria-label="Color">
                                         @error('color')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="engine" value="{{ $ads->engine }}"
-                                            class="form-control" placeholder="{{__('msg.Engine')}} ({{__('msg.Required')}})" aria-label="Engine">
+                                            class="form-control"
+                                            placeholder="{{ __('msg.Engine') }} ({{ __('msg.Required') }})"
+                                            aria-label="Engine">
                                         @error('engine')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="number" name="phone" value="{{ $ads->phone }}"
-                                            class="form-control" placeholder="+971 XXXXXXXX ({{__('msg.Required')}})" aria-label="phone" onkeypress="if(this.value.length==12) return false">
+                                            class="form-control" placeholder="+971 XXXXXXXX ({{ __('msg.Required') }})"
+                                            aria-label="phone" onkeypress="if(this.value.length==12) return false">
                                         @error('phone')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <div style="position: relative">
-                                            <input type="text" name="address" value="{{ $ads->address }}" class="form-control" placeholder="{{__('msg.Address')}} ({{__('msg.Required')}})" aria-label="address" style="padding-right: 2rem">
-                                            <span class="fa fa-location" aria-hidden="true" style="position: absolute;top: 10px;right: 10px"></span>
+                                            <input type="text" name="address" value="{{ $ads->address }}"
+                                                class="form-control"
+                                                placeholder="{{ __('msg.Address') }} ({{ __('msg.Required') }})"
+                                                aria-label="address" style="padding-right: 2rem">
+                                            <span class="fa fa-location" aria-hidden="true"
+                                                style="position: absolute;top: 10px;right: 10px"></span>
                                         </div>
                                         @error('address')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <select class="form-select form-control" name="{{__('msg.Country')}}" aria-label="Country"
-                                            disabled>
+                                        <select class="form-select form-control" name="{{ __('msg.Country') }}"
+                                            aria-label="Country" disabled>
                                             <option disabled value="">Select Country</option>
-                                            <option value="United Arab Emirates" selected>{{__('msg.United Arab Emirates')}}</option>
+                                            <option value="United Arab Emirates" selected>
+                                                {{ __('msg.United Arab Emirates') }}</option>
                                         </select>
                                         @error('country')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -152,12 +171,17 @@
                                             @if (isset($ads->city))
                                                 <option selected value="{{ $ads->city }}">{{ $ads->city }}</option>
                                             @endif
-                                            <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>{{__('msg.Dubai')}}</option>
-                                            <option value="Abu Dhabi" @if (old('city') == 'Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
-                                            <option value="Sharjah" @if (old('city') == 'Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
+                                            <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>
+                                                {{ __('msg.Dubai') }}</option>
+                                            <option value="Abu Dhabi" @if (old('city') == 'Abu Dhabi') selected @endif>
+                                                {{ __('msg.Abu Dhabi') }}</option>
+                                            <option value="Sharjah" @if (old('city') == 'Sharjah') selected @endif>
+                                                {{ __('msg.Sharjah') }}</option>
                                             <option value="Ras Al Khaimah"
-                                                @if (old('city') == 'Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
-                                            <option value="Ajman" @if (old('city') == 'Ajman') selected @endif>{{__('msg.Ajman')}}</option>
+                                                @if (old('city') == 'Ras Al Khaimah') selected @endif>
+                                                {{ __('msg.Ras Al Khaimah') }}</option>
+                                            <option value="Ajman" @if (old('city') == 'Ajman') selected @endif>
+                                                {{ __('msg.Ajman') }}</option>
                                         </select>
                                         @error('city')
                                             <div class="text-danger p-2">{{ $message }}</div>
@@ -165,22 +189,25 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <input type="text" name="mileage" class="form-control"
-                                            value="{{ $ads->mileage }}" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})" aria-label="Car Milage">
+                                            value="{{ $ads->mileage }}"
+                                            placeholder="{{ __('msg.Mileage e.g 40 Km') }} ({{ __('msg.Required') }})"
+                                            aria-label="Car Milage">
                                         @error('mileage')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" name="description"
-                                            placeholder="{{__('msg.Add more details')}}" id="floatingTextarea2"
-                                            style="height: 100px">{{ $ads->description }}</textarea>
-                                            <label for="floatingTextarea2">{{__('msg.Add information in details')}} ({{__('msg.Optional')}})</label>
+                                            <textarea class="form-control" name="description" placeholder="{{ __('msg.Add more details') }}"
+                                                id="floatingTextarea2" style="height: 100px">{{ $ads->description }}</textarea>
+                                            <label for="floatingTextarea2">{{ __('msg.Add information in details') }}
+                                                ({{ __('msg.Optional') }})</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="d-grid gap-2 mt-lg-3 mb-lg-4">
-                                            <button class="btn btn-secondary block get_appointment" type="submit">{{__('msg.SUBMIT')}}
+                                            <button class="btn btn-secondary block get_appointment"
+                                                type="submit">{{ __('msg.SUBMIT') }}
                                             </button>
                                         </div>
                                     </div>
@@ -196,6 +223,27 @@
 @section('script')
     <script>
         $(function() {
+            $("#company").change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    url: "{{ route('vendor.company-model') }}",
+                    data: {
+                        'id': id
+                    },
+                    success: function(response) {
+                        $('#car_model').empty();
+                        $('#car_model').append(response.data);
+                    }
+                });
+            });
+        });
+
+        $(function() {
             let imagePre = <?php echo $preImages; ?>;
             console.log(imagePre);
             $('.car_images').imageUploader({
@@ -206,7 +254,9 @@
                 maxFiles: 5,
                 maxSize: 2097152, // 3 MB
             });
-            $(".car_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Upload Car image')}} ({{__('msg.Required')}}) </br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>');
+            $(".car_images>.image-uploader>.upload-text").append(
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{ __('msg.Upload Car image') }} ({{ __('msg.Required') }}) </br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input name="car_images[]" type="file" size="60"></label>'
+            );
         });
         //update the documents images
         $(function() {
@@ -220,7 +270,9 @@
                 maxFiles: 5,
                 maxSize: 2097152, // 3 MB
             });
-            $(".doc_images>.image-uploader>.upload-text").append('<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{__('msg.Registration Copy Image')}} ({{__('msg.Required')}}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>');
+            $(".doc_images>.image-uploader>.upload-text").append(
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{ __('msg.Registration Copy Image') }} ({{ __('msg.Required') }}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>'
+            );
         });
     </script>
 @endsection
