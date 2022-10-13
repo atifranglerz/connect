@@ -129,7 +129,7 @@ class AuthController extends Controller
             $vendor->assignRole($role);
             Mail::to($vendor_email)->send(new Login($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as a Vendor!";
+            $_SESSION["msg"] = "You've Registered Successfully as a Vendor, Soon your account will be Activated!";
             $_SESSION["alert"] = "success";
             return redirect()->route('vendor.login');
         } else {

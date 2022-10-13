@@ -184,6 +184,8 @@
         $('#edit_comment').val(comment_val);
     }
     $('.update_student').on('click', function() {
+        $(this).find('.spinner-border-sm').removeClass('d-none');
+        
         let user_id = $('#edit_stud_id').val();
         let edit_comment = $('#edit_comment').val();
 

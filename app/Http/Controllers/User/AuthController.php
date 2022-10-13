@@ -87,7 +87,7 @@ class AuthController extends Controller
             $user->assignRole($role);
             Mail::to($user_email)->send(new Login($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as a Customer!";
+            $_SESSION["msg"] = "You've Registered Successfully as a Customer, Soon your account will be Activated!";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.login');
         } else {
@@ -225,7 +225,7 @@ class AuthController extends Controller
             $company->assignRole($role);
             Mail::to($company_email)->send(new Login($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as an Insurance Company";
+            $_SESSION["msg"] = "You've Registered Successfully as an Insurance Company, Soon your account will be Activated!";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');
         } else {
