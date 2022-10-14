@@ -17,7 +17,8 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
-                                                {{-- <th>Car Image</th> --}}
+                                                <th>Car Image</th>
+                                                <th>Document Image</th>
                                                 <th>Owner Name</th>
                                                 <th>Model</th>
                                                 <th>Company</th>
@@ -33,14 +34,22 @@
                                         </thead>
                                         <tbody>
                                             @forelse($ads as $ad)
-                                                {{-- @php
+                                                @php
                                                     $image = explode(',', $ad->images);
-                                                @endphp --}}
+                                                    $documents = explode(',', $ad->document_file);
+                                                @endphp
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    {{-- <td>
-                                                        <img src="{{ asset($image[0]) }}" alt="" width="80px">
-                                                    </td> --}}
+                                                    <td>
+                                                        @foreach($image as $images)
+                                                        <img src="{{ asset($images) }}" alt="" width="50px">
+                                                        @endforeach
+                                                    </td>
+                                                    <td>
+                                                        @foreach($documents as $document)
+                                                        <img src="{{ asset($document) }}" alt="" width="50px">
+                                                        @endforeach
+                                                    </td>
                                                     <td>
                                                         @if (isset($ad->user_id))
                                                             {{ $ad->user->name }} @else{{ $ad->vendor->name }}
