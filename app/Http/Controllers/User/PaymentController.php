@@ -47,9 +47,6 @@ class PaymentController extends Controller
 
     /*---------- end payment method for testing------------------*/
 
-
-
-
     public function index(Request $request)
     {
         $type = $request->type;
@@ -106,6 +103,11 @@ class PaymentController extends Controller
             $message['link1'] = url('user/order/summary', $order->id);
             $message['type'] = "order";
             $message['email'] = auth()->user()->email;
+            $message['invoice'] = "quote";
+            $message['paid_type'] = "order";
+            $message['user'] = $order->paid_by;
+            $message['total'] = $order->total;
+            $message['paid'] = $amount[0];
             //mail notification to user
             $Notification = new Notification($message);
             dispatch($Notification);
@@ -113,7 +115,7 @@ class PaymentController extends Controller
             //web notification to vendor
             $notification = new webNotification();
             $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
-            $notification->title = auth()->user()->name . " Confirm to complete order and release the payment, Order#" . $order->order_code;
+            $notification->title = auth()->user()->name . " Confirm to completed the order and release the payment, Order#" . $order->order_code;
             $notification->links = url('vendor/fullfillment', $order->id);
             $notification->body = ' ';
             $notification->save();
@@ -122,83 +124,89 @@ class PaymentController extends Controller
             $_SESSION["alert"] = "success";
             return redirect()->route('user.order.index');
         } else {
-            $amount = explode(" ", $request->amount);
-            // get payment
+            if (Order::whereVendor_bid_id($request->vendor_bid_id)->doesntExist()) {
 
-            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            // Stripe\Charge::create([
-            //     "amount" => $amount[0] * 100,
-            //     "currency" => "aed",
-            //     "source" => $request->stripeToken,
-            //     "description" => "payment from " . $request->name,
-            // ]);
+                $amount = explode(" ", $request->amount);
+                // get payment
 
-            $order = new Order();
-            $order_no = mt_rand('1000', '100000');
-            $order->order_code = $order_no;
-            $order->user_bid_id = $request->user_bid_id;
-            $order->vendor_bid_id = $request->vendor_bid_id;
-            $order->garage_id = $request->garage_id;
-            $order->total = $request->net_total;
-            $order->advance = $amount[0];
-            $order->customer_name = Auth::user()->name;
-            $order->customer_address = Auth::user()->address;
-            $order->customer_postal_code = Auth::user()->post_box;
-            $order->customer_city = Auth::user()->city;
-            $order->paid_by = "customer";
-            $order->save();
+                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                // Stripe\Charge::create([
+                //     "amount" => $amount[0] * 100,
+                //     "currency" => "aed",
+                //     "source" => $request->stripeToken,
+                //     "description" => "payment from " . $request->name,
+                // ]);
 
-            //after order confirm update quote status
-            $quote = UserBid::find($request->user_bid_id);
-            $quote->offer_status = "ordered";
-            $quote->save();
+                $order = new Order();
+                $order_no = mt_rand('1000', '100000');
+                $order->order_code = $order_no;
+                $order->user_bid_id = $request->user_bid_id;
+                $order->vendor_bid_id = $request->vendor_bid_id;
+                $order->garage_id = $request->garage_id;
+                $order->total = $request->net_total;
+                $order->advance = $amount[0];
+                $order->customer_name = Auth::user()->name;
+                $order->customer_address = Auth::user()->address;
+                $order->customer_postal_code = Auth::user()->post_box;
+                $order->customer_city = Auth::user()->city;
+                $order->paid_by = "customer";
+                $order->save();
 
-            // notification content
-            $message['title'] = "Order Placement Completion";
-            $message['order_no'] = $order_no;
-            $message['order_id'] = $order->id;
-            $message['body1'] = "Your ";
-            $message['body2'] = "has been successfully placed. Your selected garage/ service provider will be starting the work soon. To stay updated on the status of your order please sign in to your account or stay tuned as we will communicate to you once the job is completed.";
-            $message['link1'] = url('user/order/summary', $order->id);
-            $message['type'] = "order";
-            $message['email'] = auth()->user()->email;
-            $message['invoice'] = "quote";
-            $message['paid'] = $amount[0];
-            //mail notification to user
-            $Notification = new Notification($message);
-            dispatch($Notification);
+                //after order confirm update quote status
+                $quote = UserBid::find($request->user_bid_id);
+                $quote->offer_status = "ordered";
+                $quote->save();
 
-            // web  or mail notification to the vendor
-            $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
-            $vendor = Vendor::find($vendorbid->vendordetail->vendor_id);
-
-            $message['title'] = "Order Placement";
-            $message['order_no'] = $order_no;
-            $message['order_id'] = $order->id;
-            $message['body1'] = Auth::user()->name . " placed ";
-            $message['body2'] = "successfully to you.";
-            $message['link1'] = url('vendor/fullfillment', $order->id);
-            $message['type'] = "order";
-            $message['email'] = $vendor->email;
-
-            $gettime = strtotime($vendor->online_status) + 10;
-            $now = strtotime(Carbon::now());
-            if ($now > $gettime) {
+                // notification content
+                $message['title'] = "Order Placement Completion";
+                $message['order_no'] = $order_no;
+                $message['order_id'] = $order->id;
+                $message['body1'] = "Your ";
+                $message['body2'] = "has been successfully placed. Your selected garage/ service provider will be starting the work soon. To stay updated on the status of your order please sign in to your account or stay tuned as we will communicate to you once the job is completed.";
+                $message['link1'] = url('user/order/summary', $order->id);
+                $message['type'] = "order";
+                $message['email'] = auth()->user()->email;
+                $message['invoice'] = "quote";
+                $message['paid_type'] = "quote";
+                $message['user'] = 'customer';
+                $message['total'] = $request->net_total;
+                $message['paid'] = $amount[0];
+                //mail notification to user
                 $Notification = new Notification($message);
                 dispatch($Notification);
-            } else {
-                $notification = new webNotification();
-                $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
-                $notification->title = auth()->user()->name . " accepted your quote and placed an Order #" . $order_no;
-                $notification->links = url('vendor/fullfillment', $order->id);
-                $notification->body = ' ';
-                $notification->save();
-            }
-        }
 
-        $_SESSION["msg"] = "Order placed and Payment Successfully Added";
-        $_SESSION["alert"] = "success";
-        return redirect()->route('user.order.index');
+                // web  or mail notification to the vendor
+                $vendorbid = VendorBid::with('vendordetail')->find($request->vendor_bid_id);
+                $vendor = Vendor::find($vendorbid->vendordetail->vendor_id);
+
+                $message['title'] = "Order Placement";
+                $message['order_no'] = $order_no;
+                $message['order_id'] = $order->id;
+                $message['body1'] = Auth::user()->name . " placed ";
+                $message['body2'] = "successfully to you.";
+                $message['link1'] = url('vendor/fullfillment', $order->id);
+                $message['type'] = "order";
+                $message['email'] = $vendor->email;
+
+                $gettime = strtotime($vendor->online_status) + 10;
+                $now = strtotime(Carbon::now());
+                if ($now > $gettime) {
+                    $Notification = new Notification($message);
+                    dispatch($Notification);
+                } else {
+                    $notification = new webNotification();
+                    $notification->vendor_id = $vendorbid->vendordetail->vendor_id;
+                    $notification->title = auth()->user()->name . " accepted your quote and placed an Order #" . $order_no;
+                    $notification->links = url('vendor/fullfillment', $order->id);
+                    $notification->body = ' ';
+                    $notification->save();
+                }
+            }
+
+            $_SESSION["msg"] = "Order placed and Payment Successfully Added";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.order.index');
+        }
     }
 
     public function orderPlaceByCompany(Request $request)
