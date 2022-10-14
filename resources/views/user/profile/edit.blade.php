@@ -75,30 +75,6 @@
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" id="inputNumber" name="country"
-                                    placeholder="{{ __('msg.Country') }}" value="{{ $profile->country }}" readonly>
-                                @error('country')
-                                    <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <select class="form-select form-control" name="city" aria-label="City">
-                                    <option value="Dubai" @if ($profile->city == 'Dubai') selected @endif>
-                                        {{ __('msg.Dubai') }}</option>
-                                    <option value="Abu Dhabi" @if ($profile->city == 'Abu Dhabi') selected @endif>
-                                        {{ __('msg.Abu Dhabi') }}</option>
-                                    <option value="Sharjah" @if ($profile->city == 'Sharjah') selected @endif>
-                                        {{ __('msg.Sharjah') }}</option>
-                                    <option value="Ras Al Khaimah" @if ($profile->city == 'Ras Al Khaimah') selected @endif>
-                                        {{ __('msg.Ras Al Khaimah') }}</option>
-                                    <option value="Ajman" @if ($profile->city == 'Ajman') selected @endif>
-                                        {{ __('msg.Ajman') }}</option>
-                                </select>
-                                @error('city')
-                                    <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
                             @if (Auth::user()->type == 'user')
                                 <div class="col-12 mb-3  signup_input_wraper">
                                     <input type="text" class="form-control" id="inputName" name="address"
@@ -123,13 +99,6 @@
                             @endif
 
                             @if (Auth::user()->type == 'company')
-                                <div class="col-12 mb-3 signup_input_wraper">
-                                    <input type="number" class="form-control" id="inputNumber" name="post_box"
-                                        placeholder="{{ __('msg.P/O Box') }}" value="{{ $profile->post_box }}">
-                                    @error('post_box')
-                                        <div class="text-danger p-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
                                 <div class="col-12 mb-3 signup_vendor signup_input_wraper">
                                     <h5 class="mb-0 heading">{{ __('msg.Legal Info') }}</h5>
                                 </div>
@@ -147,11 +116,18 @@
                                     @enderror
                                 </div>
                                 <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                    <h5 class="mb-0 heading">{{ __('msg.Billing Info') }}</h5>
+                                    <h5 class="mb-0 heading">{{ __('msg.Address') }}</h5>
                                 </div>
                                 <div class="col-12 mb-3 signup_input_wraper">
                                     <div class="row">
-                                        <div class="col-6" style="padding-right: 4px">
+                                        <div class="col-6 mb-3" style="padding-right: 4px">
+                                            <input type="number" class="form-control" id="inputNumber" name="post_box"
+                                                placeholder="{{ __('msg.P/O Box') }} ({{ __('msg.Required') }})" value="{{ $profile->post_box }}">
+                                            @error('post_box')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6 mb-3" style="padding-left: 4px">
                                             <input type="text" name="billing_area"
                                                 value="{{ $profile->insurance->billing_area }}" class="form-control"
                                                 placeholder="{{ __('msg.Billing Area') }} ({{ __('msg.Required') }})">
@@ -159,7 +135,33 @@
                                                 <div class="text-danger p-2">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-6" style="padding-left: 4px">
+                                        <div class="col-6 mb-3" style="padding-right: 4px">
+                                            <input type="text" class="form-control" id="inputNumber" name="country"
+                                                placeholder="{{ __('msg.Country') }}" value="{{ $profile->country }}" readonly>
+                                            @error('country')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6 mb-3" style="padding-left: 4px">
+                                            <select class="form-select form-control" name="city" aria-label="City">
+                                                <option selected disabled value="">{{ __('msg.Select City') }}
+                                                    ({{ __('msg.Required') }})</option>
+                                                <option value="Dubai" @if ($profile->city == 'Dubai') selected @endif>
+                                                    {{ __('msg.Dubai') }}</option>
+                                                <option value="Abu Dhabi" @if ($profile->city == 'Abu Dhabi') selected @endif>
+                                                    {{ __('msg.Abu Dhabi') }}</option>
+                                                <option value="Sharjah" @if ($profile->city == 'Sharjah') selected @endif>
+                                                    {{ __('msg.Sharjah') }}</option>
+                                                <option value="Ras Al Khaimah" @if ($profile->city == 'Ras Al Khaimah') selected @endif>
+                                                    {{ __('msg.Ras Al Khaimah') }}</option>
+                                                <option value="Ajman" @if ($profile->city == 'Ajman') selected @endif>
+                                                    {{ __('msg.Ajman') }}</option>
+                                            </select>
+                                            @error('city')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
                                             <input type="text" name="billing_city"
                                                 value="{{ $profile->insurance->billing_city }}" class="form-control"
                                                 placeholder="{{ __('msg.Billing City') }} ({{ __('msg.Required') }})">

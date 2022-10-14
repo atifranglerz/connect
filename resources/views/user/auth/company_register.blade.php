@@ -56,32 +56,6 @@
                                 @enderror
                                 <div id="email-validation" class="d-none" style="color:red">This email  has been already taken!</div>
                             </div>
-
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="text" class="form-control" name="country" value="United Arab Emirates" readonly>
-                                @error('country')
-                                <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <select class="form-select form-control" name="city" aria-label="City" required>
-                                    <option selected disabled value="">{{__('msg.Select City')}} ({{__('msg.Required')}})</option>
-                                    <option value="Dubai" @if(old('city')=='Dubai') selected @endif>{{__('msg.Dubai')}}</option>
-                                    <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
-                                    <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
-                                    <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
-                                    <option value="Ajman" @if(old('city')=='Ajman') selected @endif>{{__('msg.Ajman')}}</option>
-                                </select>
-                                @error('city')
-                                <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}" placeholder="{{__('msg.P/O Box')}} ({{__('msg.Required')}})" required>
-                                @error('post_box')
-                                <div class="text-danger p-2">{{ $message }}</div>
-                                @enderror
-                            </div>
                             <div class="col-12 mb-3  signup_input_wraper form-group">
                                 <div class="input-images-10"></div>
                                 @error('image_license')
@@ -98,17 +72,42 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_vendor signup_input_wraper">
-                                <h5 class="mb-0 heading">{{__('msg.Billing Info')}}</h5>
+                                <h5 class="mb-0 heading">{{__('msg.Address')}}</h5>
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <div class="row">
-                                    <div class="col-6" style="padding-right: 4px">
+                                    <div class="col-6 mb-3" style="padding-right: 4px">
+                                        <input type="number" class="form-control"  name="post_box" value="{{ old('post_box') }}" placeholder="{{__('msg.P/O Box')}} ({{__('msg.Required')}})" required>
+                                        @error('post_box')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 mb-3" style="padding-left: 4px">
                                         <input type="text" name="billing_area" value="{{ old('billing_area') }}"  class="form-control" placeholder="{{__('msg.Billing Area')}} ({{__('msg.Required')}})" required>
                                         @error('billing_area')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-6" style="padding-left: 4px">
+                                    <div class="col-6 mb-3" style="padding-right: 4px">
+                                        <input type="text" class="form-control" name="country" value="United Arab Emirates" readonly>
+                                        @error('country')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6 mb-3" style="padding-left: 4px">
+                                        <select class="form-select form-control" name="city" aria-label="City" required>
+                                            <option selected disabled value="">{{__('msg.Select City')}} ({{__('msg.Required')}})</option>
+                                            <option value="Dubai" @if(old('city')=='Dubai') selected @endif>{{__('msg.Dubai')}}</option>
+                                            <option value="Abu Dhabi" @if(old('city')=='Abu Dhabi') selected @endif>{{__('msg.Abu Dhabi')}}</option>
+                                            <option value="Sharjah" @if(old('city')=='Sharjah') selected @endif>{{__('msg.Sharjah')}}</option>
+                                            <option value="Ras Al Khaimah" @if(old('city')=='Ras Al Khaimah') selected @endif>{{__('msg.Ras Al Khaimah')}}</option>
+                                            <option value="Ajman" @if(old('city')=='Ajman') selected @endif>{{__('msg.Ajman')}}</option>
+                                        </select>
+                                        @error('city')
+                                        <div class="text-danger p-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12">
                                         <input type="text"  name="billing_city" value="{{ old('billing_city') }}"  class="form-control" placeholder="{{__('msg.Billing City')}} ({{__('msg.Required')}})" required>
                                         @error('billing_city')
                                         <div class="text-danger p-2">{{ $message }}</div>
