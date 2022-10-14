@@ -31,7 +31,7 @@
                                         $preImages[] = $obj;
                                     }
                                     $preImages = json_encode($preImages);
-                                    
+
                                     //update the documents images
                                     $docx = Explode(',', $ads->document_file);
                                     $preDocx = [];
@@ -135,10 +135,11 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="number" name="phone" value="{{ $ads->phone }}"
-                                            class="form-control" placeholder="+971 XXXXXXXX ({{ __('msg.Required') }})"
-                                            aria-label="phone" onkeypress="if(this.value.length==12) return false">
-                                        @error('phone')
+                                        <input type="text" name="mileage" class="form-control"
+                                            value="{{ $ads->mileage }}"
+                                            placeholder="{{ __('msg.Mileage e.g 40 Km') }} ({{ __('msg.Required') }})"
+                                            aria-label="Price">
+                                        @error('mileage')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -188,13 +189,19 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="text" name="mileage" class="form-control"
-                                            value="{{ $ads->mileage }}"
-                                            placeholder="{{ __('msg.Mileage e.g 40 Km') }} ({{ __('msg.Required') }})"
-                                            aria-label="Price">
-                                        @error('mileage')
+                                        <input type="number" name="phone" value="{{ $ads->phone }}"
+                                            class="form-control" placeholder="+971 XXXXXXXX ({{ __('msg.Required') }})"
+                                            aria-label="phone" onkeypress="if(this.value.length==12) return false">
+                                        @error('phone')
                                             <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="{{ __('msg.Dubai Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="{{ __('msg.Abu Dhabi Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="{{ __('msg.Sharjah Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="{{ __('msg.Ras Al Khaimah Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="{{ __('msg.Ajman Landline Number') }} ({{ __('msg.Optional') }})">
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
@@ -223,6 +230,40 @@
 @section('script')
     <script>
         $(function() {
+            $('select[name="city"]').on('change', function() {
+                if($(this).val()=="Dubai") {
+                    $('.line-dubai').removeClass('d-none');
+                    $('.line-dhabi').addClass('d-none');
+                    $('.line-sharjah').addClass('d-none');
+                    $('.line-khaimah').addClass('d-none');
+                    $('.line-ajman').addClass('d-none');
+                } else if ($(this).val()=="Abu Dhabi") {
+                    $('.line-dhabi').removeClass('d-none');
+                    $('.line-dubai').addClass('d-none');
+                    $('.line-sharjah').addClass('d-none');
+                    $('.line-khaimah').addClass('d-none');
+                    $('.line-ajman').addClass('d-none');
+                } else if ($(this).val()=="Sharjah") {
+                    $('.line-sharjah').removeClass('d-none');
+                    $('.line-dubai').addClass('d-none');
+                    $('.line-dhabi').addClass('d-none');
+                    $('.line-khaimah').addClass('d-none');
+                    $('.line-ajman').addClass('d-none');
+                } else if ($(this).val()=="Ras Al Khaimah") {
+                    $('.line-khaimah').removeClass('d-none');
+                    $('.line-dubai').addClass('d-none');
+                    $('.line-dhabi').addClass('d-none');
+                    $('.line-sharjah').addClass('d-none');
+                    $('.line-ajman').addClass('d-none');
+                } else if ($(this).val()=="Ajman") {
+                    $('.line-ajman').removeClass('d-none');
+                    $('.line-dubai').addClass('d-none');
+                    $('.line-dhabi').addClass('d-none');
+                    $('.line-sharjah').addClass('d-none');
+                    $('.line-khaimah').addClass('d-none');
+                }
+            });
+
             $("#company").change(function() {
                 var id = $(this).val();
                 $.ajax({
