@@ -109,12 +109,12 @@
                                         <span class="text-danger" id="engineError"></span>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                        <input type="number" name="phone" value="{{old('phone')}}" class="form-control" placeholder="+971 XXXXXXXX ({{__('msg.Required')}})"
-                                            aria-label="phone" required>
-                                        @error('phone')
+                                        <input type="number" name="mileage" value="{{old('mileage')}}" class="form-control" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})"
+                                            aria-label="Price" required>
+                                        @error('mileage')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
-                                        <span class="text-danger" id="phoneError"></span>
+                                        <span class="text-danger" id="millageError"></span>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                                         <div style="position: relative">
@@ -152,12 +152,19 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                        <input type="number" name="mileage" value="{{old('mileage')}}" class="form-control" placeholder="{{__('msg.Mileage e.g 40 Km')}} ({{__('msg.Required')}})"
-                                            aria-label="Price" required>
-                                        @error('mileage')
+                                        <input type="number" name="phone" value="{{old('phone')}}" class="form-control" placeholder="+971 XXXXXXXX ({{__('msg.Required')}})"
+                                            aria-label="phone" required>
+                                        @error('phone')
                                         <div class="text-danger p-2">{{ $message }}</div>
                                         @enderror
-                                        <span class="text-danger" id="millageError"></span>
+                                        <span class="text-danger" id="phoneError"></span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                        <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="{{ __('msg.Dubai Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="{{ __('msg.Abu Dhabi Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="{{ __('msg.Sharjah Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="{{ __('msg.Ras Al Khaimah Landline Number') }} ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="{{ __('msg.Ajman Landline Number') }} ({{ __('msg.Optional') }})">
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
@@ -228,6 +235,40 @@
         "hideMethod": "fadeOut"
     }
     $(function() {
+        $('select[name="city"]').on('change', function() {
+            if($(this).val()=="Dubai") {
+                $('.line-dubai').removeClass('d-none');
+                $('.line-dhabi').addClass('d-none');
+                $('.line-sharjah').addClass('d-none');
+                $('.line-khaimah').addClass('d-none');
+                $('.line-ajman').addClass('d-none');
+            } else if ($(this).val()=="Abu Dhabi") {
+                $('.line-dhabi').removeClass('d-none');
+                $('.line-dubai').addClass('d-none');
+                $('.line-sharjah').addClass('d-none');
+                $('.line-khaimah').addClass('d-none');
+                $('.line-ajman').addClass('d-none');
+            } else if ($(this).val()=="Sharjah") {
+                $('.line-sharjah').removeClass('d-none');
+                $('.line-dubai').addClass('d-none');
+                $('.line-dhabi').addClass('d-none');
+                $('.line-khaimah').addClass('d-none');
+                $('.line-ajman').addClass('d-none');
+            } else if ($(this).val()=="Ras Al Khaimah") {
+                $('.line-khaimah').removeClass('d-none');
+                $('.line-dubai').addClass('d-none');
+                $('.line-dhabi').addClass('d-none');
+                $('.line-sharjah').addClass('d-none');
+                $('.line-ajman').addClass('d-none');
+            } else if ($(this).val()=="Ajman") {
+                $('.line-ajman').removeClass('d-none');
+                $('.line-dubai').addClass('d-none');
+                $('.line-dhabi').addClass('d-none');
+                $('.line-sharjah').addClass('d-none');
+                $('.line-khaimah').addClass('d-none');
+            }
+        });
+
         // Initialize form validation on the registration form.
         // It has the name attribute "registration"
         jQuery.validator.addMethod("phoneUE", function(phone_number, element) {
@@ -235,6 +276,36 @@
             return this.optional(element) || phone_number.length > 9 &&
             phone_number.match(/^(?:\+?971-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
         }, "Please specify a valid phone number");
+
+        jQuery.validator.addMethod("landlineDubai", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(?:\+?04-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
+        }, "Please specify a valid landline number");
+
+        jQuery.validator.addMethod("landlineAbuDhabi", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(?:\+?02-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
+        }, "Please specify a valid landline number");
+
+        jQuery.validator.addMethod("landlineSharjah", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(?:\+?06-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
+        }, "Please specify a valid landline number");
+
+        jQuery.validator.addMethod("landlineRasAlKhaimah", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(?:\+?07-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
+        }, "Please specify a valid landline number");
+
+        jQuery.validator.addMethod("landlineAjman", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(?:\+?06-?)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/);
+        }, "Please specify a valid landline number");
 
         var validator = $("form[name='sellCar']").validate({
             ignore: [],
@@ -277,7 +348,27 @@
                 phone: {
                     phoneUE: true,
                     required: true
-                }
+                },
+                landlineDu: {
+                    landlineDubai: true,
+                    required: false
+                },
+                landlineAD: {
+                    landlineAbuDhabi: true,
+                    required: false
+                },
+                landlineSh: {
+                    landlineSharjah: true,
+                    required: false
+                },
+                landlineRAK: {
+                    landlineRasAlKhaimah: true,
+                    required: false
+                },
+                landlineAj: {
+                    landlineAjman: true,
+                    required: false
+                },
             },
             messages: {
                 // business_type: "Please select your business type",
