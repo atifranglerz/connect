@@ -26,7 +26,7 @@ class InsuranceCompanyController extends Controller
         //         $q->Where('name', 'user');
         //     })->where('type', 'company')
         //     ->get();
-        $company=User::with('roles','insurance')->where('type','company')->get();
+        $company=User::with('roles','insurance')->where('type','company')->orderBy('id', 'desc')->get();
         $page_title = 'Insurance Company';
         return view('admin.insuranceCompany.index', compact('company', 'page_title'));
     }

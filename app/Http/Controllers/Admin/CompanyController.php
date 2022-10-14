@@ -15,7 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company = Company::all();
+        $company = Company::orderBy('id', 'desc')->get();
         $page_title = 'Company Name';
         return view('admin.company.index', compact('company', 'page_title'));
     }

@@ -28,7 +28,7 @@ class VendorController extends Controller
         $vendors = Vendor::with('roles')
             ->whereHas('roles', function ($q) {
                 $q->Where('name', 'vendor');
-            })
+            })->orderBy('id', 'desc')
             ->get();
         $page_title = 'Vendor';
         return view("admin.vendor.index", compact('vendors', 'page_title'));

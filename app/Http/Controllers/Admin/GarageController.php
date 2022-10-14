@@ -21,7 +21,7 @@ class GarageController extends Controller
     public function index()
     {
 
-        $garages = Garage::all();
+        $garages = Garage::orderBy('id', 'desc')->get();
         $garages->each(function ($c) {$c->load(['garageCategory' => function ($q) {$q->limit(5);}]);});
         $page_title = 'Garages';
         return view('admin.garage.index', compact('garages', 'page_title'));

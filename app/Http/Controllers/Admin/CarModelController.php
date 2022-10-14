@@ -11,8 +11,7 @@ class CarModelController extends Controller
 {
     public function CarModel()
     {
-        $data = Company::with('model')->get();
-
+        $data = Company::with('model')->orderBy('id','desc')->get();
         $company = Company::all();
         $page_title = 'Company Name';
         return view('admin.companyModel.index', compact('company', 'page_title','data'));
@@ -33,7 +32,7 @@ class CarModelController extends Controller
          return view('admin.companyModel.edit', compact('model'));
     }
     public function update(Request $request, $id)
-    { 
+    {
         $model= CarModel::find($id);
         $model->car_model=$request->car_model;
         $model->save();
@@ -51,7 +50,7 @@ class CarModelController extends Controller
 
 
     public function delete($id)
-    {    
+    {
        $data = CarModel::whereCompany_id($id)->get();
       foreach($data as $data){
         $data->delete();
@@ -60,7 +59,7 @@ class CarModelController extends Controller
     }
 
     public function deleteModel($id)
-    {    
+    {
        $model =  CarModel::with('company')->find($id);
        $model->delete();
         $data = CarModel::with('company')->where('company_id',$model->company_id)->get();

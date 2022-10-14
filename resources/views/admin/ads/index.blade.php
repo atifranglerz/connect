@@ -17,7 +17,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
-                                                <th>Car Image</th>
+                                                {{-- <th>Car Image</th> --}}
                                                 <th>Owner Name</th>
                                                 <th>Model</th>
                                                 <th>Company</th>
@@ -33,14 +33,14 @@
                                         </thead>
                                         <tbody>
                                             @forelse($ads as $ad)
-                                                @php
+                                                {{-- @php
                                                     $image = explode(',', $ad->images);
-                                                @endphp
+                                                @endphp --}}
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>
+                                                    {{-- <td>
                                                         <img src="{{ asset($image[0]) }}" alt="" width="80px">
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
                                                         @if (isset($ad->user_id))
                                                             {{ $ad->user->name }} @else{{ $ad->vendor->name }}

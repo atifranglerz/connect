@@ -25,7 +25,7 @@ class UserController extends Controller
         $users = User::with('roles')
             ->whereHas('roles', function ($q) {
                 $q->Where('name', 'user');
-            })->where('type', 'user')
+            })->where('type', 'user')->orderBy('id', 'desc')
             ->get();
         $page_title = 'Customer';
         return view("admin.user.index", compact('users', 'page_title'));

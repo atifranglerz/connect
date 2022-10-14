@@ -10,7 +10,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $data = Faq::all();
+        $data = Faq::orderBy('id', 'desc')->get();
         return view('admin/faq/index', compact('data'));
     }
     public function get_add_faq()
