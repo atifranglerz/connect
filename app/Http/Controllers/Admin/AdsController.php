@@ -91,7 +91,53 @@ class AdsController extends Controller
             'address' => 'required',
             'mileage' => 'required',
         ]);
-        $ads = Ads::find($id);
+        $ads = Ads::findOrFail($id);
+        if ($request->file('car_images')) {
+            $images = [];
+            foreach ($request->file('car_images') as $data) {
+                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/add/', $image);
+                $images[] = 'public/image/add/' . $image;
+            }
+            $new = implode(",", $images);
+            if (isset($request->car_old)) {
+                $old = implode(",", $request->car_old);
+                $ads->images = $old . "," . $new;
+            } else {
+                $ads->images = $new;
+            }
+        } else {
+            if (isset($request->car_old)) {
+                $old = implode(",", $request->car_old);
+                $ads->images = $old;
+            } else {
+                $ads->images = " ";
+            }
+        }
+
+        //update car documents
+        if ($request->file('document')) {
+            $files = [];
+            foreach ($request->file('document') as $data) {
+                $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+                $data->move('public/image/add/', $doucments);
+                $files[] = 'public/image/add/' . $doucments;
+            }
+            $new = implode(",", $files);
+            if (isset($request->doc_old)) {
+                $old = implode(",", $request->doc_old);
+                $ads->document_file = $old . "," . $new;
+            } else {
+                $ads->document_file = $new;
+            }
+        } else {
+            if (isset($request->doc_old)) {
+                $old = implode(",", $request->doc_old);
+                $ads->document_file = $old;
+            } else {
+                $ads->document_file = "";
+            }
+        }
         $ads->model = $request->model;
         $ads->company_id = $request->company_id;
         $ads->model_year_id = $request->model_year_id;
@@ -105,26 +151,26 @@ class AdsController extends Controller
         $ads->country = $request->country;
         $ads->description = $request->description;
         $ads->update();
-        if ($request->file('car_images')) {
-            $images = [];
-            foreach ($request->file('car_images') as $data) {
-                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/add/', $image);
-                $images[] = 'public/image/add/' . $image;
-            }
-            $ads->images = implode(",", $images);
-        }
-        //update car documents
-        if ($request->file('document')) {
-            $files = [];
-            foreach ($request->file('document') as $data) {
-                $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/add/', $doucments);
-                $files[] = 'public/image/add/' . $doucments;
-            }
-            $ads->document_file = implode(",", $files);
-        }
-        $ads->save();
+        // if ($request->file('car_images')) {
+        //     $images = [];
+        //     foreach ($request->file('car_images') as $data) {
+        //         $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+        //         $data->move('public/image/add/', $image);
+        //         $images[] = 'public/image/add/' . $image;
+        //     }
+        //     $ads->images = implode(",", $images);
+        // }
+        // //update car documents
+        // if ($request->file('document')) {
+        //     $files = [];
+        //     foreach ($request->file('document') as $data) {
+        //         $doucments = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
+        //         $data->move('public/image/add/', $doucments);
+        //         $files[] = 'public/image/add/' . $doucments;
+        //     }
+        //     $ads->document_file = implode(",", $files);
+        // }
+        // $ads->save();
         return $this->message($ads, 'admin.ads.index', 'Ad Successfully Updated', '  Ad is not update Error');
 
     }

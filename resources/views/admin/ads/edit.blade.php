@@ -14,30 +14,67 @@
                                 @csrf
                                 @method('put')
                                 <div class="card-body">
-                                    @php
+                                    {{-- @php
                                         $images = explode(',', $ads->images);
                                         $documents = explode(',', $ads->document_file);
-                                    @endphp
+                                    @endphp --}}
+                                    <?php
+                                    $images = Explode(',', $ads->images);
+                                    $preImages = [];
+                                    foreach ($images as $image) {
+                                        $obj = (object) ['id' => '', 'src' => ''];
+                                        $obj->id = $image;
+                                        $obj->src = asset($image);
+                                        $preImages[] = $obj;
+                                    }
+                                    $preImages = json_encode($preImages);
+
+                                    //update the documents images
+                                    $docx = Explode(',', $ads->document_file);
+                                    $preDocx = [];
+                                    foreach ($docx as $doc) {
+                                        $obj = (object) ['id' => '', 'src' => ''];
+                                        $obj->id = $doc;
+                                        $obj->src = asset($doc);
+                                        $preDocx[] = $obj;
+                                    }
+                                    $preDocx = json_encode($preDocx);
+                                    ?>
                                     <div class="row mb-2">
                                         <div class="form-group col-md-6">
-                                            <label>Car Images</label>
+                                            {{-- <label>Car Images</label>
                                             <div class=" border border-gray p-1">
                                                 @foreach ($images as $image)
                                                     <img src="{{ asset($image) }}" alt="" height="60px"
                                                         width="90px">
                                                 @endforeach
                                             </div>
-                                            <input type="file" multiple name="car_images[]" class="form-control" value="" aria-label="Model">
+                                            <input type="file" multiple name="car_images[]" class="form-control" value="" aria-label="Model"> --}}
+                                            <label class="heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                                        ({{ __('msg.Click the box again to upload another') }})</small></b></label>
+                                            <div class="car_images">
+                                            </div>
+                                            @error('car_images')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>Documents</label>
+                                            {{-- <label>Documents</label>
                                             <div class="border border-gray p-1">
                                                 @foreach ($documents as $document)
                                                     <img src="{{ asset($document) }}" alt="" w height="60px"
                                                         width="90px">
                                                 @endforeach
                                             </div>
-                                            <input type="file" multiple name="document[]" class="form-control" value="" aria-label="Model">
+                                            <input type="file" multiple name="document[]" class="form-control"
+                                                value="" aria-label="Model"> --}}
+                                            <label class="heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                                        ({{ __('msg.Click the box again to upload another') }})</small></b></label>
+                                            <div class="doc_images">
+                                            </div>
+                                            @error('files')
+                                                <div class="text-danger p-2">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -54,7 +91,8 @@
                                             <label for="">Company</label>
                                             <select class="form-select form-control" name="company_id"
                                                 aria-label="Type of Service">
-                                                <option value="{{ $ads->company_id }}" selected>{{ $ads->company->company }}
+                                                <option value="{{ $ads->company_id }}" selected>
+                                                    {{ $ads->company->company }}
                                                 </option>
                                                 @foreach ($company as $data)
                                                     <option value="{{ $data->id }}">{{ $data->company }}</option>
@@ -214,4 +252,37 @@
     </div>
 @endsection
 @section('script')
+<script>
+    $(function() {
+            let imagePre = <?php echo $preImages; ?>;
+            console.log(imagePre);
+            $('.car_images').imageUploader({
+                preloaded: imagePre,
+                imagesInputName: 'car_images',
+                preloadedInputName: 'car_old',
+                extensions: ['.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+                maxFiles: 5,
+                maxSize: 2097152, // 3 MB
+            });
+            $(".car_images>.image-uploader>.upload-text").append(
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{ __('msg.Upload Car image') }} ({{ __('msg.Required') }}) </br><b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic only)</b></p><input type="file" size="60"></label>'
+                );
+        });
+        //update the documents images
+        $(function() {
+            let preDocx = <?php echo $preDocx; ?>;
+            $('.doc_images').imageUploader({
+                preloaded: preDocx,
+                imagesInputName: 'doucment',
+                preloadedInputName: 'doc_old',
+                extensions: ['.pdf', '.jpeg', '.jpg', '.png', '.PNG', '.heic'],
+                mimes: ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/heic'],
+                maxFiles: 5,
+                maxSize: 2097152, // 3 MB
+            });
+            $(".doc_images>.image-uploader>.upload-text").append(
+                '<label class="img_wraper_label"><div class="file_icon_wraper"><span class="fa fa-paperclip text-white messages_file_uploader_image" aria-hidden="true"></span></div><p class="mb-0">{{ __('msg.Registration Copy Image') }} ({{ __('msg.Required') }}) </br> <b class="small">(Max-Size: 2 MB)</br>(Format: png, jpeg, heic, pdf only)</b></p><input type="file" name="document[]" size="60" ></label>'
+                );
+        });
+</script>
 @endsection

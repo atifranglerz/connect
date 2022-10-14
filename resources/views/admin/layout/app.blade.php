@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('public/admin/assets/fonts/fontawesome5.15.4/css/all.css') }}">
     <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/web/assets/favicon/favicon.ico') }}' />
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
+
 @yield('style')
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('public/admin/assets/css/style.css') }}">
@@ -101,6 +103,8 @@
 <script src="{{ asset('public/admin/assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ asset('public/admin/assets/bundles/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('public/admin/assets/bundles/jquery-selectric/jquery.selectric.min.js') }}"></script>
+<script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
+
 <!-- Page Specific JS File -->
 <script src="{{ asset('public/admin/assets/js/page/forms-advanced-forms.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/page/datatables.js') }}"></script>
