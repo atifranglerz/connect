@@ -159,7 +159,7 @@
                                         style="margin-right: 8px" aria-hidden="true"></span>{{__('msg.FAQ')}}</a></li>
                             <li><a href="{{ route('privacy_policy') }}"><span class="fa fa-lock"
                                 style="margin-right: 8px"></span>{{__('msg.Privicy Policy')}}</a></li>
-                            <li><a href="{{ route('cookies') }}"><span class="fa fa-lock"
+                            <li><a href="{{ route('cookies') }}"><span class="fa fa-cookie"
                                 style="margin-right: 8px"></span>{{__('msg.Cookie Policy')}}</a></li>
                         </ul>
                     </div>
