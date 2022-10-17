@@ -95,7 +95,7 @@ return [
     'FINAL INVOICE' => 'FINAL INVOICE',
     'From' => 'From',
     'Proceed' => 'Proceed',
-    'Cookies Policy' => 'Cookies Policy',
+    'Cookie Policy' => 'Cookie Policy',
     'Car Maker' => 'Car Maker',
     'mileage' => 'mileage',
     'Mileage e.g 40 Km' => 'Mileage e.g 40 Km',
