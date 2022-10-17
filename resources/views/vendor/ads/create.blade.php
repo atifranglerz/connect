@@ -155,11 +155,11 @@
                                 <span class="text-danger" id="phoneError"></span>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                                <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="{{ __('msg.Dubai Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="{{ __('msg.Abu Dhabi Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="{{ __('msg.Sharjah Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="{{ __('msg.Ras Al Khaimah Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="{{ __('msg.Ajman Landline Number') }} ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="04 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="02 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="07 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-floating">
