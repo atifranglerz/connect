@@ -7,14 +7,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h4>Privacy Policy</h4>
+                                <h4>Cookies Policy</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-responsive table-bordered" id="table_one">
                                         <thead class="mb-2">
                                         <tr>
-                                            <th>Privacy Policy</th>
+                                            <th>Cookies Policy</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
