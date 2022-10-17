@@ -240,6 +240,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::any('delete-models/{id}', 'CarModelController@delete')->name('delete-models');
         Route::any('delete-model/{id}', 'CarModelController@deleteModel')->name('delete-model');
 
+        /*----------Cookies Policy---------------*/
+        Route::resource('cookie', 'CookieController');
+
     });
 
 });

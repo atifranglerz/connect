@@ -49,6 +49,9 @@
             <li class="dropdown @if (request()->routeIs(
                 'admin.news.index',
                 'admin.about.index',
+                'admin.cookie.index',
+                'admin.cookie.edit',
+                'admin.cookie.store',
                 '/admin/faqs',
                 'admin.term.index',
                 'admin.privacyPolicy.index',
@@ -59,6 +62,9 @@
                     {{-- <li class=""><a class="nav-link " href="{{ route('admin.garage.index') }}">Garages</a></li> --}}
                     <li class="dropdown @if (request()->routeIs(
                         'admin.news.index',
+                        'admin.cookie.index',
+                        'admin.cookie.edit',
+                        'admin.cookie.store',
                         'admin.about.index',
                         '/admin/faqs',
                         'admin.term.index',
@@ -70,6 +76,9 @@
                             <li class="dropdown @if (request()->routeIs(
                                 'admin.news.index',
                                 'admin.about.index',
+                                'admin.cookie.index',
+                                'admin.cookie.edit',
+                                'admin.cookie.store',
                                 '/admin/faqs',
                                 'admin.term.index',
                                 'admin.privacyPolicy.index',
@@ -89,6 +98,11 @@
                                             Condition</a></li>
                                     <li><a class="nav-link" href="{{ route('admin.privacyPolicy.index') }}">Privacy
                                             Policy</a></li>
+                                    <li><a class="nav-link" href="{{ route('admin.cookie.index') }}">Cookies
+                                            Policy</a></li>
+
+
+
                                 </ul>
                             </li>
                         </ul>
