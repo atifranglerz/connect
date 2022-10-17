@@ -2,33 +2,34 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
-use App\Mail\SendPrefferedGarage;
-use App\Models\About;
+use Carbon\Carbon;
 use App\Models\Ads;
+use App\Models\Faq;
+use App\Models\News;
+use App\Models\User;
+use App\Models\About;
+use App\Models\Garage;
+use App\Models\Slider;
+use App\Models\Vendor;
+use App\Models\Company;
+use App\Models\UserBid;
 use App\Models\CarModel;
 use App\Models\Category;
-use App\Models\Company;
-use App\Models\ContactVendor;
-use App\Models\Faq;
-use App\Models\Garage;
-use App\Models\GarageCategory;
 use App\Models\ModelYear;
-use App\Models\News;
-use App\Models\PrivacyPolicy;
-use App\Models\Slider;
-use App\Models\TermCondition;
-use App\Models\User;
-use App\Models\UserBid;
-use App\Models\UserBidCategory;
-use App\Models\UserBidImage;
 use App\Models\UserReview;
-use App\Models\UserWishlist;
-use App\Models\Vendor;
 use App\Models\VendorQuote;
-use App\Models\webNotification;
-use Carbon\Carbon;
+use App\Models\CookiePolicy;
+use App\Models\UserBidImage;
+use App\Models\UserWishlist;
 use Illuminate\Http\Request;
+use App\Models\ContactVendor;
+use App\Models\PrivacyPolicy;
+use App\Models\TermCondition;
+use App\Models\GarageCategory;
+use App\Models\UserBidCategory;
+use App\Models\webNotification;
+use App\Mail\SendPrefferedGarage;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 class HomepageController extends Controller
@@ -542,7 +543,9 @@ class HomepageController extends Controller
 
 
     public function cookies(){
-        return view('web.cookies');
+        $cookiePolicy = CookiePolicy::find(1);
+
+        return view('web.cookies',compact('cookiePolicy'));
     }
 
 }
