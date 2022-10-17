@@ -504,4 +504,45 @@ class HomepageController extends Controller
         return view('web.about', compact('page_title', 'about'));
     }
 
+// ------------ Create New password using Email when Admin Register new User-------------------
+    public function passwordCreate(Request $request)
+    {
+        $data['type'] = $request->type;
+        $data['email'] = $request->email;
+        return view('web.password_create', $data);
+    }
+    public function passwordstore(Request $request)
+    {
+        if ($request->type == 'user') {
+            $customer = User::whereEmail($request->email);
+            $customer->update([
+                'password' => bcrypt($request->password),
+            ]);
+            $_SESSION["msg"] = "Your password has been created successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.login');
+        } elseif ($request->type == 'company') {
+            $company = User::whereEmail($request->email);
+            $company->update([
+                'password' => bcrypt($request->password),
+            ]);
+            $_SESSION["msg"] = "Your password has been created successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('user.companyLogin');
+        }else{
+            $company = Vendor::whereEmail($request->email);
+            $company->update([
+                'password' => bcrypt($request->password),
+            ]);
+            $_SESSION["msg"] = "Your password has been created successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('vendor.login');
+        }
+    }
+
+
+    public function cookies(){
+        return view('web.cookies');
+    }
+
 }

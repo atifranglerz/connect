@@ -10,7 +10,7 @@
                             <form  action="{{ url('admin/add-user') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-header">
-                                    <h4>Add New User</h4>
+                                    <h4>Add New Customer</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

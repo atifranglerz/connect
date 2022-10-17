@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Garage;
-use App\Models\Vendor;
-use App\Models\Category;
-use App\Mail\Registration;
-use App\Mail\AccountStatus;
-use Illuminate\Http\Request;
-use App\Models\PaymentPercentage;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Mail\AccountStatus;
+use App\Mail\Registration;
+use App\Models\Category;
+use App\Models\Garage;
+use App\Models\PaymentPercentage;
+use App\Models\User;
+use App\Models\Vendor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Permission\Models\Role;
 
 class VendorController extends Controller
 {
@@ -41,8 +41,22 @@ class VendorController extends Controller
      */
     public function create(Request $request)
     {
+        $categories = Category::all();
+        $vat = PaymentPercentage::where('type', 'vat')->first();
+        $company = User::where('type', 'company')->get();
+        return view('admin.vendor.create', compact('company', 'categories', 'vat'));
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $request->validate([
-            // 'profile_image' => 'required',
             "id_card" => 'required',
             'name' => ['required', 'string', 'max:255'],
             'garage_name' => 'required',
@@ -51,7 +65,6 @@ class VendorController extends Controller
             'country' => ['required', 'string'],
             'city' => ['required', 'string'],
             'post_box' => 'required',
-            // 'company'=>'required',
             'image_license' => 'required',
             'trading_license' => 'required',
             'vat' => 'required',
@@ -61,15 +74,13 @@ class VendorController extends Controller
             'appointment_number' => 'required',
         ]);
 
-        $role = Role::where('name', 'vendor')->first();
-
         $vendor = new Vendor();
         if ($request->file('profile_image')) {
             $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('profile_image')->getClientOriginalExtension());
             $request->file('profile_image')->move('public/image/profile/', $doucments1);
             $file1 = 'public/image/profile/' . $doucments1;
             $vendor->image = $file1;
-        }else{
+        } else {
             $vendor->image = "public/assets/images/1744022049828589.jpg";
         }
         if ($request->file('id_card')) {
@@ -89,7 +100,6 @@ class VendorController extends Controller
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->phone = $request->appointment_number;
-        // $vendor->password = Hash::make($request->password);
         $vendor->country = $request->country;
         $vendor->city = $request->city;
         $vendor->post_box = $request->post_box;
@@ -103,9 +113,10 @@ class VendorController extends Controller
         $vendor->address = $request->billing_address;
         $vendor->garages_catagory = implode(',', $request->garages_catagary);
         $vendor->trading_license = $request->trading_license;
-        $vendor->type='vendor';
+        $vendor->type = 'vendor';
         $vendor->save();
 
+        /* ------------------Assign Insurance Company---------------------*/
         if (isset($request->company)) {
             foreach ($request->company as $id) {
                 $company = User::find($id);
@@ -113,35 +124,24 @@ class VendorController extends Controller
             }
         }
 
-        $vendor_email = $request->email;
+        /* ------------------Assign role---------------------*/
+        $role = Role::where('name', 'vendor')->first();
+        $vendor->assignRole($role);
+
+        /* ---Send mail to the Customer for creating his new password-----*/
         $data['name'] = $vendor->name;
         $data['email'] = $vendor->email;
         $data['type'] = $vendor->type;
         $data['id'] = $vendor->id;
-        $data['link'] = url('vendor/login');
 
         if ($vendor) {
-            $vendor->assignRole($role);
-            Mail::to($vendor_email)->send(new Registration($data));
+            Mail::to($vendor->email)->send(new Registration($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as a Vendor!";
-            $_SESSION["alert"] = "success";
-            return redirect()->route('admin.vendor.index');
+            return $this->message($vendor, 'admin.vendor.index', 'Vendor Registered Successfully', 'Vendor Update Error');
         } else {
             return redirect()->back()->with($this->data("Vendor Register Error", 'error'));
         }
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -152,10 +152,7 @@ class VendorController extends Controller
      */
     public function show()
     {
-        $categories=Category::all();
-        $vat=PaymentPercentage::where('type','vat')->first();
-        $company=User::where('type','company')->get();
-        return view('admin.vendor.create',compact('company','categories','vat'));
+        //
     }
 
     /**
@@ -166,11 +163,11 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        $company = User::where('type','company')->get();
-        $garage=Garage::all();
+        $company = User::where('type', 'company')->get();
+        $garage = Garage::all();
         $vendor = Vendor::with('company')->findOrFail($id);
         $page_title = 'Vendor';
-        return view('admin.vendor.edit', compact('vendor', 'page_title','company','garage'));
+        return view('admin.vendor.edit', compact('vendor', 'page_title', 'company', 'garage'));
     }
 
     /**
@@ -186,7 +183,7 @@ class VendorController extends Controller
             'name' => 'required',
             'garage_name' => 'required',
             'post_box' => 'required',
-            'company'=>'required',
+            'company' => 'required',
             'phone' => 'required',
             'trading_license' => 'required',
             'vat' => 'required',
@@ -242,7 +239,7 @@ class VendorController extends Controller
 
             $company = DB::table('insurance_vendor')->where('vendor_id', $vendor->id)->delete();
 
-            foreach($request->company as $id) {
+            foreach ($request->company as $id) {
                 $company = User::find($id);
                 $vendor->company()->attach($company);
             }
@@ -280,9 +277,10 @@ class VendorController extends Controller
                 $vendor->fill([
                     'action' => 1,
                 ])->save();
-            $data['reason']='Congratulation! Your account is activated.';
-             Mail::to($vendor->email)->send(new AccountStatus($data));
-                return redirect()->route('admin.vendor.index')->with($this->data("Vendor Activate Successfully", 'success'));
+                $data['name'] = $vendor->name;
+                $data['reason'] = 'Congratulation! Your account has been activated. Now you can login your account as a Vendor';
+                Mail::to($vendor->email)->send(new AccountStatus($data));
+                return redirect()->route('admin.vendor.index')->with($this->data("Vendor Activated Successfully", 'success'));
             } else {
                 return redirect()->back()->with($this->data("Vendor Activate Error", 'error'));
             }
@@ -299,15 +297,17 @@ class VendorController extends Controller
                 $vendor->fill([
                     'action' => 0,
                 ])->save();
-                $data['reason']=$request->comment_val;
+
+                $data['name'] = $vendor->name;
+                $data['reason'] = "Your Account has been deActivated due to some reason, ".$request->comment_val;
                 Mail::to($vendor->email)->send(new AccountStatus($data));
-                $message ='Rejection message send successfully!';
+                $message = 'Rejection message send successfully!';
                 return response()->json([
 
                     'success' => 'Rejection Message send successfully',
-                    'message'=>$message,
+                    'message' => $message,
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'success' => 'DeActivate Error',
                 ]);

@@ -96,6 +96,9 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('about', 'HomepageController@about')->name('about');
     Route::get('privacy_policy', 'HomepageController@privacyPolicy')->name('privacy_policy');
     Route::post('company/model', 'HomepageController@company')->name('company-model');
+    Route::get('password/create', 'HomepageController@passwordCreate')->name('password_create');
+    Route::post('passwordstore', 'HomepageController@passwordstore')->name('passwordstore');
+    Route::get('cookies', 'HomepageController@cookies')->name('cookies');
 
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
@@ -118,15 +121,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /* Dashboard */
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         /*Customer/User*/
-        Route::get('add-user', 'UserController@show')->name('addUser');
-        Route::post('add-user', 'UserController@create')->name('add');
+        Route::get('add-user', 'UserController@create')->name('addUser');
+        Route::post('add-user', 'UserController@store')->name('add');
         /*Vendor*/
-        Route::get('add-vendor', 'VendorController@show')->name('addVendor');
-        Route::post('add-vendor', 'VendorController@create')->name('add');
+        Route::get('add-vendor', 'VendorController@create')->name('addVendor');
+        Route::post('add-vendor', 'VendorController@store')->name('add');
 
         /*Insurance Company*/
-        Route::get('add-company', 'InsuranceCompanyController@show')->name('addCompany');
-        Route::post('add-company', 'InsuranceCompanyController@create')->name('add');
+        Route::get('add-company', 'InsuranceCompanyController@create')->name('addCompany');
+        Route::post('add-company', 'InsuranceCompanyController@store')->name('add');
         /* Car Ads */
         Route::resource('ads', 'AdsController');
         Route::any('status-request-ad/{id}', 'AdsController@statusAds');

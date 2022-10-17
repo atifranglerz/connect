@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>ID Image</label>
-                                            <input type="file" name="id_card[]" class="form-control" multiple>
+                                            <input type="file" name="id_card" class="form-control" multiple>
                                             @error('id_card')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -114,7 +114,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Trading License</label>
-                                            <input type="file" name="image_license[]" class="form-control" multiple >
+                                            <input type="file" name="image_license" class="form-control" multiple >
                                             @error('image_license')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror

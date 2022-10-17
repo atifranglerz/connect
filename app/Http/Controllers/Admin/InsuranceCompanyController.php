@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Mail\Registration;
+use App\Http\Controllers\Controller;
 use App\Mail\AccountStatus;
+use App\Mail\Registration;
+use App\Models\User;
 use App\Models\userCompany;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Permission\Models\Role;
 
 class InsuranceCompanyController extends Controller
 {
@@ -21,12 +21,7 @@ class InsuranceCompanyController extends Controller
      */
     public function index()
     {
-        // $company = User::with('roles','insurance')
-        //     ->whereHas('roles', function ($q) {
-        //         $q->Where('name', 'user');
-        //     })->where('type', 'company')
-        //     ->get();
-        $company=User::with('roles','insurance')->where('type','company')->orderBy('id', 'desc')->get();
+        $company = User::with('roles', 'insurance')->where('type', 'company')->orderBy('id', 'desc')->get();
         $page_title = 'Insurance Company';
         return view('admin.insuranceCompany.index', compact('company', 'page_title'));
     }
@@ -38,77 +33,8 @@ class InsuranceCompanyController extends Controller
      */
     public function create(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255','unique:users'],
-            'phone' => 'required',
-            'owner_name'=>'required',
-            'trading_license'=>'required',
-            'billing_area'=>'required',
-            'billing_city'=>'required',
-            'billing_address'=>'required',
-        ]);
-        // $role = Role::where('name', 'company')->first();
-        $company = new User();
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->phone = $request->phone;
-        $company->address = $request->address;
-        $company->post_box = $request->post_box;
-        $company->city = $request->city;
-        $company->type='company';
-        if ($request->file('image')) {
-            $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
-            $request->file('image')->move('public/image/profile/', $doucments1);
-            $file1 = 'public/image/profile/' . $doucments1;
-            $company->image = $file1;
-        }else{
-            $company->image = "public/assets/images/1744022049828589.jpg";
-        }
-        $company->save();
-        $user_company=new userCompany();
-        if ($request->file('id_card')) {
-            $images = [];
-            foreach ($request->file('id_card') as $data) {
-                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/profile/', $image);
-                $images[] = 'public/image/profile/' . $image;
-            }
-            $user_company->id_card = implode(",", $images);
-        }
-        if ($request->file('image_license')) {
-            $images = [];
-            foreach ($request->file('image_license') as $data) {
-                $image = hexdec(uniqid()) . '.' . strtolower($data->getClientOriginalExtension());
-                $data->move('public/image/profile/', $image);
-                $images[] = 'public/image/profile/' . $image;
-            }
-            $user_company->image_license = implode(",", $images);
-        }
-        $user_company->owner_name=$request->owner_name;
-        $user_company->trading_license=$request->trading_license;
-        $user_company->billing_area=$request->billing_area;
-        $user_company->billing_city=$request->billing_city;
-        $user_company->billing_address=$request->billing_address;
-        $user_company->company_id=$company->id;
-        $user_company->save();
-        $company_email = $request->email;
-        $data->name = $company->name;
-        $data->email = $company->email;
-        $data->type = $company->type;
-        $data->id = $company->id;
-        // $data->link = url('company/login');
-        if ($company) {
-            // $company->assignRole($role);
-            Mail::to($company_email)->send(new Registration($data));
-
-            $_SESSION["msg"] = "You've Registered Successfully as a Vendor!";
-            $_SESSION["alert"] = "success";
-            return $this->message($company, 'admin.insurance-company', 'Company added Successfully', 'Company Update Error');
-        } else {
-            return redirect()->back()->with($this->data("Company Register Error", 'error'));
-        }
+        return view('admin.insuranceCompany.create');
+        
     }
 
     /**
@@ -119,7 +45,78 @@ class InsuranceCompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => 'required',
+            'city' => 'required',
+            'id_card' => 'required',
+            'image_license' => 'required',
+            'owner_name' => 'required',
+            'trading_license' => 'required',
+            'billing_area' => 'required',
+            'billing_city' => 'required',
+            'billing_address' => 'required',
+        ]);
+        $company = new User();
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->address = $request->address;
+        $company->post_box = $request->post_box;
+        $company->city = $request->city;
+        $company->type = 'company';
+
+        if ($request->file('image')) {
+            $doucments1 = hexdec(uniqid()) . '.' . strtolower($request->file('image')->getClientOriginalExtension());
+            $request->file('image')->move('public/image/profile/', $doucments1);
+            $file1 = 'public/image/profile/' . $doucments1;
+            $company->image = $file1;
+        } else {
+            $company->image = "public/assets/images/1744022049828589.jpg";
+        }
+        $company->save();
+
+        /* ------------------Assign role---------------------*/
+        $role = Role::where('name', 'user')->first();
+        $company->assignRole($role);
+
+        /* ------------------Company save remaining data---------------------*/
+        $user_company = new userCompany();
+        if ($request->file('id_card')) {
+            $doucments2 = hexdec(uniqid()) . '.' . strtolower($request->file('id_card')->getClientOriginalExtension());
+            $request->file('id_card')->move('public/image/profile/', $doucments2);
+            $file2 = 'public/image/profile/' . $doucments2;
+            $user_company->id_card = $file2;
+        }
+        if ($request->file('image_license')) {
+            $doucments3 = hexdec(uniqid()) . '.' . strtolower($request->file('image_license')->getClientOriginalExtension());
+            $request->file('image_license')->move('public/image/profile/', $doucments3);
+            $file3 = 'public/image/profile/' . $doucments3;
+            $user_company->image_license = $file3;
+
+        }
+
+        $user_company->owner_name = $request->owner_name;
+        $user_company->trading_license = $request->trading_license;
+        $user_company->billing_area = $request->billing_area;
+        $user_company->billing_city = $request->billing_city;
+        $user_company->billing_address = $request->billing_address;
+        $user_company->company_id = $company->id;
+        $user_company->save();
+
+        /* ---Send mail to the company for creating his new password-----*/
+        $data['name'] = $company->name;
+        $data['email'] = $company->email;
+        $data['type'] = $company->type;
+        $data['id'] = $company->id;
+        if ($company) {
+            Mail::to($company->email)->send(new Registration($data));
+
+            return $this->message($company, 'admin.insurance-company', 'Company added Successfully', 'Company Update Error');
+        } else {
+            return redirect()->back()->with($this->data("Company Register Error", 'error'));
+        }
     }
 
     /**
@@ -130,7 +127,7 @@ class InsuranceCompanyController extends Controller
      */
     public function show()
     {
-        return view('admin.insuranceCompany.create');
+        //
     }
 
     /**
@@ -157,17 +154,15 @@ class InsuranceCompanyController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            //'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => 'required',
-            'owner_name'=>'required',
-            'trading_license'=>'required',
-            'billing_area'=>'required',
-            'billing_city'=>'required',
-            'billing_address'=>'required',
+            'owner_name' => 'required',
+            'trading_license' => 'required',
+            'billing_area' => 'required',
+            'billing_city' => 'required',
+            'billing_address' => 'required',
         ]);
         $company = User::findOrFail($id);
         $company->name = $request->name;
-        //$user->email = $request->email;
         $company->phone = $request->phone;
         $company->address = $request->address;
         $company->post_box = $request->post_box;
@@ -180,7 +175,7 @@ class InsuranceCompanyController extends Controller
             $company['image'] = 'public/images/' . $filename;
         }
         $company->save();
-        $user_company=userCompany::where('company_id',$company->id)->first();
+        $user_company = userCompany::where('company_id', $company->id)->first();
         if ($request->file('id_card')) {
             $images = [];
             foreach ($request->file('id_card') as $data) {
@@ -199,11 +194,11 @@ class InsuranceCompanyController extends Controller
             }
             $user_company->image_license = implode(",", $images);
         }
-        $user_company->owner_name=$request->owner_name;
-        $user_company->trading_license=$request->trading_license;
-        $user_company->billing_area=$request->billing_area;
-        $user_company->billing_city=$request->billing_city;
-        $user_company->billing_address=$request->billing_address;
+        $user_company->owner_name = $request->owner_name;
+        $user_company->trading_license = $request->trading_license;
+        $user_company->billing_area = $request->billing_area;
+        $user_company->billing_city = $request->billing_city;
+        $user_company->billing_address = $request->billing_address;
         $user_company->save();
         return $this->message($company, 'admin.insurance-company', 'Company Update Successfully', 'Company Update Error');
     }
@@ -232,9 +227,11 @@ class InsuranceCompanyController extends Controller
             $company->fill([
                 'action' => 1,
             ])->save();
-            $data['reason']='Congratulation! Your account is activated.';
-             Mail::to($company->email)->send(new AccountStatus($data));
-            return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company Activate Successfully", 'success'));
+            $data['name'] = $company->name;
+            $data['reason'] = 'Congratulation! Your account has been activated. Now you can login your account as an Insurance Company';
+
+            Mail::to($company->email)->send(new AccountStatus($data));
+            return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company Activated Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("Insurance Company Activate Error", 'error'));
         }
@@ -247,15 +244,17 @@ class InsuranceCompanyController extends Controller
             $company->fill([
                 'action' => 0,
             ])->save();
-            $data['reason']=$request->comment_val;
+
+            $data['name'] = $company->name;
+            $data['reason'] = "Your Account has been deactivated due to some reason, ".$request->comment_val;
             Mail::to($company->email)->send(new AccountStatus($data));
-            $message ='Rejection message send successfully!';
+            $message = 'Rejection message send successfully!';
             return response()->json([
 
                 'success' => 'Rejection Message send successfully',
-                'message'=>$message,
+                'message' => $message,
             ]);
-        }else{
+        } else {
             return response()->json([
                 'success' => 'DeActivate Error',
             ]);
