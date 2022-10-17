@@ -199,11 +199,11 @@
                                 @enderror
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
-                                <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="{{ __('msg.Dubai Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="{{ __('msg.Abu Dhabi Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="{{ __('msg.Sharjah Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="{{ __('msg.Ras Al Khaimah Landline Number') }} ({{ __('msg.Optional') }})">
-                                <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="{{ __('msg.Ajman Landline Number') }} ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="04 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="02 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="07 XXXXXXXX ({{ __('msg.Optional') }})">
+                                <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
                             </div>
                             {{-- <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="appointment_number" value="{{ old('appointment_number') }}" class="form-control"  placeholder="{{__('msg.Telephone No.')}}">
