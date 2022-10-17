@@ -253,6 +253,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
     Route::post('register', 'AuthController@vendorRegister')->name('register');
     Route::post('vendor/validation', 'AuthController@emailvalidate')->name('email-validation');
     Route::post('terms_condition', 'AuthController@terms')->name('terms_condition');
+    Route::get('garage/create/{id}', 'WorkshopController@create')->name('garage.create');
+    Route::post('garage/store', 'WorkshopController@store')->name('garage.store');
     //Route::post('create_ads/index','AdsController@store')->name('create_ads/index');
 
     /*Route::get('facebook', 'AuthController@facebookRedirect')->name('facebook');

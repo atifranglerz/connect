@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <form enctype="multipart/form-data" method="post"
-                                action="{{ route('vendor.workshop.store') }}">
+                                action="{{ route('vendor.garage.store') }}">
                                 @csrf
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active form-step form-step-active" id="home"
@@ -62,8 +62,10 @@
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <input type="email" name="email" class="form-control" disabled
-                                                    value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
+                                                <input type="email" name="email" class="form-control" readonly
+                                                    value="{{ $authvendor->email }}">
+                                                <input type="hidden" name="vendor_id" class="form-control" 
+                                                    value="{{ $authvendor->id }}">
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <input type="text" name="phone" value="{{ $authvendor->phone }}"

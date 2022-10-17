@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use Carbon\Carbon;
-use App\Mail\Login;
-use App\Models\User;
-use App\Models\Garage;
-use App\Models\Vendor;
-use App\Models\Country;
-use App\Models\Category;
-use App\Mail\ForgetPassword;
-use Illuminate\Http\Request;
-use App\Models\PaymentPercentage;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Mail\ForgetPassword;
+use App\Mail\Login;
+use App\Models\Category;
+use App\Models\Country;
+use App\Models\PaymentPercentage;
+use App\Models\User;
+use App\Models\Vendor;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -28,10 +27,9 @@ class AuthController extends Controller
         $data['page_title'] = 'Vendor Register';
         $data['countries'] = Country::all();
         $data['categories'] = Category::all();
-        $data['vat'] = PaymentPercentage::select('percentage')->where('type','vat')->first();
+        $data['vat'] = PaymentPercentage::select('percentage')->where('type', 'vat')->first();
         return view('vendor.auth.register', $data);
     }
-
 
     public function emailvalidate(Request $request)
     {
@@ -79,7 +77,7 @@ class AuthController extends Controller
             $request->file('profile_image')->move('public/image/profile/', $doucments1);
             $file1 = 'public/image/profile/' . $doucments1;
             $vendor->image = $file1;
-        }else{
+        } else {
             $vendor->image = "public/assets/images/1744022049828589.jpg";
         }
         if ($request->file('id_card')) {
@@ -123,15 +121,17 @@ class AuthController extends Controller
 
         $vendor_email = $request->email;
         $data['name'] = $request->name;
+        $data['data'] = "You've Registered Successfully as a Vendor, soon your account will be Activated!. You will be notified by email once your account is Activated!";
         $data['link'] = url('vendor/login');
 
         if ($vendor) {
             $vendor->assignRole($role);
             Mail::to($vendor_email)->send(new Login($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as a Vendor, Soon your account will be Activated!";
+// ---------- After registerd Create Workshop----------------
+            $_SESSION["msg"] = "Registerd Successfully, Please Create Workshop first";
             $_SESSION["alert"] = "success";
-            return redirect()->route('vendor.login');
+            return redirect()->route('vendor.garage.create', $vendor->id);
         } else {
             return redirect()->back()->with($this->data("Vendor Register Error", 'error'));
         }
@@ -160,17 +160,9 @@ class AuthController extends Controller
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
             if ($vendor_role) {
-                $garage = Garage::where('vendor_id', Auth::guard('vendor')->id())->first();
-                if (empty($garage)) {
-
-                    $_SESSION["msg"] = "Create Workshop first";
-                    $_SESSION["alert"] = "success";
-                    return redirect()->route('vendor.workshop.index');
-                } else {
-                    $_SESSION["msg"] = "You've Login Successfully";
-                    $_SESSION["alert"] = "success";
-                    return redirect()->route('vendor.dashboard');
-                }
+                $_SESSION["msg"] = "You've Login Successfully";
+                $_SESSION["alert"] = "success";
+                return redirect()->route('vendor.dashboard');
             } else {
                 return redirect()->back()->with($this->data("you have not this Role!", 'error'));
             }

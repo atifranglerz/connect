@@ -1,7 +1,10 @@
 @component('mail::message')
 
+<h3 style="margin: auto;width:100px">Regitered</h3>
 
-Thank you {{ $data['name'] }}. Your submission will be reviewed by Repair My Car team, and on the basis of that soon your account will be activated and we'll send you a activatation email as a reminder.
+<p>Dear {{ $data['name'] }},</p>
+
+{{ $data['data'] }}
 
 {{-- @component('mail::button', ['url' =>  $data['link']])
     Login To Dashboard

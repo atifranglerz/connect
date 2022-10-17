@@ -82,12 +82,13 @@ class AuthController extends Controller
 
         $user_email = $user->email;
         $data['name'] = $user->name;
+        $data['data'] = "You've Registered Successfully as a Customer, soon your account will be Activated!. You will be notified by email once your account is Activated!";
         $data['link'] = url('user/login');
         if ($user) {
             $user->assignRole($role);
             Mail::to($user_email)->send(new Login($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as a Customer, Soon your account will be Activated!";
+            $_SESSION["msg"] = "You've Registered Successfully as a Customer, soon your account will be Activated!. You will be notified by email once your account is Activated!";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.login');
         } else {
@@ -220,12 +221,13 @@ class AuthController extends Controller
 
         $company_email = $request->email;
         $data['name'] = $request->name;
+        $data['data'] = "You've Registered Successfully as an Insurance Company, soon your account will be Activated!. You will be notified by email once your account is Activated!";
         $data['link'] = url('user/companyLogin');
         if ($company) {
             $company->assignRole($role);
             Mail::to($company_email)->send(new Login($data));
 
-            $_SESSION["msg"] = "You've Registered Successfully as an Insurance Company, Soon your account will be Activated!";
+            $_SESSION["msg"] = "You've Registered Successfully as an Insurance Company, soon your account will be Activated!. You will be notified by email once your account is Activated!";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');
         } else {
