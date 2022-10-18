@@ -128,6 +128,54 @@
                             </a>
                         @endif
                     </div>
+                    @if (isset($ad->vendor_id))
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="d-block btn btn-primary get_appointment byCall heart" type="button">
+                                <span class="d-block h-100"><a href="tel: {{ $ad->vendor->phone }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ __('msg.CONTACT VIA PHONE') }}</a></span>
+                                <span class="d-none h-100"><a href="tel: {{ $ad->vendor->phone }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ $ad->vendor->phone }}</a></span>
+                                <a href="tel: {{ $ad->vendor->phone }}"><img
+                                        src="{{ asset('public/assets/images/appoinmenticon.svg') }}"></a>
+                            </button>
+                        </div>
+                    @if (isset($ad->vendor->landline_no))
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="d-block btn btn-primary get_appointment byCall heart" type="button">
+                                <span class="d-block h-100"><a href="tel: {{ $ad->vendor->landline_no }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ __('msg.CONTACT VIA LANDLINE') }}</a></span>
+                                <span class="d-none h-100"><a href="tel: {{ $ad->vendor->landline_no }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ $ad->vendor->landline_no }}</a></span>
+                                <a href="tel: {{ $ad->vendor->landline_no }}"><img
+                                        src="{{ asset('public/assets/images/appoinmenticon.svg') }}"></a>
+                            </button>
+                        </div>
+                    @endif
+                    @endif
+                    @if (isset($ad->user_id))
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="d-block btn btn-primary get_appointment byCall heart" type="button">
+                                <span class="d-block h-100"><a href="tel: {{ $ad->user->phone }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ __('msg.CONTACT VIA PHONE') }}</a></span>
+                                <span class="d-none h-100"><a href="tel: {{ $ad->user->phone }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ $ad->user->phone }}</a></span>
+                                <a href="tel: {{ $ad->user->phone }}"><img
+                                        src="{{ asset('public/assets/images/appoinmenticon.svg') }}"></a>
+                            </button>
+                        </div>
+                        @if (isset($ad->user->landline_no))
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="d-block btn btn-primary get_appointment byCall heart" type="button">
+                                <span class="d-block h-100"><a href="tel: {{ $ad->user->landline_no }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ __('msg.CONTACT VIA LANDLINE') }}</a></span>
+                                <span class="d-none h-100"><a href="tel: {{ $ad->user->landline_no }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ $ad->user->landline_no }}</a></span>
+                                <a href="tel: {{ $ad->user->landline_no }}"><img
+                                        src="{{ asset('public/assets/images/appoinmenticon.svg') }}"></a>
+                            </button>
+                        </div>
+                    @endif
+                    @endif
                 </div>
 
             </div>

@@ -98,6 +98,8 @@ return [
     'Cookie Policy' => 'Cookies Policy',
     'Car Maker' => 'Car Maker',
     'mileage' => 'mileage',
+    'CONTACT VIA PHONE' => 'CONTACT VIA PHONE',
+    'CONTACT VIA LANDLINE' => 'CONTACT VIA LANDLINE',
     'Mileage e.g 40 Km' => 'Mileage e.g 40 Km',
     'Select Company' => 'Select Company',
     'Select Country' => 'Select Country',

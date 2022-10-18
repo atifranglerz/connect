@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="email" name="email" value="{{ $profile->email }}"class="form-control"
-                                    id="inputEmail" placeholder="Email">
+                                    id="inputEmail" placeholder="Email" readonly>
                                 @error('email')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
