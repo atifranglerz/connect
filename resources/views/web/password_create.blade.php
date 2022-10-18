@@ -6,7 +6,7 @@
             <div class="col-lg-5 col-md-10 mx-auto">
                 <div class="cuatomer_signup_form_wraper">
                     <div class="main_content_wraper">
-                        <p class="sec_main_para text-center mb-0">Fill Up your details to Recover Your Password !</p>
+                        <p class="sec_main_para text-center mb-0">{{ __('msg.Complete Details To Reset Your Password') }}</p>
                     </div>
 
                     <form name="passwordReset" method="POST" action="{{ route('passwordstore') }}" class="pt-4">
