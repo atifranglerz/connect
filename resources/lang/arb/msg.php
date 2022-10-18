@@ -79,6 +79,8 @@ return [
     'Model To' => 'نموذج ل',
     'To' => 'إلى',
     'From' => 'من',
+    'CONTACT VIA PHONE' => 'الاتصال عبر الهاتف',
+    'CONTACT VIA LANDLINE' => 'الاتصال عبر الخط الأرضي',
     'Cookie Policy' => 'اتفاقية ملفات تعريف الارتباط',
     'Proceed' => 'يتابع',
     'Car Maker' => 'صانع السيارة',

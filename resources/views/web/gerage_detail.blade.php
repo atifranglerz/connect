@@ -9,16 +9,6 @@
     ?>
     <section class="banner_section">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <!-- <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active "
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                        aria-label="Slide 4"></button>
-                </div> -->
             <div class="carousel-inner">
                 <div class="carousel-item Stor_detai_item active">
                     <div class="preferd_vendors_star">
@@ -31,24 +21,6 @@
                     <div class="carousel-caption d-none d-md-block">
                     </div>
                 </div>
-                <!-- <div class="carousel-item Stor_detai_item ">
-                        <img src="{{ asset('public/assets/images/repair2.jpg') }}" class="d-block w-100" alt="banner image">
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                    </div>
-
-                    <div class="carousel-item Stor_detai_item ">
-                        <div class="preferd_vendors_star"><img src="{{ asset('public/assets/images/preferdicon.svg') }}"></div>
-                        <img src="{{ asset($garage->image) }}" class="d-block w-100" alt="banner image">
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                    </div>
-                    <div class="carousel-item Stor_detai_item ">
-
-                        <img src="{{ asset('public/assets/images/repair2.jpg') }}" class="d-block w-100" alt="banner image">
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                    </div> -->
             </div>
         </div>
     </section>
@@ -457,6 +429,18 @@
                             <img src="{{ asset('public/vendor/assets/images/messageicon.svg') }}">
                         </a>
                     </div>
+                    @if (isset($garage->vendor->landline_no))
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="d-block btn btn-primary get_appointment byCall heart" type="button">
+                                <span class="d-block h-100"><a href="tel: {{ $garage->vendor->landline_no }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ __('msg.CONTACT VIA LANDLINE') }}</a></span>
+                                <span class="d-none h-100"><a href="tel: {{ $garage->vendor->landline_no }}"
+                                        class="text-white h-100 d-flex align-items-center justify-content-center">{{ $garage->vendor->landline_no }}</a></span>
+                                <a href="tel: {{ $garage->vendor->landline_no }}"><img
+                                        src="{{ asset('public/assets/images/appoinmenticon.svg') }}"></a>
+                            </button>
+                        </div>
+                    @endif
                 </div>
 
             </div>
