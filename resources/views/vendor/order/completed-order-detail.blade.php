@@ -137,67 +137,13 @@
                     <div class="all_quote_card  vendor_rply_dtlL _text mb-4">
                         <h5 class="text-center mb-3 heading-color">{{ __('msg.CAR IMAGES') }}</h5>
                         <div class="owl-carousel carousel_se_03_carousel owl-theme">
-                            @if ($userbidimage && count($userbidimage) == 0)
+                            @foreach ($userbidimage as $image)
                                 <div class="item">
                                     <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                        <img src="{{ asset($image) }}">
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @elseif($userbidimage && count($userbidimage) == 1)
-                                @foreach ($userbidimage as $image)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset($image) }}">
-                                        </div>
-                                    </div>
-                                @endforeach
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @elseif($userbidimage && count($userbidimage) == 2)
-                                @foreach ($userbidimage as $image)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset($image) }}">
-                                        </div>
-                                    </div>
-                                @endforeach
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @else
-                                @foreach ($userbidimage as $image)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset($image) }}">
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -213,67 +159,13 @@
                     <div class="all_quote_card  vendor_rply_dtlL _text">
                         <h5 class="text-center mb-3 heading-color">{{ __('msg.Registration Copy Images') }} </h5>
                         <div class="owl-carousel carousel_se_03_carousel owl-theme mt-3">
-                            @if ($register_images && count($register_images) == 0)
+                            @foreach ($register_images as $image)
                                 <div class="item">
                                     <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                        <img src="{{ asset($image) }}">
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @elseif($register_images && count($register_images) == 1)
-                                @foreach ($register_images as $image)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset($image) }}">
-                                        </div>
-                                    </div>
-                                @endforeach
-                                <div class="item">
-                                    <div class="carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @elseif($register_images && count($register_images) == 2)
-                                @foreach ($register_images as $image)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset($image) }}">
-                                        </div>
-                                    </div>
-                                @endforeach
-                                <div class="item">
-                                    <div class="carAd_img_wraper carAd_img_wraper doc_img customer_dashboard">
-                                        <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                    </div>
-                                </div>
-                            @else
-                                @foreach ($register_images as $image)
-                                    <div class="item">
-                                        <div class="carAd_img_wraper doc_img customer_dashboard">
-                                            <img src="{{ asset($image) }}">
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
+                            @endforeach
                         </div>
 
                     </div>

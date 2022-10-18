@@ -354,7 +354,7 @@
                 $(".carousel_se_02_carousel").owlCarousel({
                     items: 3,
                     nav: false,
-                    loop: true,
+                    // loop: true,
                     dots: true,
                     mouseDrag: true,
                     responsiveClass: true,
@@ -601,34 +601,34 @@
                 });
             });
 
-            $(document).ready(function() {
-                $(".carousel_se_02_carousel").owlCarousel({
-                    items: 3,
-                    nav: false,
-                    loop: true,
-                    dots: true,
+            // $(document).ready(function() {
+            //     $(".carousel_se_02_carousel").owlCarousel({
+            //         items: 3,
+            //         nav: false,
+            //         loop: true,
+            //         dots: true,
 
-                    mouseDrag: true,
-                    responsiveClass: true,
-                    responsive: {
-                        0: {
-                            items: 1,
-                        },
-                        // 480: {
-                        //   items: 2,
-                        // },
-                        768: {
-                            items: 2,
-                        },
-                        992: {
-                            items: 3,
-                        },
-                        1200: {
-                            items: 3,
-                        },
-                    },
-                });
-            });
+            //         mouseDrag: true,
+            //         responsiveClass: true,
+            //         responsive: {
+            //             0: {
+            //                 items: 1,
+            //             },
+            //             // 480: {
+            //             //   items: 2,
+            //             // },
+            //             768: {
+            //                 items: 2,
+            //             },
+            //             992: {
+            //                 items: 3,
+            //             },
+            //             1200: {
+            //                 items: 3,
+            //             },
+            //         },
+            //     });
+            // });
             $(document).ready(function() {
                 $('input').change(function() {
                     $('input[accept=".pdf"] + .uploaded').find('img').attr('src', 'https://ranglerz.pw/repairmycar/public/assets/images/pdficon.png');
