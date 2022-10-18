@@ -1,11 +1,11 @@
 @extends('user.layout.app')
 @section('content')
-<style>
-    .inv-comp-btn {
-        min-width: max-content;
-        width: 175px!important;
-    }
-</style>
+    <style>
+        .inv-comp-btn {
+            min-width: max-content;
+            width: 175px !important;
+        }
+    </style>
     <section class="pb-5 login_content_wraper" style="background-image:url(assets/images/gradiantbg.jpg);">
         <div class="container-lg container-fluid">
             <div class="row g-2 pt-4">
@@ -23,7 +23,7 @@
                             $total = $value->service_quantity * $value->service_rate;
                             $total_labour += $total;
                         }
-
+                        
                         ?>
                         <div class="car_inner_imagg vendor_rply_dtl ">
                             <img
@@ -32,9 +32,14 @@
                         </div>
                         <div class=" w-100  quote_detail_wraper">
                             <div class="my-sm-0 my-3 quote_info">
-                                <h5 class="active_quote"><span class="h5 mb-0 heading-color">{{ __('msg.Garage') }}:</span> {{ $garage->garage_name }}</h5>
-                                <span class="small h6 d-block mb-0"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span> {{ $vendor->name }}</span>
-                                <span class="small h6 d-block"><span class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span> {{ $vendor->phone }}</span>
+                                <h5 class="active_quote"><span class="h5 mb-0 heading-color">{{ __('msg.Garage') }}:</span>
+                                    {{ $garage->garage_name }}</h5>
+                                <span class="small h6 d-block mb-0"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Garage Owner') }}:</span>
+                                    {{ $vendor->name }}</span>
+                                <span class="small h6 d-block"><span
+                                        class="small h6 mb-0 heading-color">{{ __('msg.Garage Number') }}:</span>
+                                    {{ $vendor->phone }}</span>
                                 <div class="card_icons d-flex justify-content-center align-items-center">
                                     <?php $category = \App\Models\GarageCategory::where('garage_id', $garage->id)->pluck('category_id');
                                     $category_name = \App\Models\Category::whereIn('id', $category)->get();
@@ -65,18 +70,22 @@
                                 <div class="quote_detail_btn_wraper">
                                     <h5 class=" text-sm-center vendor_replies_dtl allOrder">{{ $order->status }}</h5>
                                 </div>
-                                <h5 class=" text-sm-center"><span class="h5 heading-color">{{__('msg.Total')}}:</span> {{ $order->total }} {{ __('msg.AED') }}
+                                <h5 class=" text-sm-center"><span class="h5 heading-color">{{ __('msg.Total') }}:</span>
+                                    {{ $order->total }} {{ __('msg.AED') }}
                                 </h5>
                                 @if ($order->status != 'complete' && $order->paid_by != 'insurance')
-                                    <h5 class=" text-sm-center"><span class="h5 heading-color">{{ __('msg.Advance') }}:</span> {{ $order->advance }}
+                                    <h5 class=" text-sm-center"><span
+                                            class="h5 heading-color">{{ __('msg.Advance') }}:</span> {{ $order->advance }}
                                         {{ __('msg.AED') }}</h5>
                                 @endif
                                 @if ($order->status != 'complete' && ($order->paid_by == 'insurance' && $insurancestatus->status == 1))
-                                    <h5 class=" text-sm-center"><span class="h5 heading-color">{{ __('msg.Advance') }}:</span> {{ $order->total }}
+                                    <h5 class=" text-sm-center"><span
+                                            class="h5 heading-color">{{ __('msg.Advance') }}:</span> {{ $order->total }}
                                         {{ __('msg.AED') }}</h5>
                                 @endif
                                 <div class="completed_order_id">
-                                    <p><span class="h5 heading-color">{{ __('msg.Order Id:') }}</span> <span>#{{ $order->order_code }}</span></p>
+                                    <p><span class="h5 heading-color">{{ __('msg.Order Id:') }}</span>
+                                        <span>#{{ $order->order_code }}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -88,62 +97,13 @@
             ?>
             <div class="container">
                 <div class="owl-carousel carousel_se_03_carousel  mt-3">
-                    @if (count($images) == 0)
+                    @foreach ($images as $image)
                         <div class="item">
                             <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
+                                <img src="{{ asset($image) }}">
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                            </div>
-                        </div>
-                    @elseif(count($images) == 1)
-                        @foreach ($images as $image)
-                            <div class="item">
-                                <div class="carAd_img_wraper doc_img customer_dashboard">
-                                    <img src="{{ url($image) }}">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="carAd_img_wraper doc_img customer_dashboard">
-                                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="carAd_img_wraper doc_img customer_dashboard">
-                                    <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                                </div>
-                            </div>
-                        @endforeach
-                    @elseif($images && count($images) == 2)
-                        @foreach ($images as $image)
-                            <div class="item">
-                                <div class="carAd_img_wraper doc_img customer_dashboard">
-                                    <img src="{{ asset($image) }}">
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="item">
-                            <div class="carAd_img_wraper doc_img customer_dashboard">
-                                <img src="{{ asset('public/assets/images/no-preview.png') }}">
-                            </div>
-                        </div>
-                    @else
-                        @foreach ($images as $image)
-                            <div class="item">
-                                <div class="carAd_img_wraper doc_img customer_dashboard">
-                                    <img src="{{ asset($image) }}">
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
+                    @endforeach
                 </div>
             </div>
             <div class="row mt-5">
