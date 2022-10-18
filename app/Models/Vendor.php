@@ -23,6 +23,7 @@ class Vendor extends Authenticatable
         'name',
         'email',
         'phone',
+        'landline_no',
         'action',
         'facebook_social_id',
         'google_social_id',

@@ -19,6 +19,7 @@ class CreateVendorsTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->nullable();
+            $table->string('landline_no')->nullable();
             $table->string('password');
             $table->string('action')->default('0');
             $table->string('facebook_social_id')->nullable();

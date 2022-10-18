@@ -127,6 +127,7 @@ class ProfileController extends Controller
         $vendor->country = $request->country;
         $vendor->post_box = $request->postbox;
         $vendor->phone = $request->appointment_number;
+        $vendor->landline_no = $request->landline_no;
         $vendor->city = $request->city;
         $vat = explode(' ', $request->vat);
         $vendor->vat = (int) filter_var($vat[0], FILTER_SANITIZE_NUMBER_INT);

@@ -24,6 +24,7 @@ class CreateAdsTable extends Migration
             $table->string('color')->nullable();
             $table->string('engine')->nullable();
             $table->bigInteger('phone')->nullable();
+            $table->bigInteger('landline_no')->nullable();
             $table->string('address')->nullable();
             $table->integer('mileage')->nullable();
             $table->text('description')->nullable();

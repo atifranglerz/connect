@@ -96,6 +96,7 @@ class AdsController extends Controller
         $ads->color = $request->color;
         $ads->engine = $request->engine;
         $ads->phone = $request->phone;
+        $ads->landline_no = $request->landline_no;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
         $ads->city = $request->city;
@@ -229,6 +230,7 @@ class AdsController extends Controller
         $ads->color = $request->color;
         $ads->engine = $request->engine;
         $ads->phone = $request->phone;
+        $ads->landline_no = $request->landline_no;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
         $ads->city = $request->city;
@@ -236,12 +238,10 @@ class AdsController extends Controller
         $ads->description = $request->description;
         $ads->user_id = Auth::id();
         $ads->update();
-        // session_start();
+
         $_SESSION["msg"] = "Ad Updated Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.ads.index');
-        // return $this->message($ads, 'user.ads.index', 'Ad Updated Successfully', '  Ad is not update Error');
-
     }
 
     /**
@@ -254,10 +254,10 @@ class AdsController extends Controller
     {
         $ad = Ads::findOrFail($id);
         $ad->delete();
-        // session_start();
+
         $_SESSION["msg"] = "Ad Deleted Successfully";
         $_SESSION["alert"] = "success";
         return redirect()->route('user.ads.index');
-        // return $this->message($ad, 'user.ads.index', 'Ad Deleted Successfully', '  Ad is not delete Error');
+       
     }
 }

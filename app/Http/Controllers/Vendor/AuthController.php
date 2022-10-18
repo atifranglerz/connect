@@ -96,6 +96,7 @@ class AuthController extends Controller
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->phone = $request->appointment_number;
+        $vendor->landline_no = $request->landline_no;
         $vendor->password = Hash::make($request->password);
         $vendor->country = $request->country;
         $vendor->city = $request->city;

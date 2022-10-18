@@ -111,6 +111,7 @@ class AdsController extends Controller
         $ads->color = $request->color;
         $ads->engine = $request->engine;
         $ads->phone = $request->phone;
+        $ads->landline_no = $request->landline_no;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
         $ads->city = $request->city;
@@ -246,6 +247,7 @@ class AdsController extends Controller
         $ads->color = $request->color;
         $ads->engine = $request->engine;
         $ads->phone = $request->phone;
+        $ads->landline_no = $request->landline_no;
         $ads->address = $request->address;
         $ads->mileage = $request->mileage;
         $ads->city = $request->city;

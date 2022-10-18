@@ -56,6 +56,7 @@ class profileController extends Controller
             $user->name = $request->name;
         }
         $user->phone = $request->phone;
+        $user->landline_no = $request->landline_no;
         $user->city = $request->city;
         $user->country = $request->country;
         $user->update();
