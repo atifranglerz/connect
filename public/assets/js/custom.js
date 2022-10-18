@@ -28,7 +28,7 @@ $(function() {
         $('input[name="landline_no"]').val(landLineNumber);
     });
 
-    $('button[type="submit"]').on('click', function() {
+    $('button[type="submit"]:not(#sendMsg)').on('click', function() {
         setTimeout(() => {
             if($('label.is-invalid.error').text()=="" && $(this).text()!='delete') {
                 $(this).addClass('text-center');
