@@ -125,7 +125,7 @@ return [
     'Upload upto 5 images' => 'Upload upto 5 images',
     'Click the box again to upload another' => 'Click the box again to upload another',
     'Upload Up to 1 PDF' => 'Upload Up to 1 PDF',
-    'Upload Up to 1 PDF/Image' => 'Upload Up to 1 PDF/Image',
+    'Upload Up to 5 PDF/Image' => 'Upload Up to 5 PDF/Image',
     'Address' => 'Address',
     'Email' => 'Email',
     'Name' => 'Name',

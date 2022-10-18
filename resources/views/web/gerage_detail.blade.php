@@ -3,9 +3,9 @@
     <?php $category = \App\Models\GarageCategory::where('garage_id', $garage->id)->pluck('category_id');
     $category_name = \App\Models\Category::whereIn('id', $category)->get();
     $garage = \App\Models\Garage::find($garage->id);
-    
+
     use Illuminate\Support\Facades\Auth;
-    
+
     ?>
     <section class="banner_section">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -319,7 +319,7 @@
                                 <div class="police-inspection-report">
                                     <div class="col-lg-12 mb-3 form-group">
                                         <label class="mb-2 heading-color"><b>{{ __('msg.Upload Document') }}
-                                                <small>({{ __('msg.Upload Up to 1 PDF') }})</small></b></label>
+                                                <small>({{ __('msg.Upload Up to 5 PDF/Image') }})</small></b></label>
                                         <div class="input-imagess-2"></div>
                                         @error('files')
                                             <div class="text-danger p-2">{{ $message }}</div>

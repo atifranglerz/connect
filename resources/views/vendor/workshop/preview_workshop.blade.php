@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="police-inspection-report">
                                     <div class="col-lg-12 mb-3">
-                                        <label class="mb-2 heading-color"><b>{{__('msg.Upload Document')}} <small>({{__('msg.Upload Up to 1 PDF')}})</small></b></label>
+                                        <label class="mb-2 heading-color"><b>{{__('msg.Upload Document')}} <small>({{__('msg.Upload Up to 5 PDF/Image')}})</small></b></label>
                                         <div class="input-imagess-2" accept="pdf/*" data-type='Pdf'></div>
                                         @error('files')
                                             <div class="text-danger p-2">{{ $message }}</div>

@@ -110,7 +110,7 @@ return [
     'Upload upto 5 images' => 'تحميل ما يصل إلى 5 صور',
     'Click the box again to upload another' => 'انقر فوق المربع مرة أخرى لتحميل أخرى',
     'Upload Up to 1 PDF' => 'قم بتحميل ما يصل إلى ملف PDF واحد',
-    'Upload Up to 1 PDF/Image' => 'تحميل ما يصل إلى 1 PDF / صورة',
+    'Upload Up to 5 PDF/Image' => 'تحميل ما يصل إلى 5 PDF / صورة',
     'Address' => 'تبوك',
     'Email' => 'البريد الإلكتروني',
     'Name' => 'اسم',

@@ -212,7 +212,7 @@
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-12 mb-3 form-group">
                                                 <label class="mb-2 heading-color"><b>{{ __('msg.Upload Document') }}
-                                                        <small>({{ __('msg.Upload Up to 1 PDF/Image') }})</small></b></label>
+                                                        <small>({{ __('msg.Upload Up to 5 PDF/Image') }})</small></b></label>
                                                 <div class="input-images-2">
                                                     {{-- input field name files --}}
                                                 </div>
