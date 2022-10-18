@@ -163,7 +163,7 @@ return [
     'Garage Legal Name' => 'Garage Legal Name',
     'P/O Box' => 'P/O Box',
     'Legal Info' => 'Legal Info',
-    'Trade License No.' => 'Trade License No.',
+    'Trading License No.' => 'Trading License No.',
     'Dubai Landline Number' => 'Dubai Landline Number',
     'Abu Dhabi Landline Number' => 'Abu Dhabi Landline Number',
     'Sharjah Landline Number' => 'Sharjah Landline Number',

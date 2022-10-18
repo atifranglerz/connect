@@ -152,7 +152,7 @@ return [
     'Garage Legal Name' => 'الاسم القانوني للجراج',
     'P/O Box' => 'صندوق بريد',
     'Legal Info' => 'المعلومات القانونية',
-    'Trade License No.' => 'رقم الرخصة التجارية',
+    'Trading License No.' => 'رقم الرخصة التجارية',
     'VAT Details' => 'تفاصيل ضريبة القيمة المضافة',
     'Dubai Landline Number' => 'رقم الخط الأرضي في دبي',
     'Abu Dhabi Landline Number' => 'رقم الهاتف الثابت في أبوظبي',
