@@ -1712,6 +1712,10 @@ body span.select2-selection.select2-selection--single {
     }
 }
 @media (max-width: 575px) {
+    header .form-switch.toggler_switch {
+        right: 75px!important;
+        top: 10px!important;
+    }
     #privTermsPolicyModal .modal-body {
         height: 72vh;
     }
