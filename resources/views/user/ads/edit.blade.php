@@ -197,11 +197,12 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                        <input type="number" class="form-control line-dubai d-none" name="landlineDu" placeholder="04 XXXXXXXX ({{ __('msg.Optional') }})">
-                                        <input type="number" class="form-control line-dhabi d-none" name="landlineAD" placeholder="02 XXXXXXXX ({{ __('msg.Optional') }})">
-                                        <input type="number" class="form-control line-sharjah d-none" name="landlineSh" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
-                                        <input type="number" class="form-control line-khaimah d-none" name="landlineRAK" placeholder="07 XXXXXXXX ({{ __('msg.Optional') }})">
-                                        <input type="number" class="form-control line-ajman d-none" name="landlineAj" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
+                                        <input type="number" name="landline_no" class="form-control" value="{{$ads->landline_no}}">
+                                        <input type="number" class="form-control landline-number line-dubai d-none" name="landlineDu" placeholder="04 XXXXXXXX ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control landline-number line-dhabi d-none" name="landlineAD" placeholder="02 XXXXXXXX ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control landline-number line-sharjah d-none" name="landlineSh" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control landline-number line-khaimah d-none" name="landlineRAK" placeholder="07 XXXXXXXX ({{ __('msg.Optional') }})">
+                                        <input type="number" class="form-control landline-number line-ajman d-none" name="landlineAj" placeholder="06 XXXXXXXX ({{ __('msg.Optional') }})">
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-floating">
@@ -231,6 +232,7 @@
     <script>
         $(function() {
             $('select[name="city"]').on('change', function() {
+                $('input[name="landline_no"]').hide();
                 if($(this).val()=="Dubai") {
                     $('.line-dubai').removeClass('d-none');
                     $('.line-dhabi').addClass('d-none');

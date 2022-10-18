@@ -23,6 +23,11 @@ $(function() {
     /*Animate loader off screen*/
     $("#pgLoader").fadeOut("slow");
 
+    $('.landline-number').on('keyup', function() {
+        var landLineNumber = $('.landline-number:not(".d-none")').val();
+        $('input[name="landline_no"]').val(landLineNumber);
+    });
+
     $('button[type="submit"]').on('click', function() {
         setTimeout(() => {
             if($('label.is-invalid.error').text()=="" && $(this).text()!='delete') {
