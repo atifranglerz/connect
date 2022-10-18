@@ -169,19 +169,17 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <select class="form-select form-control" name="city" aria-label="City">
-                                            @if (isset($ads->city))
-                                                <option selected value="{{ $ads->city }}">{{ $ads->city }}</option>
-                                            @endif
-                                            <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>
+                                           
+                                            <option value="Dubai" @if ($ads->city == 'Dubai') selected @endif>
                                                 {{ __('msg.Dubai') }}</option>
-                                            <option value="Abu Dhabi" @if (old('city') == 'Abu Dhabi') selected @endif>
+                                            <option value="Abu Dhabi" @if ($ads->city == 'Abu Dhabi') selected @endif>
                                                 {{ __('msg.Abu Dhabi') }}</option>
-                                            <option value="Sharjah" @if (old('city') == 'Sharjah') selected @endif>
+                                            <option value="Sharjah" @if ($ads->city == 'Sharjah') selected @endif>
                                                 {{ __('msg.Sharjah') }}</option>
                                             <option value="Ras Al Khaimah"
-                                                @if (old('city') == 'Ras Al Khaimah') selected @endif>
+                                                @if ($ads->city == 'Ras Al Khaimah') selected @endif>
                                                 {{ __('msg.Ras Al Khaimah') }}</option>
-                                            <option value="Ajman" @if (old('city') == 'Ajman') selected @endif>
+                                            <option value="Ajman" @if ($ads->city == 'Ajman') selected @endif>
                                                 {{ __('msg.Ajman') }}</option>
                                         </select>
                                         @error('city')
