@@ -243,8 +243,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
         /*----------Cookies Policy---------------*/
         Route::resource('cookie', 'CookieController');
-        Route::resource('ad', 'AdController');
-        Route::any('all-ads', 'AdController@adIndex')->name('ad');
+        /*----------Simple Ads---------------*/
+        Route::resource('simpleAd', 'SimpleController');
+        Route::get('all/packages', 'SimpleController@package')->name('all-packages');
+        Route::get('package/status/{id}', 'SimpleController@status')->name('package/status');
+        Route::get('package/status/{id}', 'SimpleController@status')->name('package/status');
+        Route::get('simpleAd/delete/{id}', 'SimpleController@delete')->name('simpleAd/delete');
     });
 
 });

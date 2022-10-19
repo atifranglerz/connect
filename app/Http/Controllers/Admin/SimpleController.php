@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\AllAd;
-use App\Models\AddPackage;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AddPackage;
+use App\Models\SimpleAd;
+use Illuminate\Http\Request;
 
-class AdController extends Controller
+class SimpleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class AdController extends Controller
      */
     public function index()
     {
-         $packages = AddPackage::all();
-        return view('admin.simpleAds.package.index', compact('packages'));
+        $ads = SimpleAd::all();
+        return view('admin.simpleAds.index', compact('ads'));
     }
 
     /**
@@ -49,9 +49,7 @@ class AdController extends Controller
      */
     public function show($id)
     {
-        $ad=Allad::find($id);
-        $ad->delete();
-        return back();
+       //
     }
 
     /**
@@ -62,8 +60,8 @@ class AdController extends Controller
      */
     public function edit($id)
     {
-       $packages =AddPackage::find($id);
-        return view('admin.simpleAds.package.edit', compact('packages'));
+        $packages = AddPackage::find($id);
+        return view('admin.simpleAds.edit', compact('packages'));
     }
 
     /**
@@ -80,9 +78,8 @@ class AdController extends Controller
         $package->price = $request->price;
         $package->validity = $request->validity;
         $package->save();
-        
-        $packages = AddPackage::all();
-        return view('admin.simpleAds.package.index', compact('packages', 'package'))->with($this->data("Package updated successfyully", 'success'));
+
+        return redirect()->route('admin.all-packages');
     }
 
     /**
@@ -91,13 +88,46 @@ class AdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) 
+    public function destroy($id)
     {
 
     }
-    public function adIndex()
+
+    public function delete($id)
     {
-         $ads = AllAd::all(); 
-        return view('admin.simpleAds.ads.index', compact('ads'));
+        $ad = SimpleAd::find($id);
+        $ad->delete();
+        return redirect()->back();
     }
+
+    public function package()
+    {
+        $packages = AddPackage::all();
+        return view('admin.simpleAds.package', compact('packages'));
+    }
+
+    public function status($id)
+    {
+        $ad = SimpleAd::find($id);
+        if ($ad->status == 'Pending') {
+            $ad->status = 'Approved';
+        } elseif ($ad->status == 'Approved') {
+            $ad->status = 'Rejected';
+        } else {
+            $ad->status = 'Approved';
+        }
+        $ad->save();
+
+        // if ($ad->status == 'Approved') {
+        //     if (isset($ad->user_id)) {
+        //         $email = $ad->user->email;
+        //     } else {
+        //         $email = $ad->vendor->email;
+        //     }
+        //     $data = $ad;
+        //     Mail::to($email)->send(new SendApprovedMail($data));
+        // }
+        return redirect()->back()->with($this->data("Status Successfully Updated", 'success'));
+    }
+
 }

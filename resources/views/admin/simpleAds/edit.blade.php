@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-12">
                             <div class="card">
-                                <form method="post" action="{{ route('admin.ad.update', $packages->id) }}">
+                                <form method="post" action="{{ route('admin.simpleAd.update', $packages->id) }}">
                                     @csrf
                                     @method('put')
                                     <div class="card-header">

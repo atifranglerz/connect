@@ -106,10 +106,10 @@
                                 <a href="#" class="menu-toggle nav-link has-dropdown">
                                     <i data-feather="tag"></i><span>Simple Ads</span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ route('admin.ad') }}" class="nav-link">All Ads</a>
+                                    <li><a href="{{ route('admin.simpleAd.index') }}" class="nav-link">All Ads</a>
                                     </li>
                                     <li class=""><a class="nav-link"
-                                            href="{{ route('admin.ad.index') }}">Packages</a></li>
+                                            href="{{ route('admin.all-packages') }}">Packages</a></li>
                                 </ul>
                             
                         </ul>
