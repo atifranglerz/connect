@@ -99,6 +99,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('password/create', 'HomepageController@passwordCreate')->name('password_create');
     Route::post('passwordstore', 'HomepageController@passwordstore')->name('passwordstore');
     Route::get('cookies', 'HomepageController@cookies')->name('cookies');
+    Route::resource('simpleAd', 'SimpleAdsController');
 
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
