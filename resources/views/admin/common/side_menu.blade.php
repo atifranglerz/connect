@@ -29,7 +29,7 @@
                 'admin.order.index',
                 'admin.order.create',
                 'admin.order.edit',
-                'admin.ads.index',
+                '.index',
                 'admin.insurance-company',
                 'admin.vendor.index',
                 'admin.category.index')) active @endif">
@@ -38,7 +38,7 @@
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link " href="{{ route('admin.garage.index') }}">Garages</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.user.index') }}">Customers</a></li>
-                    <li class=""><a class="nav-link " href="{{ route('admin.ads.index') }}">Car Ads</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('.index') }}">Car Ads</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.insurance-company') }}">Insurance
                             Company</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.vendor.index') }}">Vendors</a></li>
@@ -86,6 +86,7 @@
                                 <a href="#" class="menu-toggle nav-link has-dropdown">
                                     <i data-feather="tag"></i><span>Pages</span></a>
                                 <ul class="dropdown-menu">
+                                    
                                     <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a>
                                     </li>
                                     <li class=""><a class="nav-link "
@@ -100,11 +101,17 @@
                                             Policy</a></li>
                                     <li><a class="nav-link" href="{{ route('admin.cookie.index') }}">Cookies
                                             Policy</a></li>
-
-
-
                                 </ul>
                             </li>
+                                <a href="#" class="menu-toggle nav-link has-dropdown">
+                                    <i data-feather="tag"></i><span>Simple Ads</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('admin.ad') }}" class="nav-link">All Ads</a>
+                                    </li>
+                                    <li class=""><a class="nav-link"
+                                            href="{{ route('admin.ad.index') }}">Packages</a></li>
+                                </ul>
+                            
                         </ul>
                     </li>
                 </ul>

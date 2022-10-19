@@ -243,7 +243,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
         /*----------Cookies Policy---------------*/
         Route::resource('cookie', 'CookieController');
-
+        Route::resource('ad', 'AdController');
+        Route::any('all-ads', 'AdController@adIndex')->name('ad');
     });
 
 });
