@@ -29,7 +29,7 @@
                 'admin.order.index',
                 'admin.order.create',
                 'admin.order.edit',
-                '.index',
+                'admin.ads.index',
                 'admin.insurance-company',
                 'admin.vendor.index',
                 'admin.category.index')) active @endif">
@@ -38,7 +38,7 @@
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link " href="{{ route('admin.garage.index') }}">Garages</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.user.index') }}">Customers</a></li>
-                    <li class=""><a class="nav-link " href="{{ route('.index') }}">Car Ads</a></li>
+                    <li class=""><a class="nav-link " href="{{ route('admin.ads.index') }}">Car Ads</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.insurance-company') }}">Insurance
                             Company</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.vendor.index') }}">Vendors</a></li>

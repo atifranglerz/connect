@@ -82,7 +82,7 @@ class AdController extends Controller
         $package->save();
         
         $packages = AddPackage::all();
-        return view('admin.simpleAds.package.index', compact('packages'))->with($this->data("Package updated successfyully", 'success'));
+        return view('admin.simpleAds.package.index', compact('packages', 'package'))->with($this->data("Package updated successfyully", 'success'));
     }
 
     /**
