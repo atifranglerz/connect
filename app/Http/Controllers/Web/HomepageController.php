@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers\Web;
 
-use Carbon\Carbon;
-use App\Models\Ads;
-use App\Models\Faq;
-use App\Models\News;
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Mail\SendPrefferedGarage;
 use App\Models\About;
-use App\Models\Garage;
-use App\Models\Slider;
-use App\Models\Vendor;
-use App\Models\Company;
-use App\Models\UserBid;
+use App\Models\Ads;
 use App\Models\CarModel;
 use App\Models\Category;
-use App\Models\ModelYear;
-use App\Models\UserReview;
-use App\Models\VendorQuote;
-use App\Models\CookiePolicy;
-use App\Models\UserBidImage;
-use App\Models\UserWishlist;
-use Illuminate\Http\Request;
+use App\Models\Company;
 use App\Models\ContactVendor;
-use App\Models\PrivacyPolicy;
-use App\Models\TermCondition;
+use App\Models\CookiePolicy;
+use App\Models\Faq;
+use App\Models\Garage;
 use App\Models\GarageCategory;
+use App\Models\ModelYear;
+use App\Models\News;
+use App\Models\PrivacyPolicy;
+use App\Models\Slider;
+use App\Models\TermCondition;
+use App\Models\User;
+use App\Models\UserBid;
 use App\Models\UserBidCategory;
+use App\Models\UserBidImage;
+use App\Models\UserReview;
+use App\Models\UserWishlist;
+use App\Models\Vendor;
+use App\Models\VendorQuote;
 use App\Models\webNotification;
-use App\Mail\SendPrefferedGarage;
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class HomepageController extends Controller
@@ -64,26 +64,43 @@ class HomepageController extends Controller
     public function vendorsByService($id)
     {
         $data['page_title'] = 'vendors by service';
-        $data['id'] = $id;
+        $data['service'] = $id;
         $garage_category = GarageCategory::where('category_id', $id)->distinct()->pluck('garage_id');
-        $data['garages'] = Garage::whereIn('id', $garage_category)->paginate(8);
+        $data['garages'] = Garage::whereIn('id', $garage_category)->paginate(1);
 
         return view('web.vendorlistbyservice', $data);
     }
     public function serviceGarage(Request $request)
     {
+        if(isset($request->service)){
+            $_SESSION["service"] = $request->service;
+        }
+        isset($request->service)? $service  = $request->service : $service  = $_SESSION["service"];
+        $data['service'] = $service;
+
         $search = $request->val;
-        $data['garages'] = GarageCategory::where('category_id', $request->service)->with('garage')->whereHas('garage', function ($query) use ($search) {
+        $garages= GarageCategory::where('category_id', $service)->with('garage')->whereHas('garage', function ($query) use ($search) {
             $query->where('garage_name', 'LIKE', "%$search%");
-        })->get();
-        return view('web.append_servicesGarage', $data);
+        })->pluck('garage_id');
+        
+        $data['garages'] = Garage::whereIn('id', $garages)->paginate(1);
+        
+
+        if($request->ajax()){
+            return view('web.append_servicesGarage', $data);
+        }else{
+            return view('web.vendorlistbyservice', $data);
+        }
     }
 
     public function topGarage(Request $request)
     {
+        // return response()->json($request);
+
         $data['catagary'] = Category::all();
         $search = $request->val;
         $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(1);
+        return response()->json($data['garages']);
 
         if (isset($request->val)) {
             return view('web.append_TopGarage', $data);
@@ -505,7 +522,7 @@ class HomepageController extends Controller
         return view('web.about', compact('page_title', 'about'));
     }
 
-// ------------ Create New password using Email when Admin Register new User-------------------
+/*------------ Create New password using Email when Admin Register new User-------------------*/
     public function passwordCreate(Request $request)
     {
         $data['type'] = $request->type;
@@ -530,7 +547,7 @@ class HomepageController extends Controller
             $_SESSION["msg"] = "Your password has been created successfully";
             $_SESSION["alert"] = "success";
             return redirect()->route('user.companyLogin');
-        }else{
+        } else {
             $company = Vendor::whereEmail($request->email);
             $company->update([
                 'password' => bcrypt($request->password),
@@ -540,12 +557,13 @@ class HomepageController extends Controller
             return redirect()->route('vendor.login');
         }
     }
+/*------------ End Create New password using Email when Admin Register new User-------------------*/
 
-
-    public function cookies(){
+    public function cookies()
+    {
         $cookiePolicy = CookiePolicy::find(1);
 
-        return view('web.cookies',compact('cookiePolicy'));
+        return view('web.cookies', compact('cookiePolicy'));
     }
 
 }

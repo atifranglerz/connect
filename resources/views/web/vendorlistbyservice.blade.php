@@ -25,14 +25,6 @@
                             <div class="srearch_icon_wraper">
                                 <img src="{{ asset('public/assets/images/searchicon.') }}svg">
                             </div>
-
-                            {{-- <div class="slide_icon_wraper"> --}}
-                            {{-- <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> --}}
-                            {{-- <img src="{{asset('public/assets/images/slideicon.s')}}vg"> --}}
-                            {{-- </a> --}}
-
-                            {{-- </div> --}}
-
                         </div>
                     </form>
 
@@ -47,10 +39,6 @@
                                     <div class="car_img_wrapper all_garages">
                                         <img @if ($value->image && $value->image != null) src="{{ asset($value->image) }}" @else src="{{ asset('public/assets/images/repair2.jpg') }}" @endif
                                             class="card-img-top" alt="Car image">
-                                        {{-- <div class="promoted_vendors"> --}}
-                                        {{-- <p>PREFERRED VENDOR</p> --}}
-                                        {{-- <i class="fa-solid fa-star"></i> --}}
-                                        {{-- </div> --}}
                                     </div>
                                     @php
                                         $rating = \App\Models\UserReview::where('garage_id', $value->id)->avg('rating');
@@ -58,7 +46,13 @@
                                     <div class="card-body p-sm-2">
                                         <h6 class="block-head-txt text-center">{{ $value->garage_name }}</h6>
                                         <h5 class="card-title text-center allgarages_card_title">
-                                            <span>@if ($rating > 0) {{ $rating }}@else 0.0 @endif </span>
+                                            <span>
+                                                @if ($rating > 0)
+                                                    {{ $rating }}
+                                                @else
+                                                    0.0
+                                                @endif
+                                            </span>
                                         </h5>
                                         <div class="card_icons d-flex justify-content-center align-items-center">
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $value->id)->pluck('category_id');
@@ -83,29 +77,35 @@
                     <p>{{ __('msg.Oops... Sorry, no garages found related to this category service!') }}</p>
                 @endif
 
-            </div>
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <nav aria-label="..." class="d-flex align-items-center justify-content-center">
-                        <span class="mt-4">{!! $garages->links() !!}</span>
-                    </nav>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <nav aria-label="..." class="d-flex align-items-center justify-content-center">
+                            <span class="mt-4" id="pagination">{!! $garages->links() !!}</span>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
+
         $(document).ready(function() {
-            var services;
+            // $("#pagination").on("click", function() {
+            //     alert('adfa');
+            // });
+
+
             $(".search_garages").on("keyup", function() {
                 var val = $('.search_garages').val();
-                services = {{ $id }};
+                var service = {{ $service }};
                 $.ajax({
                     url: '{{ URL::to('/service-garage') }}',
                     type: 'GET',
                     data: {
                         'val': val,
-                        'service': services
+                        'service': service
                     },
 
                     success: function(response) {
