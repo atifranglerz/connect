@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form action="{{ url('admin/add-company') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.insurance.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-header">
                                     <h4>Add Insurance Company</h4>

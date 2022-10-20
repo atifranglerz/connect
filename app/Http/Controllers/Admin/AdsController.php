@@ -52,10 +52,7 @@ class AdsController extends Controller
      */
     public function show($id)
     {
-        $ads = Ads::with('company', 'modelYear')->find($id);
-        $company = Company::all();
-        $year = ModelYear::all();
-        return view('admin.ads.edit', compact('ads', 'company', 'year'));
+       //
 
     }
 
@@ -67,7 +64,10 @@ class AdsController extends Controller
      */
     public function edit($id)
     {
-        return 'edit';
+        $ads = Ads::with('company', 'modelYear')->find($id);
+        $company = Company::all();
+        $year = ModelYear::all();
+        return view('admin.ads.edit', compact('ads', 'company', 'year'));
 
     }
 

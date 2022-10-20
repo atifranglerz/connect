@@ -7,7 +7,7 @@
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <form method="post"
-                                action="{{ route('admin.insurance-company.update', ['id' => $company->id]) }}"
+                                action="{{ route('admin.insurance.update', ['insurance' => $company->id]) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

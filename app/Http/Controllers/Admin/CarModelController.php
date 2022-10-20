@@ -22,8 +22,7 @@ class CarModelController extends Controller
         $model->car_model = $request->car_model;
         $model->company_id = $request->company_id;
         $model->save();
-        $company = Company::with('model')->get();
-        return view('admin.companyModel.index', compact('model', 'company'))->with($this->data("Car Model has been added successfyully", 'success'));
+        return redirect()->route('admin.car-model')->with($this->data("Car Model has been added successfyully", 'success'));
     }
 
     public function edit($id)

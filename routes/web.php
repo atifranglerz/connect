@@ -121,56 +121,46 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::group(['middleware' => ['auth:admin', 'role:admin']], function () {
         /* Dashboard */
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+        /* Logout */
+        Route::post('logout', 'AuthController@logout')->name('logout');
+
         /*Customer/User*/
         Route::get('add-user', 'UserController@create')->name('addUser');
         Route::post('add-user', 'UserController@store')->name('add');
-        /*Vendor*/
-        Route::get('add-vendor', 'VendorController@create')->name('addVendor');
-        Route::post('add-vendor', 'VendorController@store')->name('add');
+        Route::get('users/activate/{user}', 'UserController@activate')->name('user.activate');
+        Route::get('users/deactivate/{user}', 'UserController@deactivate')->name('user.deactivate');
+        Route::post('users/updatePassword/{user}', 'UserController@updatePassword')->name('user.updatePassword');
+        Route::resource('user', 'UserController')->except('create', 'store', 'show');
 
-        /*Insurance Company*/
-        Route::get('add-company', 'InsuranceCompanyController@create')->name('addCompany');
-        Route::post('add-company', 'InsuranceCompanyController@store')->name('add');
+        /* All Vendor Route */
+        Route::get('vendor/activate/{vendor}', 'VendorController@activate')->name('vendor.activate');
+        Route::get('vendor/deactivate/{vendor}', 'VendorController@deactivate')->name('vendor.deactivate');
+        Route::post('vendor/updatePassword/{vendor}', 'VendorController@updatePassword')->name('vendor.updatePassword');
+        Route::resource('vendor', 'VendorController');
+
+        /* All Insurance Company Route */
+        Route::resource('insurance', 'InsuranceCompanyController');
+        Route::get('insurance-company/activate/{id}', 'InsuranceCompanyController@activate')->name('insurance-company.activate');
+        Route::get('insurance-company/deactivate/{id}', 'InsuranceCompanyController@deactivate')->name('insurance-company.deactivate');
+        Route::post('insurance-company/updatePassword/{id}', 'InsuranceCompanyController@updatePassword')->name('insurance-company.updatePassword');
+        Route::delete('insurance-company/destroy/{id}', 'InsuranceCompanyController@destroy')->name('insurance-company.destroy');
+
         /* Car Ads */
         Route::resource('ads', 'AdsController');
         Route::any('status-request-ad/{id}', 'AdsController@statusAds');
         Route::any('delete-ads/{id}', 'AdsController@deleteAds');
+
         /* Update Profile */
         Route::get('profile', 'AuthController@profile')->name('profile');
         Route::post('update-profile/{id}', 'AuthController@updateProfile')->name('profile.update');
         Route::post('update-profile-password/{id}', 'AuthController@updatePassword')->name('profile.updatePassword');
-        /* Logout */
-        Route::post('logout', 'AuthController@logout')->name('logout');
-        /* All User Route */
-        Route::get('users/activate/{user}', 'UserController@activate')->name('user.activate');
-        Route::get('users/deactivate/{user}', 'UserController@deactivate')->name('user.deactivate');
-        //Route::get('get/user/permission/{role}', 'UserController@getRole');
-        Route::post('users/updatePassword/{user}', 'UserController@updatePassword')->name('user.updatePassword');
-        Route::resource('user', 'UserController')->except('create', 'store', 'show');
-        /* All Vendor Route */
-        Route::get('vendor/activate/{vendor}', 'VendorController@activate')->name('vendor.activate');
-        Route::get('vendor/deactivate/{vendor}', 'VendorController@deactivate')->name('vendor.deactivate');
-        //Route::get('get/vendor/permission/{role}', 'VendorController@getRole');
-        Route::post('vendor/updatePassword/{vendor}', 'VendorController@updatePassword')->name('vendor.updatePassword');
-        Route::resource('vendor', 'VendorController')->except('create', 'store', 'show');
-
-        /* All Insurance Company Route */
-        Route::get('insurance-company/activate/{id}', 'InsuranceCompanyController@activate')->name('insurance-company.activate');
-        Route::get('insurance-company/deactivate/{id}', 'InsuranceCompanyController@deactivate')->name('insurance-company.deactivate');
-        //Route::get('get/company/permission/{role}', 'InsuranceCompanyController@getRole');
-        Route::post('insurance-company/updatePassword/{id}', 'InsuranceCompanyController@updatePassword')->name('insurance-company.updatePassword');
-
-        Route::get('insurance-company/', 'InsuranceCompanyController@index')->name('insurance-company');
-        Route::get('insurance-company/edit/{id}', 'InsuranceCompanyController@edit')->name('insurance-company.edit');
-        Route::put('insurance-company/update/{id}', 'InsuranceCompanyController@update')->name('insurance-company.update');
-        Route::delete('insurance-company/destroy/{id}', 'InsuranceCompanyController@destroy')->name('insurance-company.destroy');
-
-        Route::resource('company', 'InsuranceCompanyController')->except('create', 'store', 'show');
 
         /* All Category & SubCategory Route */
         Route::resource('category', 'CategoryController');
-        /* Category set orders */
         Route::post('category/order', 'CategoryController@orderUpdate')->name('cat_order.update');
+
+        /* Category set orders */
         Route::resource('subcategory', 'SubCategoryController');
         Route::resource('childcategory', 'ChildCategoryController');
         Route::resource('brand', 'BrandController');
@@ -181,12 +171,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('order', 'OrderController');
         Route::resource('news', 'NewsController');
         /* slider */
-        Route::get('slider', [SliderController::class, 'index']);
+        Route::get('slider', [SliderController::class, 'index'])->name('slider.index');
         Route::post('slider', [SliderController::class, 'store']);
-        Route::get('slider/edit/{id}', [SliderController::class, 'edit']);
+        Route::get('slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
         Route::post('slider/update/{id}', [SliderController::class, 'update']);
         Route::any('slider/destroy/{id}', [SliderController::class, 'destroy']);
-        // approved-request-ad/
+
         /* All About Route */
         Route::get('about', 'AboutController@index')->name('about.index');
         Route::get('about/edit/{id}', 'AboutController@edit')->name('about.edit');
@@ -207,14 +197,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('withdraw/index', 'WithdrawlController@index')->name('withdraw.index');
         Route::get('withdraw/status/{id}', 'WithdrawlController@status')->name('withdraw.status');
 
-        Route::get('/percentage', [PercentageController::class, 'index']);
-        Route::get('edit-percentage/{id}', [PercentageController::class, 'edit_percentage']);
+        Route::get('/percentage', [PercentageController::class, 'index'])->name('percentage.index');
+        Route::get('edit-percentage/{id}', [PercentageController::class, 'edit_percentage'])->name('percentage.edit');
         Route::post('update-percentage/{id}', [PercentageController::class, 'update_percentage']);
 
-        Route::get('faqs', [FaqController::class, 'index']);
-        Route::get('add-faq', [FaqController::class, 'get_add_faq']);
+        Route::get('faqs', [FaqController::class, 'index'])->name('faq.index');
+        Route::get('add-faq', [FaqController::class, 'get_add_faq'])->name('faq.add');
         Route::post('add-faq', [FaqController::class, 'add_faq']);
-        Route::get('edit-faq/{id}', [FaqController::class, 'edit_faq']);
+        Route::get('edit-faq/{id}', [FaqController::class, 'edit_faq'])->name('faq.edit');
         Route::post('update-faq/{id}', [FaqController::class, 'update_faq']);
         Route::any('delete-faq/{id}', [FaqController::class, 'delete_faq']);
 

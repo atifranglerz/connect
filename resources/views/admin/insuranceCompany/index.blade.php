@@ -13,7 +13,7 @@
                             </div> --}}
                             <div class="card-header">
                                 <h4>All Insurance Company List</h4>
-                                <a href="{{ url('admin/add-company') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New Company</a>
+                                <a href="{{ route('admin.insurance.create') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New Company</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -102,7 +102,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.insurance-company.edit', ['id' => $company->id]) }}"
+                                                        <a href="{{ route('admin.insurance.edit', $company->id) }}"
                                                             class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="24" height="24" viewBox="0 0 24 24"
                                                                 fill="none" stroke="currentColor" stroke-width="2"

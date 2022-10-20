@@ -113,7 +113,7 @@ class InsuranceCompanyController extends Controller
         if ($company) {
             Mail::to($company->email)->send(new Registration($data));
 
-            return $this->message($company, 'admin.insurance-company', 'Company added Successfully', 'Company Update Error');
+            return $this->message($company, 'admin.insurance.index', 'Company added Successfully', 'Company Update Error');
         } else {
             return redirect()->back()->with($this->data("Company Register Error", 'error'));
         }
@@ -200,7 +200,7 @@ class InsuranceCompanyController extends Controller
         $user_company->billing_city = $request->billing_city;
         $user_company->billing_address = $request->billing_address;
         $user_company->save();
-        return $this->message($company, 'admin.insurance-company', 'Company Update Successfully', 'Company Update Error');
+        return $this->message($company, 'admin.insurance.index', 'Company Update Successfully', 'Company Update Error');
     }
 
     public function updatePassword(Request $request, $id)
@@ -214,7 +214,7 @@ class InsuranceCompanyController extends Controller
             $company->password = bcrypt($request->password);
             $company->save();
 
-            return redirect()->route('admin.insurance-company')->with($this->data("Update Insurance Company Password Successfully", 'success'));
+            return redirect()->route('admin.insurance.index')->with($this->data("Update Insurance Company Password Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("Update Insurance Company Password Error", 'error'));
         }
@@ -231,7 +231,7 @@ class InsuranceCompanyController extends Controller
             $data['data'] = 'Congratulation! Your account has been activated. Now you can login your account as an Insurance Company';
 
             Mail::to($company->email)->send(new AccountStatus($data));
-            return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company Activated Successfully", 'success'));
+            return redirect()->route('admin.insurance.index')->with($this->data("Insurance Company Activated Successfully", 'success'));
         } else {
             return redirect()->back()->with($this->data("Insurance Company Activate Error", 'error'));
         }
@@ -275,6 +275,6 @@ class InsuranceCompanyController extends Controller
     {
         $company = User::findOrFail($id);
         $company->delete();
-        return $this->message($company, 'admin.insurance-company', 'Insurance Company Deleted successfully', 'Insurance Company Delete Error');
+        return $this->message($company, 'admin.insurance.index', 'Insurance Company Deleted successfully', 'Insurance Company Delete Error');
     }
 }
