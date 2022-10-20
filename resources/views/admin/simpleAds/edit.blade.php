@@ -24,7 +24,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            PKR
+                                                            AED
                                                         </div>
                                                     </div>
                                                     <input type="text" class="form-control" name="price" value="{{$packages->price}}">

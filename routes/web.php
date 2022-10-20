@@ -247,7 +247,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('simpleAd', 'SimpleController');
         Route::get('all/packages', 'SimpleController@package')->name('all-packages');
         Route::get('package/status/{id}', 'SimpleController@status')->name('package/status');
-        Route::get('package/status/{id}', 'SimpleController@status')->name('package/status');
         Route::get('simpleAd/delete/{id}', 'SimpleController@delete')->name('simpleAd/delete');
     });
 

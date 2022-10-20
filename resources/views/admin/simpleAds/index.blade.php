@@ -1,5 +1,4 @@
 @extends('admin.layout.app')
-@section('title', 'All Brand')
 @section('content')
     <!-- Main Content -->
     <div class="main-content">
@@ -9,7 +8,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Brands</h4>
+                            <h4>All Simple Ads</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -19,9 +18,9 @@
                                             <th class="text-center">Image</th>
                                             <th>URL</th>
                                             <th>Description</th>
-                                            <th>Packages</th>
+                                            <th>Package</th>
                                             <th>Status</th>
-                                            <th>ActionPcar</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,21 +32,17 @@
                                             </td>
                                             <td><a href="{{ $ad->url }}">{{ $ad->url }} </a> </td>
                                             <td>{{ $ad->description }} </td>
-                                            <td>{{ $ad->package->package_name }} </td>
+                                            <td>
+                                                <div class="badge badge-shadow badge-dark">
+                                                    {{ $ad->package->package_name }}</div>
+                                            </td>
                                             <td>
                                                 <div
                                                     class="badge badge-shadow 
                                                 @if ($ad->status == 'Pending') badge-warning 
                                                 @elseif ($ad->status == 'Approved') badge-success 
                                                 @else badge-danger @endif">
-                                                    @if ($ad->status == 'Pending')
-                                                        Pending
-                                                    @elseif ($ad->status == 'Approved')
-                                                        Approved
-                                                    @else
-                                                        Rejected
-                                                    @endif
-                                                </div>
+                                                    {{ $ad->status }}</div>
                                             </td>
                                             </td>
                                             <td>

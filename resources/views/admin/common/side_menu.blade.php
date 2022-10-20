@@ -47,6 +47,8 @@
                 </ul>
             </li>
             <li class="dropdown @if (request()->routeIs(
+                'admin.simpleAd*',
+                'admin.all-packages',
                 'admin.news.index',
                 'admin.about.index',
                 'admin.cookie.index',
@@ -62,6 +64,8 @@
                     {{-- <li class=""><a class="nav-link " href="{{ route('admin.garage.index') }}">Garages</a></li> --}}
                     <li class="dropdown @if (request()->routeIs(
                         'admin.news.index',
+                        'admin.simpleAd*',
+                        'admin.all-packages',
                         'admin.cookie.index',
                         'admin.cookie.edit',
                         'admin.cookie.store',
@@ -86,13 +90,12 @@
                                 <a href="#" class="menu-toggle nav-link has-dropdown">
                                     <i data-feather="tag"></i><span>Pages</span></a>
                                 <ul class="dropdown-menu">
-                                    
+
                                     <li><a href="{{ url('admin/slider') }}" class="nav-link">Home Banner Slides</a>
                                     </li>
                                     <li class=""><a class="nav-link "
                                             href="{{ route('admin.news.index') }}">News</a></li>
                                     <li><a href="{{ route('admin.about.index') }}" class="nav-link">About Us</a></li>
-                                    {{-- <li><a href="{{ route('admin.contact.index') }}" class="nav-link">Contact Us</a></li> --}}
                                     <li class=""><a class="nav-link " href="{{ url('/admin/faqs') }}">Faq</a>
                                     </li>
                                     <li><a href="{{ route('admin.term.index') }}" class="nav-link">Terms &
@@ -103,15 +106,16 @@
                                             Policy</a></li>
                                 </ul>
                             </li>
-                                <a href="#" class="menu-toggle nav-link has-dropdown">
-                                    <i data-feather="tag"></i><span>Simple Ads</span></a>
+                            <li class="dropdown @if (request()->routeIs('admin.simpleAd*', 'admin.all-packages')) active @endif">
+                                {{-- <a href="#" class="menu-toggle nav-link has-dropdown">
+                                    <i data-feather="tag"></i><span>Simple Ads</span></a> --}}
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ route('admin.simpleAd.index') }}" class="nav-link">All Ads</a>
                                     </li>
                                     <li class=""><a class="nav-link"
                                             href="{{ route('admin.all-packages') }}">Packages</a></li>
                                 </ul>
-                            
+                            </li>
                         </ul>
                     </li>
                 </ul>
