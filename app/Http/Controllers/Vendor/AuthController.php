@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use App\Http\Controllers\Controller;
-use App\Mail\ForgetPassword;
-use App\Mail\Login;
-use App\Models\Category;
-use App\Models\Country;
-use App\Models\PaymentPercentage;
-use App\Models\User;
-use App\Models\Vendor;
 use Carbon\Carbon;
+use App\Mail\Login;
+use App\Models\User;
+use App\Models\Garage;
+use App\Models\Vendor;
+use App\Models\Country;
+use App\Models\Category;
+use App\Mail\ForgetPassword;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\PaymentPercentage;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -161,9 +162,16 @@ class AuthController extends Controller
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $vendor_role = Auth::guard('vendor')->user()->hasRole('vendor');
             if ($vendor_role) {
-                $_SESSION["msg"] = "You've Login Successfully";
-                $_SESSION["alert"] = "success";
-                return redirect()->route('vendor.dashboard');
+                $garage = Garage::where('vendor_id', Auth::guard('vendor')->id())->first();
+                if (empty($garage)) {
+                    $_SESSION["msg"] = "Create Workshop first";
+                    $_SESSION["alert"] = "success";
+                    return redirect()->route('vendor.workshop.index');
+                } else {
+                    $_SESSION["msg"] = "You've Login Successfully";
+                    $_SESSION["alert"] = "success";
+                    return redirect()->route('vendor.dashboard');
+                }
             } else {
                 return redirect()->back()->with($this->data("you have not this Role!", 'error'));
             }
@@ -202,7 +210,7 @@ class AuthController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-            $_SESSION["msg"] = "Forgot Password Email Send Successfully.";
+            $_SESSION["msg"] = "Forgot Password Email Sended Successfully.";
             $_SESSION["alert"] = "success";
             return redirect()->back();
 

@@ -132,7 +132,12 @@ class WorkshopController extends Controller
             $data['overAllRatings'] = $rating / $totalReviews;
         }
 
-        // return view('vendor.workshop.preview_workshop', $data);
+        if(Auth::guard('vendor')->check()){
+            $_SESSION["msg"] = "You've Login Successfully";
+            $_SESSION["alert"] = "success";
+            return redirect()->route('vendor.dashboard');
+
+        }
 
         $_SESSION["msg"] = "You've Registered Successfully as a Vendor, soon your account will be Activated!. You will be notified by email once your account is Activated!";
         $_SESSION["alert"] = "success";

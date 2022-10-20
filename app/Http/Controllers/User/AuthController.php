@@ -293,12 +293,12 @@ class AuthController extends Controller
                 'token' => $data['token'],
                 'created_at' => Carbon::now(),
             ]);
-            $_SESSION["msg"] = "Forget Password Email Send Successfully";
+            $_SESSION["msg"] = "Forget Password Email Sended Successfully";
             $_SESSION["alert"] = "success";
             return redirect()->back();
         } catch (\Swift_TransportException $e) {
             if ($e->getMessage()) {
-                $_SESSION["msg"] = "Forget Password Email Send Error";
+                $_SESSION["msg"] = "Forget Password Email Sended Error";
                 $_SESSION["alert"] = "error";
                 return redirect()->back();
             }
