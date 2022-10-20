@@ -177,7 +177,7 @@ class UserController extends Controller
                 'action' => 1,
             ])->save();
             $data['name'] = $user->name;
-            $data['reason'] = 'Congratulation! Your account has been activated. Now you can login your account as a customer';
+            $data['data']  = 'Congratulation! Your account has been activated. Now you can login your account as a customer';
             Mail::to($user->email)->send(new AccountStatus($data));
             return redirect()->route('admin.user.index')->with($this->data("Customer Activated Successfully", 'success'));
         } else {
@@ -194,10 +194,11 @@ class UserController extends Controller
             ])->save();
 
             $data['name'] = $user->name;
-            $data['reason'] = "Your Account has been deActivated due to some reason, ".$request->comment_val;
+            $data['data'] = "Your Account has been Deactivated due to the below reason:";
+            $data['reason'] = $request->comment_val;
             Mail::to($user->email)->send(new AccountStatus($data));
             return response()->json([
-                'success' => 'Rejection message send successfully',
+                'success' => 'Customer DeActivated Successfully',
             ]);
             //     return redirect()->route('admin.user.index')->with($this->data("User DeActivate Successfully", 'success'));
             // } else {

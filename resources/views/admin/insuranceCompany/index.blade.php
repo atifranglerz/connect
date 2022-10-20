@@ -96,9 +96,9 @@
                                                     <td>{{ $company->insurance->billing_address }}</td>
                                                     <td>
                                                         @if ($company->action == 1)
-                                                            <div class="badge badge-success badge-shadow">Activate</div>
+                                                            <div class="badge badge-success badge-shadow">Active</div>
                                                         @else
-                                                            <div class="badge badge-danger badge-shadow">DeActivate</div>
+                                                            <div class="badge badge-danger badge-shadow">DeActive</div>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -125,7 +125,7 @@
                                                                     class="feather feather-toggle-right">
                                                                     <rect x="1" y="5" width="22"
                                                                         height="14" rx="7" ry="7"></rect>
-                                                                    <circle cx="16" cy="12" r="3">
+                                                                    <circle cx="8" cy="12" r="3">
                                                                     </circle>
                                                                 </svg></a>
                                                         @else
@@ -138,7 +138,7 @@
                                                                     class="feather feather-toggle-left">
                                                                     <rect x="1" y="5" width="22"
                                                                         height="14" rx="7" ry="7"></rect>
-                                                                    <circle cx="8" cy="12" r="3">
+                                                                    <circle cx="16" cy="12" r="3">
                                                                     </circle>
                                                                 </svg></a>
                                                         @endif

@@ -278,11 +278,11 @@ class VendorController extends Controller
                     'action' => 1,
                 ])->save();
                 $data['name'] = $vendor->name;
-                $data['reason'] = 'Congratulation! Your account has been activated. Now you can login your account as a Vendor';
+                $data['data'] = 'Congratulation! Your account has been activated. Now you can login your account as a Vendor';
                 Mail::to($vendor->email)->send(new AccountStatus($data));
                 return redirect()->route('admin.vendor.index')->with($this->data("Vendor Activated Successfully", 'success'));
             } else {
-                return redirect()->back()->with($this->data("Vendor Activate Error", 'error'));
+                return redirect()->back()->with($this->data("Vendor Activated Error", 'error'));
             }
         } else {
             return redirect()->back()->with($this->data('You do not have the required authorization!', 'error'));
@@ -299,12 +299,14 @@ class VendorController extends Controller
                 ])->save();
 
                 $data['name'] = $vendor->name;
-                $data['reason'] = "Your Account has been deActivated due to some reason, ".$request->comment_val;
+                $data['data'] = "Your Account has been Deactivated due to the below reason:";
+                $data['reason'] = $request->comment_val;
+
                 Mail::to($vendor->email)->send(new AccountStatus($data));
                 $message = 'Rejection message send successfully!';
                 return response()->json([
 
-                    'success' => 'Rejection Message send successfully',
+                    'success' => 'Vendor DeActivated Successfully',
                     'message' => $message,
                 ]);
             } else {

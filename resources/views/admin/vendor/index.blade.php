@@ -81,9 +81,9 @@
                                                     <td>{{ $vendor->billing_address }}</td>
                                                     <td>
                                                         @if ($vendor->action == 1)
-                                                            <div class="badge badge-success badge-shadow">Activate</div>
+                                                            <div class="badge badge-success badge-shadow">Active</div>
                                                         @else
-                                                            <div class="badge badge-danger badge-shadow">DeActivate</div>
+                                                            <div class="badge badge-danger badge-shadow">DeActive</div>
                                                         @endif
                                                     </td>
                                                     <td>

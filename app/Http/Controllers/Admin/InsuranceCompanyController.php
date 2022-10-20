@@ -34,7 +34,7 @@ class InsuranceCompanyController extends Controller
     public function create(Request $request)
     {
         return view('admin.insuranceCompany.create');
-        
+
     }
 
     /**
@@ -228,7 +228,7 @@ class InsuranceCompanyController extends Controller
                 'action' => 1,
             ])->save();
             $data['name'] = $company->name;
-            $data['reason'] = 'Congratulation! Your account has been activated. Now you can login your account as an Insurance Company';
+            $data['data'] = 'Congratulation! Your account has been activated. Now you can login your account as an Insurance Company';
 
             Mail::to($company->email)->send(new AccountStatus($data));
             return redirect()->route('admin.insurance-company')->with($this->data("Insurance Company Activated Successfully", 'success'));
@@ -246,12 +246,13 @@ class InsuranceCompanyController extends Controller
             ])->save();
 
             $data['name'] = $company->name;
-            $data['reason'] = "Your Account has been deactivated due to some reason, ".$request->comment_val;
+            $data['data'] = "Your Account has been Deactivated due to the below reason:";
+            $data['reason'] = $request->comment_val;
             Mail::to($company->email)->send(new AccountStatus($data));
             $message = 'Rejection message send successfully!';
             return response()->json([
 
-                'success' => 'Rejection Message send successfully',
+                'success' => 'Company DeActivated Successfully',
                 'message' => $message,
             ]);
         } else {
