@@ -30,8 +30,8 @@
                                             class="heading-color">{{ $value->userBid->company->company }}
                                             ({{ $value->userbid->model }})
                                         </a> <span class="order_id">#{{ $value->userbid->reference_no }}</span></h5>
-                                    <p class="mb-0">{{ $value->userbid->car_owner_name }}</p>
-                                    <p class="mb-0">{{ $user->phone }}</p>
+                                    <p class="mb-0"><b>{{$user->type == "user" ? "Customer" : "Insurance Company"}}:</b> {{ $value->userbid->car_owner_name }}</p>
+                                    <p class="mb-0"><b>Phone: </b>{{ $user->phone }}</p>
                                 </div>
                                 <div class="mt-5 quote_info ">
                                     <p class="quote_rev vndr_rply__dtl "><span> {{ $total_bid }}

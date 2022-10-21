@@ -30,9 +30,8 @@
                                         <h5 class="d-flex align-items-center active_quote">{{ $company->company }}
                                             ({{ $userbidid->model }})
                                         </h5>
-                                        <p class="mb-0">{{ $userbidid->car_owner_name }}</p>
-                                        <p class="mb-0">{{ $user->phone }}</p>
-                                        <p>{{ $userbidid->phone }}</p>
+                                        <p class="mb-0"><b>{{$user->type == "user" ? "Customer Name":"Insurance Company"}}: </b>{{ $userbidid->car_owner_name }}</p>
+                                        <p class="mb-0"><b>Phone: </b>{{ $user->phone }}</p>
                                     </div>
                                     <div class="quote_detail_btn_wraper">
                                         <div class="quote_detail_btn_wraper">

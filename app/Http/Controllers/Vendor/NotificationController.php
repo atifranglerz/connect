@@ -31,8 +31,7 @@ class NotificationController extends Controller
     public function status(Request $request)
     {
         $notification = webNotification::find($request->id);
-        $notification->seen = 1;
-        $notification->save();
+        $notification->delete();
 
         $unread = webNotification::where([['vendor_id', auth()->user()->id], ['seen', 0]])->count('seen');
 
