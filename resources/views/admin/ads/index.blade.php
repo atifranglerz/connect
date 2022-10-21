@@ -40,13 +40,15 @@
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>
+                                                    <td class="images">
                                                         @foreach($image as $images)
+                                                        <a href="{{ asset($images) }}">
                                                         <img src="{{ asset($images) }}" alt="" width="50px">
                                                         @endforeach
                                                     </td>
-                                                    <td>
+                                                    <td class="images">
                                                         @foreach($documents as $document)
+                                                        <a href="{{ asset($document) }}">
                                                         <img src="{{ asset($document) }}" alt="" width="50px">
                                                         @endforeach
                                                     </td>

@@ -110,9 +110,9 @@
 
                                                 $images = explode(',',$order->cheque_image)
                                             @endphp
-                                            <div class="col-md-4 col-lg-4 col-sm-4">
+                                            <div class="col-md-4 col-lg-4 col-sm-4 images">
                                                 @foreach ($images as $image)
-                                                <a target="_blank" href="{{ url($image) }}">
+                                                <a href="{{ url($image) }}">
                                                 <img alt="image" src="{{ asset($image) }}"
                                                     class="header-logo" style="width: 100px" /></a>
                                                     @endforeach

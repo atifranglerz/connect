@@ -38,7 +38,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $data->garage_name }}</td>
                                                     <td>{{ isset($data->vendor) ? $data->vendor->name : 'Null' }}</td>
-                                                    <td><a target="_black" href="{{asset($data->image)}}"><img alt="image"
+                                                    <td class="images"><a  href="{{asset($data->image)}}"><img alt="image"
                                                             @if (isset($data->image)) src="{{ asset('/' . $data->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                             style="height:50px;width:50px"></a></td>
                                                     <td>

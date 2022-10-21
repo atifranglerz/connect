@@ -38,9 +38,8 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $user->name }}</td>
-                                                    <td>
-                                                        <a target="_black" href="{{ asset($user->image) }}"> <img
-                                                                alt="image"
+                                                    <td class="images">
+                                                        <a href="{{ asset($user->image) }}"> <img alt="image"
                                                                 @if (isset($user->image)) src="{{ asset('/' . $user->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                                 style="height: 50px;width:50px"></a>
                                                     </td>
@@ -71,7 +70,8 @@
                                                                     </circle>
                                                                 </svg></a>
                                                         @else
-                                                            <a href="#" class="btn btn-success" data-toggle="modal"onclick="editCustomer('{{ $user->id }}')"
+                                                            <a href="#" class="btn btn-success"
+                                                                data-toggle="modal"onclick="editCustomer('{{ $user->id }}')"
                                                                 data-target="#exampleModal"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
@@ -141,7 +141,7 @@
 @section('script')
     <script>
         $('#edit_comment').on('keyup', function() {
-            if($(this).val()!="") {
+            if ($(this).val() != "") {
                 $('.update_student').removeClass('a-disabled');
             } else {
                 $('.update_student').addClass('a-disabled');

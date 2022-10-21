@@ -112,13 +112,11 @@
                                             <div>
 
                                                 @if ($ext[1] == 'pdf')
-                                                    <a target="_black" href="{{ asset($company->insurance->id_card) }}"><img
-                                                            alt="image"
+                                                    <img alt="image"
                                                             src="{{ asset('public/assets/images/pdficon.png') }}"
                                                             style="height: 100px;width:100px"></a>
                                                 @else
-                                                    <a target="_black" href="{{ asset($company->insurance->id_card) }}"><img
-                                                            alt="image"
+                                                    <img alt="image"
                                                             @if ($company->id_card) src="{{ asset('/' . $company->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                             style="height: 100px;width:100px"></a>
                                                 @endif
@@ -134,16 +132,10 @@
                                             @enderror
                                             <div>
                                                 @if ($ext1[1] == 'pdf')
-                                                    <a target="_black"
-                                                        href="{{ asset($company->insurance->image_license) }}"><img
-                                                            alt="image"
-                                                            src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                    <img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}"
                                                             style="height: 100px;width:100px"></a>
                                                 @else
-                                                    <a target="_black"
-                                                        href="{{ asset($company->insurance->image_license) }}"><img
-                                                            alt="image"
-                                                            @if (isset($company->image_license)) src="{{ asset('/' . $company->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                    <img alt="image" @if (isset($company->image_license)) src="{{ asset('/' . $company->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                             style="height: 100px;width:100px"></a>
                                                 @endif
                                             </div>

@@ -46,8 +46,8 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $vendor->name }}</td>
-                                                    <td>
-                                                        <a target="_black" href="{{asset($vendor->image)}}"><img alt="image" @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                    <td class="images">
+                                                        <a href="{{asset($vendor->image)}}"><img alt="image" @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
                                                     </td>
                                                     <td>{{ $vendor->garage_name }}</td>
                                                     <td>{{ $vendor->email }}</td>
@@ -60,16 +60,24 @@
                                                            $ext = explode('.', $vendor->id_card);
                                                            $ext1 = explode('.', $vendor->image_license);
                                                         @endphp
-                                                    <td>
+                                                     @if ($ext[1] == 'pdf')
+                                                     <td>
+                                                     @else
+                                                     <td class="images">
+                                                 @endif
                                                         @if ($ext[1] == 'pdf')
                                                         <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
                                                         @else
-                                                        <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
+                                                        <a href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
                                                         @endif
                                                     </td>
+                                                    @if ($ext1[1] == 'pdf')
                                                     <td>
+                                                    @else
+                                                    <td class="images">
+                                                @endif
                                                         @if ($ext1[1] == 'pdf')
-                                                            <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
+                                                            <a href="{{asset($vendor->image_license)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
                                                         @else
                                                             <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
                                                         @endif
