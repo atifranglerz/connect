@@ -174,8 +174,7 @@
                         $('#editStudentModal').modal('hide');
                         // alert('usman');
                         toastr.success(response.success);
-                        window.location.reload() - > with($this - > data(
-                            "Customer Activated Successfully", 'success'));
+                        window.location.reload();
                     }
                 }
             });
