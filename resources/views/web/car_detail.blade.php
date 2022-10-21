@@ -187,13 +187,7 @@
     <script>
         $(function() {
             $('#carImages, #carDocs').lightGallery({
-                thumbnail: true,
-                zoom: true,
-                fullScreen: true,
-                counter: true,
-                clone: true,
-                autoplayControls: false,
-                download: true,
+                clone: false,
                 share: false
             });
         });

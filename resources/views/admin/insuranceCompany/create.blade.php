@@ -16,15 +16,15 @@
                                         <div class="form-group col-md-6">
                                             <label>Company Name</label>
                                             <input type="text" class="form-control" name="name"
-                                             placeholder="Company Name"   value="{{ old('name') }}">
+                                                placeholder="Company Name" value="{{ old('name') }}">
                                             @error('name')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Owner Name</label>
-                                            <input type="text" class="form-control" name="owner_name" placeholder="OwnerName"
-                                                value="{{ old('owner_name') }}">
+                                            <input type="text" class="form-control" name="owner_name"
+                                                placeholder="OwnerName" value="{{ old('owner_name') }}">
                                             @error('owner_name')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
@@ -34,8 +34,9 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" name="email" placeholder="Example@gmail.com"
-                                                autocomplete="off"  value="{{ old('email') }}">
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="Example@gmail.com" autocomplete="off"
+                                                value="{{ old('email') }}">
                                             @error('email')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
@@ -56,20 +57,16 @@
                                             <select class="form-control selectric category" name="city">
                                                 <option selected disabled value="">{{ __('msg.Select City') }}
                                                 </option>
-                                                <option value="Dubai"
-                                                    @if (old('city') == 'Dubai') selected @endif>
+                                                <option value="Dubai" @if (old('city') == 'Dubai') selected @endif>
                                                     {{ __('msg.Dubai') }}</option>
-                                                <option value="Abu Dhabi"
-                                                    @if (old('city') == 'Abu Dhabi') selected @endif>
+                                                <option value="Abu Dhabi" @if (old('city') == 'Abu Dhabi') selected @endif>
                                                     {{ __('msg.Abu Dhabi') }}</option>
-                                                <option value="Sharjah"
-                                                    @if (old('city') == 'Sharjah') selected @endif>
+                                                <option value="Sharjah" @if (old('city') == 'Sharjah') selected @endif>
                                                     {{ __('msg.Sharjah') }}</option>
                                                 <option value="Ras Al Khaimah"
                                                     @if (old('city') == 'Ras Al Khaimah') selected @endif>
                                                     {{ __('msg.Ras Al Khaimah') }}</option>
-                                                <option value="Ajman"
-                                                    @if (old('city') == 'Ajman') selected @endif>
+                                                <option value="Ajman" @if (old('city') == 'Ajman') selected @endif>
                                                     {{ __('msg.Ajman') }}</option>
                                             </select>
                                         </div>
@@ -99,12 +96,12 @@
                                             {{-- <div>
                                                 @if ($ext[1] == 'pdf')
                                                     <a target="_black" href="{{ asset($company->insurance->id_card) }}"><img
-                                                            alt="image"
+                                                            
                                                             src="{{ asset('public/assets/images/pdficon.png') }}"
                                                             style="height: 100px;width:100px"></a>
                                                 @else
                                                     <a target="_black" href="{{ asset($company->insurance->id_card) }}"><img
-                                                            alt="image"
+                                                            
                                                             @if ($company->id_card) src="{{ asset('/' . $company->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                             style="height: 100px;width:100px"></a>
                                                 @endif
@@ -114,7 +111,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Trading License</label>
-                                            <input type="file" name="image_license" class="form-control" multiple >
+                                            <input type="file" name="image_license" class="form-control" multiple>
                                             @error('image_license')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -122,13 +119,13 @@
                                                 @if ($ext1[1] == 'pdf')
                                                     <a target="_black"
                                                         href="{{ asset($company->insurance->image_license) }}"><img
-                                                            alt="image"
+                                                            
                                                             src="{{ asset('public/assets/images/pdficon.png') }}"
                                                             style="height: 100px;width:100px"></a>
                                                 @else
                                                     <a target="_black"
                                                         href="{{ asset($company->insurance->image_license) }}"><img
-                                                            alt="image"
+                                                            
                                                             @if (isset($company->image_license)) src="{{ asset('/' . $company->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                             style="height: 100px;width:100px"></a>
                                                 @endif
@@ -136,8 +133,8 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>License Number</label>
-                                            <input type="text" class="form-control" name="trading_license" placeholder="License Number"
-                                                value="{{ old('trading_license') }}">
+                                            <input type="text" class="form-control" name="trading_license"
+                                                placeholder="License Number" value="{{ old('trading_license') }}">
                                             @error('trading_license')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
@@ -146,16 +143,16 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Billing Area</label>
-                                            <input type="text" class="form-control" name="billing_area" placeholder="Billing Area"
-                                                value="{{ old('billing_area') }}">
+                                            <input type="text" class="form-control" name="billing_area"
+                                                placeholder="Billing Area" value="{{ old('billing_area') }}">
                                             @error('billing_area')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Billing City</label>
-                                            <input type="text" class="form-control" name="billing_city" placeholder="Billing City"
-                                                value="{{ old('billing_city') }}">
+                                            <input type="text" class="form-control" name="billing_city"
+                                                placeholder="Billing City" value="{{ old('billing_city') }}">
                                             @error('billing_city')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
@@ -164,16 +161,16 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Billing Address</label>
-                                            <input type="text" class="form-control" name="billing_address" placeholder="Billing Address"
-                                                value="{{ old('billing_address') }}">
+                                            <input type="text" class="form-control" name="billing_address"
+                                                placeholder="Billing Address" value="{{ old('billing_address') }}">
                                             @error('billing_address')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Post Box</label>
-                                            <input type="number" class="form-control" name="post_box" placeholder="Post Box"
-                                                value="{{ old('post_box') }}">
+                                            <input type="number" class="form-control" name="post_box"
+                                                placeholder="Post Box" value="{{ old('post_box') }}">
                                             @error('post_box')
                                                 <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror

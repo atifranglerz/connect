@@ -39,7 +39,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td class="images">
-                                                        <a href="{{ asset($user->image) }}"> <img alt="image"
+                                                        <a href="{{ asset($user->image) }}"> <img
                                                                 @if (isset($user->image)) src="{{ asset('/' . $user->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                                 style="height: 50px;width:50px"></a>
                                                     </td>
@@ -174,7 +174,8 @@
                         $('#editStudentModal').modal('hide');
                         // alert('usman');
                         toastr.success(response.success);
-                        window.location.reload();
+                        window.location.reload() - > with($this - > data(
+                            "Customer Activated Successfully", 'success'));
                     }
                 }
             });

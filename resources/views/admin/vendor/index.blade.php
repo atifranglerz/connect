@@ -10,7 +10,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>All Vendors List</h4>
-                                <a href="{{ route('admin.vendor.create') }}" class="btn btn-primary" style="margin-left: auto; display: block;">Add New Vendor</a>
+                                <a href="{{ route('admin.vendor.create') }}" class="btn btn-primary"
+                                    style="margin-left: auto; display: block;">Add New Vendor</a>
                             </div>
                             {{-- <div class="card-header d-flex justify-content-between align-items-center">
                                 <h4>All Vendors List</h4>
@@ -47,7 +48,9 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $vendor->name }}</td>
                                                     <td class="images">
-                                                        <a href="{{asset($vendor->image)}}"><img alt="image" @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif style="height: 50px;width:50px"></a>
+                                                        <a href="{{ asset($vendor->image) }}"><img
+                                                                @if ($vendor->image) src="{{ asset('/' . $vendor->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                                style="height: 50px;width:50px"></a>
                                                     </td>
                                                     <td>{{ $vendor->garage_name }}</td>
                                                     <td>{{ $vendor->email }}</td>
@@ -56,31 +59,39 @@
                                                     <td>{{ $vendor->address }}</td>
                                                     <td>{{ $vendor->post_box }}</td>
                                                     <td>{{ $vendor->appointment_number }}</td>
-                                                        @php
-                                                           $ext = explode('.', $vendor->id_card);
-                                                           $ext1 = explode('.', $vendor->image_license);
-                                                        @endphp
-                                                     @if ($ext[1] == 'pdf')
-                                                     <td>
-                                                     @else
-                                                     <td class="images">
-                                                 @endif
-                                                        @if ($ext[1] == 'pdf')
-                                                        <a target="_black" href="{{asset($vendor->id_card)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
+                                                    @php
+                                                        $ext = explode('.', $vendor->id_card);
+                                                        $ext1 = explode('.', $vendor->image_license);
+                                                    @endphp
+                                                    @if ($ext[1] == 'pdf')
+                                                        <td>
                                                         @else
-                                                        <a href="{{asset($vendor->id_card)}}"><img alt="image" @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
-                                                        @endif
+                                                        <td class="images">
+                                                    @endif
+                                                    @if ($ext[1] == 'pdf')
+                                                        <a target="_black" href="{{ asset($vendor->id_card) }}"><img
+                                                                src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                                style="height: 50px;width:50px"></a>
+                                                    @else
+                                                        <a href="{{ asset($vendor->id_card) }}"><img
+                                                                @if ($vendor->id_card) src="{{ asset('/' . $vendor->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                                style="height: 50px;width:50px"></a>
+                                                    @endif
                                                     </td>
                                                     @if ($ext1[1] == 'pdf')
-                                                    <td>
-                                                    @else
-                                                    <td class="images">
-                                                @endif
-                                                        @if ($ext1[1] == 'pdf')
-                                                            <a href="{{asset($vendor->image_license)}}"><img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}" style="height: 50px;width:50px"></a>
+                                                        <td>
                                                         @else
-                                                            <a target="_black" href="{{asset($vendor->image_license)}}"><img alt="image" @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="{{asset('public/admin/assets/img/user.png')}}" @endif style="height: 50px;width:50px"></a>
-                                                        @endif
+                                                        <td class="images">
+                                                    @endif
+                                                    @if ($ext1[1] == 'pdf')
+                                                        <a href="{{ asset($vendor->image_license) }}"><img
+                                                                src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                                style="height: 50px;width:50px"></a>
+                                                    @else
+                                                        <a target="_black" href="{{ asset($vendor->image_license) }}"><img
+                                                                @if (isset($vendor->image_license)) src="{{ asset('/' . $vendor->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                                style="height: 50px;width:50px"></a>
+                                                    @endif
                                                     </td>
                                                     <td>{{ $vendor->trading_license }}</td>
                                                     <td>{{ $vendor->vat }}%</td>
@@ -122,7 +133,8 @@
                                                                     </circle>
                                                                 </svg></a>
                                                         @else
-                                                            <a href="#" data-toggle="modal"onclick="editVendor('{{ $vendor->id }}')"
+                                                            <a href="#"
+                                                                data-toggle="modal"onclick="editVendor('{{ $vendor->id }}')"
                                                                 class="btn btn-success">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
@@ -178,43 +190,44 @@
     @include('admin.vendor.modal')
 @endsection
 @section('script')
-<script>
-      $('#edit_comment').on('keyup', function() {
-            if($(this).val()!="") {
+    <script>
+        $('#edit_comment').on('keyup', function() {
+            if ($(this).val() != "") {
                 $('.update_student').removeClass('a-disabled');
             } else {
                 $('.update_student').addClass('a-disabled');
             }
         });
-    function editVendor(user_id, comment_val) {
-        $('#editStudentModal').modal('show');
-        $('#edit_stud_id').val(user_id);
-        $('#edit_comment').val(comment_val);
-    }
-    $('.update_student').on('click', function() {
-        $(this).find('.spinner-border-sm').removeClass('d-none');
-        
-        let user_id = $('#edit_stud_id').val();
-        let edit_comment = $('#edit_comment').val();
 
-        $.ajax({
-            type: "POST",
-            url: '{{ url('admin/deactivate-vendor') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                user_id: user_id,
-                comment_val: edit_comment,
-            },
-            success: function(response) {
-                if (response.success) {
-                    $('#editStudentModal').modal('hide');
-                    toastr.success(response.success);
-                    window.location.reload();
+        function editVendor(user_id, comment_val) {
+            $('#editStudentModal').modal('show');
+            $('#edit_stud_id').val(user_id);
+            $('#edit_comment').val(comment_val);
+        }
+        $('.update_student').on('click', function() {
+            $(this).find('.spinner-border-sm').removeClass('d-none');
+
+            let user_id = $('#edit_stud_id').val();
+            let edit_comment = $('#edit_comment').val();
+
+            $.ajax({
+                type: "POST",
+                url: '{{ url('admin/deactivate-vendor') }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    user_id: user_id,
+                    comment_val: edit_comment,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#editStudentModal').modal('hide');
+                        toastr.success(response.success);
+                        window.location.reload();
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
     <script>
         $(document).on('click', '.glyphicon-trash', function() {
             Swal.fire({

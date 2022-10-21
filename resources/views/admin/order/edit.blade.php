@@ -33,10 +33,10 @@
             }
         }
     </style>
-   @php
-   $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
-
-@endphp
+    @php
+        $insurancestatus = \App\Models\InsuranceRequest::where('vendor_bid_id', $order->vendor_bid_id)->first();
+        
+    @endphp
     <div class="main-content">
         <section class="section">
             <div class="section-body">
@@ -91,12 +91,12 @@
                                                 {{-- <h4 class="dark-pink">Tax: {{$order->tax}}</h4> --}}
 
                                                 @if ($order->status != 'complete' && ($order->paid_by == 'insurance' && $insurancestatus->status == 1))
-                                                <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
-                                                    {{ $order->total }}</h6>
+                                                    <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
+                                                        {{ $order->total }}</h6>
                                                 @endif
                                                 @if ($order->status != 'complete' && $order->paid_by != 'insurance')
-                                                <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
-                                                    {{ $order->advance }}</h6>
+                                                    <h6 class="dark-pink" style="font-weight: bold">Advance Payment:
+                                                        {{ $order->advance }}</h6>
                                                 @endif
                                                 <h6 class="dark-pink" style="font-weight: bold">Total: {{ $order->total }}
                                                 </h6>
@@ -106,15 +106,15 @@
                                                     {{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</h6>
                                             </div>
                                             @if (isset($order->cheque_image))
-                                            @php
-
-                                                $images = explode(',',$order->cheque_image)
-                                            @endphp
-                                            <div class="col-md-4 col-lg-4 col-sm-4 images">
-                                                @foreach ($images as $image)
-                                                <a href="{{ url($image) }}">
-                                                <img alt="image" src="{{ asset($image) }}"
-                                                    class="header-logo" style="width: 100px" /></a>
+                                                @php
+                                                    
+                                                    $images = explode(',', $order->cheque_image);
+                                                @endphp
+                                                <div class="col-md-4 col-lg-4 col-sm-4 images">
+                                                    @foreach ($images as $image)
+                                                        <a href="{{ url($image) }}">
+                                                            <img src="{{ asset($image) }}" class="header-logo"
+                                                                style="width: 100px" /></a>
                                                     @endforeach
                                                 </div>
                                             @endif
@@ -133,11 +133,13 @@
                                                     name="status">
                                                     <option value="">Select Status</option>
                                                     <option value="pending"
-                                                        {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                                        {{ $order->status == 'pending' ? 'selected' : '' }}>Pending
+                                                    </option>
                                                     {{-- <option value="processing" {{($order->status =="processing")?'selected':''}}>Processing</option> --}}
                                                     {{-- <option value="shipped" {{($order->status =="shipped")?'selected':''}}>Shipped</option> --}}
                                                     <option value="complete"
-                                                        {{ $order->status == 'complete' ? 'selected' : '' }}>Complete</option>
+                                                        {{ $order->status == 'complete' ? 'selected' : '' }}>Complete
+                                                    </option>
                                                     <option value="cancelled"
                                                         {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled
                                                     </option>

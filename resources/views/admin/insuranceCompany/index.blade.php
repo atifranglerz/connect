@@ -45,8 +45,7 @@
                                                     <td>{{ $company->insurance->owner_name }}</td>
                                                     <td class="images">
                                                         <a href="{{ asset($company->image) }}">
-                                                            <img alt="image"
-                                                                @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                            <img @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                                 style="height: 50px;width:50px"></a>
                                                     </td>
                                                     <td>{{ $company->email }}</td>
@@ -65,12 +64,10 @@
                                                     @endif
                                                     @if ($ext[1] == 'pdf')
                                                         <a target="_black"href="{{ asset($company->insurance->id_card) }}"><img
-                                                                alt="image"
                                                                 src="{{ asset('public/assets/images/pdficon.png') }}"
                                                                 style="height: 50px;width:50px"></a>
                                                     @else
                                                         <a href="{{ asset($company->insurance->id_card) }}"><img
-                                                                alt="image"
                                                                 @if ($company->insurance->id_card) src="{{ asset('/' . $company->insurance->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                                 style="height: 50px;width:50px"></a>
                                                     @endif
@@ -83,12 +80,10 @@
                                                     @if ($ext1[1] == 'pdf')
                                                         <a target="_black"
                                                             href="{{ asset($company->insurance->image_license) }}"><img
-                                                                alt="image"
                                                                 src="{{ asset('public/assets/images/pdficon.png') }}"
                                                                 style="height: 50px;width:50px"></a>
                                                     @else
                                                         <a href="{{ asset($company->insurance->image_license) }}"><img
-                                                                alt="image"
                                                                 @if (isset($company->insurance->image_license)) src="{{ asset('/' . $company->insurance->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
                                                                 style="height: 50px;width:50px"></a>
                                                     @endif

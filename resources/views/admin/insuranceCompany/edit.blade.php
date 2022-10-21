@@ -6,8 +6,7 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form method="post"
-                                action="{{ route('admin.insurance.update', ['insurance' => $company->id]) }}"
+                            <form method="post" action="{{ route('admin.insurance.update', ['insurance' => $company->id]) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -98,8 +97,7 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                             <div>
-                                                <img alt="image"
-                                                    @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
+                                                <img @if ($company->image) src="{{ asset('/' . $company->image) }}" @else src="https://ranglerz.pw/repairmycar/public/admin/assets/img/user.png" @endif
                                                     style="height: 100px;width:100px">
                                             </div>
                                         </div>
@@ -112,13 +110,11 @@
                                             <div>
 
                                                 @if ($ext[1] == 'pdf')
-                                                    <img alt="image"
-                                                            src="{{ asset('public/assets/images/pdficon.png') }}"
-                                                            style="height: 100px;width:100px"></a>
+                                                    <img src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                        style="height: 100px;width:100px"></a>
                                                 @else
-                                                    <img alt="image"
-                                                            @if ($company->id_card) src="{{ asset('/' . $company->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
-                                                            style="height: 100px;width:100px"></a>
+                                                    <img @if ($company->id_card) src="{{ asset('/' . $company->id_card) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                        style="height: 100px;width:100px"></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -132,11 +128,11 @@
                                             @enderror
                                             <div>
                                                 @if ($ext1[1] == 'pdf')
-                                                    <img alt="image" src="{{ asset('public/assets/images/pdficon.png') }}"
-                                                            style="height: 100px;width:100px"></a>
+                                                    <img src="{{ asset('public/assets/images/pdficon.png') }}"
+                                                        style="height: 100px;width:100px"></a>
                                                 @else
-                                                    <img alt="image" @if (isset($company->image_license)) src="{{ asset('/' . $company->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
-                                                            style="height: 100px;width:100px"></a>
+                                                    <img @if (isset($company->image_license)) src="{{ asset('/' . $company->image_license) }}" @else src="{{ asset('public/admin/assets/img/user.png') }}" @endif
+                                                        style="height: 100px;width:100px"></a>
                                                 @endif
                                             </div>
                                         </div>

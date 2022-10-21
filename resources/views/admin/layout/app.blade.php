@@ -129,7 +129,10 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(function() {
-            $('.images').lightGallery();
+            $('.images').lightGallery({
+                clone: false,
+                share: false
+            });
         });
         toastr.options = {
             "closeButton": true,

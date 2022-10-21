@@ -26,7 +26,7 @@
                                     <tbody>
                                         @foreach ($ads as $ad)
                                             <td>
-                                                <a target="_black" href="{{ asset($ad->image) }}"> <img alt="image"
+                                                <a target="_black" href="{{ asset($ad->image) }}"> <img
                                                         src="{{ asset('/' . $ad->image) }}"
                                                         style="height: 50px;width:50px"></a>
                                             </td>
