@@ -17,7 +17,7 @@
                         </div>
                         <div class=" banner_btn__sub_wraper">
                             <img src="{{ asset('public/assets/images/bannericon2.svg') }}">
-                            <a href="{{ url('user/quotecreate') }}" class=" banner_btns">{{ __('msg.Place An Order') }}</a>
+                            <a href="{{ url('user/quotecreate') }}" class=" banner_btns">{{ __('msg.Request A Quote') }}</a>
                         </div>
                         <div class=" banner_btn__sub_wraper">
                             <img src="{{ asset('public/assets/images/bannericon3.svg') }}">

@@ -137,7 +137,8 @@
         </nav>
     </header>
     @yield('content')
-    <footer class="py-5">
+    <footer class="py-5 position-relative">
+        <a href="https://www.ranglerz.com/cost-to-make-a-web-ios-or-android-app-and-how-long-does-it-take.php" target="_blank" class="position-absolute w-100" style="left: 0;bottom: 0;color: rgb(213 163 56);z-index: 1">Developed By: Web &amp; Mobile APP Development Company Lahore</a>
         <div class="container-lg container-fluid">
             <div class="row">
                 <div class="col-lg-4">
