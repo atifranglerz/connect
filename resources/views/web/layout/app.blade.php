@@ -159,8 +159,6 @@
                                 style="margin-right: 8px"></span>{{__('msg.Privicy Policy')}}</a></li>
                             <li><a href="{{ route('cookies') }}"><span class="fa fa-cookie"
                                 style="margin-right: 8px"></span>{{__('msg.Cookie Policy')}}</a></li>
-                            <li><a href="{{ route('simpleAd.create') }}"><span class="fa fa-cookie"
-                                style="margin-right: 8px"></span>{{__('msg.Cookie Policy')}}</a></li>
                         </ul>
                     </div>
                 </div>
