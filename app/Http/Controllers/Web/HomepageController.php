@@ -66,7 +66,7 @@ class HomepageController extends Controller
         $data['page_title'] = 'vendors by service';
         $data['service'] = $id;
         $garage_category = GarageCategory::where('category_id', $id)->distinct()->pluck('garage_id');
-        $data['garages'] = Garage::whereIn('id', $garage_category)->paginate(1);
+        $data['garages'] = Garage::whereIn('id', $garage_category)->paginate(8);
 
         return view('web.vendorlistbyservice', $data);
     }
@@ -83,7 +83,7 @@ class HomepageController extends Controller
             $query->where('garage_name', 'LIKE', "%$search%");
         })->pluck('garage_id');
         
-        $data['garages'] = Garage::whereIn('id', $garages)->paginate(1);
+        $data['garages'] = Garage::whereIn('id', $garages)->paginate(8);
         
 
         if($request->ajax()){
@@ -99,8 +99,7 @@ class HomepageController extends Controller
 
         $data['catagary'] = Category::all();
         $search = $request->val;
-        $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(1);
-        return response()->json($data['garages']);
+        $data['garages'] = Garage::where('garage_name', 'LIKE', "%$search%")->orderBy('rating', 'desc')->paginate(8);
 
         if (isset($request->val)) {
             return view('web.append_TopGarage', $data);
