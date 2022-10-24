@@ -13,10 +13,11 @@
                 <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
                         data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown @if (request()->routeIs('admin.order*')) active @endif">
+            <li class="dropdown @if (request()->routeIs('admin.order*','admin.quote*')) active @endif">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
                     <i data-feather="tag"></i><span>Orders</span></a>
                 <ul class="dropdown-menu">
+                    <li class=""><a class="nav-link " href="{{ route('admin.quote.index') }}">All Quotation</a></li>
                     <li class=""><a class="nav-link " href="{{ route('admin.order.index') }}">All Orders</a></li>
                 </ul>
             </li>

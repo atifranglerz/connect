@@ -248,9 +248,10 @@ class QuoteController extends Controller
             dispatch($SendNotification);
 
         }
+
             $_SESSION["msg"] = "Your Request has been submitted successfully";
+            $_SESSION["alert"] = "success";
             return redirect()->route('user.quoteindex');
-        }
 
     }
 

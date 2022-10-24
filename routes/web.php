@@ -170,6 +170,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::resource('garage', 'GarageController');
         Route::resource('order', 'OrderController');
         Route::resource('news', 'NewsController');
+
+        /* Quotation Request */
+        Route::resource('quote', 'QuoteController');
         /* slider */
         Route::get('slider', [SliderController::class, 'index'])->name('slider.index');
         Route::post('slider', [SliderController::class, 'store']);
