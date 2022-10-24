@@ -248,26 +248,7 @@ class QuoteController extends Controller
             dispatch($SendNotification);
 
         }
-
-        if ($request->action == 'all_garage') {
-            if ($request->qoute_range == 5){
-                $_SESSION["msg"] = "Quotation has been sended to top 5 Garages";
-            }elseif(($request->qoute_range == 10)){
-                $_SESSION["msg"] = "Quotation has been sended to top 10 Garages";
-            }else{
-                $_SESSION["msg"] = "Quotation has been sended to all the Garages";
-            }
-            $_SESSION["alert"] = "success";
-            return redirect()->route('user.quoteindex');
-        } else {
-            if ($request->qoute_range == 5){
-                $_SESSION["msg"] = "Quotation has been sended to your top 5 Preffered Garages";
-            }elseif(($request->qoute_range == 10)){
-                $_SESSION["msg"] = "Quotation has been sended to your top 10 Preffered Garages";
-            }else{
-                $_SESSION["msg"] = "Quotation has been sended to your all the Preffered Garages";
-            }
-            $_SESSION["alert"] = "success";
+            $_SESSION["msg"] = "Your Request has been submitted successfully";
             return redirect()->route('user.quoteindex');
         }
 
