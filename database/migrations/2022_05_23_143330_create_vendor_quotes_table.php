@@ -16,11 +16,11 @@ class CreateVendorQuotesTable extends Migration
         Schema::create('vendor_quotes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned(); 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('vendor_id')->unsigned()->nullable(); 
-            $table->foreign('vendor_id')->references('id')->on('vendors');
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->unsignedBigInteger('user_bit_id')->unsigned(); 
-            $table->foreign('user_bit_id')->references('id')->on('user_bids');
+            $table->foreign('user_bit_id')->references('id')->on('user_bids')->onDelete('cascade');
             $table->timestamps();
         });
     }

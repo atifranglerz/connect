@@ -29,11 +29,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('about', 'Admin\AboutController@show');
 Route::group(['namespace' => 'Web'], function () {
 
-    Route::get('/composer_update', function () {
-        $output = shell_exec('php composer update');
-        return $output;
-
-    });
     Route::get('/config_cache', function () {
         Artisan::call('config:cache');
         return 'Configuration cache cleared!';
@@ -50,6 +45,7 @@ Route::group(['namespace' => 'Web'], function () {
         Artisan::call('optimize:clear');
         return 'Application cache cleared!';
     });
+
     Route::get('/queue_listen', function () {
         Artisan::call('queue:listen');
         return 'Application queue listen success!';
@@ -57,6 +53,10 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/queue_work', function () {
         Artisan::call('queue:work');
         return 'Application queue work success';
+    });
+    Route::get('/job_work', function () {
+        Artisan::call('schedule:work');
+        return 'Application Shedule work success';
     });
 
     // route for the language translation
@@ -400,6 +400,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::resource('wishlist', 'WishlistController');
         Route::resource('payment', 'InsurancePaymentController');
         Route::resource('order', 'OrderController');
+        Route::resource('expire', 'QuoteExpireController');
         /* Order */
         Route::get('order/summary/{id}', 'OrderController@summary')->name('order.summary');
         Route::get('order/invoce/{id}', 'OrderController@invoce')->name('order.invoce');

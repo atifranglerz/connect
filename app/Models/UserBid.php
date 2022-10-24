@@ -19,7 +19,7 @@ class UserBid extends Model
     {
         return $this->hasMany(UserBidCategory::class, 'user_bid_id', 'id');
     }
-
+    
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
@@ -28,11 +28,16 @@ class UserBid extends Model
     {
         return $this->belongsTo(ModelYear::class, 'model_year_id', 'id');
     }
-
+    
     public function vendorQuote()
     {
         return $this->belongsTo(VendorQuote::class);
         // note: we can also inlcude Mobile model like: 'App\Mobile'
+    }
+
+    public function vendorBid()
+    {
+        return $this->hasMany(VendorBid::class, 'user_bid_id', 'id');
     }
 }
 
