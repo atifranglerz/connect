@@ -1,5 +1,21 @@
 @extends('web.layout.app')
 @section('content')
+<style>
+    .package-block {
+        padding-right: 4px;
+    }
+    .days-block {
+        padding: 0 4px;
+    }
+    @media (max-width: 575px) {
+        .package-block {
+            padding-right: 12px;
+        }
+        .days-block {
+            padding: 0 4px 0 12px;
+        }
+    }
+</style>
 <section class="pb-5 login_content_wraper" style="background-image:url(public/assets/images/gradiantbg.jpg);min-height: 100vh">
     <div class="container" >
         <div class="row">
@@ -10,7 +26,7 @@
                     </div>
                     <form class="pt-4 px-2">
                         <div class="row mx-0">
-                            <div class="form-group col-sm-4 mb-3" style="padding-right: 4px">
+                            <div class="form-group col-sm-4 mb-3 package-block">
                                 <select class="form-select form-control" id="package">
                                     <option value="" selected disabled>Select Package</option>
                                     @foreach ($package as $data)
@@ -18,20 +34,20 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-sm-4 mb-3" style="padding: 0 4px">
+                            <div class="form-group col-sm-4 col-6 mb-3 days-block">
                                 <input type="text" class="form-control" value="" placeholder="Days i.e..." readonly>
                             </div>
-                            <div class="form-group col-sm-4 mb-3" style="padding-left: 4px">
+                            <div class="form-group col-sm-4 col-6 mb-3" style="padding-left: 4px">
                                 <input type="text" class="form-control" value="" placeholder="Price AED" readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="formFile" class="form-label heading-color"><b>Ad Image ({{__('msg.Required')}})</b></label>
                                 <input class="form-control" type="file" id="simpleAdImage" accept=".jpeg, .jpg, .png, .PNG, .heic">
                             </div>
-                            <div class="form-group col-sm-6" style="padding-right: 4px">
+                            <div class="form-group col-6" style="padding-right: 4px">
                                 <input type="url" class="form-control" name="url" value="{{ old('url') }}" placeholder="URL ({{__('msg.Required')}})" required>
                             </div>
-                            <div class="form-group col-sm-6" style="padding-left: 4px">
+                            <div class="form-group col-6" style="padding-left: 4px">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{__('msg.Email')}} ({{__('msg.Required')}})" required>
                             </div>
                             <div class="form-group mt-3">
