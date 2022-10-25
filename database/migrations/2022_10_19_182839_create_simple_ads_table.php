@@ -15,12 +15,14 @@ class CreateSimpleAdsTable extends Migration
     {
         Schema::create('simple_ads', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('url');
-            $table->string('description');
+            $table->string('image')->nullable();
+            $table->string('url')->nullable();
+            $table->string('email')->nullable();
+            $table->string('description')->nullable();
             $table->unsignedBigInteger('packages_id')->nullable();
             $table->foreign('packages_id')->references('id')->on('add_packages')->onDelete('cascade');
             $table->string('status')->default('Pending');
+            $table->string('validity')->nullable();
             $table->timestamps();
         });
     }

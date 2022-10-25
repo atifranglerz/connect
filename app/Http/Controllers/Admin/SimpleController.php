@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\AddPackage;
+use Carbon\Carbon;
+// use App\Mail\SimpleAd;
 use App\Models\SimpleAd;
+use App\Models\AddPackage;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class SimpleController extends Controller
 {
@@ -16,8 +19,9 @@ class SimpleController extends Controller
      */
     public function index()
     {
-        $ads = SimpleAd::all();
-        return view('admin.simpleAds.index', compact('ads'));
+        $data['ads'] = SimpleAd::all();
+        $data['page_title'] = 'Ads';
+        return view('admin.simpleAds.index', $data);
     }
 
     /**
@@ -49,7 +53,7 @@ class SimpleController extends Controller
      */
     public function show($id)
     {
-       //
+        //
     }
 
     /**
@@ -102,31 +106,30 @@ class SimpleController extends Controller
 
     public function package()
     {
-        $packages = AddPackage::all();
-        return view('admin.simpleAds.package', compact('packages'));
+        $data['page_title'] = 'packages';
+        $data['packages'] = AddPackage::all();
+        return view('admin.simpleAds.package', $data);
     }
 
     public function status($id)
     {
-        $ad = SimpleAd::find($id);
+        $ad = SimpleAd::with('package')->find($id);
         if ($ad->status == 'Pending') {
             $ad->status = 'Approved';
+            $validity = $ad->package->validity;
+            $ad->validity = Carbon::now()->addDays($validity);
         } elseif ($ad->status == 'Approved') {
             $ad->status = 'Rejected';
         } else {
             $ad->status = 'Approved';
+            $validity = $ad->package->validity;
+            $ad->validity = Carbon::now()->addDays($validity);
         }
         $ad->save();
 
-        // if ($ad->status == 'Approved') {
-        //     if (isset($ad->user_id)) {
-        //         $email = $ad->user->email;
-        //     } else {
-        //         $email = $ad->vendor->email;
-        //     }
-        //     $data = $ad;
-        //     Mail::to($email)->send(new SendApprovedMail($data));
-        // }
+        $data['content'] = 'Congratulation Your Ad has been Published Successfully';
+        Mail::to($ad->email)->send(new \App\Mail\SimpleAd($data));
+
         return redirect()->back()->with($this->data("Status Successfully Updated", 'success'));
     }
 

@@ -45,6 +45,7 @@
             </li>
             <li class="dropdown @if (request()->routeIs(
                 'admin.simpleAd*',
+                'admin.all-packages',
                 'admin.slider*',
                 'admin.news*',
                 'admin.about*',

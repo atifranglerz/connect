@@ -16,6 +16,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">Image</th>
+                                            <th>Email</th>
                                             <th>URL</th>
                                             <th>Description</th>
                                             <th>Package</th>
@@ -25,41 +26,29 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($ads as $ad)
-                                            <td>
-                                                <a target="_black" href="{{ asset($ad->image) }}"> <img
-                                                        src="{{ asset('/' . $ad->image) }}"
-                                                        style="height: 50px;width:50px"></a>
+                                            <td class="images">
+                                                <a href="{{ asset($ad->image) }}"> <img src="{{ asset('/' . $ad->image) }}"
+                                                        style="height: 50px;width:80px"></a>
                                             </td>
+                                            <td>{{ $ad->email ?? '' }}</td>
                                             <td><a href="{{ $ad->url }}">{{ $ad->url }} </a> </td>
-                                            <td>{{ $ad->description }} </td>
+                                            <td>{{ $ad->description ?? '' }}</td>
                                             <td>
                                                 <div class="badge badge-shadow badge-dark">
                                                     {{ $ad->package->package_name }}</div>
                                             </td>
                                             <td>
-                                                <div
-                                                    class="badge badge-shadow 
-                                                @if ($ad->status == 'Pending') badge-warning 
-                                                @elseif ($ad->status == 'Approved') badge-success 
-                                                @else badge-danger @endif">
-                                                    {{ $ad->status }}</div>
+                                                <div class="badge badge-shadow @if ($ad->status == 'Pending') badge-warning @else badge-success @endif">
+                                                    {{ $ad->status }}
+                                                </div>
                                             </td>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.package/status', $ad->id) }}"
-                                                    class="btn @if ($ad->status == 'Pending') btn-warning @elseif ($ad->status == 'Approved') btn-success @else btn-danger @endif">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-toggle-left">
-                                                        <rect x="1" y="5" width="22" height="14"
-                                                            rx="7" ry="7"></rect>
-                                                        <circle
-                                                            @if ($ad->status == 'Approved') cx="16" @else cx="8" @endif
-                                                            cy="12" r="3"> </circle>
-                                                    </svg></a>
+                                                @if ($ad->status == 'Pending')
+                                                    <a href="{{ route('admin.package/status', $ad->id) }}" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-toggle-left"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="8" cy="12" r="3"> </circle></svg></a>
+                                                @endif
                                                 <a href="{{ route('admin.simpleAd/delete', $ad->id) }}"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" data-id="{{ $ad->id }}"
+                                                        xmlns="htt p://www.w3.org/2000/svg" data-id="{{ $ad->id }}"
                                                         class="fas fa-trash text-danger glyphicon glyphicon-trash"
                                                         width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
