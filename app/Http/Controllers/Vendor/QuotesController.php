@@ -29,6 +29,42 @@ class QuotesController extends Controller
         })->orderBy('id', 'DESC')->paginate(5);
         return view('vendor.quotes.index', $data);
     }
+    public function search(Request $request)
+    {
+        // return response()->json($request);
+        if (isset($request->service)) {
+            $_SESSION["service"] = $request->service;
+        }
+
+        if ($request->value == 'all') {
+            $search = ['user', 'company'];
+        } else {
+            $search[] = $request->value;
+        }
+
+        $page_title = 'index';
+        $user_all_bid = VendorQuote::where('vendor_id', '=', null)->with('userbid', 'user')->whereHas('userbid', function ($q) {
+            $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
+        })->whereHas('user', function ($q) use ($search) {
+            $q->whereIn('type', $search);
+        })->orwhere('vendor_id', '=', auth()->user()->id)->with('userbid')->whereHas('userbid', function ($q) {
+            $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
+        })->whereHas('user', function ($q) use ($search) {
+            $q->whereIn('type', $search);
+        })->orderBy('id', 'DESC')->paginate(1);
+
+        // return response()->json($user_all_bid);
+
+        if (isset($request->page)) {
+            return view('vendor.quotes.index', compact('user_all_bid', 'page_title'));
+        }
+        $data = view('vendor.quotes.search')->with(['user_all_bid' => $user_all_bid, 'page_title' => $page_title])->render();
+        return response()->json([
+            'success' => 'Status updated successfully',
+            'data' => $data,
+        ]);
+        // return view('vendor.quotes.search', $data);
+    }
     public function requestedInspections()
     {
 

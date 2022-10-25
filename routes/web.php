@@ -304,11 +304,15 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::post('completeInovoice', 'ordersController@completeInovoice')->name('completeInovoice');
         Route::get('print-order-details/{id}', 'ordersController@printOrderDetails')->name('print-order-details');
 
+        /* Quotation Request*/
         Route::get('quoteindex', 'QuotesController@index')->name('quoteindex');
         Route::get('requested-inspections', 'QuotesController@requestedInspections');
         Route::get('quotedetail/{id}', 'QuotesController@quotedetail')->name('quotedetail');
         Route::get('view-offer/{id}', 'QuotesController@viewOffer')->name('view-offer');
         Route::post('bidresponse', 'QuotesController@bidresponse')->name('bidresponse');
+        Route::get('search/quote', 'QuotesController@search')->name('search-quote');
+        
+        /* Quotation Request*/
         Route::get('my-bids', 'BidController@getBids')->name('my-bids');
         Route::get('bid-details/{id}', 'BidController@bidDetails')->name('bid-details');
         Route::resource('ads', 'AdsController');
