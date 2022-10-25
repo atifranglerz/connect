@@ -100,6 +100,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::post('passwordstore', 'HomepageController@passwordstore')->name('passwordstore');
     Route::get('cookies', 'HomepageController@cookies')->name('cookies');
     Route::resource('simpleAd', 'SimpleAdsController');
+    Route::get('select/package', 'SimpleAdsController@package')->name('select-package');
 
 });
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
@@ -311,7 +312,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'as' => 'vendor.'],
         Route::get('view-offer/{id}', 'QuotesController@viewOffer')->name('view-offer');
         Route::post('bidresponse', 'QuotesController@bidresponse')->name('bidresponse');
         Route::get('search/quote', 'QuotesController@search')->name('search-quote');
-        
+
         /* Quotation Request*/
         Route::get('my-bids', 'BidController@getBids')->name('my-bids');
         Route::get('bid-details/{id}', 'BidController@bidDetails')->name('bid-details');

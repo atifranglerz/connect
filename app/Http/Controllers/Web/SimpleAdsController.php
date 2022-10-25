@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AddPackage;
 use Illuminate\Http\Request;
 
 class SimpleAdsController extends Controller
@@ -24,7 +25,8 @@ class SimpleAdsController extends Controller
      */
     public function create()
     {
-        return view('web.simpleAds');
+        $package = AddPackage::all();
+        return view('web.simpleAds',compact('package'));
     }
 
     /**
@@ -47,6 +49,12 @@ class SimpleAdsController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function package(Request $request)
+    {
+        return response()->json($request);
     }
 
     /**
