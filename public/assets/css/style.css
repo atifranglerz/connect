@@ -1679,6 +1679,20 @@ body span.select2-selection.select2-selection--single {
     overflow-y: auto;
 }
 
+.bid-type-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 4.1rem;
+}
+#BidType {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25%;
+}
+
 @media (max-width: 1199px) {
     #privTermsPolicyModal .modal-body {
         height: 68vh;
@@ -1688,6 +1702,14 @@ body span.select2-selection.select2-selection--single {
     }
 }
 @media (max-width: 991px) {
+    .bid-type-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 4.1rem;
+        padding-bottom: 30px!important;
+    }
     #privTermsPolicyModal .modal-body {
         height: 65vh;
     }
@@ -1710,8 +1732,22 @@ body span.select2-selection.select2-selection--single {
     li {
         font-size: 14px!important;
     }
+    .bid-type-block {
+        margin-top: 30px!important;
+    }
 }
 @media (max-width: 575px) {
+    .bid-type-block {
+        flex-direction: column;
+        height: unset;
+        margin-top: 0!important;
+        padding-bottom: 16px!important;
+    }
+    #BidType {
+        position: unset;
+        width: 100%;
+        margin-top: 8px;
+    }
     header .form-switch.toggler_switch {
         right: 75px!important;
         top: 10px!important;

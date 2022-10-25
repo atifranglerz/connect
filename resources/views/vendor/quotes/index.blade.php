@@ -5,17 +5,15 @@
         <div class="container-lg container-fluid">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
+                    <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5 bid-type-block">
                         <h4 class="sec_main_heading text-center mb-0">{{ __('msg.All Quotes') }}</h4>
+                        <select class="form-select" name="Bidtype" id="BidType" aria-label="Type of Service">
+                            <option value="all">{{__('msg.All Quotes')}}</option>
+                            <option value="user" {{isset($_SESSION['search']) && $_SESSION['search'] == 'user' ? 'selected' : ''}}>{{__('msg.Customer')}}</option>
+                            <option value="company" {{isset($_SESSION['search']) && $_SESSION['search'] == 'company' ? 'selected' : ''}}>{{__('msg.Insurance Company')}}</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
-                <select class="form-select" name="Bidtype" id="Bidtype" aria-label="Type of Service">
-                    <option value="all">{{__('msg.All Quotes')}}</option>
-                    <option value="user" {{isset($_SESSION['search']) && $_SESSION['search'] == 'user' ? 'selected' : ''}}>{{__('msg.Customer')}}</option>
-                    <option value="company" {{isset($_SESSION['search']) && $_SESSION['search'] == 'company' ? 'selected' : ''}}>{{__('msg.Insurance Company')}}</option>
-                </select>
             </div>
             <div id="appendQoute" class="row g-2">
                 @if (count($user_all_bid) > 0)
@@ -29,7 +27,7 @@
                         $img1 = Explode(',', $img->car_image);
                         $user = \App\Models\User::find($value->userbid->user_id);
                         ?>
-                        <div class="col-lg-10 col-md-11 col-sm-12 col-10  mx-auto">
+                        <div class="col-lg-10 col-sm-12 mx-auto">
                             <div class="all_quote_card ">
                                 <div class="car_inner_imagg ">
                                     <img src="{{ asset($img1[0]) }}">
