@@ -166,7 +166,7 @@ return [
     'P/O Box' => 'P/O Box',
     'Legal Info' => 'Legal Info',
     'Trading License No.' => 'Trading License No.',
-    'Complete Details To Reset Your Password' => 'Complete Details To Reset Your Password',
+    'Reset Your Password' => 'Reset Your Password',
     'Dubai Landline Number' => 'Dubai Landline Number',
     'Abu Dhabi Landline Number' => 'Abu Dhabi Landline Number',
     'Sharjah Landline Number' => 'Sharjah Landline Number',

@@ -155,7 +155,7 @@ return [
     'P/O Box' => 'صندوق بريد',
     'Legal Info' => 'المعلومات القانونية',
     'Trading License No.' => 'رقم الرخصة التجارية',
-    'Complete Details To Reset Your Password' => 'التفاصيل الكاملة لإعادة تعيين كلمة المرور الخاصة بك',
+    'Reset Your Password' => 'اعد ضبط كلمه السر',
     'VAT Details' => 'تفاصيل ضريبة القيمة المضافة',
     'Dubai Landline Number' => 'رقم الخط الأرضي في دبي',
     'Abu Dhabi Landline Number' => 'رقم الهاتف الثابت في أبوظبي',
