@@ -23,7 +23,7 @@
     <link rel="stylesheet"
         href="{{ asset('public/admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/admin/assets/fonts/fontawesome5.15.4/css/all.css') }}">
-    <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/web/assets/favicon/favicon.ico') }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ asset('public/web/assets/favicon/favicon-2.png') }}' />
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
     <link rel="stylesheet" type="text/css"

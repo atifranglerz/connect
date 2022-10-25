@@ -8,4 +8,7 @@
     pointer-events: none;
 }
 
+.glyphicon-trash {
+    cursor: pointer;
+}
 /*# sourceMappingURL=custom.css.map */
