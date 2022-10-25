@@ -54,7 +54,11 @@ class SimpleAdsController extends Controller
 
     public function package(Request $request)
     {
-        return response()->json($request);
+        $data = AddPackage::find($request->id);
+        return response()->json([
+            'success' => 'successfully',
+            'data' => $data
+        ]);
     }
 
     /**
