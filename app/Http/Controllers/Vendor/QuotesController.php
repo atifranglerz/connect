@@ -20,7 +20,6 @@ class QuotesController extends Controller
 {
     public function index()
     {
-
         $data['page_title'] = 'index ';
         $data['user_all_bid'] = VendorQuote::where('vendor_id', '=', null)->with('userbid')->whereHas('userbid', function ($q) {
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
@@ -29,17 +28,23 @@ class QuotesController extends Controller
         })->orderBy('id', 'DESC')->paginate(5);
         return view('vendor.quotes.index', $data);
     }
+
     public function search(Request $request)
     {
-        // return response()->json($request);
-        if (isset($request->service)) {
-            $_SESSION["service"] = $request->service;
-        }
-
-        if ($request->value == 'all') {
-            $search = ['user', 'company'];
+        if (isset($request->value)) {
+            if ($request->value == 'all') {
+                $_SESSION["search"] = ['user', 'company'];
+                $search = ['user', 'company'];
+            } else {
+                $_SESSION["search"] = $request->value;
+                $search[] = $request->value;
+            }
         } else {
-            $search[] = $request->value;
+            if (gettype($_SESSION["search"]) == 'string') {
+                $search[] = $_SESSION["search"];
+            } else {
+                $search = $_SESSION["search"];
+            }
         }
 
         $page_title = 'index';
@@ -53,8 +58,6 @@ class QuotesController extends Controller
             $q->whereIn('type', $search);
         })->orderBy('id', 'DESC')->paginate(1);
 
-        // return response()->json($user_all_bid);
-
         if (isset($request->page)) {
             return view('vendor.quotes.index', compact('user_all_bid', 'page_title'));
         }
@@ -63,7 +66,6 @@ class QuotesController extends Controller
             'success' => 'Status updated successfully',
             'data' => $data,
         ]);
-        // return view('vendor.quotes.search', $data);
     }
     public function requestedInspections()
     {
