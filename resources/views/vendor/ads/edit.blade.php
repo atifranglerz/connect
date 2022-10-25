@@ -44,7 +44,7 @@
                                     $preDocx = json_encode($preDocx);
                                     ?>
                                     <div class="col-lg-6 col-md-6 mb-3">
-                                        <label class="mb-2 heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                        <label class="mb-2 heading-color"><b>{{ __('msg.Upload image(s) of the car') }}<small>
                                                     ({{ __('msg.Click the box again to upload another') }})</small></b></label>
                                         <div class="car_images">
                                         </div>

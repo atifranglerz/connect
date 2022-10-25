@@ -156,6 +156,7 @@ return [
     'Legal Info' => 'المعلومات القانونية',
     'Trading License No.' => 'رقم الرخصة التجارية',
     'Reset Your Password' => 'اعد ضبط كلمه السر',
+    'Upload image(s) of the car' => 'قم بتحميل صورة (صور) السيارة',
     'VAT Details' => 'تفاصيل ضريبة القيمة المضافة',
     'Dubai Landline Number' => 'رقم الخط الأرضي في دبي',
     'Abu Dhabi Landline Number' => 'رقم الهاتف الثابت في أبوظبي',

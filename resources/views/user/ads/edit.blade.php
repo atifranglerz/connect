@@ -44,7 +44,7 @@
                                     $preDocx = json_encode($preDocx);
                                     ?>
                                     <div class="col-lg-6 col-md-6 mb-3">
-                                        <label class="heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                        <label class="heading-color"><b>{{ __('msg.Upload image(s) of the car') }}<small>
                                                     ({{ __('msg.Click the box again to upload another') }})</small></b></label>
                                         <div class="car_images">
                                         </div>
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <select class="form-select form-control" name="city" aria-label="City">
-                                           
+
                                             <option value="Dubai" @if ($ads->city == 'Dubai') selected @endif>
                                                 {{ __('msg.Dubai') }}</option>
                                             <option value="Abu Dhabi" @if ($ads->city == 'Abu Dhabi') selected @endif>

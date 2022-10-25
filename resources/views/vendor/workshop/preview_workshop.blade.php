@@ -243,7 +243,7 @@
                                     <textarea name="description1" placeholder="{{__('msg.Add information in details')}} ({{__('msg.Optional')}})" class="form-control" rows="5">{{ old('description1') }}</textarea>
                                 </div>
                                 <div class="col-lg-12 px-2">
-                                    <label class="mb-2 heading-color"><b>{{__('msg.Upload upto 5 images')}} <small>({{__('msg.Click the box again to upload another')}})</small></b></label>
+                                    <label class="mb-2 heading-color"><b>{{ __('msg.Upload image(s) of the car') }} <small>({{__('msg.Click the box again to upload another')}})</small></b></label>
                                     <div class="input-imagess"></div>
                                     @error('car_images')
                                         <div class="text-danger p-2">{{ $message }}</div>
