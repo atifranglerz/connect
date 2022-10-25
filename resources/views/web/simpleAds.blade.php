@@ -37,7 +37,7 @@
                             <div class="form-group col-sm-4 col-6 mb-3 days-block">
                                 <input type="text" class="form-control" value="" placeholder="Days i.e..." readonly>
                             </div>
-                            <div class="form-group col-sm-4 col-6 mb-3" style="padding-left: 4px">
+                            <div class="form-group col-sm-4 col-6 mb-3 price-block" style="padding-left: 4px">
                                 <input type="text" class="form-control" value="" placeholder="Price AED" readonly>
                             </div>
                             <div class="form-group mb-3">
@@ -72,6 +72,7 @@
         $(function() {
             $("#package").on("change", function() {
                 var id = $(this).val();
+                var $this = $(this);
                 $.ajax({
                     url: '{{ route('select-package') }}',
                     type: 'GET',
@@ -79,9 +80,9 @@
                         'id': id,
                     },
                     success: function(response) {
-                        $(".appendGarage").empty();
-                        $(".appendGarage").append(response);
-
+                        console.log(response.data);
+                        $('.days-block input').val(response.data.validity);
+                        $('.price-block input').val(response.data.price);
                     }
                 });
             });
