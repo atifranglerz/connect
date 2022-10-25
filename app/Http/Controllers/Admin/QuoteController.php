@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\UserBid;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -48,7 +49,15 @@ class QuoteController extends Controller
      */
     public function show($id)
     {
-        //
+         $quote = UserBid::with('services')->find($id);
+      $category = [];
+      foreach($quote->services as $data){
+        array_push($category, $data->category_id);
+      }
+    $categoreis = Category::whereIn('id',$category)->get();
+
+        return view('admin.quote.show',compact('quote','categoreis'));
+
     }
 
     /**
@@ -82,6 +91,7 @@ class QuoteController extends Controller
      */
     public function destroy($id)
     {
-        return $id;
+        UserBid::destroy($id);
+        return redirect()->back()->with($this->data("Quotation deleted successfully", 'success'));
     }
 }
