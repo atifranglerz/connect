@@ -189,7 +189,7 @@
                                         aria-labelledby="profile-tab">
                                         <div class="row g-lg-3 g-2">
                                             <div class="col-lg-12 mb-3 form-group">
-                                                <label class="mb-2 heading-color"><b>{{ __('msg.Upload image(s) of the car') }}<small>
+                                                <label class="mb-2 heading-color"><b>{{ __('msg.Upload image(s) of the car') }} ({{ __('msg.Required') }}) <br><small>
                                                             ({{ __('msg.Click the box again to upload another') }})</small></b></label>
                                                 <div class="input-images">
                                                     {{-- input field name  car_images --}}

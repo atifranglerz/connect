@@ -50,7 +50,7 @@
                                                 @endforeach
                                             </div>
                                             <input type="file" multiple name="car_images[]" class="form-control" value="" aria-label="Model"> --}}
-                                            <label class="heading-color"><b>{{ __('msg.Upload upto 5 images') }}<small>
+                                            <label class="heading-color"><b>{{ __('msg.Upload image(s) of the car') }} ({{ __('msg.Required') }}) <br><small>
                                                         ({{ __('msg.Click the box again to upload another') }})</small></b></label>
                                             <div class="car_images">
                                             </div>
