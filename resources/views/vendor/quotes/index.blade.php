@@ -12,9 +12,9 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 form-group">
                 <select class="form-select" name="Bidtype" id="Bidtype" aria-label="Type of Service">
-                    <option value="all">All</option>
-                    <option value="user">Customer</option>
-                    <option value="company">Insurance Company</option>
+                    <option value="all">{{__('msg.All Quotes')}}</option>
+                    <option value="user" {{isset($_SESSION['search']) && $_SESSION['search'] == 'user' ? 'selected' : ''}}>{{__('msg.Customer')}}</option>
+                    <option value="company" {{isset($_SESSION['search']) && $_SESSION['search'] == 'company' ? 'selected' : ''}}>{{__('msg.Insurance Company')}}</option>
                 </select>
             </div>
             <div id="appendQoute" class="row g-2">
