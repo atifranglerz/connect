@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
-// use App\Mail\SimpleAd;
-use App\Models\SimpleAd;
-use App\Models\AddPackage;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// use App\Mail\SimpleAd;
+use App\Models\AddPackage;
+use App\Models\SimpleAd;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class SimpleController extends Controller
@@ -118,17 +118,10 @@ class SimpleController extends Controller
             $ad->status = 'Approved';
             $validity = $ad->package->validity;
             $ad->validity = Carbon::now()->addDays($validity);
-        } elseif ($ad->status == 'Approved') {
-            $ad->status = 'Rejected';
-        } else {
-            $ad->status = 'Approved';
-            $validity = $ad->package->validity;
-            $ad->validity = Carbon::now()->addDays($validity);
+            $ad->save();
+            $data['content'] = 'Congratulation Your Ad has been Published Successfully';
+            Mail::to($ad->email)->send(new \App\Mail\SimpleAd($data));
         }
-        $ad->save();
-
-        $data['content'] = 'Congratulation Your Ad has been Published Successfully';
-        Mail::to($ad->email)->send(new \App\Mail\SimpleAd($data));
 
         return redirect()->back()->with($this->data("Status Successfully Updated", 'success'));
     }
