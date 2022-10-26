@@ -145,6 +145,8 @@
                     <div class="footer_link">
                         <h5 class="text-white main-heading">{{__('msg.LINKS')}}</h5>
                         <ul class="text-capitalize">
+                            <li class="d-none"><a href="{{ route('simpleAd.create') }}"><span class="fa fa-plus"
+                                style="margin-right: 8px"></span>{{__('msg.Post Your Ad')}}</a></li>
                             <li><a href="{{ route('about') }}"><span class="fa fa-info-circle me-2 me-md-1"
                                 style="margin-right: 8px"></span>{{__('msg.About Us')}}</a></li>
                             <li><a href="{{ route('vendor.register') }}"><span class="fa fa-briefcase me-2 me-md-1"

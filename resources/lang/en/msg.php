@@ -168,6 +168,7 @@ return [
     'Trading License No.' => 'Trading License No.',
     'Reset Your Password' => 'Reset Your Password',
     'Upload image(s) of the car' => 'Upload image(s) of the car',
+    'Post Your Ad' => 'Post Your Ad',
     'Dubai Landline Number' => 'Dubai Landline Number',
     'Abu Dhabi Landline Number' => 'Abu Dhabi Landline Number',
     'Sharjah Landline Number' => 'Sharjah Landline Number',
