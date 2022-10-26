@@ -43,7 +43,7 @@
                                 <input type="text" class="form-control" value="" placeholder="Price AED" readonly>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="formFile" class="form-label heading-color"><b>Image (300 x 300) ({{__('msg.Required')}})</b></label>
+                                <label for="formFile" class="form-label heading-color"><b>Image (720 x 90) ({{__('msg.Required')}})</b></label>
                                 <input class="form-control" type="file"name="image" id="simpleAdImage" accept=".jpeg, .jpg, .png, .PNG, .heic" required>
                             </div>
                             <div class="form-group col-6" style="padding-right: 4px">
