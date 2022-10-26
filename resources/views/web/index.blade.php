@@ -239,8 +239,8 @@
             <!-- Ads Slider -->
             <div class="d-none col-11 mx-auto">
                 <div class="mt-3 mb-sm-4 mb-3 ads-slider">
-                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
-                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
+                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></a></div>
+                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></a></div>
                 </div>
             </div>
             <!-- Ads Slider -->
@@ -286,8 +286,8 @@
                 <!-- Ads Slider -->
                 <div class="d-none col-11 mx-auto">
                     <div class="mt-3 mb-sm-4 mb-3 ads-slider">
-                        <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
-                        <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
+                        <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></a></div>
+                        <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></a></div>
                     </div>
                 </div>
                 <!-- Ads Slider -->
@@ -433,8 +433,8 @@
             <!-- Ads Slider -->
             <div class="d-none col-11 mx-auto">
                 <div class="mt-3 mb-sm-4 mb-3 ads-slider">
-                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
-                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
+                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></a></div>
+                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></a></div>
                 </div>
             </div>
             <!-- Ads Slider -->
