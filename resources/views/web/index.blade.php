@@ -237,7 +237,7 @@
         <div class="container-lg container-fluid">
             <div class="row">
             <!-- Ads Slider -->
-            <div class="col-11 mx-auto">
+            <div class="d-none col-11 mx-auto">
                 <div class="mt-3 mb-sm-4 mb-3 ads-slider">
                     <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
                     <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
@@ -284,7 +284,7 @@
         <div class="container-lg container-fluid">
             <div class="row">
                 <!-- Ads Slider -->
-                <div class="col-11 mx-auto">
+                <div class="d-none col-11 mx-auto">
                     <div class="mt-3 mb-sm-4 mb-3 ads-slider">
                         <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
                         <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
@@ -431,7 +431,7 @@
                 </div>
             </div>
             <!-- Ads Slider -->
-            <div class="col-11 mx-auto">
+            <div class="d-none col-11 mx-auto">
                 <div class="mt-3 mb-sm-4 mb-3 ads-slider">
                     <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
                     <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
