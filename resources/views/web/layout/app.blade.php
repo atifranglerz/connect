@@ -27,11 +27,16 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/slickslider/slick/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/slickslider/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/toastr/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/css/lightgallery.css" />
     <title>{{__('msg.Repair my Car')}}|{{$page_title ?? ''}}</title>
     <style>
+        .ads-slider img {
+            margin: 0 auto;
+        }
         .form-switch .form-check-input {
             background-image: url(https://ranglerz.pw/repairmycar/public/user/assets/images/orangesvg.svg);
         }
@@ -229,12 +234,23 @@
     <script src="{{ asset('public/user/assets/image-uploader/dist/image-uploader.min.js') }}"></script>
     <script src="{{ asset('public/assets/toastr/js/toastr.min.js') }}"></script>
     <script src="{{ asset('public/assets/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/assets/slickslider/slick/slick.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.14/js/lightgallery-all.min.js"></script>
     <script src="{{ asset('public/assets/js/custom.js') }}"></script>
     @yield('script')
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        $(function() {
+            $('.ads-slider').slick({
+                autoplay: true,
+                autoplaySpeed: 2000,
+                fade: true,
+                cssEase: 'linear',
+                centerMode: true
+            });
+        });
+
         toastr.options = {
             "closeButton": true,
             "newestOnTop": false,

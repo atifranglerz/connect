@@ -90,10 +90,10 @@
                 });
             });
             $("#simpleAdImage").checkImageSize({
-                minWidth: 300,
-                minHeight: 300,
-                maxWidth: 300,
-                maxHeight: 300,
+                minWidth: 720,
+                minHeight: 90,
+                maxWidth: 720,
+                maxHeight: 90,
                 showError:true,
                 ignoreError:false
             });

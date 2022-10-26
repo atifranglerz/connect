@@ -236,6 +236,14 @@
     <section class="py-5 about_connect looking_for">
         <div class="container-lg container-fluid">
             <div class="row">
+            <!-- Ads Slider -->
+            <div class="col-11 mx-auto">
+                <div class="mt-3 mb-sm-4 mb-3 ads-slider">
+                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
+                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
+                </div>
+            </div>
+            <!-- Ads Slider -->
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
                         <h4 class="sec_main_heading text-center">{{ __('msg.latest_news') }}</h4>
@@ -275,6 +283,14 @@
     <section class="looking_for">
         <div class="container-lg container-fluid">
             <div class="row">
+                <!-- Ads Slider -->
+                <div class="col-11 mx-auto">
+                    <div class="mt-3 mb-sm-4 mb-3 ads-slider">
+                        <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
+                        <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
+                    </div>
+                </div>
+                <!-- Ads Slider -->
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
                         <h4 class="sec_main_heading text-center">{{ __('msg.near_you') }}</h4>
@@ -414,6 +430,14 @@
                     </div>
                 </div>
             </div>
+            <!-- Ads Slider -->
+            <div class="col-11 mx-auto">
+                <div class="mt-3 mb-sm-4 mb-3 ads-slider">
+                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></div>
+                    <div><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></div>
+                </div>
+            </div>
+            <!-- Ads Slider -->
         </div>
     </section>
     <section class="mb-0 looking_for footer_before_sec"
