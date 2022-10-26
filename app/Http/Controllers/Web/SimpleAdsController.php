@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\AddPackage;
+use App\Models\SimpleAd;
 use Illuminate\Http\Request;
 
 class SimpleAdsController extends Controller
@@ -26,7 +27,7 @@ class SimpleAdsController extends Controller
     public function create()
     {
         $package = AddPackage::all();
-        return view('web.simpleAds',compact('package'));
+        return view('web.simpleAds', compact('package'));
     }
 
     /**
@@ -37,7 +38,22 @@ class SimpleAdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ad = new SimpleAd();
+        $ad->email = $request->email;
+        $ad->url = $request->url;
+        $ad->description = $request->description;
+        $ad->packages_id = $request->package;
+
+        if ($request->file('image')) {
+            $name = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $name = $request->file('image')->move('public/image/add/', $name);
+            $ad->image = $name;
+        }
+        $ad->save();
+        
+        $_SESSION["msg"] = "Your Ad Request has been Submit Successfully";
+        $_SESSION["alert"] = "success";
+        return redirect()->route('home');
     }
 
     /**
@@ -51,13 +67,12 @@ class SimpleAdsController extends Controller
         //
     }
 
-
     public function package(Request $request)
     {
         $data = AddPackage::find($request->id);
         return response()->json([
             'success' => 'successfully',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
