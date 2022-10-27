@@ -46,7 +46,8 @@
                             aria-label="Default select example" name="garage" id="selGarFilter" disabled>
                             <option selected disabled value="">{{ __('msg.Select a Garage/Vendor') }}</option>
                         </select>
-                        <button class="btn search_btn disabled" type="submit" style="opacity: 1">{{ __('msg.SEARCH') }}</button>
+                        <button class="btn search_btn disabled" type="submit"
+                            style="opacity: 1">{{ __('msg.SEARCH') }}</button>
                     </form>
                 </div>
             </div>
@@ -169,8 +170,8 @@
                 </div>
                 <!-- <div class="col-lg-6">
 
-                    </div>
-                  -->
+                                </div>
+                              -->
             </div>
         </div>
     </section>
@@ -198,7 +199,8 @@
                                     </div>
                                     <div class="card-body p-sm-2">
                                         <h6 class="block-head-txt text-center">{{ $value->garage_name }}</h6>
-                                        <h5 class="card-title text-center allgarages_card_title"><span> {{ $value->rating }}</span> </h5>
+                                        <h5 class="card-title text-center allgarages_card_title"><span>
+                                                {{ $value->rating }}</span> </h5>
                                         <div class="card_icons d-flex justify-content-center align-items-center">
                                             <?php $category = \App\Models\GarageCategory::where('garage_id', $value->id)->pluck('category_id');
                                             $category_name = \App\Models\Category::whereIn('id', $category)->get();
@@ -206,7 +208,7 @@
                                             if ($count > 5) {
                                                 $count = 5;
                                             }
-
+                                            
                                             ?>
                                             @for ($i = 0; $i < $count; $i++)
                                                 <div class="icon_wrpaer">
@@ -236,14 +238,22 @@
     <section class="py-5 about_connect looking_for">
         <div class="container-lg container-fluid">
             <div class="row">
-            <!-- Ads Slider -->
-            <div class="d-none col-11 mx-auto">
-                <div class="mt-3 mb-sm-4 mb-3 ads-slider">
-                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></a></div>
-                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></a></div>
+                <!-- Ads Slider -->
+                <div class="col-11 mx-auto d-none">
+                    @php
+                        if (\App\Models\SimpleAd::whereStatus('Approved')->count() > 1) {
+                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get()->random(2);
+                        } else {
+                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get();
+                        }
+                    @endphp
+                    <div class="mt-3 mb-sm-4 mb-3 ads-slider">
+                        @foreach ($Ads as $data)
+                            <div><a href="{{ $data->url }}"><img src="{{ asset($data->image) }}"></a></div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <!-- Ads Slider -->
+                <!-- Ads Slider -->
                 <div class="col-lg-8 mx-auto">
                     <div class="main_content_wraper">
                         <h4 class="sec_main_heading text-center">{{ __('msg.latest_news') }}</h4>
@@ -284,10 +294,18 @@
         <div class="container-lg container-fluid">
             <div class="row">
                 <!-- Ads Slider -->
-                <div class="d-none col-11 mx-auto">
+                <div class="col-11 mx-auto d-none">
+                    @php
+                        if (\App\Models\SimpleAd::whereStatus('Approved')->count() > 1) {
+                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get()->random(2);
+                        } else {
+                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get();
+                        }
+                    @endphp
                     <div class="mt-3 mb-sm-4 mb-3 ads-slider">
-                        <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></a></div>
-                        <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></a></div>
+                        @foreach ($Ads as $data)
+                            <div><a href="{{ $data->url }}"><img src="{{ asset($data->image) }}"></a></div>
+                        @endforeach
                     </div>
                 </div>
                 <!-- Ads Slider -->
@@ -431,10 +449,18 @@
                 </div>
             </div>
             <!-- Ads Slider -->
-            <div class="d-none col-11 mx-auto">
+            <div class="col-11 mx-auto d-none">
+                @php
+                    if (\App\Models\SimpleAd::whereStatus('Approved')->count() > 1) {
+                        $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get()->random(2);
+                    } else {
+                        $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get();
+                    }
+                @endphp
                 <div class="mt-3 mb-sm-4 mb-3 ads-slider">
-                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/blue-spark_720x90.jpg"></a></div>
-                    <div><a href="#"><img src="https://www.simpleimageresizer.com/_uploads/photos/dab8eef0/car-garage-gurgaon_720x90.jpg"></a></div>
+                    @foreach ($Ads as $data)
+                        <div><a href="{{ $data->url }}"><img src="{{ asset($data->image) }}"></a></div>
+                    @endforeach
                 </div>
             </div>
             <!-- Ads Slider -->
