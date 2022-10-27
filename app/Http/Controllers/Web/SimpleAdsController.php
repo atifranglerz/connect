@@ -51,7 +51,7 @@ class SimpleAdsController extends Controller
         }
         $ad->save();
         
-        $_SESSION["msg"] = "Your Ad Request has been Submit Successfully";
+        $_SESSION["msg"] = "Your Ad Request has been sent, soon you'll be notify through an email";
         $_SESSION["alert"] = "success";
         return redirect()->route('home');
     }

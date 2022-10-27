@@ -119,7 +119,7 @@ class SimpleController extends Controller
             $validity = $ad->package->validity;
             $ad->validity = Carbon::now()->addDays($validity);
             $ad->save();
-            $data['content'] = 'Congratulation Your Ad has been Published Successfully';
+            $data['content'] = 'Congratulations! Your Ad has been Published Successfully on Repair My Car Portal';
             Mail::to($ad->email)->send(new \App\Mail\SimpleAd($data));
         }
 
