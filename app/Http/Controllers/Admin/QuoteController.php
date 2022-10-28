@@ -16,7 +16,7 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        $quotes = UserBid::where('offer_status','pnding')->get();
+        $quotes = UserBid::where('offer_status','pending')->get();
         return view('admin.quote.index',compact('quotes'));
     }
 

@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="main_content_wraper dashboard mt-1 mt-lg-5 mt-md-5">
-                        <h4 class="sec_main_heading text-center mb-0">{{ __('msg.DASHBOARD') }}</h4>
-                        <p class="sec_main_para text-center">{{ __("msg.See what's happening on your profile") }}</p>
+                        {{-- <h4 class="sec_main_heading text-center mb-0">{{ __('msg.DASHBOARD') }}</h4>
+                        <p class="sec_main_para text-center">{{ __("msg.See what's happening on your profile") }}</p> --}}
                     </div>
                 </div>
             </div>
@@ -94,15 +94,15 @@
                             </div>
                         </div>
                     @else
-                        <div class=" w-100  quote_detail_wraper">
-                        <div class="quote_info">
-                            <p class="mb-0">{{ __('msg.No Data found!') }}</p>
+                        <div class=" w-100  quote_detail_wraper all_quote_card">
+                            <div class="quote_info">
+                                <p class="mb-0">{{ __('msg.No Data found!') }}</p>
+                            </div>
                         </div>
-                    </div>
-                        </div>
-                    @endif
                 </div>
+                @endif
             </div>
+        </div>
     </section>
 
     <!-- Modal -->

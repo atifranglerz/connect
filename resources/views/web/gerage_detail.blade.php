@@ -335,8 +335,7 @@
                                     </div>
                                     <div class="col-12 px-2">
                                         <div style="position: relative">
-                                            <input type="text" name="address"
-                                                @if (Auth::check()) value="{{ Auth::user()->address }}" readonly @endif
+                                            <input type="text" name="address" value="{{ old('address') }}"
                                                 class="form-control address-field"
                                                 placeholder="{{ __('msg.Address') }} ({{ __('msg.Required') }})"
                                                 style="padding-right: 2rem">

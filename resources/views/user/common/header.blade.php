@@ -23,9 +23,9 @@
                 <div class="d-flex  customer_heading_main">
                     <div class="costumer_heading">
                         @if (Auth::user()->type == 'user')
-                            <h6 class="mb-0">{{ __('msg.Customer Dashboard') }}</h6>
+                            <h5 class="sec_main_heading text-center mb-0">{{ __('msg.Customer Dashboard') }}</h5>
                         @else
-                            <h6 class="mb-0">Company Dashboard</h6>
+                            <h5 class="sec_main_heading text-center mb-0">{{__('msg.Company Dashboard')}}</h5>
                         @endif
                     </div>
                 </div>

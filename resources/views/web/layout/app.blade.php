@@ -110,7 +110,7 @@
                     <div class="d-flex login_header_main">
                         @if (Auth::guard('vendor')->check() || Auth::guard('web')->check())
                             @if (Auth::guard('web')->check())
-                                <a href="{{ route('user.profile.index') }}" class="me-4 me-md-3">{{ __('msg.Profile')}}</a>
+                                <a href="{{ route('user.dashboard') }}" class="me-4 me-md-3">{{ __('msg.DASHBOARD')}}</a>
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
                                         class="fas fa-sign-out-alt"></i>{{ __('msg.Logout')}}</a>
@@ -119,7 +119,7 @@
                                     @csrf
                                 </form>
                             @elseif(Auth::guard('vendor')->check())
-                                <a href="{{ route('vendor.profile.index') }}" class="me-4 me-md-3">{{ __('msg.Profile')}}</a>
+                                <a href="{{ route('vendor.dashboard') }}" class="me-4 me-md-3">{{ __('msg.DASHBOARD')}}</a>
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
                                         class="fas fa-sign-out-alt"></i>{{ __('msg.Logout')}}</a>

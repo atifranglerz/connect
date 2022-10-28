@@ -254,15 +254,7 @@
                                                         <div class="text-danger p-2">{{ $message }}</div>
                                                     @enderror
                                                 </div>
-                                                {{-- <div class="col-lg-6 col-md-6 form-group"> --}}
-                                                {{-- <input type="text" class="form-control" name="phone" placeholder="Mobile No" aria-label="Mobile No" required> --}}
-                                                {{-- @error('phone') --}}
-                                                {{-- <div class="text-danger p-2">{{ $message }}
-                                        </div> --}}
-                                                {{-- @enderror --}}
-                                                {{-- </div> --}}
                                                 <div class="col-lg-6 col-md-6 form-group">
-                                                    {{-- <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email"> --}}
                                                     <input type="email" name="email" class="form-control" readonly
                                                         value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                                                 </div>
@@ -270,9 +262,9 @@
                                                     <div style="position: relative">
                                                         <input type="text" class="form-control address-field"
                                                             name="address"
-                                                            value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"
+                                                            value="{{ old('address') }}"
                                                             placeholder="{{ __('msg.Address') }}" aria-label="Car Milage"
-                                                            style="padding-right: 2rem" required readonly>
+                                                            style="padding-right: 2rem" required>
                                                         <span class="fa fa-location" aria-hidden="true"
                                                             style="position: absolute;top: 10px;right: 10px"></span>
                                                     </div>

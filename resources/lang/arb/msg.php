@@ -229,6 +229,7 @@ return [
     'My Ads Listing' => 'قائمة إعلاناتي',
     'My Bids' => 'العطاءات الخاصة بي',
     'Orders' => 'الطلب',
+    'Company Dashboard' => 'لوحة معلومات الشركة',
     'DASHBOARD' => 'لوحة القيادة',
     "See what's happening on your profile" => 'انظر ماذا يحدث في ملفك الشخصي',
     'Completed Orders' => 'الطلبات المكتملة',
