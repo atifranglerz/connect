@@ -56,7 +56,7 @@ class QuotesController extends Controller
             $q->Where('looking_for', '!=', "I don't know the Problem and Requesting for the Inspection")->Where('offer_status', '!=', 'ordered');
         })->whereHas('user', function ($q) use ($search) {
             $q->whereIn('type', $search);
-        })->orderBy('id', 'DESC')->paginate(1);
+        })->orderBy('id', 'DESC')->paginate(5);
 
         if (isset($request->page)) {
             return view('vendor.quotes.index', compact('user_all_bid', 'page_title'));
