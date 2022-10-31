@@ -28,4 +28,9 @@ class VendorBid extends Model
     {
         return $this->hasMany(Part::class, 'vendor_bid_id', 'id');
     }
+
+    public function insurancebid()
+    {
+        return $this->hasOne(InsuranceRequest::class, 'vendor_bid_id', 'id');
+    }
 }

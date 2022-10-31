@@ -99,7 +99,7 @@
                             <div class="col-12 mb-3 signup_input_wraper">
                                 <input type="text" name="trading_license" value="{{ old('trading_license') }}"
                                     class="form-control"
-                                    placeholder="{{ __('msg.Trade License No.') }} ({{ __('msg.Required') }})" required>
+                                    placeholder="{{__('msg.Trading License No.')}} ({{ __('msg.Required') }})" required>
                                 @error('trading_license')
                                     <div class="text-danger p-2">{{ $message }}</div>
                                 @enderror
