@@ -356,16 +356,27 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
     Route::get('token_confirm/{token}', 'AuthController@tokenConfirm')->name('token_confirm');
     Route::post('otp_confirm', 'AuthController@otpConfirm')->name('otp_confirm');
     Route::post('password_change', 'AuthController@submitResetPassword')->name('password_change');
+
+    /** Return route after payment process of Insurance */
+    Route::get('/insurance-payment/success', 'RequestController@paymentSuccess');
+    Route::get('/insurance-payment/cancel', 'RequestController@paymentCancel');
+    Route::get('/insurance-payment/declined', 'RequestController@paymentDeclined');
+    /**Return route after payment process of  cusotmer */
+    Route::get('/order-payment/success', 'PaymentController@paymentSuccess');
+    Route::get('/order-payment/cancel', 'PaymentController@paymentCancel');
+    Route::get('/order-payment/declined', 'PaymentController@paymentDeclined');
+
     Route::group(['middleware' => ['auth:web', 'role:user']], function () {
         Route::get('term_condition', 'TermConditionController@index')->name('term_condition');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::post('payment_page', 'PaymentController@index')->name('payment_page');
-        Route::post('payment-info', 'PaymentController@orderPlace')->name('payment-info');
         Route::post('order/place', 'PaymentController@orderPlaceByCompany')->name('order_place');
         Route::get('payment-insurance/{id}', 'PaymentController@orderPlaceForInsurance')->name('payment-insurance');
-        //payment stripe
-        Route::get('stripe', 'PaymentController@stripe');
-        Route::post('stripe', 'PaymentController@stripePost')->name('stripe.post');
+
+        Route::post('payment/throughCheck', 'PaymentController@throughCheck')->name('payment-throughCheck');
+        Route::post('payment/throughCard', 'PaymentController@throughCard')->name('payment-throughCard');
+        Route::post('payment-info', 'PaymentController@orderPlace')->name('payment-info');
+
         //profile
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
         Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
@@ -386,10 +397,6 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         //notification
         Route::post('notification', 'NotificationController@notification')->name('notification');
         Route::post('status/notification', 'NotificationController@status')->name('status.notification');
-
-        // payment via insurance company
-        Route::post('email', 'InsurancePaymentController@email')->name('email');
-        Route::post('payment-request', 'InsurancePaymentController@payment_request')->name('payment-request');
 
         /* Logout */
         Route::post('logout', 'AuthController@logout')->name('logout');
@@ -427,8 +434,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], funct
         Route::get('insurance-index', 'RequestController@index')->name('insurance-index');
         Route::get('car/detail/{id}', 'RequestController@carDetail')->name('car-detail');
         Route::get('payments/{id}', 'RequestController@Payment')->name('payments');
-        Route::post('pay/payment', 'RequestController@payPayment')->name('pay-payment');
         Route::get('print-order-detail/{id}', 'RequestController@printOrderDetails')->name('print-order-detail');
+        Route::post('insurance/throughCheck', 'RequestController@throughCheck')->name('insurance-throughCheck');
+        Route::post('insurance/throughCard', 'RequestController@throughCard')->name('insurance-throughCard');
 
     });
 });

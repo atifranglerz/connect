@@ -6,13 +6,16 @@
             min-width: fit-content;
             text-align: center;
         }
+
         .alert-danger {
             margin-top: 10%;
         }
+
         @media (min-width: 992px) {
             .col-lg-2 {
                 width: 5.666667%;
             }
+
             .col-lg-5 {
                 width: 46.666667%;
             }
@@ -59,14 +62,12 @@
             ?>
             <div class="row mx-0">
                 <div class="col-lg-9 col-md-12 mx-auto" style="background: #FFF;padding: 16px;border-radius: 8px">
-                    <form role="form" action="{{ route('user.payment-info') }}" method="POST" class="require-validation"
-                        data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                    <form role="form" action="{{ route('user.payment-info') }}" method="POST">
                         @csrf
                         <input type="hidden" name="user_bid_id" value="{{ $vendorbid->user_bid_id }}">
                         <input type="hidden" name="vendor_bid_id" value="{{ $vendorbid->id }}">
                         <input type="hidden" name="garage_id" value="{{ $vendorbid->garage_id }}">
                         <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
-                        <input type="hidden" name="action" value="through_credit">
                         <div class=" billing_info">
                             <h5 class="mb-3 text-center text-uppercase heading-color">{{ __('msg.Payment Info') }}</h5>
                         </div>
@@ -75,49 +76,11 @@
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group required'>
                                         <input class='form-control' value="{{ $amount }} {{ __('msg.AED') }}"
-                                            size='4' type='text' readonly name="amount">
+                                            size='4' type='hidden' readonly name="amount">
                                     </div>
                                 </div>
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12 form-group required'>
-                                        <input class='form-control' placeholder="{{ __('msg.Cardholder Name') }} ({{ __('msg.Required') }})"
-                                            size='4' type='text' name="name">
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12 form-group  required'>
-                                        <input autocomplete='off' class='form-control card-number'
-                                            placeholder="{{ __('msg.Card Number') }} ({{ __('msg.Required') }})" name="card-number" size='20'
-                                            type='text'>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 ">
-                                <div class="payment_divider">
-                                </div>
-
-                            </div>
-                            <div class="col-lg-5 col-md-5 col-sm-5">
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12 form-group cvc required'>
-                                        <input autocomplete='off' class='form-control card-cvc' name="card-cvc"
-                                            placeholder="CVV ({{ __('msg.Required') }})" size='4' type='text'>
-                                    </div>
-                                </div>
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12  form-group expiration required'>
-                                        <input class='form-control card-expiry-month' name="expiry-month"
-                                            placeholder="{{ __('msg.Expiry Month') }} ({{ __('msg.Required') }})" size='2' type='text'>
-                                    </div>
-                                </div>
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12 form-group expiration required'>
-                                        <input class='form-control card-expiry-year' name="expiry-year" placeholder='YYYY ({{ __('msg.Required') }})'
-                                            size='4' type='text'>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class='form-row row'>
                             <div class='col-md-12 error form-group d-none'>
@@ -129,17 +92,19 @@
                             <div>
                                 @if ($type == 'order')
                                     <div class="d-flex justify-content-center align-items-center" style="gap: 30px">
-                                            <input type="hidden" name="type" value="order">
-                                            <button class="btn btn-primary btn-lg btn-block"
-                                                type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
+                                        <input type="hidden" name="type" value="order">
+                                        <button class="btn btn-primary btn-lg btn-block"
+                                            type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                         @if ($user->type == 'company')
                                             <h6 class="mb-0 heading-color">OR</h6>
                                             <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                                                data-bs-target="#checkAttachModel" style="font-size: 14px">{{ __('msg.Pay Through Cheque') }}</a>
+                                                data-bs-target="#checkAttachModel"
+                                                style="font-size: 14px">{{ __('msg.Pay Through Cheque') }}</a>
                                         @endif
                                     </div>
                                 @else
-                                    <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 30px">
+                                    <div class="d-flex flex-wrap justify-content-center align-items-center"
+                                        style="gap: 30px">
                                         <input type="hidden" name="type" value="quote">
                                         @if ($status == 'no')
                                             <div class="col-sm-5 mx-auto center" style="text-align: center">
@@ -152,7 +117,8 @@
                                             <h6 class="mb-0 heading-color">OR</h6>
                                             <a href="{{ route('user.payment-insurance', $vendorbid->id) }}"
                                                 class="btn text-center btn-primary get_quot block get_appointment d-flex align-items-center justify-content-center"
-                                                type="button" style="font-size: 14px">{{ __('msg.PAY VIA INSURANCE COMPANY') }}</a>
+                                                type="button"
+                                                style="font-size: 14px">{{ __('msg.PAY VIA INSURANCE COMPANY') }}</a>
                                         @endif
                                     </div>
                                 @endif
@@ -165,13 +131,15 @@
                                 <p class="mb-0" style="text-align: center">"You've paid the 100% of the total amount
                                     {{ $order->total }} to make the order as completed"</p>
                             @else
-                                <p class="mb-0" style="text-align: center">"You've paid the {{ $per }}% of the total amount
+                                <p class="mb-0" style="text-align: center">"You've paid the {{ $per }}% of the
+                                    total amount
                                     {{ $order->total }} in the first
                                     half to make the order in process, right
                                     now we are asking you to pay the remaining dues to make the order as completed"</p>
                             @endif
                         @else
-                            <p class="mb-0" style="text-align: center">"Right now you are going to pay {{ $per }}% of the
+                            <p class="mb-0" style="text-align: center">"Right now you are going to pay
+                                {{ $per }}% of the
                                 total amount
                                 {{ $vendorbid->net_total }}, the remaining dues will be asked to
                                 pay when the order get completed, thank you"</p>
@@ -191,13 +159,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="garage_name">
-                                <form action="{{ route('user.payment-info') }}" method="POST" id="submitform"
+                                <form action="{{ route('user.payment-throughCheck') }}" method="POST" id="submitform"
                                     enctype="multipart/form-data" class="my-2">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-12 mb-3">
-                                            <label
-                                                class="mb-2 heading-color"><b>{{ __('msg.Upload Cheque image') }}<small> ({{ __('msg.Click the box to upload') }})</small></b></label>
+                                            <label class="mb-2 heading-color"><b>{{ __('msg.Upload Cheque image') }}<small>
+                                                        ({{ __('msg.Click the box to upload') }})</small></b></label>
                                             <div class="cheque-image">
                                                 {{-- input field name  check_image --}}
 
@@ -214,21 +182,15 @@
                                             <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
                                             <input value="{{ $amount }} {{ __('msg.AED') }}" type='hidden'
                                                 name="amount">
-                                            <input type="hidden" name="action" value="through_cheque">
-                                            @if ($type == 'order')
-                                                <input type="hidden" name="type" value="order">
-                                            @else
-                                                <input type="hidden" name="type" value="quote">
-                                            @endif
                                         </div>
                                     </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button class="btn btn-primary flterClass disabled" id="submit"
+                                            type="submit">{{ __('msg.SUBMIT') }}</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="modal-footer justify-content-center">
-                            <button class="btn btn-primary flterClass disabled" id="submit"
-                                type="submit">{{ __('msg.SUBMIT') }}</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -236,19 +198,19 @@
     </section>
 @endsection
 @section('script')
-<script>
-    @error('cheque_image')
-        $(function() {
-            $('#checkAttachModel').modal('show');
-        });
+    <script>
+        @error('cheque_image')
+            $(function() {
+                $('#checkAttachModel').modal('show');
+            });
         @enderror
-</script>
+    </script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <script type="text/javascript">
         $(function() {
             setInterval(() => {
-                if(!$('input[name="images[]"]').val()=="") {
+                if (!$('input[name="images[]"]').val() == "") {
                     $('.flterClass').removeClass('disabled');
                 } else {
                     $('.flterClass').addClass('disabled');

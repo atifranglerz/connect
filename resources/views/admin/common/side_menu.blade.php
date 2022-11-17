@@ -108,7 +108,7 @@
                                             Policy</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown @if (request()->routeIs('admin.simpleAd*', 'admin.all-packages')) active @endif">
+                            <li class="dropdown d-none @if (request()->routeIs('admin.simpleAd*', 'admin.all-packages')) active @endif">
                                 <a href="#" class="menu-toggle nav-link has-dropdown">
                                     <i data-feather="tag"></i><span>Simple Ads</span></a>
                                 <ul class="dropdown-menu">

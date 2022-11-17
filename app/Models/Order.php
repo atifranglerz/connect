@@ -10,7 +10,8 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_code', 'user_bid_id', 'vendor_bid_id', 'garage_id', 'transaction_id', 'payment_type', 'total','advance', 'status','reason','paid_by','cheque_image'];
+        'order_code', 'user_bid_id', 'vendor_bid_id', 'garage_id', 'transaction_id', 'payment_type', 'total','advance', 'status','reason','paid_by','cheque_image'
+    ];
 
     public function vendorbid()
     {

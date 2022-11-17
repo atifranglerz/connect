@@ -10,7 +10,7 @@
   'faker_locale' => 'en_US',
   'key' => 'base64:7cGvBDCVYB0cjdjob3xveYoDqBnzfUjsYtWRoCnno0k=',
   'cipher' => 'AES-256-CBC',
-  'providers' => 
+  'providers' =>
   array (
     0 => 'Illuminate\\Auth\\AuthServiceProvider',
     1 => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
@@ -39,8 +39,10 @@
     24 => 'App\\Providers\\AuthServiceProvider',
     25 => 'App\\Providers\\EventServiceProvider',
     26 => 'App\\Providers\\RouteServiceProvider',
+    27 => 'TelrGateway\TelrServiceProvider',
+
   ),
-  'aliases' => 
+  'aliases' =>
   array (
     'App' => 'Illuminate\\Support\\Facades\\App',
     'Arr' => 'Illuminate\\Support\\Arr',

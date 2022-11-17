@@ -15,7 +15,6 @@ class CreateVendorBidsTable extends Migration
     {
         Schema::create('vendor_bids', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('garage_id');
             $table->foreign('garage_id')->references('id')->on('garages')->onDelete('cascade');
             $table->unsignedBigInteger('user_bid_id');

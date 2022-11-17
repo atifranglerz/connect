@@ -15,7 +15,7 @@ class ModelYearController extends Controller
      */
     public function index()
     {
-        $model_year = ModelYear::orderBy('model_year', 'desc')->get();
+        $model_year = ModelYear::all();
         $page_title = 'Model Year';
         return view('admin.model_year.index', compact('model_year', 'page_title'));
     }
