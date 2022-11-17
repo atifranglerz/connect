@@ -70,17 +70,8 @@
                         <input type="hidden" name="net_total" value="{{ $vendorbid->net_total }}">
                         <div class=" billing_info">
                             <h5 class="mb-3 text-center text-uppercase heading-color">{{ __('msg.Payment Info') }}</h5>
-                        </div>
-                        <div class="row g-2">
-                            <div class="col-lg-5 col-md-5 col-sm-5">
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12 form-group required'>
-                                        <input class='form-control' value="{{ $amount }} {{ __('msg.AED') }}"
-                                            size='4' type='hidden' readonly name="amount">
-                                    </div>
-                                </div>
-                            </div>
-
+                            <h6 class="mb-3 text-center text-uppercase">Price: {{ $amount }} {{ __('msg.AED') }}</h6>
+                            <input class='form-control' value="{{ $amount }} {{ __('msg.AED') }}" type='hidden' name="amount">
                         </div>
                         <div class='form-row row'>
                             <div class='col-md-12 error form-group d-none'>
@@ -205,8 +196,6 @@
             });
         @enderror
     </script>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
     <script type="text/javascript">
         $(function() {
             setInterval(() => {
@@ -216,59 +205,6 @@
                     $('.flterClass').addClass('disabled');
                 }
             }, 500);
-
-            var $form = $(".require-validation");
-
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('d-none');
-
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('d-none');
-                        e.preventDefault();
-                    }
-                });
-
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
-                }
-
-            });
-
-            function stripeResponseHandler(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('hide')
-                        .find('.alert')
-                        .text(response.error.message);
-                } else {
-                    /* token contains id, last4, and card type */
-                    var token = response['id'];
-
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
-                }
-            }
-
         });
     </script>
 @endsection

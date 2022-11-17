@@ -38,19 +38,14 @@
                         @csrf
                         <div class=" billing_info">
                             <h5 class="mb-3 text-center text-uppercase heading-color">{{ __('msg.Payment Info') }}</h5>
+                            <h6 class="mb-3 text-center text-uppercase">Price: {{ $data->net_total }} {{ __('msg.AED') }}</h6>
+                            <input class='form-control' value="{{ $data->net_total }} {{ __('msg.AED') }}" type='hidden' name="amount">
                         </div>
                         <div class="row g-2">
-
                             <div class="col-lg-5 col-md-5 col-sm-5">
                                 <div class="inpu_wraper mb-3">
                                     <div class='col-xs-12 form-group required'>
                                         <input type="hidden" name="vendor_bid_id" value="{{ $data->id }}">
-                                    </div>
-                                </div>
-                                <div class="inpu_wraper mb-3">
-                                    <div class='col-xs-12 form-group required'>
-                                        <input class='form-control' value="{{ $data->net_total }} {{ __('msg.AED') }}"
-                                            size='4' type='text' readonly name="amount">
                                     </div>
                                 </div>
                             </div>
@@ -117,49 +112,20 @@
     </section>
 @endsection
 @section('script')
-    <script>
+    <script type="text/javascript">
         @error('cheque_image')
             $(function() {
                 $('#checkAttachModel').modal('show');
             });
-    </script>
-@enderror
-
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-<script type="text/javascript">
-    $(function() {
-        setInterval(() => {
-            if (!$('input[name="images[]"]').val() == "") {
-                $('.flterClass').removeClass('disabled');
-            } else {
-                $('.flterClass').addClass('disabled');
-            }
-        }, 500);
-
-        var $form = $(".require-validation");
-
-        $('form.require-validation').bind('submit', function(e) {
-            var $form = $(".require-validation"),
-                inputSelector = ['input[type=email]', 'input[type=password]',
-                    'input[type=text]', 'input[type=file]',
-                    'textarea'
-                ].join(', '),
-                $inputs = $form.find('.required').find(inputSelector),
-                $errorMessage = $form.find('div.error'),
-                valid = true;
-            $errorMessage.addClass('d-none');
-
-            $('.has-error').removeClass('has-error');
-            $inputs.each(function(i, el) {
-                var $input = $(el);
-                if ($input.val() === '') {
-                    $input.parent().addClass('has-error');
-                    $errorMessage.removeClass('d-none');
-                    e.preventDefault();
+        @enderror
+        $(function() {
+            setInterval(() => {
+                if (!$('input[name="images[]"]').val() == "") {
+                    $('.flterClass').removeClass('disabled');
+                } else {
+                    $('.flterClass').addClass('disabled');
                 }
-            });
+            }, 500);
         });
-    });
-</script>
+    </script>
 @endsection
