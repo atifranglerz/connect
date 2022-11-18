@@ -7,7 +7,7 @@
                     <div class="col-12 ">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Add Slider Image</h4>
+                                <h4>Image</h4>
                             </div>
                             <div class="d-flex space-between">
                                 <div class="m-4">
@@ -42,7 +42,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h4>Term & Condition</h4>
+                                <h4>Description</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
