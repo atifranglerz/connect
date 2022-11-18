@@ -52,7 +52,7 @@
                             <div class="row mt-5">
                                 <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 30px">
                                     <button class="btn btn-primary btn-lg btn-block"
-                                        type="submit">{{ __('msg.COMPLETE PAYMENT') }}</button>
+                                        type="submit">{{ __('msg.PAY THROUGH CREDIT') }}</button>
                                     <h6 class="mb-0 heading-color">OR</h6>
                                     <a class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
                                         data-bs-target="#checkAttachModel">{{ __('msg.Pay Through Cheque') }}</a>
