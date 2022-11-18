@@ -142,7 +142,7 @@ return [
     'Keep Yourself Updated!' => 'Keep Yourself Updated!',
     'See what is new for you in our portal' => 'See what is new for you in our portal',
     'Updated On' => 'Updated On',
-    'near_you' => 'near_you',
+    'near_you' => 'near you',
     'Find Some Popular Service Providers Based On Their Quality' => 'Find Some Popular Service Providers Based On Their Quality',
     'REGISTER YOUR GARAGE/WORKSHOP' => 'REGISTER YOUR GARAGE/WORKSHOP',
     'register' => 'Register',

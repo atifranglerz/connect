@@ -157,21 +157,20 @@
         </div>
     </section>
     <!-- done -->
+    @php
+        $image = \App\Models\ProjectDetail::whereType('image')->first();
+        $description = \App\Models\ProjectDetail::whereType('description')->first();
+    @endphp
     <section class="about_connect bg_img"
-        style=" background-image: url('{{ asset('public/assets/images/indexsideimage.png ') }}' );">
+        style=" background-image: url('{{ isset($image->image) ? asset($image->image) : asset('public/assets/images/indexsideimage.png ') }}' );">
         <div class="container-lg container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-md-12  ">
                     <div class="main_content_wraper about_connect_wraper">
                         <h4 class="sec_main_heading about_connect_heading mb-4">{{ __('msg.Repair my Car') }}</h4>
-                        <p class="about_connect_txt">{{ __('msg.project description') }}</p>
-
+                        <p class="about_connect_txt">{!! isset($description->description) ? $description->description : __('msg.project description') !!}</p>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6">
-
-                                </div>
-                              -->
             </div>
         </div>
     </section>
@@ -208,7 +207,7 @@
                                             if ($count > 5) {
                                                 $count = 5;
                                             }
-                                            
+
                                             ?>
                                             @for ($i = 0; $i < $count; $i++)
                                                 <div class="icon_wrpaer">
@@ -242,7 +241,9 @@
                 <div class="col-11 mx-auto d-none">
                     @php
                         if (\App\Models\SimpleAd::whereStatus('Approved')->count() > 1) {
-                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get()->random(2);
+                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')
+                                ->get()
+                                ->random(2);
                         } else {
                             $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get();
                         }
@@ -297,7 +298,9 @@
                 <div class="col-11 mx-auto d-none">
                     @php
                         if (\App\Models\SimpleAd::whereStatus('Approved')->count() > 1) {
-                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get()->random(2);
+                            $Ads = \App\Models\SimpleAd::whereStatus('Approved')
+                                ->get()
+                                ->random(2);
                         } else {
                             $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get();
                         }
@@ -452,7 +455,9 @@
             <div class="col-11 mx-auto d-none">
                 @php
                     if (\App\Models\SimpleAd::whereStatus('Approved')->count() > 1) {
-                        $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get()->random(2);
+                        $Ads = \App\Models\SimpleAd::whereStatus('Approved')
+                            ->get()
+                            ->random(2);
                     } else {
                         $Ads = \App\Models\SimpleAd::whereStatus('Approved')->get();
                     }

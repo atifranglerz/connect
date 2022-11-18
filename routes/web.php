@@ -181,6 +181,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::post('slider/update/{id}', [SliderController::class, 'update']);
         Route::any('slider/destroy/{id}', [SliderController::class, 'destroy']);
 
+        /* HopmePage project detail */
+        Route::resource('detail', 'ProjectDetailController');
+        Route::post('project/image', 'ProjectDetailController@imageUpdate')->name('project.image');
         /* All About Route */
         Route::get('about', 'AboutController@index')->name('about.index');
         Route::get('about/edit/{id}', 'AboutController@edit')->name('about.edit');
